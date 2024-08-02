@@ -420,31 +420,31 @@ def closure1(unit_var: None, v0: str) -> None:
 
 def closure0(unit_var: None, v0: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
     _v3: tuple[US1, US2] | None = None
-    v167: str = method1(method0())
-    v173: US1 = US1(0, US0(0)) if ("Verbose" == v167) else US1(1)
+    v246: str = method1(method0())
+    v252: US1 = US1(0, US0(0)) if ("Verbose" == v246) else US1(1)
     def _arrow258(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> US1:
-        v181: US1 = US1(0, US0(1)) if ("Debug" == v167) else US1(1)
-        if v181.tag == 0:
-            return US1(0, v181.fields[0])
+        v260: US1 = US1(0, US0(1)) if ("Debug" == v246) else US1(1)
+        if v260.tag == 0:
+            return US1(0, v260.fields[0])
 
         else: 
-            v189: US1 = US1(0, US0(2)) if ("Info" == v167) else US1(1)
-            if v189.tag == 0:
-                return US1(0, v189.fields[0])
+            v268: US1 = US1(0, US0(2)) if ("Info" == v246) else US1(1)
+            if v268.tag == 0:
+                return US1(0, v268.fields[0])
 
             else: 
-                v197: US1 = US1(0, US0(3)) if ("Warning" == v167) else US1(1)
-                if v197.tag == 0:
-                    return US1(0, v197.fields[0])
+                v276: US1 = US1(0, US0(3)) if ("Warning" == v246) else US1(1)
+                if v276.tag == 0:
+                    return US1(0, v276.fields[0])
 
                 else: 
-                    v205: US1 = US1(0, US0(4)) if ("Critical" == v167) else US1(1)
-                    return US1(0, v205.fields[0]) if (v205.tag == 0) else US1(1)
+                    v284: US1 = US1(0, US0(4)) if ("Critical" == v246) else US1(1)
+                    return US1(0, v284.fields[0]) if (v284.tag == 0) else US1(1)
 
 
 
 
-    x: tuple[US1, US2] = (US1(0, v173.fields[0]) if (v173.tag == 0) else _arrow258(), US2(0, ticks_1(now())) if (method1(method3()) == "True") else US2(1))
+    x: tuple[US1, US2] = (US1(0, v252.fields[0]) if (v252.tag == 0) else _arrow258(), US2(0, ticks_1(now())) if (method1(method3()) == "True") else US2(1))
     _v3 = x
     pattern_input: tuple[US1, US2]
     if _v3 is None:
@@ -453,12 +453,12 @@ def closure0(unit_var: None, v0: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | N
     else: 
         pattern_input = _v3
 
-    v325: US2 = pattern_input[1]
-    v324: US1 = pattern_input[0]
-    def v417(v: str, unit_var: Any=unit_var, v0: Any=v0) -> None:
+    v402: US2 = pattern_input[1]
+    v401: US1 = pattern_input[0]
+    def v493(v: str, unit_var: Any=unit_var, v0: Any=v0) -> None:
         closure1(None, v)
 
-    return (Mut0(int64(0)), Mut1(v417), Mut2(True), Mut3(v324.fields[0] if (v324.tag == 0) else v0), v325.fields[0] if (v325.tag == 0) else None)
+    return (Mut0(int64(0)), Mut1(v493), Mut2(True), Mut3(v401.fields[0] if (v401.tag == 0) else v0), v402.fields[0] if (v402.tag == 0) else None)
 
 
 def method6(v0: str) -> str:
@@ -513,37 +513,33 @@ def method10(__unit: None=None) -> str:
 
 
 def method11(__unit: None=None) -> str:
-    return ""
-
-
-def method12(__unit: None=None) -> str:
     return "HH:mm:ss"
 
 
-def method13(__unit: None=None) -> str:
+def method12(__unit: None=None) -> str:
     return "\u001b[0m"
 
 
-def method15(v0: Mut4, v1: str) -> None:
+def method14(v0: Mut4, v1: str) -> None:
     v12_1: str = v0.l0 + (("" + v1) + "")
     v0.l0 = v12_1
 
 
-def method16(v0: Mut4) -> None:
+def method15(v0: Mut4) -> None:
     pass
 
 
-def method14(v0: Mut4, v1: str, v2_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "path")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, " }")
+def method13(v0: Mut4, v1: str, v2_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "path")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure5(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]], unit_var: None) -> str:
@@ -553,7 +549,7 @@ def closure5(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -565,75 +561,75 @@ def closure5(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow259(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow259() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow259() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, str] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method14(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method13(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method17(v0: US0, v1: Callable[[], str]) -> None:
+def method16(v0: US0, v1: Callable[[], str]) -> None:
     def v4(v: US0, v0: Any=v0, v1: Any=v1) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
         return closure0(None, v)
 
@@ -678,7 +674,7 @@ def method9(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]])
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure5(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def method4(v0: str, v1: int64) -> Async[int64]:
@@ -711,26 +707,26 @@ def closure9(v0: str, v1: int64, v2_1: str, unit_var: None) -> tuple[str, int64,
     return (method8(v0), v1, v2_1)
 
 
-def method21(v0: Mut4, v1: int64) -> None:
+def method20(v0: Mut4, v1: int64) -> None:
     v12_1: str = v0.l0 + (("" + str(v1)) + "")
     v0.l0 = v12_1
 
 
-def method20(v0: Mut4, v1: str, v2_1: int64, v3_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "path")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "retry")
-    method15(v0, " = ")
-    method21(v0, v2_1)
-    method15(v0, "; ")
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method15(v0, v3_1)
-    method15(v0, " }")
+def method19(v0: Mut4, v1: str, v2_1: int64, v3_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "path")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "retry")
+    method14(v0, " = ")
+    method20(v0, v2_1)
+    method14(v0, "; ")
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method14(v0, v3_1)
+    method14(v0, " }")
 
 
 def closure10(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, int64, str]], unit_var: None) -> str:
@@ -740,7 +736,7 @@ def closure10(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, int6
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -752,82 +748,82 @@ def closure10(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, int6
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow262(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow262() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow262() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, int64, str] = v2_1(None)
-    v1165: Mut4 = Mut4("")
-    method20(v1165, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2])
-    v1166: str = v1165.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1166) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1219: Mut4 = Mut4("")
+    method19(v1219, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2])
+    v1220: str = v1219.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1220) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method19(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, int64, str]]) -> None:
+def method18(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, int64, str]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure10(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
-def method18(v0: str, v1: US8, v2_1: US7, v3_1: int64) -> Async[int64]:
+def method17(v0: str, v1: US8, v2_1: US7, v3_1: int64) -> Async[int64]:
     _v6: Async[int64] | None = None
     _v6 = None
     if _v6 is None:
@@ -856,7 +852,7 @@ def closure6(unit_var: None, v0: US6) -> Callable[[str], Async[int64]]:
     return _arrow263
 
 
-def method22(v0: str, v1: int64) -> Async[int64]:
+def method21(v0: str, v1: int64) -> Async[int64]:
     _v4: Async[int64] | None = None
     _v4 = None
     if _v4 is None:
@@ -889,7 +885,7 @@ def closure12(unit_var: None, v0: str) -> Async[str]:
 
 
 
-def method24(v0: str) -> bool:
+def method23(v0: str) -> bool:
     _v3: bool | None = None
     _v3 = None
     if _v3 is None:
@@ -900,11 +896,11 @@ def method24(v0: str) -> bool:
 
 
 
-def method25(v0: Vec_1[uint8]) -> Vec_1[uint8]:
+def method24(v0: Vec_1[uint8]) -> Vec_1[uint8]:
     return v0
 
 
-def method23(v0: str, v1: str) -> bool:
+def method22(v0: str, v1: str) -> bool:
     _v4: bool | None = None
     _v4 = None
     if _v4 is None:
@@ -916,7 +912,7 @@ def method23(v0: str, v1: str) -> bool:
 
 
 def closure14(v0: str, v1: str) -> bool:
-    return method23(v0, v1)
+    return method22(v0, v1)
 
 
 def closure13(unit_var: None, v0: str) -> Callable[[str], bool]:
@@ -977,17 +973,17 @@ def closure21(v0: str, v1: Exception, unit_var: None) -> tuple[str, str]:
     return (v2_1, _arrow267() if (_v5 is None) else _v5)
 
 
-def method28(v0: Mut4, v1: str, v2_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "path")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, " }")
+def method27(v0: Mut4, v1: str, v2_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "path")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure22(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]], unit_var: None) -> str:
@@ -997,7 +993,7 @@ def closure22(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1009,82 +1005,82 @@ def closure22(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow268(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow268() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow268() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, str] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method28(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method27(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method27(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]) -> None:
+def method26(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure22(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
-def method26(v0: str, v1: int64) -> Async[int64]:
+def method25(v0: str, v1: int64) -> Async[int64]:
     _v4: Async[int64] | None = None
     _v4 = None
     if _v4 is None:
@@ -1114,25 +1110,25 @@ def closure26(v0: str, v1: str, v2_1: Exception, unit_var: None) -> tuple[str, s
     return (method8(v1), method8(v0), v2_1)
 
 
-def method32(v0: Mut4, v1: Exception) -> None:
-    method15(v0, to_text(interpolate("%A%P()", [v1])))
+def method31(v0: Mut4, v1: Exception) -> None:
+    method14(v0, to_text(interpolate("%A%P()", [v1])))
 
 
-def method31(v0: Mut4, v1: str, v2_1: str, v3_1: Exception) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "old_path")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "new_path")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, "; ")
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method32(v0, v3_1)
-    method15(v0, " }")
+def method30(v0: Mut4, v1: str, v2_1: str, v3_1: Exception) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "old_path")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "new_path")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, "; ")
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method31(v0, v3_1)
+    method14(v0, " }")
 
 
 def closure27(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str, Exception]], unit_var: None) -> str:
@@ -1142,7 +1138,7 @@ def closure27(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str,
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1154,82 +1150,82 @@ def closure27(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str,
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow269(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow269() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow269() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, str, Exception] = v2_1(None)
-    v1165: Mut4 = Mut4("")
-    method31(v1165, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2])
-    v1166: str = v1165.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1166) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1219: Mut4 = Mut4("")
+    method30(v1219, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2])
+    v1220: str = v1219.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1220) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method30(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str, Exception]]) -> None:
+def method29(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str, Exception]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure27(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
-def method29(v0: str, v1: str, v2_1: int64) -> Async[int64]:
+def method28(v0: str, v1: str, v2_1: int64) -> Async[int64]:
     _v5: Async[int64] | None = None
     _v5 = None
     if _v5 is None:
@@ -1274,18 +1270,18 @@ def closure32(unit_var: None, unit_var_1: None) -> int:
     return 1000
 
 
-def method36(v0: Mut4, v1: int) -> None:
+def method35(v0: Mut4, v1: int) -> None:
     v12_1: str = v0.l0 + (("" + str(v1)) + "")
     v0.l0 = v12_1
 
 
-def method35(v0: Mut4, v1: int) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "timeout")
-    method15(v0, " = ")
-    method36(v0, v1)
-    method15(v0, " }")
+def method34(v0: Mut4, v1: int) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "timeout")
+    method14(v0, " = ")
+    method35(v0, v1)
+    method14(v0, " }")
 
 
 def closure33(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int], unit_var: None) -> str:
@@ -1295,7 +1291,7 @@ def closure33(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int], unit_var:
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1307,78 +1303,78 @@ def closure33(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int], unit_var:
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow271(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow271() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow271() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
-    v1163: Mut4 = Mut4("")
-    method35(v1163, v2_1(None))
-    v1164: str = v1163.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1164) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1214: int64 = pattern_input[0].l0
+    v1217: Mut4 = Mut4("")
+    method34(v1217, v2_1(None))
+    v1218: str = v1217.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1218) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method34(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int]) -> None:
+def method33(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure33(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def closure34(unit_var: None, unit_var_1: None) -> str:
@@ -1395,17 +1391,17 @@ def closure35(v0: Exception, unit_var: None) -> tuple[int, str]:
     return (1000, _arrow272() if (_v3 is None) else _v3)
 
 
-def method38(v0: Mut4, v1: int, v2_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "timeout")
-    method15(v0, " = ")
-    method36(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, " }")
+def method37(v0: Mut4, v1: int, v2_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "timeout")
+    method14(v0, " = ")
+    method35(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure36(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]], unit_var: None) -> str:
@@ -1415,7 +1411,7 @@ def closure36(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1427,79 +1423,79 @@ def closure36(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow273(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow273() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow273() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[int, str] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method38(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method37(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method37(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
+def method36(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure36(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def closure37(unit_var: None, unit_var_1: None) -> str:
@@ -1510,17 +1506,17 @@ def closure38(v0: int64, v1: str, unit_var: None) -> tuple[int64, str]:
     return (v0, v1)
 
 
-def method40(v0: Mut4, v1: int64, v2_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "retry")
-    method15(v0, " = ")
-    method21(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "ex")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, " }")
+def method39(v0: Mut4, v1: int64, v2_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "retry")
+    method14(v0, " = ")
+    method20(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "ex")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure39(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int64, str]], unit_var: None) -> str:
@@ -1530,7 +1526,7 @@ def closure39(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int64, st
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1542,82 +1538,82 @@ def closure39(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int64, st
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow274(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow274() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow274() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[int64, str] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method40(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method39(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method39(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int64, str]]) -> None:
+def method38(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int64, str]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure39(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
-def method33(v0: str, v1: int64) -> Async[str | None]:
+def method32(v0: str, v1: int64) -> Async[str | None]:
     _v4: Async[str | None] | None = None
     _v4 = None
     if _v4 is None:
@@ -1639,21 +1635,21 @@ def closure28(unit_var: None, v0: str) -> Async[str | None]:
 
 
 
-def method43(__unit: None=None) -> str:
+def method42(__unit: None=None) -> str:
     return "hh:mm"
 
 
-def method44(__unit: None=None) -> str:
+def method43(__unit: None=None) -> str:
     return "yyyyMMdd-HHmm-ssff-ffff-f"
 
 
-def method45(__unit: None=None) -> str:
+def method44(__unit: None=None) -> str:
     return "hhmm"
 
 
-def method42(v0: str, v1: Any) -> str:
+def method41(v0: str, v1: Any) -> str:
     _v4: str | None = None
-    v882: str = to_string(v1, method44())
+    v882: str = to_string(v1, method43())
     _v891: Any | None = None
     _v891 = None
     v931: Any
@@ -1675,7 +1671,7 @@ def method42(v0: str, v1: Any) -> str:
         v1047 = _v948
 
     v1068: uint8 = uint8(1) if (hours(v1047) > 0) else uint8(0)
-    v1069: str = method45()
+    v1069: str = method44()
     _v1072: str | None = None
     x_4: str = to_string_1(v1047, "c", {})
     _v1072 = x_4
@@ -1694,7 +1690,7 @@ def method42(v0: str, v1: Any) -> str:
 
 
 
-def method47(__unit: None=None) -> str:
+def method46(__unit: None=None) -> str:
     _v2: str | None = None
     x: str
     raise Exception(("file_system.get_temp_path / target: " + str(US5(4, US4(0)))) + "")
@@ -1707,19 +1703,19 @@ def method47(__unit: None=None) -> str:
 
 
 
-def method48(__unit: None=None) -> str:
+def method47(__unit: None=None) -> str:
     return "!create_temp_path_"
 
 
-def method51(v0: str) -> str:
+def method50(v0: str) -> str:
     return v0
 
 
-def method50(v0: str, v1: str) -> tuple[str, str]:
-    return (v1, method51(v0))
+def method49(v0: str, v1: str) -> tuple[str, str]:
+    return (v1, method50(v0))
 
 
-def method49(v0: str, v1: str) -> str:
+def method48(v0: str, v1: str) -> str:
     _v4: str | None = None
     x: str
     raise Exception(((((("file_system.(</>) / target: " + str(US5(4, US4(0)))) + " / a: ") + v0) + " / b: ") + v1) + "")
@@ -1732,11 +1728,11 @@ def method49(v0: str, v1: str) -> str:
 
 
 
-def method53(__unit: None=None) -> str:
+def method52(__unit: None=None) -> str:
     return "CARGO_PKG_NAME"
 
 
-def method52(__unit: None=None) -> str:
+def method51(__unit: None=None) -> str:
     _v2: str | None = None
     x: str
     raise Exception(("env.get_entry_assembly_name / target: " + str(US5(4, US4(0)))) + "")
@@ -1749,9 +1745,9 @@ def method52(__unit: None=None) -> str:
 
 
 
-def method46(v0: str) -> str:
+def method45(v0: str) -> str:
     _v3: str | None = None
-    x: str = method49(method49(method49(method47(), method48()), method52()), str(v0))
+    x: str = method48(method48(method48(method46(), method47()), method51()), str(v0))
     _v3 = x
     if _v3 is None:
         raise Exception("base.run_target / _v3=None")
@@ -1761,10 +1757,10 @@ def method46(v0: str) -> str:
 
 
 
-def method41(__unit: None=None) -> str:
+def method40(__unit: None=None) -> str:
     _v2: str | None = None
     v77: Any = now()
-    x: str = method46(method42(new_guid(), v77))
+    x: str = method45(method41(new_guid(), v77))
     _v2 = x
     if _v2 is None:
         raise Exception("base.run_target / _v2=None")
@@ -1775,10 +1771,10 @@ def method41(__unit: None=None) -> str:
 
 
 def closure40(unit_var: None, unit_var_1: None) -> str:
-    return method41()
+    return method40()
 
 
-def method55(v0: str) -> str:
+def method54(v0: str) -> str:
     return v0
 
 
@@ -1793,7 +1789,7 @@ def closure42(unit_var: None, v0: std_io_error) -> std_string_string:
 
 
 
-def method56(__unit: None=None) -> Callable[[std_io_error], std_string_string]:
+def method55(__unit: None=None) -> Callable[[std_io_error], std_string_string]:
     def _arrow276(v: std_io_error) -> std_string_string:
         return closure42(None, v)
 
@@ -1816,21 +1812,21 @@ def closure46(v0: str, v1: std_string_string, unit_var: None) -> tuple[str, std_
     return (v0, v1)
 
 
-def method59(v0: Mut4, v1: std_string_string) -> None:
-    method15(v0, to_text(interpolate("%A%P()", [v1])))
+def method58(v0: Mut4, v1: std_string_string) -> None:
+    method14(v0, to_text(interpolate("%A%P()", [v1])))
 
 
-def method58(v0: Mut4, v1: str, v2_1: std_string_string) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "dir")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "error")
-    method15(v0, " = ")
-    method59(v0, v2_1)
-    method15(v0, " }")
+def method57(v0: Mut4, v1: str, v2_1: std_string_string) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "dir")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "error")
+    method14(v0, " = ")
+    method58(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure47(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, std_string_string]], unit_var: None) -> str:
@@ -1840,7 +1836,7 @@ def closure47(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, std_
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1852,79 +1848,79 @@ def closure47(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, std_
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow277(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow277() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow277() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, std_string_string] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method58(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method57(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method57(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, std_string_string]]) -> None:
+def method56(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, std_string_string]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure47(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def closure48(unit_var: None, unit_var_1: None) -> str:
@@ -1935,13 +1931,13 @@ def closure49(v0: str, unit_var: None) -> str:
     return v0
 
 
-def method61(v0: Mut4, v1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "dir")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, " }")
+def method60(v0: Mut4, v1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "dir")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, " }")
 
 
 def closure50(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
@@ -1951,7 +1947,7 @@ def closure50(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var:
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -1963,92 +1959,92 @@ def closure50(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var:
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow278(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow278() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow278() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
-    v1163: Mut4 = Mut4("")
-    method61(v1163, v2_1(None))
-    v1164: str = v1163.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1164) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1214: int64 = pattern_input[0].l0
+    v1217: Mut4 = Mut4("")
+    method60(v1217, v2_1(None))
+    v1218: str = v1217.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1218) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method60(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
+def method59(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure50(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def closure51(v0: str, unit_var: None) -> None:
     method5(True, v0)
 
 
-def method62(v0: str) -> Callable[[], None]:
+def method61(v0: str) -> Callable[[], None]:
     def _arrow279(__unit: None=None, v0: Any=v0) -> None:
         closure51(v0, None)
 
     return _arrow279
 
 
-def method63(v0: str) -> Callable[[], None]:
+def method62(v0: str) -> Callable[[], None]:
     def _arrow280(__unit: None=None, v0: Any=v0) -> None:
         closure51(v0, None)
 
@@ -2063,17 +2059,17 @@ def closure53(v0: str, v1: str, unit_var: None) -> tuple[str, str]:
     return (v0, v1)
 
 
-def method65(v0: Mut4, v1: str, v2_1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "dir")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, "; ")
-    method15(v0, "result")
-    method15(v0, " = ")
-    method15(v0, v2_1)
-    method15(v0, " }")
+def method64(v0: Mut4, v1: str, v2_1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "dir")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, "; ")
+    method14(v0, "result")
+    method14(v0, " = ")
+    method14(v0, v2_1)
+    method14(v0, " }")
 
 
 def closure54(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]], unit_var: None) -> str:
@@ -2083,7 +2079,7 @@ def closure54(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -2095,79 +2091,79 @@ def closure54(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow281(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow281() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow281() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
+    v1214: int64 = pattern_input[0].l0
     pattern_input_1: tuple[str, str] = v2_1(None)
-    v1164: Mut4 = Mut4("")
-    method65(v1164, pattern_input_1[0], pattern_input_1[1])
-    v1165: str = v1164.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1218: Mut4 = Mut4("")
+    method64(v1218, pattern_input_1[0], pattern_input_1[1])
+    v1219: str = v1218.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method64(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]) -> None:
+def method63(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[str, str]]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure54(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
 def closure55(v0: str, unit_var: None) -> None:
@@ -2199,21 +2195,21 @@ def closure55(v0: str, unit_var: None) -> None:
 
 
 
-def method66(v0: str) -> Callable[[], None]:
+def method65(v0: str) -> Callable[[], None]:
     def _arrow282(__unit: None=None, v0: Any=v0) -> None:
         closure55(v0, None)
 
     return _arrow282
 
 
-def method67(v0: str) -> Callable[[], None]:
+def method66(v0: str) -> Callable[[], None]:
     def _arrow283(__unit: None=None, v0: Any=v0) -> None:
         closure55(v0, None)
 
     return _arrow283
 
 
-def method54(v0: str) -> IDisposable:
+def method53(v0: str) -> IDisposable:
     _v3: IDisposable | None = None
     _v293: Any | None = None
     _v293 = None
@@ -2249,10 +2245,10 @@ def method54(v0: str) -> IDisposable:
         def v497(__unit: None=None, v0: Any=v0) -> tuple[str, str]:
             return closure53(v0, v488, None)
 
-        method64(US0(1), v496, v497)
+        method63(US0(1), v496, v497)
 
     _v500: IDisposable | None = None
-    v509: Callable[[], None] = method67(v0)
+    v509: Callable[[], None] = method66(v0)
     class ObjectExpr285(IDisposable):
         def Dispose(self, __unit: None=None, v0: Any=v0) -> None:
             v509(None)
@@ -2276,11 +2272,11 @@ def method54(v0: str) -> IDisposable:
 
 
 def closure41(unit_var: None, unit_var_1: None) -> tuple[str, IDisposable]:
-    v0: str = method41()
-    return (v0, method54(v0))
+    v0: str = method40()
+    return (v0, method53(v0))
 
 
-def method68(v0: str) -> str:
+def method67(v0: str) -> str:
     _v3: str | None = None
     v138: str = pad_left(v0, 32, "0")
     x: str = parse(((((((((("" + v138[0:7 + 1]) + "-") + v138[8:11 + 1]) + "-") + v138[12:15 + 1]) + "-") + v138[16:19 + 1]) + "-") + v138[20:31 + 1]) + "")
@@ -2294,32 +2290,32 @@ def method68(v0: str) -> str:
 
 
 def closure56(unit_var: None, v0: str) -> tuple[str, IDisposable]:
-    v2_1: str = method46(method68(v0))
-    return (v2_1, method54(v2_1))
+    v2_1: str = method45(method67(v0))
+    return (v2_1, method53(v2_1))
 
 
 def closure57(unit_var: None, unit_var_1: None) -> str:
     return "C:\\home\\git\\polyglot\\lib\\spiral"
 
 
-def method70(__unit: None=None) -> str:
+def method69(__unit: None=None) -> str:
     return ""
 
 
-def method71(v0: str) -> str:
+def method70(v0: str) -> str:
     return v0
 
 
-def method72(__unit: None=None) -> str:
+def method71(__unit: None=None) -> str:
     return "^\\\\\\\\\\?\\\\"
 
 
-def method69(v0: str) -> str:
+def method68(v0: str) -> str:
     if v0 == "":
         return ""
 
     else: 
-        v4: str = method70()
+        v4: str = method69()
         _v7: str | None = None
         _v7 = None
         v58: str
@@ -2338,14 +2334,14 @@ def method69(v0: str) -> str:
 
 
 def closure58(unit_var: None, v0: str) -> str:
-    return method69(v0)
+    return method68(v0)
 
 
 def closure59(unit_var: None, v0: str) -> str:
     return ("file:///" + trim_start(v0, *to_array(singleton("/")))) + ""
 
 
-def method75(v0: str) -> str | None:
+def method74(v0: str) -> str | None:
     _v3: US3 | None = None
     _v3 = None
     v189: US3
@@ -2364,24 +2360,24 @@ def method75(v0: str) -> str | None:
 
 
 def closure61(unit_var: None, v0: str) -> str | None:
-    return method75(v0)
+    return method74(v0)
 
 
-def method74(__unit: None=None) -> Callable[[str], str | None]:
+def method73(__unit: None=None) -> Callable[[str], str | None]:
     def _arrow287(v: str) -> str | None:
         return closure61(None, v)
 
     return _arrow287
 
 
-def method76(v0_mut: str, v1_mut: str, v2_1_mut: str) -> US13:
+def method75(v0_mut: str, v1_mut: str, v2_1_mut: str) -> US13:
     while True:
         (v0, v1, v2_1) = (v0_mut, v1_mut, v2_1_mut)
-        if method7(method49(v2_1, v0)):
+        if method7(method48(v2_1, v0)):
             return US13(0, v2_1)
 
         else: 
-            v7: str | None = method74()(v2_1)
+            v7: str | None = method73()(v2_1)
             _v10: FSharpRef[US3 | None] = FSharpRef(None)
             x_2: US3 | None
             if v7 is None:
@@ -2409,12 +2405,12 @@ def method76(v0_mut: str, v1_mut: str, v2_1_mut: str) -> US13:
         break
 
 
-def method73(v0: str, v1: str) -> US13:
-    if method7(method49(v1, v0)):
+def method72(v0: str, v1: str) -> US13:
+    if method7(method48(v1, v0)):
         return US13(0, v1)
 
     else: 
-        v6: str | None = method74()(v1)
+        v6: str | None = method73()(v1)
         _v9: FSharpRef[US3 | None] = FSharpRef(None)
         x_2: US3 | None
         if v6 is None:
@@ -2430,7 +2426,7 @@ def method73(v0: str, v1: str) -> US13:
         _v9.contents = x_2
         v36: US3 = default_arg(_v9.contents, US3(1))
         if v36.tag == 0:
-            return method76(v0, v1, v36.fields[0])
+            return method75(v0, v1, v36.fields[0])
 
         else: 
             return US13(1, ((((((("No parent for " + "dir") + " \'") + v0) + "\' at \'") + v1) + "\' (until \'") + v1) + "\')")
@@ -2446,13 +2442,13 @@ def closure63(v0: str, unit_var: None) -> str:
     return v0
 
 
-def method78(v0: Mut4, v1: str) -> None:
-    method15(v0, "{ ")
-    method16(v0)
-    method15(v0, "error")
-    method15(v0, " = ")
-    method15(v0, v1)
-    method15(v0, " }")
+def method77(v0: Mut4, v1: str) -> None:
+    method14(v0, "{ ")
+    method15(v0)
+    method14(v0, "error")
+    method14(v0, " = ")
+    method14(v0, v1)
+    method14(v0, " }")
 
 
 def closure64(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
@@ -2462,7 +2458,7 @@ def closure64(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var:
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_3(State_trace_state())
     v18_1: int64 | None = pattern_input[4]
     _v35: str | None = None
-    _v480: FSharpRef[US2 | None] = FSharpRef(None)
+    _v534: FSharpRef[US2 | None] = FSharpRef(None)
     x_2: US2 | None
     if v18_1 is None:
         x_2 = None
@@ -2474,81 +2470,81 @@ def closure64(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var:
 
         x_2 = x_1(None)
 
-    _v480.contents = x_2
-    v507: US2 = default_arg(_v480.contents, US2(1))
+    _v534.contents = x_2
+    v561: US2 = default_arg(_v534.contents, US2(1))
     def _arrow288(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
-        return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
+        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
+        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
 
-    x_3: str = to_string(_arrow288() if (v507.tag == 0) else now(), method12())
+    x_3: str = to_string(_arrow288() if (v561.tag == 0) else now(), method11())
     _v35 = x_3
-    v772: str
+    v826: str
     if _v35 is None:
         raise Exception("base.run_target / _v35=None")
 
     else: 
-        v772 = _v35
+        v826 = _v35
 
-    v931: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v980: US3
-    if v931.tag == 0:
-        v980 = US3(0, v931.fields[0])
+    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
+    v1034: US3
+    if v985.tag == 0:
+        v1034 = US3(0, v985.fields[0])
 
     else: 
-        v940: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v940.tag == 0:
-            v980 = US3(0, v940.fields[0])
+        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
+        if v994.tag == 0:
+            v1034 = US3(0, v994.fields[0])
 
         else: 
-            v949: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v949.tag == 0:
-                v980 = US3(0, v949.fields[0])
+            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
+            if v1003.tag == 0:
+                v1034 = US3(0, v1003.fields[0])
 
             else: 
-                v958: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v958.tag == 0:
-                    v980 = US3(0, v958.fields[0])
+                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
+                if v1012.tag == 0:
+                    v1034 = US3(0, v1012.fields[0])
 
                 else: 
-                    v967: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v980 = US3(0, v967.fields[0]) if (v967.tag == 0) else US3(1)
+                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
+                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
 
 
 
-    v984: str
-    if v980.tag == 0:
-        v984 = v980.fields[0]
+    v1038: str
+    if v1034.tag == 0:
+        v1038 = v1034.fields[0]
 
     else: 
         raise Exception("Option does not have a value.")
 
-    v997: str = pad_left(v984.lower(), 7, " ")
-    _v1029: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v997) + method13()
-    _v1029 = x_5
-    v1141: str
-    if _v1029 is None:
-        raise Exception("base.run_target / _v1029=None")
+    v1051: str = pad_left(v1038.lower(), 7, " ")
+    _v1083: str | None = None
+    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method12()
+    _v1083 = x_5
+    v1195: str
+    if _v1083 is None:
+        raise Exception("base.run_target / _v1083=None")
 
     else: 
-        v1141 = _v1029
+        v1195 = _v1083
 
-    v1160: int64 = pattern_input[0].l0
-    v1163: Mut4 = Mut4("")
-    method78(v1163, v2_1(None))
-    v1164: str = v1163.l0
-    return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1164) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+    v1214: int64 = pattern_input[0].l0
+    v1217: Mut4 = Mut4("")
+    method77(v1217, v2_1(None))
+    v1218: str = v1217.l0
+    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1218) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method77(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
+def method76(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
     def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
         return closure64(v0, v1, v2_1, None)
 
-    method17(v0, v3_1)
+    method16(v0, v3_1)
 
 
-def method79(__unit: None=None) -> str:
+def method78(__unit: None=None) -> str:
     _v2: str | None = None
     _v2 = None
     if _v2 is None:
@@ -2560,7 +2556,7 @@ def method79(__unit: None=None) -> str:
 
 
 def closure60(unit_var: None, unit_var_1: None) -> str:
-    v4: US13 = method73(method49("polyglot", ".devcontainer"), "C:\\home\\git\\polyglot\\lib\\spiral")
+    v4: US13 = method72(method48("polyglot", ".devcontainer"), "C:\\home\\git\\polyglot\\lib\\spiral")
     v13_1: US3
     if v4.tag == 0:
         v13_1 = US3(0, v4.fields[0])
@@ -2572,7 +2568,7 @@ def closure60(unit_var: None, unit_var_1: None) -> str:
         def v10_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
             return closure63(v4.fields[0], None)
 
-        method77(US0(3), v9_1, v10_1)
+        method76(US0(3), v9_1, v10_1)
         v13_1 = US3(1)
 
     v29: US3
@@ -2580,8 +2576,8 @@ def closure60(unit_var: None, unit_var_1: None) -> str:
         v29 = US3(0, v13_1.fields[0])
 
     else: 
-        v16_1: str = method79()
-        v18_1: US13 = method73(method49("polyglot", ".devcontainer"), v16_1)
+        v16_1: str = method78()
+        v18_1: US13 = method72(method48("polyglot", ".devcontainer"), v16_1)
         if v18_1.tag == 0:
             v29 = US3(0, v18_1.fields[0])
 
@@ -2592,17 +2588,17 @@ def closure60(unit_var: None, unit_var_1: None) -> str:
             def v24_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
                 return closure63(v18_1.fields[0], None)
 
-            method77(US0(3), v23_1, v24_1)
+            method76(US0(3), v23_1, v24_1)
             v29 = US3(1)
 
 
     def _arrow289(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
         raise Exception("Option does not have a value.")
 
-    return method49(v29.fields[0] if (v29.tag == 0) else _arrow289(), "polyglot")
+    return method48(v29.fields[0] if (v29.tag == 0) else _arrow289(), "polyglot")
 
 
-def method80(v0: str) -> None:
+def method79(v0: str) -> None:
     _v3: None | None = None
     _v3 = some(None)
     if _v3 is None:
@@ -2614,7 +2610,7 @@ def method80(v0: str) -> None:
 
 
 def closure66(unit_var: None, v0: str) -> None:
-    method80(v0)
+    method79(v0)
 
 
 def closure65(unit_var: None, v0: bool) -> None:
@@ -2633,7 +2629,7 @@ def closure65(unit_var: None, v0: bool) -> None:
 
 
 def closure68(v0: str, v1: str) -> str:
-    return method49(v0, v1)
+    return method48(v0, v1)
 
 
 def closure67(unit_var: None, v0: str) -> Callable[[str], str]:

@@ -1,0 +1,124 @@
+/// # chat_contract
+open rust
+open rust.rust_operators
+
+/// ## chat_contract
+
+/// ### lookup_map
+nominal lookup_map k v =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::store::LookupMap<$0, $1>\")>]\n#endif\ntype near_sdk_store_LookupMap<'K, 'V> = class end"
+        $'' : $'near_sdk_store_LookupMap<`k, `v>'
+    )
+
+/// ### account_id
+nominal account_id =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::AccountId\")>]\n#endif\ntype near_sdk_AccountId = class end"
+        $'' : $'near_sdk_AccountId'
+    )
+
+/// ### state
+type state =
+    {
+        version : u32
+        alias_map : lookup_map sm'.std_string (mapm.hash_map account_id (u64 * u32))
+        account_map : lookup_map account_id sm'.std_string
+    }
+
+/// ### byte_slice
+inl byte_slice (s : string) : rust.ref (am'.slice u8) =
+    !\($'"b\\\"" + !s + "\\\""')
+
+/// ### new_lookup_map
+inl new_lookup_map prefix =
+    !\($'"near_sdk::store::LookupMap::new(!prefix)"')
+
+/// ### new
+inl new () : state =
+    {
+        version = 1
+        alias_map = "l" |> byte_slice |> new_lookup_map
+        account_map = "c" |> byte_slice |> new_lookup_map
+    }
+
+/// ### main
+///! _
+
+// inl is_valid_alias (alias : rust.ref sm'.str) : bool =
+//     str_len alias > 0
+//     && str_len alias < 64
+//     && alias |> sm'.starts_with "-"
+//     && alias |> sm'.ends_with "-"
+//     && alias |> sm'.chars |>
+
+inl main () =
+    inl value = new ()
+    inl value = value |> sm'.format_pretty'
+    console.write_line ($'$"value: {!value}"' : string)
+
+    !\($'"} //"') : ()
+
+    !\($'"#[near_sdk::near_bindgen] //"') : ()
+
+    !\($'"#[derive( //"') : ()
+    !\($'"  near_sdk::PanicOnDefault, //"') : ()
+    !\($'"  borsh::BorshDeserialize, //"') : ()
+    !\($'"  borsh::BorshSerialize, //"') : ()
+    !\($'")] //"') : ()
+
+    !\($'"pub struct State { //"') : ()
+    !\($'"} //"') : ()
+
+
+    !\($'"#[near_sdk::near_bindgen] //"') : ()
+    !\($'"impl State { //"') : ()
+
+    !\($'"#[init] //"') : ()
+    !\($'"pub fn new() -> Self { //"') : ()
+    !\($'"  Self { //"') : ()
+    !\($'"  } //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"#[result_serializer(borsh)] //"') : ()
+    !\($'"pub fn generate_cid_borsh( //"') : ()
+    !\($'"  &self, //"') : ()
+    !\($'"  #[serializer(borsh)] content: Vec<u8>, //"') : ()
+    !\($'") -> String { //"') : ()
+    !\($'"\\\"\\\".to_string() //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"pub fn claim_alias( //"') : ()
+    !\($'"  &mut self, //"') : ()
+    !\($'"  alias: String, //"') : ()
+    !\($'") { //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"pub fn get_account_info( //"') : ()
+    !\($'"  &self, //"') : ()
+    !\($'"  account_id: near_sdk::AccountId, //"') : ()
+    !\($'") -> Option<(String, (u64, u32))> { //"') : ()
+    !\($'"None //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"pub fn get_alias_map( //"') : ()
+    !\($'"  &self, //"') : ()
+    !\($'"  alias: String, //"') : ()
+    !\($'") -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> { //"') : ()
+    !\($'"None //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"#[result_serializer(borsh)] //"') : ()
+    !\($'"pub fn get_alias_map_borsh( //"') : ()
+    !\($'"  &self, //"') : ()
+    !\($'"  #[serializer(borsh)] alias: String, //"') : ()
+    !\($'") -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> { //"') : ()
+    !\($'"None //"') : ()
+    !\($'"} //"') : ()
+
+    !\($'"} //"') : ()
+
+    !\($'"fn _main() { //"') : ()
+
+inl main () =
+    $'!main |> ignore' : ()

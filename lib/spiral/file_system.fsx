@@ -378,146 +378,130 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option) =
     struct (v83, v84) 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v85 : US1 = US1_1
-    let v86 : US2 = US2_1
-    struct (v85, v86) 
+    let v85 : string = "AUTOMATION"
+    let v88 : bool = true
+    let mutable _v88 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v89 : string = "env!(\"" + v85 + "\")"
+    let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v89 
+    let v91 : string = "String::from($0)"
+    let v92 : std_string_String = Fable.Core.RustInterop.emitRustExpr v90 v91 
+    let v93 : string = "fable_library_rust::String_::fromString($0)"
+    let v94 : string = Fable.Core.RustInterop.emitRustExpr v92 v93 
+    v94 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v95 : string = "env!(\"" + v85 + "\")"
+    let v96 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v95 
+    let v97 : string = "String::from($0)"
+    let v98 : std_string_String = Fable.Core.RustInterop.emitRustExpr v96 v97 
+    let v99 : string = "fable_library_rust::String_::fromString($0)"
+    let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99 
+    v100 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v101 : string = "env!(\"" + v85 + "\")"
+    let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101 
+    let v103 : string = "String::from($0)"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr v102 v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    v106 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v87 : string = method0()
-    let v88 : string = method1(v87)
-    let v90 : bool = "Verbose" = v88
-    let v94 : US1 =
-        if v90 then
-            let v91 : US0 = US0_0
-            US1_0(v91)
-        else
-            US1_1
-    let v139 : US1 =
-        match v94 with
-        | US1_1 -> (* None *)
-            let v98 : bool = "Debug" = v88
-            let v102 : US1 =
-                if v98 then
-                    let v99 : US0 = US0_1
-                    US1_0(v99)
-                else
-                    US1_1
-            match v102 with
-            | US1_1 -> (* None *)
-                let v106 : bool = "Info" = v88
-                let v110 : US1 =
-                    if v106 then
-                        let v107 : US0 = US0_2
-                        US1_0(v107)
-                    else
-                        US1_1
-                match v110 with
-                | US1_1 -> (* None *)
-                    let v114 : bool = "Warning" = v88
-                    let v118 : US1 =
-                        if v114 then
-                            let v115 : US0 = US0_3
-                            US1_0(v115)
-                        else
-                            US1_1
-                    match v118 with
-                    | US1_1 -> (* None *)
-                        let v122 : bool = "Critical" = v88
-                        let v126 : US1 =
-                            if v122 then
-                                let v123 : US0 = US0_4
-                                US1_0(v123)
-                            else
-                                US1_1
-                        match v126 with
-                        | US1_1 -> (* None *)
-                            US1_1
-                        | US1_0(v127) -> (* Some *)
-                            US1_0(v127)
-                    | US1_0(v119) -> (* Some *)
-                        US1_0(v119)
-                | US1_0(v111) -> (* Some *)
-                    US1_0(v111)
-            | US1_0(v103) -> (* Some *)
-                US1_0(v103)
-        | US1_0(v95) -> (* Some *)
-            US1_0(v95)
-    let v140 : string = method3()
-    let v141 : string = method1(v140)
-    let v143 : bool = v141 = "True"
-    let v165 : US2 =
-        if v143 then
-            let v146 : System.DateTime = System.DateTime.Now
-            let v155 : (System.DateTime -> int64) = _.Ticks
-            let v156 : int64 = v155 v146
-            US2_0(v156)
-        else
-            US2_1
-    struct (v139, v165) 
+    let v109 : string = null |> unbox<string>
+    v109 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v166 : string = method0()
-    let v167 : string = method1(v166)
-    let v169 : bool = "Verbose" = v167
-    let v173 : US1 =
-        if v169 then
-            let v170 : US0 = US0_0
-            US1_0(v170)
+    let v118 : string = null |> unbox<string>
+    v118 
+    #endif
+#else
+    let v127 : string = null |> unbox<string>
+    v127 
+    #endif
+    |> fun x -> _v88 <- Some x
+    let v134 : string = match _v88 with Some x -> x | None -> failwith "base.run_target / _v88=None"
+    let v151 : string = "True"
+    let v152 : bool = v134 <> v151 
+    let v165 : US2 =
+        if v152 then
+            US2_1
+        else
+            let v160 : string = $"near_sdk::env::block_timestamp()"
+            let v161 : uint64 = Fable.Core.RustInterop.emitRustExpr () v160 
+            let v162 : (uint64 -> int64) = int64
+            let v163 : int64 = v162 v161
+            US2_0(v163)
+    let v166 : US1 = US1_1
+    struct (v166, v165) 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v167 : string = method0()
+    let v168 : string = method1(v167)
+    let v170 : bool = "Verbose" = v168
+    let v174 : US1 =
+        if v170 then
+            let v171 : US0 = US0_0
+            US1_0(v171)
         else
             US1_1
-    let v218 : US1 =
-        match v173 with
+    let v219 : US1 =
+        match v174 with
         | US1_1 -> (* None *)
-            let v177 : bool = "Debug" = v167
-            let v181 : US1 =
-                if v177 then
-                    let v178 : US0 = US0_1
-                    US1_0(v178)
+            let v178 : bool = "Debug" = v168
+            let v182 : US1 =
+                if v178 then
+                    let v179 : US0 = US0_1
+                    US1_0(v179)
                 else
                     US1_1
-            match v181 with
+            match v182 with
             | US1_1 -> (* None *)
-                let v185 : bool = "Info" = v167
-                let v189 : US1 =
-                    if v185 then
-                        let v186 : US0 = US0_2
-                        US1_0(v186)
+                let v186 : bool = "Info" = v168
+                let v190 : US1 =
+                    if v186 then
+                        let v187 : US0 = US0_2
+                        US1_0(v187)
                     else
                         US1_1
-                match v189 with
+                match v190 with
                 | US1_1 -> (* None *)
-                    let v193 : bool = "Warning" = v167
-                    let v197 : US1 =
-                        if v193 then
-                            let v194 : US0 = US0_3
-                            US1_0(v194)
+                    let v194 : bool = "Warning" = v168
+                    let v198 : US1 =
+                        if v194 then
+                            let v195 : US0 = US0_3
+                            US1_0(v195)
                         else
                             US1_1
-                    match v197 with
+                    match v198 with
                     | US1_1 -> (* None *)
-                        let v201 : bool = "Critical" = v167
-                        let v205 : US1 =
-                            if v201 then
-                                let v202 : US0 = US0_4
-                                US1_0(v202)
+                        let v202 : bool = "Critical" = v168
+                        let v206 : US1 =
+                            if v202 then
+                                let v203 : US0 = US0_4
+                                US1_0(v203)
                             else
                                 US1_1
-                        match v205 with
+                        match v206 with
                         | US1_1 -> (* None *)
                             US1_1
-                        | US1_0(v206) -> (* Some *)
-                            US1_0(v206)
-                    | US1_0(v198) -> (* Some *)
-                        US1_0(v198)
-                | US1_0(v190) -> (* Some *)
-                    US1_0(v190)
-            | US1_0(v182) -> (* Some *)
-                US1_0(v182)
-        | US1_0(v174) -> (* Some *)
-            US1_0(v174)
-    let v219 : string = method3()
-    let v220 : string = method1(v219)
-    let v222 : bool = v220 = "True"
+                        | US1_0(v207) -> (* Some *)
+                            US1_0(v207)
+                    | US1_0(v199) -> (* Some *)
+                        US1_0(v199)
+                | US1_0(v191) -> (* Some *)
+                    US1_0(v191)
+            | US1_0(v183) -> (* Some *)
+                US1_0(v183)
+        | US1_0(v175) -> (* Some *)
+            US1_0(v175)
+    let v220 : string = method3()
+    let v221 : string = method1(v220)
+    let v222 : bool = v221 = "True"
     let v244 : US2 =
         if v222 then
             let v225 : System.DateTime = System.DateTime.Now
@@ -526,9 +510,9 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option) =
             US2_0(v235)
         else
             US2_1
-    struct (v218, v244) 
+    struct (v219, v244) 
     #endif
-#else
+#if FABLE_COMPILER_PYTHON
     let v245 : string = method0()
     let v246 : string = method1(v245)
     let v248 : bool = "Verbose" = v246
@@ -590,39 +574,112 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option) =
             US1_0(v253)
     let v298 : string = method3()
     let v299 : string = method1(v298)
-    let v301 : bool = v299 = "True"
-    let v323 : US2 =
-        if v301 then
-            let v304 : System.DateTime = System.DateTime.Now
-            let v313 : (System.DateTime -> int64) = _.Ticks
-            let v314 : int64 = v313 v304
-            US2_0(v314)
+    let v300 : bool = v299 = "True"
+    let v322 : US2 =
+        if v300 then
+            let v303 : System.DateTime = System.DateTime.Now
+            let v312 : (System.DateTime -> int64) = _.Ticks
+            let v313 : int64 = v312 v303
+            US2_0(v313)
         else
             US2_1
-    struct (v297, v323) 
+    struct (v297, v322) 
+    #endif
+#else
+    let v323 : string = method0()
+    let v324 : string = method1(v323)
+    let v326 : bool = "Verbose" = v324
+    let v330 : US1 =
+        if v326 then
+            let v327 : US0 = US0_0
+            US1_0(v327)
+        else
+            US1_1
+    let v375 : US1 =
+        match v330 with
+        | US1_1 -> (* None *)
+            let v334 : bool = "Debug" = v324
+            let v338 : US1 =
+                if v334 then
+                    let v335 : US0 = US0_1
+                    US1_0(v335)
+                else
+                    US1_1
+            match v338 with
+            | US1_1 -> (* None *)
+                let v342 : bool = "Info" = v324
+                let v346 : US1 =
+                    if v342 then
+                        let v343 : US0 = US0_2
+                        US1_0(v343)
+                    else
+                        US1_1
+                match v346 with
+                | US1_1 -> (* None *)
+                    let v350 : bool = "Warning" = v324
+                    let v354 : US1 =
+                        if v350 then
+                            let v351 : US0 = US0_3
+                            US1_0(v351)
+                        else
+                            US1_1
+                    match v354 with
+                    | US1_1 -> (* None *)
+                        let v358 : bool = "Critical" = v324
+                        let v362 : US1 =
+                            if v358 then
+                                let v359 : US0 = US0_4
+                                US1_0(v359)
+                            else
+                                US1_1
+                        match v362 with
+                        | US1_1 -> (* None *)
+                            US1_1
+                        | US1_0(v363) -> (* Some *)
+                            US1_0(v363)
+                    | US1_0(v355) -> (* Some *)
+                        US1_0(v355)
+                | US1_0(v347) -> (* Some *)
+                    US1_0(v347)
+            | US1_0(v339) -> (* Some *)
+                US1_0(v339)
+        | US1_0(v331) -> (* Some *)
+            US1_0(v331)
+    let v376 : string = method3()
+    let v377 : string = method1(v376)
+    let v378 : bool = v377 = "True"
+    let v400 : US2 =
+        if v378 then
+            let v381 : System.DateTime = System.DateTime.Now
+            let v390 : (System.DateTime -> int64) = _.Ticks
+            let v391 : int64 = v390 v381
+            US2_0(v391)
+        else
+            US2_1
+    struct (v375, v400) 
     #endif
     |> fun x -> _v3 <- Some x
-    let struct (v324 : US1, v325 : US2) = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
-    let v411 : Mut2 = {l0 = true} : Mut2
-    let v412 : Mut0 = {l0 = 0L} : Mut0
-    let v415 : US0 =
-        match v324 with
+    let struct (v401 : US1, v402 : US2) = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
+    let v487 : Mut2 = {l0 = true} : Mut2
+    let v488 : Mut0 = {l0 = 0L} : Mut0
+    let v491 : US0 =
+        match v401 with
         | US1_1 -> (* None *)
             v0
-        | US1_0(v413) -> (* Some *)
-            v413
-    let v416 : Mut3 = {l0 = v415} : Mut3
-    let v417 : (string -> unit) = closure1()
-    let v418 : Mut1 = {l0 = v417} : Mut1
-    let v431 : int64 option =
-        match v325 with
+        | US1_0(v489) -> (* Some *)
+            v489
+    let v492 : Mut3 = {l0 = v491} : Mut3
+    let v493 : (string -> unit) = closure1()
+    let v494 : Mut1 = {l0 = v493} : Mut1
+    let v507 : int64 option =
+        match v402 with
         | US2_1 -> (* None *)
-            let v429 : int64 option = None
-            v429
-        | US2_0(v419) -> (* Some *)
-            let v422 : int64 option = Some v419 
-            v422
-    struct (v412, v418, v411, v416, v431)
+            let v505 : int64 option = None
+            v505
+        | US2_0(v495) -> (* Some *)
+            let v498 : int64 option = Some v495 
+            v498
+    struct (v488, v494, v487, v492, v507)
 and method6 (v0 : string) : string =
     v0
 and method7 (v0 : string) : bool =
@@ -796,39 +853,36 @@ and method10 () : string =
     let v0 : string = "hh:mm:ss"
     v0
 and method11 () : string =
-    let v0 : string = ""
-    v0
-and method12 () : string =
     let v0 : string = "HH:mm:ss"
     v0
-and method13 () : string =
+and method12 () : string =
     let v0 : string = "\u001b[0m"
     v0
-and method15 (v0 : Mut4, v1 : string) : unit =
+and method14 (v0 : Mut4, v1 : string) : unit =
     let v4 : string = $"{v1}"
     let v11 : string = v0.l0
     let v12 : string = v11 + v4 
     v0.l0 <- v12
     ()
-and method16 (v0 : Mut4) : unit =
+and method15 (v0 : Mut4) : unit =
     ()
-and method14 (v0 : Mut4, v1 : string, v2 : string) : unit =
+and method13 (v0 : Mut4, v1 : string, v2 : string) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "ex"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method15(v0, v1)
+    method14(v0, v5)
+    method14(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "path"
-    method15(v0, v7)
-    method15(v0, v5)
-    method15(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method14(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -928,431 +982,467 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * st
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : string) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method14(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method17 (v0 : US0, v1 : (unit -> string)) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : string) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method13(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method16 (v0 : US0, v1 : (unit -> string)) : unit =
     let v4 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v5 : US0 = US0_0
     if State.trace_state.IsNone then State.trace_state <- v4 v5 |> Some
@@ -1392,7 +1482,7 @@ and method17 (v0 : US0, v1 : (unit -> string)) : unit =
         () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v84 : string = @"println!(""{}"", $0)"
+        let v84 : string = $"near_sdk::log!(\"{{}}\", $0)"
         Fable.Core.RustInterop.emitRustExpr v72 v84 
         () 
         #endif
@@ -1414,7 +1504,7 @@ and method17 (v0 : US0, v1 : (unit -> string)) : unit =
         v113 v72
 and method9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) : unit =
     let v3 : (unit -> string) = closure5(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and method4 (v0 : string, v1 : int64) : Async<int64> =
     let v4 : bool = true
     let mutable _v4 : Async<int64> option = None 
@@ -1575,34 +1665,34 @@ and closure8 () () : string =
 and closure9 (v0 : string, v1 : int64, v2 : string) () : struct (string * int64 * string) =
     let v3 : string = method8(v0)
     struct (v3, v1, v2)
-and method21 (v0 : Mut4, v1 : int64) : unit =
+and method20 (v0 : Mut4, v1 : int64) : unit =
     let v4 : string = $"{v1}"
     let v11 : string = v0.l0
     let v12 : string = v11 + v4 
     v0.l0 <- v12
     ()
-and method20 (v0 : Mut4, v1 : string, v2 : int64, v3 : string) : unit =
+and method19 (v0 : Mut4, v1 : string, v2 : int64, v3 : string) : unit =
     let v4 : string = "{ "
-    method15(v0, v4)
-    method16(v0)
+    method14(v0, v4)
+    method15(v0)
     let v5 : string = "path"
-    method15(v0, v5)
+    method14(v0, v5)
     let v6 : string = " = "
-    method15(v0, v6)
-    method15(v0, v1)
+    method14(v0, v6)
+    method14(v0, v1)
     let v7 : string = "; "
-    method15(v0, v7)
+    method14(v0, v7)
     let v8 : string = "retry"
-    method15(v0, v8)
-    method15(v0, v6)
-    method21(v0, v2)
-    method15(v0, v7)
+    method14(v0, v8)
+    method14(v0, v6)
+    method20(v0, v2)
+    method14(v0, v7)
     let v9 : string = "ex"
-    method15(v0, v9)
-    method15(v0, v6)
-    method15(v0, v3)
+    method14(v0, v9)
+    method14(v0, v6)
+    method14(v0, v3)
     let v10 : string = " }"
-    method15(v0, v10)
+    method14(v0, v10)
 and closure10 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * int64 * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -1702,434 +1792,470 @@ and closure10 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * i
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : int64, v1163 : string) = v2 ()
-    let v1164 : string = ""
-    let v1165 : Mut4 = {l0 = v1164} : Mut4
-    method20(v1165, v1161, v1162, v1163)
-    let v1166 : string = v1165.l0
-    let v1169 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1166}"
-    let v1176 : char list = []
-    let v1181 : (char list -> (char [])) = List.toArray
-    let v1182 : (char []) = v1181 v1176
-    let v1189 : string = v1169.TrimStart v1182 
-    let v1228 : char list = []
-    let v1231 : char list = '/' :: v1228 
-    let v1240 : char list = ' ' :: v1231 
-    let v1251 : (char list -> (char [])) = List.toArray
-    let v1252 : (char []) = v1251 v1240
-    let v1259 : string = v1189.TrimEnd v1252 
-    v1259
-and method19 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * int64 * string))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : int64, v1217 : string) = v2 ()
+    let v1218 : string = ""
+    let v1219 : Mut4 = {l0 = v1218} : Mut4
+    method19(v1219, v1215, v1216, v1217)
+    let v1220 : string = v1219.l0
+    let v1223 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1220}"
+    let v1230 : char list = []
+    let v1235 : (char list -> (char [])) = List.toArray
+    let v1236 : (char []) = v1235 v1230
+    let v1243 : string = v1223.TrimStart v1236 
+    let v1282 : char list = []
+    let v1285 : char list = '/' :: v1282 
+    let v1294 : char list = ' ' :: v1285 
+    let v1305 : (char list -> (char [])) = List.toArray
+    let v1306 : (char []) = v1305 v1294
+    let v1313 : string = v1243.TrimEnd v1306 
+    v1313
+and method18 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * int64 * string))) : unit =
     let v3 : (unit -> string) = closure10(v0, v1, v2)
-    method17(v0, v3)
-and method18 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
+    method16(v0, v3)
+and method17 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
     let v6 : bool = true
     let mutable _v6 : Async<int64> option = None 
     
@@ -2268,7 +2394,7 @@ and method18 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
         let v204 : US0 = US0_1
         let v205 : (unit -> string) = closure8()
         let v206 : (unit -> struct (string * int64 * string)) = closure9(v0, v3, v189)
-        method19(v204, v205, v206)
+        method18(v204, v205, v206)
     let v209 : bool = true
     let mutable _v209 : Async<unit> option = None 
     
@@ -2303,7 +2429,7 @@ and method18 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
     let v257 : Async<unit> = match _v209 with Some x -> x | None -> failwith "base.run_target / _v209=None"
     do! v257 
     let v272 : int64 = v3 + 1L
-    let v273 : Async<int64> = method18(v0, v1, v2, v272)
+    let v273 : Async<int64> = method17(v0, v1, v2, v272)
     return! v273 
     (*
     let v274 : int64 = *)
@@ -2351,7 +2477,7 @@ and closure7 (v0 : US6) (v1 : string) : Async<int64> =
         | US6_0(v50, v51) -> (* Some *)
             struct (v50, v51)
     let v58 : int64 = 0L
-    let v59 : Async<int64> = method18(v1, v57, v56, v58)
+    let v59 : Async<int64> = method17(v1, v57, v56, v58)
     v59 
     #endif
     |> fun x -> _v4 <- Some x
@@ -2359,7 +2485,7 @@ and closure7 (v0 : US6) (v1 : string) : Async<int64> =
     v60
 and closure6 () (v0 : US6) : (string -> Async<int64>) =
     closure7(v0)
-and method22 (v0 : string, v1 : int64) : Async<int64> =
+and method21 (v0 : string, v1 : int64) : Async<int64> =
     let v4 : bool = true
     let mutable _v4 : Async<int64> option = None 
     
@@ -2472,7 +2598,7 @@ and method22 (v0 : string, v1 : int64) : Async<int64> =
         let v188 : US0 = US0_1
         let v189 : (unit -> string) = closure8()
         let v190 : (unit -> struct (string * int64 * string)) = closure9(v0, v1, v173)
-        method19(v188, v189, v190)
+        method18(v188, v189, v190)
     let v193 : bool = true
     let mutable _v193 : Async<unit> option = None 
     
@@ -2507,7 +2633,7 @@ and method22 (v0 : string, v1 : int64) : Async<int64> =
     let v241 : Async<unit> = match _v193 with Some x -> x | None -> failwith "base.run_target / _v193=None"
     do! v241 
     let v256 : int64 = v1 + 1L
-    let v257 : Async<int64> = method22(v0, v256)
+    let v257 : Async<int64> = method21(v0, v256)
     return! v257 
     (*
     let v258 : int64 = *)
@@ -2547,7 +2673,7 @@ and closure11 () (v0 : string) : Async<int64> =
     #endif
 #else
     let v49 : int64 = 0L
-    let v50 : Async<int64> = method22(v0, v49)
+    let v50 : Async<int64> = method21(v0, v49)
     v50 
     #endif
     |> fun x -> _v3 <- Some x
@@ -2619,7 +2745,7 @@ and closure12 () (v0 : string) : Async<string> =
     |> fun x -> _v3 <- Some x
     let v116 : Async<string> = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v116
-and method24 (v0 : string) : bool =
+and method23 (v0 : string) : bool =
     let v3 : bool = true
     let mutable _v3 : bool option = None 
     
@@ -2670,16 +2796,16 @@ and method24 (v0 : string) : bool =
     |> fun x -> _v3 <- Some x
     let v48 : bool = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v48
-and method25 (v0 : Vec<uint8>) : Vec<uint8> =
+and method24 (v0 : Vec<uint8>) : Vec<uint8> =
     v0
-and method23 (v0 : string, v1 : string) : bool =
+and method22 (v0 : string, v1 : string) : bool =
     let v4 : bool = true
     let mutable _v4 : bool option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v5 : bool = method24(v0)
+    let v5 : bool = method23(v0)
     let v6 : bool = v5 = false
     let v129 : bool =
         if v6 then
@@ -2725,7 +2851,7 @@ and method23 (v0 : string, v1 : string) : bool =
             #endif
             |> fun x -> _v12 <- Some x
             let v54 : Vec<uint8> = match _v12 with Some x -> x | None -> failwith "base.run_target / _v12=None"
-            let v69 : Vec<uint8> = method25(v54)
+            let v69 : Vec<uint8> = method24(v54)
             let v70 : string = "std::string::String::from_utf8($0)"
             let v71 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr v69 v70 
             let v72 : string = "$0.unwrap()"
@@ -2784,7 +2910,7 @@ and method23 (v0 : string, v1 : string) : bool =
     let v175 : bool = match _v4 with Some x -> x | None -> failwith "base.run_target / _v4=None"
     v175
 and closure14 (v0 : string) (v1 : string) : bool =
-    method23(v0, v1)
+    method22(v0, v1)
 and closure13 () (v0 : string) : (string -> bool) =
     closure14(v0)
 and closure16 (v0 : string) (v1 : string) : Async<unit> =
@@ -2939,7 +3065,7 @@ and closure18 (v0 : string) (v1 : string) : Async<unit> =
     let v147 : Async<bool> option = None
     let mutable _v147 = v147 
     async {
-    let v148 : bool = method24(v0)
+    let v148 : bool = method23(v0)
     let v149 : bool = v148 = false
     if v149 then
         return false 
@@ -3145,23 +3271,23 @@ and closure21 (v0 : string, v1 : exn) () : struct (string * string) =
     |> fun x -> _v5 <- Some x
     let v52 : string = match _v5 with Some x -> x | None -> failwith "base.run_target / _v5=None"
     struct (v2, v52)
-and method28 (v0 : Mut4, v1 : string, v2 : string) : unit =
+and method27 (v0 : Mut4, v1 : string, v2 : string) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "path"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method15(v0, v1)
+    method14(v0, v5)
+    method14(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "ex"
-    method15(v0, v7)
-    method15(v0, v5)
-    method15(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method14(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure22 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -3261,434 +3387,470 @@ and closure22 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * s
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : string) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method28(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method27 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : string) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method27(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method26 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) : unit =
     let v3 : (unit -> string) = closure22(v0, v1, v2)
-    method17(v0, v3)
-and method26 (v0 : string, v1 : int64) : Async<int64> =
+    method16(v0, v3)
+and method25 (v0 : string, v1 : int64) : Async<int64> =
     let v4 : bool = true
     let mutable _v4 : Async<int64> option = None 
     
@@ -3761,7 +3923,7 @@ and method26 (v0 : string, v1 : int64) : Async<int64> =
         let v93 : US0 = US0_3
         let v94 : (unit -> string) = closure20()
         let v95 : (unit -> struct (string * string)) = closure21(v0, v90)
-        method27(v93, v94, v95)
+        method26(v93, v94, v95)
     let v98 : bool = true
     let mutable _v98 : Async<unit> option = None 
     
@@ -3796,7 +3958,7 @@ and method26 (v0 : string, v1 : int64) : Async<int64> =
     let v146 : Async<unit> = match _v98 with Some x -> x | None -> failwith "base.run_target / _v98=None"
     do! v146 
     let v161 : int64 = v1 + 1L
-    let v162 : Async<int64> = method26(v0, v161)
+    let v162 : Async<int64> = method25(v0, v161)
     return! v162 
     (*
     let v163 : int64 = *)
@@ -3836,7 +3998,7 @@ and closure19 () (v0 : string) : Async<int64> =
     #endif
 #else
     let v49 : int64 = 0L
-    let v50 : Async<int64> = method26(v0, v49)
+    let v50 : Async<int64> = method25(v0, v49)
     v50 
     #endif
     |> fun x -> _v3 <- Some x
@@ -3849,31 +4011,31 @@ and closure26 (v0 : string, v1 : string, v2 : exn) () : struct (string * string 
     let v3 : string = method8(v1)
     let v4 : string = method8(v0)
     struct (v3, v4, v2)
-and method32 (v0 : Mut4, v1 : exn) : unit =
+and method31 (v0 : Mut4, v1 : exn) : unit =
     let v4 : string = $"%A{v1}"
-    method15(v0, v4)
-and method31 (v0 : Mut4, v1 : string, v2 : string, v3 : exn) : unit =
+    method14(v0, v4)
+and method30 (v0 : Mut4, v1 : string, v2 : string, v3 : exn) : unit =
     let v4 : string = "{ "
-    method15(v0, v4)
-    method16(v0)
+    method14(v0, v4)
+    method15(v0)
     let v5 : string = "old_path"
-    method15(v0, v5)
+    method14(v0, v5)
     let v6 : string = " = "
-    method15(v0, v6)
-    method15(v0, v1)
+    method14(v0, v6)
+    method14(v0, v1)
     let v7 : string = "; "
-    method15(v0, v7)
+    method14(v0, v7)
     let v8 : string = "new_path"
-    method15(v0, v8)
-    method15(v0, v6)
-    method15(v0, v2)
-    method15(v0, v7)
+    method14(v0, v8)
+    method14(v0, v6)
+    method14(v0, v2)
+    method14(v0, v7)
     let v9 : string = "ex"
-    method15(v0, v9)
-    method15(v0, v6)
-    method32(v0, v3)
+    method14(v0, v9)
+    method14(v0, v6)
+    method31(v0, v3)
     let v10 : string = " }"
-    method15(v0, v10)
+    method14(v0, v10)
 and closure27 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string * exn))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -3973,434 +4135,470 @@ and closure27 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * s
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : string, v1163 : exn) = v2 ()
-    let v1164 : string = ""
-    let v1165 : Mut4 = {l0 = v1164} : Mut4
-    method31(v1165, v1161, v1162, v1163)
-    let v1166 : string = v1165.l0
-    let v1169 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1166}"
-    let v1176 : char list = []
-    let v1181 : (char list -> (char [])) = List.toArray
-    let v1182 : (char []) = v1181 v1176
-    let v1189 : string = v1169.TrimStart v1182 
-    let v1228 : char list = []
-    let v1231 : char list = '/' :: v1228 
-    let v1240 : char list = ' ' :: v1231 
-    let v1251 : (char list -> (char [])) = List.toArray
-    let v1252 : (char []) = v1251 v1240
-    let v1259 : string = v1189.TrimEnd v1252 
-    v1259
-and method30 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string * exn))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : string, v1217 : exn) = v2 ()
+    let v1218 : string = ""
+    let v1219 : Mut4 = {l0 = v1218} : Mut4
+    method30(v1219, v1215, v1216, v1217)
+    let v1220 : string = v1219.l0
+    let v1223 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1220}"
+    let v1230 : char list = []
+    let v1235 : (char list -> (char [])) = List.toArray
+    let v1236 : (char []) = v1235 v1230
+    let v1243 : string = v1223.TrimStart v1236 
+    let v1282 : char list = []
+    let v1285 : char list = '/' :: v1282 
+    let v1294 : char list = ' ' :: v1285 
+    let v1305 : (char list -> (char [])) = List.toArray
+    let v1306 : (char []) = v1305 v1294
+    let v1313 : string = v1243.TrimEnd v1306 
+    v1313
+and method29 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string * exn))) : unit =
     let v3 : (unit -> string) = closure27(v0, v1, v2)
-    method17(v0, v3)
-and method29 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
+    method16(v0, v3)
+and method28 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     let v5 : bool = true
     let mutable _v5 : Async<int64> option = None 
     
@@ -4471,7 +4669,7 @@ and method29 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
         let v98 : US0 = US0_3
         let v99 : (unit -> string) = closure25()
         let v100 : (unit -> struct (string * string * exn)) = closure26(v0, v1, v95)
-        method30(v98, v99, v100)
+        method29(v98, v99, v100)
     let v103 : bool = true
     let mutable _v103 : Async<unit> option = None 
     
@@ -4506,7 +4704,7 @@ and method29 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     let v151 : Async<unit> = match _v103 with Some x -> x | None -> failwith "base.run_target / _v103=None"
     do! v151 
     let v166 : int64 = v2 + 1L
-    let v167 : Async<int64> = method29(v0, v1, v166)
+    let v167 : Async<int64> = method28(v0, v1, v166)
     return! v167 
     (*
     *)
@@ -4546,7 +4744,7 @@ and closure24 (v0 : string) (v1 : string) : Async<int64> =
     #endif
 #else
     let v50 : int64 = 0L
-    let v51 : Async<int64> = method29(v0, v1, v50)
+    let v51 : Async<int64> = method28(v0, v1, v50)
     v51 
     #endif
     |> fun x -> _v4 <- Some x
@@ -4563,23 +4761,23 @@ and closure31 () () : string =
     v0
 and closure32 () () : int32 =
     1000
-and method36 (v0 : Mut4, v1 : int32) : unit =
+and method35 (v0 : Mut4, v1 : int32) : unit =
     let v4 : string = $"{v1}"
     let v11 : string = v0.l0
     let v12 : string = v11 + v4 
     v0.l0 <- v12
     ()
-and method35 (v0 : Mut4, v1 : int32) : unit =
+and method34 (v0 : Mut4, v1 : int32) : unit =
     let v2 : string = "{ "
-    method15(v0, v2)
-    method16(v0)
+    method14(v0, v2)
+    method15(v0)
     let v3 : string = "timeout"
-    method15(v0, v3)
+    method14(v0, v3)
     let v4 : string = " = "
-    method15(v0, v4)
-    method36(v0, v1)
+    method14(v0, v4)
+    method35(v0, v1)
     let v5 : string = " }"
-    method15(v0, v5)
+    method14(v0, v5)
 and closure33 (v0 : US0, v1 : (unit -> string), v2 : (unit -> int32)) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -4679,433 +4877,469 @@ and closure33 (v0 : US0, v1 : (unit -> string), v2 : (unit -> int32)) () : strin
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let v1161 : int32 = v2 ()
-    let v1162 : string = ""
-    let v1163 : Mut4 = {l0 = v1162} : Mut4
-    method35(v1163, v1161)
-    let v1164 : string = v1163.l0
-    let v1167 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1164}"
-    let v1174 : char list = []
-    let v1179 : (char list -> (char [])) = List.toArray
-    let v1180 : (char []) = v1179 v1174
-    let v1187 : string = v1167.TrimStart v1180 
-    let v1226 : char list = []
-    let v1229 : char list = '/' :: v1226 
-    let v1238 : char list = ' ' :: v1229 
-    let v1249 : (char list -> (char [])) = List.toArray
-    let v1250 : (char []) = v1249 v1238
-    let v1257 : string = v1187.TrimEnd v1250 
-    v1257
-and method34 (v0 : US0, v1 : (unit -> string), v2 : (unit -> int32)) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let v1215 : int32 = v2 ()
+    let v1216 : string = ""
+    let v1217 : Mut4 = {l0 = v1216} : Mut4
+    method34(v1217, v1215)
+    let v1218 : string = v1217.l0
+    let v1221 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1218}"
+    let v1228 : char list = []
+    let v1233 : (char list -> (char [])) = List.toArray
+    let v1234 : (char []) = v1233 v1228
+    let v1241 : string = v1221.TrimStart v1234 
+    let v1280 : char list = []
+    let v1283 : char list = '/' :: v1280 
+    let v1292 : char list = ' ' :: v1283 
+    let v1303 : (char list -> (char [])) = List.toArray
+    let v1304 : (char []) = v1303 v1292
+    let v1311 : string = v1241.TrimEnd v1304 
+    v1311
+and method33 (v0 : US0, v1 : (unit -> string), v2 : (unit -> int32)) : unit =
     let v3 : (unit -> string) = closure33(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and closure34 () () : string =
     let v0 : string = $"async.run_with_timeout_async**"
     v0
@@ -5142,23 +5376,23 @@ and closure35 (v0 : exn) () : struct (int32 * string) =
     |> fun x -> _v3 <- Some x
     let v50 : string = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     struct (1000, v50)
-and method38 (v0 : Mut4, v1 : int32, v2 : string) : unit =
+and method37 (v0 : Mut4, v1 : int32, v2 : string) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "timeout"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method36(v0, v1)
+    method14(v0, v5)
+    method35(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "ex"
-    method15(v0, v7)
-    method15(v0, v5)
-    method15(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method14(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure36 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int32 * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -5258,455 +5492,491 @@ and closure36 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int32 * st
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : int32, v1162 : string) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method38(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method37 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int32 * string))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : int32, v1216 : string) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method37(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method36 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int32 * string))) : unit =
     let v3 : (unit -> string) = closure36(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and closure37 () () : string =
     let v0 : string = "read_all_text_retry_async"
     v0
 and closure38 (v0 : int64, v1 : string) () : struct (int64 * string) =
     struct (v0, v1)
-and method40 (v0 : Mut4, v1 : int64, v2 : string) : unit =
+and method39 (v0 : Mut4, v1 : int64, v2 : string) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "retry"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method21(v0, v1)
+    method14(v0, v5)
+    method20(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "ex"
-    method15(v0, v7)
-    method15(v0, v5)
-    method15(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method14(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure39 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int64 * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -5806,434 +6076,470 @@ and closure39 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int64 * st
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : int64, v1162 : string) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method40(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method39 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int64 * string))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : int64, v1216 : string) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method39(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method38 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (int64 * string))) : unit =
     let v3 : (unit -> string) = closure39(v0, v1, v2)
-    method17(v0, v3)
-and method33 (v0 : string, v1 : int64) : Async<string option> =
+    method16(v0, v3)
+and method32 (v0 : string, v1 : int64) : Async<string option> =
     let v4 : bool = true
     let mutable _v4 : Async<string option> option = None 
     
@@ -6293,7 +6599,7 @@ and method33 (v0 : string, v1 : int64) : Async<string option> =
         #endif
 #else
         let v100 : int64 = 0L
-        let v101 : Async<int64> = method22(v0, v100)
+        let v101 : Async<int64> = method21(v0, v100)
         v101 
         #endif
         |> fun x -> _v54 <- Some x
@@ -6576,13 +6882,13 @@ and method33 (v0 : string, v1 : int64) : Async<string option> =
                     let v620 : US0 = US0_0
                     let v621 : (unit -> string) = closure31()
                     let v622 : (unit -> int32) = closure32()
-                    method34(v620, v621, v622)
+                    method33(v620, v621, v622)
                     US2_1
                 else
                     let v624 : US0 = US0_4
                     let v625 : (unit -> string) = closure34()
                     let v626 : (unit -> struct (int32 * string)) = closure35(v600)
-                    method37(v624, v625, v626)
+                    method36(v624, v625, v626)
                     US2_1
             | US10_0(v598) -> (* Ok *)
                 US2_0(v598)
@@ -6784,7 +7090,7 @@ and method33 (v0 : string, v1 : int64) : Async<string option> =
         let v1015 : US0 = US0_1
         let v1016 : (unit -> string) = closure37()
         let v1017 : (unit -> struct (int64 * string)) = closure38(v1, v1000)
-        method39(v1015, v1016, v1017)
+        method38(v1015, v1016, v1017)
         let v1018 : string option = None
         return v1018 
         (*
@@ -6792,7 +7098,7 @@ and method33 (v0 : string, v1 : int64) : Async<string option> =
     else
         *) else
         let v1019 : int64 = v1 + 1L
-        let v1020 : Async<string option> = method33(v0, v1019)
+        let v1020 : Async<string option> = method32(v0, v1019)
         return! v1020 
         (*
         ()
@@ -6835,22 +7141,22 @@ and closure28 () (v0 : string) : Async<string option> =
     #endif
 #else
     let v49 : int64 = 0L
-    let v50 : Async<string option> = method33(v0, v49)
+    let v50 : Async<string option> = method32(v0, v49)
     v50 
     #endif
     |> fun x -> _v3 <- Some x
     let v51 : Async<string option> = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v51
-and method43 () : string =
+and method42 () : string =
     let v0 : string = "hh:mm"
     v0
-and method44 () : string =
+and method43 () : string =
     let v0 : string = "yyyyMMdd-HHmm-ssff-ffff-f"
     v0
-and method45 () : string =
+and method44 () : string =
     let v0 : string = "hhmm"
     v0
-and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
+and method41 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v4 : bool = true
     let mutable _v4 : System.Guid option = None 
     
@@ -7027,7 +7333,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             1uy
         else
             0uy
-    let v298 : string = method43()
+    let v298 : string = method42()
     let v301 : bool = true
     let mutable _v301 : string option = None 
     
@@ -7236,7 +7542,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             1uy
         else
             0uy
-    let v620 : string = method43()
+    let v620 : string = method42()
     let v623 : bool = true
     let mutable _v623 : string option = None 
     
@@ -7279,7 +7585,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v651 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v658 : string = method44()
+    let v658 : string = method43()
     let v661 : (string -> string) = v1.ToString
     let v662 : string = v661 v658
     let v671 : bool = true
@@ -7396,7 +7702,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             1uy
         else
             0uy
-    let v849 : string = method45()
+    let v849 : string = method44()
     let v852 : bool = true
     let mutable _v852 : string option = None 
     
@@ -7435,7 +7741,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v877 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v878 : string = method44()
+    let v878 : string = method43()
     let v881 : (string -> string) = v1.ToString
     let v882 : string = v881 v878
     let v891 : bool = true
@@ -7552,7 +7858,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             1uy
         else
             0uy
-    let v1069 : string = method45()
+    let v1069 : string = method44()
     let v1072 : bool = true
     let mutable _v1072 : string option = None 
     
@@ -7591,7 +7897,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v1097 
     #endif
 #else
-    let v1098 : string = method44()
+    let v1098 : string = method43()
     let v1101 : (string -> string) = v1.ToString
     let v1102 : string = v1101 v1098
     let v1111 : bool = true
@@ -7708,7 +8014,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             1uy
         else
             0uy
-    let v1289 : string = method45()
+    let v1289 : string = method44()
     let v1292 : bool = true
     let mutable _v1292 : string option = None 
     
@@ -7749,7 +8055,7 @@ and method42 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     |> fun x -> _v4 <- Some x
     let v1318 : System.Guid = match _v4 with Some x -> x | None -> failwith "base.run_target / _v4=None"
     v1318
-and method47 () : string =
+and method46 () : string =
     let v2 : bool = true
     let mutable _v2 : string option = None 
     
@@ -7831,15 +8137,15 @@ and method47 () : string =
     |> fun x -> _v2 <- Some x
     let v83 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v83
-and method48 () : string =
+and method47 () : string =
     let v0 : string = "!create_temp_path_"
     v0
-and method51 (v0 : string) : string =
+and method50 (v0 : string) : string =
     v0
-and method50 (v0 : string, v1 : string) : struct (string * string) =
-    let v2 : string = method51(v0)
+and method49 (v0 : string, v1 : string) : struct (string * string) =
+    let v2 : string = method50(v0)
     struct (v1, v2)
-and method49 (v0 : string, v1 : string) : string =
+and method48 (v0 : string, v1 : string) : string =
     let v4 : bool = true
     let mutable _v4 : string option = None 
     
@@ -7912,7 +8218,7 @@ and method49 (v0 : string, v1 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v85 : string = "path"
     let v86 : IPathJoin = Fable.Core.JsInterop.importAll v85 
-    let struct (v87 : string, v88 : string) = method50(v1, v0)
+    let struct (v87 : string, v88 : string) = method49(v1, v0)
     let v89 : string = "v86.join($0, $1)"
     let v90 : string = Fable.Core.JsInterop.emitJsExpr struct (v87, v88) v89 
     v90 
@@ -7931,27 +8237,27 @@ and method49 (v0 : string, v1 : string) : string =
     |> fun x -> _v4 <- Some x
     let v96 : string = match _v4 with Some x -> x | None -> failwith "base.run_target / _v4=None"
     v96
-and method53 () : string =
+and method52 () : string =
     let v0 : string = "CARGO_PKG_NAME"
     v0
-and method52 () : string =
+and method51 () : string =
     let v2 : bool = true
     let mutable _v2 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = method53()
+    let v3 : string = method52()
     let v4 : string = method1(v3)
     v4 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v5 : string = method53()
+    let v5 : string = method52()
     let v6 : string = method1(v5)
     v6 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v7 : string = method53()
+    let v7 : string = method52()
     let v8 : string = method1(v7)
     v8 
     #endif
@@ -7976,32 +8282,32 @@ and method52 () : string =
     |> fun x -> _v2 <- Some x
     let v18 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v18
-and method46 (v0 : System.Guid) : string =
+and method45 (v0 : System.Guid) : string =
     let v3 : bool = true
     let mutable _v3 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v4 : string = method47()
-    let v5 : string = method48()
-    let v6 : string = method49(v4, v5)
-    let v7 : string = method52()
-    let v8 : string = method49(v6, v7)
+    let v4 : string = method46()
+    let v5 : string = method47()
+    let v6 : string = method48(v4, v5)
+    let v7 : string = method51()
+    let v8 : string = method48(v6, v7)
     let v11 : (System.Guid -> string) = _.ToString()
     let v12 : string = v11 v0
-    let v19 : string = method49(v8, v12)
+    let v19 : string = method48(v8, v12)
     v19 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = method47()
-    let v21 : string = method48()
-    let v22 : string = method49(v20, v21)
-    let v23 : string = method52()
-    let v24 : string = method49(v22, v23)
+    let v20 : string = method46()
+    let v21 : string = method47()
+    let v22 : string = method48(v20, v21)
+    let v23 : string = method51()
+    let v24 : string = method48(v22, v23)
     let v27 : (System.Guid -> string) = _.ToString()
     let v28 : string = v27 v0
-    let v35 : string = method49(v24, v28)
+    let v35 : string = method48(v24, v28)
     v35 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
@@ -8009,42 +8315,42 @@ and method46 (v0 : System.Guid) : string =
     v38 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v45 : string = method47()
-    let v46 : string = method48()
-    let v47 : string = method49(v45, v46)
-    let v48 : string = method52()
-    let v49 : string = method49(v47, v48)
+    let v45 : string = method46()
+    let v46 : string = method47()
+    let v47 : string = method48(v45, v46)
+    let v48 : string = method51()
+    let v49 : string = method48(v47, v48)
     let v52 : (System.Guid -> string) = _.ToString()
     let v53 : string = v52 v0
-    let v60 : string = method49(v49, v53)
+    let v60 : string = method48(v49, v53)
     v60 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v61 : string = method47()
-    let v62 : string = method48()
-    let v63 : string = method49(v61, v62)
-    let v64 : string = method52()
-    let v65 : string = method49(v63, v64)
+    let v61 : string = method46()
+    let v62 : string = method47()
+    let v63 : string = method48(v61, v62)
+    let v64 : string = method51()
+    let v65 : string = method48(v63, v64)
     let v68 : (System.Guid -> string) = _.ToString()
     let v69 : string = v68 v0
-    let v76 : string = method49(v65, v69)
+    let v76 : string = method48(v65, v69)
     v76 
     #endif
 #else
-    let v77 : string = method47()
-    let v78 : string = method48()
-    let v79 : string = method49(v77, v78)
-    let v80 : string = method52()
-    let v81 : string = method49(v79, v80)
+    let v77 : string = method46()
+    let v78 : string = method47()
+    let v79 : string = method48(v77, v78)
+    let v80 : string = method51()
+    let v81 : string = method48(v79, v80)
     let v84 : (System.Guid -> string) = _.ToString()
     let v85 : string = v84 v0
-    let v92 : string = method49(v81, v85)
+    let v92 : string = method48(v81, v85)
     v92 
     #endif
     |> fun x -> _v3 <- Some x
     let v93 : string = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v93
-and method41 () : string =
+and method40 () : string =
     let v2 : bool = true
     let mutable _v2 : string option = None 
     
@@ -8054,16 +8360,16 @@ and method41 () : string =
     let v5 : System.DateTime = System.DateTime.Now
     let v14 : (unit -> System.Guid) = System.Guid.NewGuid
     let v15 : System.Guid = v14 ()
-    let v22 : System.Guid = method42(v15, v5)
-    let v23 : string = method46(v22)
+    let v22 : System.Guid = method41(v15, v5)
+    let v23 : string = method45(v22)
     v23 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v26 : System.DateTime = System.DateTime.Now
     let v35 : (unit -> System.Guid) = System.Guid.NewGuid
     let v36 : System.Guid = v35 ()
-    let v43 : System.Guid = method42(v36, v26)
-    let v44 : string = method46(v43)
+    let v43 : System.Guid = method41(v36, v26)
+    let v44 : string = method45(v43)
     v44 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
@@ -8074,32 +8380,32 @@ and method41 () : string =
     let v56 : System.DateTime = System.DateTime.Now
     let v65 : (unit -> System.Guid) = System.Guid.NewGuid
     let v66 : System.Guid = v65 ()
-    let v73 : System.Guid = method42(v66, v56)
-    let v74 : string = method46(v73)
+    let v73 : System.Guid = method41(v66, v56)
+    let v74 : string = method45(v73)
     v74 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v77 : System.DateTime = System.DateTime.Now
     let v86 : (unit -> System.Guid) = System.Guid.NewGuid
     let v87 : System.Guid = v86 ()
-    let v94 : System.Guid = method42(v87, v77)
-    let v95 : string = method46(v94)
+    let v94 : System.Guid = method41(v87, v77)
+    let v95 : string = method45(v94)
     v95 
     #endif
 #else
     let v98 : System.DateTime = System.DateTime.Now
     let v107 : (unit -> System.Guid) = System.Guid.NewGuid
     let v108 : System.Guid = v107 ()
-    let v115 : System.Guid = method42(v108, v98)
-    let v116 : string = method46(v115)
+    let v115 : System.Guid = method41(v108, v98)
+    let v116 : string = method45(v115)
     v116 
     #endif
     |> fun x -> _v2 <- Some x
     let v117 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v117
 and closure40 () () : string =
-    method41()
-and method55 (v0 : string) : string =
+    method40()
+and method54 (v0 : string) : string =
     v0
 and closure42 () (v0 : std_io_Error) : std_string_String =
     let v3 : bool = true
@@ -8137,7 +8443,7 @@ and closure42 () (v0 : std_io_Error) : std_string_String =
     |> fun x -> _v3 <- Some x
     let v37 : std_string_String = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v37
-and method56 () : (std_io_Error -> std_string_String) =
+and method55 () : (std_io_Error -> std_string_String) =
     closure42()
 and closure43 () () : US12 =
     US12_0
@@ -8148,26 +8454,26 @@ and closure45 () () : string =
     v0
 and closure46 (v0 : string, v1 : std_string_String) () : struct (string * std_string_String) =
     struct (v0, v1)
-and method59 (v0 : Mut4, v1 : std_string_String) : unit =
+and method58 (v0 : Mut4, v1 : std_string_String) : unit =
     let v4 : string = $"%A{v1}"
-    method15(v0, v4)
-and method58 (v0 : Mut4, v1 : string, v2 : std_string_String) : unit =
+    method14(v0, v4)
+and method57 (v0 : Mut4, v1 : string, v2 : std_string_String) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "dir"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method15(v0, v1)
+    method14(v0, v5)
+    method14(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "error"
-    method15(v0, v7)
-    method15(v0, v5)
-    method59(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method58(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure47 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * std_string_String))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -8267,449 +8573,485 @@ and closure47 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * s
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : std_string_String) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method58(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method57 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * std_string_String))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : std_string_String) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method57(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method56 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * std_string_String))) : unit =
     let v3 : (unit -> string) = closure47(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and closure48 () () : string =
     let v0 : string = "file_system.create_dir"
     v0
 and closure49 (v0 : string) () : string =
     v0
-and method61 (v0 : Mut4, v1 : string) : unit =
+and method60 (v0 : Mut4, v1 : string) : unit =
     let v2 : string = "{ "
-    method15(v0, v2)
-    method16(v0)
+    method14(v0, v2)
+    method15(v0)
     let v3 : string = "dir"
-    method15(v0, v3)
+    method14(v0, v3)
     let v4 : string = " = "
-    method15(v0, v4)
-    method15(v0, v1)
+    method14(v0, v4)
+    method14(v0, v1)
     let v5 : string = " }"
-    method15(v0, v5)
+    method14(v0, v5)
 and closure50 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -8809,462 +9151,498 @@ and closure50 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : stri
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let v1161 : string = v2 ()
-    let v1162 : string = ""
-    let v1163 : Mut4 = {l0 = v1162} : Mut4
-    method61(v1163, v1161)
-    let v1164 : string = v1163.l0
-    let v1167 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1164}"
-    let v1174 : char list = []
-    let v1179 : (char list -> (char [])) = List.toArray
-    let v1180 : (char []) = v1179 v1174
-    let v1187 : string = v1167.TrimStart v1180 
-    let v1226 : char list = []
-    let v1229 : char list = '/' :: v1226 
-    let v1238 : char list = ' ' :: v1229 
-    let v1249 : (char list -> (char [])) = List.toArray
-    let v1250 : (char []) = v1249 v1238
-    let v1257 : string = v1187.TrimEnd v1250 
-    v1257
-and method60 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let v1215 : string = v2 ()
+    let v1216 : string = ""
+    let v1217 : Mut4 = {l0 = v1216} : Mut4
+    method60(v1217, v1215)
+    let v1218 : string = v1217.l0
+    let v1221 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1218}"
+    let v1228 : char list = []
+    let v1233 : (char list -> (char [])) = List.toArray
+    let v1234 : (char []) = v1233 v1228
+    let v1241 : string = v1221.TrimStart v1234 
+    let v1280 : char list = []
+    let v1283 : char list = '/' :: v1280 
+    let v1292 : char list = ' ' :: v1283 
+    let v1303 : (char list -> (char [])) = List.toArray
+    let v1304 : (char []) = v1303 v1292
+    let v1311 : string = v1241.TrimEnd v1304 
+    v1311
+and method59 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
     let v3 : (unit -> string) = closure50(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and closure51 (v0 : string) () : unit =
     let v1 : bool = true
     method5(v1, v0)
-and method62 (v0 : string) : (unit -> unit) =
+and method61 (v0 : string) : (unit -> unit) =
     closure51(v0)
-and method63 (v0 : string) : (unit -> unit) =
+and method62 (v0 : string) : (unit -> unit) =
     closure51(v0)
 and closure52 () () : string =
     let v0 : string = "file_system.create_dir"
     v0
 and closure53 (v0 : string, v1 : string) () : struct (string * string) =
     struct (v0, v1)
-and method65 (v0 : Mut4, v1 : string, v2 : string) : unit =
+and method64 (v0 : Mut4, v1 : string, v2 : string) : unit =
     let v3 : string = "{ "
-    method15(v0, v3)
-    method16(v0)
+    method14(v0, v3)
+    method15(v0)
     let v4 : string = "dir"
-    method15(v0, v4)
+    method14(v0, v4)
     let v5 : string = " = "
-    method15(v0, v5)
-    method15(v0, v1)
+    method14(v0, v5)
+    method14(v0, v1)
     let v6 : string = "; "
-    method15(v0, v6)
+    method14(v0, v6)
     let v7 : string = "result"
-    method15(v0, v7)
-    method15(v0, v5)
-    method15(v0, v2)
+    method14(v0, v7)
+    method14(v0, v5)
+    method14(v0, v2)
     let v8 : string = " }"
-    method15(v0, v8)
+    method14(v0, v8)
 and closure54 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -9364,433 +9742,469 @@ and closure54 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * s
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let struct (v1161 : string, v1162 : string) = v2 ()
-    let v1163 : string = ""
-    let v1164 : Mut4 = {l0 = v1163} : Mut4
-    method65(v1164, v1161, v1162)
-    let v1165 : string = v1164.l0
-    let v1168 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1165}"
-    let v1175 : char list = []
-    let v1180 : (char list -> (char [])) = List.toArray
-    let v1181 : (char []) = v1180 v1175
-    let v1188 : string = v1168.TrimStart v1181 
-    let v1227 : char list = []
-    let v1230 : char list = '/' :: v1227 
-    let v1239 : char list = ' ' :: v1230 
-    let v1250 : (char list -> (char [])) = List.toArray
-    let v1251 : (char []) = v1250 v1239
-    let v1258 : string = v1188.TrimEnd v1251 
-    v1258
-and method64 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let struct (v1215 : string, v1216 : string) = v2 ()
+    let v1217 : string = ""
+    let v1218 : Mut4 = {l0 = v1217} : Mut4
+    method64(v1218, v1215, v1216)
+    let v1219 : string = v1218.l0
+    let v1222 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1219}"
+    let v1229 : char list = []
+    let v1234 : (char list -> (char [])) = List.toArray
+    let v1235 : (char []) = v1234 v1229
+    let v1242 : string = v1222.TrimStart v1235 
+    let v1281 : char list = []
+    let v1284 : char list = '/' :: v1281 
+    let v1293 : char list = ' ' :: v1284 
+    let v1304 : (char list -> (char [])) = List.toArray
+    let v1305 : (char []) = v1304 v1293
+    let v1312 : string = v1242.TrimEnd v1305 
+    v1312
+and method63 (v0 : US0, v1 : (unit -> string), v2 : (unit -> struct (string * string))) : unit =
     let v3 : (unit -> string) = closure54(v0, v1, v2)
-    method17(v0, v3)
+    method16(v0, v3)
 and closure55 (v0 : string) () : unit =
     let v3 : bool = true
     let mutable _v3 : Async<int64> option = None 
@@ -9889,21 +10303,21 @@ and closure55 (v0 : string) () : unit =
     |> fun x -> _v133 <- Some x
     match _v133 with Some x -> x | None -> failwith "base.run_target / _v133=None"
     ()
+and method65 (v0 : string) : (unit -> unit) =
+    closure55(v0)
 and method66 (v0 : string) : (unit -> unit) =
     closure55(v0)
-and method67 (v0 : string) : (unit -> unit) =
-    closure55(v0)
-and method54 (v0 : string) : System.IDisposable =
+and method53 (v0 : string) : System.IDisposable =
     let v3 : bool = true
     let mutable _v3 : System.IDisposable option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v4 : string = method55(v0)
+    let v4 : string = method54(v0)
     let v5 : string = "std::fs::create_dir_all(&*$0)"
     let v6 : Result<unit, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v4 v5 
-    let v7 : (std_io_Error -> std_string_String) = method56()
+    let v7 : (std_io_Error -> std_string_String) = method55()
     let v8 : string = "$0.map_err(|x| $1(x))"
     let v9 : Result<unit, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6, v7) v8 
     let v10 : (unit -> US12) = closure43()
@@ -9914,44 +10328,44 @@ and method54 (v0 : string) : System.IDisposable =
         let v17 : US0 = US0_4
         let v18 : (unit -> string) = closure45()
         let v19 : (unit -> struct (string * std_string_String)) = closure46(v4, v16)
-        method57(v17, v18, v19)
+        method56(v17, v18, v19)
     | US12_0 -> (* Ok *)
         let v13 : US0 = US0_0
         let v14 : (unit -> string) = closure48()
         let v15 : (unit -> string) = closure49(v4)
-        method60(v13, v14, v15)
+        method59(v13, v14, v15)
     let v22 : bool = true
     let mutable _v22 : System.IDisposable option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v23 : (unit -> unit) = method62(v4)
+    let v23 : (unit -> unit) = method61(v4)
     let v24 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v23 "$0()" )
     v24 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v25 : (unit -> unit) = method62(v4)
+    let v25 : (unit -> unit) = method61(v4)
     let v26 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v25 "$0()" )
     v26 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v27 : (unit -> unit) = method62(v4)
+    let v27 : (unit -> unit) = method61(v4)
     let v28 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v27 "$0()" )
     v28 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v29 : (unit -> unit) = method63(v4)
+    let v29 : (unit -> unit) = method62(v4)
     let v30 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v29 () }
     v30 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v31 : (unit -> unit) = method63(v4)
+    let v31 : (unit -> unit) = method62(v4)
     let v32 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v31 () }
     v32 
     #endif
 #else
-    let v33 : (unit -> unit) = method63(v4)
+    let v33 : (unit -> unit) = method62(v4)
     let v34 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v33 () }
     v34 
     #endif
@@ -10069,39 +10483,39 @@ and method54 (v0 : string) : System.IDisposable =
         let v265 : US0 = US0_1
         let v266 : (unit -> string) = closure52()
         let v267 : (unit -> struct (string * string)) = closure53(v0, v258)
-        method64(v265, v266, v267)
+        method63(v265, v266, v267)
     let v270 : bool = true
     let mutable _v270 : System.IDisposable option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v271 : (unit -> unit) = method66(v0)
+    let v271 : (unit -> unit) = method65(v0)
     let v272 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v271 "$0()" )
     v272 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v273 : (unit -> unit) = method66(v0)
+    let v273 : (unit -> unit) = method65(v0)
     let v274 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v273 "$0()" )
     v274 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v275 : (unit -> unit) = method66(v0)
+    let v275 : (unit -> unit) = method65(v0)
     let v276 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v275 "$0()" )
     v276 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v277 : (unit -> unit) = method67(v0)
+    let v277 : (unit -> unit) = method66(v0)
     let v278 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v277 () }
     v278 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v279 : (unit -> unit) = method67(v0)
+    let v279 : (unit -> unit) = method66(v0)
     let v280 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v279 () }
     v280 
     #endif
 #else
-    let v281 : (unit -> unit) = method67(v0)
+    let v281 : (unit -> unit) = method66(v0)
     let v282 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v281 () }
     v282 
     #endif
@@ -10211,39 +10625,39 @@ and method54 (v0 : string) : System.IDisposable =
         let v495 : US0 = US0_1
         let v496 : (unit -> string) = closure52()
         let v497 : (unit -> struct (string * string)) = closure53(v0, v488)
-        method64(v495, v496, v497)
+        method63(v495, v496, v497)
     let v500 : bool = true
     let mutable _v500 : System.IDisposable option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v501 : (unit -> unit) = method66(v0)
+    let v501 : (unit -> unit) = method65(v0)
     let v502 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v501 "$0()" )
     v502 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v503 : (unit -> unit) = method66(v0)
+    let v503 : (unit -> unit) = method65(v0)
     let v504 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v503 "$0()" )
     v504 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v505 : (unit -> unit) = method66(v0)
+    let v505 : (unit -> unit) = method65(v0)
     let v506 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v505 "$0()" )
     v506 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v507 : (unit -> unit) = method67(v0)
+    let v507 : (unit -> unit) = method66(v0)
     let v508 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v507 () }
     v508 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v509 : (unit -> unit) = method67(v0)
+    let v509 : (unit -> unit) = method66(v0)
     let v510 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v509 () }
     v510 
     #endif
 #else
-    let v511 : (unit -> unit) = method67(v0)
+    let v511 : (unit -> unit) = method66(v0)
     let v512 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v511 () }
     v512 
     #endif
@@ -10353,39 +10767,39 @@ and method54 (v0 : string) : System.IDisposable =
         let v725 : US0 = US0_1
         let v726 : (unit -> string) = closure52()
         let v727 : (unit -> struct (string * string)) = closure53(v0, v718)
-        method64(v725, v726, v727)
+        method63(v725, v726, v727)
     let v730 : bool = true
     let mutable _v730 : System.IDisposable option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v731 : (unit -> unit) = method66(v0)
+    let v731 : (unit -> unit) = method65(v0)
     let v732 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v731 "$0()" )
     v732 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v733 : (unit -> unit) = method66(v0)
+    let v733 : (unit -> unit) = method65(v0)
     let v734 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v733 "$0()" )
     v734 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v735 : (unit -> unit) = method66(v0)
+    let v735 : (unit -> unit) = method65(v0)
     let v736 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v735 "$0()" )
     v736 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v737 : (unit -> unit) = method67(v0)
+    let v737 : (unit -> unit) = method66(v0)
     let v738 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v737 () }
     v738 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v739 : (unit -> unit) = method67(v0)
+    let v739 : (unit -> unit) = method66(v0)
     let v740 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v739 () }
     v740 
     #endif
 #else
-    let v741 : (unit -> unit) = method67(v0)
+    let v741 : (unit -> unit) = method66(v0)
     let v742 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v741 () }
     v742 
     #endif
@@ -10397,10 +10811,10 @@ and method54 (v0 : string) : System.IDisposable =
     let v751 : System.IDisposable = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v751
 and closure41 () () : struct (string * System.IDisposable) =
-    let v0 : string = method41()
-    let v1 : System.IDisposable = method54(v0)
+    let v0 : string = method40()
+    let v1 : System.IDisposable = method53(v0)
     struct (v0, v1)
-and method68 (v0 : string) : System.Guid =
+and method67 (v0 : string) : System.Guid =
     let v3 : bool = true
     let mutable _v3 : System.Guid option = None 
     
@@ -10439,35 +10853,35 @@ and method68 (v0 : string) : System.Guid =
     let v218 : System.Guid = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v218
 and closure56 () (v0 : string) : struct (string * System.IDisposable) =
-    let v1 : System.Guid = method68(v0)
-    let v2 : string = method46(v1)
-    let v3 : System.IDisposable = method54(v2)
+    let v1 : System.Guid = method67(v0)
+    let v2 : string = method45(v1)
+    let v3 : System.IDisposable = method53(v2)
     struct (v2, v3)
 and closure57 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
     v0
-and method70 () : string =
+and method69 () : string =
     let v0 : string = ""
     v0
-and method71 (v0 : string) : string =
+and method70 (v0 : string) : string =
     v0
-and method72 () : string =
+and method71 () : string =
     let v0 : string = "^\\\\\\\\\\?\\\\"
     v0
-and method69 (v0 : string) : string =
+and method68 (v0 : string) : string =
     let v2 : bool = v0 = ""
     if v2 then
         let v3 : string = ""
         v3
     else
-        let v4 : string = method70()
+        let v4 : string = method69()
         let v7 : bool = true
         let mutable _v7 : string option = None 
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v8 : string = method71(v0)
+        let v8 : string = method70(v0)
         let v9 : string = $"regex::Regex::new(&$0)"
         let v10 : string = "^\\\\\\\\\\?\\\\"
         let v11 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v10 v9 
@@ -10498,7 +10912,7 @@ and method69 (v0 : string) : string =
         v49 
         #endif
 #else
-        let v56 : string = method72()
+        let v56 : string = method71()
         let v57 : string = System.Text.RegularExpressions.Regex.Replace (v0, v56, v4)
         v57 
         #endif
@@ -10510,7 +10924,7 @@ and method69 (v0 : string) : string =
         let v76 : string = v73.Replace (v74, v75)
         v76
 and closure58 () (v0 : string) : string =
-    method69(v0)
+    method68(v0)
 and closure59 () (v0 : string) : string =
     let v1 : char list = []
     let v4 : char list = '/' :: v1 
@@ -10519,7 +10933,7 @@ and closure59 () (v0 : string) : string =
     let v23 : string = v0.TrimStart v16 
     let v63 : string = $"file:///{v23}"
     v63
-and method75 (v0 : string) : string option =
+and method74 (v0 : string) : string option =
     let v3 : bool = true
     let mutable _v3 : US3 option = None 
     
@@ -10650,16 +11064,16 @@ and method75 (v0 : string) : string option =
         let v207 : string option = Some v204 
         v207
 and closure61 () (v0 : string) : string option =
-    method75(v0)
-and method74 () : (string -> string option) =
+    method74(v0)
+and method73 () : (string -> string option) =
     closure61()
-and method76 (v0 : string, v1 : string, v2 : string) : US13 =
-    let v3 : string = method49(v2, v0)
+and method75 (v0 : string, v1 : string, v2 : string) : US13 =
+    let v3 : string = method48(v2, v0)
     let v4 : bool = method7(v3)
     if v4 then
         US13_0(v2)
     else
-        let v6 : (string -> string option) = method74()
+        let v6 : (string -> string option) = method73()
         let v7 : string option = v6 v2
         let v10 : US3 option = None
         let _v10 = ref v10 
@@ -10682,14 +11096,14 @@ and method76 (v0 : string, v1 : string, v2 : string) : US13 =
             let v47 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
             US13_1(v47)
         | US3_0(v45) -> (* Some *)
-            method76(v0, v1, v45)
-and method73 (v0 : string, v1 : string) : US13 =
-    let v2 : string = method49(v1, v0)
+            method75(v0, v1, v45)
+and method72 (v0 : string, v1 : string) : US13 =
+    let v2 : string = method48(v1, v0)
     let v3 : bool = method7(v2)
     if v3 then
         US13_0(v1)
     else
-        let v5 : (string -> string option) = method74()
+        let v5 : (string -> string option) = method73()
         let v6 : string option = v5 v1
         let v9 : US3 option = None
         let _v9 = ref v9 
@@ -10712,23 +11126,23 @@ and method73 (v0 : string, v1 : string) : US13 =
             let v46 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
             US13_1(v46)
         | US3_0(v44) -> (* Some *)
-            method76(v0, v1, v44)
+            method75(v0, v1, v44)
 and closure62 () () : string =
     let v0 : string = "file_system.get_workspace_root"
     v0
 and closure63 (v0 : string) () : string =
     v0
-and method78 (v0 : Mut4, v1 : string) : unit =
+and method77 (v0 : Mut4, v1 : string) : unit =
     let v2 : string = "{ "
-    method15(v0, v2)
-    method16(v0)
+    method14(v0, v2)
+    method15(v0)
     let v3 : string = "error"
-    method15(v0, v3)
+    method14(v0, v3)
     let v4 : string = " = "
-    method15(v0, v4)
-    method15(v0, v1)
+    method14(v0, v4)
+    method14(v0, v1)
     let v5 : string = " }"
-    method15(v0, v5)
+    method14(v0, v5)
 and closure64 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
     let v5 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v6 : US0 = US0_0
@@ -10828,434 +11242,470 @@ and closure64 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : stri
     v323 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v330 : string = method11()
-    v330 
+    let v330 : string = $"near_sdk::env::block_timestamp()"
+    let v331 : uint64 = Fable.Core.RustInterop.emitRustExpr () v330 
+    let v334 : US2 option = None
+    let _v334 = ref v334 
+    match v18 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v335 : int64 = x
+    let v336 : US2 = US2_0(v335)
+    v336 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v334.Value <- x
+    let v337 : US2 option = _v334.Value 
+    let v360 : US2 = US2_1
+    let v361 : US2 = v337 |> Option.defaultValue v360 
+    let v374 : uint64 =
+        match v361 with
+        | US2_1 -> (* None *)
+            v331
+        | US2_0(v369) -> (* Some *)
+            let v370 : (int64 -> uint64) = uint64
+            let v371 : uint64 = v370 v369
+            let v372 : uint64 = v331 - v371
+            v372
+    let v375 : uint64 = v374 / 1000000000UL
+    let v376 : uint64 = v375 % 60UL
+    let v377 : uint64 = v375 / 60UL
+    let v378 : uint64 = v377 % 60UL
+    let v379 : uint64 = v375 / 3600UL
+    let v380 : uint64 = v379 % 24UL
+    let v381 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v382 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v380, v378, v376) v381 
+    let v383 : string = "fable_library_rust::String_::fromString($0)"
+    let v384 : string = Fable.Core.RustInterop.emitRustExpr v382 v383 
+    v384 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v333 : US2 option = None
-    let _v333 = ref v333 
+    let v387 : US2 option = None
+    let _v387 = ref v387 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v334 : int64 = x
-    let v335 : US2 = US2_0(v334)
-    v335 
+    let v388 : int64 = x
+    let v389 : US2 = US2_0(v388)
+    v389 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v333.Value <- x
-    let v336 : US2 option = _v333.Value 
-    let v359 : US2 = US2_1
-    let v360 : US2 = v336 |> Option.defaultValue v359 
-    let v458 : System.DateTime =
-        match v360 with
+    |> fun x -> _v387.Value <- x
+    let v390 : US2 option = _v387.Value 
+    let v413 : US2 = US2_1
+    let v414 : US2 = v390 |> Option.defaultValue v413 
+    let v512 : System.DateTime =
+        match v414 with
         | US2_1 -> (* None *)
-            let v450 : System.DateTime = System.DateTime.Now
-            v450
-        | US2_0(v368) -> (* Some *)
-            let v371 : System.DateTime = System.DateTime.Now
-            let v380 : (System.DateTime -> int64) = _.Ticks
-            let v381 : int64 = v380 v371
-            let v388 : int64 = v381 - v368
-            let v391 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v392 : System.TimeSpan = v391 v388
-            let v401 : (System.TimeSpan -> int32) = _.Hours
-            let v402 : int32 = v401 v392
-            let v411 : (System.TimeSpan -> int32) = _.Minutes
-            let v412 : int32 = v411 v392
-            let v421 : (System.TimeSpan -> int32) = _.Seconds
-            let v422 : int32 = v421 v392
-            let v431 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v432 : int32 = v431 v392
-            let v441 : System.DateTime = System.DateTime (1, 1, 1, v402, v412, v422, v432)
-            v441
-    let v461 : string = method12()
-    let v470 : (string -> string) = v458.ToString
-    let v471 : string = v470 v461
-    v471 
+            let v504 : System.DateTime = System.DateTime.Now
+            v504
+        | US2_0(v422) -> (* Some *)
+            let v425 : System.DateTime = System.DateTime.Now
+            let v434 : (System.DateTime -> int64) = _.Ticks
+            let v435 : int64 = v434 v425
+            let v442 : int64 = v435 - v422
+            let v445 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v446 : System.TimeSpan = v445 v442
+            let v455 : (System.TimeSpan -> int32) = _.Hours
+            let v456 : int32 = v455 v446
+            let v465 : (System.TimeSpan -> int32) = _.Minutes
+            let v466 : int32 = v465 v446
+            let v475 : (System.TimeSpan -> int32) = _.Seconds
+            let v476 : int32 = v475 v446
+            let v485 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v486 : int32 = v485 v446
+            let v495 : System.DateTime = System.DateTime (1, 1, 1, v456, v466, v476, v486)
+            v495
+    let v515 : string = method11()
+    let v524 : (string -> string) = v512.ToString
+    let v525 : string = v524 v515
+    v525 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v480 : US2 option = None
-    let _v480 = ref v480 
+    let v534 : US2 option = None
+    let _v534 = ref v534 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v481 : int64 = x
-    let v482 : US2 = US2_0(v481)
-    v482 
+    let v535 : int64 = x
+    let v536 : US2 = US2_0(v535)
+    v536 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v480.Value <- x
-    let v483 : US2 option = _v480.Value 
-    let v506 : US2 = US2_1
-    let v507 : US2 = v483 |> Option.defaultValue v506 
-    let v605 : System.DateTime =
-        match v507 with
+    |> fun x -> _v534.Value <- x
+    let v537 : US2 option = _v534.Value 
+    let v560 : US2 = US2_1
+    let v561 : US2 = v537 |> Option.defaultValue v560 
+    let v659 : System.DateTime =
+        match v561 with
         | US2_1 -> (* None *)
-            let v597 : System.DateTime = System.DateTime.Now
-            v597
-        | US2_0(v515) -> (* Some *)
-            let v518 : System.DateTime = System.DateTime.Now
-            let v527 : (System.DateTime -> int64) = _.Ticks
-            let v528 : int64 = v527 v518
-            let v535 : int64 = v528 - v515
-            let v538 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v539 : System.TimeSpan = v538 v535
-            let v548 : (System.TimeSpan -> int32) = _.Hours
-            let v549 : int32 = v548 v539
-            let v558 : (System.TimeSpan -> int32) = _.Minutes
-            let v559 : int32 = v558 v539
-            let v568 : (System.TimeSpan -> int32) = _.Seconds
-            let v569 : int32 = v568 v539
-            let v578 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v579 : int32 = v578 v539
-            let v588 : System.DateTime = System.DateTime (1, 1, 1, v549, v559, v569, v579)
-            v588
-    let v608 : string = method12()
-    let v617 : (string -> string) = v605.ToString
-    let v618 : string = v617 v608
-    v618 
+            let v651 : System.DateTime = System.DateTime.Now
+            v651
+        | US2_0(v569) -> (* Some *)
+            let v572 : System.DateTime = System.DateTime.Now
+            let v581 : (System.DateTime -> int64) = _.Ticks
+            let v582 : int64 = v581 v572
+            let v589 : int64 = v582 - v569
+            let v592 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v593 : System.TimeSpan = v592 v589
+            let v602 : (System.TimeSpan -> int32) = _.Hours
+            let v603 : int32 = v602 v593
+            let v612 : (System.TimeSpan -> int32) = _.Minutes
+            let v613 : int32 = v612 v593
+            let v622 : (System.TimeSpan -> int32) = _.Seconds
+            let v623 : int32 = v622 v593
+            let v632 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v633 : int32 = v632 v593
+            let v642 : System.DateTime = System.DateTime (1, 1, 1, v603, v613, v623, v633)
+            v642
+    let v662 : string = method11()
+    let v671 : (string -> string) = v659.ToString
+    let v672 : string = v671 v662
+    v672 
     #endif
 #else
-    let v627 : US2 option = None
-    let _v627 = ref v627 
+    let v681 : US2 option = None
+    let _v681 = ref v681 
     match v18 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v628 : int64 = x
-    let v629 : US2 = US2_0(v628)
-    v629 
+    let v682 : int64 = x
+    let v683 : US2 = US2_0(v682)
+    v683 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v627.Value <- x
-    let v630 : US2 option = _v627.Value 
-    let v653 : US2 = US2_1
-    let v654 : US2 = v630 |> Option.defaultValue v653 
-    let v752 : System.DateTime =
-        match v654 with
+    |> fun x -> _v681.Value <- x
+    let v684 : US2 option = _v681.Value 
+    let v707 : US2 = US2_1
+    let v708 : US2 = v684 |> Option.defaultValue v707 
+    let v806 : System.DateTime =
+        match v708 with
         | US2_1 -> (* None *)
-            let v744 : System.DateTime = System.DateTime.Now
-            v744
-        | US2_0(v662) -> (* Some *)
-            let v665 : System.DateTime = System.DateTime.Now
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v665
-            let v682 : int64 = v675 - v662
-            let v685 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v686 : System.TimeSpan = v685 v682
-            let v695 : (System.TimeSpan -> int32) = _.Hours
-            let v696 : int32 = v695 v686
-            let v705 : (System.TimeSpan -> int32) = _.Minutes
-            let v706 : int32 = v705 v686
-            let v715 : (System.TimeSpan -> int32) = _.Seconds
-            let v716 : int32 = v715 v686
-            let v725 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v726 : int32 = v725 v686
-            let v735 : System.DateTime = System.DateTime (1, 1, 1, v696, v706, v716, v726)
-            v735
-    let v755 : string = method12()
-    let v764 : (string -> string) = v752.ToString
-    let v765 : string = v764 v755
-    v765 
+            let v798 : System.DateTime = System.DateTime.Now
+            v798
+        | US2_0(v716) -> (* Some *)
+            let v719 : System.DateTime = System.DateTime.Now
+            let v728 : (System.DateTime -> int64) = _.Ticks
+            let v729 : int64 = v728 v719
+            let v736 : int64 = v729 - v716
+            let v739 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v740 : System.TimeSpan = v739 v736
+            let v749 : (System.TimeSpan -> int32) = _.Hours
+            let v750 : int32 = v749 v740
+            let v759 : (System.TimeSpan -> int32) = _.Minutes
+            let v760 : int32 = v759 v740
+            let v769 : (System.TimeSpan -> int32) = _.Seconds
+            let v770 : int32 = v769 v740
+            let v779 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v780 : int32 = v779 v740
+            let v789 : System.DateTime = System.DateTime (1, 1, 1, v750, v760, v770, v780)
+            v789
+    let v809 : string = method11()
+    let v818 : (string -> string) = v806.ToString
+    let v819 : string = v818 v809
+    v819 
     #endif
     |> fun x -> _v35 <- Some x
-    let v772 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
-    let v927 : bool =
+    let v826 : string = match _v35 with Some x -> x | None -> failwith "base.run_target / _v35=None"
+    let v981 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v931 : US3 =
-        if v927 then
-            let v928 : string = "Verbose"
-            US3_0(v928)
+    let v985 : US3 =
+        if v981 then
+            let v982 : string = "Verbose"
+            US3_0(v982)
         else
             US3_1
-    let v980 : US3 =
-        match v931 with
+    let v1034 : US3 =
+        match v985 with
         | US3_1 -> (* None *)
-            let v936 : bool =
+            let v990 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v940 : US3 =
-                if v936 then
-                    let v937 : string = "Debug"
-                    US3_0(v937)
+            let v994 : US3 =
+                if v990 then
+                    let v991 : string = "Debug"
+                    US3_0(v991)
                 else
                     US3_1
-            match v940 with
+            match v994 with
             | US3_1 -> (* None *)
-                let v945 : bool =
+                let v999 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v949 : US3 =
-                    if v945 then
-                        let v946 : string = "Info"
-                        US3_0(v946)
+                let v1003 : US3 =
+                    if v999 then
+                        let v1000 : string = "Info"
+                        US3_0(v1000)
                     else
                         US3_1
-                match v949 with
+                match v1003 with
                 | US3_1 -> (* None *)
-                    let v954 : bool =
+                    let v1008 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v958 : US3 =
-                        if v954 then
-                            let v955 : string = "Warning"
-                            US3_0(v955)
+                    let v1012 : US3 =
+                        if v1008 then
+                            let v1009 : string = "Warning"
+                            US3_0(v1009)
                         else
                             US3_1
-                    match v958 with
+                    match v1012 with
                     | US3_1 -> (* None *)
-                        let v963 : bool =
+                        let v1017 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v967 : US3 =
-                            if v963 then
-                                let v964 : string = "Critical"
-                                US3_0(v964)
+                        let v1021 : US3 =
+                            if v1017 then
+                                let v1018 : string = "Critical"
+                                US3_0(v1018)
                             else
                                 US3_1
-                        match v967 with
+                        match v1021 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v968) -> (* Some *)
-                            US3_0(v968)
-                    | US3_0(v959) -> (* Some *)
-                        US3_0(v959)
-                | US3_0(v950) -> (* Some *)
-                    US3_0(v950)
-            | US3_0(v941) -> (* Some *)
-                US3_0(v941)
-        | US3_0(v932) -> (* Some *)
-            US3_0(v932)
-    let v984 : string =
-        match v980 with
+                        | US3_0(v1022) -> (* Some *)
+                            US3_0(v1022)
+                    | US3_0(v1013) -> (* Some *)
+                        US3_0(v1013)
+                | US3_0(v1004) -> (* Some *)
+                    US3_0(v1004)
+            | US3_0(v995) -> (* Some *)
+                US3_0(v995)
+        | US3_0(v986) -> (* Some *)
+            US3_0(v986)
+    let v1038 : string =
+        match v1034 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v981) -> (* Some *)
-            v981
-    let v987 : (unit -> string) = v984.ToLower
-    let v988 : string = v987 ()
-    let v997 : string = v988.PadLeft (7, ' ')
-    let v1029 : bool = true
-    let mutable _v1029 : string option = None 
+        | US3_0(v1035) -> (* Some *)
+            v1035
+    let v1041 : (unit -> string) = v1038.ToLower
+    let v1042 : string = v1041 ()
+    let v1051 : string = v1042.PadLeft (7, ' ')
+    let v1083 : bool = true
+    let mutable _v1083 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1044 : Ref<Str> =
+    let v1098 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1038 : string = "inline_colorization::color_bright_red"
-            let v1039 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1038 
-            v1039
+            let v1092 : string = "inline_colorization::color_bright_red"
+            let v1093 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1092 
+            v1093
         | US0_1 -> (* Debug *)
-            let v1032 : string = "inline_colorization::color_bright_blue"
-            let v1033 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1032 
-            v1033
-        | US0_2 -> (* Info *)
-            let v1034 : string = "inline_colorization::color_bright_green"
-            let v1035 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1034 
-            v1035
-        | US0_0 -> (* Verbose *)
-            let v1030 : string = "inline_colorization::color_bright_black"
-            let v1031 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1030 
-            v1031
-        | US0_3 -> (* Warning *)
-            let v1036 : string = "inline_colorization::color_yellow"
-            let v1037 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1036 
-            v1037
-    let v1045 : string = "&*$0"
-    let v1046 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1045 
-    let v1047 : string = "inline_colorization::color_reset"
-    let v1048 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1047 
-    let v1049 : string = "\"{v1044}{v1046}{v1048}\""
-    let v1050 : string = @$"format!(" + v1049 + ")"
-    let v1051 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1050 
-    let v1052 : string = "fable_library_rust::String_::fromString($0)"
-    let v1053 : string = Fable.Core.RustInterop.emitRustExpr v1051 v1052 
-    v1053 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v1068 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1062 : string = "inline_colorization::color_bright_red"
-            let v1063 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1062 
-            v1063
-        | US0_1 -> (* Debug *)
-            let v1056 : string = "inline_colorization::color_bright_blue"
-            let v1057 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1056 
-            v1057
-        | US0_2 -> (* Info *)
-            let v1058 : string = "inline_colorization::color_bright_green"
-            let v1059 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1058 
-            v1059
-        | US0_0 -> (* Verbose *)
-            let v1054 : string = "inline_colorization::color_bright_black"
-            let v1055 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1054 
-            v1055
-        | US0_3 -> (* Warning *)
-            let v1060 : string = "inline_colorization::color_yellow"
-            let v1061 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1060 
-            v1061
-    let v1069 : string = "&*$0"
-    let v1070 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1069 
-    let v1071 : string = "inline_colorization::color_reset"
-    let v1072 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1071 
-    let v1073 : string = "\"{v1068}{v1070}{v1072}\""
-    let v1074 : string = @$"format!(" + v1073 + ")"
-    let v1075 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1074 
-    let v1076 : string = "fable_library_rust::String_::fromString($0)"
-    let v1077 : string = Fable.Core.RustInterop.emitRustExpr v1075 v1076 
-    v1077 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v1092 : Ref<Str> =
-        match v0 with
-        | US0_4 -> (* Critical *)
-            let v1086 : string = "inline_colorization::color_bright_red"
+            let v1086 : string = "inline_colorization::color_bright_blue"
             let v1087 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1086 
             v1087
-        | US0_1 -> (* Debug *)
-            let v1080 : string = "inline_colorization::color_bright_blue"
-            let v1081 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1080 
-            v1081
         | US0_2 -> (* Info *)
-            let v1082 : string = "inline_colorization::color_bright_green"
-            let v1083 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1082 
-            v1083
+            let v1088 : string = "inline_colorization::color_bright_green"
+            let v1089 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1088 
+            v1089
         | US0_0 -> (* Verbose *)
-            let v1078 : string = "inline_colorization::color_bright_black"
-            let v1079 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1078 
-            v1079
-        | US0_3 -> (* Warning *)
-            let v1084 : string = "inline_colorization::color_yellow"
+            let v1084 : string = "inline_colorization::color_bright_black"
             let v1085 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1084 
             v1085
-    let v1093 : string = "&*$0"
-    let v1094 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v997 v1093 
-    let v1095 : string = "inline_colorization::color_reset"
-    let v1096 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1095 
-    let v1097 : string = "\"{v1092}{v1094}{v1096}\""
-    let v1098 : string = @$"format!(" + v1097 + ")"
-    let v1099 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1098 
-    let v1100 : string = "fable_library_rust::String_::fromString($0)"
-    let v1101 : string = Fable.Core.RustInterop.emitRustExpr v1099 v1100 
-    v1101 
+        | US0_3 -> (* Warning *)
+            let v1090 : string = "inline_colorization::color_yellow"
+            let v1091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1090 
+            v1091
+    let v1099 : string = "&*$0"
+    let v1100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1099 
+    let v1101 : string = "inline_colorization::color_reset"
+    let v1102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1101 
+    let v1103 : string = "\"{v1098}{v1100}{v1102}\""
+    let v1104 : string = @$"format!(" + v1103 + ")"
+    let v1105 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1104 
+    let v1106 : string = "fable_library_rust::String_::fromString($0)"
+    let v1107 : string = Fable.Core.RustInterop.emitRustExpr v1105 v1106 
+    v1107 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1122 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1116 : string = "inline_colorization::color_bright_red"
+            let v1117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1116 
+            v1117
+        | US0_1 -> (* Debug *)
+            let v1110 : string = "inline_colorization::color_bright_blue"
+            let v1111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1110 
+            v1111
+        | US0_2 -> (* Info *)
+            let v1112 : string = "inline_colorization::color_bright_green"
+            let v1113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1112 
+            v1113
+        | US0_0 -> (* Verbose *)
+            let v1108 : string = "inline_colorization::color_bright_black"
+            let v1109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1108 
+            v1109
+        | US0_3 -> (* Warning *)
+            let v1114 : string = "inline_colorization::color_yellow"
+            let v1115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1114 
+            v1115
+    let v1123 : string = "&*$0"
+    let v1124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1123 
+    let v1125 : string = "inline_colorization::color_reset"
+    let v1126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1125 
+    let v1127 : string = "\"{v1122}{v1124}{v1126}\""
+    let v1128 : string = @$"format!(" + v1127 + ")"
+    let v1129 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1128 
+    let v1130 : string = "fable_library_rust::String_::fromString($0)"
+    let v1131 : string = Fable.Core.RustInterop.emitRustExpr v1129 v1130 
+    v1131 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1146 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v1140 : string = "inline_colorization::color_bright_red"
+            let v1141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1140 
+            v1141
+        | US0_1 -> (* Debug *)
+            let v1134 : string = "inline_colorization::color_bright_blue"
+            let v1135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1134 
+            v1135
+        | US0_2 -> (* Info *)
+            let v1136 : string = "inline_colorization::color_bright_green"
+            let v1137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1136 
+            v1137
+        | US0_0 -> (* Verbose *)
+            let v1132 : string = "inline_colorization::color_bright_black"
+            let v1133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1132 
+            v1133
+        | US0_3 -> (* Warning *)
+            let v1138 : string = "inline_colorization::color_yellow"
+            let v1139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1138 
+            v1139
+    let v1147 : string = "&*$0"
+    let v1148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1051 v1147 
+    let v1149 : string = "inline_colorization::color_reset"
+    let v1150 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v1149 
+    let v1151 : string = "\"{v1146}{v1148}{v1150}\""
+    let v1152 : string = @$"format!(" + v1151 + ")"
+    let v1153 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "fable_library_rust::String_::fromString($0)"
+    let v1155 : string = Fable.Core.RustInterop.emitRustExpr v1153 v1154 
+    v1155 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1111 : string =
+    let v1165 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1106 : string = "\u001b[91m"
-            v1106
+            let v1160 : string = "\u001b[91m"
+            v1160
         | US0_1 -> (* Debug *)
-            let v1103 : string = "\u001b[94m"
-            v1103
+            let v1157 : string = "\u001b[94m"
+            v1157
         | US0_2 -> (* Info *)
-            let v1104 : string = "\u001b[92m"
-            v1104
+            let v1158 : string = "\u001b[92m"
+            v1158
         | US0_0 -> (* Verbose *)
-            let v1102 : string = "\u001b[90m"
-            v1102
+            let v1156 : string = "\u001b[90m"
+            v1156
         | US0_3 -> (* Warning *)
-            let v1105 : string = "\u001b[93m"
-            v1105
-    let v1112 : string = method13()
-    let v1113 : string = v1111 + v997 
-    let v1114 : string = v1113 + v1112 
-    v1114 
+            let v1159 : string = "\u001b[93m"
+            v1159
+    let v1166 : string = method12()
+    let v1167 : string = v1165 + v1051 
+    let v1168 : string = v1167 + v1166 
+    v1168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1124 : string =
+    let v1178 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1119 : string = "\u001b[91m"
-            v1119
+            let v1173 : string = "\u001b[91m"
+            v1173
         | US0_1 -> (* Debug *)
-            let v1116 : string = "\u001b[94m"
-            v1116
+            let v1170 : string = "\u001b[94m"
+            v1170
         | US0_2 -> (* Info *)
-            let v1117 : string = "\u001b[92m"
-            v1117
+            let v1171 : string = "\u001b[92m"
+            v1171
         | US0_0 -> (* Verbose *)
-            let v1115 : string = "\u001b[90m"
-            v1115
+            let v1169 : string = "\u001b[90m"
+            v1169
         | US0_3 -> (* Warning *)
-            let v1118 : string = "\u001b[93m"
-            v1118
-    let v1125 : string = method13()
-    let v1126 : string = v1124 + v997 
-    let v1127 : string = v1126 + v1125 
-    v1127 
+            let v1172 : string = "\u001b[93m"
+            v1172
+    let v1179 : string = method12()
+    let v1180 : string = v1178 + v1051 
+    let v1181 : string = v1180 + v1179 
+    v1181 
     #endif
 #else
-    let v1137 : string =
+    let v1191 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v1132 : string = "\u001b[91m"
-            v1132
+            let v1186 : string = "\u001b[91m"
+            v1186
         | US0_1 -> (* Debug *)
-            let v1129 : string = "\u001b[94m"
-            v1129
+            let v1183 : string = "\u001b[94m"
+            v1183
         | US0_2 -> (* Info *)
-            let v1130 : string = "\u001b[92m"
-            v1130
+            let v1184 : string = "\u001b[92m"
+            v1184
         | US0_0 -> (* Verbose *)
-            let v1128 : string = "\u001b[90m"
-            v1128
+            let v1182 : string = "\u001b[90m"
+            v1182
         | US0_3 -> (* Warning *)
-            let v1131 : string = "\u001b[93m"
-            v1131
-    let v1138 : string = method13()
-    let v1139 : string = v1137 + v997 
-    let v1140 : string = v1139 + v1138 
-    v1140 
+            let v1185 : string = "\u001b[93m"
+            v1185
+    let v1192 : string = method12()
+    let v1193 : string = v1191 + v1051 
+    let v1194 : string = v1193 + v1192 
+    v1194 
     #endif
-    |> fun x -> _v1029 <- Some x
-    let v1141 : string = match _v1029 with Some x -> x | None -> failwith "base.run_target / _v1029=None"
-    let v1160 : int64 = v14.l0
-    let v1161 : string = v2 ()
-    let v1162 : string = ""
-    let v1163 : Mut4 = {l0 = v1162} : Mut4
-    method78(v1163, v1161)
-    let v1164 : string = v1163.l0
-    let v1167 : string = $"{v772} {v1141} #{v1160} %s{v1 ()} / {v1164}"
-    let v1174 : char list = []
-    let v1179 : (char list -> (char [])) = List.toArray
-    let v1180 : (char []) = v1179 v1174
-    let v1187 : string = v1167.TrimStart v1180 
-    let v1226 : char list = []
-    let v1229 : char list = '/' :: v1226 
-    let v1238 : char list = ' ' :: v1229 
-    let v1249 : (char list -> (char [])) = List.toArray
-    let v1250 : (char []) = v1249 v1238
-    let v1257 : string = v1187.TrimEnd v1250 
-    v1257
-and method77 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    |> fun x -> _v1083 <- Some x
+    let v1195 : string = match _v1083 with Some x -> x | None -> failwith "base.run_target / _v1083=None"
+    let v1214 : int64 = v14.l0
+    let v1215 : string = v2 ()
+    let v1216 : string = ""
+    let v1217 : Mut4 = {l0 = v1216} : Mut4
+    method77(v1217, v1215)
+    let v1218 : string = v1217.l0
+    let v1221 : string = $"{v826} {v1195} #{v1214} %s{v1 ()} / {v1218}"
+    let v1228 : char list = []
+    let v1233 : (char list -> (char [])) = List.toArray
+    let v1234 : (char []) = v1233 v1228
+    let v1241 : string = v1221.TrimStart v1234 
+    let v1280 : char list = []
+    let v1283 : char list = '/' :: v1280 
+    let v1292 : char list = ' ' :: v1283 
+    let v1303 : (char list -> (char [])) = List.toArray
+    let v1304 : (char []) = v1303 v1292
+    let v1311 : string = v1241.TrimEnd v1304 
+    v1311
+and method76 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
     let v3 : (unit -> string) = closure64(v0, v1, v2)
-    method17(v0, v3)
-and method79 () : string =
+    method16(v0, v3)
+and method78 () : string =
     let v2 : bool = true
     let mutable _v2 : string option = None 
     
@@ -11334,30 +11784,30 @@ and closure60 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
     let v1 : string = "polyglot"
     let v2 : string = ".devcontainer"
-    let v3 : string = method49(v1, v2)
-    let v4 : US13 = method73(v3, v0)
+    let v3 : string = method48(v1, v2)
+    let v4 : US13 = method72(v3, v0)
     let v13 : US3 =
         match v4 with
         | US13_1(v7) -> (* Error *)
             let v8 : US0 = US0_3
             let v9 : (unit -> string) = closure62()
             let v10 : (unit -> string) = closure63(v7)
-            method77(v8, v9, v10)
+            method76(v8, v9, v10)
             US3_1
         | US13_0(v5) -> (* Ok *)
             US3_0(v5)
     let v29 : US3 =
         match v13 with
         | US3_1 -> (* None *)
-            let v16 : string = method79()
-            let v17 : string = method49(v1, v2)
-            let v18 : US13 = method73(v17, v16)
+            let v16 : string = method78()
+            let v17 : string = method48(v1, v2)
+            let v18 : US13 = method72(v17, v16)
             match v18 with
             | US13_1(v21) -> (* Error *)
                 let v22 : US0 = US0_3
                 let v23 : (unit -> string) = closure62()
                 let v24 : (unit -> string) = closure63(v21)
-                method77(v22, v23, v24)
+                method76(v22, v23, v24)
                 US3_1
             | US13_0(v19) -> (* Ok *)
                 US3_0(v19)
@@ -11369,8 +11819,8 @@ and closure60 () () : string =
             failwith<string> "Option does not have a value."
         | US3_0(v30) -> (* Some *)
             v30
-    method49(v33, v1)
-and method80 (v0 : string) : unit =
+    method48(v33, v1)
+and method79 (v0 : string) : unit =
     let v3 : bool = true
     let mutable _v3 : unit option = None 
     
@@ -11393,39 +11843,39 @@ and method80 (v0 : string) : unit =
     #endif
 #else
     try
-    let v4 : string = method52()
+    let v4 : string = method51()
     let v7 : System.DateTime = System.DateTime.Now
     let v16 : (unit -> System.Guid) = System.Guid.NewGuid
     let v17 : System.Guid = v16 ()
-    let v24 : System.Guid = method42(v17, v7)
+    let v24 : System.Guid = method41(v17, v7)
     let v25 : string = $"{v4}_{v24}.txt"
     let v26 : string = __SOURCE_DIRECTORY__
     let v27 : string = "polyglot"
     let v28 : string = ".devcontainer"
-    let v29 : string = method49(v27, v28)
-    let v30 : US13 = method73(v29, v26)
+    let v29 : string = method48(v27, v28)
+    let v30 : US13 = method72(v29, v26)
     let v39 : US3 =
         match v30 with
         | US13_1(v33) -> (* Error *)
             let v34 : US0 = US0_3
             let v35 : (unit -> string) = closure62()
             let v36 : (unit -> string) = closure63(v33)
-            method77(v34, v35, v36)
+            method76(v34, v35, v36)
             US3_1
         | US13_0(v31) -> (* Ok *)
             US3_0(v31)
     let v55 : US3 =
         match v39 with
         | US3_1 -> (* None *)
-            let v42 : string = method79()
-            let v43 : string = method49(v27, v28)
-            let v44 : US13 = method73(v43, v42)
+            let v42 : string = method78()
+            let v43 : string = method48(v27, v28)
+            let v44 : US13 = method72(v43, v42)
             match v44 with
             | US13_1(v47) -> (* Error *)
                 let v48 : US0 = US0_3
                 let v49 : (unit -> string) = closure62()
                 let v50 : (unit -> string) = closure63(v47)
-                method77(v48, v49, v50)
+                method76(v48, v49, v50)
                 US3_1
             | US13_0(v45) -> (* Ok *)
                 US3_0(v45)
@@ -11437,9 +11887,9 @@ and method80 (v0 : string) : unit =
             failwith<string> "Option does not have a value."
         | US3_0(v56) -> (* Some *)
             v56
-    let v60 : string = method49(v59, v27)
+    let v60 : string = method48(v59, v27)
     let v61 : string = "target/trace"
-    let v62 : string = method49(v60, v61)
+    let v62 : string = method48(v60, v61)
     let v65 : bool = true
     let mutable _v65 : System.IO.DirectoryInfo option = None 
     
@@ -11472,7 +11922,7 @@ and method80 (v0 : string) : unit =
     #endif
     |> fun x -> _v65 <- Some x
     let v113 : System.IO.DirectoryInfo = match _v65 with Some x -> x | None -> failwith "base.run_target / _v65=None"
-    let v128 : string = method49(v62, v25)
+    let v128 : string = method48(v62, v25)
     let v131 : bool = true
     let mutable _v131 : Async<unit> option = None 
     
@@ -11571,7 +12021,7 @@ and method80 (v0 : string) : unit =
     with ex ->
     let v302 : exn = ex
     let v303 : string = $"file_system.trace_file / ex: %A{v302}"
-    method80(v303)
+    method79(v303)
     (*
     *)
     () 
@@ -11580,7 +12030,7 @@ and method80 (v0 : string) : unit =
     match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     ()
 and closure66 () (v0 : string) : unit =
-    method80(v0)
+    method79(v0)
 and closure65 () (v0 : bool) : unit =
     let v3 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
     let v4 : US0 = US0_0
@@ -11594,7 +12044,7 @@ and closure65 () (v0 : bool) : unit =
     v13.l0 <- v33
     ()
 and closure68 (v0 : string) (v1 : string) : string =
-    method49(v0, v1)
+    method48(v0, v1)
 and closure67 () (v0 : string) : (string -> string) =
     closure68(v0)
 let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()

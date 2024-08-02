@@ -1071,38 +1071,36 @@ and method1 (v0 : pyo3_Python) : unit =
                 true
             else
                 method21(v66)
-        let v71 : string = "assert_eq"
+        let v71 : string = "__assert_eq"
         let v72 : string = $"{v71} / actual: %A{v65} / expected: %A{0.0}"
-        let v81 : (string -> unit) = System.Console.WriteLine
-        v81 v72
-        let v86 : bool = v68 = false
-        if v86 then
+        v72 |> System.Console.WriteLine
+        let v85 : bool = v68 = false
+        if v85 then
             failwith<unit> v72
-        let v87 : string = "$0.re"
-        let v88 : float = Fable.Core.RustInterop.emitRustExpr v63 v87 
-        let v89 : float = v88 - v11
-        let v90 : float =  -v89
-        let v91 : bool = v89 >= v90
-        let v92 : float =
-            if v91 then
-                v89
+        let v86 : string = "$0.re"
+        let v87 : float = Fable.Core.RustInterop.emitRustExpr v63 v86 
+        let v88 : float = v87 - v11
+        let v89 : float =  -v88
+        let v90 : bool = v88 >= v89
+        let v91 : float =
+            if v90 then
+                v88
             else
-                v90
-        let v93 : bool = v92 < 0.0001
-        let v95 : bool =
-            if v93 then
+                v89
+        let v92 : bool = v91 < 0.0001
+        let v94 : bool =
+            if v92 then
                 true
             else
-                method21(v93)
-        let v98 : string = "assert_lt"
-        let v99 : string = $"{v98} / actual: %A{v92} / expected: %A{0.0001}"
-        let v108 : (string -> unit) = System.Console.WriteLine
-        v108 v99
-        let v113 : bool = v95 = false
-        if v113 then
-            failwith<unit> v99
-        let v114 : int32 = v9 + 1
-        v7.l0 <- v114
+                method21(v92)
+        let v97 : string = "__assert_lt"
+        let v98 : string = $"{v97} / actual: %A{v91} / expected: %A{0.0001}"
+        v98 |> System.Console.WriteLine
+        let v111 : bool = v94 = false
+        if v111 then
+            failwith<unit> v98
+        let v112 : int32 = v9 + 1
+        v7.l0 <- v112
         ()
     ()
 and method22 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
@@ -1123,7 +1121,7 @@ and method0 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1183,35 +1181,33 @@ and method24 (v0 : pyo3_Python) : unit =
             true
         else
             method21(v61)
-    let v66 : string = "assert_lt"
+    let v66 : string = "__assert_lt"
     let v67 : string = $"{v66} / actual: %A{v60} / expected: %A{0.001}"
-    let v76 : (string -> unit) = System.Console.WriteLine
-    v76 v67
-    let v81 : bool = v63 = false
-    if v81 then
+    v67 |> System.Console.WriteLine
+    let v80 : bool = v63 = false
+    if v80 then
         failwith<unit> v67
-    let v82 : string = "$0.im"
-    let v83 : float = Fable.Core.RustInterop.emitRustExpr v54 v82 
-    let v84 : float = v83 - 0.275
-    let v85 : float =  -v84
-    let v86 : bool = v84 >= v85
-    let v87 : float =
-        if v86 then
-            v84
+    let v81 : string = "$0.im"
+    let v82 : float = Fable.Core.RustInterop.emitRustExpr v54 v81 
+    let v83 : float = v82 - 0.275
+    let v84 : float =  -v83
+    let v85 : bool = v83 >= v84
+    let v86 : float =
+        if v85 then
+            v83
         else
-            v85
-    let v88 : bool = v87 < 0.001
-    let v90 : bool =
-        if v88 then
+            v84
+    let v87 : bool = v86 < 0.001
+    let v89 : bool =
+        if v87 then
             true
         else
-            method21(v88)
-    let v93 : string = $"{v66} / actual: %A{v87} / expected: %A{0.001}"
-    let v102 : (string -> unit) = System.Console.WriteLine
-    v102 v93
-    let v107 : bool = v90 = false
-    if v107 then
-        failwith<unit> v93
+            method21(v87)
+    let v92 : string = $"{v66} / actual: %A{v86} / expected: %A{0.001}"
+    v92 |> System.Console.WriteLine
+    let v105 : bool = v89 = false
+    if v105 then
+        failwith<unit> v92
 and method23 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
@@ -1228,7 +1224,7 @@ and method23 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1304,27 +1300,25 @@ and method28 (v0 : pyo3_Python, v1 : UH0) : unit =
                 true
             else
                 method21(v60)
-        let v65 : string = "assert_eq"
+        let v65 : string = "__assert_eq"
         let v66 : string = $"{v65} / actual: %A{v59} / expected: %A{0.0}"
-        let v75 : (string -> unit) = System.Console.WriteLine
-        v75 v66
-        let v80 : bool = v62 = false
-        if v80 then
+        v66 |> System.Console.WriteLine
+        let v79 : bool = v62 = false
+        if v79 then
             failwith<unit> v66
-        let v81 : string = "$0.im"
-        let v82 : float = Fable.Core.RustInterop.emitRustExpr v57 v81 
-        let v83 : bool = v82 = 0.0
-        let v85 : bool =
-            if v83 then
+        let v80 : string = "$0.im"
+        let v81 : float = Fable.Core.RustInterop.emitRustExpr v57 v80 
+        let v82 : bool = v81 = 0.0
+        let v84 : bool =
+            if v82 then
                 true
             else
-                method21(v83)
-        let v88 : string = $"{v65} / actual: %A{v82} / expected: %A{0.0}"
-        let v97 : (string -> unit) = System.Console.WriteLine
-        v97 v88
-        let v102 : bool = v85 = false
-        if v102 then
-            failwith<unit> v88
+                method21(v82)
+        let v87 : string = $"{v65} / actual: %A{v81} / expected: %A{0.0}"
+        v87 |> System.Console.WriteLine
+        let v100 : bool = v84 = false
+        if v100 then
+            failwith<unit> v87
         method28(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
@@ -1347,7 +1341,7 @@ and method25 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1422,36 +1416,34 @@ and method30 (v0 : pyo3_Python) : unit =
                 true
             else
                 method21(v76)
-        let v81 : string = "assert_lt"
+        let v81 : string = "__assert_lt"
         let v82 : string = $"{v81} / actual: %A{v75} / expected: %A{0.0001}"
-        let v91 : (string -> unit) = System.Console.WriteLine
-        v91 v82
-        let v96 : bool = v78 = false
-        if v96 then
+        v82 |> System.Console.WriteLine
+        let v95 : bool = v78 = false
+        if v95 then
             failwith<unit> v82
-        let v97 : string = "$0.im"
-        let v98 : float = Fable.Core.RustInterop.emitRustExpr v70 v97 
-        let v99 : float =  -v98
-        let v100 : bool = v98 >= v99
-        let v101 : float =
-            if v100 then
-                v98
+        let v96 : string = "$0.im"
+        let v97 : float = Fable.Core.RustInterop.emitRustExpr v70 v96 
+        let v98 : float =  -v97
+        let v99 : bool = v97 >= v98
+        let v100 : float =
+            if v99 then
+                v97
             else
-                v99
-        let v102 : bool = v101 < 0.0001
-        let v104 : bool =
-            if v102 then
+                v98
+        let v101 : bool = v100 < 0.0001
+        let v103 : bool =
+            if v101 then
                 true
             else
-                method21(v102)
-        let v107 : string = $"{v81} / actual: %A{v101} / expected: %A{0.0001}"
-        let v116 : (string -> unit) = System.Console.WriteLine
-        v116 v107
-        let v121 : bool = v104 = false
-        if v121 then
-            failwith<unit> v107
-        let v122 : int32 = v17 + 1
-        v15.l0 <- v122
+                method21(v101)
+        let v106 : string = $"{v81} / actual: %A{v100} / expected: %A{0.0001}"
+        v106 |> System.Console.WriteLine
+        let v119 : bool = v103 = false
+        if v119 then
+            failwith<unit> v106
+        let v120 : int32 = v17 + 1
+        v15.l0 <- v120
         ()
     ()
 and method29 () : unit =
@@ -1470,7 +1462,7 @@ and method29 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1528,30 +1520,28 @@ and method32 (v0 : pyo3_Python) : unit =
                 true
             else
                 method21(v63)
-        let v68 : string = "assert_gt"
+        let v68 : string = "__assert_gt"
         let v69 : string = $"{v68} / actual: %A{v62} / expected: %A{0.0}"
-        let v78 : (string -> unit) = System.Console.WriteLine
-        v78 v69
-        let v83 : bool = v65 = false
-        if v83 then
+        v69 |> System.Console.WriteLine
+        let v82 : bool = v65 = false
+        if v82 then
             failwith<unit> v69
-        let v84 : string = "$0.im"
-        let v85 : float = Fable.Core.RustInterop.emitRustExpr v60 v84 
-        let v86 : bool = v85 = 0.0
-        let v88 : bool =
-            if v86 then
+        let v83 : string = "$0.im"
+        let v84 : float = Fable.Core.RustInterop.emitRustExpr v60 v83 
+        let v85 : bool = v84 = 0.0
+        let v87 : bool =
+            if v85 then
                 true
             else
-                method21(v86)
-        let v91 : string = "assert_eq"
-        let v92 : string = $"{v91} / actual: %A{v85} / expected: %A{0.0}"
-        let v101 : (string -> unit) = System.Console.WriteLine
-        v101 v92
-        let v106 : bool = v88 = false
-        if v106 then
-            failwith<unit> v92
-        let v107 : int32 = v5 + 1
-        v3.l0 <- v107
+                method21(v85)
+        let v90 : string = "__assert_eq"
+        let v91 : string = $"{v90} / actual: %A{v84} / expected: %A{0.0}"
+        v91 |> System.Console.WriteLine
+        let v104 : bool = v87 = false
+        if v104 then
+            failwith<unit> v91
+        let v105 : int32 = v5 + 1
+        v3.l0 <- v105
         ()
     ()
 and method31 () : unit =
@@ -1570,7 +1560,7 @@ and method31 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1622,27 +1612,25 @@ and method34 (v0 : pyo3_Python) : unit =
             true
         else
             method21(v57)
-    let v62 : string = "assert_eq"
+    let v62 : string = "__assert_eq"
     let v63 : string = $"{v62} / actual: %A{v56} / expected: %A{infinity}"
-    let v72 : (string -> unit) = System.Console.WriteLine
-    v72 v63
-    let v77 : bool = v59 = false
-    if v77 then
+    v63 |> System.Console.WriteLine
+    let v76 : bool = v59 = false
+    if v76 then
         failwith<unit> v63
-    let v78 : string = "$0.im"
-    let v79 : float = Fable.Core.RustInterop.emitRustExpr v54 v78 
-    let v80 : bool = v79 = 0.0
-    let v82 : bool =
-        if v80 then
+    let v77 : string = "$0.im"
+    let v78 : float = Fable.Core.RustInterop.emitRustExpr v54 v77 
+    let v79 : bool = v78 = 0.0
+    let v81 : bool =
+        if v79 then
             true
         else
-            method21(v80)
-    let v85 : string = $"{v62} / actual: %A{v79} / expected: %A{0.0}"
-    let v94 : (string -> unit) = System.Console.WriteLine
-    v94 v85
-    let v99 : bool = v82 = false
-    if v99 then
-        failwith<unit> v85
+            method21(v79)
+    let v84 : string = $"{v62} / actual: %A{v78} / expected: %A{0.0}"
+    v84 |> System.Console.WriteLine
+    let v97 : bool = v81 = false
+    if v97 then
+        failwith<unit> v84
 and method33 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
@@ -1659,7 +1647,7 @@ and method33 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1756,29 +1744,27 @@ and method36 (v0 : pyo3_Python) : unit =
             true
         else
             method21(v120)
-    let v125 : string = "assert_eq"
+    let v125 : string = "__assert_eq"
     let v126 : string = $"{v125} / actual: %A{v117} / expected: %A{v119}"
-    let v135 : (string -> unit) = System.Console.WriteLine
-    v135 v126
-    let v140 : bool = v122 = false
-    if v140 then
+    v126 |> System.Console.WriteLine
+    let v139 : bool = v122 = false
+    if v139 then
         failwith<unit> v126
-    let v141 : string = "$0.im"
-    let v142 : float = Fable.Core.RustInterop.emitRustExpr v54 v141 
-    let v143 : string = "$0.im"
-    let v144 : float = Fable.Core.RustInterop.emitRustExpr v115 v143 
-    let v145 : bool = v142 = v144
-    let v147 : bool =
-        if v145 then
+    let v140 : string = "$0.im"
+    let v141 : float = Fable.Core.RustInterop.emitRustExpr v54 v140 
+    let v142 : string = "$0.im"
+    let v143 : float = Fable.Core.RustInterop.emitRustExpr v115 v142 
+    let v144 : bool = v141 = v143
+    let v146 : bool =
+        if v144 then
             true
         else
-            method21(v145)
-    let v150 : string = $"{v125} / actual: %A{v142} / expected: %A{v144}"
-    let v159 : (string -> unit) = System.Console.WriteLine
-    v159 v150
-    let v164 : bool = v147 = false
-    if v164 then
-        failwith<unit> v150
+            method21(v144)
+    let v149 : string = $"{v125} / actual: %A{v141} / expected: %A{v143}"
+    v149 |> System.Console.WriteLine
+    let v162 : bool = v146 = false
+    if v162 then
+        failwith<unit> v149
 and method35 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
@@ -1795,7 +1781,7 @@ and method35 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1847,27 +1833,25 @@ and method38 (v0 : pyo3_Python) : unit =
             true
         else
             method21(v57)
-    let v62 : string = "assert_lt"
+    let v62 : string = "__assert_lt"
     let v63 : string = $"{v62} / actual: %A{v56} / expected: %A{infinity}"
-    let v72 : (string -> unit) = System.Console.WriteLine
-    v72 v63
-    let v77 : bool = v59 = false
-    if v77 then
+    v63 |> System.Console.WriteLine
+    let v76 : bool = v59 = false
+    if v76 then
         failwith<unit> v63
-    let v78 : string = "$0.im"
-    let v79 : float = Fable.Core.RustInterop.emitRustExpr v54 v78 
-    let v80 : bool = v79 < infinity
-    let v82 : bool =
-        if v80 then
+    let v77 : string = "$0.im"
+    let v78 : float = Fable.Core.RustInterop.emitRustExpr v54 v77 
+    let v79 : bool = v78 < infinity
+    let v81 : bool =
+        if v79 then
             true
         else
-            method21(v80)
-    let v85 : string = $"{v62} / actual: %A{v79} / expected: %A{infinity}"
-    let v94 : (string -> unit) = System.Console.WriteLine
-    v94 v85
-    let v99 : bool = v82 = false
-    if v99 then
-        failwith<unit> v85
+            method21(v79)
+    let v84 : string = $"{v62} / actual: %A{v78} / expected: %A{infinity}"
+    v84 |> System.Console.WriteLine
+    let v97 : bool = v81 = false
+    if v97 then
+        failwith<unit> v84
 and method37 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
@@ -1884,7 +1868,7 @@ and method37 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -1950,27 +1934,25 @@ and method42 (v0 : pyo3_Python, v1 : UH0) : unit =
                 true
             else
                 method21(v62)
-        let v73 : string = "assert_ne"
+        let v73 : string = "__assert_ne"
         let v74 : string = $"{v73} / actual: %A{v59} / expected: %A{0.0}"
-        let v83 : (string -> unit) = System.Console.WriteLine
-        v83 v74
-        let v88 : bool = v70 = false
-        if v88 then
+        v74 |> System.Console.WriteLine
+        let v87 : bool = v70 = false
+        if v87 then
             failwith<unit> v74
-        let v89 : string = "$0.im"
-        let v90 : float = Fable.Core.RustInterop.emitRustExpr v57 v89 
-        let v93 : bool = v90 <> 0.0 
-        let v101 : bool =
-            if v93 then
+        let v88 : string = "$0.im"
+        let v89 : float = Fable.Core.RustInterop.emitRustExpr v57 v88 
+        let v92 : bool = v89 <> 0.0 
+        let v100 : bool =
+            if v92 then
                 true
             else
-                method21(v93)
-        let v104 : string = $"{v73} / actual: %A{v90} / expected: %A{0.0}"
-        let v113 : (string -> unit) = System.Console.WriteLine
-        v113 v104
-        let v118 : bool = v101 = false
-        if v118 then
-            failwith<unit> v104
+                method21(v92)
+        let v103 : string = $"{v73} / actual: %A{v89} / expected: %A{0.0}"
+        v103 |> System.Console.WriteLine
+        let v116 : bool = v100 = false
+        if v116 then
+            failwith<unit> v103
         method42(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
@@ -1993,7 +1975,7 @@ and method39 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -2062,27 +2044,25 @@ and method46 (v0 : pyo3_Python, v1 : UH1) : unit =
                 true
             else
                 method21(v60)
-        let v71 : string = "assert_ne"
+        let v71 : string = "__assert_ne"
         let v72 : string = $"{v71} / actual: %A{v57} / expected: %A{0.0}"
-        let v81 : (string -> unit) = System.Console.WriteLine
-        v81 v72
-        let v86 : bool = v68 = false
-        if v86 then
+        v72 |> System.Console.WriteLine
+        let v85 : bool = v68 = false
+        if v85 then
             failwith<unit> v72
-        let v87 : string = "$0.im"
-        let v88 : float = Fable.Core.RustInterop.emitRustExpr v55 v87 
-        let v91 : bool = v88 <> 0.0 
-        let v99 : bool =
-            if v91 then
+        let v86 : string = "$0.im"
+        let v87 : float = Fable.Core.RustInterop.emitRustExpr v55 v86 
+        let v90 : bool = v87 <> 0.0 
+        let v98 : bool =
+            if v90 then
                 true
             else
-                method21(v91)
-        let v102 : string = $"{v71} / actual: %A{v88} / expected: %A{0.0}"
-        let v111 : (string -> unit) = System.Console.WriteLine
-        v111 v102
-        let v116 : bool = v99 = false
-        if v116 then
-            failwith<unit> v102
+                method21(v90)
+        let v101 : string = $"{v71} / actual: %A{v87} / expected: %A{0.0}"
+        v101 |> System.Console.WriteLine
+        let v114 : bool = v98 = false
+        if v114 then
+            failwith<unit> v101
         method46(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
@@ -2105,7 +2085,7 @@ and method43 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -2290,37 +2270,35 @@ and method50 (v0 : pyo3_Python, v1 : UH1) : unit =
                 true
             else
                 method21(v209)
-        let v214 : string = "assert_lt"
+        let v214 : string = "__assert_lt"
         let v215 : string = $"{v214} / actual: %A{v208} / expected: %A{0.0001}"
-        let v224 : (string -> unit) = System.Console.WriteLine
-        v224 v215
-        let v229 : bool = v211 = false
-        if v229 then
+        v215 |> System.Console.WriteLine
+        let v228 : bool = v211 = false
+        if v228 then
             failwith<unit> v215
-        let v230 : string = "$0.im"
-        let v231 : float = Fable.Core.RustInterop.emitRustExpr v55 v230 
-        let v232 : string = "$0.im"
-        let v233 : float = Fable.Core.RustInterop.emitRustExpr v200 v232 
-        let v234 : float = v231 - v233
-        let v235 : float =  -v234
-        let v236 : bool = v234 >= v235
-        let v237 : float =
-            if v236 then
-                v234
+        let v229 : string = "$0.im"
+        let v230 : float = Fable.Core.RustInterop.emitRustExpr v55 v229 
+        let v231 : string = "$0.im"
+        let v232 : float = Fable.Core.RustInterop.emitRustExpr v200 v231 
+        let v233 : float = v230 - v232
+        let v234 : float =  -v233
+        let v235 : bool = v233 >= v234
+        let v236 : float =
+            if v235 then
+                v233
             else
-                v235
-        let v238 : bool = v237 < 0.0001
-        let v240 : bool =
-            if v238 then
+                v234
+        let v237 : bool = v236 < 0.0001
+        let v239 : bool =
+            if v237 then
                 true
             else
-                method21(v238)
-        let v243 : string = $"{v214} / actual: %A{v237} / expected: %A{0.0001}"
-        let v252 : (string -> unit) = System.Console.WriteLine
-        v252 v243
-        let v257 : bool = v240 = false
-        if v257 then
-            failwith<unit> v243
+                method21(v237)
+        let v242 : string = $"{v214} / actual: %A{v236} / expected: %A{0.0001}"
+        v242 |> System.Console.WriteLine
+        let v255 : bool = v239 = false
+        if v255 then
+            failwith<unit> v242
         method50(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
@@ -2343,7 +2321,7 @@ and method47 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -2448,27 +2426,25 @@ and method55 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
                 true
             else
                 method21(v67)
-        let v72 : string = "assert_lt"
+        let v72 : string = "__assert_lt"
         let v73 : string = $"{v72} / actual: %A{v66} / expected: %A{0.01}"
-        let v82 : (string -> unit) = System.Console.WriteLine
-        v82 v73
-        let v87 : bool = v69 = false
-        if v87 then
+        v73 |> System.Console.WriteLine
+        let v86 : bool = v69 = false
+        if v86 then
             failwith<unit> v73
-        let v88 : string = "$0.im"
-        let v89 : float = Fable.Core.RustInterop.emitRustExpr v60 v88 
-        let v90 : bool = v89 < 0.01
-        let v92 : bool =
-            if v90 then
+        let v87 : string = "$0.im"
+        let v88 : float = Fable.Core.RustInterop.emitRustExpr v60 v87 
+        let v89 : bool = v88 < 0.01
+        let v91 : bool =
+            if v89 then
                 true
             else
-                method21(v90)
-        let v95 : string = $"{v72} / actual: %A{v89} / expected: %A{0.01}"
-        let v104 : (string -> unit) = System.Console.WriteLine
-        v104 v95
-        let v109 : bool = v92 = false
-        if v109 then
-            failwith<unit> v95
+                method21(v89)
+        let v94 : string = $"{v72} / actual: %A{v88} / expected: %A{0.01}"
+        v94 |> System.Console.WriteLine
+        let v107 : bool = v91 = false
+        if v107 then
+            failwith<unit> v94
         method55(v0, v1, v4)
     | UH0_0 -> (* Nil *)
         ()
@@ -2492,7 +2468,7 @@ and method51 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    let v12 : string = "v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     Fable.Core.RustInterop.emitRustExpr () v12 
     let v13 : string = "__result"
     let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13 
@@ -2601,8 +2577,7 @@ and closure0 () () : unit =
     ()
 and closure5 () (v0 : (string [])) : int32 =
     let v1 : string = $"value: {1}"
-    let v4 : (string -> unit) = System.Console.WriteLine
-    v4 v1
+    v1 |> System.Console.WriteLine
     0
 let v0 : (unit -> unit) = closure0()
 let tests () = v0 ()

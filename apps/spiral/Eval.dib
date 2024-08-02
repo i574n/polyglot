@@ -399,11 +399,12 @@ let prepareSpiral rawCellCode lines =
                     || line |> SpiralSm.starts_with "nominal " -> lastTopLevelIndex, true
                 | line when
                     line |> SpiralSm.starts_with "inl "
+                    || line |> SpiralSm.starts_with "and "
                     || line |> SpiralSm.starts_with "let " ->
                     let m =
                         System.Text.RegularExpressions.Regex.Match (
                             line,
-                            @"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"
+                            @"^(?:and +)?(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"
                         )
                     trace Verbose (fun () -> $"Eval.prepareSpi / m: '{m}' / m.Groups.Count: {m.Groups.Count}") _locals
                     if m.Groups.Count = 3
@@ -506,10 +507,10 @@ let processSpiralOutput
                         |> SpiralRuntime.execute_with_options_async
                     trace Debug
                         (fun () -> $"Eval.processSpiralOutput / spiral_builder")
-                        (fun () -> $"exitCode: {exitCode} / result: {result |> SpiralSm.ellipsis_end 400} / {_locals ()}")
+                        (fun () -> $"exitCode: {exitCode} / builderCommand: {builderCommand} / result: {result |> SpiralSm.ellipsis_end 400} / {_locals ()}")
                     return
                         if exitCode = 0
-                        then (result, false) |> Ok
+                        then {| code = result; eval = false; builderCommand = builderCommand |} |> Ok
                         else result |> Error
                 })
             )
@@ -530,13 +531,13 @@ let processSpiralOutput
                     let header = "System.Console.WriteLine \".fsx output:\"\n"
                     $"{header}{props.code}"
                 else props.code
-            Some (Ok [ code, true ])
+            Some (Ok [ {| code = code; eval = true; builderCommand = "" |} ])
 
     match outputResult, spiralBuilderResults with
     | Some outputResult, [||] ->
         return outputResult, [||]
     | None, [||] ->
-        return Ok [ "()", true ], [||]
+        return Ok [ {| code = "()"; eval = true; builderCommand = "" |} ], [||]
     | _, spiralBuilderResults ->
         try
             let spiralResults =
@@ -548,43 +549,49 @@ let processSpiralOutput
             let codes =
                 spiralResults
                 |> Array.map (fun spiralBuilderResult' ->
-                    let spiralBuilderResult'', errors =
+                    let commandResult, errors =
                         match spiralBuilderResult' with
-                        | Ok (x, false) ->
-                            let x = x |> FSharp.Json.Json.deserialize<Map<string,string>>
-                            x, [||]
-                        | Ok (x, true) ->
+                        | Ok result when result.eval = false ->
+                            let result' =
+                                result.code
+                                |> FSharp.Json.Json.deserialize<Map<string,string>>
+                            let result =
+                                match result' |> Map.tryFind "command_result" with
+                                | Some result'' ->
+                                    result''
+                                    |> FSharp.Json.Json.deserialize<Map<string,string>>
+                                    |> Map.add "builderCommand" result.builderCommand
+                                | None -> Map.empty
+                            result, [||]
+                        | Ok result when result.eval = true ->
                             let result =
                                 [
-                                    "command_result",
-                                    [
-                                        "extension", "fsx"
-                                        "code", x
-                                        "output", ""
-                                    ]
-                                    |> Map.ofList
-                                    |> FSharp.Json.Json.serialize
+                                    "extension", "fsx"
+                                    "code", result.code
+                                    "output", ""
                                 ]
                                 |> Map.ofList
                             result, [||]
-
                         | Error error ->
-                            ([] |> Map),
+                            Map.empty,
                             [|
                                 (
                                     TraceLevel.Critical, $"Eval.processSpiralOutput / evalResult error / errors[0] / outputPath: {props.outputPath} / builderCommands: %A{props.builderCommands} / spiralBuilderResult': %A{spiralBuilderResult'} / error: %A{error}", 0, ("", (0, 0), (0, 0))
                                 )
                             |]
+                        | _ ->
+                            Map.empty, [||]
 
                     if errors |> Array.isEmpty |> not
-                        || spiralBuilderResult'' |> Map.containsKey "command_result" |> not
-                    then Error (Exception $"Eval.processSpiralOutput / evalResult errors / Exception / spiralBuilderResult'': %A{spiralBuilderResult''}"), errors
+                    then Error (Exception $"Eval.processSpiralOutput / evalResult errors / Exception / commandResult: %A{commandResult}"), errors
                     else
-                        let commandResult = spiralBuilderResult''.["command_result"] |> FSharp.Json.Json.deserialize<Map<string,string>>
-
                         let extension = commandResult.["extension"]
                         let code = commandResult.["code"]
                         let output = commandResult.["output"]
+                        let builderCommand =
+                            commandResult
+                            |> Map.tryFind "builderCommand"
+                            |> Option.defaultValue ""
 
                         let eval = output = "" && extension = "fsx"
 
@@ -593,7 +600,7 @@ let processSpiralOutput
 
                         trace Debug
                             (fun () -> $"Eval.processSpiralOutput / result")
-                            (fun () -> $"commandResult: {commandResult |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400}/ {_locals ()}")
+                            (fun () -> $"builderCommand: {builderCommand} / extension: {extension} / commandResult: {commandResult |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400}/ {_locals ()}")
 
                         let code =
                             if props.printCode
@@ -604,14 +611,20 @@ let processSpiralOutput
                                     code
                                 else
                                     let header =
-                                        if props.backend = Supervisor.Fsharp
+                                        let info =
+                                            match props.backend, builderCommand with
+                                            | Supervisor.Fsharp, builderCommand
+                                                when builderCommand |> SpiralSm.contains " " -> $" ({builderCommand})"
+                                            | Supervisor.Fsharp, _ -> ""
+                                            | _ -> $" ({props.backend})"
+                                        if info = ""
                                         then $".{extension} output:\n"
-                                        else $".{extension} output ({props.backend}):\n"
+                                        else $".{extension} output{info}:\n"
                                     $"""{if output |> SpiralSm.contains "\n" then "\n" else ""}{header}{output}"""
                             elif eval
                             then code
                             else output
-                        Ok (code, eval), [||]
+                        Ok {| code = code; eval = eval; builderCommand = builderCommand |}, [||]
                 )
             trace Debug
                 (fun () -> $"Eval.processSpiralOutput / codes")
@@ -631,9 +644,10 @@ let processSpiralOutput
                             if errors |> Array.isEmpty
                             then errors
                             else
+                                let code = $"%A{code}"
                                 errors
                                 |> Array.append [|
-                                    TraceLevel.Critical, $"Eval.processSpiralOutput / errors / errors[-1] / outputPath: {props.outputPath} / builderCommands: %A{props.builderCommands} / code: {code |> fst |> SpiralSm.ellipsis_end 400}", 0, ("", (0, 0), (0, 0))
+                                    TraceLevel.Critical, $"Eval.processSpiralOutput / errors / errors[-1] / outputPath: {props.outputPath} / builderCommands: %A{props.builderCommands} / code: {code |> SpiralSm.ellipsis_end 400}", 0, ("", (0, 0), (0, 0))
                                 |]
                         Ok (code :: acc_code), errors
                     | Error error, _
@@ -824,10 +838,10 @@ let inline eval
                     | Ok code, [||] ->
                         let code, eval =
                             code
-                            |> List.map (fun (code, eval) ->
-                                if eval
-                                then None, Some code
-                                else Some code, None
+                            |> List.map (fun code ->
+                                if code.eval
+                                then None, Some code.code
+                                else Some code.code, None
                             )
                             |> List.unzip
                         let code = code |> List.choose id

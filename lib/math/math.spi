@@ -338,7 +338,7 @@ inl test_non_trivial_zero___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 /// ## test_real_part_greater_than_one___
 inl test_real_part_greater_than_one___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    inl points = ;[2; 3; 4; 5; 10; 20; 50]
+    inl points = ;[ 2; 3; 4; 5; 10; 20; 50 ]
     (a points : _ i32 _)
     |> am.iter fun point =>
         inl s = .^(point, 0)
@@ -371,7 +371,7 @@ inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =
 
 /// ## test_imaginary_axis
 inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    (join [10; 20; 30; 40; 50; 60; 70; 80; 90; 100])
+    (join [ 10; 20; 30; 40; 50; 60; 70; 80; 90; 100 ])
     |> listm.iter fun s =>
         inl s = .^(0, s)
         inl result = zeta s
@@ -416,8 +416,8 @@ inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun
 
 /// ## test_euler_product_formula
 inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    inl s_values = join [2; 2.5; 3; 3.5; 4; 4.5; 5]
-    inl primes = join [2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
+    inl s_values = join [ 2; 2.5; 3; 3.5; 4; 4.5; 5 ]
+    inl primes = join [ 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71 ]
     s_values
     |> listm.iter fun s_re =>
         inl s = .^(s_re, 0)

@@ -51,6 +51,6 @@ if (!$SkipPreBuild) {
 cargo fmt --
 
 if (!$fast) {
-    { cargo +nightly test --release -- --show-output } | Invoke-Block
+    { cargo test --release -- --show-output } | Invoke-Block
 }
-{ cargo +nightly build --release } | Invoke-Block -OnError Continue
+{ cargo build --release } | Invoke-Block -OnError Continue

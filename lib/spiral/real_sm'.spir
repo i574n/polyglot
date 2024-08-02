@@ -53,7 +53,7 @@ inl real_format forall t. (x : t) : string =
                             (fun () =>
                                 match b with
                                 | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
-                                | _ => $'!b ' : string
+                                | _ => $'f"{!b}"' : string
                             ) : () -> string
                     }
                 result <- (+.) `string ((~*) `string result) s

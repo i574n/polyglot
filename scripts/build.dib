@@ -29,6 +29,10 @@
 
 #!pwsh
 
+{ pwsh ../apps/spiral/wasm/build.ps1 } | Invoke-Block
+
+#!pwsh
+
 { pwsh ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block
 
 #!pwsh

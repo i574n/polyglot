@@ -78,3 +78,30 @@ inl get_record_fields forall t u. (x : t) : list (string * u) =
                     (::) `(string * u') (k, v) acc
             `t
             (Nil `(string * u))
+
+/// ### get_functions_types
+inl get_functions_types forall t {record}. (fns : t) =
+    real
+        inl get_function_type forall t. =
+            inl args forall t {record}. : list (string * string) =
+                real_core.record_type_fold_back
+                    fun key =>
+                        forall v. acc =>
+                            inl k = real_sm'.symbol_to_string `(`key)
+                            inl v = $'"`v"' : string
+                            (::) `(string * string) (k, v) acc
+                    `t
+                    (Nil `(string * string))
+
+            typecase t with
+            | ~t -> ~u => args `t, ($'"`u"' : string)
+
+        real_core.record_type_fold_back
+            fun key =>
+                forall v. acc =>
+                    inl k = real_sm'.symbol_to_string `(`key)
+                    inl args, result = get_function_type `v
+                    (::) `(string * (list (string * string) * string)) (k, (args, result)) acc
+            `(`fns)
+            (Nil `(string * (list (string * string) * string)))
+    |> fun x => x : list (string * (list (string * string) * string))

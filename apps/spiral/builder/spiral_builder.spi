@@ -22,6 +22,8 @@ inl get_args () =
         rust = "rust", {
             fs_path = "fs-path", 'f'
             deps = "deps", 'd'
+            wasm = "wasm", 'w'
+            contract = "contract", 'c'
         }
         typescript = "typescript", {
             fs_path = "fs-path", 'f'
@@ -99,6 +101,12 @@ let get_command () =
             )
             >> runtime.arg_action runtime.Append
         )
+        |> runtime.command_init_arg ((get_args () .rust |> snd).wasm) (
+            runtime.arg_action runtime.SetTrue
+        )
+        |> runtime.command_init_arg ((get_args () .rust |> snd).contract) (
+            runtime.arg_action runtime.SetTrue
+        )
     )
     |> runtime.command_subcommand (
         ##(get_args () .typescript |> fst)
@@ -155,18 +163,31 @@ union fable_target =
     | TypeScript
     | Python
 
+/// ### fable_runtime
+union fable_runtime =
+    | Wasm
+    | Contract
+
 /// ### execute_dotnet_fable
-let execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir } =
-    runtime.execution_options fun x => { x with
+let execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir runtime } =
+    open runtime
+    execution_options fun x => { x with
         command =
             inl platform =
                 if platform.is_windows ()
                 then "_WINDOWS"
                 else "_LINUX"
-            $'$"dotnet fable \\\"{!fsproj_path}\\\" --optimize --lang {!extension} --extension .{!extension} --outDir \\\"{!package_dir}\\\" --define {!platform}"'
+            inl platform : string = $'$" --define {!platform}"'
+            inl runtime =
+                match runtime with
+                | Some (runtime : fable_runtime) =>
+                    inl runtime = runtime |> reflection.union_to_string |> sm'.to_upper
+                    $'$" --define {!runtime}"'
+                | None => ""
+            $'$"dotnet fable \\\"{!fsproj_path}\\\" --optimize --lang {!extension} --extension .{!extension} --outDir \\\"{!package_dir}\\\"{!platform}{!runtime}"'
         working_directory = workspace_root_external |> resultm.box |> resultm.ok'
     }
-    |> runtime.execute_retry 3u8
+    |> execute_retry 3u8
 
 /// ### get_package_dir
 inl get_package_dir { workspace_root target name hash } =
@@ -328,32 +349,54 @@ inl build_file { workspace_root runtime packages modules path } =
 /// ### get_workspace_cargo_toml_content
 inl get_workspace_cargo_toml_content { workspace_root } : string =
     inl workspace_root = workspace_root |> file_system.normalize_path
-    $'$"[workspace]"'
+    $'$"cargo-features = [\\\"profile-rustflags\\\"]"'
+    +#. $'$""'
+    +#. $'$"[workspace]"'
     +#. $'$"resolver = \\\"2\\\""'
     +#. $'$"members = [\\\"packages/Rust/*\\\"]"'
     +#. $'$""'
     +#. $'$"[workspace.dependencies.fable_library_rust]"'
     +#. $'$"path = \\\"{!workspace_root}/lib/rust/fable/fable_modules/fable-library-rust\\\""'
     +#. $'$"default-features = false"'
-    +#. $'$"features = [\\\"static_do_bindings\\\", \\\"datetime\\\", \\\"guid\\\", \\\"threaded\\\"]"'
+    +#. $'$"features = []"'
     +#. $'$""'
     +#. $'$"[workspace.dependencies]"'
     +#. $'$"inline_colorization = \\\"~0.1\\\""'
+    +#. $'$""'
+    +#. $'$"[profile.release]"'
+    +#. $'$"codegen-units = 1"'
+    +#. $'$"opt-level = \\\"z\\\""'
+    +#. $'$"lto = true"'
+    +#. $'$"debug = false"'
+    +#. $'$"panic = \\\"abort\\\""'
+    +#. $'$"overflow-checks = true"'
+    +#. $'$"rustflags = [\\\"-C\\\", \\\"link-arg=-s\\\"]"'
 
 /// ### get_cargo_toml_content
-inl get_cargo_toml_content { hash_hex deps } : string =
+inl get_cargo_toml_content { hash_hex runtime deps } : string =
     $'$"[package]"'
     +#. $'$"name = \\\"spiral_builder_{!hash_hex}\\\""'
     +#. $'$"version = \\\"0.0.1\\\""'
     +#. $'$"edition = \\\"2021\\\""'
     +#. $'$""'
     +#. $'$"[dependencies]"'
-    +#. $'$"fable_library_rust = {{ workspace = true }}"'
+    +#. (
+        if runtime = None then
+            $'$"fable_library_rust = {{ workspace = true, features = [\\\"static_do_bindings\\\", \\\"datetime\\\", \\\"guid\\\", \\\"threaded\\\"] }}"'
+        else
+            $'$"fable_library_rust = {{ workspace = true }}"'
+    )
     +#. $'$"inline_colorization = {{ workspace = true }}"'
     +#. $'$"{!deps}"'
     +#. $'$""'
-    +#. $'$"[[bin]]"'
-    +#. $'$"name = \\\"spiral_builder_{!hash_hex}\\\""'
+    +#. (
+        if runtime = None then
+            $'$"[[bin]]"'
+            +#. $'$"name = \\\"spiral_builder_{!hash_hex}\\\""'
+        else
+            $'$"[lib]"'
+            +#. $'$"crate-type = [\\\"cdylib\\\"]"'
+    )
     +#. $'$"path = \\\"spiral_builder.rs\\\" "'
 
 /// ### get_empty_cargo_toml_content
@@ -369,7 +412,8 @@ inl get_empty_cargo_toml_content () =
     +#. $'$"path = \\\"spiral_builder.rs\\\""'
 
 /// ### process_rust
-inl process_rust { fs_path deps trace_level } =
+inl process_rust { fs_path deps trace_level runtime } =
+    open runtime
     inl is_trace = trace_level = Verbose
     inl _trace (fn : () -> string) =
         if is_trace
@@ -379,7 +423,7 @@ inl process_rust { fs_path deps trace_level } =
     inl extension = "rs"
     inl code = fs_path |> file_system.read_all_text
 
-    inl hash_hex = (extension, code) |> sm'.format_debug |> crypto.hash_text
+    inl hash_hex = { extension code runtime } |> sm'.format |> crypto.hash_text
 
     inl workspace_name = "spiral_builder"
 
@@ -417,7 +461,7 @@ inl process_rust { fs_path deps trace_level } =
     lib_link_path |> file_system.link_directory lib_link_target_path
 
     inl exit_code, dotnet_fable_result =
-        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
+        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir runtime }
 
     if exit_code <>. 0 then
         trace Critical
@@ -426,6 +470,21 @@ inl process_rust { fs_path deps trace_level } =
         { extension = Some extension; code = None; output = Some dotnet_fable_result }
     else
         inl deps =
+            inl deps =
+                if runtime = None
+                then deps
+                else
+                    // TODO: simplify
+                    inl has_near_sdk =
+                        deps
+                        |> am'.vec_filter (sm'.from_std_string >> sm'.contains "near-sdk")
+                        |> am'.vec_len
+                        |> i32
+                        |> fun n => n > 0
+                    // TODO: simplify with ++
+                    if has_near_sdk
+                    then deps
+                    else deps |> am'.vec_extend (;[ "near-sdk" |> sm'.to_std_string ] |> am'.to_vec)
             deps
             |> am'.vec_map fun dep =>
                 inl dep = dep |> sm'.from_std_string
@@ -439,7 +498,7 @@ inl process_rust { fs_path deps trace_level } =
             |> seq.of_array'
             |> sm'.concat "\n"
 
-        inl cargo_toml_content = get_cargo_toml_content { hash_hex deps }
+        inl cargo_toml_content = get_cargo_toml_content { hash_hex runtime deps }
         inl workspace_cargo_toml_content = get_workspace_cargo_toml_content { workspace_root }
 
         cargo_toml_content |> file_system.write_all_text_exists cargo_toml_path
@@ -457,11 +516,11 @@ inl process_rust { fs_path deps trace_level } =
         inl exit_code, cargo_fmt_result =
             fun () =>
                 inl exit_code, result =
-                    runtime.execution_options fun x => { x with
+                    execution_options fun x => { x with
                         command = $'$"cargo fmt --manifest-path \\\"{!cargo_toml_path}\\\" --"'
                         working_directory = workspace_root_external |> resultm.box |> resultm.ok'
                     }
-                    |> runtime.execute_with_options
+                    |> execute_with_options
 
                 inl return () =
                     if exit_code = 0
@@ -506,7 +565,24 @@ inl process_rust { fs_path deps trace_level } =
 
         inl main_code_header =
             "pub fn main() -> Result<(), String> " +. !\($'"\\\"{\\\".into()"')
-        inl main_code = $'$"{!main_code_header} Ok(()) }}"' : string
+        inl main_code : string =
+            (
+                if runtime = None
+                then ""
+                else
+                    $'$"#[near_sdk::near_bindgen]"'
+                    +#. $'$"#[derive(near_sdk::PanicOnDefault)]"'
+                    +#. $'$"pub struct MainState {{"'
+                    +#. $'$"}}"'
+                    +#. $'$""'
+                    +#. $'$"#[near_sdk::near_bindgen]"'
+                    +#. $'$"impl MainState {{"'
+                    +#. $'$"    pub fn state_main() {{"'
+                    +#. $'$"        Spiral_builder::method0();"'
+                    +#. $'$"    }}"'
+                    +#. $'$"}}"'
+            )
+            +#. $'$"{!main_code_header} Ok(()) }}"'
 
         inl cached = new_code |> sm'.contains main_code_header
 
@@ -554,74 +630,129 @@ inl process_rust { fs_path deps trace_level } =
             $'$"{!new_code}\\n\\n{!main_code}\\n"'
             |> file_system.write_all_text_exists new_code_path
 
-        inl command = $'$"cargo +nightly run --manifest-path \\\"{!cargo_toml_path}\\\""'
+        inl command =
+            if runtime <> None
+            then $'$"cargo build --release --target wasm32-unknown-unknown --manifest-path \\\"{!cargo_toml_path}\\\""'
+            else $'$"cargo run --manifest-path \\\"{!cargo_toml_path}\\\""'
         inl environment_variables =
-            inl fast = false
-            ;[
-                "TRACE_LEVEL", "Verbose"
-                "RUSTC_WRAPPER", "sccache"
-                "RUSTFLAGS",
-                if fast
-                then "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
-                else "-C prefer-dynamic"
-            ]
-        inl exit_code, cargo_run_result =
-            runtime.execution_options fun x => { x with
+            if runtime <> None
+            then ;[]
+            else
+                inl fast = false
+                ;[
+                    "TRACE_LEVEL", "Verbose"
+                    "RUSTC_WRAPPER", "sccache"
+                    "RUSTFLAGS",
+                    if fast
+                    then "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
+                    else "-C prefer-dynamic"
+                ]
+        inl exit_code, cargo_result =
+            execution_options fun x => { x with
                 command
                 environment_variables
                 working_directory = workspace_root_external |> resultm.box |> resultm.ok'
             }
-            |> runtime.execute_with_options
+            |> execute_with_options
+
+        inl result =
+            if runtime = None then
+                inl external_command =
+                    inl vars =
+                        a environment_variables
+                        |> am.map fun k, v => $'$"$env:{!k}=\'\'{!v}\'\'"' : string
+                        |> fun x => x : _ i32 _
+                        |> seq.of_array
+                        |> sm'.concat ";"
+                    inl command =
+                        a ;[
+                            vars
+                            command
+                        ]
+                        |> fun x => x : _ i32 _
+                        |> seq.of_array
+                        |> sm'.concat ";"
+                    $'$"pwsh -c \'{!command}\'"' : string
+                if exit_code = 0 then
+                    inl output =
+                        try
+                            fun () =>
+                                cargo_result
+                                |> sm'.split "\n"
+                                |> fun x => a x : _ i32 _
+                                |> am'.skip_while fun line =>
+                                    (line |> sm'.contains "profile [optimized] target" |> not)
+                                        && (line |> sm'.contains "profile [unoptimized] target" |> not)
+                                        && (line |> sm'.contains "profile [unoptimized + debuginfo] target" |> not)
+                                |> am'.skip 2
+                                |> seq.of_array
+                                |> sm'.concat "\n"
+                            fun ex =>
+                                trace Critical
+                                    fun () => "spiral_builder.process_rust / Exception"
+                                    fun () => { ex cargo_result new_code_path external_command }
+                                None
+                        |> optionm'.box
+                        |> optionm'.unwrap
+
+                    { extension = Some extension; code = Some new_code; output = Some output }
+                else
+                    trace Critical
+                        fun () => "spiral_builder.process_rust / error"
+                        fun () => { exit_code cargo_result new_code_path external_command }
+                    { extension = Some extension; code = None; output = None }
+            else
+                inl wasm_path : string =
+                    $'$"target/spiral_builder/{!workspace_name}/target/wasm32-unknown-unknown/release/spiral_builder_{!hash_hex}.wasm"'
+
+                inl command =
+                    inl invoke_block_path = "scripts/invoke-block.ps1"
+                    inl spiral_wasm_path = "workspace/target/release/spiral_wasm"
+                    $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm_path} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100``nWASM_PATH={!wasm_path}\\\""'
+
+                if exit_code = 0 then
+                    inl exit_code, spiral_wasm_result =
+                        execution_options fun x => { x with
+                            command
+                            working_directory = workspace_root |> optionm'.some'
+                        }
+                        |> execute_with_options
+
+                    inl output = spiral_wasm_result
+
+                    if exit_code = 0 then
+                        { extension = Some extension; code = Some new_code; output = Some output }
+                    else
+                        trace Critical
+                            fun () => "spiral_builder.process_rust / wasm error"
+                            fun () => { exit_code spiral_wasm_result cargo_result new_code_path }
+                        { extension = Some extension; code = None; output = None }
+                else
+                    trace Critical
+                        fun () => "spiral_builder.process_rust / error"
+                        fun () => { exit_code cargo_result new_code_path wasm_path command }
+                    { extension = Some extension; code = None; output = None }
 
         inl cleanup =
-            [ ".d"; ".exe"; ".pdb"; "" ]
-            |> listm.map fun ext => workspace_dir </> $'$"target/debug/spiral_builder_{!hash_hex}{!ext}"'
+            inl build_target =
+                if runtime <> None
+                then "wasm32-unknown-unknown/release"
+                else "debug"
+
+            [ ".d"; ".exe"; ".pdb"; ".wasm"; "" ]
+            |> listm.map fun ext =>
+                workspace_dir </> $'$"target/{!build_target}/spiral_builder_{!hash_hex}{!ext}"'
             |> listm.map fun path => path, path |> file_system.file_exists
 
         trace Verbose
-            fun () => "spiral_builder.process_rust"
+            fun () => "spiral_builder.process_rust / cleanup"
             fun () => { new_code_path cleanup }
 
         cleanup
         |> listm'.filter snd
         |> listm.iter (fst >> file_system.file_delete)
 
-        inl external_command =
-            inl vars =
-                a environment_variables
-                |> am.map fun k, v => $'$"$env:{!k}=\'\'{!v}\'\'"' : string
-                |> fun x => x : _ i32 _
-                |> seq.of_array
-                |> sm'.concat ";"
-            $'$"pwsh -c \'{!vars}; {!command}\'"' : string
-        if exit_code = 0 then
-            inl output =
-                try
-                    fun () =>
-                        cargo_run_result
-                        |> sm'.split "\n"
-                        |> fun x => a x : _ i32 _
-                        |> am'.skip_while fun line =>
-                            (line |> sm'.contains "profile [optimized] target" |> not)
-                                && (line |> sm'.contains "profile [unoptimized] target" |> not)
-                                && (line |> sm'.contains "profile [unoptimized + debuginfo] target" |> not)
-                        |> am'.skip 2
-                        |> seq.of_array
-                        |> sm'.concat "\n"
-                    fun ex =>
-                        trace Critical
-                            fun () => "spiral_builder.process_rust / Exception"
-                            fun () => { ex cargo_run_result new_code_path external_command }
-                        None
-                |> optionm'.box
-                |> optionm'.unwrap
-
-            { extension = Some extension; code = Some new_code; output = Some output }
-        else
-            trace Critical
-                fun () => "spiral_builder.process_rust / error"
-                fun () => { exit_code cargo_run_result new_code_path external_command }
-            { extension = Some extension; code = None; output = None }
+        result
 
 /// ## dib
 
@@ -804,7 +935,7 @@ inl process_typescript { fs_path deps trace_level } =
         lib_link_path |> file_system.link_directory lib_link_target_path
 
     inl exit_code, dotnet_fable_result =
-        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
+        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir runtime = None }
 
     if exit_code <>. 0 then
         trace Critical
@@ -966,7 +1097,7 @@ inl process_python { fs_path deps trace_level } =
     lib_link_path |> file_system.link_directory lib_link_target_path
 
     inl exit_code, dotnet_fable_result =
-        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
+        execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir runtime = None }
 
     if exit_code <>. 0 then
         trace Critical
@@ -1391,7 +1522,22 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
                     |> optionm'.unbox
                     |> optionm'.default_value (;[] |> am'.to_vec)
 
-                process_rust { fs_path deps trace_level }
+                inl wasm : bool =
+                    arg_matches
+                    |> runtime.matches_get_flag ((get_args () .rust |> snd).wasm |> fst)
+
+                inl contract : bool =
+                    arg_matches
+                    |> runtime.matches_get_flag ((get_args () .rust |> snd).contract |> fst)
+
+                inl runtime =
+                    if wasm
+                    then Some Wasm
+                    elif contract
+                    then Some Contract
+                    else None
+
+                process_rust { fs_path deps trace_level runtime }
 
             | Some (subcommand, arg_matches)
                     when (subcommand |> sm'.from_std_string) = (get_args () .typescript |> fst) =>

@@ -7717,7 +7717,7 @@ a.anchor-link {
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = pwsh -c "(Get-FileHash '/tmp/!create_temp_path_/dotnet-repl/9ca8b18d-ee77-4684-ad12-21e1354945fc/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 0; output_length = 64 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -7761,11 +7761,11 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_fd2e7dd5c9d5b51f38537ef270a1971b2035d0237afca81b82243a29b8f73544/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_fd2e7dd5c9d5b51f38537ef270a1971b2035d0237afca81b82243a29b8f73544/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_fd2e7dd5c9d5b51f38537ef270a1971b2035d0237afca81b82243a29b8f73544/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -8014,8 +8014,8 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_28a2802608826c802171ee5db6b3157765918ddf2dd9038a1064fcd45ac82741/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_2d7e97ae07a1c3e5989f2a66d023e20277ed21b6081ff6b58e9d641ae2558292/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -8060,8 +8060,8 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_11283f585babf8d99294a645f65cf8fc4738629fb5e53abf8ceb4f1a2ca3f2de/c0e26dac-4cb1-4b09-be07-ff616700f056 }
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_973c75d1b07b2a74b5cafad875c335ac6322cc6dd398f4cfe525417d941669a5/c0e26dac-4cb1-4b09-be07-ff616700f056 }
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
 </div>
@@ -8395,23 +8395,23 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
-.rs output:
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+.rs output (rust -d sha2):
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 
 .ts output:
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
 .py output:
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
 </pre>
@@ -8421,8 +8421,8 @@ assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
 </div>
@@ -8492,19 +8492,19 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-.rs output:
+.rs output (rust -d sha2):
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 .ts output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 .py output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 </pre>
@@ -8515,7 +8515,7 @@ assert_eq / actual: 19273 / expected: 19273
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273us / expected: 19273us
+__assert_eq / actual: 19273us / expected: 19273us
 </pre>
 </div>
 </div>

@@ -7687,110 +7687,110 @@ a.anchor-link {
 <pre>
 .rs output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input = a b c }
-assert_eq' / actual: Array(MutCell(["a", "b", "c"])) / expected: Array(MutCell(["a", "b", "c"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input = a b c }
+__assert_eq' / actual: Array(MutCell(["a", "b", "c"])) / expected: Array(MutCell(["a", "b", "c"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = e f "g h" i }
-assert_eq' / actual: Array(MutCell(["e", "f", "g h", "i"])) / expected: Array(MutCell(["e", "f", "g h", "i"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = e f "g h" i }
+__assert_eq' / actual: Array(MutCell(["e", "f", "g h", "i"])) / expected: Array(MutCell(["e", "f", "g h", "i"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = "j k" "l" "m" }
-assert_eq' / actual: Array(MutCell(["j k", "l", "m"])) / expected: Array(MutCell(["j k", "l", "m"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = "j k" "l" "m" }
+__assert_eq' / actual: Array(MutCell(["j k", "l", "m"])) / expected: Array(MutCell(["j k", "l", "m"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = s -t "u `"v`" w" }
-assert_eq' / actual: Array(MutCell(["s", "-t", "u `"v`" w"])) / expected: Array(MutCell(["s", "-t", "u `"v`" w"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
+__assert_eq' / actual: Array(MutCell(["s", "-t", "u `"v`" w"])) / expected: Array(MutCell(["s", "-t", "u `"v`" w"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = n -o "p \"q\" r" }
-assert_eq' / actual: Array(MutCell(["n", "-o", "p \"q\" r"])) / expected: Array(MutCell(["n", "-o", "p \"q\" r"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
+__assert_eq' / actual: Array(MutCell(["n", "-o", "p \"q\" r"])) / expected: Array(MutCell(["n", "-o", "p \"q\" r"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = r -s "t \"u\"" }
-assert_eq' / actual: Array(MutCell(["r", "-s", "t \"u\""])) / expected: Array(MutCell(["r", "-s", "t \"u\""]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = r -s "t \"u\"" }
+__assert_eq' / actual: Array(MutCell(["r", "-s", "t \"u\""])) / expected: Array(MutCell(["r", "-s", "t \"u\""]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-assert_eq' / actual: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"])) / expected: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
+__assert_eq' / actual: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"])) / expected: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-assert_eq' / actual: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"])) / expected: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
+__assert_eq' / actual: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"])) / expected: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 testing._assert_fn / { input = --l \"''' m '''\"  }
-assert_eq' / actual: Array(MutCell(["--l", "''' m '''"])) / expected: Array(MutCell(["--l", "''' m '''"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
+__assert_eq' / actual: Array(MutCell(["--l", "''' m '''"])) / expected: Array(MutCell(["--l", "''' m '''"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 testing._assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-assert_eq' / actual: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"])) / expected: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
+__assert_eq' / actual: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"])) / expected: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
-assert_eq' / actual: Array(MutCell(["l", "m n:\o.p"])) / expected: Array(MutCell(["l", "m n:\o.p"]))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 _assert_fn / { input = l "m n:\o.p" }
+__assert_eq' / actual: Array(MutCell(["l", "m n:\o.p"])) / expected: Array(MutCell(["l", "m n:\o.p"]))
 
 
 .ts output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input = a b c }
-assert_eq' / actual: a,b,c / expected: a,b,c
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input = a b c }
+__assert_eq' / actual: a,b,c / expected: a,b,c
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = e f "g h" i }
-assert_eq' / actual: e,f,g h,i / expected: e,f,g h,i
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = e f "g h" i }
+__assert_eq' / actual: e,f,g h,i / expected: e,f,g h,i
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = "j k" "l" "m" }
-assert_eq' / actual: j k,l,m / expected: j k,l,m
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = "j k" "l" "m" }
+__assert_eq' / actual: j k,l,m / expected: j k,l,m
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = s -t "u `"v`" w" }
-assert_eq' / actual: s,-t,u `"v`" w / expected: s,-t,u `"v`" w
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
+__assert_eq' / actual: s,-t,u `"v`" w / expected: s,-t,u `"v`" w
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = n -o "p \"q\" r" }
-assert_eq' / actual: n,-o,p \"q\" r / expected: n,-o,p \"q\" r
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
+__assert_eq' / actual: n,-o,p \"q\" r / expected: n,-o,p \"q\" r
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = r -s "t \"u\"" }
-assert_eq' / actual: r,-s,t \"u\" / expected: r,-s,t \"u\"
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = r -s "t \"u\"" }
+__assert_eq' / actual: r,-s,t \"u\" / expected: r,-s,t \"u\"
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-assert_eq' / actual: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ } / expected: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
+__assert_eq' / actual: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ } / expected: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-assert_eq' / actual: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ } / expected: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
+__assert_eq' / actual: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ } / expected: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 testing._assert_fn / { input = --l \"''' m '''\"  }
-assert_eq' / actual: --l,''' m ''' / expected: --l,''' m '''
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
+__assert_eq' / actual: --l,''' m ''' / expected: --l,''' m '''
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 testing._assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-assert_eq' / actual: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k) / expected: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
+__assert_eq' / actual: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k) / expected: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
-assert_eq' / actual: l,m n:\o.p / expected: l,m n:\o.p
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 _assert_fn / { input = l "m n:\o.p" }
+__assert_eq' / actual: l,m n:\o.p / expected: l,m n:\o.p
 
 
 .py output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input = a b c }
-assert_eq' / actual: ['a', 'b', 'c'] / expected: ['a', 'b', 'c']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input = a b c }
+__assert_eq' / actual: ['a', 'b', 'c'] / expected: ['a', 'b', 'c']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = e f "g h" i }
-assert_eq' / actual: ['e', 'f', 'g h', 'i'] / expected: ['e', 'f', 'g h', 'i']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = e f "g h" i }
+__assert_eq' / actual: ['e', 'f', 'g h', 'i'] / expected: ['e', 'f', 'g h', 'i']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = "j k" "l" "m" }
-assert_eq' / actual: ['j k', 'l', 'm'] / expected: ['j k', 'l', 'm']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = "j k" "l" "m" }
+__assert_eq' / actual: ['j k', 'l', 'm'] / expected: ['j k', 'l', 'm']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = s -t "u `"v`" w" }
-assert_eq' / actual: ['s', '-t', 'u `"v`" w'] / expected: ['s', '-t', 'u `"v`" w']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
+__assert_eq' / actual: ['s', '-t', 'u `"v`" w'] / expected: ['s', '-t', 'u `"v`" w']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = n -o "p \"q\" r" }
-assert_eq' / actual: ['n', '-o', 'p \\"q\\" r'] / expected: ['n', '-o', 'p \\"q\\" r']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
+__assert_eq' / actual: ['n', '-o', 'p \\"q\\" r'] / expected: ['n', '-o', 'p \\"q\\" r']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = r -s "t \"u\"" }
-assert_eq' / actual: ['r', '-s', 't \\"u\\"'] / expected: ['r', '-s', 't \\"u\\"']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = r -s "t \"u\"" }
+__assert_eq' / actual: ['r', '-s', 't \\"u\\"'] / expected: ['r', '-s', 't \\"u\\"']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-assert_eq' / actual: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }'] / expected: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
+__assert_eq' / actual: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }'] / expected: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-assert_eq' / actual: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }'] / expected: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
+__assert_eq' / actual: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }'] / expected: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 testing._assert_fn / { input = --l \"''' m '''\"  }
-assert_eq' / actual: ['--l', "''' m '''"] / expected: ['--l', "''' m '''"]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
+__assert_eq' / actual: ['--l', "''' m '''"] / expected: ['--l', "''' m '''"]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 testing._assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-assert_eq' / actual: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)'] / expected: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
+__assert_eq' / actual: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)'] / expected: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)']
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
-assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 _assert_fn / { input = l "m n:\o.p" }
+__assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
 
 
 </pre>
@@ -7801,40 +7801,40 @@ assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input = a b c }
-assert_eq' / actual: [|"a"; "b"; "c"|] / expected: [|"a"; "b"; "c"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input = a b c }
+__assert_eq' / actual: [|"a"; "b"; "c"|] / expected: [|"a"; "b"; "c"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = e f "g h" i }
-assert_eq' / actual: [|"e"; "f"; "g h"; "i"|] / expected: [|"e"; "f"; "g h"; "i"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = e f "g h" i }
+__assert_eq' / actual: [|"e"; "f"; "g h"; "i"|] / expected: [|"e"; "f"; "g h"; "i"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = "j k" "l" "m" }
-assert_eq' / actual: [|"j k"; "l"; "m"|] / expected: [|"j k"; "l"; "m"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = "j k" "l" "m" }
+__assert_eq' / actual: [|"j k"; "l"; "m"|] / expected: [|"j k"; "l"; "m"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = s -t "u `"v`" w" }
-assert_eq' / actual: [|"s"; "-t"; "u `"v`" w"|] / expected: [|"s"; "-t"; "u `"v`" w"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
+__assert_eq' / actual: [|"s"; "-t"; "u `"v`" w"|] / expected: [|"s"; "-t"; "u `"v`" w"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = n -o "p \"q\" r" }
-assert_eq' / actual: [|"n"; "-o"; "p \"q\" r"|] / expected: [|"n"; "-o"; "p \"q\" r"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
+__assert_eq' / actual: [|"n"; "-o"; "p \"q\" r"|] / expected: [|"n"; "-o"; "p \"q\" r"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = r -s "t \"u\"" }
-assert_eq' / actual: [|"r"; "-s"; "t \"u\""|] / expected: [|"r"; "-s"; "t \"u\""|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = r -s "t \"u\"" }
+__assert_eq' / actual: [|"r"; "-s"; "t \"u\""|] / expected: [|"r"; "-s"; "t \"u\""|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-assert_eq' / actual: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|] / expected: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
+__assert_eq' / actual: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|] / expected: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-assert_eq' / actual: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|] / expected: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
+__assert_eq' / actual: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|] / expected: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 testing._assert_fn / { input = --l \"''' m '''\"  }
-assert_eq' / actual: [|"--l"; "''' m '''"|] / expected: [|"--l"; "''' m '''"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
+__assert_eq' / actual: [|"--l"; "''' m '''"|] / expected: [|"--l"; "''' m '''"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 testing._assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-assert_eq' / actual: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
+__assert_eq' / actual: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
   "\e{f-g}"; "h.i"; "j (k)"|] / expected: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
   "\e{f-g}"; "h.i"; "j (k)"|]
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
-assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 _assert_fn / { input = l "m n:\o.p" }
+__assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 </pre>
 </div>
 </div>
@@ -7933,83 +7933,83 @@ assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 <pre>
 .rs output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input =  }
-assert_eq' / actual: ("", US1_1) / expected: ("", US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input =  }
+__assert_eq' / actual: ("", US1_1) / expected: ("", US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = /a/b/c }
-assert_eq' / actual: ("/a/b/c", US1_1) / expected: ("/a/b/c", US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = /a/b/c }
+__assert_eq' / actual: ("/a/b/c", US1_1) / expected: ("/a/b/c", US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: ("d", US1_0("e.f")) / expected: ("d", US1_0("e.f"))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = d e.f }
+__assert_eq' / actual: ("d", US1_0("e.f")) / expected: ("d", US1_0("e.f"))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: ("../../g.h", US1_0("i.j k.l")) / expected: ("../../g.h", US1_0("i.j k.l"))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
+__assert_eq' / actual: ("../../g.h", US1_0("i.j k.l")) / expected: ("../../g.h", US1_0("i.j k.l"))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: ("m:/n/o.p", US1_0(""q.r s.t"")) / expected: ("m:/n/o.p", US1_0(""q.r s.t""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
+__assert_eq' / actual: ("m:/n/o.p", US1_0(""q.r s.t"")) / expected: ("m:/n/o.p", US1_0(""q.r s.t""))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: ("../../u v/w.x", US1_0(""y z.a" b.c")) / expected: ("../../u v/w.x", US1_0(""y z.a" b.c"))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
+__assert_eq' / actual: ("../../u v/w.x", US1_0(""y z.a" b.c")) / expected: ("../../u v/w.x", US1_0(""y z.a" b.c"))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: ("../../d e.f", US1_0("-g \\"h i\\"")) / expected: ("../../d e.f", US1_0("-g \\"h i\\""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
+__assert_eq' / actual: ("../../d e.f", US1_0("-g \\"h i\\"")) / expected: ("../../d e.f", US1_0("-g \\"h i\\""))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: ("../../j", US1_0("k.l -m \\"n o\\"")) / expected: ("../../j", US1_0("k.l -m \\"n o\\""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
+__assert_eq' / actual: ("../../j", US1_0("k.l -m \\"n o\\"")) / expected: ("../../j", US1_0("k.l -m \\"n o\\""))
 
 
 .ts output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input =  }
-assert_eq' / actual: ,US1_1 / expected: ,US1_1
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input =  }
+__assert_eq' / actual: ,US1_1 / expected: ,US1_1
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = /a/b/c }
-assert_eq' / actual: /a/b/c,US1_1 / expected: /a/b/c,US1_1
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = /a/b/c }
+__assert_eq' / actual: /a/b/c,US1_1 / expected: /a/b/c,US1_1
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: d,US1_0 e.f / expected: d,US1_0 e.f
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = d e.f }
+__assert_eq' / actual: d,US1_0 e.f / expected: d,US1_0 e.f
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: ../../g.h,US1_0 (i.j k.l) / expected: ../../g.h,US1_0 (i.j k.l)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
+__assert_eq' / actual: ../../g.h,US1_0 (i.j k.l) / expected: ../../g.h,US1_0 (i.j k.l)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: m:/n/o.p,US1_0 ("q.r s.t") / expected: m:/n/o.p,US1_0 ("q.r s.t")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
+__assert_eq' / actual: m:/n/o.p,US1_0 ("q.r s.t") / expected: m:/n/o.p,US1_0 ("q.r s.t")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: ../../u v/w.x,US1_0 ("y z.a" b.c) / expected: ../../u v/w.x,US1_0 ("y z.a" b.c)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
+__assert_eq' / actual: ../../u v/w.x,US1_0 ("y z.a" b.c) / expected: ../../u v/w.x,US1_0 ("y z.a" b.c)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: ../../d e.f,US1_0 (-g \\"h i\\") / expected: ../../d e.f,US1_0 (-g \\"h i\\")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
+__assert_eq' / actual: ../../d e.f,US1_0 (-g \\"h i\\") / expected: ../../d e.f,US1_0 (-g \\"h i\\")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: ../../j,US1_0 (k.l -m \\"n o\\") / expected: ../../j,US1_0 (k.l -m \\"n o\\")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
+__assert_eq' / actual: ../../j,US1_0 (k.l -m \\"n o\\") / expected: ../../j,US1_0 (k.l -m \\"n o\\")
 
 
 .py output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input =  }
-assert_eq' / actual: ('', US1_1) / expected: ('', US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input =  }
+__assert_eq' / actual: ('', US1_1) / expected: ('', US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = /a/b/c }
-assert_eq' / actual: ('/a/b/c', US1_1) / expected: ('/a/b/c', US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = /a/b/c }
+__assert_eq' / actual: ('/a/b/c', US1_1) / expected: ('/a/b/c', US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: ('d', US1_0 "e.f") / expected: ('d', US1_0 "e.f")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = d e.f }
+__assert_eq' / actual: ('d', US1_0 "e.f") / expected: ('d', US1_0 "e.f")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: ('../../g.h', US1_0 ("i.j k.l")) / expected: ('../../g.h', US1_0 ("i.j k.l"))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
+__assert_eq' / actual: ('../../g.h', US1_0 ("i.j k.l")) / expected: ('../../g.h', US1_0 ("i.j k.l"))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: ('m:/n/o.p', US1_0 (""q.r s.t"")) / expected: ('m:/n/o.p', US1_0 (""q.r s.t""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
+__assert_eq' / actual: ('m:/n/o.p', US1_0 (""q.r s.t"")) / expected: ('m:/n/o.p', US1_0 (""q.r s.t""))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: ('../../u v/w.x', US1_0 (""y z.a" b.c")) / expected: ('../../u v/w.x', US1_0 (""y z.a" b.c"))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
+__assert_eq' / actual: ('../../u v/w.x', US1_0 (""y z.a" b.c")) / expected: ('../../u v/w.x', US1_0 (""y z.a" b.c"))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: ('../../d e.f', US1_0 ("-g \\"h i\\"")) / expected: ('../../d e.f', US1_0 ("-g \\"h i\\""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
+__assert_eq' / actual: ('../../d e.f', US1_0 ("-g \\"h i\\"")) / expected: ('../../d e.f', US1_0 ("-g \\"h i\\""))
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../../j', US1_0 ("k.l -m \\"n o\\""))
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
+__assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../../j', US1_0 ("k.l -m \\"n o\\""))
 
 
 </pre>
@@ -8020,29 +8020,29 @@ assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../..
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 testing._assert_fn / { input =  }
-assert_eq' / actual: struct ("", US1_1) / expected: struct ("", US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 _assert_fn / { input =  }
+__assert_eq' / actual: struct ("", US1_1) / expected: struct ("", US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 testing._assert_fn / { input = /a/b/c }
-assert_eq' / actual: struct ("/a/b/c", US1_1) / expected: struct ("/a/b/c", US1_1)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 _assert_fn / { input = /a/b/c }
+__assert_eq' / actual: struct ("/a/b/c", US1_1) / expected: struct ("/a/b/c", US1_1)
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: struct ("d", US1_0 "e.f") / expected: struct ("d", US1_0 "e.f")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 _assert_fn / { input = d e.f }
+__assert_eq' / actual: struct ("d", US1_0 "e.f") / expected: struct ("d", US1_0 "e.f")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: struct ("../../g.h", US1_0 "i.j k.l") / expected: struct ("../../g.h", US1_0 "i.j k.l")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
+__assert_eq' / actual: struct ("../../g.h", US1_0 "i.j k.l") / expected: struct ("../../g.h", US1_0 "i.j k.l")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: struct ("m:/n/o.p", US1_0 ""q.r s.t"") / expected: struct ("m:/n/o.p", US1_0 ""q.r s.t"")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
+__assert_eq' / actual: struct ("m:/n/o.p", US1_0 ""q.r s.t"") / expected: struct ("m:/n/o.p", US1_0 ""q.r s.t"")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: struct ("../../u v/w.x", US1_0 ""y z.a" b.c") / expected: struct ("../../u v/w.x", US1_0 ""y z.a" b.c")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
+__assert_eq' / actual: struct ("../../u v/w.x", US1_0 ""y z.a" b.c") / expected: struct ("../../u v/w.x", US1_0 ""y z.a" b.c")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: struct ("../../d e.f", US1_0 "-g \\"h i\\"") / expected: struct ("../../d e.f", US1_0 "-g \\"h i\\"")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
+__assert_eq' / actual: struct ("../../d e.f", US1_0 "-g \\"h i\\"") / expected: struct ("../../d e.f", US1_0 "-g \\"h i\\"")
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: struct ("../../j", US1_0 "k.l -m \\"n o\\"")
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
+__assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: struct ("../../j", US1_0 "k.l -m \\"n o\\"")
 </pre>
 </div>
 </div>
@@ -8949,7 +8949,7 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_string_contains / actual: ""command"" / expected: "Command {
+<pre>__assert_string_contains / actual: ""command"" / expected: "Command {
     name: "command",
     long_flag: None,
     short_flag: None,
@@ -9088,7 +9088,7 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_string_contains / actual: ""arg"" / expected: "Arg {
+<pre>__assert_string_contains / actual: ""arg"" / expected: "Arg {
     id: "arg",
     help: None,
     long_help: None,
@@ -10071,7 +10071,7 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: US1_4 / expected: US1_4
+<pre>__assert_eq / actual: US1_4 / expected: US1_4
 </pre>
 </div>
 </div>
@@ -10743,17 +10743,17 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = pwsh -c "Get-Content /tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt' because it does not exist.</span>
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 1; output_length = 168 }
-assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path '/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt' because it does not exist.</span>"
+__assert_eq / actual: 1 / expected: 1
+__assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path '/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt' because it does not exist.</span>"
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = cat "test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9" } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9" } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
-assert_eq / actual: 0 / expected: 0
-assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
-assert_eq / actual: true / expected: true
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
+__assert_eq / actual: 0 / expected: 0
+__assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
+__assert_eq / actual: true / expected: true
 </pre>
 </div>
 </div>
@@ -10829,9 +10829,9 @@ assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #6 runtime.execute_with_options_async / WaitForExitAsync / { ex = System.Threading.Tasks.TaskCanceledException: A task was canceled. }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { exit_code = -2147483648; output_length = 66 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 5
-assert_eq / actual: -2147483648 / expected: -2147483648
-assert_eq / actual: "System.Threading.Tasks.TaskCanceledException: A task was canceled." / expected: "System.Threading.Tasks.TaskCanceledException: A task was canceled."
-assert_eq / actual: true / expected: true
+__assert_eq / actual: -2147483648 / expected: -2147483648
+__assert_eq / actual: "System.Threading.Tasks.TaskCanceledException: A task was canceled." / expected: "System.Threading.Tasks.TaskCanceledException: A task was canceled."
+__assert_eq / actual: true / expected: true
 </pre>
 </div>
 </div>
@@ -11248,20 +11248,20 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 283 }
-assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>"
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
+__assert_eq / actual: 1 / expected: 1
+__assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>"
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("/tmp/!create_temp_path_/spiral_builder_1d56a6b3d0076ddb27fa472cb41dce828ff5c88acc71ec3ae2f03ee312b3dbec/9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("/tmp/!create_temp_path_/spiral_builder_327151052bfe9ff58c51886b32ac621975e5dd7150812364f428f6719d00ddd8/9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
-assert_eq / actual: 0 / expected: 0
-assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
+__assert_eq / actual: 0 / expected: 0
+__assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>
 </div>
 </div>

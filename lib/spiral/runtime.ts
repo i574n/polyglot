@@ -763,11 +763,11 @@ export function closure1(unitVar: void, v0: string): void {
 }
 
 export function closure0(unitVar: void, v0: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] {
-    let v102: US1_$union, v110: US1_$union, v118: US1_$union, v126: US1_$union;
+    let v182: US1_$union, v190: US1_$union, v198: US1_$union, v206: US1_$union;
     let _v3: Option<[US1_$union, US2_$union]> = undefined;
-    const v88: string = method1(method0());
-    const v94: US1_$union = ("Verbose" === v88) ? US1_US1_0(US0_US0_0()) : US1_US1_1();
-    const x = [(v94.tag === /* US1_0 */ 0) ? US1_US1_0(v94.fields[0]) : ((v102 = (("Debug" === v88) ? US1_US1_0(US0_US0_1()) : US1_US1_1()), (v102.tag === /* US1_0 */ 0) ? US1_US1_0(v102.fields[0]) : ((v110 = (("Info" === v88) ? US1_US1_0(US0_US0_2()) : US1_US1_1()), (v110.tag === /* US1_0 */ 0) ? US1_US1_0(v110.fields[0]) : ((v118 = (("Warning" === v88) ? US1_US1_0(US0_US0_3()) : US1_US1_1()), (v118.tag === /* US1_0 */ 0) ? US1_US1_0(v118.fields[0]) : ((v126 = (("Critical" === v88) ? US1_US1_0(US0_US0_4()) : US1_US1_1()), (v126.tag === /* US1_0 */ 0) ? US1_US1_0(v126.fields[0]) : US1_US1_1())))))))), (method1(method3()) === "True") ? US2_US2_0(getTicks(now())) : US2_US2_1()] as [US1_$union, US2_$union];
+    const v168: string = method1(method0());
+    const v174: US1_$union = ("Verbose" === v168) ? US1_US1_0(US0_US0_0()) : US1_US1_1();
+    const x = [(v174.tag === /* US1_0 */ 0) ? US1_US1_0(v174.fields[0]) : ((v182 = (("Debug" === v168) ? US1_US1_0(US0_US0_1()) : US1_US1_1()), (v182.tag === /* US1_0 */ 0) ? US1_US1_0(v182.fields[0]) : ((v190 = (("Info" === v168) ? US1_US1_0(US0_US0_2()) : US1_US1_1()), (v190.tag === /* US1_0 */ 0) ? US1_US1_0(v190.fields[0]) : ((v198 = (("Warning" === v168) ? US1_US1_0(US0_US0_3()) : US1_US1_1()), (v198.tag === /* US1_0 */ 0) ? US1_US1_0(v198.fields[0]) : ((v206 = (("Critical" === v168) ? US1_US1_0(US0_US0_4()) : US1_US1_1()), (v206.tag === /* US1_0 */ 0) ? US1_US1_0(v206.fields[0]) : US1_US1_1())))))))), (method1(method3()) === "True") ? US2_US2_0(getTicks(now())) : US2_US2_1()] as [US1_$union, US2_$union];
     _v3 = x;
     let patternInput: [US1_$union, US2_$union];
     if (_v3 == null) {
@@ -776,11 +776,11 @@ export function closure0(unitVar: void, v0: US0_$union): [Mut0, Mut1, Mut2, Mut3
     else {
         patternInput = value_12(_v3);
     }
-    const v325: US2_$union = patternInput[1];
-    const v324: US1_$union = patternInput[0];
+    const v402: US2_$union = patternInput[1];
+    const v401: US1_$union = patternInput[0];
     return [new Mut0(0n), new Mut1((v: string): void => {
         closure1(undefined, v);
-    }), new Mut2(true), new Mut3((v324.tag === /* US1_0 */ 0) ? v324.fields[0] : v0), (v325.tag === /* US2_0 */ 0) ? v325.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
+    }), new Mut2(true), new Mut3((v401.tag === /* US1_0 */ 0) ? v401.fields[0] : v0), (v402.tag === /* US2_0 */ 0) ? v402.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
 }
 
 export function closure4(unitVar: void, unitVar_1: void): string {
@@ -795,29 +795,25 @@ export function method5(): string {
 }
 
 export function method6(): string {
-    return "";
-}
-
-export function method7(): string {
     return "HH:mm:ss";
 }
 
-export function method8(): string {
+export function method7(): string {
     return "\u001b[0m";
 }
 
-export function method9(v0: Mut4): void {
+export function method8(v0: Mut4): void {
 }
 
 export function closure6(v0: US0_$union, v1: (() => string), v2_1: (() => void), unitVar: void): string {
-    let v368: int64, v392: number;
+    let v422: int64, v446: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_12(State_trace_state());
     const v18: Option<int64> = patternInput[4];
     let _v35: Option<string> = undefined;
-    const _v333: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    const _v387: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
     let x_2: Option<US2_$union>;
     if (v18 == null) {
         x_2 = undefined;
@@ -826,71 +822,71 @@ export function closure6(v0: US0_$union, v1: (() => string), v2_1: (() => void),
         const x: int64 = value_12(v18);
         x_2 = ((): US2_$union => US2_US2_0(x))();
     }
-    _v333.contents = x_2;
-    const v360: US2_$union = defaultArg(_v333.contents, US2_US2_1());
-    const x_3: string = toString((v360.tag === /* US2_0 */ 0) ? ((v368 = v360.fields[0], (v392 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v368))), create(1, 1, 1, hours(v392), minutes(v392), seconds(v392), milliseconds(v392))))) : now(), method7());
+    _v387.contents = x_2;
+    const v414: US2_$union = defaultArg(_v387.contents, US2_US2_1());
+    const x_3: string = toString((v414.tag === /* US2_0 */ 0) ? ((v422 = v414.fields[0], (v446 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v422))), create(1, 1, 1, hours(v446), minutes(v446), seconds(v446), milliseconds(v446))))) : now(), method6());
     _v35 = x_3;
-    let v772: string;
+    let v826: string;
     if (_v35 == null) {
         throw new Error("base.run_target / _v35=None");
     }
     else {
-        v772 = value_12(_v35);
+        v826 = value_12(_v35);
     }
-    const v931: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
-    let v980: US3_$union;
-    if (v931.tag === /* US3_0 */ 0) {
-        v980 = US3_US3_0(v931.fields[0]);
+    const v985: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v1034: US3_$union;
+    if (v985.tag === /* US3_0 */ 0) {
+        v1034 = US3_US3_0(v985.fields[0]);
     }
     else {
-        const v940: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
-        if (v940.tag === /* US3_0 */ 0) {
-            v980 = US3_US3_0(v940.fields[0]);
+        const v994: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v994.tag === /* US3_0 */ 0) {
+            v1034 = US3_US3_0(v994.fields[0]);
         }
         else {
-            const v949: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
-            if (v949.tag === /* US3_0 */ 0) {
-                v980 = US3_US3_0(v949.fields[0]);
+            const v1003: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v1003.tag === /* US3_0 */ 0) {
+                v1034 = US3_US3_0(v1003.fields[0]);
             }
             else {
-                const v958: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
-                if (v958.tag === /* US3_0 */ 0) {
-                    v980 = US3_US3_0(v958.fields[0]);
+                const v1012: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v1012.tag === /* US3_0 */ 0) {
+                    v1034 = US3_US3_0(v1012.fields[0]);
                 }
                 else {
-                    const v967: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
-                    v980 = ((v967.tag === /* US3_0 */ 0) ? US3_US3_0(v967.fields[0]) : US3_US3_1());
+                    const v1021: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v1034 = ((v1021.tag === /* US3_0 */ 0) ? US3_US3_0(v1021.fields[0]) : US3_US3_1());
                 }
             }
         }
     }
-    let v984: string;
-    if (v980.tag === /* US3_0 */ 0) {
-        v984 = v980.fields[0];
+    let v1038: string;
+    if (v1034.tag === /* US3_0 */ 0) {
+        v1038 = v1034.fields[0];
     }
     else {
         throw new Error("Option does not have a value.");
     }
-    const v997: string = padLeft(v984.toLocaleLowerCase(), 7, " ");
-    let _v1029: Option<string> = undefined;
-    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v997) + method8();
-    _v1029 = x_5;
-    let v1141: string;
-    if (_v1029 == null) {
-        throw new Error("base.run_target / _v1029=None");
+    const v1051: string = padLeft(v1038.toLocaleLowerCase(), 7, " ");
+    let _v1083: Option<string> = undefined;
+    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v1051) + method7();
+    _v1083 = x_5;
+    let v1195: string;
+    if (_v1083 == null) {
+        throw new Error("base.run_target / _v1083=None");
     }
     else {
-        v1141 = value_12(_v1029);
+        v1195 = value_12(_v1083);
     }
-    const v1160: int64 = patternInput[0].l0;
+    const v1214: int64 = patternInput[0].l0;
     v2_1();
-    const v1162: Mut4 = new Mut4("");
-    method9(v1162);
-    const v1163: string = v1162.l0;
-    return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1163}`, ...[]), ...[" ", "/"]);
+    const v1216: Mut4 = new Mut4("");
+    method8(v1216);
+    const v1217: string = v1216.l0;
+    return trimEnd(trimStart(`${v826} ${v1195} #${v1214} ${v1()} / ${v1217}`, ...[]), ...[" ", "/"]);
 }
 
-export function method10(v0: US0_$union, v1: (() => string)): void {
+export function method9(v0: US0_$union, v1: (() => string)): void {
     const v4 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
     if (State_trace_state() == null) {
         State_trace_state(v4(US0_US0_0()));
@@ -924,7 +920,7 @@ export function method10(v0: US0_$union, v1: (() => string)): void {
 }
 
 export function method4(v0: US0_$union, v1: (() => string), v2_1: (() => void)): void {
-    method10(v0, (): string => closure6(v0, v1, v2_1, undefined));
+    method9(v0, (): string => closure6(v0, v1, v2_1, undefined));
 }
 
 export function closure7(unitVar: void, unitVar_1: void): string {
@@ -959,7 +955,7 @@ export function closure2(unitVar: void, unitVar_1: void): void {
     }
 }
 
-export function method13(v0: int32, v1: Mut5): boolean {
+export function method12(v0: int32, v1: Mut5): boolean {
     return v1.l0 < v0;
 }
 
@@ -971,13 +967,13 @@ export function closure11(unitVar: void, v0: string): ((arg0: UH0_$union) => UH0
     return (v: UH0_$union): UH0_$union => closure12(v0, v);
 }
 
-export function method14(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
+export function method13(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
     return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure11(undefined, v);
 }
 
-export function method15(v0_mut: UH0_$union, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32): [any, int32, int32] {
+export function method14(v0_mut: UH0_$union, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32): [any, int32, int32] {
     let v12_1: any, v24: any;
-    method15:
+    method14:
     while (true) {
         const v0: UH0_$union = v0_mut, v1: any = v1_mut, v2_1: int32 = v2_1_mut, v3_1: int32 = v3_1_mut;
         if (v0.tag === /* UH0_0 */ 0) {
@@ -991,7 +987,7 @@ export function method15(v0_mut: UH0_$union, v1_mut: any, v2_1_mut: int32, v3_1_
             v1_mut = (v6 ? ((v12_1 = StringBuilder__Clear(v1), v1)) : ((v24 = StringBuilder__Append_Z721C83C5(v1, v4), v1)));
             v2_1_mut = patternInput[0];
             v3_1_mut = patternInput[1];
-            continue method15;
+            continue method14;
         }
         break;
     }
@@ -1015,7 +1011,7 @@ export function closure10(unitVar: void, _arg: [string, any, int32, int32]): US5
             const v26: int32 = v19.length | 0;
             const v27: string[] = fill(new Array(v26), 0, v26, "");
             const v28: Mut5 = new Mut5(0);
-            while (method13(v26, v28)) {
+            while (method12(v26, v28)) {
                 const v30: int32 = v28.l0 | 0;
                 const v31: string = v19[v30];
                 setItem(v27, v30, v31);
@@ -1023,7 +1019,7 @@ export function closure10(unitVar: void, _arg: [string, any, int32, int32]): US5
                 v28.l0 = (v32 | 0);
             }
             const v33: FSharpList<string> = ofArray<string>(v27);
-            const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
+            const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
             return US5_US5_0(v7, v15, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
@@ -1057,7 +1053,7 @@ export function closure13(unitVar: void, _arg: [string, any, int32, int32]): US5
             const v26: int32 = v19.length | 0;
             const v27: string[] = fill(new Array(v26), 0, v26, "");
             const v28: Mut5 = new Mut5(0);
-            while (method13(v26, v28)) {
+            while (method12(v26, v28)) {
                 const v30: int32 = v28.l0 | 0;
                 const v31: string = v19[v30];
                 setItem(v27, v30, v31);
@@ -1065,7 +1061,7 @@ export function closure13(unitVar: void, _arg: [string, any, int32, int32]): US5
                 v28.l0 = (v32 | 0);
             }
             const v33: FSharpList<string> = ofArray<string>(v27);
-            const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
+            const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
             return US5_US5_0(v7, v15, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
@@ -1081,8 +1077,8 @@ ${replicate(v3_1 - 1, " ") + "^"}
     }
 }
 
-export function method16(v0_mut: string, v1_mut: any, v2_1_mut: UH1_$union): US5_$union {
-    method16:
+export function method15(v0_mut: string, v1_mut: any, v2_1_mut: UH1_$union): US5_$union {
+    method15:
     while (true) {
         const v0: string = v0_mut, v1: any = v1_mut, v2_1: UH1_$union = v2_1_mut;
         if (v2_1.tag === /* UH1_0 */ 0) {
@@ -1104,15 +1100,15 @@ export function method16(v0_mut: string, v1_mut: any, v2_1_mut: UH1_$union): US5
                 v0_mut = v0;
                 v1_mut = v1;
                 v2_1_mut = v6;
-                continue method16;
+                continue method15;
             }
         }
         break;
     }
 }
 
-export function method17(v0_mut: string, v1_mut: int64): boolean {
-    method17:
+export function method16(v0_mut: string, v1_mut: int64): boolean {
+    method16:
     while (true) {
         const v0: string = v0_mut, v1: int64 = v1_mut;
         if (compare_1(v1, 2n) >= 0) {
@@ -1141,15 +1137,15 @@ export function method17(v0_mut: string, v1_mut: int64): boolean {
             else {
                 v0_mut = v0;
                 v1_mut = toInt64(op_Addition(v1, 1n));
-                continue method17;
+                continue method16;
             }
         }
         break;
     }
 }
 
-export function method18(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
-    method18:
+export function method17(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
+    method17:
     while (true) {
         const v0: string = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v118: US5_$union;
@@ -1161,12 +1157,12 @@ export function method18(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             const v41 = 1;
             const v43: int32 = v1.length | 0;
             const v44: string = v1.slice(v41, v43 + 1);
-            if (method17(v37, 0n) === false) {
+            if (method16(v37, 0n) === false) {
                 const v51: string = v37;
                 const v58: int32 = v51.length | 0;
                 const v59: string[] = fill(new Array(v58), 0, v58, "");
                 const v60: Mut5 = new Mut5(0);
-                while (method13(v58, v60)) {
+                while (method12(v58, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: string = v51[v62];
                     setItem(v59, v62, v63);
@@ -1174,7 +1170,7 @@ export function method18(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
                     v60.l0 = (v64 | 0);
                 }
                 const v65: FSharpList<string> = ofArray<string>(v59);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v65, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v65, UH0_UH0_0()), v2_1, v3_1, v4);
                 v118 = US5_US5_0(v37, v44, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -1195,7 +1191,7 @@ export function method18(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             v2_1_mut = v130.fields[2];
             v3_1_mut = v130.fields[3];
             v4_mut = v130.fields[4];
-            continue method18;
+            continue method17;
         }
         else {
             const v148: string = v130.fields[0];
@@ -1205,8 +1201,8 @@ export function method18(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
     }
 }
 
-export function method19(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32, v4_mut: UH1_$union): US5_$union {
-    method19:
+export function method18(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32, v4_mut: UH1_$union): US5_$union {
+    method18:
     while (true) {
         const v0: string = v0_mut, v1: any = v1_mut, v2_1: int32 = v2_1_mut, v3_1: int32 = v3_1_mut, v4: UH1_$union = v4_mut;
         if (v4.tag === /* UH1_0 */ 0) {
@@ -1230,15 +1226,15 @@ export function method19(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut:
                 v2_1_mut = v2_1;
                 v3_1_mut = v3_1;
                 v4_mut = v8;
-                continue method19;
+                continue method18;
             }
         }
         break;
     }
 }
 
-export function method20(v0_mut: string, v1_mut: int64): boolean {
-    method20:
+export function method19(v0_mut: string, v1_mut: int64): boolean {
+    method19:
     while (true) {
         const v0: string = v0_mut, v1: int64 = v1_mut;
         if (compare_1(v1, 3n) >= 0) {
@@ -1273,15 +1269,15 @@ export function method20(v0_mut: string, v1_mut: int64): boolean {
             else {
                 v0_mut = v0;
                 v1_mut = toInt64(op_Addition(v1, 1n));
-                continue method20;
+                continue method19;
             }
         }
         break;
     }
 }
 
-export function method21(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
-    method21:
+export function method20(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
+    method20:
     while (true) {
         const v0: string = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v136: US5_$union;
@@ -1293,12 +1289,12 @@ export function method21(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             const v50 = 1;
             const v52: int32 = v1.length | 0;
             const v53: string = v1.slice(v50, v52 + 1);
-            if (method20(v46, 0n) === false) {
+            if (method19(v46, 0n) === false) {
                 const v60: string = v46;
                 const v67: int32 = v60.length | 0;
                 const v68: string[] = fill(new Array(v67), 0, v67, "");
                 const v69: Mut5 = new Mut5(0);
-                while (method13(v67, v69)) {
+                while (method12(v67, v69)) {
                     const v71: int32 = v69.l0 | 0;
                     const v72: string = v60[v71];
                     setItem(v68, v71, v72);
@@ -1306,7 +1302,7 @@ export function method21(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
                     v69.l0 = (v73 | 0);
                 }
                 const v74: FSharpList<string> = ofArray<string>(v68);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
                 v136 = US5_US5_0(v46, v53, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -1327,7 +1323,7 @@ export function method21(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             v2_1_mut = v148.fields[2];
             v3_1_mut = v148.fields[3];
             v4_mut = v148.fields[4];
-            continue method21;
+            continue method20;
         }
         else {
             const v166: string = v148.fields[0];
@@ -1337,8 +1333,8 @@ export function method21(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
     }
 }
 
-export function method22(v0_mut: string, v1_mut: int32): int32 {
-    method22:
+export function method21(v0_mut: string, v1_mut: int32): int32 {
+    method21:
     while (true) {
         const v0: string = v0_mut, v1: int32 = v1_mut;
         if (v1 >= v0.length) {
@@ -1347,7 +1343,7 @@ export function method22(v0_mut: string, v1_mut: int32): int32 {
         else if (v0[v1] === " ") {
             v0_mut = v0;
             v1_mut = (v1 + 1);
-            continue method22;
+            continue method21;
         }
         else {
             return v1 | 0;
@@ -1356,8 +1352,8 @@ export function method22(v0_mut: string, v1_mut: int32): int32 {
     }
 }
 
-export function method23(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
-    method23:
+export function method22(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
+    method22:
     while (true) {
         const v0: string = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v54: US5_$union;
@@ -1373,7 +1369,7 @@ export function method23(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             const v26: int32 = v19.length | 0;
             const v27: string[] = fill(new Array(v26), 0, v26, "");
             const v28: Mut5 = new Mut5(0);
-            while (method13(v26, v28)) {
+            while (method12(v26, v28)) {
                 const v30: int32 = v28.l0 | 0;
                 const v31: string = v19[v30];
                 setItem(v27, v30, v31);
@@ -1381,7 +1377,7 @@ export function method23(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
                 v28.l0 = (v32 | 0);
             }
             const v33: FSharpList<string> = ofArray<string>(v27);
-            const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v33, UH0_UH0_0()), v2_1, v3_1, v4);
+            const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v33, UH0_UH0_0()), v2_1, v3_1, v4);
             v54 = US5_US5_0(v8, v15, patternInput[0], patternInput[1], patternInput[2]);
         }
         if (v54.tag === /* US5_0 */ 0) {
@@ -1390,7 +1386,7 @@ export function method23(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             v2_1_mut = v54.fields[2];
             v3_1_mut = v54.fields[3];
             v4_mut = v54.fields[4];
-            continue method23;
+            continue method22;
         }
         else {
             const v72: string = v54.fields[0];
@@ -1400,7 +1396,7 @@ export function method23(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
     }
 }
 
-export function method12(v0: string): US4_$union {
+export function method11(v0: string): US4_$union {
     let _v0: Option<Option<string>> = undefined;
     _v0 = some(v0);
     const v15: string = defaultArg((_v0 == null) ? (() => {
@@ -1409,7 +1405,7 @@ export function method12(v0: string): US4_$union {
     const v23: any = StringBuilder_$ctor_Z721C83C5("");
     const v24 = (arg10$0040: [string, any, int32, int32]): US5_$union => closure10(undefined, arg10$0040);
     const v25 = (arg10$0040_1: [string, any, int32, int32]): US5_$union => closure13(undefined, arg10$0040_1);
-    const v29: US5_$union = method16(v15, v23, UH1_UH1_1(v24, UH1_UH1_1(v25, UH1_UH1_0())));
+    const v29: US5_$union = method15(v15, v23, UH1_UH1_1(v24, UH1_UH1_1(v25, UH1_UH1_0())));
     let v219: US6_$union;
     if (v29.tag === /* US5_0 */ 0) {
         const v34: int32 = v29.fields[4] | 0;
@@ -1426,12 +1422,12 @@ export function method12(v0: string): US4_$union {
             const v71 = 1;
             const v73: int32 = v31.length | 0;
             const v74: string = v31.slice(v71, v73 + 1);
-            if (method17(v67, 0n) === false) {
+            if (method16(v67, 0n) === false) {
                 const v81: string = v67;
                 const v88: int32 = v81.length | 0;
                 const v89: string[] = fill(new Array(v88), 0, v88, "");
                 const v90: Mut5 = new Mut5(0);
-                while (method13(v88, v90)) {
+                while (method12(v88, v90)) {
                     const v92: int32 = v90.l0 | 0;
                     const v93: string = v81[v92];
                     setItem(v89, v92, v93);
@@ -1439,7 +1435,7 @@ export function method12(v0: string): US4_$union {
                     v90.l0 = (v94 | 0);
                 }
                 const v95: FSharpList<string> = ofArray<string>(v89);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v95, UH0_UH0_0()), v32, v33, v34);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v95, UH0_UH0_0()), v32, v33, v34);
                 v148 = US5_US5_0(v67, v74, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -1454,7 +1450,7 @@ export function method12(v0: string): US4_$union {
         else {
             v160 = US5_US5_1(v148.fields[0]);
         }
-        const v180: US6_$union = (v160.tag === /* US5_0 */ 0) ? method18(v160.fields[0], v160.fields[1], v160.fields[2], v160.fields[3], v160.fields[4]) : US6_US6_1(v160.fields[0]);
+        const v180: US6_$union = (v160.tag === /* US5_0 */ 0) ? method17(v160.fields[0], v160.fields[1], v160.fields[2], v160.fields[3], v160.fields[4]) : US6_US6_1(v160.fields[0]);
         let v190: US6_$union;
         if (v180.tag === /* US6_0 */ 0) {
             v190 = US6_US6_0(v180.fields[0], v180.fields[1], v180.fields[2], v180.fields[3], v180.fields[4]);
@@ -1469,7 +1465,7 @@ export function method12(v0: string): US4_$union {
             const v193: any = v190.fields[2];
             const v192: string = v190.fields[1];
             const v191: string = v190.fields[0];
-            const v199: US5_$union = method19(v192, v193, v194, v195, UH1_UH1_1(v24, UH1_UH1_1(v25, UH1_UH1_0())));
+            const v199: US5_$union = method18(v192, v193, v194, v195, UH1_UH1_1(v24, UH1_UH1_1(v25, UH1_UH1_0())));
             if (v199.tag === /* US5_0 */ 0) {
                 const v200: string = v199.fields[0];
                 v219 = US6_US6_0(v191, v199.fields[1], v199.fields[2], v199.fields[3], v199.fields[4]);
@@ -1506,12 +1502,12 @@ export function method12(v0: string): US4_$union {
             const v271 = 1;
             const v273: int32 = v15.length | 0;
             const v274: string = v15.slice(v271, v273 + 1);
-            if (method20(v267, 0n) === false) {
+            if (method19(v267, 0n) === false) {
                 const v281: string = v267;
                 const v288: int32 = v281.length | 0;
                 const v289: string[] = fill(new Array(v288), 0, v288, "");
                 const v290: Mut5 = new Mut5(0);
-                while (method13(v288, v290)) {
+                while (method12(v288, v290)) {
                     const v292: int32 = v290.l0 | 0;
                     const v293: string = v281[v292];
                     setItem(v289, v292, v293);
@@ -1519,7 +1515,7 @@ export function method12(v0: string): US4_$union {
                     v290.l0 = (v294 | 0);
                 }
                 const v295: FSharpList<string> = ofArray<string>(v289);
-                const patternInput_1: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v295, UH0_UH0_0()), v23, 1, 1);
+                const patternInput_1: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v295, UH0_UH0_0()), v23, 1, 1);
                 v359 = US5_US5_0(v267, v274, patternInput_1[0], patternInput_1[1], patternInput_1[2]);
             }
             else {
@@ -1534,7 +1530,7 @@ export function method12(v0: string): US4_$union {
         else {
             v371 = US5_US5_1(v359.fields[0]);
         }
-        const v391: US6_$union = (v371.tag === /* US5_0 */ 0) ? method21(v371.fields[0], v371.fields[1], v371.fields[2], v371.fields[3], v371.fields[4]) : US6_US6_1(v371.fields[0]);
+        const v391: US6_$union = (v371.tag === /* US5_0 */ 0) ? method20(v371.fields[0], v371.fields[1], v371.fields[2], v371.fields[3], v371.fields[4]) : US6_US6_1(v371.fields[0]);
         if (v391.tag === /* US6_0 */ 0) {
             const v396: int32 = v391.fields[4] | 0;
             const v395: int32 = v391.fields[3] | 0;
@@ -1553,7 +1549,7 @@ export function method12(v0: string): US4_$union {
                 const v415: any = v412.fields[2];
                 const v414: string = v412.fields[1];
                 const v413: string = v412.fields[0];
-                const v423: int32 = method22(v414, 0) | 0;
+                const v423: int32 = method21(v414, 0) | 0;
                 const v425: int32 = v414.length | 0;
                 v435 = US6_US6_0(v413, v414.slice(v423, v425 + 1), v415, v416, v417);
             }
@@ -1583,7 +1579,7 @@ export function method12(v0: string): US4_$union {
                 const v463: int32 = v456.length | 0;
                 const v464: string[] = fill(new Array(v463), 0, v463, "");
                 const v465: Mut5 = new Mut5(0);
-                while (method13(v463, v465)) {
+                while (method12(v463, v465)) {
                     const v467: int32 = v465.l0 | 0;
                     const v468: string = v456[v467];
                     setItem(v464, v467, v468);
@@ -1591,7 +1587,7 @@ export function method12(v0: string): US4_$union {
                     v465.l0 = (v469 | 0);
                 }
                 const v470: FSharpList<string> = ofArray<string>(v464);
-                const patternInput_2: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v470, UH0_UH0_0()), v438, v439, v440);
+                const patternInput_2: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v470, UH0_UH0_0()), v438, v439, v440);
                 v522 = US5_US5_0(v444, v452, patternInput_2[0], patternInput_2[1], patternInput_2[2]);
             }
             else {
@@ -1633,7 +1629,7 @@ ${replicate(v440 - 1, " ") + "^"}
                 const v561: int32 = v554.length | 0;
                 const v562: string[] = fill(new Array(v561), 0, v561, "");
                 const v563: Mut5 = new Mut5(0);
-                while (method13(v561, v563)) {
+                while (method12(v561, v563)) {
                     const v565: int32 = v563.l0 | 0;
                     const v566: string = v554[v565];
                     setItem(v562, v565, v566);
@@ -1641,10 +1637,10 @@ ${replicate(v440 - 1, " ") + "^"}
                     v563.l0 = (v567 | 0);
                 }
                 const v568: FSharpList<string> = ofArray<string>(v562);
-                const patternInput_3: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v568, UH0_UH0_0()), v537, v538, v539);
+                const patternInput_3: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v568, UH0_UH0_0()), v537, v538, v539);
                 v589 = US5_US5_0(v543, v550, patternInput_3[0], patternInput_3[1], patternInput_3[2]);
             }
-            v613 = ((v589.tag === /* US5_0 */ 0) ? method23(v589.fields[0], v589.fields[1], v589.fields[2], v589.fields[3], v589.fields[4]) : US6_US6_1(v589.fields[0]));
+            v613 = ((v589.tag === /* US5_0 */ 0) ? method22(v589.fields[0], v589.fields[1], v589.fields[2], v589.fields[3], v589.fields[4]) : US6_US6_1(v589.fields[0]));
         }
         else {
             v613 = US6_US6_1(v534.fields[0]);
@@ -1682,89 +1678,89 @@ export function closure15(v0: string, v1: Option<any>, v2_1: [string, string][],
     return [v0, v1, v2_1, v3_1, v4, v5, v6] as [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>];
 }
 
-export function method26(v0: Mut4, v1: string): void {
+export function method25(v0: Mut4, v1: string): void {
     const v4 = `${v1}`;
     const v12_1: string = v0.l0 + v4;
     v0.l0 = v12_1;
 }
 
-export function method28(v0: Mut4, v1: Option<any>): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method27(v0: Mut4, v1: Option<any>): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method29(v0: Mut4, v1: [string, string][]): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method28(v0: Mut4, v1: [string, string][]): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method30(v0: Mut4, v1: Option<((arg0: [int32, string, boolean]) => any)>): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method29(v0: Mut4, v1: Option<((arg0: [int32, string, boolean]) => any)>): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method31(v0: Mut4, v1: Option<((arg0: any) => void)>): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method30(v0: Mut4, v1: Option<((arg0: any) => void)>): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method32(v0: Mut4, v1: boolean): void {
+export function method31(v0: Mut4, v1: boolean): void {
     const v7 = `${v1 ? "true" : "false"}`;
     const v15: string = v0.l0 + v7;
     v0.l0 = v15;
 }
 
-export function method33(v0: Mut4, v1: Option<string>): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method32(v0: Mut4, v1: Option<string>): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method27(v0: Mut4, v1: string, v2_1: Option<any>, v3_1: [string, string][], v4: Option<((arg0: [int32, string, boolean]) => any)>, v5: Option<((arg0: any) => void)>, v6: boolean, v7: Option<string>): void {
-    method26(v0, "{ ");
-    method9(v0);
-    method26(v0, "command");
-    method26(v0, " = ");
-    method26(v0, v1);
-    method26(v0, "; ");
-    method26(v0, "cancellation_token");
-    method26(v0, " = ");
-    method28(v0, v2_1);
-    method26(v0, "; ");
-    method26(v0, "environment_variables");
-    method26(v0, " = ");
-    method29(v0, v3_1);
-    method26(v0, "; ");
-    method26(v0, "on_line");
-    method26(v0, " = ");
-    method30(v0, v4);
-    method26(v0, "; ");
-    method26(v0, "stdin");
-    method26(v0, " = ");
-    method31(v0, v5);
-    method26(v0, "; ");
-    method26(v0, "trace");
-    method26(v0, " = ");
-    method32(v0, v6);
-    method26(v0, "; ");
-    method26(v0, "working_directory");
-    method26(v0, " = ");
-    method33(v0, v7);
-    method26(v0, " }");
+export function method26(v0: Mut4, v1: string, v2_1: Option<any>, v3_1: [string, string][], v4: Option<((arg0: [int32, string, boolean]) => any)>, v5: Option<((arg0: any) => void)>, v6: boolean, v7: Option<string>): void {
+    method25(v0, "{ ");
+    method8(v0);
+    method25(v0, "command");
+    method25(v0, " = ");
+    method25(v0, v1);
+    method25(v0, "; ");
+    method25(v0, "cancellation_token");
+    method25(v0, " = ");
+    method27(v0, v2_1);
+    method25(v0, "; ");
+    method25(v0, "environment_variables");
+    method25(v0, " = ");
+    method28(v0, v3_1);
+    method25(v0, "; ");
+    method25(v0, "on_line");
+    method25(v0, " = ");
+    method29(v0, v4);
+    method25(v0, "; ");
+    method25(v0, "stdin");
+    method25(v0, " = ");
+    method30(v0, v5);
+    method25(v0, "; ");
+    method25(v0, "trace");
+    method25(v0, " = ");
+    method31(v0, v6);
+    method25(v0, "; ");
+    method25(v0, "working_directory");
+    method25(v0, " = ");
+    method32(v0, v7);
+    method25(v0, " }");
 }
 
-export function method25(v0: Mut4, v1: string, v2_1: Option<any>, v3_1: [string, string][], v4: Option<((arg0: [int32, string, boolean]) => any)>, v5: Option<((arg0: any) => void)>, v6: boolean, v7: Option<string>): void {
-    method26(v0, "{ ");
-    method9(v0);
-    method26(v0, "options");
-    method26(v0, " = ");
-    method27(v0, v1, v2_1, v3_1, v4, v5, v6, v7);
-    method26(v0, " }");
+export function method24(v0: Mut4, v1: string, v2_1: Option<any>, v3_1: [string, string][], v4: Option<((arg0: [int32, string, boolean]) => any)>, v5: Option<((arg0: any) => void)>, v6: boolean, v7: Option<string>): void {
+    method25(v0, "{ ");
+    method8(v0);
+    method25(v0, "options");
+    method25(v0, " = ");
+    method26(v0, v1, v2_1, v3_1, v4, v5, v6, v7);
+    method25(v0, " }");
 }
 
 export function closure16(v0: US0_$union, v1: (() => string), v2_1: (() => [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]), unitVar: void): string {
-    let v368: int64, v392: number;
+    let v422: int64, v446: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_12(State_trace_state());
     const v18: Option<int64> = patternInput[4];
     let _v35: Option<string> = undefined;
-    const _v333: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    const _v387: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
     let x_2: Option<US2_$union>;
     if (v18 == null) {
         x_2 = undefined;
@@ -1773,72 +1769,72 @@ export function closure16(v0: US0_$union, v1: (() => string), v2_1: (() => [stri
         const x: int64 = value_12(v18);
         x_2 = ((): US2_$union => US2_US2_0(x))();
     }
-    _v333.contents = x_2;
-    const v360: US2_$union = defaultArg(_v333.contents, US2_US2_1());
-    const x_3: string = toString((v360.tag === /* US2_0 */ 0) ? ((v368 = v360.fields[0], (v392 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v368))), create(1, 1, 1, hours(v392), minutes(v392), seconds(v392), milliseconds(v392))))) : now(), method7());
+    _v387.contents = x_2;
+    const v414: US2_$union = defaultArg(_v387.contents, US2_US2_1());
+    const x_3: string = toString((v414.tag === /* US2_0 */ 0) ? ((v422 = v414.fields[0], (v446 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v422))), create(1, 1, 1, hours(v446), minutes(v446), seconds(v446), milliseconds(v446))))) : now(), method6());
     _v35 = x_3;
-    let v772: string;
+    let v826: string;
     if (_v35 == null) {
         throw new Error("base.run_target / _v35=None");
     }
     else {
-        v772 = value_12(_v35);
+        v826 = value_12(_v35);
     }
-    const v931: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
-    let v980: US3_$union;
-    if (v931.tag === /* US3_0 */ 0) {
-        v980 = US3_US3_0(v931.fields[0]);
+    const v985: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v1034: US3_$union;
+    if (v985.tag === /* US3_0 */ 0) {
+        v1034 = US3_US3_0(v985.fields[0]);
     }
     else {
-        const v940: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
-        if (v940.tag === /* US3_0 */ 0) {
-            v980 = US3_US3_0(v940.fields[0]);
+        const v994: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v994.tag === /* US3_0 */ 0) {
+            v1034 = US3_US3_0(v994.fields[0]);
         }
         else {
-            const v949: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
-            if (v949.tag === /* US3_0 */ 0) {
-                v980 = US3_US3_0(v949.fields[0]);
+            const v1003: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v1003.tag === /* US3_0 */ 0) {
+                v1034 = US3_US3_0(v1003.fields[0]);
             }
             else {
-                const v958: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
-                if (v958.tag === /* US3_0 */ 0) {
-                    v980 = US3_US3_0(v958.fields[0]);
+                const v1012: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v1012.tag === /* US3_0 */ 0) {
+                    v1034 = US3_US3_0(v1012.fields[0]);
                 }
                 else {
-                    const v967: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
-                    v980 = ((v967.tag === /* US3_0 */ 0) ? US3_US3_0(v967.fields[0]) : US3_US3_1());
+                    const v1021: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v1034 = ((v1021.tag === /* US3_0 */ 0) ? US3_US3_0(v1021.fields[0]) : US3_US3_1());
                 }
             }
         }
     }
-    let v984: string;
-    if (v980.tag === /* US3_0 */ 0) {
-        v984 = v980.fields[0];
+    let v1038: string;
+    if (v1034.tag === /* US3_0 */ 0) {
+        v1038 = v1034.fields[0];
     }
     else {
         throw new Error("Option does not have a value.");
     }
-    const v997: string = padLeft(v984.toLocaleLowerCase(), 7, " ");
-    let _v1029: Option<string> = undefined;
-    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v997) + method8();
-    _v1029 = x_5;
-    let v1141: string;
-    if (_v1029 == null) {
-        throw new Error("base.run_target / _v1029=None");
+    const v1051: string = padLeft(v1038.toLocaleLowerCase(), 7, " ");
+    let _v1083: Option<string> = undefined;
+    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v1051) + method7();
+    _v1083 = x_5;
+    let v1195: string;
+    if (_v1083 == null) {
+        throw new Error("base.run_target / _v1083=None");
     }
     else {
-        v1141 = value_12(_v1029);
+        v1195 = value_12(_v1083);
     }
-    const v1160: int64 = patternInput[0].l0;
+    const v1214: int64 = patternInput[0].l0;
     const patternInput_1: [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] = v2_1();
-    const v1169: Mut4 = new Mut4("");
-    method25(v1169, patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6]);
-    const v1170: string = v1169.l0;
-    return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1170}`, ...[]), ...[" ", "/"]);
+    const v1223: Mut4 = new Mut4("");
+    method24(v1223, patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6]);
+    const v1224: string = v1223.l0;
+    return trimEnd(trimStart(`${v826} ${v1195} #${v1214} ${v1()} / ${v1224}`, ...[]), ...[" ", "/"]);
 }
 
-export function method24(v0: US0_$union, v1: (() => string), v2_1: (() => [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>])): void {
-    method10(v0, (): string => closure16(v0, v1, v2_1, undefined));
+export function method23(v0: US0_$union, v1: (() => string), v2_1: (() => [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>])): void {
+    method9(v0, (): string => closure16(v0, v1, v2_1, undefined));
 }
 
 export function closure18(v0: string, unitVar: void): string {
@@ -1846,6 +1842,28 @@ export function closure18(v0: string, unitVar: void): string {
 }
 
 export function closure17(v0: string, v1: Option<any>, v2_1: [string, string][], v3_1: Option<((arg0: [int32, string, boolean]) => any)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9_1: void): void {
+    let _v12: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v12 = x;
+    let v125: any;
+    if (_v12 == null) {
+        throw new Error("base.run_target / _v12=None");
+    }
+    else {
+        v125 = value_12(_v12);
+    }
+    let _v142: Option<void> = undefined;
+    defaultOf();
+    _v142 = some(undefined);
+    if (_v142 == null) {
+        throw new Error("base.run_target / _v142=None");
+    }
+    else {
+        value_12(_v142);
+    }
+}
+
+export function closure19(v0: string, v1: Option<any>, v2_1: [string, string][], v3_1: Option<((arg0: [int32, string, boolean]) => any)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9_1: void): void {
     let _v12: Option<any> = undefined;
     const x: any = defaultOf();
     _v12 = x;
@@ -1864,28 +1882,6 @@ export function closure17(v0: string, v1: Option<any>, v2_1: [string, string][],
     }
     else {
         value_12(_v143);
-    }
-}
-
-export function closure19(v0: string, v1: Option<any>, v2_1: [string, string][], v3_1: Option<((arg0: [int32, string, boolean]) => any)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9_1: void): void {
-    let _v12: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v12 = x;
-    let v127: any;
-    if (_v12 == null) {
-        throw new Error("base.run_target / _v12=None");
-    }
-    else {
-        v127 = value_12(_v12);
-    }
-    let _v144: Option<void> = undefined;
-    defaultOf();
-    _v144 = some(undefined);
-    if (_v144 == null) {
-        throw new Error("base.run_target / _v144=None");
-    }
-    else {
-        value_12(_v144);
     }
 }
 
@@ -1916,28 +1912,28 @@ export function closure22(v0: any, unitVar: void): any {
     return v0;
 }
 
-export function method36(v0: Mut4, v1: any): void {
-    method26(v0, toText(interpolate("%A%P()", [v1])));
+export function method35(v0: Mut4, v1: any): void {
+    method25(v0, toText(interpolate("%A%P()", [v1])));
 }
 
-export function method35(v0: Mut4, v1: any): void {
-    method26(v0, "{ ");
-    method9(v0);
-    method26(v0, "ex");
-    method26(v0, " = ");
-    method36(v0, v1);
-    method26(v0, " }");
+export function method34(v0: Mut4, v1: any): void {
+    method25(v0, "{ ");
+    method8(v0);
+    method25(v0, "ex");
+    method25(v0, " = ");
+    method35(v0, v1);
+    method25(v0, " }");
 }
 
 export function closure23(v0: US0_$union, v1: (() => string), v2_1: (() => any), unitVar: void): string {
-    let v368: int64, v392: number;
+    let v422: int64, v446: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_12(State_trace_state());
     const v18: Option<int64> = patternInput[4];
     let _v35: Option<string> = undefined;
-    const _v333: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    const _v387: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
     let x_2: Option<US2_$union>;
     if (v18 == null) {
         x_2 = undefined;
@@ -1946,71 +1942,71 @@ export function closure23(v0: US0_$union, v1: (() => string), v2_1: (() => any),
         const x: int64 = value_12(v18);
         x_2 = ((): US2_$union => US2_US2_0(x))();
     }
-    _v333.contents = x_2;
-    const v360: US2_$union = defaultArg(_v333.contents, US2_US2_1());
-    const x_3: string = toString((v360.tag === /* US2_0 */ 0) ? ((v368 = v360.fields[0], (v392 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v368))), create(1, 1, 1, hours(v392), minutes(v392), seconds(v392), milliseconds(v392))))) : now(), method7());
+    _v387.contents = x_2;
+    const v414: US2_$union = defaultArg(_v387.contents, US2_US2_1());
+    const x_3: string = toString((v414.tag === /* US2_0 */ 0) ? ((v422 = v414.fields[0], (v446 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v422))), create(1, 1, 1, hours(v446), minutes(v446), seconds(v446), milliseconds(v446))))) : now(), method6());
     _v35 = x_3;
-    let v772: string;
+    let v826: string;
     if (_v35 == null) {
         throw new Error("base.run_target / _v35=None");
     }
     else {
-        v772 = value_12(_v35);
+        v826 = value_12(_v35);
     }
-    const v931: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
-    let v980: US3_$union;
-    if (v931.tag === /* US3_0 */ 0) {
-        v980 = US3_US3_0(v931.fields[0]);
+    const v985: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v1034: US3_$union;
+    if (v985.tag === /* US3_0 */ 0) {
+        v1034 = US3_US3_0(v985.fields[0]);
     }
     else {
-        const v940: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
-        if (v940.tag === /* US3_0 */ 0) {
-            v980 = US3_US3_0(v940.fields[0]);
+        const v994: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v994.tag === /* US3_0 */ 0) {
+            v1034 = US3_US3_0(v994.fields[0]);
         }
         else {
-            const v949: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
-            if (v949.tag === /* US3_0 */ 0) {
-                v980 = US3_US3_0(v949.fields[0]);
+            const v1003: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v1003.tag === /* US3_0 */ 0) {
+                v1034 = US3_US3_0(v1003.fields[0]);
             }
             else {
-                const v958: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
-                if (v958.tag === /* US3_0 */ 0) {
-                    v980 = US3_US3_0(v958.fields[0]);
+                const v1012: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v1012.tag === /* US3_0 */ 0) {
+                    v1034 = US3_US3_0(v1012.fields[0]);
                 }
                 else {
-                    const v967: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
-                    v980 = ((v967.tag === /* US3_0 */ 0) ? US3_US3_0(v967.fields[0]) : US3_US3_1());
+                    const v1021: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v1034 = ((v1021.tag === /* US3_0 */ 0) ? US3_US3_0(v1021.fields[0]) : US3_US3_1());
                 }
             }
         }
     }
-    let v984: string;
-    if (v980.tag === /* US3_0 */ 0) {
-        v984 = v980.fields[0];
+    let v1038: string;
+    if (v1034.tag === /* US3_0 */ 0) {
+        v1038 = v1034.fields[0];
     }
     else {
         throw new Error("Option does not have a value.");
     }
-    const v997: string = padLeft(v984.toLocaleLowerCase(), 7, " ");
-    let _v1029: Option<string> = undefined;
-    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v997) + method8();
-    _v1029 = x_5;
-    let v1141: string;
-    if (_v1029 == null) {
-        throw new Error("base.run_target / _v1029=None");
+    const v1051: string = padLeft(v1038.toLocaleLowerCase(), 7, " ");
+    let _v1083: Option<string> = undefined;
+    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v1051) + method7();
+    _v1083 = x_5;
+    let v1195: string;
+    if (_v1083 == null) {
+        throw new Error("base.run_target / _v1083=None");
     }
     else {
-        v1141 = value_12(_v1029);
+        v1195 = value_12(_v1083);
     }
-    const v1160: int64 = patternInput[0].l0;
-    const v1163: Mut4 = new Mut4("");
-    method35(v1163, v2_1());
-    const v1164: string = v1163.l0;
-    return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1164}`, ...[]), ...[" ", "/"]);
+    const v1214: int64 = patternInput[0].l0;
+    const v1217: Mut4 = new Mut4("");
+    method34(v1217, v2_1());
+    const v1218: string = v1217.l0;
+    return trimEnd(trimStart(`${v826} ${v1195} #${v1214} ${v1()} / ${v1218}`, ...[]), ...[" ", "/"]);
 }
 
-export function method34(v0: US0_$union, v1: (() => string), v2_1: (() => any)): void {
-    method10(v0, (): string => closure23(v0, v1, v2_1, undefined));
+export function method33(v0: US0_$union, v1: (() => string), v2_1: (() => any)): void {
+    method9(v0, (): string => closure23(v0, v1, v2_1, undefined));
 }
 
 export function closure24(unitVar: void, unitVar_1: void): string {
@@ -2021,34 +2017,34 @@ export function closure25(v0: int32, v1: string, unitVar: void): [int32, int32] 
     return [v0, v1.length] as [int32, int32];
 }
 
-export function method39(v0: Mut4, v1: int32): void {
+export function method38(v0: Mut4, v1: int32): void {
     const v4 = `${v1}`;
     const v12_1: string = v0.l0 + v4;
     v0.l0 = v12_1;
 }
 
-export function method38(v0: Mut4, v1: int32, v2_1: int32): void {
-    method26(v0, "{ ");
-    method9(v0);
-    method26(v0, "exit_code");
-    method26(v0, " = ");
-    method39(v0, v1);
-    method26(v0, "; ");
-    method26(v0, "output_length");
-    method26(v0, " = ");
-    method39(v0, v2_1);
-    method26(v0, " }");
+export function method37(v0: Mut4, v1: int32, v2_1: int32): void {
+    method25(v0, "{ ");
+    method8(v0);
+    method25(v0, "exit_code");
+    method25(v0, " = ");
+    method38(v0, v1);
+    method25(v0, "; ");
+    method25(v0, "output_length");
+    method25(v0, " = ");
+    method38(v0, v2_1);
+    method25(v0, " }");
 }
 
 export function closure26(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, int32]), unitVar: void): string {
-    let v368: int64, v392: number;
+    let v422: int64, v446: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_12(State_trace_state());
     const v18: Option<int64> = patternInput[4];
     let _v35: Option<string> = undefined;
-    const _v333: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    const _v387: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
     let x_2: Option<US2_$union>;
     if (v18 == null) {
         x_2 = undefined;
@@ -2057,75 +2053,75 @@ export function closure26(v0: US0_$union, v1: (() => string), v2_1: (() => [int3
         const x: int64 = value_12(v18);
         x_2 = ((): US2_$union => US2_US2_0(x))();
     }
-    _v333.contents = x_2;
-    const v360: US2_$union = defaultArg(_v333.contents, US2_US2_1());
-    const x_3: string = toString((v360.tag === /* US2_0 */ 0) ? ((v368 = v360.fields[0], (v392 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v368))), create(1, 1, 1, hours(v392), minutes(v392), seconds(v392), milliseconds(v392))))) : now(), method7());
+    _v387.contents = x_2;
+    const v414: US2_$union = defaultArg(_v387.contents, US2_US2_1());
+    const x_3: string = toString((v414.tag === /* US2_0 */ 0) ? ((v422 = v414.fields[0], (v446 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v422))), create(1, 1, 1, hours(v446), minutes(v446), seconds(v446), milliseconds(v446))))) : now(), method6());
     _v35 = x_3;
-    let v772: string;
+    let v826: string;
     if (_v35 == null) {
         throw new Error("base.run_target / _v35=None");
     }
     else {
-        v772 = value_12(_v35);
+        v826 = value_12(_v35);
     }
-    const v931: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
-    let v980: US3_$union;
-    if (v931.tag === /* US3_0 */ 0) {
-        v980 = US3_US3_0(v931.fields[0]);
+    const v985: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v1034: US3_$union;
+    if (v985.tag === /* US3_0 */ 0) {
+        v1034 = US3_US3_0(v985.fields[0]);
     }
     else {
-        const v940: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
-        if (v940.tag === /* US3_0 */ 0) {
-            v980 = US3_US3_0(v940.fields[0]);
+        const v994: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v994.tag === /* US3_0 */ 0) {
+            v1034 = US3_US3_0(v994.fields[0]);
         }
         else {
-            const v949: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
-            if (v949.tag === /* US3_0 */ 0) {
-                v980 = US3_US3_0(v949.fields[0]);
+            const v1003: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v1003.tag === /* US3_0 */ 0) {
+                v1034 = US3_US3_0(v1003.fields[0]);
             }
             else {
-                const v958: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
-                if (v958.tag === /* US3_0 */ 0) {
-                    v980 = US3_US3_0(v958.fields[0]);
+                const v1012: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v1012.tag === /* US3_0 */ 0) {
+                    v1034 = US3_US3_0(v1012.fields[0]);
                 }
                 else {
-                    const v967: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
-                    v980 = ((v967.tag === /* US3_0 */ 0) ? US3_US3_0(v967.fields[0]) : US3_US3_1());
+                    const v1021: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v1034 = ((v1021.tag === /* US3_0 */ 0) ? US3_US3_0(v1021.fields[0]) : US3_US3_1());
                 }
             }
         }
     }
-    let v984: string;
-    if (v980.tag === /* US3_0 */ 0) {
-        v984 = v980.fields[0];
+    let v1038: string;
+    if (v1034.tag === /* US3_0 */ 0) {
+        v1038 = v1034.fields[0];
     }
     else {
         throw new Error("Option does not have a value.");
     }
-    const v997: string = padLeft(v984.toLocaleLowerCase(), 7, " ");
-    let _v1029: Option<string> = undefined;
-    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v997) + method8();
-    _v1029 = x_5;
-    let v1141: string;
-    if (_v1029 == null) {
-        throw new Error("base.run_target / _v1029=None");
+    const v1051: string = padLeft(v1038.toLocaleLowerCase(), 7, " ");
+    let _v1083: Option<string> = undefined;
+    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v1051) + method7();
+    _v1083 = x_5;
+    let v1195: string;
+    if (_v1083 == null) {
+        throw new Error("base.run_target / _v1083=None");
     }
     else {
-        v1141 = value_12(_v1029);
+        v1195 = value_12(_v1083);
     }
-    const v1160: int64 = patternInput[0].l0;
+    const v1214: int64 = patternInput[0].l0;
     const patternInput_1: [int32, int32] = v2_1();
-    const v1164: Mut4 = new Mut4("");
-    method38(v1164, patternInput_1[0], patternInput_1[1]);
-    const v1165: string = v1164.l0;
-    return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1165}`, ...[]), ...[" ", "/"]);
+    const v1218: Mut4 = new Mut4("");
+    method37(v1218, patternInput_1[0], patternInput_1[1]);
+    const v1219: string = v1218.l0;
+    return trimEnd(trimStart(`${v826} ${v1195} #${v1214} ${v1()} / ${v1219}`, ...[]), ...[" ", "/"]);
 }
 
-export function method37(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, int32])): void {
-    method10(v0, (): string => closure26(v0, v1, v2_1, undefined));
+export function method36(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, int32])): void {
+    method9(v0, (): string => closure26(v0, v1, v2_1, undefined));
 }
 
-export function method11(v0: string, v1: Option<any>, v2_1: [string, string][], v3_1: Option<((arg0: [int32, string, boolean]) => any)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>): any {
+export function method10(v0: string, v1: Option<any>, v2_1: [string, string][], v3_1: Option<((arg0: [int32, string, boolean]) => any)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>): any {
     let _v9: Option<any> = undefined;
     const x: any = defaultOf();
     _v9 = x;
@@ -2138,11 +2134,11 @@ export function method11(v0: string, v1: Option<any>, v2_1: [string, string][], 
 }
 
 export function closure9(unitVar: void, v0: string): any {
-    return method11(v0, undefined, [], undefined, undefined, true, undefined);
+    return method10(v0, undefined, [], undefined, undefined, true, undefined);
 }
 
 export function closure27(unitVar: void, _arg: [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
-    return method11(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5], _arg[6]);
+    return method10(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5], _arg[6]);
 }
 
 export function closure28(unitVar: void, v0: ((arg0: Heap0) => Heap0)): [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
@@ -2150,8 +2146,8 @@ export function closure28(unitVar: void, v0: ((arg0: Heap0) => Heap0)): [string,
     return [v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5, v8.l6] as [string, Option<any>, [string, string][], Option<((arg0: [int32, string, boolean]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>];
 }
 
-export function method42(v0_mut: string, v1_mut: int64): boolean {
-    method42:
+export function method41(v0_mut: string, v1_mut: int64): boolean {
+    method41:
     while (true) {
         const v0: string = v0_mut, v1: int64 = v1_mut;
         if (compare_1(v1, 4n) >= 0) {
@@ -2192,15 +2188,15 @@ export function method42(v0_mut: string, v1_mut: int64): boolean {
             else {
                 v0_mut = v0;
                 v1_mut = toInt64(op_Addition(v1, 1n));
-                continue method42;
+                continue method41;
             }
         }
         break;
     }
 }
 
-export function method43(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
-    method43:
+export function method42(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US6_$union {
+    method42:
     while (true) {
         const v0: string = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v154: US5_$union;
@@ -2212,12 +2208,12 @@ export function method43(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             const v59 = 1;
             const v61: int32 = v1.length | 0;
             const v62: string = v1.slice(v59, v61 + 1);
-            if (method42(v55, 0n) === false) {
+            if (method41(v55, 0n) === false) {
                 const v69: string = v55;
                 const v76: int32 = v69.length | 0;
                 const v77: string[] = fill(new Array(v76), 0, v76, "");
                 const v78: Mut5 = new Mut5(0);
-                while (method13(v76, v78)) {
+                while (method12(v76, v78)) {
                     const v80: int32 = v78.l0 | 0;
                     const v81: string = v69[v80];
                     setItem(v77, v80, v81);
@@ -2225,7 +2221,7 @@ export function method43(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
                     v78.l0 = (v82 | 0);
                 }
                 const v83: FSharpList<string> = ofArray<string>(v77);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v83, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v83, UH0_UH0_0()), v2_1, v3_1, v4);
                 v154 = US5_US5_0(v55, v62, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -2238,7 +2234,7 @@ export function method43(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
             v2_1_mut = v154.fields[2];
             v3_1_mut = v154.fields[3];
             v4_mut = v154.fields[4];
-            continue method43;
+            continue method42;
         }
         else {
             const v172: string = v154.fields[0];
@@ -2248,8 +2244,8 @@ export function method43(v0_mut: string, v1_mut: string, v2_1_mut: any, v3_1_mut
     }
 }
 
-export function method45(v0_mut: string, v1_mut: int64): boolean {
-    method45:
+export function method44(v0_mut: string, v1_mut: int64): boolean {
+    method44:
     while (true) {
         const v0: string = v0_mut, v1: int64 = v1_mut;
         if (compare_1(v1, 3n) >= 0) {
@@ -2284,7 +2280,7 @@ export function method45(v0_mut: string, v1_mut: int64): boolean {
             else {
                 v0_mut = v0;
                 v1_mut = toInt64(op_Addition(v1, 1n));
-                continue method45;
+                continue method44;
             }
         }
         break;
@@ -2310,7 +2306,7 @@ export function closure30(unitVar: void, _arg: [string, any, int32, int32]): US6
             const v26: int32 = v19.length | 0;
             const v27: string[] = fill(new Array(v26), 0, v26, "");
             const v28: Mut5 = new Mut5(0);
-            while (method13(v26, v28)) {
+            while (method12(v26, v28)) {
                 const v30: int32 = v28.l0 | 0;
                 const v31: string = v19[v30];
                 setItem(v27, v30, v31);
@@ -2318,7 +2314,7 @@ export function closure30(unitVar: void, _arg: [string, any, int32, int32]): US6
                 v28.l0 = (v32 | 0);
             }
             const v33: FSharpList<string> = ofArray<string>(v27);
-            const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
+            const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
             v85 = US5_US5_0(v7, v15, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
@@ -2351,7 +2347,7 @@ ${replicate(v3_1 - 1, " ") + "^"}
             const v112: int32 = v105.length | 0;
             const v113: string[] = fill(new Array(v112), 0, v112, "");
             const v114: Mut5 = new Mut5(0);
-            while (method13(v112, v114)) {
+            while (method12(v112, v114)) {
                 const v116: int32 = v114.l0 | 0;
                 const v117: string = v105[v116];
                 setItem(v113, v116, v117);
@@ -2359,7 +2355,7 @@ ${replicate(v3_1 - 1, " ") + "^"}
                 v114.l0 = (v118 | 0);
             }
             const v119: FSharpList<string> = ofArray<string>(v113);
-            const patternInput_1: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v119, UH0_UH0_0()), v88, v89, v90);
+            const patternInput_1: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v119, UH0_UH0_0()), v88, v89, v90);
             v144 = US5_US5_0(v94, v101, patternInput_1[0], patternInput_1[1], patternInput_1[2]);
         }
     }
@@ -2393,7 +2389,7 @@ export function closure31(unitVar: void, _arg: [string, any, int32, int32]): US6
             const v26: int32 = v19.length | 0;
             const v27: string[] = fill(new Array(v26), 0, v26, "");
             const v28: Mut5 = new Mut5(0);
-            while (method13(v26, v28)) {
+            while (method12(v26, v28)) {
                 const v30: int32 = v28.l0 | 0;
                 const v31: string = v19[v30];
                 setItem(v27, v30, v31);
@@ -2401,7 +2397,7 @@ export function closure31(unitVar: void, _arg: [string, any, int32, int32]): US6
                 v28.l0 = (v32 | 0);
             }
             const v33: FSharpList<string> = ofArray<string>(v27);
-            const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
+            const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v33, UH0_UH0_0()), v1, v2_1, v3_1);
             v85 = US5_US5_0(v7, v15, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
@@ -2434,7 +2430,7 @@ ${replicate(v3_1 - 1, " ") + "^"}
             const v112: int32 = v105.length | 0;
             const v113: string[] = fill(new Array(v112), 0, v112, "");
             const v114: Mut5 = new Mut5(0);
-            while (method13(v112, v114)) {
+            while (method12(v112, v114)) {
                 const v116: int32 = v114.l0 | 0;
                 const v117: string = v105[v116];
                 setItem(v113, v116, v117);
@@ -2442,7 +2438,7 @@ ${replicate(v3_1 - 1, " ") + "^"}
                 v114.l0 = (v118 | 0);
             }
             const v119: FSharpList<string> = ofArray<string>(v113);
-            const patternInput_1: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v119, UH0_UH0_0()), v88, v89, v90);
+            const patternInput_1: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v119, UH0_UH0_0()), v88, v89, v90);
             v144 = US5_US5_0(v94, v101, patternInput_1[0], patternInput_1[1], patternInput_1[2]);
         }
     }
@@ -2457,8 +2453,8 @@ ${replicate(v3_1 - 1, " ") + "^"}
     }
 }
 
-export function method46(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32, v4_mut: UH3_$union): US6_$union {
-    method46:
+export function method45(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut: int32, v4_mut: UH3_$union): US6_$union {
+    method45:
     while (true) {
         const v0: string = v0_mut, v1: any = v1_mut, v2_1: int32 = v2_1_mut, v3_1: int32 = v3_1_mut, v4: UH3_$union = v4_mut;
         if (v4.tag === /* UH3_0 */ 0) {
@@ -2482,15 +2478,15 @@ export function method46(v0_mut: string, v1_mut: any, v2_1_mut: int32, v3_1_mut:
                 v2_1_mut = v2_1;
                 v3_1_mut = v3_1;
                 v4_mut = v8;
-                continue method46;
+                continue method45;
             }
         }
         break;
     }
 }
 
-export function method47(v0_mut: UH2_$union, v1_mut: UH2_$union): UH2_$union {
-    method47:
+export function method46(v0_mut: UH2_$union, v1_mut: UH2_$union): UH2_$union {
+    method46:
     while (true) {
         const v0: UH2_$union = v0_mut, v1: UH2_$union = v1_mut;
         if (v0.tag === /* UH2_0 */ 0) {
@@ -2499,14 +2495,14 @@ export function method47(v0_mut: UH2_$union, v1_mut: UH2_$union): UH2_$union {
         else {
             v0_mut = v0.fields[1];
             v1_mut = UH2_UH2_1(v0.fields[0], v1);
-            continue method47;
+            continue method46;
         }
         break;
     }
 }
 
-export function method44(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
-    method44:
+export function method43(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
+    method43:
     while (true) {
         const v0: UH2_$union = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v136: US5_$union;
@@ -2518,12 +2514,12 @@ export function method44(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
             const v50 = 1;
             const v52: int32 = v1.length | 0;
             const v53: string = v1.slice(v50, v52 + 1);
-            if (method45(v46, 0n) === false) {
+            if (method44(v46, 0n) === false) {
                 const v60: string = v46;
                 const v67: int32 = v60.length | 0;
                 const v68: string[] = fill(new Array(v67), 0, v67, "");
                 const v69: Mut5 = new Mut5(0);
-                while (method13(v67, v69)) {
+                while (method12(v67, v69)) {
                     const v71: int32 = v69.l0 | 0;
                     const v72: string = v60[v71];
                     setItem(v68, v71, v72);
@@ -2531,7 +2527,7 @@ export function method44(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
                     v69.l0 = (v73 | 0);
                 }
                 const v74: FSharpList<string> = ofArray<string>(v68);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
                 v136 = US5_US5_0(v46, v53, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -2550,7 +2546,7 @@ export function method44(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
         }
         else {
             const v162: string = v156.fields[0];
-            v170 = method46(v1, v2_1, v3_1, v4, UH3_UH3_1((arg10$0040: [string, any, int32, int32]): US6_$union => closure30(undefined, arg10$0040), UH3_UH3_1((arg10$0040_1: [string, any, int32, int32]): US6_$union => closure31(undefined, arg10$0040_1), UH3_UH3_0())));
+            v170 = method45(v1, v2_1, v3_1, v4, UH3_UH3_1((arg10$0040: [string, any, int32, int32]): US6_$union => closure30(undefined, arg10$0040), UH3_UH3_1((arg10$0040_1: [string, any, int32, int32]): US6_$union => closure31(undefined, arg10$0040_1), UH3_UH3_0())));
         }
         if (v170.tag === /* US6_0 */ 0) {
             v0_mut = UH2_UH2_1(v170.fields[0], v0);
@@ -2558,27 +2554,27 @@ export function method44(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
             v2_1_mut = v170.fields[2];
             v3_1_mut = v170.fields[3];
             v4_mut = v170.fields[4];
-            continue method44;
+            continue method43;
         }
         else {
             const v178: string = v170.fields[0];
-            return US15_US15_0(method47(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
+            return US15_US15_0(method46(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
         }
         break;
     }
 }
 
-export function method48(v0: UH2_$union, v1: FSharpList<string>): FSharpList<string> {
+export function method47(v0: UH2_$union, v1: FSharpList<string>): FSharpList<string> {
     if (v0.tag === /* UH2_0 */ 0) {
         return v1;
     }
     else {
-        return cons(v0.fields[0], method48(v0.fields[1], v1));
+        return cons(v0.fields[0], method47(v0.fields[1], v1));
     }
 }
 
-export function method49(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
-    method49:
+export function method48(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
+    method48:
     while (true) {
         const v0: UH2_$union = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         let v136: US5_$union;
@@ -2590,12 +2586,12 @@ export function method49(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
             const v50 = 1;
             const v52: int32 = v1.length | 0;
             const v53: string = v1.slice(v50, v52 + 1);
-            if (method45(v46, 0n) === false) {
+            if (method44(v46, 0n) === false) {
                 const v60: string = v46;
                 const v67: int32 = v60.length | 0;
                 const v68: string[] = fill(new Array(v67), 0, v67, "");
                 const v69: Mut5 = new Mut5(0);
-                while (method13(v67, v69)) {
+                while (method12(v67, v69)) {
                     const v71: int32 = v69.l0 | 0;
                     const v72: string = v60[v71];
                     setItem(v68, v71, v72);
@@ -2603,7 +2599,7 @@ export function method49(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
                     v69.l0 = (v73 | 0);
                 }
                 const v74: FSharpList<string> = ofArray<string>(v68);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v74, UH0_UH0_0()), v2_1, v3_1, v4);
                 v136 = US5_US5_0(v46, v53, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
@@ -2617,18 +2613,18 @@ export function method49(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
             v2_1_mut = v156.fields[2];
             v3_1_mut = v156.fields[3];
             v4_mut = v156.fields[4];
-            continue method49;
+            continue method48;
         }
         else {
             const v164: string = v156.fields[0];
-            return US15_US15_0(method47(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
+            return US15_US15_0(method46(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
         }
         break;
     }
 }
 
-export function method50(v0_mut: string, v1_mut: int32): int32 {
-    method50:
+export function method49(v0_mut: string, v1_mut: int32): int32 {
+    method49:
     while (true) {
         const v0: string = v0_mut, v1: int32 = v1_mut;
         if (v1 >= v0.length) {
@@ -2637,7 +2633,7 @@ export function method50(v0_mut: string, v1_mut: int32): int32 {
         else if (v0[v1] === " ") {
             v0_mut = v0;
             v1_mut = (v1 + 1);
-            continue method50;
+            continue method49;
         }
         else {
             return v1 | 0;
@@ -2646,8 +2642,8 @@ export function method50(v0_mut: string, v1_mut: int32): int32 {
     }
 }
 
-export function method41(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
-    method41:
+export function method40(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1_mut: int32, v4_mut: int32): US15_$union {
+    method40:
     while (true) {
         const v0: UH2_$union = v0_mut, v1: string = v1_mut, v2_1: any = v2_1_mut, v3_1: int32 = v3_1_mut, v4: int32 = v4_mut;
         const v5: boolean = "" === v1;
@@ -2660,12 +2656,12 @@ export function method41(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
             const v59 = 1;
             const v61: int32 = v1.length | 0;
             const v62: string = v1.slice(v59, v61 + 1);
-            if (method42(v55, 0n) === false) {
+            if (method41(v55, 0n) === false) {
                 const v69: string = v55;
                 const v76: int32 = v69.length | 0;
                 const v77: string[] = fill(new Array(v76), 0, v76, "");
                 const v78: Mut5 = new Mut5(0);
-                while (method13(v76, v78)) {
+                while (method12(v76, v78)) {
                     const v80: int32 = v78.l0 | 0;
                     const v81: string = v69[v80];
                     setItem(v77, v80, v81);
@@ -2673,14 +2669,14 @@ export function method41(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
                     v78.l0 = (v82 | 0);
                 }
                 const v83: FSharpList<string> = ofArray<string>(v77);
-                const patternInput: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v83, UH0_UH0_0()), v2_1, v3_1, v4);
+                const patternInput: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v83, UH0_UH0_0()), v2_1, v3_1, v4);
                 v154 = US5_US5_0(v55, v62, patternInput[0], patternInput[1], patternInput[2]);
             }
             else {
                 v154 = US5_US5_1(toText(interpolate("parsing.none_of / unexpected char: \'%P()\' / chars: %A%P() / s: %A%P()", [v55, ["\\", "`", "\"", " "], [v2_1, v3_1, v4] as [any, int32, int32]])));
             }
         }
-        const v174: US6_$union = (v154.tag === /* US5_0 */ 0) ? method43(v154.fields[0], v154.fields[1], v154.fields[2], v154.fields[3], v154.fields[4]) : US6_US6_1(v154.fields[0]);
+        const v174: US6_$union = (v154.tag === /* US5_0 */ 0) ? method42(v154.fields[0], v154.fields[1], v154.fields[2], v154.fields[3], v154.fields[4]) : US6_US6_1(v154.fields[0]);
         let v479: US6_$union;
         if (v174.tag === /* US6_0 */ 0) {
             const v179: int32 = v174.fields[4] | 0;
@@ -2706,7 +2702,7 @@ export function method41(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
                     const v202: int32 = v195.length | 0;
                     const v203: string[] = fill(new Array(v202), 0, v202, "");
                     const v204: Mut5 = new Mut5(0);
-                    while (method13(v202, v204)) {
+                    while (method12(v202, v204)) {
                         const v206: int32 = v204.l0 | 0;
                         const v207: string = v195[v206];
                         setItem(v203, v206, v207);
@@ -2714,7 +2710,7 @@ export function method41(v0_mut: UH2_$union, v1_mut: string, v2_1_mut: any, v3_1
                         v204.l0 = (v208 | 0);
                     }
                     const v209: FSharpList<string> = ofArray<string>(v203);
-                    const patternInput_1: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v209, UH0_UH0_0()), v2_1, v3_1, v4);
+                    const patternInput_1: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v209, UH0_UH0_0()), v2_1, v3_1, v4);
                     v261 = US5_US5_0(v183, v191, patternInput_1[0], patternInput_1[1], patternInput_1[2]);
                 }
                 else {
@@ -2735,14 +2731,14 @@ ${replicate(v4 - 1, " ") + "^"}
                 const v264: any = v261.fields[2];
                 const v263: string = v261.fields[1];
                 const v262: string = v261.fields[0];
-                const v268: US15_$union = method44(UH2_UH2_0(), v263, v264, v265, v266);
+                const v268: US15_$union = method43(UH2_UH2_0(), v263, v264, v265, v266);
                 let v301: US6_$union;
                 if (v268.tag === /* US15_0 */ 0) {
                     const v273: int32 = v268.fields[4] | 0;
                     const v272: int32 = v268.fields[3] | 0;
                     const v271: any = v268.fields[2];
                     const v270: string = v268.fields[1];
-                    const v275: FSharpList<string> = method48(v268.fields[0], empty<string>());
+                    const v275: FSharpList<string> = method47(v268.fields[0], empty<string>());
                     v301 = US6_US6_0(join("", delay<string>((): Iterable<string> => map<int32, string>((i: int32): string => item(i, v275), rangeDouble(0, 1, length(v275) - 1)))), v270, v271, v272, v273);
                 }
                 else {
@@ -2768,7 +2764,7 @@ ${replicate(v4 - 1, " ") + "^"}
                             const v329: int32 = v322.length | 0;
                             const v330: string[] = fill(new Array(v329), 0, v329, "");
                             const v331: Mut5 = new Mut5(0);
-                            while (method13(v329, v331)) {
+                            while (method12(v329, v331)) {
                                 const v333: int32 = v331.l0 | 0;
                                 const v334: string = v322[v333];
                                 setItem(v330, v333, v334);
@@ -2776,7 +2772,7 @@ ${replicate(v4 - 1, " ") + "^"}
                                 v331.l0 = (v335 | 0);
                             }
                             const v336: FSharpList<string> = ofArray<string>(v330);
-                            const patternInput_2: [any, int32, int32] = method15(foldBack<string, UH0_$union>(uncurry2(method14()), v336, UH0_UH0_0()), v304, v305, v306);
+                            const patternInput_2: [any, int32, int32] = method14(foldBack<string, UH0_$union>(uncurry2(method13()), v336, UH0_UH0_0()), v304, v305, v306);
                             v388 = US5_US5_0(v310, v318, patternInput_2[0], patternInput_2[1], patternInput_2[2]);
                         }
                         else {
@@ -2816,7 +2812,7 @@ ${replicate(v306 - 1, " ") + "^"}
             }
             else {
                 const v414: string = v408.fields[0];
-                const v420: US6_$union = method46(v1, v2_1, v3_1, v4, UH3_UH3_1((arg10$0040: [string, any, int32, int32]): US6_$union => closure30(undefined, arg10$0040), UH3_UH3_1((arg10$0040_1: [string, any, int32, int32]): US6_$union => closure31(undefined, arg10$0040_1), UH3_UH3_0())));
+                const v420: US6_$union = method45(v1, v2_1, v3_1, v4, UH3_UH3_1((arg10$0040: [string, any, int32, int32]): US6_$union => closure30(undefined, arg10$0040), UH3_UH3_1((arg10$0040_1: [string, any, int32, int32]): US6_$union => closure31(undefined, arg10$0040_1), UH3_UH3_0())));
                 let v431: US6_$union;
                 if (v420.tag === /* US6_0 */ 0) {
                     const v421: string = v420.fields[0];
@@ -2828,7 +2824,7 @@ ${replicate(v306 - 1, " ") + "^"}
                 let v442: US15_$union;
                 if (v431.tag === /* US6_0 */ 0) {
                     const v432: string = v431.fields[0];
-                    v442 = method49(UH2_UH2_0(), v431.fields[1], v431.fields[2], v431.fields[3], v431.fields[4]);
+                    v442 = method48(UH2_UH2_0(), v431.fields[1], v431.fields[2], v431.fields[3], v431.fields[4]);
                 }
                 else {
                     v442 = US15_US15_1(v431.fields[0]);
@@ -2838,7 +2834,7 @@ ${replicate(v306 - 1, " ") + "^"}
                     const v446: int32 = v442.fields[3] | 0;
                     const v445: any = v442.fields[2];
                     const v444: string = v442.fields[1];
-                    const v449: FSharpList<string> = method48(v442.fields[0], empty<string>());
+                    const v449: FSharpList<string> = method47(v442.fields[0], empty<string>());
                     v479 = US6_US6_0(join("", delay<string>((): Iterable<string> => map<int32, string>((i_1: int32): string => item(i_1, v449), rangeDouble(0, 1, length(v449) - 1)))), v444, v445, v446, v447);
                 }
                 else {
@@ -2852,7 +2848,7 @@ ${replicate(v306 - 1, " ") + "^"}
             const v486: any = v479.fields[2];
             const v485: string = v479.fields[1];
             const v484: string = v479.fields[0];
-            const v490: int32 = method50(v485, 0) | 0;
+            const v490: int32 = method49(v485, 0) | 0;
             let v502: US8_$union;
             if (0 === v490) {
                 v502 = US8_US8_1("spaces1 / expected at least one space");
@@ -2868,25 +2864,25 @@ ${replicate(v306 - 1, " ") + "^"}
                 v2_1_mut = v502.fields[1];
                 v3_1_mut = v502.fields[2];
                 v4_mut = v502.fields[3];
-                continue method41;
+                continue method40;
             }
             else {
                 const v503: string = v502.fields[0];
-                return US15_US15_0(method47(v0, UH2_UH2_1(v484, UH2_UH2_0())), v485, v486, v487, v488);
+                return US15_US15_0(method46(v0, UH2_UH2_1(v484, UH2_UH2_0())), v485, v486, v487, v488);
             }
         }
         else {
             const v480: string = v479.fields[0];
-            return US15_US15_0(method47(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
+            return US15_US15_0(method46(v0, UH2_UH2_0()), v1, v2_1, v3_1, v4);
         }
         break;
     }
 }
 
-export function method40(v0: string): US14_$union {
+export function method39(v0: string): US14_$union {
     let _v0: Option<Option<string>> = undefined;
     _v0 = some(v0);
-    const v27: US15_$union = method41(UH2_UH2_0(), defaultArg((_v0 == null) ? (() => {
+    const v27: US15_$union = method40(UH2_UH2_0(), defaultArg((_v0 == null) ? (() => {
         throw new Error("optionm\'.of_obj / _v0=None");
     })() : value_12(_v0), ""), StringBuilder_$ctor_Z721C83C5(""), 1, 1);
     if (v27.tag === /* US15_0 */ 0) {
@@ -2894,7 +2890,7 @@ export function method40(v0: string): US14_$union {
         const v31: int32 = v27.fields[3] | 0;
         const v30: any = v27.fields[2];
         const v29: string = v27.fields[1];
-        return US14_US14_0(toArray<string>(method48(v27.fields[0], empty<string>())));
+        return US14_US14_0(toArray<string>(method47(v27.fields[0], empty<string>())));
     }
     else {
         return US14_US14_1(v27.fields[0]);
@@ -2902,7 +2898,7 @@ export function method40(v0: string): US14_$union {
 }
 
 export function closure29(unitVar: void, v0: string): FSharpResult$2_$union<string[], string> {
-    const v1: US14_$union = method40(v0);
+    const v1: US14_$union = method39(v0);
     if (v1.tag === /* US14_0 */ 0) {
         return FSharpResult$2_Ok<string[], string>(v1.fields[0]);
     }
