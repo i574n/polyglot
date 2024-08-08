@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>testing.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>spiral_wasm.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7531,7 +7531,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="rust/testing">rust/testing<a class="anchor-link" href="#rust/testing">¶</a></h1>
+<h1 id="spiral_wasm">spiral_wasm<a class="anchor-link" href="#spiral_wasm">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7549,19 +7549,14 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="nb">open</span> <span class="n">testing</span>
-</pre></div>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="spiral_wasm">spiral_wasm<a class="anchor-link" href="#spiral_wasm">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7572,7 +7567,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="run_tests'">run_tests'<a class="anchor-link" href="#run_tests'">¶</a></h3>
+<h3 id="main">main<a class="anchor-link" href="#main">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7584,20 +7579,91 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span><span class="s1">' tests =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; () //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-
-    <span class="n">inl</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">get_record_fields</span> <span class="n">tests</span>
-
-    <span class="n">fields</span>
-    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="o">=&gt;</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} /* /*"'</span><span class="o">)</span>
-        <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'$"*/ #[test] fn " + !name + "() { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-        <span class="n">fn</span> <span class="n">name</span>
-
-    <span class="n">fields</span>
-    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="n">fn</span> <span class="n">print_usd</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">near_workspaces</span><span class="p">::</span><span class="n">result</span><span class="p">::</span><span class="n">ExecutionFinalResult</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="o">//</span> <span class="n">const</span> <span class="n">GAS_PRICE_IN_NEAR</span><span class="p">:</span> <span class="n">f64</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
+<span class="o">//</span>     <span class="n">const</span> <span class="n">NEAR_PRICE_IN_USD</span><span class="p">:</span> <span class="n">f64</span> <span class="o">=</span> <span class="mf">6.68</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">fn</span> <span class="n">gas_to_usd</span><span class="p">(</span><span class="n">gas</span><span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">f64</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="p">(</span><span class="n">gas</span> <span class="k">as</span> <span class="n">f64</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e16</span> <span class="o">*</span> <span class="n">NEAR_PRICE_IN_USD</span>
+<span class="o">//</span>     <span class="p">}</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">fn</span> <span class="n">tokens_to_usd</span><span class="p">(</span><span class="n">tokens</span><span class="p">:</span> <span class="n">u128</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">f64</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="p">(</span><span class="n">tokens</span> <span class="k">as</span> <span class="n">f64</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e24</span> <span class="o">*</span> <span class="n">NEAR_PRICE_IN_USD</span>
+<span class="o">//</span>     <span class="p">}</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span>
+<span class="o">//</span>         <span class="s2">"gas_to_usd(result.total_gas_burnt.as_gas()): </span><span class="si">{:.6}</span><span class="s2"> ({:#?})"</span><span class="p">,</span>
+<span class="o">//</span>         <span class="n">gas_to_usd</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">total_gas_burnt</span><span class="o">.</span><span class="n">as_gas</span><span class="p">()),</span> <span class="n">result</span><span class="o">.</span><span class="n">total_gas_burnt</span><span class="o">.</span><span class="n">as_gas</span><span class="p">()</span>
+<span class="o">//</span>     <span class="p">);</span>
+<span class="o">//</span>     <span class="n">result</span><span class="o">.</span><span class="n">outcomes</span><span class="p">()</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span><span class="o">.</span><span class="n">for_each</span><span class="p">(</span><span class="o">|</span><span class="n">outcome</span><span class="o">|</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="n">println</span><span class="o">!(</span><span class="s2">"outcome (success: {:#?}):"</span>,<span class="w"> </span>outcome.is_success<span class="o">())</span><span class="p">;</span>
+<span class="o">//</span>         <span class="n">println</span><span class="o">!(</span>
+<span class="o">//</span>             <span class="s2">"  gas_to_usd(outcome.gas_burnt.as_gas()): </span><span class="si">{:.6}</span><span class="s2"> ({:#?})"</span><span class="p">,</span>
+<span class="o">//</span>             <span class="n">gas_to_usd</span><span class="p">(</span><span class="n">outcome</span><span class="o">.</span><span class="n">gas_burnt</span><span class="o">.</span><span class="n">as_gas</span><span class="p">()),</span> <span class="n">outcome</span><span class="o">.</span><span class="n">gas_burnt</span><span class="o">.</span><span class="n">as_gas</span><span class="p">()</span>
+<span class="o">//</span>         <span class="p">);</span>
+<span class="o">//</span>         <span class="n">println</span><span class="o">!(</span>
+<span class="o">//</span>             <span class="s2">"  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): </span><span class="si">{:.6}</span><span class="s2"> ({:#?})"</span><span class="p">,</span>
+<span class="o">//</span>             <span class="n">tokens_to_usd</span><span class="p">(</span><span class="n">outcome</span><span class="o">.</span><span class="n">tokens_burnt</span><span class="o">.</span><span class="n">as_yoctonear</span><span class="p">()),</span> <span class="n">outcome</span><span class="o">.</span><span class="n">tokens_burnt</span><span class="o">.</span><span class="n">as_yoctonear</span><span class="p">()</span>
+<span class="o">//</span>         <span class="p">);</span>
+<span class="o">//</span>     <span class="p">});</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="c1">#[tokio::main]</span>
+<span class="o">//</span> <span class="k">async</span> <span class="n">fn</span> <span class="n">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">anyhow</span><span class="p">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">let</span> <span class="n">wasm_path</span> <span class="o">=</span> <span class="n">std</span><span class="p">::</span><span class="n">env</span><span class="p">::</span><span class="n">var</span><span class="p">(</span><span class="s2">"WASM_PATH"</span><span class="p">)</span><span class="o">.</span><span class="n">unwrap</span><span class="p">();</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">worker</span> <span class="o">=</span> <span class="n">near_workspaces</span><span class="p">::</span><span class="n">sandbox</span><span class="p">()</span><span class="o">.</span><span class="k">await</span><span class="err">?</span><span class="p">;</span>
+<span class="o">//</span>     <span class="n">let</span> <span class="n">wasm</span> <span class="o">=</span> <span class="n">std</span><span class="p">::</span><span class="n">fs</span><span class="p">::</span><span class="n">read</span><span class="p">(</span><span class="n">wasm_path</span><span class="p">)</span><span class="err">?</span><span class="p">;</span>
+<span class="o">//</span>     <span class="n">let</span> <span class="n">contract</span> <span class="o">=</span> <span class="n">worker</span><span class="o">.</span><span class="n">dev_deploy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wasm</span><span class="p">)</span><span class="o">.</span><span class="k">await</span><span class="err">?</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"state_main"</span><span class="p">)</span><span class="o">.</span><span class="n">transact</span><span class="p">()</span><span class="o">.</span><span class="k">await</span><span class="err">?</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">logs</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">logs</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">logs</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span><span class="o">.</span><span class="n">for_each</span><span class="p">(</span><span class="o">|</span><span class="n">log</span><span class="o">|</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="n">println</span><span class="o">!(</span><span class="s2">"{}"</span>,<span class="w"> </span>log.trim<span class="o">())</span><span class="p">;</span>
+<span class="o">//</span>     <span class="p">});</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n state_main transact result: {result:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n print_usd:"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>     <span class="n">print_usd</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">());</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">result2</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">into_result</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n result.into_result(): {result2:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">receipt_failures</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">receipt_failures</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n receipt_failures: {receipt_failures:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">receipt_outcomes</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">receipt_outcomes</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n receipt_outcomes: {receipt_outcomes:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">json</span><span class="p">:</span> <span class="n">Result</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">near_workspaces</span><span class="p">::</span><span class="n">error</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n json: {json:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">let</span> <span class="n">borsh</span><span class="p">:</span> <span class="n">Result</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">near_workspaces</span><span class="p">::</span><span class="n">error</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">borsh</span><span class="p">();</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n borsh: {borsh:#?}"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n worker: {:#?}"</span>,<span class="w"> </span>worker<span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>     <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n contract: {:#?}"</span>,<span class="w"> </span>contract<span class="o">)</span><span class="p">;</span>
+<span class="o">//</span> 
+<span class="o">//</span>     <span class="k">if</span> <span class="n">receipt_failures</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="n">Ok</span><span class="p">(())</span>
+<span class="o">//</span>     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="o">//</span> <span class="n">let</span> <span class="n">err</span> <span class="o">=</span> <span class="n">receipt_failures</span>
+<span class="o">//</span>         <span class="o">//</span>     <span class="o">.</span><span class="n">iter</span><span class="p">()</span>
+<span class="o">//</span>         <span class="o">//</span>     <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">outcome</span><span class="o">|</span> <span class="p">{</span>
+<span class="o">//</span>         <span class="o">//</span>         <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">near_workspaces</span><span class="p">::</span><span class="n">result</span><span class="p">::</span><span class="n">ExecutionOutcome</span> <span class="k">as</span> <span class="n">Clone</span><span class="o">&gt;</span><span class="p">::</span><span class="n">clone</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
+<span class="o">//</span>         <span class="o">//</span>             <span class="o">.</span><span class="n">into_result</span><span class="p">();</span>
+<span class="o">//</span>         <span class="o">//</span>         <span class="nb">format</span><span class="o">!(</span><span class="s2">"outcome.into_result(): {:#?}"</span>,<span class="w"> </span>result<span class="o">)</span>
+<span class="o">//</span>         <span class="o">//</span>     <span class="p">})</span>
+<span class="o">//</span>         <span class="o">//</span>     <span class="o">.</span><span class="n">collect</span><span class="p">::</span><span class="o">&lt;</span><span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+<span class="o">//</span>         <span class="o">//</span> <span class="n">println</span><span class="o">!(</span><span class="s2">"\n\n err: {:#?}"</span>,<span class="w"> </span>err<span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>         <span class="o">//</span> <span class="n">let</span> <span class="n">err</span> <span class="o">=</span> <span class="nb">format</span><span class="o">!(</span><span class="s2">"{:#?}"</span>,<span class="w"> </span>err<span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>         <span class="o">//</span> <span class="n">let</span> <span class="n">err</span> <span class="o">=</span> <span class="n">anyhow</span><span class="p">::</span><span class="n">anyhow</span><span class="o">!(</span>err<span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>         <span class="n">let</span> <span class="n">err</span> <span class="o">=</span> <span class="n">anyhow</span><span class="p">::</span><span class="n">anyhow</span><span class="o">!(</span><span class="s2">"&lt;error&gt;"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">//</span>         <span class="n">Err</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="o">//</span>     <span class="p">}</span>
+<span class="o">//</span> <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7611,328 +7677,120 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">///!</span><span class="w"> </span>_
 
-<span class="n">inl</span> <span class="n">run</span> <span class="n">test</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span> <span class="s2">"TEST"</span> <span class="o">=</span> <span class="s2">"1"</span>
-    <span class="n">then</span> <span class="p">()</span>
-    <span class="k">else</span>
-        <span class="n">runtime</span><span class="o">.</span><span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
-            <span class="n">command</span> <span class="o">=</span> <span class="s2">"cargo test -- --show-output"</span>
-            <span class="n">working_directory</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">get_source_directory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Some</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
-            <span class="n">environment_variables</span> <span class="o">=</span> <span class="p">;[</span> <span class="s2">"TEST"</span><span class="p">,</span> <span class="s2">"1"</span> <span class="p">]</span>
-        <span class="p">}</span>
-        <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execute_with_options</span>
-        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=&gt;</span>
-            <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i32</span>
-            <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"test result: ok. 1 passed; 0 failed; 0 ignored;"</span>
+<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-    <span class="err">$</span><span class="s1">'let tests () = !test ()'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[near_sdk::near_bindgen] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[derive( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::PanicOnDefault, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  borsh::BorshDeserialize, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  borsh::BorshSerialize, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'")] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub struct State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[near_sdk::near_bindgen] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"impl State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[init] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn new() -&gt; Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn generate_cid_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"\\\"\\\".to_string() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn claim_alias( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;mut self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'") { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_account_info( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  account_id: near_sdk::AccountId, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, (u64, u32))&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[tokio::main] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"async fn main() -&gt; anyhow::Result&lt;()&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let wasm_path = std::env::var(\\\"WASM_PATH\\\").unwrap(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let worker = near_workspaces::sandbox().await?; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let wasm = std::fs::read(wasm_path)?; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let contract = worker.dev_deploy(&amp;wasm).await?; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let result = contract.call(\\\"state_main\\\").transact().await?; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let logs = result.logs(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  logs.iter().for_each(|log| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    println\!(\\\"{}\\\", log.trim()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n state_main transact result: {result:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n print_usd:\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  print_usd(result.clone()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let result2 = result.clone().into_result(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n result.into_result(): {result2:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let receipt_failures = result.receipt_failures(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n receipt_failures: {receipt_failures:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let receipt_outcomes = result.receipt_outcomes(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n receipt_outcomes: {receipt_outcomes:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let json: Result&lt;String, near_workspaces::error::Error&gt; = result.clone().json(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n json: {json:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let borsh: Result&lt;String, near_workspaces::error::Error&gt; = result.clone().borsh(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n borsh: {borsh:#?}\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n worker: {:#?}\\\", worker); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  println\!(\\\"\\\\n\\\\n contract: {:#?}\\\", contract); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if receipt_failures.len() == 0 { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Ok(()) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } else { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    let err = anyhow::anyhow\!(\\\"&lt;error&gt;\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Err(err) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn _main() { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!main |&gt; ignore'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">run_tests</span><span class="s1">' {</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">_assert_eq</span> <span class="s2">"a"</span>
-    <span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">run</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab",
-) } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab)
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 5.27s
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab-2ee024ee9591199e.exe)
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_a812fdf::Spiral_builder::a ... ok
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_a812fdf::Spiral_builder::a stdout ----
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_a812fdf::Spiral_builder::a
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 876 }
-__assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.27s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab-2ee024ee9591199e.exe)</span>
-
-running 1 test
-test module_a812fdf::Spiral_builder::a ... ok
-
-successes:
-
----- module_a812fdf::Spiral_builder::a stdout ----
-__assert_eq / actual: "a" / expected: "a"
-
-
-successes:
-    module_a812fdf::Spiral_builder::a
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-"
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="run_tests">run_tests<a class="anchor-link" href="#run_tests">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span> <span class="n">tests</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">inl</span> <span class="n">tests</span> <span class="o">=</span>
-            <span class="n">real_core</span><span class="o">.</span><span class="n">record_map</span>
-                <span class="n">fun</span> <span class="p">{</span> <span class="n">key</span> <span class="n">value</span> <span class="p">}</span> <span class="o">=&gt;</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">())</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()</span>
-                <span class="n">tests</span>
-        <span class="n">run_tests</span><span class="s1">' `(`tests) tests</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">run_tests</span> <span class="p">{</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"a"</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"a"</span>
-    <span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">run</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab",
-) } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #2 !     Blocking waiting for file lock on package cache
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 !     Blocking waiting for file lock on package cache
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 !     Blocking waiting for file lock on package cache
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 !     Blocking waiting for file lock on build directory
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #6 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 2.75s
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #7 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab-2ee024ee9591199e.exe)
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; running 1 test
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; test module_a812fdf::Spiral_builder::a ... ok
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #11 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; successes:
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; ---- module_a812fdf::Spiral_builder::a stdout ----
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; __assert_eq / actual: "a" / expected: "a"
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; successes:
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;     module_a812fdf::Spiral_builder::a
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #20 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #21 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #22 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #23 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 877 }
-__assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Blocking waiting for file lock on package cache</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Blocking waiting for file lock on package cache</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Blocking waiting for file lock on package cache</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Blocking waiting for file lock on build directory</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.75s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b8656138cbcbb00c5e5500711101bf1b8fb1e8d5f6328b70e3d590d6f598fbab-2ee024ee9591199e.exe)</span>
-
-running 1 test
-test module_a812fdf::Spiral_builder::a ... ok
-
-successes:
-
----- module_a812fdf::Spiral_builder::a stdout ----
-__assert_eq / actual: "a" / expected: "a"
-
-
-successes:
-    module_a812fdf::Spiral_builder::a
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-"
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="run_tests_log">run_tests_log<a class="anchor-link" href="#run_tests_log">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests_log</span> <span class="n">tests</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">inl</span> <span class="n">tests</span> <span class="o">=</span>
-            <span class="n">real_core</span><span class="o">.</span><span class="n">record_map</span>
-                <span class="n">fun</span> <span class="p">{</span> <span class="n">key</span> <span class="n">value</span> <span class="p">}</span> <span class="o">=&gt;</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="n">false</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
-                <span class="n">tests</span>
-        <span class="n">run_tests</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">tests</span><span class="p">)</span> <span class="n">tests</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">run_tests_log</span> <span class="p">{</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">_assert_eq</span> <span class="n">false</span>
-    <span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">run</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc",
-) } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc)
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 5.94s
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc-e53a322d65cbb81b.exe)
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_5757f707::Spiral_builder::a ... ok
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_5757f707::Spiral_builder::a stdout ----
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; __assert_eq / actual: false / expected: false
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_5757f707::Spiral_builder::a
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 883 }
-__assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.94s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_e26d4e2e5bfdeb4d99d327c1eda495be5b6a7cbaa6321e4add1da14f55aa32cc-e53a322d65cbb81b.exe)</span>
-
-running 1 test
-test module_5757f707::Spiral_builder::a ... ok
-
-successes:
-
----- module_5757f707::Spiral_builder::a stdout ----
-__assert_eq / actual: false / expected: false
-
-
-successes:
-    module_5757f707::Spiral_builder::a
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-"
-</pre>
 </div>
 </div>
 </div>

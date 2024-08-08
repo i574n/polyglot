@@ -95,8 +95,8 @@ inl new () : state =
 ///! rust -c
 
 inl state = new () |> sm'.format
-trace Verbose (fun () => "trace 1\ntrace 2") fun () => { trace1 = 1i32; trace2 = "2" }
-trace Verbose (fun () => "trace 1\ntrace 2") fun () => { state }
+trace Verbose (fun () => "trace") fun () => { trace1 = 1i32; trace2 = "2" }
+trace Verbose (fun () => "trace") fun () => { state }
 
 #!markdown
 
@@ -114,10 +114,6 @@ trace Verbose (fun () => "trace 1\ntrace 2") fun () => { state }
 //     && alias |> sm'.chars |>
 
 inl main () =
-    inl value = new ()
-    inl value = value |> sm'.format_pretty'
-    console.write_line ($'$"value: {!value}"' : string)
-
     !\($'"} //"') : ()
 
     !\($'"#[near_sdk::near_bindgen] //"') : ()

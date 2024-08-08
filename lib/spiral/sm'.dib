@@ -20,6 +20,50 @@ open real_sm'
 
 #!markdown
 
+## rust
+
+#!markdown
+
+### std_string
+
+#!spiral
+
+//// real
+
+nominal std_string =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_string_String'
+    )
+
+#!spiral
+
+type std_string = real_sm'.std_string
+
+#!markdown
+
+### from_std_string
+
+#!spiral
+
+//// real
+
+inl from_std_string (str : std_string) : string =
+    open rust
+    rust.emit_expr `std_string `string str ($'"fable_library_rust::String_::fromString($0)"' : string)
+
+#!spiral
+
+inl from_std_string (str : std_string) : string =
+    real real_sm'.from_std_string str
+
+#!markdown
+
 ## sm'
 
 #!markdown
@@ -161,6 +205,27 @@ inl format_debug forall t. (x : t) : string =
 
 #!markdown
 
+### format_pretty
+
+#!spiral
+
+//// real
+
+inl format_pretty forall t. (x : t) : string =
+    run_target_args `string `t (fun () => x) function
+        | Rust _ => fun x =>
+            open rust
+            inl result = rust.emit_expr `t `std_string x ($'"format\!(\\\"{:#?}\\\", $0)"' : string)
+            from_std_string result
+        | _ => fun _ => format_debug `t x
+
+#!spiral
+
+inl format_pretty forall t. (x : t) : string =
+    real real_sm'.format_pretty `t x
+
+#!markdown
+
 ### prim
 
 #!spiral
@@ -192,63 +257,63 @@ prototype printable t : t -> ()
 //// real
 
 inl real_format forall t. (x : t) : string =
-    inl result = mut `string ""
-    real
-        let rec write x =
-            inl p ((a : string), b) =
-                inl s : string =
-                    backend_switch `string `({}) {
-                        Fsharp =
-                            (fun () =>
-                                match b with
-                                | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
-                                | _ => $'$"{!b}"' : string
-                            ) : () -> string
-                        Python =
-                            (fun () =>
-                                match b with
-                                | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
-                                | _ => $'f"{!b}"' : string
-                            ) : () -> string
-                    }
-                result <- (+.) `string ((~*) `string result) s
+    inl result = mut `string (join "")
+    inl rec write x =
+        inl p ((a : string), b) =
+            inl s : string =
+                backend_switch `string `({}) {
+                    Fsharp =
+                        (fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
+                            | _ => $'$"{!b}"' : string
+                        ) : () -> string
+                    Python =
+                        (fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
+                            | _ => $'f"{!b}"' : string
+                        ) : () -> string
+                }
+            result <- (+.) `string ((~*) `string result) s
 
-            match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
-            | () => ()
-            | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
-            | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
-            | (x : f32) | (x : f64) => p ("%f", x)
-            | (x : string) => p ("%s", x)
-            | (x : char) => p ("%c", x)
-            | (x : bool) => p ("%s", if x then "true" else "false")
-            | (a,b) => write a . write ", " . write b
-            | {} as x =>
-                write "{ "
-                inl _result =
-                    real_core.record_fold
-                        fun { state = separator key value } =>
-                            write separator
-                            write (symbol_to_string `(`key)) . write " = " . write value
-                            "; "
-                        () x
-                write " }"
-            | x when real_core.symbol_is x => write (symbol_to_string `(`x))
-            | x when real_core.function_is x => write (x ())
-            | x =>
-                if real_core.union_is x then
-                    if real_core.prototype_has `(`x) printable then printable `(`x) x
-                    else
-                        write (format_debug `(`x) x)
-                        // real_core.unbox x (fun (k, v) =>
-                        //     write k
-                        //     match v with
-                        //     | () => ()
-                        //     | _ => write "(" . write v . write ")"
-                        //     )
-                elif real_core.nominal_is x && real_core.prototype_has `(`x) printable then printable `(`x) x
-                // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
-                else write (format_debug `(`x) x)
-        write x
+        match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
+        | () => ()
+        | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
+        | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
+        | (x : f32) | (x : f64) => p ("%f", x)
+        | (x : string) => p ("%s", x)
+        | (x : char) => p ("%c", x)
+        | (x : bool) => p ("%s", if x then "true" else "false")
+        | (a,b) => write a . write ", " . write b
+        | {} as x =>
+            write "{ "
+            inl _result =
+                real_core.record_fold
+                    fun { state = separator key value } =>
+                        write separator
+                        write (symbol_to_string `(`key)) . write " = " . write value
+                        "; "
+                    () x
+            write " }"
+        | x when real_core.symbol_is x => write (symbol_to_string `(`x))
+        | x when real_core.function_is x => write (x ())
+        | x when real_core.union_is x =>
+            if real_core.prototype_has `(`x) printable then printable `(`x) x
+            else
+                write (format_debug `(`x) x)
+                // real_core.unbox x (fun (k, v) =>
+                //     write k
+                //     match v with
+                //     | () => ()
+                //     | _ => write "(" . write v . write ")"
+                //     )
+        | x when real_core.nominal_is x =>
+            if real_core.prototype_has `(`x) printable then printable `(`x) x
+            // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
+            else write (format_pretty `(`x) x)
+        | x => write (format_debug `(`x) x)
+    write x
     (~*) `string result
 
 #!markdown
@@ -333,7 +398,6 @@ inl concat_list_trailing separator input =
 
 inl concat_list_heap_trailing separator input =
     inl separator = join separator
-    inl separator = separator
     ("", input)
     ||> listm.fold fun acc (x : string) =>
         $'$"{!acc}{!x}{!separator}"'
@@ -670,9 +734,9 @@ inl split (separator : string) (str : string) : array_base string =
 #!spiral
 
 inl split_string (separator : array_base string) (str : string) : array_base string =
-    run_target function
-        | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
-        | _ => fun () => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
+    run_target_args (fun () => str, separator) function
+        | Fsharp (Native) => fun str, separator => $'!str.Split (!separator, System.StringSplitOptions.None)'
+        | _ => fun str, separator => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
 
 #!markdown
 
@@ -868,23 +932,6 @@ nominal os_string =
 
 #!markdown
 
-### std_string
-
-#!spiral
-
-nominal std_string =
-    `(
-        backend_switch `(()) `({}) {
-            Fsharp =
-                (fun () =>
-                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
-                ) : () -> ()
-        }
-        $'' : $'std_string_String'
-    )
-
-#!markdown
-
 ### raw_string_literal
 
 #!spiral
@@ -937,15 +984,6 @@ inl include_str (path : string) : rust.ref str =
 inl as_str (s : string) : rust.ref str =
     // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
     !\\(s, $'"&*$0"')
-
-#!markdown
-
-### from_std_string
-
-#!spiral
-
-inl from_std_string (str : std_string) : string =
-    !\\(str, $'"fable_library_rust::String_::fromString($0)"')
 
 #!markdown
 
@@ -1039,22 +1077,10 @@ inl from_os_str_ref s =
 
 #!spiral
 
-inl format_custom' (format : string) x : std_string =
+inl format_custom' (f : string) x : std_string =
     run_target function
         | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"" + !format + "\\\", $0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-### format'
-
-#!spiral
-
-inl format' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
+            !\\(x, $'"format\!(\\\"" + !f + "\\\", $0)"')
         | _ => fun () => null ()
 
 #!markdown
@@ -1071,15 +1097,15 @@ inl format_debug' x : std_string =
 
 #!markdown
 
-### format_pretty'
+### format'
 
 #!spiral
 
-inl format_pretty' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{:#?}\\\", $0)"')
-        | _ => fun () => null ()
+inl format' x : std_string =
+    run_target_args (fun () => x) function
+        | Rust _ => fun x =>
+            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -1263,15 +1289,13 @@ inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string 
 #!spiral
 
 inl replace_regex' (pattern : string) (replacement : a i32 string) (s : string) : string =
-    run_target function
-        | Rust (Native) => fun () =>
-            inl s = join s
-            inl replacement = join replacement
+    run_target_args (fun () => s, pattern, replacement) function
+        | Rust (Native) => fun s, pattern, replacement =>
             inl regex = pattern |> new_regex |> resultm.unwrap'
             !\\((regex, #s, replacement), $'$"$0.replace_all($1, &*$2)"')
             |> cow_to_std_string
             |> from_std_string
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -1653,30 +1677,21 @@ inl format_ellipsis s =
 #!spiral
 
 inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
-    inl replacement = join replacement
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl pattern = join pattern
+    run_target_args (fun () => s, pattern, replacement) function
+        | Fsharp (Native) => fun s, pattern, replacement =>
             $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'
-        | Rust (Native) => fun () =>
-            inl s = join s
+        | Rust (Native) => fun s, pattern, replacement =>
             inl regex = pattern |> new_regex |> resultm.unwrap'
-            !\\((regex, s, replacement), $'$"$0.replace_all(&$1, &*$2)"')
+            inl s = join s
+            !\\((regex, s, replacement), $'$"$0.replace_all(&*$1, &*$2)"')
             |> cow_to_std_string
             |> from_std_string
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!spiral
 
 //// test
-
-" 123"
-|> replace_regex "\\s\\w2" ""
-|> _assert_eq "3"
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d regex
 
 " 123"

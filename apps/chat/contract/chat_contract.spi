@@ -53,10 +53,6 @@ inl new () : state =
 //     && alias |> sm'.chars |>
 
 inl main () =
-    inl value = new ()
-    inl value = value |> sm'.format_pretty'
-    console.write_line ($'$"value: {!value}"' : string)
-
     !\($'"} //"') : ()
 
     !\($'"#[near_sdk::near_bindgen] //"') : ()

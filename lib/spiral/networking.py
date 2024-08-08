@@ -5,16 +5,11 @@ from dataclasses import dataclass
 import os
 from typing import (Any, Protocol)
 from fable_modules.fable_library.async_builder import Async
-from fable_modules.fable_library.date import (ticks as ticks_1, now, to_string, create as create_1)
-from fable_modules.fable_library.list import (to_array, empty, of_array)
-from fable_modules.fable_library.long import (op_subtraction, op_addition)
-from fable_modules.fable_library.map import (find, of_seq)
+from fable_modules.fable_library.date import (ticks, now)
 from fable_modules.fable_library.option import (some, value as value_1, default_arg)
 from fable_modules.fable_library.reflection import (TypeInfo, union_type, int64_type, record_type, string_type, unit_type, lambda_type, bool_type, class_type, int32_type)
-from fable_modules.fable_library.string_ import (pad_left, trim_end, trim_start, to_text, interpolate)
-from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
 from fable_modules.fable_library.types import (int64, Array, Union, Record, FSharpRef)
-from fable_modules.fable_library.util import (create_atom, to_enumerable, compare)
+from fable_modules.fable_library.util import create_atom
 
 State_trace_state: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] | None = create_atom(None)
 
@@ -24,7 +19,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr122() -> TypeInfo:
+def _expr115() -> TypeInfo:
     return union_type("Networking.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -40,9 +35,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr122
+US0_reflection = _expr115
 
-def _expr123() -> TypeInfo:
+def _expr116() -> TypeInfo:
     return record_type("Networking.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -50,9 +45,9 @@ def _expr123() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr123
+Mut0_reflection = _expr116
 
-def _expr124() -> TypeInfo:
+def _expr117() -> TypeInfo:
     return record_type("Networking.Mut1", [], Mut1, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -60,9 +55,9 @@ def _expr124() -> TypeInfo:
 class Mut1(Record):
     l0: Callable[[str], None]
 
-Mut1_reflection = _expr124
+Mut1_reflection = _expr117
 
-def _expr125() -> TypeInfo:
+def _expr118() -> TypeInfo:
     return record_type("Networking.Mut2", [], Mut2, lambda: [("l0", bool_type)])
 
 
@@ -70,9 +65,9 @@ def _expr125() -> TypeInfo:
 class Mut2(Record):
     l0: bool
 
-Mut2_reflection = _expr125
+Mut2_reflection = _expr118
 
-def _expr126() -> TypeInfo:
+def _expr119() -> TypeInfo:
     return record_type("Networking.Mut3", [], Mut3, lambda: [("l0", US0_reflection())])
 
 
@@ -80,10 +75,10 @@ def _expr126() -> TypeInfo:
 class Mut3(Record):
     l0: US0
 
-Mut3_reflection = _expr126
+Mut3_reflection = _expr119
 
-def _expr127() -> TypeInfo:
-    return union_type("Networking.US1", [], US1, lambda: [[("f0_0", US0_reflection())], []])
+def _expr120() -> TypeInfo:
+    return union_type("Networking.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
 class US1(Union):
@@ -98,10 +93,10 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr127
+US1_reflection = _expr120
 
-def _expr128() -> TypeInfo:
-    return union_type("Networking.US2", [], US2, lambda: [[("f0_0", int64_type)], []])
+def _expr121() -> TypeInfo:
+    return union_type("Networking.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
 class US2(Union):
@@ -116,10 +111,10 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr128
+US2_reflection = _expr121
 
-def _expr129() -> TypeInfo:
-    return union_type("Networking.US3", [], US3, lambda: [[("f0_0", string_type)], []])
+def _expr122() -> TypeInfo:
+    return union_type("Networking.US3", [], US3, lambda: [[("f0_0", int64_type)], []])
 
 
 class US3(Union):
@@ -134,9 +129,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr129
+US3_reflection = _expr122
 
-def _expr130() -> TypeInfo:
+def _expr123() -> TypeInfo:
     return record_type("Networking.Mut4", [], Mut4, lambda: [("l0", string_type)])
 
 
@@ -144,9 +139,9 @@ def _expr130() -> TypeInfo:
 class Mut4(Record):
     l0: str
 
-Mut4_reflection = _expr130
+Mut4_reflection = _expr123
 
-def _expr131() -> TypeInfo:
+def _expr124() -> TypeInfo:
     return union_type("Networking.US4", [], US4, lambda: [[("f0_0", bool_type)], []])
 
 
@@ -162,9 +157,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr131
+US4_reflection = _expr124
 
-def _expr132() -> TypeInfo:
+def _expr125() -> TypeInfo:
     return union_type("Networking.US5", [], US5, lambda: [[("f0_0", bool_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -180,9 +175,9 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr132
+US5_reflection = _expr125
 
-def _expr133() -> TypeInfo:
+def _expr126() -> TypeInfo:
     return union_type("Networking.US6", [], US6, lambda: [[("f0_0", bool_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -198,9 +193,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr133
+US6_reflection = _expr126
 
-def _expr134() -> TypeInfo:
+def _expr127() -> TypeInfo:
     return union_type("Networking.US7", [], US7, lambda: [[("f0_0", int32_type)], []])
 
 
@@ -216,111 +211,91 @@ class US7(Union):
         return ["US7_0", "US7_1"]
 
 
-US7_reflection = _expr134
+US7_reflection = _expr127
 
-def method0(__unit: None=None) -> str:
+def method1(__unit: None=None) -> str:
     return "TRACE_LEVEL"
 
 
-def method2(__unit: None=None) -> str:
+def method3(__unit: None=None) -> str:
     return ""
 
 
-def method1(v0: str) -> str:
-    _v3: str | None = None
-    v54: IOsEnviron = os
-    v56: Any = v54.environ
-    _v66: (str | None) | None = None
-    x: str | None = v56.get(v0)
-    _v66 = some(x)
-    v77: str | None
-    if _v66 is None:
-        raise Exception("optionm\'.of_obj / _v66=None")
+def method2(v0_1: str) -> str:
+    v50: IOsEnviron = os
+    v52: Any = v50.environ
+    _v56: (str | None) | None = None
+    x: str | None = v52.get(v0_1)
+    _v56 = some(x)
+    v61: str | None
+    if _v56 is None:
+        raise Exception("optionm\'.of_obj / _v56=None")
 
     else: 
-        v77 = value_1(_v66)
+        v61 = value_1(_v56)
 
-    _v86: FSharpRef[US3 | None] = FSharpRef(None)
-    x_4: US3 | None
-    if v77 is None:
+    _v64: FSharpRef[US1 | None] = FSharpRef(None)
+    x_4: US1 | None
+    if v61 is None:
         x_4 = None
 
     else: 
-        x_2: str = v77
-        def x_3(__unit: None=None, v0: Any=v0) -> US3:
-            return US3(0, x_2)
+        x_2: str = v61
+        def x_3(__unit: None=None, v0_1: Any=v0_1) -> US1:
+            return US1(0, x_2)
 
         x_4 = x_3(None)
 
-    _v86.contents = x_4
-    v113: US3 = default_arg(_v86.contents, US3(1))
-    x_5: str = v113.fields[0] if (v113.tag == 0) else ""
-    _v3 = x_5
-    if _v3 is None:
-        raise Exception("base.run_target / _v3=None")
+    _v64.contents = x_4
+    v79: US1 = default_arg(_v64.contents, US1(1))
+    if v79.tag == 0:
+        return v79.fields[0]
 
     else: 
-        return _v3
+        return ""
 
 
 
-def method3(__unit: None=None) -> str:
+def method4(__unit: None=None) -> str:
     return "AUTOMATION"
 
 
-def closure1(unit_var: None, v0: str) -> None:
+def closure0(unit_var: None, v0_1: str) -> None:
     pass
 
 
-def closure0(unit_var: None, v0: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
-    _v3: tuple[US1, US2] | None = None
-    v246: str = method1(method0())
-    v252: US1 = US1(0, US0(0)) if ("Verbose" == v246) else US1(1)
-    def _arrow135(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> US1:
-        v260: US1 = US1(0, US0(1)) if ("Debug" == v246) else US1(1)
-        if v260.tag == 0:
-            return US1(0, v260.fields[0])
+def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
+    v173: str = method2(method1())
+    v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
+    def _arrow128(__unit: None=None, v0_1: Any=v0_1) -> US2:
+        v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
+        if v185.tag == 0:
+            return US2(0, v185.fields[0])
 
         else: 
-            v268: US1 = US1(0, US0(2)) if ("Info" == v246) else US1(1)
-            if v268.tag == 0:
-                return US1(0, v268.fields[0])
+            v192: US2 = US2(0, US0(2)) if ("Info" == v173) else US2(1)
+            if v192.tag == 0:
+                return US2(0, v192.fields[0])
 
             else: 
-                v276: US1 = US1(0, US0(3)) if ("Warning" == v246) else US1(1)
-                if v276.tag == 0:
-                    return US1(0, v276.fields[0])
+                v199: US2 = US2(0, US0(3)) if ("Warning" == v173) else US2(1)
+                if v199.tag == 0:
+                    return US2(0, v199.fields[0])
 
                 else: 
-                    v284: US1 = US1(0, US0(4)) if ("Critical" == v246) else US1(1)
-                    return US1(0, v284.fields[0]) if (v284.tag == 0) else US1(1)
+                    v206: US2 = US2(0, US0(4)) if ("Critical" == v173) else US2(1)
+                    return US2(0, v206.fields[0]) if (v206.tag == 0) else US2(1)
 
 
 
 
-    x: tuple[US1, US2] = (US1(0, v252.fields[0]) if (v252.tag == 0) else _arrow135(), US2(0, ticks_1(now())) if (method1(method3()) == "True") else US2(1))
-    _v3 = x
-    pattern_input: tuple[US1, US2]
-    if _v3 is None:
-        raise Exception("base.run_target / _v3=None")
+    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow128(), US3(0, ticks(now())) if (method2(method4()) == "True") else US3(1))
+    v295: US3 = _v1[1]
+    v294: US2 = _v1[0]
+    def v365(v: str, v0_1: Any=v0_1) -> None:
+        closure0(None, v)
 
-    else: 
-        pattern_input = _v3
-
-    v402: US2 = pattern_input[1]
-    v401: US1 = pattern_input[0]
-    def v493(v: str, unit_var: Any=unit_var, v0: Any=v0) -> None:
-        closure1(None, v)
-
-    return (Mut0(int64(0)), Mut1(v493), Mut2(True), Mut3(v401.fields[0] if (v401.tag == 0) else v0), v402.fields[0] if (v402.tag == 0) else None)
-
-
-def closure4(unit_var: None, unit_var_1: None) -> str:
-    return "networking.test_port_open"
-
-
-def closure5(v0: int, v1: str, unit_var: None) -> tuple[int, str]:
-    return (v0, v1)
+    return (Mut0(int64(0)), Mut1(v365), Mut2(True), Mut3(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
 
 
 def method5(__unit: None=None) -> str:
@@ -335,703 +310,159 @@ def method7(__unit: None=None) -> str:
     return "\u001b[0m"
 
 
-def method9(v0: Mut4, v1: str) -> None:
-    v12_1: str = v0.l0 + (("" + v1) + "")
-    v0.l0 = v12_1
+def method8(__unit: None=None) -> str:
+    return ""
 
 
-def method10(v0: Mut4) -> None:
-    pass
+def closure3(unit_var: None, unit_var_1: None) -> str:
+    return "networking.test_port_open"
 
 
-def method11(v0: Mut4, v1: int) -> None:
-    v12_1: str = v0.l0 + (("" + str(v1)) + "")
-    v0.l0 = v12_1
+def closure2(v0_1: str, v1: int) -> Async[bool]:
+    return None
 
 
-def method8(v0: Mut4, v1: int, v2_1: str) -> None:
-    method9(v0, "{ ")
-    method10(v0)
-    method9(v0, "port")
-    method9(v0, " = ")
-    method11(v0, v1)
-    method9(v0, "; ")
-    method9(v0, "ex")
-    method9(v0, " = ")
-    method9(v0, v2_1)
-    method9(v0, " }")
+def closure1(unit_var: None, v0_1: str) -> Callable[[int], Async[bool]]:
+    def _arrow129(v: int, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[bool]:
+        return closure2(v0_1, v)
+
+    return _arrow129
 
 
-def closure6(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]], unit_var: None) -> str:
-    if State_trace_state() is None:
-        State_trace_state(closure0(None, US0(0)))
-
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v18: int64 | None = pattern_input[4]
-    _v35: str | None = None
-    _v534: FSharpRef[US2 | None] = FSharpRef(None)
-    x_2: US2 | None
-    if v18 is None:
-        x_2 = None
-
-    else: 
-        x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
-            return US2(0, x)
-
-        x_2 = x_1(None)
-
-    _v534.contents = x_2
-    v561: US2 = default_arg(_v534.contents, US2(1))
-    def _arrow136(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
-        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
-
-    x_3: str = to_string(_arrow136() if (v561.tag == 0) else now(), method6())
-    _v35 = x_3
-    v826: str
-    if _v35 is None:
-        raise Exception("base.run_target / _v35=None")
-
-    else: 
-        v826 = _v35
-
-    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v1034: US3
-    if v985.tag == 0:
-        v1034 = US3(0, v985.fields[0])
-
-    else: 
-        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v994.tag == 0:
-            v1034 = US3(0, v994.fields[0])
-
-        else: 
-            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v1003.tag == 0:
-                v1034 = US3(0, v1003.fields[0])
-
-            else: 
-                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v1012.tag == 0:
-                    v1034 = US3(0, v1012.fields[0])
-
-                else: 
-                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
+def closure7(unit_var: None, v0_1: bool) -> US5:
+    return US5(0, v0_1)
 
 
+def closure8(unit_var: None, v0_1: Exception) -> US5:
+    return US5(1, v0_1)
 
 
-    v1038: str
-    if v1034.tag == 0:
-        v1038 = v1034.fields[0]
-
-    else: 
-        raise Exception("Option does not have a value.")
-
-    v1051: str = pad_left(v1038.lower(), 7, " ")
-    _v1083: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method7()
-    _v1083 = x_5
-    v1195: str
-    if _v1083 is None:
-        raise Exception("base.run_target / _v1083=None")
-
-    else: 
-        v1195 = _v1083
-
-    v1214: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, str] = v2_1(None)
-    v1218: Mut4 = Mut4("")
-    method8(v1218, pattern_input_1[0], pattern_input_1[1])
-    v1219: str = v1218.l0
-    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-
-
-def method12(v0: US0, v1: Callable[[], str]) -> None:
-    def v4(v: US0, v0: Any=v0, v1: Any=v1) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
-        return closure0(None, v)
-
-    if State_trace_state() is None:
-        State_trace_state(v4(US0(0)))
-
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v13: Mut0 = pattern_input[0]
-    if State_trace_state() is None:
-        State_trace_state(v4(US0(0)))
-
-    pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v61: US0 = pattern_input_1[3].l0
-    class ObjectExpr137:
-        @property
-        def Compare(self) -> Callable[[US0, US0], int]:
-            return compare
-
-    class ObjectExpr138:
-        @property
-        def Compare(self) -> Callable[[US0, US0], int]:
-            return compare
-
-    if False if (pattern_input_1[2].l0 == False) else (find(v0, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr137())) >= find(v61, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr138()))):
-        v69: int64 = op_addition(v13.l0, int64(1))
-        v13.l0 = v69
-        v72: str = ("" + v1(None)) + ""
-        _v81: None | None = None
-        print(v72)
-        _v81 = some(None)
-        if _v81 is None:
-            raise Exception("base.run_target / _v81=None")
-
-        else: 
-            value_1(_v81)
-
-        pattern_input[1].l0(v72)
-
-
-
-def method4(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
-    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
-        return closure6(v0, v1, v2_1, None)
-
-    method12(v0, v3_1)
-
-
-def closure3(v0: str, v1: int) -> Async[bool]:
-    _v4: Async[bool] | None = None
-    _v4 = None
-    if _v4 is None:
-        raise Exception("base.run_target / _v4=None")
-
-    else: 
-        return _v4
-
-
-
-def closure2(unit_var: None, v0: str) -> Callable[[int], Async[bool]]:
-    def _arrow139(v: int, unit_var: Any=unit_var, v0: Any=v0) -> Async[bool]:
-        return closure3(v0, v)
-
-    return _arrow139
-
-
-def closure10(unit_var: None, v0: bool) -> US5:
-    return US5(0, v0)
-
-
-def closure11(unit_var: None, v0: Exception) -> US5:
-    return US5(1, v0)
-
-
-def closure12(unit_var: None, unit_var_1: None) -> str:
+def closure9(unit_var: None, unit_var_1: None) -> str:
     return "async.run_with_timeout_async"
 
 
-def closure13(v0: int, unit_var: None) -> int:
-    return v0
-
-
-def method14(v0: Mut4, v1: int) -> None:
-    method9(v0, "{ ")
-    method10(v0)
-    method9(v0, "timeout")
-    method9(v0, " = ")
-    method11(v0, v1)
-    method9(v0, " }")
-
-
-def closure14(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int], unit_var: None) -> str:
-    if State_trace_state() is None:
-        State_trace_state(closure0(None, US0(0)))
-
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v18: int64 | None = pattern_input[4]
-    _v35: str | None = None
-    _v534: FSharpRef[US2 | None] = FSharpRef(None)
-    x_2: US2 | None
-    if v18 is None:
-        x_2 = None
-
-    else: 
-        x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
-            return US2(0, x)
-
-        x_2 = x_1(None)
-
-    _v534.contents = x_2
-    v561: US2 = default_arg(_v534.contents, US2(1))
-    def _arrow140(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
-        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
-
-    x_3: str = to_string(_arrow140() if (v561.tag == 0) else now(), method6())
-    _v35 = x_3
-    v826: str
-    if _v35 is None:
-        raise Exception("base.run_target / _v35=None")
-
-    else: 
-        v826 = _v35
-
-    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v1034: US3
-    if v985.tag == 0:
-        v1034 = US3(0, v985.fields[0])
-
-    else: 
-        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v994.tag == 0:
-            v1034 = US3(0, v994.fields[0])
-
-        else: 
-            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v1003.tag == 0:
-                v1034 = US3(0, v1003.fields[0])
-
-            else: 
-                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v1012.tag == 0:
-                    v1034 = US3(0, v1012.fields[0])
-
-                else: 
-                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
-
-
-
-
-    v1038: str
-    if v1034.tag == 0:
-        v1038 = v1034.fields[0]
-
-    else: 
-        raise Exception("Option does not have a value.")
-
-    v1051: str = pad_left(v1038.lower(), 7, " ")
-    _v1083: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method7()
-    _v1083 = x_5
-    v1195: str
-    if _v1083 is None:
-        raise Exception("base.run_target / _v1083=None")
-
-    else: 
-        v1195 = _v1083
-
-    v1214: int64 = pattern_input[0].l0
-    v1217: Mut4 = Mut4("")
-    method14(v1217, v2_1(None))
-    v1218: str = v1217.l0
-    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1218) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-
-
-def method13(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int]) -> None:
-    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
-        return closure14(v0, v1, v2_1, None)
-
-    method12(v0, v3_1)
-
-
-def closure15(unit_var: None, unit_var_1: None) -> str:
+def closure10(unit_var: None, unit_var_1: None) -> str:
     return "async.run_with_timeout_async**"
 
 
-def closure16(v0: int, v1: Exception, unit_var: None) -> tuple[int, str]:
-    _v4: str | None = None
-    x: str = to_text(interpolate("%A%P()", [v1]))
-    _v4 = x
-    def _arrow141(__unit: None=None, v0: Any=v0, v1: Any=v1, unit_var: Any=unit_var) -> str:
-        raise Exception("base.run_target / _v4=None")
-
-    return (v0, _arrow141() if (_v4 is None) else _v4)
+def closure6(v0_1: int, v1: str, v2: int) -> Async[bool]:
+    return None
 
 
-def method16(v0: Mut4, v1: int, v2_1: str) -> None:
-    method9(v0, "{ ")
-    method10(v0)
-    method9(v0, "timeout")
-    method9(v0, " = ")
-    method11(v0, v1)
-    method9(v0, "; ")
-    method9(v0, "ex")
-    method9(v0, " = ")
-    method9(v0, v2_1)
-    method9(v0, " }")
+def closure5(v0_1: int, v1: str) -> Callable[[int], Async[bool]]:
+    def _arrow130(v: int, v0_1: Any=v0_1, v1: Any=v1) -> Async[bool]:
+        return closure6(v0_1, v1, v)
+
+    return _arrow130
 
 
-def closure17(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]], unit_var: None) -> str:
-    if State_trace_state() is None:
-        State_trace_state(closure0(None, US0(0)))
+def closure4(unit_var: None, v0_1: int) -> Callable[[str, int], Async[bool]]:
+    def _arrow131(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[int], Async[bool]]:
+        return closure5(v0_1, v)
 
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v18: int64 | None = pattern_input[4]
-    _v35: str | None = None
-    _v534: FSharpRef[US2 | None] = FSharpRef(None)
-    x_2: US2 | None
-    if v18 is None:
-        x_2 = None
-
-    else: 
-        x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
-            return US2(0, x)
-
-        x_2 = x_1(None)
-
-    _v534.contents = x_2
-    v561: US2 = default_arg(_v534.contents, US2(1))
-    def _arrow142(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
-        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
-
-    x_3: str = to_string(_arrow142() if (v561.tag == 0) else now(), method6())
-    _v35 = x_3
-    v826: str
-    if _v35 is None:
-        raise Exception("base.run_target / _v35=None")
-
-    else: 
-        v826 = _v35
-
-    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v1034: US3
-    if v985.tag == 0:
-        v1034 = US3(0, v985.fields[0])
-
-    else: 
-        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v994.tag == 0:
-            v1034 = US3(0, v994.fields[0])
-
-        else: 
-            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v1003.tag == 0:
-                v1034 = US3(0, v1003.fields[0])
-
-            else: 
-                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v1012.tag == 0:
-                    v1034 = US3(0, v1012.fields[0])
-
-                else: 
-                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
+    return _arrow131
 
 
-
-
-    v1038: str
-    if v1034.tag == 0:
-        v1038 = v1034.fields[0]
-
-    else: 
-        raise Exception("Option does not have a value.")
-
-    v1051: str = pad_left(v1038.lower(), 7, " ")
-    _v1083: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method7()
-    _v1083 = x_5
-    v1195: str
-    if _v1083 is None:
-        raise Exception("base.run_target / _v1083=None")
-
-    else: 
-        v1195 = _v1083
-
-    v1214: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, str] = v2_1(None)
-    v1218: Mut4 = Mut4("")
-    method16(v1218, pattern_input_1[0], pattern_input_1[1])
-    v1219: str = v1218.l0
-    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1219) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-
-
-def method15(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
-    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
-        return closure17(v0, v1, v2_1, None)
-
-    method12(v0, v3_1)
-
-
-def closure9(v0: int, v1: str, v2_1: int) -> Async[bool]:
-    _v5: Async[bool] | None = None
-    _v5 = None
-    if _v5 is None:
-        raise Exception("base.run_target / _v5=None")
-
-    else: 
-        return _v5
-
-
-
-def closure8(v0: int, v1: str) -> Callable[[int], Async[bool]]:
-    def _arrow143(v: int, v0: Any=v0, v1: Any=v1) -> Async[bool]:
-        return closure9(v0, v1, v)
-
-    return _arrow143
-
-
-def closure7(unit_var: None, v0: int) -> Callable[[str, int], Async[bool]]:
-    def _arrow144(v: str, unit_var: Any=unit_var, v0: Any=v0) -> Callable[[int], Async[bool]]:
-        return closure8(v0, v)
-
-    return _arrow144
-
-
-def closure22(unit_var: None, unit_var_1: None) -> str:
+def closure15(unit_var: None, unit_var_1: None) -> str:
     return "networking.wait_for_port_access"
 
 
-def closure23(v0: int | None, v1: bool, v2_1: int, v3_1: int64, unit_var: None) -> tuple[int, int64, int | None, bool]:
-    return (v2_1, v3_1, v0, v1)
-
-
-def method20(v0: Mut4, v1: int64) -> None:
-    v12_1: str = v0.l0 + (("" + str(v1)) + "")
-    v0.l0 = v12_1
-
+def method9(v0_1: int | None, v1: bool, v2: str, v3: int, v4: int64) -> Async[int64]:
+    return None
 
-def method21(v0: Mut4, v1: int | None=None) -> None:
-    method9(v0, to_text(interpolate("%A%P()", [v1])))
-
-
-def method22(v0: Mut4, v1: bool) -> None:
-    v4: str = "true" if v1 else "false"
-    v15: str = v0.l0 + (("" + v4) + "")
-    v0.l0 = v15
-
-
-def method19(v0: Mut4, v1: int, v2_1: int64, v3_1: int | None, v4: bool) -> None:
-    method9(v0, "{ ")
-    method10(v0)
-    method9(v0, "port")
-    method9(v0, " = ")
-    method11(v0, v1)
-    method9(v0, "; ")
-    method9(v0, "retry")
-    method9(v0, " = ")
-    method20(v0, v2_1)
-    method9(v0, "; ")
-    method9(v0, "timeout")
-    method9(v0, " = ")
-    method21(v0, v3_1)
-    method9(v0, "; ")
-    method9(v0, "status")
-    method9(v0, " = ")
-    method22(v0, v4)
-    method9(v0, " }")
-
-
-def closure24(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, int64, int | None, bool]], unit_var: None) -> str:
-    if State_trace_state() is None:
-        State_trace_state(closure0(None, US0(0)))
 
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v18: int64 | None = pattern_input[4]
-    _v35: str | None = None
-    _v534: FSharpRef[US2 | None] = FSharpRef(None)
-    x_2: US2 | None
-    if v18 is None:
-        x_2 = None
+def closure14(v0_1: int | None, v1: bool, v2: str, v3: int) -> Async[int64]:
+    return method9(v0_1, v1, v2, v3, int64(0))
 
-    else: 
-        x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
-            return US2(0, x)
 
-        x_2 = x_1(None)
+def closure13(v0_1: int | None, v1: bool, v2: str) -> Callable[[int], Async[int64]]:
+    def _arrow132(v: int, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> Async[int64]:
+        return closure14(v0_1, v1, v2, v)
 
-    _v534.contents = x_2
-    v561: US2 = default_arg(_v534.contents, US2(1))
-    def _arrow145(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-        v593: Any = create(op_subtraction(ticks_1(now()), v561.fields[0]))
-        return create_1(1, 1, 1, hours(v593), minutes(v593), seconds(v593), milliseconds(v593))
+    return _arrow132
 
-    x_3: str = to_string(_arrow145() if (v561.tag == 0) else now(), method6())
-    _v35 = x_3
-    v826: str
-    if _v35 is None:
-        raise Exception("base.run_target / _v35=None")
 
-    else: 
-        v826 = _v35
+def closure12(v0_1: int | None, v1: bool) -> Callable[[str, int], Async[int64]]:
+    def _arrow133(v: str, v0_1: Any=v0_1, v1: Any=v1) -> Callable[[int], Async[int64]]:
+        return closure13(v0_1, v1, v)
 
-    v985: US3 = US3(0, "Verbose") if (True if (v0.tag == 0) else False) else US3(1)
-    v1034: US3
-    if v985.tag == 0:
-        v1034 = US3(0, v985.fields[0])
+    return _arrow133
 
-    else: 
-        v994: US3 = US3(0, "Debug") if (True if (v0.tag == 1) else False) else US3(1)
-        if v994.tag == 0:
-            v1034 = US3(0, v994.fields[0])
 
-        else: 
-            v1003: US3 = US3(0, "Info") if (True if (v0.tag == 2) else False) else US3(1)
-            if v1003.tag == 0:
-                v1034 = US3(0, v1003.fields[0])
+def closure11(unit_var: None, v0_1: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
+    def _arrow134(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str, int], Async[int64]]:
+        return closure12(v0_1, v)
 
-            else: 
-                v1012: US3 = US3(0, "Warning") if (True if (v0.tag == 3) else False) else US3(1)
-                if v1012.tag == 0:
-                    v1034 = US3(0, v1012.fields[0])
+    return _arrow134
 
-                else: 
-                    v1021: US3 = US3(0, "Critical") if (True if (v0.tag == 4) else False) else US3(1)
-                    v1034 = US3(0, v1021.fields[0]) if (v1021.tag == 0) else US3(1)
 
+def method10(v0_1: int | None, v1: str, v2: int) -> Async[int]:
+    return None
 
 
+def closure18(v0_1: int | None, v1: str, v2: int) -> Async[int]:
+    return method10(v0_1, v1, v2)
 
-    v1038: str
-    if v1034.tag == 0:
-        v1038 = v1034.fields[0]
 
-    else: 
-        raise Exception("Option does not have a value.")
+def closure17(v0_1: int | None, v1: str) -> Callable[[int], Async[int]]:
+    def _arrow135(v: int, v0_1: Any=v0_1, v1: Any=v1) -> Async[int]:
+        return closure18(v0_1, v1, v)
 
-    v1051: str = pad_left(v1038.lower(), 7, " ")
-    _v1083: str | None = None
-    x_5: str = (("\u001b[94m" if (v0.tag == 1) else ("\u001b[92m" if (v0.tag == 2) else ("\u001b[90m" if (v0.tag == 0) else ("\u001b[93m" if (v0.tag == 3) else "\u001b[91m")))) + v1051) + method7()
-    _v1083 = x_5
-    v1195: str
-    if _v1083 is None:
-        raise Exception("base.run_target / _v1083=None")
+    return _arrow135
 
-    else: 
-        v1195 = _v1083
 
-    v1214: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, int64, int | None, bool] = v2_1(None)
-    v1220: Mut4 = Mut4("")
-    method19(v1220, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2], pattern_input_1[3])
-    v1221: str = v1220.l0
-    return trim_end(trim_start(((((((((("" + v826) + " ") + v1195) + " #") + str(v1214)) + " ") + v1(None)) + " / ") + v1221) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+def closure16(unit_var: None, v0_1: int | None=None) -> Callable[[str, int], Async[int]]:
+    def _arrow136(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[int], Async[int]]:
+        return closure17(v0_1, v)
 
+    return _arrow136
 
-def method18(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, int64, int | None, bool]]) -> None:
-    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
-        return closure24(v0, v1, v2_1, None)
 
-    method12(v0, v3_1)
+v0: bool = State_trace_state() is None
 
 
-def method17(v0: int | None, v1: bool, v2_1: str, v3_1: int, v4: int64) -> Async[int64]:
-    _v7: Async[int64] | None = None
-    _v7 = None
-    if _v7 is None:
-        raise Exception("base.run_target / _v7=None")
+if v0:
+    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = method0(US0(0))
+    State_trace_state((pattern_input[0], pattern_input[1], pattern_input[2], pattern_input[3], pattern_input[4]))
 
-    else: 
-        return _v7
 
+def _arrow137(v: str) -> Callable[[int], Async[bool]]:
+    return closure1(None, v)
 
 
-def closure21(v0: int | None, v1: bool, v2_1: str, v3_1: int) -> Async[int64]:
-    return method17(v0, v1, v2_1, v3_1, int64(0))
-
-
-def closure20(v0: int | None, v1: bool, v2_1: str) -> Callable[[int], Async[int64]]:
-    def _arrow146(v: int, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> Async[int64]:
-        return closure21(v0, v1, v2_1, v)
-
-    return _arrow146
-
-
-def closure19(v0: int | None, v1: bool) -> Callable[[str, int], Async[int64]]:
-    def _arrow147(v: str, v0: Any=v0, v1: Any=v1) -> Callable[[int], Async[int64]]:
-        return closure20(v0, v1, v)
-
-    return _arrow147
-
-
-def closure18(unit_var: None, v0: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
-    def _arrow148(v: bool, unit_var: Any=unit_var, v0: Any=v0) -> Callable[[str, int], Async[int64]]:
-        return closure19(v0, v)
-
-    return _arrow148
-
-
-def method23(v0: int | None, v1: str, v2_1: int) -> Async[int]:
-    _v5: Async[int] | None = None
-    _v5 = None
-    if _v5 is None:
-        raise Exception("base.run_target / _v5=None")
-
-    else: 
-        return _v5
-
-
-
-def closure27(v0: int | None, v1: str, v2_1: int) -> Async[int]:
-    return method23(v0, v1, v2_1)
-
-
-def closure26(v0: int | None, v1: str) -> Callable[[int], Async[int]]:
-    def _arrow149(v: int, v0: Any=v0, v1: Any=v1) -> Async[int]:
-        return closure27(v0, v1, v)
-
-    return _arrow149
-
-
-def closure25(unit_var: None, v0: int | None=None) -> Callable[[str, int], Async[int]]:
-    def _arrow150(v: str, unit_var: Any=unit_var, v0: Any=v0) -> Callable[[int], Async[int]]:
-        return closure26(v0, v)
-
-    return _arrow150
-
-
-def _arrow151(v: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
-    return closure0(None, v)
-
-
-v2: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow151
-
-v3: US0 = US0(0)
-
-
-if State_trace_state() is None:
-    State_trace_state(v2(v3))
-
-
-def _arrow152(v: str) -> Callable[[int], Async[bool]]:
-    return closure2(None, v)
-
-
-v9: Callable[[str, int], Async[bool]] = _arrow152
+v12: Callable[[str, int], Async[bool]] = _arrow137
 
 def test_port_open(x: str) -> Callable[[int], Async[bool]]:
-    return v9(x)
+    return v12(x)
 
 
-def _arrow153(v: int) -> Callable[[str, int], Async[bool]]:
-    return closure7(None, v)
+def _arrow138(v: int) -> Callable[[str, int], Async[bool]]:
+    return closure4(None, v)
 
 
-v10: Callable[[int, str, int], Async[bool]] = _arrow153
+v13: Callable[[int, str, int], Async[bool]] = _arrow138
 
 def test_port_open_timeout(x: int) -> Callable[[str, int], Async[bool]]:
-    return v10(x)
+    return v13(x)
 
 
-def _arrow154(v: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
-    return closure18(None, v)
+def _arrow139(v: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
+    return closure11(None, v)
 
 
-v11: Callable[[int | None, bool, str, int], Async[int64]] = _arrow154
+v14: Callable[[int | None, bool, str, int], Async[int64]] = _arrow139
 
 def wait_for_port_access(x: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
-    return v11(x)
+    return v14(x)
 
 
-def _arrow155(v: int | None=None) -> Callable[[str, int], Async[int]]:
-    return closure25(None, v)
+def _arrow140(v: int | None=None) -> Callable[[str, int], Async[int]]:
+    return closure16(None, v)
 
 
-v12: Callable[[int | None, str, int], Async[int]] = _arrow155
+v15: Callable[[int | None, str, int], Async[int]] = _arrow140
 
 def get_available_port(x: int | None=None) -> Callable[[str, int], Async[int]]:
-    return v12(x)
+    return v15(x)
 
 

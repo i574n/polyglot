@@ -1,0 +1,420 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# spiral_wasm
+
+#!spiral
+
+open rust.rust_operators
+open rust
+open sm'_operators
+
+#!markdown
+
+## spiral_wasm
+
+#!markdown
+
+### get_args
+
+#!spiral
+
+inl get_args () =
+    {
+        wasm = "wasm", 'w'
+    }
+
+#!markdown
+
+### get_command
+
+#!spiral
+
+let get_command () =
+    ##"command"
+    |> runtime.new_command
+    |> runtime.command_init_arg (get_args () .wasm) (
+        runtime.arg_required true
+    )
+
+#!markdown
+
+### anyhow_result
+
+#!spiral
+
+nominal anyhow_result t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Result<$0>\")>]\n#endif\ntype anyhow_Result<'T> = class end"
+        $'' : $'anyhow_Result<`t>'
+    )
+
+#!markdown
+
+### anyhow_error
+
+#!spiral
+
+nominal anyhow_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Error\")>]\n#endif\ntype anyhow_Error = class end"
+        $'' : $'anyhow_Error'
+    )
+
+inl anyhow_error error =
+    !\\(error, $'"anyhow::anyhow\!($0)"')
+
+#!markdown
+
+### near_workspaces_error
+
+#!spiral
+
+nominal near_workspaces_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::error::Error\")>]\n#endif\ntype near_workspaces_error_Error = class end"
+        $'' : $'near_workspaces_error_Error'
+    )
+
+#!markdown
+
+### sandbox
+
+#!spiral
+
+nominal sandbox =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::network::Sandbox\")>]\n#endif\ntype near_workspaces_network_Sandbox = class end"
+        $'' : $'near_workspaces_network_Sandbox'
+    )
+
+#!markdown
+
+### worker
+
+#!spiral
+
+nominal worker t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Worker<$0>\")>]\n#endif\ntype near_workspaces_Worker<'T> = class end"
+        $'' : $'near_workspaces_Worker<`t>'
+    )
+
+#!markdown
+
+### contract
+
+#!spiral
+
+nominal contract =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Contract\")>]\n#endif\ntype near_workspaces_Contract = class end"
+        $'' : $'near_workspaces_Contract'
+    )
+
+#!markdown
+
+### call_transaction
+
+#!spiral
+
+nominal call_transaction =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::operations::CallTransaction\")>]\n#endif\ntype near_workspaces_operations_CallTransaction = class end"
+        $'' : $'near_workspaces_operations_CallTransaction'
+    )
+
+#!markdown
+
+### execution_final_result
+
+#!spiral
+
+nominal execution_final_result =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFinalResult\")>]\n#endif\ntype near_workspaces_result_ExecutionFinalResult = class end"
+        $'' : $'near_workspaces_result_ExecutionFinalResult'
+    )
+
+#!markdown
+
+### execution_result
+
+#!spiral
+
+nominal execution_result t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionResult<$0>\")>]\n#endif\ntype near_workspaces_result_ExecutionResult<'T> = class end"
+        $'' : $'near_workspaces_result_ExecutionResult<`t>'
+    )
+
+#!markdown
+
+### result_value
+
+#!spiral
+
+nominal result_value =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::Value\")>]\n#endif\ntype near_workspaces_result_Value = class end"
+        $'' : $'near_workspaces_result_Value'
+    )
+
+#!markdown
+
+### tx_execution_error
+
+#!spiral
+
+nominal tx_execution_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_primitives::errors::TxExecutionError\")>]\n#endif\ntype near_primitives_errors_TxExecutionError = class end"
+        $'' : $'near_primitives_errors_TxExecutionError'
+    )
+
+#!markdown
+
+### execution_outcome
+
+#!spiral
+
+nominal execution_outcome =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionOutcome\")>]\n#endif\ntype near_workspaces_result_ExecutionOutcome = class end"
+        $'' : $'near_workspaces_result_ExecutionOutcome'
+    )
+
+#!markdown
+
+### main_async
+
+#!spiral
+
+inl main_async () =
+    !\($'"} //"') : ()
+
+    !\($'"fn print_usd(result: near_workspaces::result::ExecutionFinalResult) { //"') : ()
+    !\($'"  const NEAR_PRICE_IN_USD: f64 = 6.68; //"') : ()
+
+    !\($'"  fn gas_to_usd(gas: u64) -> f64 { //"') : ()
+    !\($'"    (gas as f64) / 1e16 * NEAR_PRICE_IN_USD //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  fn tokens_to_usd(tokens: u128) -> f64 { //"') : ()
+    !\($'"    (tokens as f64) / 1e24 * NEAR_PRICE_IN_USD //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  println\!(\\\"gas_to_usd(result.total_gas_burnt.as_gas()): {:.6} ({:#?})\\\", //"') : ()
+    !\($'"    gas_to_usd(result.total_gas_burnt.as_gas()), //"') : ()
+    !\($'"    result.total_gas_burnt.as_gas() //"') : ()
+    !\($'"  ); //"') : ()
+
+    !\($'"  result.outcomes().iter().for_each(|outcome| { //"') : ()
+    !\($'"    println\!(\\\"outcome (success: {:#?}):\\\", outcome.is_success()); //"') : ()
+    !\($'"    println\!( //"') : ()
+    !\($'"      \\\"  gas_to_usd(outcome.gas_burnt.as_gas()): {:.6} ({:#?})\\\", //"') : ()
+    !\($'"      gas_to_usd(outcome.gas_burnt.as_gas()), //"') : ()
+    !\($'"      outcome.gas_burnt.as_gas() //"') : ()
+    !\($'"    ); //"') : ()
+    !\($'"    println\!( //"') : ()
+    !\($'"      \\\"  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): {:.6} ({:#?})\\\", //"') : ()
+    !\($'"      tokens_to_usd(outcome.tokens_burnt.as_yoctonear()), //"') : ()
+    !\($'"      outcome.tokens_burnt.as_yoctonear() //"') : ()
+    !\($'"    ); //"') : ()
+    !\($'"  }); //"') : ()
+
+    !\($'"} //"') : ()
+
+    !\($'"fn _main() { //"') : ()
+
+#!markdown
+
+### sandbox_worker
+
+#!spiral
+
+inl sandbox_worker () : resultm.result' (worker sandbox) near_workspaces_error =
+    !\($'"near_workspaces::sandbox().await"')
+
+#!markdown
+
+### dev_deploy
+
+#!spiral
+
+inl dev_deploy
+    (wasm : am'.vec u8)
+    (worker : worker sandbox)
+    : async.future_pin (resultm.result' contract near_workspaces_error)
+    =
+    !\($'"Box::pin(!worker.dev_deploy(&!wasm))"')
+
+#!markdown
+
+### call
+
+#!spiral
+
+inl call (fn_name : string) (contract : contract) : call_transaction =
+    !\\(fn_name, $'"!contract.call(&*$0)"')
+
+#!markdown
+
+### transact
+
+#!spiral
+
+inl transact
+    (call : call_transaction)
+    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
+    =
+    !\($'"Box::pin(!call.transact())"')
+
+#!markdown
+
+### logs
+
+#!spiral
+
+inl logs (result : execution_final_result) : am'.vec (rust.ref sm'.str) =
+    !\($'"!result.logs()"')
+
+#!markdown
+
+### into_result
+
+#!spiral
+
+inl into_result
+    (result : execution_final_result)
+    : resultm.result' (execution_result result_value) (execution_result tx_execution_error)
+    =
+    !\\(result, $'"$0.into_result()"')
+
+#!markdown
+
+### receipt_failures
+
+#!spiral
+
+inl receipt_failures (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
+    inl result = join result
+    !\($'"!result.receipt_failures()"')
+
+#!markdown
+
+### receipt_outcomes
+
+#!spiral
+
+inl receipt_outcomes (result : execution_final_result) : rust.ref (am'.slice execution_outcome) =
+    inl result = join result
+    !\($'"!result.receipt_outcomes()"')
+
+#!markdown
+
+### json
+
+#!spiral
+
+inl json (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
+    !\\(result, $'"$0.json()"')
+
+#!markdown
+
+### borsh
+
+#!spiral
+
+inl borsh (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
+    !\\(result, $'"$0.borsh()"')
+
+#!markdown
+
+### run
+
+#!spiral
+
+let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' () anyhow_error) =
+    fun () =>
+        inl wasm_path =
+            matches
+            |> runtime.matches_get_one (get_args () .wasm |> fst)
+            |> optionm'.unbox
+            |> optionm.value
+            |> sm'.from_std_string
+
+        trace Debug (fun () => "run") fun () => { wasm_path }
+
+        inl wasm = wasm_path |> file_system.read |> resultm.try'
+
+        inl worker = sandbox_worker () |> resultm.try'
+        trace Debug (fun () => "") fun () => { worker }
+
+        inl contract = worker |> dev_deploy wasm |> async.await |> resultm.try'
+        trace Debug (fun () => "") fun () => { contract }
+
+        inl result = contract |> call "state_main" |> transact |> async.await |> resultm.try'
+        trace Debug (fun () => "") fun () => { result }
+
+        result |> logs |> am'.vec_map sm'.ref_to_std_string |> am'.vec_for_each console.write_line
+
+        !\($'"  println\!(\\\"\\\\n\\\\n state_main transact result: {:#?}\\\", !result.clone()); //"') : ()
+
+        !\($'"  println\!(\\\"\\\\n\\\\n print_usd:\\\"); //"') : ()
+        !\($'"  print_usd(!result.clone()); //"') : ()
+
+        inl result2 = result |> into_result
+        trace Debug (fun () => "") fun () => { result2 }
+
+        inl receipt_failures = result |> receipt_failures
+        trace Debug (fun () => "") fun () => { receipt_failures }
+
+        inl receipt_outcomes = result |> receipt_outcomes
+        trace Debug (fun () => "") fun () => { receipt_outcomes }
+
+        inl json = result |> json
+        trace Debug (fun () => "") fun () => { json }
+
+        inl borsh = result |> borsh
+        trace Debug (fun () => "") fun () => { borsh }
+
+        !\($'"  println\!(\\\"\\\\n\\\\n worker: {:#?}\\\", !worker); //"') : ()
+        !\($'"  println\!(\\\"\\\\n\\\\n contract: {:#?}\\\", !contract); //"') : ()
+
+        if (receipt_failures |> am'.vec_len |> i32) = 0
+        then Ok () |> resultm.box
+        else "<error>" |> anyhow_error |> resultm.err
+    |> async.future_init (31, 30) 1
+
+#!markdown
+
+### main
+
+#!spiral
+
+///! _
+
+inl main (args : array_base string) =
+    inl trace_state = get_trace_state_or_init None
+
+    trace Debug
+        fun () => $'$"spiral_wasm.main"'
+        fun () => { args }
+
+    inl command = get_command ()
+    inl arg_matches = command |> runtime.command_get_matches
+
+    arg_matches
+    |> run
+    |> async.block_on
+    |> resultm.unwrap'
+
+    0i32
+
+inl main () =
+    $'!main_async |> ignore' : ()
+    $'let main args = !main args' : ()

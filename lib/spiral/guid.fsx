@@ -1,49 +1,47 @@
 let rec closure0 () (v0 : string) : System.Guid =
-    let v3 : System.Guid = v0 |> System.Guid 
-    v3
+    let v1 : System.Guid = v0 |> System.Guid 
+    v1
 and method0 (v0 : string) : System.Guid =
-    let v3 : bool = true
-    let mutable _v3 : System.Guid option = None 
+    let v1 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v6 : string = v0.PadLeft (32, '0')
-    let v38 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..19]}-{v6.[20..31]}"
-    v38 
+    let v2 : string = v0.PadLeft (32, '0')
+    let v16 : System.Guid = System.Guid $"{v2.[0..7]}-{v2.[8..11]}-{v2.[12..15]}-{v2.[16..19]}-{v2.[20..31]}"
+    let _v1 = v16 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v47 : string = v0.PadLeft (32, '0')
-    let v79 : System.Guid = System.Guid $"{v47.[0..7]}-{v47.[8..11]}-{v47.[12..15]}-{v47.[16..19]}-{v47.[20..31]}"
-    v79 
+    let v19 : string = v0.PadLeft (32, '0')
+    let v33 : System.Guid = System.Guid $"{v19.[0..7]}-{v19.[8..11]}-{v19.[12..15]}-{v19.[16..19]}-{v19.[20..31]}"
+    let _v1 = v33 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v88 : System.Guid = null |> unbox<System.Guid>
-    v88 
+    let v36 : System.Guid = null |> unbox<System.Guid>
+    let _v1 = v36 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v97 : string = v0.PadLeft (32, '0')
-    let v129 : System.Guid = System.Guid $"{v97.[0..7]}-{v97.[8..11]}-{v97.[12..15]}-{v97.[16..19]}-{v97.[20..31]}"
-    v129 
+    let v39 : string = v0.PadLeft (32, '0')
+    let v53 : System.Guid = System.Guid $"{v39.[0..7]}-{v39.[8..11]}-{v39.[12..15]}-{v39.[16..19]}-{v39.[20..31]}"
+    let _v1 = v53 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v138 : string = v0.PadLeft (32, '0')
-    let v170 : System.Guid = System.Guid $"{v138.[0..7]}-{v138.[8..11]}-{v138.[12..15]}-{v138.[16..19]}-{v138.[20..31]}"
-    v170 
+    let v56 : string = v0.PadLeft (32, '0')
+    let v70 : System.Guid = System.Guid $"{v56.[0..7]}-{v56.[8..11]}-{v56.[12..15]}-{v56.[16..19]}-{v56.[20..31]}"
+    let _v1 = v70 
     #endif
 #else
-    let v179 : string = v0.PadLeft (32, '0')
-    let v211 : System.Guid = System.Guid $"{v179.[0..7]}-{v179.[8..11]}-{v179.[12..15]}-{v179.[16..19]}-{v179.[20..31]}"
-    v211 
+    let v73 : string = v0.PadLeft (32, '0')
+    let v87 : System.Guid = System.Guid $"{v73.[0..7]}-{v73.[8..11]}-{v73.[12..15]}-{v73.[16..19]}-{v73.[20..31]}"
+    let _v1 = v87 
     #endif
-    |> fun x -> _v3 <- Some x
-    let v218 : System.Guid = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
-    v218
+    let v90 : System.Guid = _v1 
+    v90
 and closure1 () (v0 : string) : System.Guid =
     method0(v0)
 and closure2 () () : System.Guid =
-    let v2 : (unit -> System.Guid) = System.Guid.NewGuid
-    v2 ()
+    let v0 : (unit -> System.Guid) = System.Guid.NewGuid
+    v0 ()
 let v0 : (string -> System.Guid) = closure0()
 let new_guid x = v0 x
 let v1 : (string -> System.Guid) = closure1()

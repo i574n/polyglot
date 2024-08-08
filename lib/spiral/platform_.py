@@ -3,7 +3,7 @@ from typing import Any
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
 from fable_modules.fable_library.types import (Array, Union)
 
-def _expr117() -> TypeInfo:
+def _expr110() -> TypeInfo:
     return union_type("Platform.US0", [], US0, lambda: [[], [], []])
 
 
@@ -19,9 +19,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2"]
 
 
-US0_reflection = _expr117
+US0_reflection = _expr110
 
-def _expr118() -> TypeInfo:
+def _expr111() -> TypeInfo:
     return union_type("Platform.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())]])
 
 
@@ -37,30 +37,17 @@ class US1(Union):
         return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4"]
 
 
-US1_reflection = _expr118
+US1_reflection = _expr111
 
 def closure0(unit_var: None, unit_var_1: None) -> bool:
-    _v2: bool | None = None
-    x: bool
     raise Exception(("platform.is_windows / target: " + str(US1(4, US0(0)))) + "")
-    _v2 = x
-    if _v2 is None:
-        raise Exception("base.run_target / _v2=None")
-
-    else: 
-        return _v2
-
 
 
 def closure1(unit_var: None, unit_var_1: None) -> str:
-    _v2: bool | None = None
-    x: bool
-    raise Exception(("platform.is_windows / target: " + str(US1(4, US0(0)))) + "")
-    _v2 = x
-    def _arrow119(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> bool:
-        raise Exception("base.run_target / _v2=None")
+    def _arrow112(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> bool:
+        raise Exception(("platform.is_windows / target: " + str(US1(4, US0(0)))) + "")
 
-    if _arrow119() if (_v2 is None) else _v2:
+    if _arrow112():
         return ".exe"
 
     else: 
@@ -68,21 +55,21 @@ def closure1(unit_var: None, unit_var_1: None) -> str:
 
 
 
-def _arrow120(__unit: None=None) -> bool:
+def _arrow113(__unit: None=None) -> bool:
     return closure0(None, None)
 
 
-v0: Callable[[], bool] = _arrow120
+v0: Callable[[], bool] = _arrow113
 
 def is_windows(__unit: None=None) -> bool:
     return v0(None)
 
 
-def _arrow121(__unit: None=None) -> str:
+def _arrow114(__unit: None=None) -> str:
     return closure1(None, None)
 
 
-v1: Callable[[], str] = _arrow121
+v1: Callable[[], str] = _arrow114
 
 def get_executable_suffix(__unit: None=None) -> str:
     return v1(None)

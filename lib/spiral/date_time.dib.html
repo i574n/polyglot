@@ -7701,7 +7701,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">date_time_python</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"import datetime"</span>
+        <span class="n">backend_switch</span> <span class="p">{</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="k">global</span> <span class="s2">"import datetime"</span>
+        <span class="p">}</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'datetime.datetime'</span>
     <span class="p">)</span>
 <span class="nb">type</span> <span class="n">date_time_switch</span> <span class="o">=</span>
@@ -8351,7 +8354,10 @@ a.anchor-link {
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="p">:</span> <span class="n">date_time</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">global</span> <span class="s2">"import datetime"</span>
+            <span class="n">backend_switch</span> <span class="p">{</span>
+                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">global</span> <span class="s2">"import datetime"</span>
+            <span class="p">}</span>
             <span class="err">$</span><span class="s1">'datetime.datetime.now()'</span> <span class="p">:</span> <span class="n">date_time</span>
     <span class="p">}</span>
 </pre></div>
@@ -8382,7 +8388,10 @@ a.anchor-link {
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.UtcNow'</span> <span class="p">:</span> <span class="n">date_time</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">global</span> <span class="s2">"import datetime"</span>
+            <span class="n">backend_switch</span> <span class="p">{</span>
+                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">global</span> <span class="s2">"import datetime"</span>
+            <span class="p">}</span>
             <span class="err">$</span><span class="s1">'datetime.datetime.utcnow()'</span> <span class="p">:</span> <span class="n">date_time</span>
     <span class="p">}</span>
 </pre></div>
@@ -8970,7 +8979,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240731-2350-2897-9781-900300543210
+<pre>20240808-2008-4859-5927-500300543210
 </pre>
 </div>
 </div>
@@ -9005,7 +9014,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq' / actual: "20240731-2351-2559-9820-000000543210" / expected: "20240731-2351-2559-9820-000000543210"
+<pre>__assert_eq' / actual: "20240808-2008-5819-8948-000000543210" / expected: "20240808-2008-5819-8948-000000543210"
 </pre>
 </div>
 </div>
@@ -9221,11 +9230,11 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">date_time_guid</span> <span class="p">:</span> <span class="n">date_time_guid</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">date_time_guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-    <span class="n">inl</span> <span class="n">sm</span><span class="s1">'_replace = join sm'</span><span class="o">.</span><span class="n">replace</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="p">(</span><span class="n">Rust</span> <span class="n">_</span> <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'System.DateTime.Parse (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">)</span><span class="s1">' : date_time</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"yyyyMMddHHmmssfffffff"</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="s1">' : date_time</span>
+    <span class="n">inl</span> <span class="n">sm_replace</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'.replace "-" ""</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">sm_replace</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="p">(</span><span class="n">Rust</span> <span class="n">_</span> <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">sm_replace</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'System.DateTime.Parse (!date_time_guid.[..24] |&gt; !sm_replace)'</span> <span class="p">:</span> <span class="n">date_time</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">sm_replace</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm_replace, "yyyyMMddHHmmssfffffff", null)'</span> <span class="p">:</span> <span class="n">date_time</span>
 </pre></div>
 </div>
 </div>

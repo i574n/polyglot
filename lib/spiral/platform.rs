@@ -2,7 +2,6 @@ pub mod Platform {
     use super::*;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Func0;
-    use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::String_::string;
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
@@ -30,26 +29,10 @@ pub mod Platform {
         }
     }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> bool {
-        let _v2: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        {
-            let x: bool = cfg!(windows);
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
+        cfg!(windows)
     }
     pub fn closure1(unitVar: (), unitVar_1: ()) -> string {
-        let _v2: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        {
-            let x: bool = cfg!(windows);
-            _v2.set(Some(x))
-        }
-        if match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        } {
+        if cfg!(windows) {
             string(".exe")
         } else {
             string("")

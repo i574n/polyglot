@@ -82,7 +82,13 @@ type trace_state =
         repl_start : optionm'.option' i64
     }
 
-inl new_trace_state trace_level' =
+#!markdown
+
+### new_trace_state
+
+#!spiral
+
+let new_trace_state trace_level' =
     inl { repl_start trace_level } = read_state ()
     {
         enabled = mut true
@@ -99,13 +105,16 @@ inl new_trace_state trace_level' =
 #!spiral
 
 inl init_trace_state trace_level : () =
-    inl trace_level =
-        trace_level
-        |> optionm'.default_value Verbose
+    inl trace_level = trace_level |> optionm'.default_value Verbose
     backend_switch {
         Fsharp = fun () =>
-            global "module State = let mutable trace_state = None"
-            $'if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some' : ()
+            backend_switch {
+                Fsharp = fun () =>
+                    global "module State = let mutable trace_state = None"
+            }
+            if $'State.trace_state.IsNone' then
+                inl trace_state = new_trace_state trace_level |> optionm'.some'
+                $'State.trace_state <- !trace_state ' : ()
         Python = fun () =>
             global "class State: trace_state = None"
             $'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)' : ()
@@ -167,17 +176,13 @@ test_trace_level Verbose |> _assert_eq true
 
 #!spiral
 
-let rec trace_raw level fn =
+inl trace_raw level fn =
     inl trace_state = get_trace_state_or_init None
     if level |> test_trace_level then
         inl count = trace_state.count
         count <- *count + 1
 
-        inl text =
-            backend_switch {
-                Fsharp = fun () => $'$"%s{!fn ()}"' : string
-                Python = fun () => fn () : string
-            }
+        inl text = fn ()
         open rust
         open rust.rust_operators
         run_target function
@@ -199,7 +204,7 @@ let rec trace_raw level fn =
 
 #!spiral
 
-let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
+inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
     fun () =>
         inl trace_state = get_trace_state_or_init None
         inl time =

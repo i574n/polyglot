@@ -6,6 +6,10 @@ edition.workspace = true
 license-file.workspace = true
 repository.workspace = true
 
+[[bin]]
+name = "spiral_builder"
+path = "spiral_builder.rs"
+
 [dependencies]
 fable_library_rust = { workspace = true, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
 inline_colorization = { workspace = true }
@@ -21,9 +25,3 @@ rand = "~0.9.0-alpha.1"
 sha2 = "~0.11.0-pre.3"
 async-walkdir = "~2.0"
 rayon = "~1.10"
-
-[dev-dependencies]
-
-[[bin]]
-name = "spiral_builder"
-path = "spiral_builder.rs"

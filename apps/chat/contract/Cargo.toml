@@ -16,5 +16,5 @@ fable_library_rust = { workspace = true }
 borsh = "~1.5"
 multibase = "~0.9"
 near-sdk = "~5.1"
-sha2 = "~0.10"
+sha2 = "~0.11.0-pre.3"
 unsigned-varint = "~0.8"

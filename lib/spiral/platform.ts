@@ -1,6 +1,5 @@
 import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 
 export type US0_$union = 
     | US0<0>
@@ -87,26 +86,13 @@ export function US1_$reflection(): TypeInfo {
 }
 
 export function closure0(unitVar: void, unitVar_1: void): boolean {
-    let _v2: Option<boolean> = undefined;
-    let x: boolean;
     throw new Error(`platform.is_windows / target: ${US1_US1_3(US0_US0_0())}`);
-    _v2 = x;
-    if (_v2 == null) {
-        throw new Error("base.run_target / _v2=None");
-    }
-    else {
-        return value(_v2);
-    }
 }
 
 export function closure1(unitVar: void, unitVar_1: void): string {
-    let _v2: Option<boolean> = undefined;
-    let x: boolean;
-    throw new Error(`platform.is_windows / target: ${US1_US1_3(US0_US0_0())}`);
-    _v2 = x;
-    if ((_v2 == null) ? (() => {
-        throw new Error("base.run_target / _v2=None");
-    })() : value(_v2)) {
+    if ((() => {
+        throw new Error(`platform.is_windows / target: ${US1_US1_3(US0_US0_0())}`);
+    })()) {
         return ".exe";
     }
     else {

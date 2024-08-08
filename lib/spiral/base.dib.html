@@ -7769,30 +7769,30 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">args</span> <span class="o">=</span> <span class="n">args</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">dyn</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">true</span>
-            <span class="err">$</span><span class="s1">'let mutable _!result : `t option = None '</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'()'</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'unit'</span>
+            <span class="n">inl</span> <span class="n">emit_result</span> <span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+                <span class="err">$</span><span class="s1">'let _!result = !x '</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER || WASM || CONTRACT'</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_RUST &amp;&amp; \!WASM &amp;&amp; \!CONTRACT'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Rust</span> <span class="n">Native</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_RUST &amp;&amp; WASM'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Rust</span> <span class="n">Wasm</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Rust</span> <span class="n">Contract</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_TYPESCRIPT'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">TypeScript</span> <span class="n">Native</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_PYTHON'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Python</span> <span class="n">Native</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif</span><span class="se">\n</span><span class="s1">#else'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Fsharp</span> <span class="n">Native</span>
-            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif'</span>
-            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
-            <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "base.run_target / _!result=None"'</span> <span class="p">:</span> <span class="n">t</span>
+            <span class="err">$</span><span class="s1">'_!result '</span> <span class="p">:</span> <span class="n">t</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Cuda</span> <span class="n">Native</span>
             <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span>
