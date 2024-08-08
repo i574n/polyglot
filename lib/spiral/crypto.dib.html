@@ -7761,8 +7761,11 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_5acb97b193be34366f28a079473cbe610a2cfe96631bb3176536978a498f0f85/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_880284a8021b35ee176f91b91cbba8b5bc7f78b3aa9c2268c4bfc7e3ec2ec101/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = [
+    "-c",
+    "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_880284a8021b35ee176f91b91cbba8b5bc7f78b3aa9c2268c4bfc7e3ec2ec101/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash",
+]; options = { command = pwsh -c "(Get-FileHash '/tmp/!create_temp_path_/spiral_builder_880284a8021b35ee176f91b91cbba8b5bc7f78b3aa9c2268c4bfc7e3ec2ec101/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
 __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
@@ -7936,7 +7939,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.from_vec</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
     <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">of_array</span><span class="s1">'</span>
-    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat ""</span>
+    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat (join "")</span>
     <span class="o">|&gt;</span> <span class="n">Ok</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
 </pre></div>
@@ -8014,7 +8017,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_2d7e97ae07a1c3e5989f2a66d023e20277ed21b6081ff6b58e9d641ae2558292/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_642c9ec6616282c8a00167c6535033140532752dad1283dfcd4e6ed4fda5ea33/ba0aa16a-6c5a-be3f-b526-70110c680e36 }
 __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -8060,7 +8063,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_973c75d1b07b2a74b5cafad875c335ac6322cc6dd398f4cfe525417d941669a5/c0e26dac-4cb1-4b09-be07-ff616700f056 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_925116521f3c7a75f6eb998565ca4845d006e65cf09203af3bc0831aaf60d61f/c0e26dac-4cb1-4b09-be07-ff616700f056 }
 __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>

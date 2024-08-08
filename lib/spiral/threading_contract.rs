@@ -4,12 +4,10 @@ pub mod Threading {
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::LrcPtr;
-    use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Native_::defaultOf;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::unbox;
-    use fable_library_rust::String_::string;
     type CancellationToken = ();
     type CancellationTokenSource = ();
     #[derive(Clone, Debug,)]
@@ -42,13 +40,8 @@ pub mod Threading {
         }
     }
     pub fn closure1(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
-        let _v3: MutCell<Option<()>> = MutCell::new(None::<()>);
        defaultOf::<()>();
-        _v3.set(Some(()));
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
-        }
+        ();
         ()
     }
     pub fn method0(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
@@ -65,24 +58,12 @@ pub mod Threading {
     }
     pub fn closure0(unitVar: (), v0_1: Option<CancellationToken>)
      -> (CancellationToken, LrcPtr<dyn IDisposable>) {
-        let _v3:
-                MutCell<Option<(CancellationToken,
-                                LrcPtr<dyn IDisposable>)>> =
-            MutCell::new(None::<(CancellationToken,
-                                 LrcPtr<dyn IDisposable>)>);
         let patternInput: (CancellationToken, LrcPtr<dyn IDisposable>) =
             unbox::<(CancellationToken,
                      LrcPtr<dyn IDisposable>)>(&defaultOf());
-        _v3.set(Some((patternInput.0.clone(), patternInput.1.clone())));
-        {
-            let patternInput_1: (CancellationToken, LrcPtr<dyn IDisposable>) =
-                match &_v3.get().clone() {
-                    None =>
-                    panic!("{}", string("base.run_target / _v3=None"),),
-                    Some(_v3_0_0) => _v3_0_0.clone(),
-                };
-            (patternInput_1.0.clone(), patternInput_1.1.clone())
-        }
+        let _v1: (CancellationToken, LrcPtr<dyn IDisposable>) =
+            (patternInput.0.clone(), patternInput.1.clone());
+        (_v1.0.clone(), _v1.1.clone())
     }
     pub fn v0()
      ->

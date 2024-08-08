@@ -3,6 +3,15 @@ open rust
 open rust_operators
 open real_sm'
 
+/// ## rust
+
+/// ### std_string
+type std_string = real_sm'.std_string
+
+/// ### from_std_string
+inl from_std_string (str : std_string) : string =
+    real real_sm'.from_std_string str
+
 /// ## sm'
 
 /// ### symbol_to_string
@@ -38,6 +47,10 @@ inl slice from to s : string =
 inl format_debug forall t. (x : t) : string =
     real format_debug `t x
 
+/// ### format_pretty
+inl format_pretty forall t. (x : t) : string =
+    real real_sm'.format_pretty `t x
+
 /// ### prim
 inl prim x = real
     match x with
@@ -70,7 +83,6 @@ inl concat_list_trailing separator input =
 /// ### concat_list_heap_trailing
 inl concat_list_heap_trailing separator input =
     inl separator = join separator
-    inl separator = separator
     ("", input)
     ||> listm.fold fun acc (x : string) =>
         $'$"{!acc}{!x}{!separator}"'
@@ -230,9 +242,9 @@ inl split (separator : string) (str : string) : array_base string =
 
 /// ### split_string
 inl split_string (separator : array_base string) (str : string) : array_base string =
-    run_target function
-        | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
-        | _ => fun () => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
+    run_target_args (fun () => str, separator) function
+        | Fsharp (Native) => fun str, separator => $'!str.Split (!separator, System.StringSplitOptions.None)'
+        | _ => fun str, separator => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
 
 /// ### join'
 inl join' (concat : string) (s : a int string) : string =
@@ -339,18 +351,6 @@ nominal os_string =
         $'' : $'std_ffi_OsString'
     )
 
-/// ### std_string
-nominal std_string =
-    `(
-        backend_switch `(()) `({}) {
-            Fsharp =
-                (fun () =>
-                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
-                ) : () -> ()
-        }
-        $'' : $'std_string_String'
-    )
-
 /// ### raw_string_literal
 inl raw_string_literal (s : string) : rust.ref str =
     !\($'"r#\\"" + !s + "\\"#"')
@@ -375,10 +375,6 @@ inl include_str (path : string) : rust.ref str =
 inl as_str (s : string) : rust.ref str =
     // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
     !\\(s, $'"&*$0"')
-
-/// ### from_std_string
-inl from_std_string (str : std_string) : string =
-    !\\(str, $'"fable_library_rust::String_::fromString($0)"')
 
 /// ### ref_to_std_string
 inl ref_to_std_string (str : rust.ref str) : std_string =
@@ -422,17 +418,10 @@ inl from_os_str_ref s =
     |> from_std_string
 
 /// ### format_custom'
-inl format_custom' (format : string) x : std_string =
+inl format_custom' (f : string) x : std_string =
     run_target function
         | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"" + !format + "\\\", $0)"')
-        | _ => fun () => null ()
-
-/// ### format'
-inl format' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
+            !\\(x, $'"format\!(\\\"" + !f + "\\\", $0)"')
         | _ => fun () => null ()
 
 /// ### format_debug'
@@ -442,12 +431,12 @@ inl format_debug' x : std_string =
             !\\(x, $'"format\!(\\\"{:?}\\\", $0)"')
         | _ => fun () => null ()
 
-/// ### format_pretty'
-inl format_pretty' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{:#?}\\\", $0)"')
-        | _ => fun () => null ()
+/// ### format'
+inl format' x : std_string =
+    run_target_args (fun () => x) function
+        | Rust _ => fun x =>
+            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
+        | _ => fun _ => null ()
 
 /// ### format_hex'
 inl format_hex' x : std_string =
@@ -551,15 +540,13 @@ inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string 
 
 /// ### replace_regex'
 inl replace_regex' (pattern : string) (replacement : a i32 string) (s : string) : string =
-    run_target function
-        | Rust (Native) => fun () =>
-            inl s = join s
-            inl replacement = join replacement
+    run_target_args (fun () => s, pattern, replacement) function
+        | Rust (Native) => fun s, pattern, replacement =>
             inl regex = pattern |> new_regex |> resultm.unwrap'
             !\\((regex, #s, replacement), $'$"$0.replace_all($1, &*$2)"')
             |> cow_to_std_string
             |> from_std_string
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 /// ### serialize
 inl serialize forall t. (x : t) : resultm.result' std_string json_error =
@@ -766,18 +753,16 @@ inl format_ellipsis s =
 
 /// ### replace_regex
 inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
-    inl replacement = join replacement
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl pattern = join pattern
+    run_target_args (fun () => s, pattern, replacement) function
+        | Fsharp (Native) => fun s, pattern, replacement =>
             $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'
-        | Rust (Native) => fun () =>
-            inl s = join s
+        | Rust (Native) => fun s, pattern, replacement =>
             inl regex = pattern |> new_regex |> resultm.unwrap'
-            !\\((regex, s, replacement), $'$"$0.replace_all(&$1, &*$2)"')
+            inl s = join s
+            !\\((regex, s, replacement), $'$"$0.replace_all(&*$1, &*$2)"')
             |> cow_to_std_string
             |> from_std_string
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 /// ## main
 inl main () =

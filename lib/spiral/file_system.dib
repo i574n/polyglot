@@ -196,7 +196,7 @@ inl file_move (new_path : string) (old_path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.IO.File.Move (!old_path, !new_path)'
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -590,6 +590,15 @@ inl read_link (path : string) : resultm.result' path_buf stream.io_error =
 
 #!markdown
 
+### read
+
+#!spiral
+
+inl read (path : string) : resultm.result' (am'.vec u8) stream.io_error =
+    !\\(path, $'"std::fs::read(&*$0)"')
+
+#!markdown
+
 ## typescript
 
 #!markdown
@@ -780,12 +789,10 @@ let normalize_path (path : string) : string =
 #!spiral
 
 let get_full_path (path : string) : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl path = join path
+    run_target_args (fun () => path) function
+        | Fsharp (Native) => fun path =>
             path |> $'System.IO.Path.GetFullPath'
-        | Rust (Native) => fun () =>
-            inl path = join path
+        | Rust (Native) => fun path =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             if path_buf |> path_buf_exists |> not then
                 inl current_dir = get_current_directory ()
@@ -811,7 +818,7 @@ let get_full_path (path : string) : string =
                 |> path_buf_display
                 |> sm'.format'
                 |> sm'.from_std_string
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!spiral
 
@@ -959,7 +966,7 @@ let file_copy (new_path : string) (old_path : string) : () =
             |> fun x => x : _ u64 stream.io_error
             |> resultm.unwrap'
             |> ignore
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -997,7 +1004,7 @@ let directory_delete recursive (path : string) : () =
                 if recursive
                 then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
                 else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -1012,7 +1019,7 @@ inl write_all_text (path : string) (text : string) : () =
             $'System.IO.File.WriteAllText (!path, !text)'
         | Rust (Native) => fun () =>
             !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -1026,7 +1033,7 @@ inl read_all_bytes (path : string) : am'.vec u8 =
             $'!path |> System.IO.File.ReadAllBytes'
             |> am'.to_vec
         | Rust (Native) => fun () =>
-            !\\(path, $'"std::fs::read(&*$0).unwrap()"')
+            path |> read |> resultm.unwrap'
         | _ => fun () => null ()
 
 #!markdown
@@ -1062,7 +1069,7 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             platform.run_platform function
                 | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
                 | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -1229,7 +1236,7 @@ inl file_delete (path : string) : () =
             path |> $'System.IO.File.Delete'
         | Rust (Native) => fun () =>
             !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 

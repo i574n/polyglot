@@ -550,8 +550,7 @@ inl new_command (s : rust.static_ref sm'.str) : command =
 
 ##"command"
 |> new_command
-|> sm'.format_pretty'
-|> sm'.from_std_string
+|> sm'.format_pretty
 |> _assert_string_contains "\"command\""
 
 #!markdown
@@ -582,8 +581,7 @@ inl new_arg (s : rust.static_ref sm'.str) : arg =
 
 ##"arg"
 |> new_arg
-|> sm'.format_pretty'
-|> sm'.from_std_string
+|> sm'.format_pretty
 |> _assert_string_contains "\"arg\""
 
 #!markdown
@@ -1067,7 +1065,7 @@ inl process_kill (process : process) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!process.Kill' ()
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 
@@ -1369,10 +1367,10 @@ inl current_process_kill () =
                         $'System.Threading.Thread.Sleep 60'
                         trace Warning (fun () => "runtime.current_process_kill / exiting... 1") id
                         $'System.Diagnostics.Process.GetCurrentProcess().Kill ()' : ()
-                    | _ => fun () => null ()
+                    | _ => fun () => ()
             inl thread : threading.thread = $'new System.Threading.Thread (!fn)'
             thread |> $'_.Start()' : ()
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 #!markdown
 

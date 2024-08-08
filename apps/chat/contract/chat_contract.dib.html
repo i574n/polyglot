@@ -7759,8 +7759,8 @@ a.anchor-link {
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
 
 <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace 1</span><span class="se">\n</span><span class="s2">trace 2"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace 1</span><span class="se">\n</span><span class="s2">trace 2"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7773,22 +7773,56 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace 1
-trace 2 / { trace1 = 1; trace2 = 2 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace 1
-trace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; account_map = LookupMap { prefix: [99] } } }
-
-
- state_main transact result: ExecutionFinalResult {
+<pre>17:13:43 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.main / { args = Array(MutCell(["-w", "target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_c0f87336371062b89d2cb7853e0a8bd194cb13cba56b55c742ec289f0faefde4.wasm"])) }
+17:13:43 <span class="ansi-blue-intense-fg">  debug</span> #2 run / { wasm_path = target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_c0f87336371062b89d2cb7853e0a8bd194cb13cba56b55c742ec289f0faefde4.wasm }
+17:13:48 <span class="ansi-blue-intense-fg">  debug</span> #3  / { worker = Worker {
+    workspace: Sandbox {
+        root_id: AccountId(
+            "test.near",
+        ),
+        rpc_url: Url {
+            scheme: "http",
+            cannot_be_a_base: false,
+            username: "",
+            password: None,
+            host: Some(
+                Ipv4(
+                    127.0.0.1,
+                ),
+            ),
+            port: Some(
+                60743,
+            ),
+            path: "/",
+            query: None,
+            fragment: None,
+        },
+        rpc_port: Some(
+            60743,
+        ),
+        net_port: Some(
+            60829,
+        ),
+        version: Some(
+            "1.40.0/7dd0b5993577f592be15eb102e5a3da37be66271",
+        ),
+    },
+} }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #4  / { contract = Contract {
+    id: AccountId(
+        "dev-20240806201348-51399836934806",
+    ),
+} }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #5  / { result = ExecutionFinalResult {
     total_gas_burnt: NearGas {
-        inner: 2014691629585,
+        inner: 1780317909962,
     },
     transaction: ExecutionOutcome {
-        transaction_hash: 3FhbhutcfUdnyYumKodMo71nmHX7TqeyFvBwQtBTJzAH,
-        block_hash: AqJ5V6pAee4TvqDMEPtdrnG4PeUDPSwxec7VtMsi73yn,
+        transaction_hash: AQvfsqPjLT3MAgeuvW6Rt6h2kweVHH5A2TtVMRvH2gt5,
+        block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
         logs: [],
         receipt_ids: [
-            5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE,
+            4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
         ],
         gas_burnt: NearGas {
             inner: 308081859340,
@@ -7797,45 +7831,88 @@ trace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; acco
             inner: 30808185934000000000,
         },
         executor_id: AccountId(
-            "dev-20240731222830-31313391257532",
+            "dev-20240806201348-51399836934806",
         ),
-        status: SuccessReceiptId(5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE),
+        status: SuccessReceiptId(4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h),
     },
     receipts: [
         ExecutionOutcome {
-            transaction_hash: 5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE,
-            block_hash: AqJ5V6pAee4TvqDMEPtdrnG4PeUDPSwxec7VtMsi73yn,
+            transaction_hash: 4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
+            block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
             logs: [
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace 1\ntrace 2 / { trace1 = 1; trace2 = 2 }",
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace 1\ntrace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; account_map = LookupMap { prefix: [99] } } }",
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
             ],
             receipt_ids: [
-                F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
+                H7zuhxkQuxaxFUyP729Djkr4R7EHMbFtJ4x5TERrGiBR,
             ],
             gas_burnt: NearGas {
-                inner: 1483427207745,
+                inner: 1472236050622,
             },
             tokens_burnt: NearToken {
-                inner: 148342720774500000000,
+                inner: 147223605062200000000,
             },
             executor_id: AccountId(
-                "dev-20240731222830-31313391257532",
+                "dev-20240806201348-51399836934806",
             ),
             status: SuccessValue(''),
         },
+    ],
+    status: SuccessValue(''),
+} }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace / { trace1 = 1; trace2 = 2 }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace / { state = { version = 1; alias_map = LookupMap {
+    prefix: [
+        108,
+    ],
+}; account_map = LookupMap {
+    prefix: [
+        99,
+    ],
+} } }
+
+
+ state_main transact result: ExecutionFinalResult {
+    total_gas_burnt: NearGas {
+        inner: 1780317909962,
+    },
+    transaction: ExecutionOutcome {
+        transaction_hash: AQvfsqPjLT3MAgeuvW6Rt6h2kweVHH5A2TtVMRvH2gt5,
+        block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
+        logs: [],
+        receipt_ids: [
+            4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
+        ],
+        gas_burnt: NearGas {
+            inner: 308081859340,
+        },
+        tokens_burnt: NearToken {
+            inner: 30808185934000000000,
+        },
+        executor_id: AccountId(
+            "dev-20240806201348-51399836934806",
+        ),
+        status: SuccessReceiptId(4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h),
+    },
+    receipts: [
         ExecutionOutcome {
-            transaction_hash: F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
-            block_hash: 6nsLMee7LdhuvWx7Cw2jQpEe3oRy7H1AxociUCg3hEq2,
-            logs: [],
-            receipt_ids: [],
+            transaction_hash: 4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
+            block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
+            logs: [
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
+            ],
+            receipt_ids: [
+                H7zuhxkQuxaxFUyP729Djkr4R7EHMbFtJ4x5TERrGiBR,
+            ],
             gas_burnt: NearGas {
-                inner: 223182562500,
+                inner: 1472236050622,
             },
             tokens_burnt: NearToken {
-                inner: 0,
+                inner: 147223605062200000000,
             },
             executor_id: AccountId(
-                "dev-20240731222830-31313391257532",
+                "dev-20240806201348-51399836934806",
             ),
             status: SuccessValue(''),
         },
@@ -7845,29 +7922,24 @@ trace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; acco
 
 
  print_usd:
-gas_to_usd(result.total_gas_burnt.as_gas()): 0.001346 (2014691629585)
+gas_to_usd(result.total_gas_burnt.as_gas()): 0.001189 (1780317909962)
 outcome (success: true):
   gas_to_usd(outcome.gas_burnt.as_gas()): 0.000206 (308081859340)
   tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): 0.000206 (30808185934000000000)
 outcome (success: true):
-  gas_to_usd(outcome.gas_burnt.as_gas()): 0.000991 (1483427207745)
-  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): 0.000991 (148342720774500000000)
-outcome (success: true):
-  gas_to_usd(outcome.gas_burnt.as_gas()): 0.000149 (223182562500)
-  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): 0.000000 (0)
-
-
- result.into_result(): Ok(
+  gas_to_usd(outcome.gas_burnt.as_gas()): 0.000983 (1472236050622)
+  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): 0.000983 (147223605062200000000)
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #6  / { result2 = Ok(
     ExecutionResult {
         total_gas_burnt: NearGas {
-            inner: 2014691629585,
+            inner: 1780317909962,
         },
         transaction: ExecutionOutcome {
-            transaction_hash: 3FhbhutcfUdnyYumKodMo71nmHX7TqeyFvBwQtBTJzAH,
-            block_hash: AqJ5V6pAee4TvqDMEPtdrnG4PeUDPSwxec7VtMsi73yn,
+            transaction_hash: AQvfsqPjLT3MAgeuvW6Rt6h2kweVHH5A2TtVMRvH2gt5,
+            block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
             logs: [],
             receipt_ids: [
-                5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE,
+                4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
             ],
             gas_burnt: NearGas {
                 inner: 308081859340,
@@ -7876,45 +7948,29 @@ outcome (success: true):
                 inner: 30808185934000000000,
             },
             executor_id: AccountId(
-                "dev-20240731222830-31313391257532",
+                "dev-20240806201348-51399836934806",
             ),
-            status: SuccessReceiptId(5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE),
+            status: SuccessReceiptId(4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h),
         },
         receipts: [
             ExecutionOutcome {
-                transaction_hash: 5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE,
-                block_hash: AqJ5V6pAee4TvqDMEPtdrnG4PeUDPSwxec7VtMsi73yn,
+                transaction_hash: 4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
+                block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
                 logs: [
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace 1\ntrace 2 / { trace1 = 1; trace2 = 2 }",
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace 1\ntrace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; account_map = LookupMap { prefix: [99] } } }",
+                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
                 ],
                 receipt_ids: [
-                    F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
+                    H7zuhxkQuxaxFUyP729Djkr4R7EHMbFtJ4x5TERrGiBR,
                 ],
                 gas_burnt: NearGas {
-                    inner: 1483427207745,
+                    inner: 1472236050622,
                 },
                 tokens_burnt: NearToken {
-                    inner: 148342720774500000000,
+                    inner: 147223605062200000000,
                 },
                 executor_id: AccountId(
-                    "dev-20240731222830-31313391257532",
-                ),
-                status: SuccessValue(''),
-            },
-            ExecutionOutcome {
-                transaction_hash: F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
-                block_hash: 6nsLMee7LdhuvWx7Cw2jQpEe3oRy7H1AxociUCg3hEq2,
-                logs: [],
-                receipt_ids: [],
-                gas_burnt: NearGas {
-                    inner: 223182562500,
-                },
-                tokens_burnt: NearToken {
-                    inner: 0,
-                },
-                executor_id: AccountId(
-                    "dev-20240731222830-31313391257532",
+                    "dev-20240806201348-51399836934806",
                 ),
                 status: SuccessValue(''),
             },
@@ -7923,64 +7979,40 @@ outcome (success: true):
             repr: "",
         },
     },
-)
-
-
- receipt_failures: []
-
-
- receipt_outcomes: [
+) }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #7  / { receipt_failures = [] }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #8  / { receipt_outcomes = [
     ExecutionOutcome {
-        transaction_hash: 5vRZWPTt22gYum8jouA5HDY6sdGSD9xDS2o2212eB3pE,
-        block_hash: AqJ5V6pAee4TvqDMEPtdrnG4PeUDPSwxec7VtMsi73yn,
+        transaction_hash: 4jXnBK2tHu8o7FWXuF4HTkFiwbDgz9DdDkkDNKZyRh4h,
+        block_hash: 3YzQLGKKHMLCi8JHxzzNRHRUAhyavhrx48eqY2GTjd4L,
         logs: [
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace 1\ntrace 2 / { trace1 = 1; trace2 = 2 }",
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace 1\ntrace 2 / { state = { version = 1; alias_map = LookupMap { prefix: [108] }; account_map = LookupMap { prefix: [99] } } }",
+            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
         ],
         receipt_ids: [
-            F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
+            H7zuhxkQuxaxFUyP729Djkr4R7EHMbFtJ4x5TERrGiBR,
         ],
         gas_burnt: NearGas {
-            inner: 1483427207745,
+            inner: 1472236050622,
         },
         tokens_burnt: NearToken {
-            inner: 148342720774500000000,
+            inner: 147223605062200000000,
         },
         executor_id: AccountId(
-            "dev-20240731222830-31313391257532",
+            "dev-20240806201348-51399836934806",
         ),
         status: SuccessValue(''),
     },
-    ExecutionOutcome {
-        transaction_hash: F3Za73bSYfXUj8kNgx8awtK9pKMMa19oYJLQs83ihnBX,
-        block_hash: 6nsLMee7LdhuvWx7Cw2jQpEe3oRy7H1AxociUCg3hEq2,
-        logs: [],
-        receipt_ids: [],
-        gas_burnt: NearGas {
-            inner: 223182562500,
-        },
-        tokens_burnt: NearToken {
-            inner: 0,
-        },
-        executor_id: AccountId(
-            "dev-20240731222830-31313391257532",
-        ),
-        status: SuccessValue(''),
-    },
-]
-
-
- json: Err(
+] }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #9  / { json = Err(
     Error {
         repr: Custom {
             kind: DataConversion,
             error: "the function call returned an empty value, which cannot be parsed as JSON",
         },
     },
-)
-
-
- borsh: Err(
+) }
+17:13:49 <span class="ansi-blue-intense-fg">  debug</span> #10  / { borsh = Err(
     Error {
         repr: Custom {
             kind: DataConversion,
@@ -7990,7 +8022,7 @@ outcome (success: true):
             },
         },
     },
-)
+) }
 
 
  worker: Worker {
@@ -8009,17 +8041,17 @@ outcome (success: true):
                 ),
             ),
             port: Some(
-                60735,
+                60743,
             ),
             path: "/",
             query: None,
             fragment: None,
         },
         rpc_port: Some(
-            60735,
+            60743,
         ),
         net_port: Some(
-            60845,
+            60829,
         ),
         version: Some(
             "1.40.0/7dd0b5993577f592be15eb102e5a3da37be66271",
@@ -8030,7 +8062,7 @@ outcome (success: true):
 
  contract: Contract {
     id: AccountId(
-        "dev-20240731222830-31313391257532",
+        "dev-20240806201348-51399836934806",
     ),
 }
 </pre>
@@ -8067,10 +8099,6 @@ outcome (success: true):
 <span class="o">//</span>     <span class="o">&amp;&amp;</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars |&gt;</span>
 
 <span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
-    <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_pretty'</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"value: {!value}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[near_sdk::near_bindgen] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>

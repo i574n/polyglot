@@ -123,16 +123,7 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure1(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            let _v3: MutCell<Option<std::string::String>> =
-                MutCell::new(None::<std::string::String>);
-            {
-                let x: std::string::String = format!("{}", v0_1);
-                _v3.set(Some(x))
-            }
-            match &_v3.get().clone() {
-                None => panic!("{}", string("base.run_target / _v3=None"),),
-                Some(_v3_0_0) => _v3_0_0.clone(),
-            }
+            format!("{}", v0_1)
         }
         pub fn method8() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure1((), v))
@@ -146,16 +137,7 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure2(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            let _v3: MutCell<Option<std::string::String>> =
-                MutCell::new(None::<std::string::String>);
-            {
-                let x: std::string::String = format!("{}", v0_1);
-                _v3.set(Some(x))
-            }
-            match &_v3.get().clone() {
-                None => panic!("{}", string("base.run_target / _v3=None"),),
-                Some(_v3_0_0) => _v3_0_0.clone(),
-            }
+            format!("{}", v0_1)
         }
         pub fn method11() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure2((), v))
@@ -170,16 +152,7 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure3(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            let _v3: MutCell<Option<std::string::String>> =
-                MutCell::new(None::<std::string::String>);
-            {
-                let x: std::string::String = format!("{}", v0_1);
-                _v3.set(Some(x))
-            }
-            match &_v3.get().clone() {
-                None => panic!("{}", string("base.run_target / _v3=None"),),
-                Some(_v3_0_0) => _v3_0_0.clone(),
-            }
+            format!("{}", v0_1)
         }
         pub fn method14() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure3((), v))
@@ -188,16 +161,7 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure4(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            let _v3: MutCell<Option<std::string::String>> =
-                MutCell::new(None::<std::string::String>);
-            {
-                let x: std::string::String = format!("{}", v0_1);
-                _v3.set(Some(x))
-            }
-            match &_v3.get().clone() {
-                None => panic!("{}", string("base.run_target / _v3=None"),),
-                Some(_v3_0_0) => _v3_0_0.clone(),
-            }
+            format!("{}", v0_1)
         }
         pub fn method16() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure4((), v))
@@ -420,7 +384,7 @@ mod module_b7a9935b {
                     Math::method3(v34 - v1_1.clone()),
                 );
                 let v41: Option<num_complex::Complex<f64>> = v39.ok();
-                let _v44: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                let _v42: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
                     let x_2: Option<Math::US0> = match &v41 {
                         None => None::<Math::US0>,
@@ -432,195 +396,195 @@ mod module_b7a9935b {
                             }))())
                         }
                     };
-                    _v44.set(x_2)
+                    _v42.set(x_2)
                 }
                 {
-                    let v71: Math::US0 = defaultValue(Math::US0::US0_1, _v44.get().clone());
-                    let v80: f64 = f64::NAN;
-                    let v82: f64 = f64::NAN;
-                    let v84: num_complex::Complex<f64> = num_complex::Complex::new(v80, v82);
-                    let v87: num_complex::Complex<f64> = match &v71 {
-                        Math::US0::US0_0(v71_0_0) => match &v71 {
+                    let v57: Math::US0 = defaultValue(Math::US0::US0_1, _v42.get().clone());
+                    let v62: f64 = f64::NAN;
+                    let v64: f64 = f64::NAN;
+                    let v66: num_complex::Complex<f64> = num_complex::Complex::new(v62, v64);
+                    let v69: num_complex::Complex<f64> = match &v57 {
+                        Math::US0::US0_0(v57_0_0) => match &v57 {
                             Math::US0::US0_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v84,
+                        _ => v66,
                     };
-                    let v89: num_complex::Complex<f64> =
+                    let v71: num_complex::Complex<f64> =
                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                    let v91: num_complex::Complex<f64> = v89 * v1_1.clone();
-                    let v93: num_complex::Complex<f64> =
+                    let v73: num_complex::Complex<f64> = v71 * v1_1.clone();
+                    let v75: num_complex::Complex<f64> =
                         num_complex::Complex::new(2.0_f64, 0.0_f64);
-                    let v95: num_complex::Complex<f64> = v91 / v93;
-                    let v97: num_complex::Complex<f64> = v95.sin();
-                    let v100: f64 = 1.0_f64 - v1_1.clone().re;
-                    let v103: f64 = -v1_1.clone().im;
-                    let v105: num_complex::Complex<f64> = num_complex::Complex::new(v100, v103);
-                    let v611: num_complex::Complex<f64> = if v105.clone().re <= 1.0_f64 {
+                    let v77: num_complex::Complex<f64> = v73 / v75;
+                    let v79: num_complex::Complex<f64> = v77.sin();
+                    let v82: f64 = 1.0_f64 - v1_1.clone().re;
+                    let v85: f64 = -v1_1.clone().im;
+                    let v87: num_complex::Complex<f64> = num_complex::Complex::new(v82, v85);
+                    let v521: num_complex::Complex<f64> = if v87.clone().re <= 1.0_f64 {
                         num_complex::Complex::new(0.0_f64, 0.0_f64)
                     } else {
-                        println!("zeta / count: {:?} / s: {:?}", 1_i32, v105.clone());
-                        if v105.clone().re > 1.0_f64 {
-                            let v116: num_complex::Complex<f64> =
+                        println!("zeta / count: {:?} / s: {:?}", 1_i32, v87.clone());
+                        if v87.clone().re > 1.0_f64 {
+                            let v98: num_complex::Complex<f64> =
                                 num_complex::Complex::new(0.0_f64, 0.0_f64);
-                            let v117: Array<i32> = new_init(&0_i32, 10000_i32);
-                            let v118: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
+                            let v99: Array<i32> = new_init(&0_i32, 10000_i32);
+                            let v100: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
                                 l0: MutCell::new(0_i32),
                             });
-                            while Math::method18(v118.clone()) {
-                                let v120: i32 = v118.l0.get().clone();
-                                v117.get_mut()[v120 as usize] = v120;
+                            while Math::method18(v100.clone()) {
+                                let v102: i32 = v100.l0.get().clone();
+                                v99.get_mut()[v102 as usize] = v102;
                                 {
-                                    let v121: i32 = v120 + 1_i32;
-                                    v118.l0.set(v121);
+                                    let v103: i32 = v102 + 1_i32;
+                                    v100.l0.set(v103);
                                     ()
                                 }
                             }
                             {
-                                let v122: i32 = count(v117.clone());
-                                let v123: LrcPtr<Math::Mut2> = LrcPtr::new(Math::Mut2 {
+                                let v104: i32 = count(v99.clone());
+                                let v105: LrcPtr<Math::Mut2> = LrcPtr::new(Math::Mut2 {
                                     l0: MutCell::new(0_i32),
-                                    l1: MutCell::new(v116),
+                                    l1: MutCell::new(v98),
                                 });
-                                while Math::method19(v122, v123.clone()) {
-                                    let v125: i32 = v123.l0.get().clone();
-                                    let v126: num_complex::Complex<f64> = v123.l1.get().clone();
-                                    let v127: i32 = v117[v125].clone();
-                                    let v129: num_complex::Complex<f64> =
+                                while Math::method19(v104, v105.clone()) {
+                                    let v107: i32 = v105.l0.get().clone();
+                                    let v108: num_complex::Complex<f64> = v105.l1.get().clone();
+                                    let v109: i32 = v99[v107].clone();
+                                    let v111: num_complex::Complex<f64> =
                                         num_complex::Complex::new(1.0_f64, 0.0_f64);
-                                    let v131: f64 = v127 as f64;
-                                    let v133: num_complex::Complex<f64> =
-                                        num_complex::Complex::new(v131, 0.0_f64);
-                                    let v135: num_complex::Complex<f64> =
-                                        num_complex::Complex::powc(v133, v105.clone());
-                                    let v137: num_complex::Complex<f64> = v129 / v135;
-                                    let v139: num_complex::Complex<f64> = v126 + v137;
-                                    let v140: i32 = v125 + 1_i32;
-                                    v123.l0.set(v140);
-                                    v123.l1.set(v139);
+                                    let v113: f64 = v109 as f64;
+                                    let v115: num_complex::Complex<f64> =
+                                        num_complex::Complex::new(v113, 0.0_f64);
+                                    let v117: num_complex::Complex<f64> =
+                                        num_complex::Complex::powc(v115, v87.clone());
+                                    let v119: num_complex::Complex<f64> = v111 / v117;
+                                    let v121: num_complex::Complex<f64> = v108 + v119;
+                                    let v122: i32 = v107 + 1_i32;
+                                    v105.l0.set(v122);
+                                    v105.l1.set(v121);
                                     ()
                                 }
-                                v123.l1.get().clone()
+                                v105.l1.get().clone()
                             }
                         } else {
-                            let v143: num_complex::Complex<f64> =
+                            let v125: num_complex::Complex<f64> =
                                 num_complex::Complex::new(1.0_f64, 0.0_f64);
-                            let v148: Result<num_complex::Complex<f64>, std::string::String> =
+                            let v130: Result<num_complex::Complex<f64>, std::string::String> =
                                 Math::method20(
                                     v0_1.clone(),
                                     string("        s = mpmath.gamma(s)"),
-                                    Math::method3(v143 - v105.clone()),
+                                    Math::method3(v125 - v87.clone()),
                                 );
-                            let v150: Option<num_complex::Complex<f64>> = v148.ok();
-                            let _v153: LrcPtr<MutCell<Option<Math::US0>>> =
+                            let v132: Option<num_complex::Complex<f64>> = v130.ok();
+                            let _v133: LrcPtr<MutCell<Option<Math::US0>>> =
                                 refCell(None::<Math::US0>);
                             {
-                                let x_5: Option<Math::US0> = match &v150 {
+                                let x_5: Option<Math::US0> = match &v132 {
                                     None => None::<Math::US0>,
-                                    Some(v150_0_0) => {
-                                        let x_3: num_complex::Complex<f64> = v150_0_0.clone();
+                                    Some(v132_0_0) => {
+                                        let x_3: num_complex::Complex<f64> = v132_0_0.clone();
                                         Some((Func0::new({
                                             let x_3 = x_3.clone();
                                             move || Math::US0::US0_0(x_3.clone())
                                         }))())
                                     }
                                 };
-                                _v153.set(x_5)
+                                _v133.set(x_5)
                             }
                             {
-                                let v180: Math::US0 =
-                                    defaultValue(Math::US0::US0_1, _v153.get().clone());
-                                let v189: f64 = f64::NAN;
-                                let v191: f64 = f64::NAN;
-                                let v193: num_complex::Complex<f64> =
-                                    num_complex::Complex::new(v189, v191);
-                                let v196: num_complex::Complex<f64> = match &v180 {
-                                    Math::US0::US0_0(v180_0_0) => match &v180 {
+                                let v148: Math::US0 =
+                                    defaultValue(Math::US0::US0_1, _v133.get().clone());
+                                let v153: f64 = f64::NAN;
+                                let v155: f64 = f64::NAN;
+                                let v157: num_complex::Complex<f64> =
+                                    num_complex::Complex::new(v153, v155);
+                                let v160: num_complex::Complex<f64> = match &v148 {
+                                    Math::US0::US0_0(v148_0_0) => match &v148 {
                                         Math::US0::US0_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     },
-                                    _ => v193,
+                                    _ => v157,
                                 };
-                                let v198: num_complex::Complex<f64> =
+                                let v162: num_complex::Complex<f64> =
                                     num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                                let v200: num_complex::Complex<f64> = v198 * v105.clone();
-                                let v202: num_complex::Complex<f64> =
+                                let v164: num_complex::Complex<f64> = v162 * v87.clone();
+                                let v166: num_complex::Complex<f64> =
                                     num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                let v204: num_complex::Complex<f64> = v200 / v202;
-                                let v206: num_complex::Complex<f64> = v204.sin();
-                                let v209: f64 = 1.0_f64 - v105.clone().re;
-                                let v212: f64 = -v105.clone().im;
-                                let v214: num_complex::Complex<f64> =
-                                    num_complex::Complex::new(v209, v212);
-                                let v595: num_complex::Complex<f64> = if v214.clone().re <= 1.0_f64
+                                let v168: num_complex::Complex<f64> = v164 / v166;
+                                let v170: num_complex::Complex<f64> = v168.sin();
+                                let v173: f64 = 1.0_f64 - v87.clone().re;
+                                let v176: f64 = -v87.clone().im;
+                                let v178: num_complex::Complex<f64> =
+                                    num_complex::Complex::new(v173, v176);
+                                let v505: num_complex::Complex<f64> = if v178.clone().re <= 1.0_f64
                                 {
                                     num_complex::Complex::new(0.0_f64, 0.0_f64)
                                 } else {
-                                    println!("zeta / count: {:?} / s: {:?}", 2_i32, v214.clone());
-                                    if v214.clone().re > 1.0_f64 {
-                                        let v225: num_complex::Complex<f64> =
+                                    println!("zeta / count: {:?} / s: {:?}", 2_i32, v178.clone());
+                                    if v178.clone().re > 1.0_f64 {
+                                        let v189: num_complex::Complex<f64> =
                                             num_complex::Complex::new(0.0_f64, 0.0_f64);
-                                        let v226: Array<i32> = new_init(&0_i32, 10000_i32);
-                                        let v227: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
+                                        let v190: Array<i32> = new_init(&0_i32, 10000_i32);
+                                        let v191: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
                                             l0: MutCell::new(0_i32),
                                         });
-                                        while Math::method18(v227.clone()) {
-                                            let v229: i32 = v227.l0.get().clone();
-                                            v226.get_mut()[v229 as usize] = v229;
+                                        while Math::method18(v191.clone()) {
+                                            let v193: i32 = v191.l0.get().clone();
+                                            v190.get_mut()[v193 as usize] = v193;
                                             {
-                                                let v230: i32 = v229 + 1_i32;
-                                                v227.l0.set(v230);
+                                                let v194: i32 = v193 + 1_i32;
+                                                v191.l0.set(v194);
                                                 ()
                                             }
                                         }
                                         {
-                                            let v231: i32 = count(v226.clone());
-                                            let v232: LrcPtr<Math::Mut2> =
+                                            let v195: i32 = count(v190.clone());
+                                            let v196: LrcPtr<Math::Mut2> =
                                                 LrcPtr::new(Math::Mut2 {
                                                     l0: MutCell::new(0_i32),
-                                                    l1: MutCell::new(v225),
+                                                    l1: MutCell::new(v189),
                                                 });
-                                            while Math::method19(v231, v232.clone()) {
-                                                let v234: i32 = v232.l0.get().clone();
-                                                let v235: num_complex::Complex<f64> =
-                                                    v232.l1.get().clone();
-                                                let v236: i32 = v226[v234].clone();
-                                                let v238: num_complex::Complex<f64> =
+                                            while Math::method19(v195, v196.clone()) {
+                                                let v198: i32 = v196.l0.get().clone();
+                                                let v199: num_complex::Complex<f64> =
+                                                    v196.l1.get().clone();
+                                                let v200: i32 = v190[v198].clone();
+                                                let v202: num_complex::Complex<f64> =
                                                     num_complex::Complex::new(1.0_f64, 0.0_f64);
-                                                let v240: f64 = v236 as f64;
-                                                let v242: num_complex::Complex<f64> =
-                                                    num_complex::Complex::new(v240, 0.0_f64);
-                                                let v244: num_complex::Complex<f64> =
-                                                    num_complex::Complex::powc(v242, v214.clone());
-                                                let v246: num_complex::Complex<f64> = v238 / v244;
-                                                let v248: num_complex::Complex<f64> = v235 + v246;
-                                                let v249: i32 = v234 + 1_i32;
-                                                v232.l0.set(v249);
-                                                v232.l1.set(v248);
+                                                let v204: f64 = v200 as f64;
+                                                let v206: num_complex::Complex<f64> =
+                                                    num_complex::Complex::new(v204, 0.0_f64);
+                                                let v208: num_complex::Complex<f64> =
+                                                    num_complex::Complex::powc(v206, v178.clone());
+                                                let v210: num_complex::Complex<f64> = v202 / v208;
+                                                let v212: num_complex::Complex<f64> = v199 + v210;
+                                                let v213: i32 = v198 + 1_i32;
+                                                v196.l0.set(v213);
+                                                v196.l1.set(v212);
                                                 ()
                                             }
-                                            v232.l1.get().clone()
+                                            v196.l1.get().clone()
                                         }
                                     } else {
-                                        let v252: num_complex::Complex<f64> =
+                                        let v216: num_complex::Complex<f64> =
                                             num_complex::Complex::new(1.0_f64, 0.0_f64);
-                                        let v257: Result<
+                                        let v221: Result<
                                             num_complex::Complex<f64>,
                                             std::string::String,
                                         > = Math::method20(
                                             v0_1.clone(),
                                             string("        s = mpmath.gamma(s)"),
-                                            Math::method3(v252 - v214.clone()),
+                                            Math::method3(v216 - v178.clone()),
                                         );
-                                        let v259: Option<num_complex::Complex<f64>> = v257.ok();
-                                        let _v262: LrcPtr<MutCell<Option<Math::US0>>> =
+                                        let v223: Option<num_complex::Complex<f64>> = v221.ok();
+                                        let _v224: LrcPtr<MutCell<Option<Math::US0>>> =
                                             refCell(None::<Math::US0>);
                                         {
-                                            let x_8: Option<Math::US0> = match &v259 {
+                                            let x_8: Option<Math::US0> = match &v223 {
                                                 None => None::<Math::US0>,
-                                                Some(v259_0_0) => {
+                                                Some(v223_0_0) => {
                                                     let x_6: num_complex::Complex<f64> =
-                                                        v259_0_0.clone();
+                                                        v223_0_0.clone();
                                                     Some((Func0::new({
                                                         let x_6 = x_6.clone();
                                                         move || Math::US0::US0_0(x_6.clone())
@@ -628,38 +592,38 @@ mod module_b7a9935b {
                                                     ))
                                                 }
                                             };
-                                            _v262.set(x_8)
+                                            _v224.set(x_8)
                                         }
                                         {
-                                            let v289: Math::US0 =
-                                                defaultValue(Math::US0::US0_1, _v262.get().clone());
-                                            let v298: f64 = f64::NAN;
-                                            let v300: f64 = f64::NAN;
-                                            let v302: num_complex::Complex<f64> =
-                                                num_complex::Complex::new(v298, v300);
-                                            let v305: num_complex::Complex<f64> = match &v289 {
-                                                Math::US0::US0_0(v289_0_0) => match &v289 {
+                                            let v239: Math::US0 =
+                                                defaultValue(Math::US0::US0_1, _v224.get().clone());
+                                            let v244: f64 = f64::NAN;
+                                            let v246: f64 = f64::NAN;
+                                            let v248: num_complex::Complex<f64> =
+                                                num_complex::Complex::new(v244, v246);
+                                            let v251: num_complex::Complex<f64> = match &v239 {
+                                                Math::US0::US0_0(v239_0_0) => match &v239 {
                                                     Math::US0::US0_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 },
-                                                _ => v302,
+                                                _ => v248,
                                             };
-                                            let v307: num_complex::Complex<f64> =
+                                            let v253: num_complex::Complex<f64> =
                                                 num_complex::Complex::new(
                                                     3.141592653589793_f64,
                                                     0.0_f64,
                                                 );
-                                            let v309: num_complex::Complex<f64> =
-                                                v307 * v214.clone();
-                                            let v311: num_complex::Complex<f64> =
+                                            let v255: num_complex::Complex<f64> =
+                                                v253 * v178.clone();
+                                            let v257: num_complex::Complex<f64> =
                                                 num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                            let v313: num_complex::Complex<f64> = v309 / v311;
-                                            let v315: num_complex::Complex<f64> = v313.sin();
-                                            let v318: f64 = 1.0_f64 - v214.clone().re;
-                                            let v321: f64 = -v214.clone().im;
-                                            let v323: num_complex::Complex<f64> =
-                                                num_complex::Complex::new(v318, v321);
-                                            let v579: num_complex::Complex<f64> = if v323.clone().re
+                                            let v259: num_complex::Complex<f64> = v255 / v257;
+                                            let v261: num_complex::Complex<f64> = v259.sin();
+                                            let v264: f64 = 1.0_f64 - v178.clone().re;
+                                            let v267: f64 = -v178.clone().im;
+                                            let v269: num_complex::Complex<f64> =
+                                                num_complex::Complex::new(v264, v267);
+                                            let v489: num_complex::Complex<f64> = if v269.clone().re
                                                 <= 1.0_f64
                                             {
                                                 num_complex::Complex::new(0.0_f64, 0.0_f64)
@@ -667,84 +631,84 @@ mod module_b7a9935b {
                                                 println!(
                                                     "zeta / count: {:?} / s: {:?}",
                                                     3_i32,
-                                                    v323.clone()
+                                                    v269.clone()
                                                 );
-                                                if v323.clone().re > 1.0_f64 {
-                                                    let v334: num_complex::Complex<f64> =
+                                                if v269.clone().re > 1.0_f64 {
+                                                    let v280: num_complex::Complex<f64> =
                                                         num_complex::Complex::new(0.0_f64, 0.0_f64);
-                                                    let v335: Array<i32> =
+                                                    let v281: Array<i32> =
                                                         new_init(&0_i32, 10000_i32);
-                                                    let v336: LrcPtr<Math::Mut0> =
+                                                    let v282: LrcPtr<Math::Mut0> =
                                                         LrcPtr::new(Math::Mut0 {
                                                             l0: MutCell::new(0_i32),
                                                         });
-                                                    while Math::method18(v336.clone()) {
-                                                        let v338: i32 = v336.l0.get().clone();
-                                                        v335.get_mut()[v338 as usize] = v338;
+                                                    while Math::method18(v282.clone()) {
+                                                        let v284: i32 = v282.l0.get().clone();
+                                                        v281.get_mut()[v284 as usize] = v284;
                                                         {
-                                                            let v339: i32 = v338 + 1_i32;
-                                                            v336.l0.set(v339);
+                                                            let v285: i32 = v284 + 1_i32;
+                                                            v282.l0.set(v285);
                                                             ()
                                                         }
                                                     }
                                                     {
-                                                        let v340: i32 = count(v335.clone());
-                                                        let v341: LrcPtr<Math::Mut2> =
+                                                        let v286: i32 = count(v281.clone());
+                                                        let v287: LrcPtr<Math::Mut2> =
                                                             LrcPtr::new(Math::Mut2 {
                                                                 l0: MutCell::new(0_i32),
-                                                                l1: MutCell::new(v334),
+                                                                l1: MutCell::new(v280),
                                                             });
-                                                        while Math::method19(v340, v341.clone()) {
-                                                            let v343: i32 = v341.l0.get().clone();
-                                                            let v344: num_complex::Complex<f64> =
-                                                                v341.l1.get().clone();
-                                                            let v345: i32 = v335[v343].clone();
-                                                            let v347: num_complex::Complex<f64> =
+                                                        while Math::method19(v286, v287.clone()) {
+                                                            let v289: i32 = v287.l0.get().clone();
+                                                            let v290: num_complex::Complex<f64> =
+                                                                v287.l1.get().clone();
+                                                            let v291: i32 = v281[v289].clone();
+                                                            let v293: num_complex::Complex<f64> =
                                                                 num_complex::Complex::new(
                                                                     1.0_f64, 0.0_f64,
                                                                 );
-                                                            let v349: f64 = v345 as f64;
-                                                            let v351: num_complex::Complex<f64> =
+                                                            let v295: f64 = v291 as f64;
+                                                            let v297: num_complex::Complex<f64> =
                                                                 num_complex::Complex::new(
-                                                                    v349, 0.0_f64,
+                                                                    v295, 0.0_f64,
                                                                 );
-                                                            let v353: num_complex::Complex<f64> =
+                                                            let v299: num_complex::Complex<f64> =
                                                                 num_complex::Complex::powc(
-                                                                    v351,
-                                                                    v323.clone(),
+                                                                    v297,
+                                                                    v269.clone(),
                                                                 );
-                                                            let v355: num_complex::Complex<f64> =
-                                                                v347 / v353;
-                                                            let v357: num_complex::Complex<f64> =
-                                                                v344 + v355;
-                                                            let v358: i32 = v343 + 1_i32;
-                                                            v341.l0.set(v358);
-                                                            v341.l1.set(v357);
+                                                            let v301: num_complex::Complex<f64> =
+                                                                v293 / v299;
+                                                            let v303: num_complex::Complex<f64> =
+                                                                v290 + v301;
+                                                            let v304: i32 = v289 + 1_i32;
+                                                            v287.l0.set(v304);
+                                                            v287.l1.set(v303);
                                                             ()
                                                         }
-                                                        v341.l1.get().clone()
+                                                        v287.l1.get().clone()
                                                     }
                                                 } else {
-                                                    let v361: num_complex::Complex<f64> =
+                                                    let v307: num_complex::Complex<f64> =
                                                         num_complex::Complex::new(1.0_f64, 0.0_f64);
-                                                    let v366: Result<
+                                                    let v312: Result<
                                                         num_complex::Complex<f64>,
                                                         std::string::String,
                                                     > = Math::method20(
                                                         v0_1.clone(),
                                                         string("        s = mpmath.gamma(s)"),
-                                                        Math::method3(v361 - v323.clone()),
+                                                        Math::method3(v307 - v269.clone()),
                                                     );
-                                                    let v368: Option<num_complex::Complex<f64>> =
-                                                        v366.ok();
-                                                    let _v371: LrcPtr<MutCell<Option<Math::US0>>> =
+                                                    let v314: Option<num_complex::Complex<f64>> =
+                                                        v312.ok();
+                                                    let _v315: LrcPtr<MutCell<Option<Math::US0>>> =
                                                         refCell(None::<Math::US0>);
                                                     {
-                                                        let x_11: Option<Math::US0> = match &v368 {
+                                                        let x_11: Option<Math::US0> = match &v314 {
                                                             None => None::<Math::US0>,
-                                                            Some(v368_0_0) => {
+                                                            Some(v314_0_0) => {
                                                                 let x_9: num_complex::Complex<f64> =
-                                                                    v368_0_0.clone();
+                                                                    v314_0_0.clone();
                                                                 Some((Func0::new({
                                                                     let x_9 = x_9.clone();
                                                                     move || {
@@ -756,50 +720,50 @@ mod module_b7a9935b {
                                                                 ))
                                                             }
                                                         };
-                                                        _v371.set(x_11)
+                                                        _v315.set(x_11)
                                                     }
                                                     {
-                                                        let v398: Math::US0 = defaultValue(
+                                                        let v330: Math::US0 = defaultValue(
                                                             Math::US0::US0_1,
-                                                            _v371.get().clone(),
+                                                            _v315.get().clone(),
                                                         );
-                                                        let v407: f64 = f64::NAN;
-                                                        let v409: f64 = f64::NAN;
-                                                        let v411: num_complex::Complex<f64> =
-                                                            num_complex::Complex::new(v407, v409);
-                                                        let v414: num_complex::Complex<f64> =
-                                                            match &v398 {
-                                                                Math::US0::US0_0(v398_0_0) => {
-                                                                    match &v398 {
+                                                        let v335: f64 = f64::NAN;
+                                                        let v337: f64 = f64::NAN;
+                                                        let v339: num_complex::Complex<f64> =
+                                                            num_complex::Complex::new(v335, v337);
+                                                        let v342: num_complex::Complex<f64> =
+                                                            match &v330 {
+                                                                Math::US0::US0_0(v330_0_0) => {
+                                                                    match &v330 {
                                                                         Math::US0::US0_0(x) => {
                                                                             x.clone()
                                                                         }
                                                                         _ => unreachable!(),
                                                                     }
                                                                 }
-                                                                _ => v411,
+                                                                _ => v339,
                                                             };
-                                                        let v416: num_complex::Complex<f64> =
+                                                        let v344: num_complex::Complex<f64> =
                                                             num_complex::Complex::new(
                                                                 3.141592653589793_f64,
                                                                 0.0_f64,
                                                             );
-                                                        let v418: num_complex::Complex<f64> =
-                                                            v416 * v323.clone();
-                                                        let v420: num_complex::Complex<f64> =
+                                                        let v346: num_complex::Complex<f64> =
+                                                            v344 * v269.clone();
+                                                        let v348: num_complex::Complex<f64> =
                                                             num_complex::Complex::new(
                                                                 2.0_f64, 0.0_f64,
                                                             );
-                                                        let v422: num_complex::Complex<f64> =
-                                                            v418 / v420;
-                                                        let v424: num_complex::Complex<f64> =
-                                                            v422.sin();
-                                                        let v427: f64 = 1.0_f64 - v323.clone().re;
-                                                        let v430: f64 = -v323.clone().im;
-                                                        let v432: num_complex::Complex<f64> =
-                                                            num_complex::Complex::new(v427, v430);
-                                                        let v563: num_complex::Complex<f64> =
-                                                            if v432.clone().re <= 1.0_f64 {
+                                                        let v350: num_complex::Complex<f64> =
+                                                            v346 / v348;
+                                                        let v352: num_complex::Complex<f64> =
+                                                            v350.sin();
+                                                        let v355: f64 = 1.0_f64 - v269.clone().re;
+                                                        let v358: f64 = -v269.clone().im;
+                                                        let v360: num_complex::Complex<f64> =
+                                                            num_complex::Complex::new(v355, v358);
+                                                        let v473: num_complex::Complex<f64> =
+                                                            if v360.clone().re <= 1.0_f64 {
                                                                 num_complex::Complex::new(
                                                                     0.0_f64, 0.0_f64,
                                                                 )
@@ -807,38 +771,38 @@ mod module_b7a9935b {
                                                                 println!(
                                                                     "zeta / count: {:?} / s: {:?}",
                                                                     4_i32,
-                                                                    v432.clone()
+                                                                    v360.clone()
                                                                 );
-                                                                if v432.clone().re > 1.0_f64 {
-                                                                    let v443: num_complex::Complex<
+                                                                if v360.clone().re > 1.0_f64 {
+                                                                    let v371: num_complex::Complex<
                                                                         f64,
                                                                     > = num_complex::Complex::new(
                                                                         0.0_f64, 0.0_f64,
                                                                     );
-                                                                    let v444: Array<i32> =
+                                                                    let v372: Array<i32> =
                                                                         new_init(&0_i32, 10000_i32);
-                                                                    let v445: LrcPtr<Math::Mut0> =
+                                                                    let v373: LrcPtr<Math::Mut0> =
                                                                         LrcPtr::new(Math::Mut0 {
                                                                             l0: MutCell::new(0_i32),
                                                                         });
                                                                     while Math::method18(
-                                                                        v445.clone(),
+                                                                        v373.clone(),
                                                                     ) {
-                                                                        let v447: i32 =
-                                                                            v445.l0.get().clone();
-                                                                        v444.get_mut()
-                                                                            [v447 as usize] = v447;
+                                                                        let v375: i32 =
+                                                                            v373.l0.get().clone();
+                                                                        v372.get_mut()
+                                                                            [v375 as usize] = v375;
                                                                         {
-                                                                            let v448: i32 =
-                                                                                v447 + 1_i32;
-                                                                            v445.l0.set(v448);
+                                                                            let v376: i32 =
+                                                                                v375 + 1_i32;
+                                                                            v373.l0.set(v376);
                                                                             ()
                                                                         }
                                                                     }
                                                                     {
-                                                                        let v449: i32 =
-                                                                            count(v444.clone());
-                                                                        let v450: LrcPtr<
+                                                                        let v377: i32 =
+                                                                            count(v372.clone());
+                                                                        let v378: LrcPtr<
                                                                             Math::Mut2,
                                                                         > = LrcPtr::new(
                                                                             Math::Mut2 {
@@ -846,77 +810,77 @@ mod module_b7a9935b {
                                                                                     0_i32,
                                                                                 ),
                                                                                 l1: MutCell::new(
-                                                                                    v443,
+                                                                                    v371,
                                                                                 ),
                                                                             },
                                                                         );
                                                                         while Math::method19(
-                                                                            v449,
-                                                                            v450.clone(),
+                                                                            v377,
+                                                                            v378.clone(),
                                                                         ) {
-                                                                            let v452: i32 = v450
+                                                                            let v380: i32 = v378
                                                                                 .l0
                                                                                 .get()
                                                                                 .clone();
-                                                                            let v453:
+                                                                            let v381:
                                                                                                 num_complex::Complex<f64> =
-                                                                                            v450.l1.get().clone();
-                                                                            let v454: i32 =
-                                                                                v444[v452].clone();
-                                                                            let v456:
+                                                                                            v378.l1.get().clone();
+                                                                            let v382: i32 =
+                                                                                v372[v380].clone();
+                                                                            let v384:
                                                                                                 num_complex::Complex<f64> =
                                                                                             num_complex::Complex::new(1.0_f64, 0.0_f64);
-                                                                            let v458: f64 =
-                                                                                v454 as f64;
-                                                                            let v460:
+                                                                            let v386: f64 =
+                                                                                v382 as f64;
+                                                                            let v388:
                                                                                                 num_complex::Complex<f64> =
-                                                                                            num_complex::Complex::new(v458, 0.0_f64);
-                                                                            let v462:
+                                                                                            num_complex::Complex::new(v386, 0.0_f64);
+                                                                            let v390:
                                                                                                 num_complex::Complex<f64> =
-                                                                                            num_complex::Complex::powc(v460, v432.clone());
-                                                                            let v464:
+                                                                                            num_complex::Complex::powc(v388, v360.clone());
+                                                                            let v392:
                                                                                                 num_complex::Complex<f64> =
-                                                                                            v456 / v462;
-                                                                            let v466:
+                                                                                            v384 / v390;
+                                                                            let v394:
                                                                                                 num_complex::Complex<f64> =
-                                                                                            v453 + v464;
-                                                                            let v467: i32 =
-                                                                                v452 + 1_i32;
-                                                                            v450.l0.set(v467);
-                                                                            v450.l1.set(v466);
+                                                                                            v381 + v392;
+                                                                            let v395: i32 =
+                                                                                v380 + 1_i32;
+                                                                            v378.l0.set(v395);
+                                                                            v378.l1.set(v394);
                                                                             ()
                                                                         }
-                                                                        v450.l1.get().clone()
+                                                                        v378.l1.get().clone()
                                                                     }
                                                                 } else {
-                                                                    let v470: num_complex::Complex<
+                                                                    let v398: num_complex::Complex<
                                                                         f64,
                                                                     > = num_complex::Complex::new(
                                                                         1.0_f64, 0.0_f64,
                                                                     );
-                                                                    let v475:
+                                                                    let v403:
                                                                                         Result<num_complex::Complex<f64>,
                                                                                                std::string::String> =
                                                                                     Math::method20(v0_1,
                                                                                                    string("        s = mpmath.gamma(s)"),
-                                                                                                   Math::method3(v470 - v432.clone()));
-                                                                    let v477: Option<
+                                                                                                   Math::method3(v398 - v360.clone()));
+                                                                    let v405: Option<
                                                                         num_complex::Complex<f64>,
-                                                                    > = v475.ok();
-                                                                    let _v480: LrcPtr<
+                                                                    > = v403.ok();
+                                                                    let _v406: LrcPtr<
                                                                         MutCell<Option<Math::US0>>,
                                                                     > = refCell(None::<Math::US0>);
                                                                     {
                                                                         let x_14: Option<
                                                                             Math::US0,
-                                                                        > = match &v477 {
+                                                                        > = match &v405 {
                                                                             None => {
                                                                                 None::<Math::US0>
                                                                             }
-                                                                            Some(v477_0_0) => {
+                                                                            Some(v405_0_0) => {
                                                                                 let x_12:
                                                                                                         num_complex::Complex<f64> =
-                                                                                                    v477_0_0.clone();
+                                                                                                    v405_0_0.clone();
                                                                                 Some((Func0::new(
                                                                                     {
                                                                                         let x_12
@@ -930,26 +894,26 @@ mod module_b7a9935b {
                                                                                 ))
                                                                             }
                                                                         };
-                                                                        _v480.set(x_14)
+                                                                        _v406.set(x_14)
                                                                     }
                                                                     {
-                                                                        let v507: Math::US0 =
+                                                                        let v421: Math::US0 =
                                                                             defaultValue(
                                                                                 Math::US0::US0_1,
-                                                                                _v480.get().clone(),
+                                                                                _v406.get().clone(),
                                                                             );
-                                                                        let v516: f64 = f64::NAN;
-                                                                        let v518: f64 = f64::NAN;
-                                                                        let v520:
+                                                                        let v426: f64 = f64::NAN;
+                                                                        let v428: f64 = f64::NAN;
+                                                                        let v430:
                                                                                             num_complex::Complex<f64> =
-                                                                                        num_complex::Complex::new(v516, v518);
-                                                                        let v523:
+                                                                                        num_complex::Complex::new(v426, v428);
+                                                                        let v433:
                                                                                             num_complex::Complex<f64> =
-                                                                                        match &v507
+                                                                                        match &v421
                                                                                             {
-                                                                                            Math::US0::US0_0(v507_0_0)
+                                                                                            Math::US0::US0_0(v421_0_0)
                                                                                             =>
-                                                                                            match &v507
+                                                                                            match &v421
                                                                                                 {
                                                                                                 Math::US0::US0_0(x)
                                                                                                 =>
@@ -960,125 +924,125 @@ mod module_b7a9935b {
                                                                                             },
                                                                                             _
                                                                                             =>
-                                                                                            v520,
+                                                                                            v430,
                                                                                         };
-                                                                        let v525:
+                                                                        let v435:
                                                                                             num_complex::Complex<f64> =
                                                                                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                                                                        let v527:
+                                                                        let v437:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v525 * v432.clone();
-                                                                        let v529:
+                                                                                        v435 * v360.clone();
+                                                                        let v439:
                                                                                             num_complex::Complex<f64> =
                                                                                         num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                                                        let v531:
+                                                                        let v441:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v527 / v529;
-                                                                        let v533:
+                                                                                        v437 / v439;
+                                                                        let v443:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v531.sin();
-                                                                        let v536: f64 = 1.0_f64
-                                                                            - v432.clone().re;
-                                                                        let v539: f64 =
-                                                                            -v432.clone().im;
-                                                                        let v541:
+                                                                                        v441.sin();
+                                                                        let v446: f64 = 1.0_f64
+                                                                            - v360.clone().re;
+                                                                        let v449: f64 =
+                                                                            -v360.clone().im;
+                                                                        let v451:
                                                                                             num_complex::Complex<f64> =
-                                                                                        num_complex::Complex::new(v536, v539);
-                                                                        let v547:
+                                                                                        num_complex::Complex::new(v446, v449);
+                                                                        let v457:
                                                                                             num_complex::Complex<f64> =
-                                                                                        if v541.clone().re
+                                                                                        if v451.clone().re
                                                                                                <=
                                                                                                1.0_f64
                                                                                            {
                                                                                             num_complex::Complex::new(0.0_f64, 0.0_f64)
                                                                                         } else {
-                                                                                            v541
+                                                                                            v451
                                                                                         };
-                                                                        let v549:
+                                                                        let v459:
                                                                                             num_complex::Complex<f64> =
                                                                                         num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                                                        let v551:
+                                                                        let v461:
                                                                                             num_complex::Complex<f64> =
                                                                                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                                                                        let v553:
+                                                                        let v463:
                                                                                             num_complex::Complex<f64> =
-                                                                                        num_complex::Complex::powc(v551, v432.clone());
-                                                                        let v555:
+                                                                                        num_complex::Complex::powc(v461, v360.clone());
+                                                                        let v465:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v549 * v553;
-                                                                        let v557:
+                                                                                        v459 * v463;
+                                                                        let v467:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v555 * v533;
-                                                                        let v559:
+                                                                                        v465 * v443;
+                                                                        let v469:
                                                                                             num_complex::Complex<f64> =
-                                                                                        v557 * v523;
-                                                                        v559 * v547
+                                                                                        v467 * v433;
+                                                                        v469 * v457
                                                                     }
                                                                 }
                                                             };
-                                                        let v565: num_complex::Complex<f64> =
+                                                        let v475: num_complex::Complex<f64> =
                                                             num_complex::Complex::new(
                                                                 2.0_f64, 0.0_f64,
                                                             );
-                                                        let v567: num_complex::Complex<f64> =
+                                                        let v477: num_complex::Complex<f64> =
                                                             num_complex::Complex::new(
                                                                 3.141592653589793_f64,
                                                                 0.0_f64,
                                                             );
-                                                        let v569: num_complex::Complex<f64> =
+                                                        let v479: num_complex::Complex<f64> =
                                                             num_complex::Complex::powc(
-                                                                v567,
-                                                                v323.clone(),
+                                                                v477,
+                                                                v269.clone(),
                                                             );
-                                                        let v571: num_complex::Complex<f64> =
-                                                            v565 * v569;
-                                                        let v573: num_complex::Complex<f64> =
-                                                            v571 * v424;
-                                                        let v575: num_complex::Complex<f64> =
-                                                            v573 * v414;
-                                                        v575 * v563
+                                                        let v481: num_complex::Complex<f64> =
+                                                            v475 * v479;
+                                                        let v483: num_complex::Complex<f64> =
+                                                            v481 * v352;
+                                                        let v485: num_complex::Complex<f64> =
+                                                            v483 * v342;
+                                                        v485 * v473
                                                     }
                                                 }
                                             };
-                                            let v581: num_complex::Complex<f64> =
+                                            let v491: num_complex::Complex<f64> =
                                                 num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                            let v583: num_complex::Complex<f64> =
+                                            let v493: num_complex::Complex<f64> =
                                                 num_complex::Complex::new(
                                                     3.141592653589793_f64,
                                                     0.0_f64,
                                                 );
-                                            let v585: num_complex::Complex<f64> =
-                                                num_complex::Complex::powc(v583, v214.clone());
-                                            let v587: num_complex::Complex<f64> = v581 * v585;
-                                            let v589: num_complex::Complex<f64> = v587 * v315;
-                                            let v591: num_complex::Complex<f64> = v589 * v305;
-                                            v591 * v579
+                                            let v495: num_complex::Complex<f64> =
+                                                num_complex::Complex::powc(v493, v178.clone());
+                                            let v497: num_complex::Complex<f64> = v491 * v495;
+                                            let v499: num_complex::Complex<f64> = v497 * v261;
+                                            let v501: num_complex::Complex<f64> = v499 * v251;
+                                            v501 * v489
                                         }
                                     }
                                 };
-                                let v597: num_complex::Complex<f64> =
+                                let v507: num_complex::Complex<f64> =
                                     num_complex::Complex::new(2.0_f64, 0.0_f64);
-                                let v599: num_complex::Complex<f64> =
+                                let v509: num_complex::Complex<f64> =
                                     num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                                let v601: num_complex::Complex<f64> =
-                                    num_complex::Complex::powc(v599, v105.clone());
-                                let v603: num_complex::Complex<f64> = v597 * v601;
-                                let v605: num_complex::Complex<f64> = v603 * v206;
-                                let v607: num_complex::Complex<f64> = v605 * v196;
-                                v607 * v595
+                                let v511: num_complex::Complex<f64> =
+                                    num_complex::Complex::powc(v509, v87.clone());
+                                let v513: num_complex::Complex<f64> = v507 * v511;
+                                let v515: num_complex::Complex<f64> = v513 * v170;
+                                let v517: num_complex::Complex<f64> = v515 * v160;
+                                v517 * v505
                             }
                         }
                     };
-                    let v613: num_complex::Complex<f64> =
+                    let v523: num_complex::Complex<f64> =
                         num_complex::Complex::new(2.0_f64, 0.0_f64);
-                    let v615: num_complex::Complex<f64> =
+                    let v525: num_complex::Complex<f64> =
                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                    let v617: num_complex::Complex<f64> =
-                        num_complex::Complex::powc(v615, v1_1.clone());
-                    let v619: num_complex::Complex<f64> = v613 * v617;
-                    let v621: num_complex::Complex<f64> = v619 * v97;
-                    let v623: num_complex::Complex<f64> = v621 * v87;
-                    v623 * v611
+                    let v527: num_complex::Complex<f64> =
+                        num_complex::Complex::powc(v525, v1_1.clone());
+                    let v529: num_complex::Complex<f64> = v523 * v527;
+                    let v531: num_complex::Complex<f64> = v529 * v79;
+                    let v533: num_complex::Complex<f64> = v531 * v69;
+                    v533 * v521
                 }
             }
         }
@@ -1111,7 +1075,7 @@ mod module_b7a9935b {
                 );
                 let v15: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v10);
                 let v17: Option<num_complex::Complex<f64>> = v14.ok();
-                let _v20: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                let _v18: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
                     let x_2: Option<Math::US0> = match &v17 {
                         None => None::<Math::US0>,
@@ -1123,52 +1087,52 @@ mod module_b7a9935b {
                             }))())
                         }
                     };
-                    _v20.set(x_2)
+                    _v18.set(x_2)
                 }
                 {
-                    let v47: Math::US0 = defaultValue(Math::US0::US0_1, _v20.get().clone());
-                    let v56: f64 = f64::NAN;
-                    let v58: f64 = f64::NAN;
-                    let v60: num_complex::Complex<f64> = num_complex::Complex::new(v56, v58);
-                    let v63: num_complex::Complex<f64> = match &v47 {
-                        Math::US0::US0_0(v47_0_0) => match &v47 {
+                    let v33: Math::US0 = defaultValue(Math::US0::US0_1, _v18.get().clone());
+                    let v38: f64 = f64::NAN;
+                    let v40: f64 = f64::NAN;
+                    let v42: num_complex::Complex<f64> = num_complex::Complex::new(v38, v40);
+                    let v45: num_complex::Complex<f64> = match &v33 {
+                        Math::US0::US0_0(v33_0_0) => match &v33 {
                             Math::US0::US0_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v60,
+                        _ => v42,
                     };
-                    let v65: f64 = v63.clone().im;
-                    let v66: bool = v65 == 0.0_f64;
-                    let v68: bool = if v66 { true } else { Math::method21(v66) };
-                    let v72: string = sprintf!(
+                    let v47: f64 = v45.clone().im;
+                    let v48: bool = v47 == 0.0_f64;
+                    let v50: bool = if v48 { true } else { Math::method21(v48) };
+                    let v52: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_eq"),
-                        v65,
+                        v47,
                         0.0_f64
                     );
-                    printfn!("{0}", v72.clone());
-                    if v68 == false {
-                        panic!("{}", v72,);
+                    printfn!("{0}", v52.clone());
+                    if v50 == false {
+                        panic!("{}", v52,);
                     }
                     {
-                        let v88: f64 = v63.re - patternInput.1.clone();
-                        let v89: f64 = -v88;
-                        let v91: f64 = if v88 >= v89 { v88 } else { v89 };
-                        let v92: bool = v91 < 0.0001_f64;
-                        let v94: bool = if v92 { true } else { Math::method21(v92) };
-                        let v98: string = sprintf!(
+                        let v58: f64 = v45.re - patternInput.1.clone();
+                        let v59: f64 = -v58;
+                        let v61: f64 = if v58 >= v59 { v58 } else { v59 };
+                        let v62: bool = v61 < 0.0001_f64;
+                        let v64: bool = if v62 { true } else { Math::method21(v62) };
+                        let v66: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
                             string("__assert_lt"),
-                            v91,
+                            v61,
                             0.0001_f64
                         );
-                        printfn!("{0}", v98.clone());
-                        if v94 == false {
-                            panic!("{}", v98,);
+                        printfn!("{0}", v66.clone());
+                        if v64 == false {
+                            panic!("{}", v66,);
                         }
                         {
-                            let v112: i32 = v9 + 1_i32;
-                            v7.l0.set(v112);
+                            let v70: i32 = v9 + 1_i32;
+                            v7.l0.set(v70);
                             ()
                         }
                     }
@@ -1208,7 +1172,7 @@ mod module_b7a9935b {
             );
             let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
-            let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+            let _v9: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
                 let x_2: Option<Math::US0> = match &v8 {
                     None => None::<Math::US0>,
@@ -1220,50 +1184,50 @@ mod module_b7a9935b {
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v9.set(x_2)
             }
             {
-                let v38: Math::US0 = defaultValue(Math::US0::US0_1, _v11.get().clone());
-                let v47: f64 = f64::NAN;
-                let v49: f64 = f64::NAN;
-                let v51: num_complex::Complex<f64> = num_complex::Complex::new(v47, v49);
-                let v54: num_complex::Complex<f64> = match &v38 {
-                    Math::US0::US0_0(v38_0_0) => match &v38 {
+                let v24: Math::US0 = defaultValue(Math::US0::US0_1, _v9.get().clone());
+                let v29: f64 = f64::NAN;
+                let v31: f64 = f64::NAN;
+                let v33: num_complex::Complex<f64> = num_complex::Complex::new(v29, v31);
+                let v36: num_complex::Complex<f64> = match &v24 {
+                    Math::US0::US0_0(v24_0_0) => match &v24 {
                         Math::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
-                    _ => v51,
+                    _ => v33,
                 };
-                let v57: f64 = v54.clone().re - 0.8673_f64;
-                let v58: f64 = -v57;
-                let v60: f64 = if v57 >= v58 { v57 } else { v58 };
-                let v61: bool = v60 < 0.001_f64;
-                let v63: bool = if v61 { true } else { Math::method21(v61) };
-                let v67: string = sprintf!(
+                let v39: f64 = v36.clone().re - 0.8673_f64;
+                let v40: f64 = -v39;
+                let v42: f64 = if v39 >= v40 { v39 } else { v40 };
+                let v43: bool = v42 < 0.001_f64;
+                let v45: bool = if v43 { true } else { Math::method21(v43) };
+                let v47: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
                     string("__assert_lt"),
-                    v60,
+                    v42,
                     0.001_f64
                 );
-                printfn!("{0}", v67.clone());
-                if v63 == false {
-                    panic!("{}", v67,);
+                printfn!("{0}", v47.clone());
+                if v45 == false {
+                    panic!("{}", v47,);
                 }
                 {
-                    let v83: f64 = v54.im - 0.275_f64;
-                    let v84: f64 = -v83;
-                    let v86: f64 = if v83 >= v84 { v83 } else { v84 };
-                    let v87: bool = v86 < 0.001_f64;
-                    let v89: bool = if v87 { true } else { Math::method21(v87) };
-                    let v92: string = sprintf!(
+                    let v53: f64 = v36.im - 0.275_f64;
+                    let v54: f64 = -v53;
+                    let v56: f64 = if v53 >= v54 { v53 } else { v54 };
+                    let v57: bool = v56 < 0.001_f64;
+                    let v59: bool = if v57 { true } else { Math::method21(v57) };
+                    let v60: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_lt"),
-                        v86,
+                        v56,
                         0.001_f64
                     );
-                    printfn!("{0}", v92.clone());
-                    if v89 == false {
-                        panic!("{}", v92,);
+                    printfn!("{0}", v60.clone());
+                    if v59 == false {
+                        panic!("{}", v60,);
                     }
                 }
             }
@@ -1333,7 +1297,7 @@ mod module_b7a9935b {
                             );
                         let v9: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v5);
                         let v11: Option<num_complex::Complex<f64>> = v8.ok();
-                        let _v14: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                        let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
                             let x_2: Option<Math::US0> = match &v11 {
                                 None => None::<Math::US0>,
@@ -1345,47 +1309,47 @@ mod module_b7a9935b {
                                     }))())
                                 }
                             };
-                            _v14.set(x_2)
+                            _v12.set(x_2)
                         }
                         {
-                            let v41: Math::US0 = defaultValue(Math::US0::US0_1, _v14.get().clone());
-                            let v50: f64 = f64::NAN;
-                            let v52: f64 = f64::NAN;
-                            let v54: num_complex::Complex<f64> =
-                                num_complex::Complex::new(v50, v52);
-                            let v57: num_complex::Complex<f64> = match &v41 {
-                                Math::US0::US0_0(v41_0_0) => match &v41 {
+                            let v27: Math::US0 = defaultValue(Math::US0::US0_1, _v12.get().clone());
+                            let v32: f64 = f64::NAN;
+                            let v34: f64 = f64::NAN;
+                            let v36: num_complex::Complex<f64> =
+                                num_complex::Complex::new(v32, v34);
+                            let v39: num_complex::Complex<f64> = match &v27 {
+                                Math::US0::US0_0(v27_0_0) => match &v27 {
                                     Math::US0::US0_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
-                                _ => v54,
+                                _ => v36,
                             };
-                            let v59: f64 = v57.clone().re;
-                            let v60: bool = v59 == 0.0_f64;
-                            let v62: bool = if v60 { true } else { Math::method21(v60) };
-                            let v66: string = sprintf!(
+                            let v41: f64 = v39.clone().re;
+                            let v42: bool = v41 == 0.0_f64;
+                            let v44: bool = if v42 { true } else { Math::method21(v42) };
+                            let v46: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
                                 string("__assert_eq"),
-                                v59,
+                                v41,
                                 0.0_f64
                             );
-                            printfn!("{0}", v66.clone());
-                            if v62 == false {
-                                panic!("{}", v66,);
+                            printfn!("{0}", v46.clone());
+                            if v44 == false {
+                                panic!("{}", v46,);
                             }
                             {
-                                let v81: f64 = v57.im;
-                                let v82: bool = v81 == 0.0_f64;
-                                let v84: bool = if v82 { true } else { Math::method21(v82) };
-                                let v87: string = sprintf!(
+                                let v51: f64 = v39.im;
+                                let v52: bool = v51 == 0.0_f64;
+                                let v54: bool = if v52 { true } else { Math::method21(v52) };
+                                let v55: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
                                     string("__assert_eq"),
-                                    v81,
+                                    v51,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v87.clone());
-                                if v84 == false {
-                                    panic!("{}", v87,);
+                                printfn!("{0}", v55.clone());
+                                if v54 == false {
+                                    panic!("{}", v55,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1450,7 +1414,7 @@ mod module_b7a9935b {
                 );
                 let v22: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v18);
                 let v24: Option<num_complex::Complex<f64>> = v21.ok();
-                let _v27: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                let _v25: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
                     let x_2: Option<Math::US0> = match &v24 {
                         None => None::<Math::US0>,
@@ -1462,54 +1426,54 @@ mod module_b7a9935b {
                             }))())
                         }
                     };
-                    _v27.set(x_2)
+                    _v25.set(x_2)
                 }
                 {
-                    let v54: Math::US0 = defaultValue(Math::US0::US0_1, _v27.get().clone());
-                    let v63: f64 = f64::NAN;
-                    let v65: f64 = f64::NAN;
-                    let v67: num_complex::Complex<f64> = num_complex::Complex::new(v63, v65);
-                    let v70: num_complex::Complex<f64> = match &v54 {
-                        Math::US0::US0_0(v54_0_0) => match &v54 {
+                    let v40: Math::US0 = defaultValue(Math::US0::US0_1, _v25.get().clone());
+                    let v45: f64 = f64::NAN;
+                    let v47: f64 = f64::NAN;
+                    let v49: num_complex::Complex<f64> = num_complex::Complex::new(v45, v47);
+                    let v52: num_complex::Complex<f64> = match &v40 {
+                        Math::US0::US0_0(v40_0_0) => match &v40 {
                             Math::US0::US0_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v67,
+                        _ => v49,
                     };
-                    let v72: f64 = v70.clone().re;
-                    let v73: f64 = -v72;
-                    let v75: f64 = if v72 >= v73 { v72 } else { v73 };
-                    let v76: bool = v75 < 0.0001_f64;
-                    let v78: bool = if v76 { true } else { Math::method21(v76) };
-                    let v82: string = sprintf!(
+                    let v54: f64 = v52.clone().re;
+                    let v55: f64 = -v54;
+                    let v57: f64 = if v54 >= v55 { v54 } else { v55 };
+                    let v58: bool = v57 < 0.0001_f64;
+                    let v60: bool = if v58 { true } else { Math::method21(v58) };
+                    let v62: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_lt"),
-                        v75,
+                        v57,
                         0.0001_f64
                     );
-                    printfn!("{0}", v82.clone());
-                    if v78 == false {
-                        panic!("{}", v82,);
+                    printfn!("{0}", v62.clone());
+                    if v60 == false {
+                        panic!("{}", v62,);
                     }
                     {
-                        let v97: f64 = v70.im;
-                        let v98: f64 = -v97;
-                        let v100: f64 = if v97 >= v98 { v97 } else { v98 };
-                        let v101: bool = v100 < 0.0001_f64;
-                        let v103: bool = if v101 { true } else { Math::method21(v101) };
-                        let v106: string = sprintf!(
+                        let v67: f64 = v52.im;
+                        let v68: f64 = -v67;
+                        let v70: f64 = if v67 >= v68 { v67 } else { v68 };
+                        let v71: bool = v70 < 0.0001_f64;
+                        let v73: bool = if v71 { true } else { Math::method21(v71) };
+                        let v74: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
                             string("__assert_lt"),
-                            v100,
+                            v70,
                             0.0001_f64
                         );
-                        printfn!("{0}", v106.clone());
-                        if v103 == false {
-                            panic!("{}", v106,);
+                        printfn!("{0}", v74.clone());
+                        if v73 == false {
+                            panic!("{}", v74,);
                         }
                         {
-                            let v120: i32 = v17 + 1_i32;
-                            v15.l0.set(v120);
+                            let v78: i32 = v17 + 1_i32;
+                            v15.l0.set(v78);
                             ()
                         }
                     }
@@ -1556,7 +1520,7 @@ mod module_b7a9935b {
                 );
                 let v12: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v8);
                 let v14: Option<num_complex::Complex<f64>> = v11.ok();
-                let _v17: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                let _v15: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
                     let x_2: Option<Math::US0> = match &v14 {
                         None => None::<Math::US0>,
@@ -1568,50 +1532,50 @@ mod module_b7a9935b {
                             }))())
                         }
                     };
-                    _v17.set(x_2)
+                    _v15.set(x_2)
                 }
                 {
-                    let v44: Math::US0 = defaultValue(Math::US0::US0_1, _v17.get().clone());
-                    let v53: f64 = f64::NAN;
-                    let v55: f64 = f64::NAN;
-                    let v57: num_complex::Complex<f64> = num_complex::Complex::new(v53, v55);
-                    let v60: num_complex::Complex<f64> = match &v44 {
-                        Math::US0::US0_0(v44_0_0) => match &v44 {
+                    let v30: Math::US0 = defaultValue(Math::US0::US0_1, _v15.get().clone());
+                    let v35: f64 = f64::NAN;
+                    let v37: f64 = f64::NAN;
+                    let v39: num_complex::Complex<f64> = num_complex::Complex::new(v35, v37);
+                    let v42: num_complex::Complex<f64> = match &v30 {
+                        Math::US0::US0_0(v30_0_0) => match &v30 {
                             Math::US0::US0_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v57,
+                        _ => v39,
                     };
-                    let v62: f64 = v60.clone().re;
-                    let v63: bool = v62 > 0.0_f64;
-                    let v65: bool = if v63 { true } else { Math::method21(v63) };
-                    let v69: string = sprintf!(
+                    let v44: f64 = v42.clone().re;
+                    let v45: bool = v44 > 0.0_f64;
+                    let v47: bool = if v45 { true } else { Math::method21(v45) };
+                    let v49: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_gt"),
-                        v62,
+                        v44,
                         0.0_f64
                     );
-                    printfn!("{0}", v69.clone());
-                    if v65 == false {
-                        panic!("{}", v69,);
+                    printfn!("{0}", v49.clone());
+                    if v47 == false {
+                        panic!("{}", v49,);
                     }
                     {
-                        let v84: f64 = v60.im;
-                        let v85: bool = v84 == 0.0_f64;
-                        let v87: bool = if v85 { true } else { Math::method21(v85) };
-                        let v91: string = sprintf!(
+                        let v54: f64 = v42.im;
+                        let v55: bool = v54 == 0.0_f64;
+                        let v57: bool = if v55 { true } else { Math::method21(v55) };
+                        let v59: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
                             string("__assert_eq"),
-                            v84,
+                            v54,
                             0.0_f64
                         );
-                        printfn!("{0}", v91.clone());
-                        if v87 == false {
-                            panic!("{}", v91,);
+                        printfn!("{0}", v59.clone());
+                        if v57 == false {
+                            panic!("{}", v59,);
                         }
                         {
-                            let v105: i32 = v5 + 1_i32;
-                            v3.l0.set(v105);
+                            let v63: i32 = v5 + 1_i32;
+                            v3.l0.set(v63);
                             ()
                         }
                     }
@@ -1648,7 +1612,7 @@ mod module_b7a9935b {
             );
             let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
-            let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+            let _v9: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
                 let x_2: Option<Math::US0> = match &v8 {
                     None => None::<Math::US0>,
@@ -1660,46 +1624,46 @@ mod module_b7a9935b {
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v9.set(x_2)
             }
             {
-                let v38: Math::US0 = defaultValue(Math::US0::US0_1, _v11.get().clone());
-                let v47: f64 = f64::NAN;
-                let v49: f64 = f64::NAN;
-                let v51: num_complex::Complex<f64> = num_complex::Complex::new(v47, v49);
-                let v54: num_complex::Complex<f64> = match &v38 {
-                    Math::US0::US0_0(v38_0_0) => match &v38 {
+                let v24: Math::US0 = defaultValue(Math::US0::US0_1, _v9.get().clone());
+                let v29: f64 = f64::NAN;
+                let v31: f64 = f64::NAN;
+                let v33: num_complex::Complex<f64> = num_complex::Complex::new(v29, v31);
+                let v36: num_complex::Complex<f64> = match &v24 {
+                    Math::US0::US0_0(v24_0_0) => match &v24 {
                         Math::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
-                    _ => v51,
+                    _ => v33,
                 };
-                let v56: f64 = v54.clone().re;
-                let v57: bool = v56 == f64::INFINITY;
-                let v59: bool = if v57 { true } else { Math::method21(v57) };
-                let v63: string = sprintf!(
+                let v38: f64 = v36.clone().re;
+                let v39: bool = v38 == f64::INFINITY;
+                let v41: bool = if v39 { true } else { Math::method21(v39) };
+                let v43: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
                     string("__assert_eq"),
-                    v56,
+                    v38,
                     f64::INFINITY
                 );
-                printfn!("{0}", v63.clone());
-                if v59 == false {
-                    panic!("{}", v63,);
+                printfn!("{0}", v43.clone());
+                if v41 == false {
+                    panic!("{}", v43,);
                 }
                 {
-                    let v78: f64 = v54.im;
-                    let v79: bool = v78 == 0.0_f64;
-                    let v81: bool = if v79 { true } else { Math::method21(v79) };
-                    let v84: string = sprintf!(
+                    let v48: f64 = v36.im;
+                    let v49: bool = v48 == 0.0_f64;
+                    let v51: bool = if v49 { true } else { Math::method21(v49) };
+                    let v52: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_eq"),
-                        v78,
+                        v48,
                         0.0_f64
                     );
-                    printfn!("{0}", v84.clone());
-                    if v81 == false {
-                        panic!("{}", v84,);
+                    printfn!("{0}", v52.clone());
+                    if v51 == false {
+                        panic!("{}", v52,);
                     }
                 }
             }
@@ -1733,7 +1697,7 @@ mod module_b7a9935b {
             );
             let v6: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v2.clone());
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
-            let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+            let _v9: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
                 let x_2: Option<Math::US0> = match &v8 {
                     None => None::<Math::US0>,
@@ -1745,85 +1709,85 @@ mod module_b7a9935b {
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v9.set(x_2)
             }
             {
-                let v38: Math::US0 = defaultValue(Math::US0::US0_1, _v11.get().clone());
-                let v47: f64 = f64::NAN;
-                let v49: f64 = f64::NAN;
-                let v51: num_complex::Complex<f64> = num_complex::Complex::new(v47, v49);
-                let v54: num_complex::Complex<f64> = match &v38 {
-                    Math::US0::US0_0(v38_0_0) => match &v38 {
+                let v24: Math::US0 = defaultValue(Math::US0::US0_1, _v9.get().clone());
+                let v29: f64 = f64::NAN;
+                let v31: f64 = f64::NAN;
+                let v33: num_complex::Complex<f64> = num_complex::Complex::new(v29, v31);
+                let v36: num_complex::Complex<f64> = match &v24 {
+                    Math::US0::US0_0(v24_0_0) => match &v24 {
                         Math::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
-                    _ => v51,
+                    _ => v33,
                 };
-                let v56: f64 = v2.clone().re;
-                let v59: f64 = -v2.im;
-                let v61: num_complex::Complex<f64> = num_complex::Complex::new(v56, v59);
-                let v64: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
+                let v38: f64 = v2.clone().re;
+                let v41: f64 = -v2.im;
+                let v43: num_complex::Complex<f64> = num_complex::Complex::new(v38, v41);
+                let v46: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                     v0_1.clone(),
                     string("        s = mpmath.zeta(s)"),
-                    Math::method3(v61.clone()),
+                    Math::method3(v43.clone()),
                 );
-                let v65: num_complex::Complex<f64> = Math::method17(v0_1, v61);
-                let v67: Option<num_complex::Complex<f64>> = v64.ok();
-                let _v70: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                let v47: num_complex::Complex<f64> = Math::method17(v0_1, v43);
+                let v49: Option<num_complex::Complex<f64>> = v46.ok();
+                let _v50: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
-                    let x_5: Option<Math::US0> = match &v67 {
+                    let x_5: Option<Math::US0> = match &v49 {
                         None => None::<Math::US0>,
-                        Some(v67_0_0) => {
-                            let x_3: num_complex::Complex<f64> = v67_0_0.clone();
+                        Some(v49_0_0) => {
+                            let x_3: num_complex::Complex<f64> = v49_0_0.clone();
                             Some((Func0::new({
                                 let x_3 = x_3.clone();
                                 move || Math::US0::US0_0(x_3.clone())
                             }))())
                         }
                     };
-                    _v70.set(x_5)
+                    _v50.set(x_5)
                 }
                 {
-                    let v97: Math::US0 = defaultValue(Math::US0::US0_1, _v70.get().clone());
-                    let v106: f64 = f64::NAN;
-                    let v108: f64 = f64::NAN;
-                    let v110: num_complex::Complex<f64> = num_complex::Complex::new(v106, v108);
-                    let v113: num_complex::Complex<f64> = match &v97 {
-                        Math::US0::US0_0(v97_0_0) => match &v97 {
+                    let v65: Math::US0 = defaultValue(Math::US0::US0_1, _v50.get().clone());
+                    let v70: f64 = f64::NAN;
+                    let v72: f64 = f64::NAN;
+                    let v74: num_complex::Complex<f64> = num_complex::Complex::new(v70, v72);
+                    let v77: num_complex::Complex<f64> = match &v65 {
+                        Math::US0::US0_0(v65_0_0) => match &v65 {
                             Math::US0::US0_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v110,
+                        _ => v74,
                     };
-                    let v115: num_complex::Complex<f64> = v113.conj();
-                    let v117: f64 = v54.clone().re;
-                    let v119: f64 = v115.clone().re;
-                    let v120: bool = v117 == v119;
-                    let v122: bool = if v120 { true } else { Math::method21(v120) };
-                    let v126: string = sprintf!(
+                    let v79: num_complex::Complex<f64> = v77.conj();
+                    let v81: f64 = v36.clone().re;
+                    let v83: f64 = v79.clone().re;
+                    let v84: bool = v81 == v83;
+                    let v86: bool = if v84 { true } else { Math::method21(v84) };
+                    let v88: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_eq"),
-                        v117,
-                        v119
+                        v81,
+                        v83
                     );
-                    printfn!("{0}", v126.clone());
-                    if v122 == false {
-                        panic!("{}", v126,);
+                    printfn!("{0}", v88.clone());
+                    if v86 == false {
+                        panic!("{}", v88,);
                     }
                     {
-                        let v141: f64 = v54.im;
-                        let v143: f64 = v115.im;
-                        let v144: bool = v141 == v143;
-                        let v146: bool = if v144 { true } else { Math::method21(v144) };
-                        let v149: string = sprintf!(
+                        let v93: f64 = v36.im;
+                        let v95: f64 = v79.im;
+                        let v96: bool = v93 == v95;
+                        let v98: bool = if v96 { true } else { Math::method21(v96) };
+                        let v99: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
                             string("__assert_eq"),
-                            v141,
-                            v143
+                            v93,
+                            v95
                         );
-                        printfn!("{0}", v149.clone());
-                        if v146 == false {
-                            panic!("{}", v149,);
+                        printfn!("{0}", v99.clone());
+                        if v98 == false {
+                            panic!("{}", v99,);
                         }
                     }
                 }
@@ -1858,7 +1822,7 @@ mod module_b7a9935b {
             );
             let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
-            let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+            let _v9: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
                 let x_2: Option<Math::US0> = match &v8 {
                     None => None::<Math::US0>,
@@ -1870,46 +1834,46 @@ mod module_b7a9935b {
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v9.set(x_2)
             }
             {
-                let v38: Math::US0 = defaultValue(Math::US0::US0_1, _v11.get().clone());
-                let v47: f64 = f64::NAN;
-                let v49: f64 = f64::NAN;
-                let v51: num_complex::Complex<f64> = num_complex::Complex::new(v47, v49);
-                let v54: num_complex::Complex<f64> = match &v38 {
-                    Math::US0::US0_0(v38_0_0) => match &v38 {
+                let v24: Math::US0 = defaultValue(Math::US0::US0_1, _v9.get().clone());
+                let v29: f64 = f64::NAN;
+                let v31: f64 = f64::NAN;
+                let v33: num_complex::Complex<f64> = num_complex::Complex::new(v29, v31);
+                let v36: num_complex::Complex<f64> = match &v24 {
+                    Math::US0::US0_0(v24_0_0) => match &v24 {
                         Math::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
-                    _ => v51,
+                    _ => v33,
                 };
-                let v56: f64 = v54.clone().re;
-                let v57: bool = v56 < f64::INFINITY;
-                let v59: bool = if v57 { true } else { Math::method21(v57) };
-                let v63: string = sprintf!(
+                let v38: f64 = v36.clone().re;
+                let v39: bool = v38 < f64::INFINITY;
+                let v41: bool = if v39 { true } else { Math::method21(v39) };
+                let v43: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
                     string("__assert_lt"),
-                    v56,
+                    v38,
                     f64::INFINITY
                 );
-                printfn!("{0}", v63.clone());
-                if v59 == false {
-                    panic!("{}", v63,);
+                printfn!("{0}", v43.clone());
+                if v41 == false {
+                    panic!("{}", v43,);
                 }
                 {
-                    let v78: f64 = v54.im;
-                    let v79: bool = v78 < f64::INFINITY;
-                    let v81: bool = if v79 { true } else { Math::method21(v79) };
-                    let v84: string = sprintf!(
+                    let v48: f64 = v36.im;
+                    let v49: bool = v48 < f64::INFINITY;
+                    let v51: bool = if v49 { true } else { Math::method21(v49) };
+                    let v52: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
                         string("__assert_lt"),
-                        v78,
+                        v48,
                         f64::INFINITY
                     );
-                    printfn!("{0}", v84.clone());
-                    if v81 == false {
-                        panic!("{}", v84,);
+                    printfn!("{0}", v52.clone());
+                    if v51 == false {
+                        panic!("{}", v52,);
                     }
                 }
             }
@@ -1989,7 +1953,7 @@ mod module_b7a9935b {
                             );
                         let v9: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v5);
                         let v11: Option<num_complex::Complex<f64>> = v8.ok();
-                        let _v14: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                        let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
                             let x_2: Option<Math::US0> = match &v11 {
                                 None => None::<Math::US0>,
@@ -2001,47 +1965,47 @@ mod module_b7a9935b {
                                     }))())
                                 }
                             };
-                            _v14.set(x_2)
+                            _v12.set(x_2)
                         }
                         {
-                            let v41: Math::US0 = defaultValue(Math::US0::US0_1, _v14.get().clone());
-                            let v50: f64 = f64::NAN;
-                            let v52: f64 = f64::NAN;
-                            let v54: num_complex::Complex<f64> =
-                                num_complex::Complex::new(v50, v52);
-                            let v57: num_complex::Complex<f64> = match &v41 {
-                                Math::US0::US0_0(v41_0_0) => match &v41 {
+                            let v27: Math::US0 = defaultValue(Math::US0::US0_1, _v12.get().clone());
+                            let v32: f64 = f64::NAN;
+                            let v34: f64 = f64::NAN;
+                            let v36: num_complex::Complex<f64> =
+                                num_complex::Complex::new(v32, v34);
+                            let v39: num_complex::Complex<f64> = match &v27 {
+                                Math::US0::US0_0(v27_0_0) => match &v27 {
                                     Math::US0::US0_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
-                                _ => v54,
+                                _ => v36,
                             };
-                            let v59: f64 = v57.clone().re;
-                            let v62: bool = v59 != 0.0_f64;
-                            let v70: bool = if v62 { true } else { Math::method21(v62) };
-                            let v74: string = sprintf!(
+                            let v41: f64 = v39.clone().re;
+                            let v42: bool = v41 != 0.0_f64;
+                            let v46: bool = if v42 { true } else { Math::method21(v42) };
+                            let v48: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
                                 string("__assert_ne"),
-                                v59,
+                                v41,
                                 0.0_f64
                             );
-                            printfn!("{0}", v74.clone());
-                            if v70 == false {
-                                panic!("{}", v74,);
+                            printfn!("{0}", v48.clone());
+                            if v46 == false {
+                                panic!("{}", v48,);
                             }
                             {
-                                let v89: f64 = v57.im;
-                                let v92: bool = v89 != 0.0_f64;
-                                let v100: bool = if v92 { true } else { Math::method21(v92) };
-                                let v103: string = sprintf!(
+                                let v53: f64 = v39.im;
+                                let v54: bool = v53 != 0.0_f64;
+                                let v58: bool = if v54 { true } else { Math::method21(v54) };
+                                let v59: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
                                     string("__assert_ne"),
-                                    v89,
+                                    v53,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v103.clone());
-                                if v100 == false {
-                                    panic!("{}", v103,);
+                                printfn!("{0}", v59.clone());
+                                if v58 == false {
+                                    panic!("{}", v59,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2120,7 +2084,7 @@ mod module_b7a9935b {
                             );
                         let v7: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v2);
                         let v9: Option<num_complex::Complex<f64>> = v6.ok();
-                        let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                        let _v10: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
                             let x_2: Option<Math::US0> = match &v9 {
                                 None => None::<Math::US0>,
@@ -2132,47 +2096,47 @@ mod module_b7a9935b {
                                     }))())
                                 }
                             };
-                            _v12.set(x_2)
+                            _v10.set(x_2)
                         }
                         {
-                            let v39: Math::US0 = defaultValue(Math::US0::US0_1, _v12.get().clone());
-                            let v48: f64 = f64::NAN;
-                            let v50: f64 = f64::NAN;
-                            let v52: num_complex::Complex<f64> =
-                                num_complex::Complex::new(v48, v50);
-                            let v55: num_complex::Complex<f64> = match &v39 {
-                                Math::US0::US0_0(v39_0_0) => match &v39 {
+                            let v25: Math::US0 = defaultValue(Math::US0::US0_1, _v10.get().clone());
+                            let v30: f64 = f64::NAN;
+                            let v32: f64 = f64::NAN;
+                            let v34: num_complex::Complex<f64> =
+                                num_complex::Complex::new(v30, v32);
+                            let v37: num_complex::Complex<f64> = match &v25 {
+                                Math::US0::US0_0(v25_0_0) => match &v25 {
                                     Math::US0::US0_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
-                                _ => v52,
+                                _ => v34,
                             };
-                            let v57: f64 = v55.clone().re;
-                            let v60: bool = v57 != 0.0_f64;
-                            let v68: bool = if v60 { true } else { Math::method21(v60) };
-                            let v72: string = sprintf!(
+                            let v39: f64 = v37.clone().re;
+                            let v40: bool = v39 != 0.0_f64;
+                            let v44: bool = if v40 { true } else { Math::method21(v40) };
+                            let v46: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
                                 string("__assert_ne"),
-                                v57,
+                                v39,
                                 0.0_f64
                             );
-                            printfn!("{0}", v72.clone());
-                            if v68 == false {
-                                panic!("{}", v72,);
+                            printfn!("{0}", v46.clone());
+                            if v44 == false {
+                                panic!("{}", v46,);
                             }
                             {
-                                let v87: f64 = v55.im;
-                                let v90: bool = v87 != 0.0_f64;
-                                let v98: bool = if v90 { true } else { Math::method21(v90) };
-                                let v101: string = sprintf!(
+                                let v51: f64 = v37.im;
+                                let v52: bool = v51 != 0.0_f64;
+                                let v56: bool = if v52 { true } else { Math::method21(v52) };
+                                let v57: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
                                     string("__assert_ne"),
-                                    v87,
+                                    v51,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v101.clone());
-                                if v98 == false {
-                                    panic!("{}", v101,);
+                                printfn!("{0}", v57.clone());
+                                if v56 == false {
+                                    panic!("{}", v57,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2249,7 +2213,7 @@ mod module_b7a9935b {
                         let v7: num_complex::Complex<f64> =
                             Math::method17(v0_1.get().clone(), v2.clone());
                         let v9: Option<num_complex::Complex<f64>> = v6.ok();
-                        let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                        let _v10: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
                             let x_2: Option<Math::US0> = match &v9 {
                                 None => None::<Math::US0>,
@@ -2261,154 +2225,154 @@ mod module_b7a9935b {
                                     }))())
                                 }
                             };
-                            _v12.set(x_2)
+                            _v10.set(x_2)
                         }
                         {
-                            let v39: Math::US0 = defaultValue(Math::US0::US0_1, _v12.get().clone());
-                            let v48: f64 = f64::NAN;
-                            let v50: f64 = f64::NAN;
-                            let v52: num_complex::Complex<f64> =
-                                num_complex::Complex::new(v48, v50);
-                            let v55: num_complex::Complex<f64> = match &v39 {
-                                Math::US0::US0_0(v39_0_0) => match &v39 {
+                            let v25: Math::US0 = defaultValue(Math::US0::US0_1, _v10.get().clone());
+                            let v30: f64 = f64::NAN;
+                            let v32: f64 = f64::NAN;
+                            let v34: num_complex::Complex<f64> =
+                                num_complex::Complex::new(v30, v32);
+                            let v37: num_complex::Complex<f64> = match &v25 {
+                                Math::US0::US0_0(v25_0_0) => match &v25 {
                                     Math::US0::US0_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
-                                _ => v52,
+                                _ => v34,
                             };
+                            let v39: num_complex::Complex<f64> =
+                                num_complex::Complex::new(2.0_f64, 0.0_f64);
+                            let v41: num_complex::Complex<f64> =
+                                num_complex::Complex::powc(v39, v2.clone());
+                            let v43: num_complex::Complex<f64> =
+                                num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
+                            let v45: num_complex::Complex<f64> =
+                                num_complex::Complex::new(1.0_f64, 0.0_f64);
+                            let v47: num_complex::Complex<f64> = v2.clone() - v45;
+                            let v49: num_complex::Complex<f64> =
+                                num_complex::Complex::powc(v43, v47);
+                            let v51: num_complex::Complex<f64> = v41 * v49;
+                            let v53: num_complex::Complex<f64> =
+                                num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
+                            let v55: num_complex::Complex<f64> = v53 * v2.clone();
                             let v57: num_complex::Complex<f64> =
                                 num_complex::Complex::new(2.0_f64, 0.0_f64);
-                            let v59: num_complex::Complex<f64> =
-                                num_complex::Complex::powc(v57, v2.clone());
-                            let v61: num_complex::Complex<f64> =
-                                num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                            let v63: num_complex::Complex<f64> =
+                            let v59: num_complex::Complex<f64> = v55 / v57;
+                            let v61: num_complex::Complex<f64> = v59.sin();
+                            let v63: num_complex::Complex<f64> = v51 * v61;
+                            let v65: num_complex::Complex<f64> =
                                 num_complex::Complex::new(1.0_f64, 0.0_f64);
-                            let v65: num_complex::Complex<f64> = v2.clone() - v63;
-                            let v67: num_complex::Complex<f64> =
-                                num_complex::Complex::powc(v61, v65);
-                            let v69: num_complex::Complex<f64> = v59 * v67;
-                            let v71: num_complex::Complex<f64> =
-                                num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                            let v73: num_complex::Complex<f64> = v71 * v2.clone();
-                            let v75: num_complex::Complex<f64> =
-                                num_complex::Complex::new(2.0_f64, 0.0_f64);
-                            let v77: num_complex::Complex<f64> = v73 / v75;
-                            let v79: num_complex::Complex<f64> = v77.sin();
-                            let v81: num_complex::Complex<f64> = v69 * v79;
-                            let v83: num_complex::Complex<f64> =
-                                num_complex::Complex::new(1.0_f64, 0.0_f64);
-                            let v88: Result<num_complex::Complex<f64>, std::string::String> =
+                            let v70: Result<num_complex::Complex<f64>, std::string::String> =
                                 Math::method20(
                                     v0_1.get().clone(),
                                     string("        s = mpmath.gamma(s)"),
-                                    Math::method3(v83 - v2.clone()),
+                                    Math::method3(v65 - v2.clone()),
                                 );
-                            let v90: Option<num_complex::Complex<f64>> = v88.ok();
-                            let _v93: LrcPtr<MutCell<Option<Math::US0>>> =
+                            let v72: Option<num_complex::Complex<f64>> = v70.ok();
+                            let _v73: LrcPtr<MutCell<Option<Math::US0>>> =
                                 refCell(None::<Math::US0>);
                             {
-                                let x_5: Option<Math::US0> = match &v90 {
+                                let x_5: Option<Math::US0> = match &v72 {
                                     None => None::<Math::US0>,
-                                    Some(v90_0_0) => {
-                                        let x_3: num_complex::Complex<f64> = v90_0_0.clone();
+                                    Some(v72_0_0) => {
+                                        let x_3: num_complex::Complex<f64> = v72_0_0.clone();
                                         Some((Func0::new({
                                             let x_3 = x_3.clone();
                                             move || Math::US0::US0_0(x_3.clone())
                                         }))())
                                     }
                                 };
-                                _v93.set(x_5)
+                                _v73.set(x_5)
                             }
                             {
-                                let v120: Math::US0 =
-                                    defaultValue(Math::US0::US0_1, _v93.get().clone());
-                                let v129: f64 = f64::NAN;
-                                let v131: f64 = f64::NAN;
-                                let v133: num_complex::Complex<f64> =
-                                    num_complex::Complex::new(v129, v131);
-                                let v136: num_complex::Complex<f64> = match &v120 {
-                                    Math::US0::US0_0(v120_0_0) => match &v120 {
+                                let v88: Math::US0 =
+                                    defaultValue(Math::US0::US0_1, _v73.get().clone());
+                                let v93: f64 = f64::NAN;
+                                let v95: f64 = f64::NAN;
+                                let v97: num_complex::Complex<f64> =
+                                    num_complex::Complex::new(v93, v95);
+                                let v100: num_complex::Complex<f64> = match &v88 {
+                                    Math::US0::US0_0(v88_0_0) => match &v88 {
                                         Math::US0::US0_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     },
-                                    _ => v133,
+                                    _ => v97,
                                 };
-                                let v138: num_complex::Complex<f64> = v81 * v136;
-                                let v141: f64 = 1.0_f64 - v2.clone().re;
-                                let v144: f64 = -v2.im;
-                                let v146: num_complex::Complex<f64> =
-                                    num_complex::Complex::new(v141, v144);
-                                let v149: Result<num_complex::Complex<f64>, std::string::String> =
+                                let v102: num_complex::Complex<f64> = v63 * v100;
+                                let v105: f64 = 1.0_f64 - v2.clone().re;
+                                let v108: f64 = -v2.im;
+                                let v110: num_complex::Complex<f64> =
+                                    num_complex::Complex::new(v105, v108);
+                                let v113: Result<num_complex::Complex<f64>, std::string::String> =
                                     Math::method4(
                                         v0_1.get().clone(),
                                         string("        s = mpmath.zeta(s)"),
-                                        Math::method3(v146.clone()),
+                                        Math::method3(v110.clone()),
                                     );
-                                let v150: num_complex::Complex<f64> =
-                                    Math::method17(v0_1.get().clone(), v146);
-                                let v152: Option<num_complex::Complex<f64>> = v149.ok();
-                                let _v155: LrcPtr<MutCell<Option<Math::US0>>> =
+                                let v114: num_complex::Complex<f64> =
+                                    Math::method17(v0_1.get().clone(), v110);
+                                let v116: Option<num_complex::Complex<f64>> = v113.ok();
+                                let _v117: LrcPtr<MutCell<Option<Math::US0>>> =
                                     refCell(None::<Math::US0>);
                                 {
-                                    let x_8: Option<Math::US0> = match &v152 {
+                                    let x_8: Option<Math::US0> = match &v116 {
                                         None => None::<Math::US0>,
-                                        Some(v152_0_0) => {
-                                            let x_6: num_complex::Complex<f64> = v152_0_0.clone();
+                                        Some(v116_0_0) => {
+                                            let x_6: num_complex::Complex<f64> = v116_0_0.clone();
                                             Some((Func0::new({
                                                 let x_6 = x_6.clone();
                                                 move || Math::US0::US0_0(x_6.clone())
                                             }))())
                                         }
                                     };
-                                    _v155.set(x_8)
+                                    _v117.set(x_8)
                                 }
                                 {
-                                    let v182: Math::US0 =
-                                        defaultValue(Math::US0::US0_1, _v155.get().clone());
-                                    let v191: f64 = f64::NAN;
-                                    let v193: f64 = f64::NAN;
-                                    let v195: num_complex::Complex<f64> =
-                                        num_complex::Complex::new(v191, v193);
-                                    let v198: num_complex::Complex<f64> = match &v182 {
-                                        Math::US0::US0_0(v182_0_0) => match &v182 {
+                                    let v132: Math::US0 =
+                                        defaultValue(Math::US0::US0_1, _v117.get().clone());
+                                    let v137: f64 = f64::NAN;
+                                    let v139: f64 = f64::NAN;
+                                    let v141: num_complex::Complex<f64> =
+                                        num_complex::Complex::new(v137, v139);
+                                    let v144: num_complex::Complex<f64> = match &v132 {
+                                        Math::US0::US0_0(v132_0_0) => match &v132 {
                                             Math::US0::US0_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         },
-                                        _ => v195,
+                                        _ => v141,
                                     };
-                                    let v200: num_complex::Complex<f64> = v138 * v198;
-                                    let v205: f64 = v55.clone().re - v200.clone().re;
-                                    let v206: f64 = -v205;
-                                    let v208: f64 = if v205 >= v206 { v205 } else { v206 };
-                                    let v209: bool = v208 < 0.0001_f64;
-                                    let v211: bool = if v209 { true } else { Math::method21(v209) };
-                                    let v215: string = sprintf!(
+                                    let v146: num_complex::Complex<f64> = v102 * v144;
+                                    let v151: f64 = v37.clone().re - v146.clone().re;
+                                    let v152: f64 = -v151;
+                                    let v154: f64 = if v151 >= v152 { v151 } else { v152 };
+                                    let v155: bool = v154 < 0.0001_f64;
+                                    let v157: bool = if v155 { true } else { Math::method21(v155) };
+                                    let v159: string = sprintf!(
                                         "{} / actual: {:?} / expected: {:?}",
                                         string("__assert_lt"),
-                                        v208,
+                                        v154,
                                         0.0001_f64
                                     );
-                                    printfn!("{0}", v215.clone());
-                                    if v211 == false {
-                                        panic!("{}", v215,);
+                                    printfn!("{0}", v159.clone());
+                                    if v157 == false {
+                                        panic!("{}", v159,);
                                     }
                                     {
-                                        let v233: f64 = v55.im - v200.im;
-                                        let v234: f64 = -v233;
-                                        let v236: f64 = if v233 >= v234 { v233 } else { v234 };
-                                        let v237: bool = v236 < 0.0001_f64;
-                                        let v239: bool =
-                                            if v237 { true } else { Math::method21(v237) };
-                                        let v242: string = sprintf!(
+                                        let v167: f64 = v37.im - v146.im;
+                                        let v168: f64 = -v167;
+                                        let v170: f64 = if v167 >= v168 { v167 } else { v168 };
+                                        let v171: bool = v170 < 0.0001_f64;
+                                        let v173: bool =
+                                            if v171 { true } else { Math::method21(v171) };
+                                        let v174: string = sprintf!(
                                             "{} / actual: {:?} / expected: {:?}",
                                             string("__assert_lt"),
-                                            v236,
+                                            v170,
                                             0.0001_f64
                                         );
-                                        printfn!("{0}", v242.clone());
-                                        if v239 == false {
-                                            panic!("{}", v242,);
+                                        printfn!("{0}", v174.clone());
+                                        if v173 == false {
+                                            panic!("{}", v174,);
                                         }
                                         {
                                             let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2552,7 +2516,7 @@ mod module_b7a9935b {
                             );
                         let v12: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v6);
                         let v14: Option<num_complex::Complex<f64>> = v11.ok();
-                        let _v17: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
+                        let _v15: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
                             let x_2: Option<Math::US0> = match &v14 {
                                 None => None::<Math::US0>,
@@ -2564,49 +2528,49 @@ mod module_b7a9935b {
                                     }))())
                                 }
                             };
-                            _v17.set(x_2)
+                            _v15.set(x_2)
                         }
                         {
-                            let v44: Math::US0 = defaultValue(Math::US0::US0_1, _v17.get().clone());
-                            let v53: f64 = f64::NAN;
-                            let v55: f64 = f64::NAN;
-                            let v57: num_complex::Complex<f64> =
-                                num_complex::Complex::new(v53, v55);
-                            let v60: num_complex::Complex<f64> = match &v44 {
-                                Math::US0::US0_0(v44_0_0) => match &v44 {
+                            let v30: Math::US0 = defaultValue(Math::US0::US0_1, _v15.get().clone());
+                            let v35: f64 = f64::NAN;
+                            let v37: f64 = f64::NAN;
+                            let v39: num_complex::Complex<f64> =
+                                num_complex::Complex::new(v35, v37);
+                            let v42: num_complex::Complex<f64> = match &v30 {
+                                Math::US0::US0_0(v30_0_0) => match &v30 {
                                     Math::US0::US0_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
-                                _ => v57,
+                                _ => v39,
                             };
-                            let v63: f64 = v60.clone().re - v8;
-                            let v64: f64 = -v63;
-                            let v66: f64 = if v63 >= v64 { v63 } else { v64 };
-                            let v67: bool = v66 < 0.01_f64;
-                            let v69: bool = if v67 { true } else { Math::method21(v67) };
-                            let v73: string = sprintf!(
+                            let v45: f64 = v42.clone().re - v8;
+                            let v46: f64 = -v45;
+                            let v48: f64 = if v45 >= v46 { v45 } else { v46 };
+                            let v49: bool = v48 < 0.01_f64;
+                            let v51: bool = if v49 { true } else { Math::method21(v49) };
+                            let v53: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
                                 string("__assert_lt"),
-                                v66,
+                                v48,
                                 0.01_f64
                             );
-                            printfn!("{0}", v73.clone());
-                            if v69 == false {
-                                panic!("{}", v73,);
+                            printfn!("{0}", v53.clone());
+                            if v51 == false {
+                                panic!("{}", v53,);
                             }
                             {
-                                let v88: f64 = v60.im;
-                                let v89: bool = v88 < 0.01_f64;
-                                let v91: bool = if v89 { true } else { Math::method21(v89) };
-                                let v94: string = sprintf!(
+                                let v58: f64 = v42.im;
+                                let v59: bool = v58 < 0.01_f64;
+                                let v61: bool = if v59 { true } else { Math::method21(v59) };
+                                let v62: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
                                     string("__assert_lt"),
-                                    v88,
+                                    v58,
                                     0.01_f64
                                 );
-                                printfn!("{0}", v94.clone());
-                                if v91 == false {
-                                    panic!("{}", v94,);
+                                printfn!("{0}", v62.clone());
+                                if v61 == false {
+                                    panic!("{}", v62,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2652,13 +2616,13 @@ mod module_b7a9935b {
             }
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
-            let v25: bool = true;
+            let v1_1: bool = true;
             () //;
         } /* /*;
           {
-              let v28: string =
+              let v4: string =
                   string("*/ #[test] fn test_zeta_at_known_values_() { //");
-              let v29: bool =
+              let v5: bool =
                   */
         #[test]
         fn test_zeta_at_known_values_() {
@@ -2666,19 +2630,18 @@ mod module_b7a9935b {
             Math::method0();
         } /* /*;
           {
-              let v32: string =
+              let v8: string =
                   string("*/ #[test] fn test_zeta_at_2_minus2() { //");
-              let v33: bool =
-                  */
+              let v9: bool = */
         #[test]
         fn test_zeta_at_2_minus2() {
             //;
             Math::method23();
         } /* /*;
           {
-              let v36: string =
+              let v12: string =
                   string("*/ #[test] fn test_trivial_zero_at_negative_even___() { //");
-              let v37: bool =
+              let v13: bool =
                   */
         #[test]
         fn test_trivial_zero_at_negative_even___() {
@@ -2686,9 +2649,9 @@ mod module_b7a9935b {
             Math::method25();
         } /* /*;
           {
-              let v40: string =
+              let v16: string =
                   string("*/ #[test] fn test_non_trivial_zero___() { //");
-              let v41: bool =
+              let v17: bool =
                   */
         #[test]
         fn test_non_trivial_zero___() {
@@ -2696,9 +2659,9 @@ mod module_b7a9935b {
             Math::method29();
         } /* /*;
           {
-              let v44: string =
+              let v20: string =
                   string("*/ #[test] fn test_real_part_greater_than_one___() { //");
-              let v45: bool =
+              let v21: bool =
                   */
         #[test]
         fn test_real_part_greater_than_one___() {
@@ -2706,9 +2669,9 @@ mod module_b7a9935b {
             Math::method31();
         } /* /*;
           {
-              let v48: string =
+              let v24: string =
                   string("*/ #[test] fn test_zeta_at_1___() { //");
-              let v49: bool =
+              let v25: bool =
                   */
         #[test]
         fn test_zeta_at_1___() {
@@ -2716,9 +2679,9 @@ mod module_b7a9935b {
             Math::method33();
         } /* /*;
           {
-              let v52: string =
+              let v28: string =
                   string("*/ #[test] fn test_symmetry_across_real_axis___() { //");
-              let v53: bool =
+              let v29: bool =
                   */
         #[test]
         fn test_symmetry_across_real_axis___() {
@@ -2726,9 +2689,9 @@ mod module_b7a9935b {
             Math::method35();
         } /* /*;
           {
-              let v56: string =
+              let v32: string =
                   string("*/ #[test] fn test_behavior_near_origin___() { //");
-              let v57: bool =
+              let v33: bool =
                   */
         #[test]
         fn test_behavior_near_origin___() {
@@ -2736,9 +2699,9 @@ mod module_b7a9935b {
             Math::method37();
         } /* /*;
           {
-              let v60: string =
+              let v36: string =
                   string("*/ #[test] fn test_imaginary_axis() { //");
-              let v61: bool =
+              let v37: bool =
                   */
         #[test]
         fn test_imaginary_axis() {
@@ -2746,9 +2709,9 @@ mod module_b7a9935b {
             Math::method39();
         } /* /*;
           {
-              let v64: string =
+              let v40: string =
                   string("*/ #[test] fn test_critical_strip() { //");
-              let v65: bool =
+              let v41: bool =
                   */
         #[test]
         fn test_critical_strip() {
@@ -2756,9 +2719,9 @@ mod module_b7a9935b {
             Math::method43();
         } /* /*;
           {
-              let v68: string =
+              let v44: string =
                   string("*/ #[test] fn test_reflection_formula_for_specific_value() { //");
-              let v69: bool =
+              let v45: bool =
                   */
         #[test]
         fn test_reflection_formula_for_specific_value() {
@@ -2766,9 +2729,9 @@ mod module_b7a9935b {
             Math::method47();
         } /* /*;
           {
-              let v72: string =
+              let v48: string =
                   string("*/ #[test] fn test_euler_product_formula() { //");
-              let v73: bool =
+              let v49: bool =
                   */
         #[test]
         fn test_euler_product_formula() {

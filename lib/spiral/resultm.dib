@@ -342,6 +342,15 @@ inl ok' forall t. (x : result' t _) : optionm'.option' t =
 
 #!markdown
 
+### err
+
+#!spiral
+
+inl err forall t u. (x : u) : result' t u =
+    !\($'"Err(!x)"')
+
+#!markdown
+
 ### transpose
 
 #!spiral

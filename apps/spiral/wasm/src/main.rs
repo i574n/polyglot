@@ -12,17 +12,20 @@ fn print_usd(result: near_workspaces::result::ExecutionFinalResult) {
 
     println!(
         "gas_to_usd(result.total_gas_burnt.as_gas()): {:.6} ({:#?})",
-        gas_to_usd(result.total_gas_burnt.as_gas()), result.total_gas_burnt.as_gas()
+        gas_to_usd(result.total_gas_burnt.as_gas()),
+        result.total_gas_burnt.as_gas()
     );
     result.outcomes().iter().for_each(|outcome| {
         println!("outcome (success: {:#?}):", outcome.is_success());
         println!(
             "  gas_to_usd(outcome.gas_burnt.as_gas()): {:.6} ({:#?})",
-            gas_to_usd(outcome.gas_burnt.as_gas()), outcome.gas_burnt.as_gas()
+            gas_to_usd(outcome.gas_burnt.as_gas()),
+            outcome.gas_burnt.as_gas()
         );
         println!(
             "  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): {:.6} ({:#?})",
-            tokens_to_usd(outcome.tokens_burnt.as_yoctonear()), outcome.tokens_burnt.as_yoctonear()
+            tokens_to_usd(outcome.tokens_burnt.as_yoctonear()),
+            outcome.tokens_burnt.as_yoctonear()
         );
     });
 }

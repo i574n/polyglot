@@ -18,7 +18,10 @@ type date_time_guid = guid.guid
 /// ### date_time
 nominal date_time_python =
     `(
-        global "import datetime"
+        backend_switch {
+            Python = fun () =>
+                global "import datetime"
+        }
         $'' : $'datetime.datetime'
     )
 type date_time_switch =
@@ -184,7 +187,10 @@ inl now () : date_time =
     backend_switch {
         Fsharp = fun () => $'System.DateTime.Now' : date_time
         Python = fun () =>
-            global "import datetime"
+            backend_switch {
+                Python = fun () =>
+                    global "import datetime"
+            }
             $'datetime.datetime.now()' : date_time
     }
 
@@ -193,7 +199,10 @@ inl utc_now () : date_time =
     backend_switch {
         Fsharp = fun () => $'System.DateTime.UtcNow' : date_time
         Python = fun () =>
-            global "import datetime"
+            backend_switch {
+                Python = fun () =>
+                    global "import datetime"
+            }
             $'datetime.datetime.utcnow()' : date_time
     }
 
@@ -362,11 +371,11 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 /// ### date_time_from_guid
 inl date_time_from_guid (date_time_guid : date_time_guid) =
     inl date_time_guid = date_time_guid |> sm'.obj_to_string
-    inl sm'_replace = join sm'.replace
-    run_target function
-        | (Rust _ | TypeScript _) => fun () =>
-            $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
-        | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
+    inl sm_replace = sm'.replace "-" ""
+    run_target_args (fun () => sm_replace) function
+        | (Rust _ | TypeScript _) => fun sm_replace =>
+            $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm_replace)' : date_time
+        | _ => fun sm_replace => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm_replace, "yyyyMMddHHmmssfffffff", null)' : date_time
 
 /// ### timestamp_guid_from_timestamp
 inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : timestamp_guid =

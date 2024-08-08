@@ -1,5 +1,24 @@
 /// # sm'
 
+/// ## rust
+
+/// ### std_string
+nominal std_string =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_string_String'
+    )
+
+/// ### from_std_string
+inl from_std_string (str : std_string) : string =
+    open rust
+    rust.emit_expr `std_string `string str ($'"fable_library_rust::String_::fromString($0)"' : string)
+
 /// ## sm'
 
 /// ### symbol_to_string
@@ -30,6 +49,15 @@ inl format_debug forall t. (x : t) : string =
         Python = (fun () => $'f"{!x}"' : string) : () -> string
     }
 
+/// ### format_pretty
+inl format_pretty forall t. (x : t) : string =
+    run_target_args `string `t (fun () => x) function
+        | Rust _ => fun x =>
+            open rust
+            inl result = rust.emit_expr `t `std_string x ($'"format\!(\\\"{:#?}\\\", $0)"' : string)
+            from_std_string result
+        | _ => fun _ => format_debug `t x
+
 /// ### prim
 
 /// ### printable
@@ -37,63 +65,63 @@ prototype printable t : t -> ()
 
 /// ### real_format
 inl real_format forall t. (x : t) : string =
-    inl result = mut `string ""
-    real
-        let rec write x =
-            inl p ((a : string), b) =
-                inl s : string =
-                    backend_switch `string `({}) {
-                        Fsharp =
-                            (fun () =>
-                                match b with
-                                | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
-                                | _ => $'$"{!b}"' : string
-                            ) : () -> string
-                        Python =
-                            (fun () =>
-                                match b with
-                                | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
-                                | _ => $'f"{!b}"' : string
-                            ) : () -> string
-                    }
-                result <- (+.) `string ((~*) `string result) s
+    inl result = mut `string (join "")
+    inl rec write x =
+        inl p ((a : string), b) =
+            inl s : string =
+                backend_switch `string `({}) {
+                    Fsharp =
+                        (fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
+                            | _ => $'$"{!b}"' : string
+                        ) : () -> string
+                    Python =
+                        (fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
+                            | _ => $'f"{!b}"' : string
+                        ) : () -> string
+                }
+            result <- (+.) `string ((~*) `string result) s
 
-            match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
-            | () => ()
-            | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
-            | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
-            | (x : f32) | (x : f64) => p ("%f", x)
-            | (x : string) => p ("%s", x)
-            | (x : char) => p ("%c", x)
-            | (x : bool) => p ("%s", if x then "true" else "false")
-            | (a,b) => write a . write ", " . write b
-            | {} as x =>
-                write "{ "
-                inl _result =
-                    real_core.record_fold
-                        fun { state = separator key value } =>
-                            write separator
-                            write (symbol_to_string `(`key)) . write " = " . write value
-                            "; "
-                        () x
-                write " }"
-            | x when real_core.symbol_is x => write (symbol_to_string `(`x))
-            | x when real_core.function_is x => write (x ())
-            | x =>
-                if real_core.union_is x then
-                    if real_core.prototype_has `(`x) printable then printable `(`x) x
-                    else
-                        write (format_debug `(`x) x)
-                        // real_core.unbox x (fun (k, v) =>
-                        //     write k
-                        //     match v with
-                        //     | () => ()
-                        //     | _ => write "(" . write v . write ")"
-                        //     )
-                elif real_core.nominal_is x && real_core.prototype_has `(`x) printable then printable `(`x) x
-                // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
-                else write (format_debug `(`x) x)
-        write x
+        match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
+        | () => ()
+        | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
+        | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
+        | (x : f32) | (x : f64) => p ("%f", x)
+        | (x : string) => p ("%s", x)
+        | (x : char) => p ("%c", x)
+        | (x : bool) => p ("%s", if x then "true" else "false")
+        | (a,b) => write a . write ", " . write b
+        | {} as x =>
+            write "{ "
+            inl _result =
+                real_core.record_fold
+                    fun { state = separator key value } =>
+                        write separator
+                        write (symbol_to_string `(`key)) . write " = " . write value
+                        "; "
+                    () x
+            write " }"
+        | x when real_core.symbol_is x => write (symbol_to_string `(`x))
+        | x when real_core.function_is x => write (x ())
+        | x when real_core.union_is x =>
+            if real_core.prototype_has `(`x) printable then printable `(`x) x
+            else
+                write (format_debug `(`x) x)
+                // real_core.unbox x (fun (k, v) =>
+                //     write k
+                //     match v with
+                //     | () => ()
+                //     | _ => write "(" . write v . write ")"
+                //     )
+        | x when real_core.nominal_is x =>
+            if real_core.prototype_has `(`x) printable then printable `(`x) x
+            // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
+            else write (format_pretty `(`x) x)
+        | x => write (format_debug `(`x) x)
+    write x
     (~*) `string result
 
 /// ### format
@@ -198,8 +226,6 @@ inl real_format forall t. (x : t) : string =
 
 /// ### os_string
 
-/// ### std_string
-
 /// ### raw_string_literal
 
 /// ### raw_string_literal_static
@@ -211,8 +237,6 @@ inl real_format forall t. (x : t) : string =
 /// ### include_str
 
 /// ### as_str
-
-/// ### from_std_string
 
 /// ### ref_to_std_string
 
@@ -234,11 +258,9 @@ inl real_format forall t. (x : t) : string =
 
 /// ### format_custom'
 
-/// ### format'
-
 /// ### format_debug'
 
-/// ### format_pretty'
+/// ### format'
 
 /// ### format_hex'
 

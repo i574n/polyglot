@@ -7674,8 +7674,31 @@ a.anchor-link {
         <span class="n">level</span> <span class="p">:</span> <span class="n">mut</span> <span class="n">trace_level</span>
         <span class="n">repl_start</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">i64</span>
     <span class="p">}</span>
-
-<span class="n">inl</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span><span class="s1">' =</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="new_trace_state">new_trace_state<a class="anchor-link" href="#new_trace_state">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span><span class="s1">' =</span>
     <span class="n">inl</span> <span class="p">{</span> <span class="n">repl_start</span> <span class="n">trace_level</span> <span class="p">}</span> <span class="o">=</span> <span class="n">read_state</span> <span class="p">()</span>
     <span class="p">{</span>
         <span class="n">enabled</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">true</span>
@@ -7690,7 +7713,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7700,7 +7723,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7709,13 +7732,16 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">init_trace_state</span> <span class="n">trace_level</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">trace_level</span> <span class="o">=</span>
-        <span class="n">trace_level</span>
-        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value Verbose</span>
+    <span class="n">inl</span> <span class="n">trace_level</span> <span class="o">=</span> <span class="n">trace_level</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value Verbose</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">global</span> <span class="s2">"module State = let mutable trace_state = None"</span>
-            <span class="err">$</span><span class="s1">'if State.trace_state.IsNone then State.trace_state &lt;- !new_trace_state !trace_level |&gt; Some'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="n">backend_switch</span> <span class="p">{</span>
+                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">global</span> <span class="s2">"module State = let mutable trace_state = None"</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="err">$</span><span class="s1">'State.trace_state.IsNone'</span> <span class="n">then</span>
+                <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.some'</span>
+                <span class="err">$</span><span class="s1">'State.trace_state &lt;- !trace_state '</span> <span class="p">:</span> <span class="p">()</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="k">global</span> <span class="s2">"class State: trace_state = None"</span>
             <span class="err">$</span><span class="s1">'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)'</span> <span class="p">:</span> <span class="p">()</span>
@@ -7726,7 +7752,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7736,7 +7762,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7759,7 +7785,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7769,7 +7795,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7791,7 +7817,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7872,7 +7898,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7882,7 +7908,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7890,17 +7916,13 @@ __assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">trace_raw</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">trace_raw</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">test_trace_level</span> <span class="n">then</span>
         <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
         <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
 
-        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span>
-            <span class="n">backend_switch</span> <span class="p">{</span>
-                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"</span><span class="si">%s</span><span class="s1">{!fn ()}"'</span> <span class="p">:</span> <span class="n">string</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">fn</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span>
-            <span class="p">}</span>
+        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">fn</span> <span class="p">()</span>
         <span class="nb">open</span> <span class="n">rust</span>
         <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
         <span class="n">run_target</span> <span class="n">function</span>
@@ -7921,7 +7943,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7931,7 +7953,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7939,7 +7961,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">trace</span> <span class="p">(</span><span class="n">level</span> <span class="p">:</span> <span class="n">trace_level</span><span class="p">)</span> <span class="p">(</span><span class="n">text_fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">locals</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">trace</span> <span class="p">(</span><span class="n">level</span> <span class="p">:</span> <span class="n">trace_level</span><span class="p">)</span> <span class="p">(</span><span class="n">text_fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">locals</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
         <span class="n">inl</span> <span class="n">time</span> <span class="o">=</span>
@@ -8024,7 +8046,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8058,8 +8080,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
 __assert_eq / actual: 2 / expected: 2
 
 
@@ -8097,7 +8119,7 @@ __assert_eq / actual: 2L / expected: 2L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8107,7 +8129,7 @@ __assert_eq / actual: 2L / expected: 2L
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

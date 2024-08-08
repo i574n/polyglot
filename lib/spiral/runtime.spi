@@ -555,7 +555,7 @@ inl process_kill (process : process) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!process.Kill' ()
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 /// ### process_begin_error_read_line
 inl process_begin_error_read_line (process : process) : () =
@@ -721,10 +721,10 @@ inl current_process_kill () =
                         $'System.Threading.Thread.Sleep 60'
                         trace Warning (fun () => "runtime.current_process_kill / exiting... 1") id
                         $'System.Diagnostics.Process.GetCurrentProcess().Kill ()' : ()
-                    | _ => fun () => null ()
+                    | _ => fun () => ()
             inl thread : threading.thread = $'new System.Threading.Thread (!fn)'
             thread |> $'_.Start()' : ()
-        | _ => fun () => null ()
+        | _ => fun () => ()
 
 /// ### gc_collect
 inl gc_collect () =

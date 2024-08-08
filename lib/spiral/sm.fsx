@@ -24,8 +24,8 @@ type UH0 =
 and Mut0 = {mutable l0 : int32; mutable l1 : string}
 and Mut1 = {mutable l0 : int32}
 let rec closure1 (v0 : string) (v1 : string) : bool =
-    let v4 : bool = v1.Contains v0 
-    v4
+    let v2 : bool = v1.Contains v0 
+    v2
 and closure0 () (v0 : string) : (string -> bool) =
     closure1(v0)
 and closure3 (v0 : string) (v1 : string) : bool =
@@ -34,8 +34,8 @@ and closure3 (v0 : string) (v1 : string) : bool =
 and closure2 () (v0 : string) : (string -> bool) =
     closure3(v0)
 and closure6 (v0 : int32, v1 : char) (v2 : string) : string =
-    let v5 : string = v2.PadLeft (v0, v1)
-    v5
+    let v3 : string = v2.PadLeft (v0, v1)
+    v3
 and closure5 (v0 : int32) (v1 : char) : (string -> string) =
     closure6(v0, v1)
 and closure4 () (v0 : int32) : (char -> (string -> string)) =
@@ -56,55 +56,47 @@ and closure10 () (v0 : string) : (string -> (string -> string)) =
     closure11(v0)
 and method0 (v0 : string) : string =
     v0
-and method1 (v0 : string) : string =
-    v0
-and method2 (v0 : string) : string =
-    v0
 and closure15 (v0 : string, v1 : string) (v2 : string) : string =
-    let v3 : string = method0(v1)
-    let v6 : bool = true
-    let mutable _v6 : string option = None 
+    let v3 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v7 : string = method1(v2)
-    let v8 : string = $"regex::Regex::new(&$0)"
-    let v9 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v0 v8 
-    let v10 : string = "$0.unwrap()"
-    let v11 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v9 v10 
-    let v12 : string = $"$0.replace_all(&$1, &*$2)"
-    let v13 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v11, v7, v3) v12 
-    let v14 : string = "String::from($0)"
-    let v15 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v14 
-    let v16 : string = "fable_library_rust::String_::fromString($0)"
-    let v17 : string = Fable.Core.RustInterop.emitRustExpr v15 v16 
-    v17 
+    let v4 : string = $"regex::Regex::new(&$0)"
+    let v5 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v0 v4 
+    let v6 : string = "$0.unwrap()"
+    let v7 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v6 
+    let v8 : string = method0(v2)
+    let v9 : string = $"$0.replace_all(&*$1, &*$2)"
+    let v10 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v7, v8, v1) v9 
+    let v11 : string = "String::from($0)"
+    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr v10 v11 
+    let v13 : string = "fable_library_rust::String_::fromString($0)"
+    let v14 : string = Fable.Core.RustInterop.emitRustExpr v12 v13 
+    let _v3 = v14 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = null |> unbox<string>
-    v20 
+    let v15 : string = null |> unbox<string>
+    let _v3 = v15 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v29 : string = null |> unbox<string>
-    v29 
+    let v18 : string = null |> unbox<string>
+    let _v3 = v18 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v38 : string = null |> unbox<string>
-    v38 
+    let v21 : string = null |> unbox<string>
+    let _v3 = v21 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v47 : string = null |> unbox<string>
-    v47 
+    let v24 : string = null |> unbox<string>
+    let _v3 = v24 
     #endif
 #else
-    let v54 : string = method2(v0)
-    let v55 : string = System.Text.RegularExpressions.Regex.Replace (v2, v54, v3)
-    v55 
+    let v27 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
+    let _v3 = v27 
     #endif
-    |> fun x -> _v6 <- Some x
-    let v56 : string = match _v6 with Some x -> x | None -> failwith "base.run_target / _v6=None"
-    v56
+    let v28 : string = _v3 
+    v28
 and closure14 (v0 : string) (v1 : string) : (string -> string) =
     closure15(v0, v1)
 and closure13 () (v0 : string) : (string -> (string -> string)) =
@@ -121,67 +113,65 @@ and closure20 (v0 : string) (v1 : string) : (string []) =
     v2
 and closure19 () (v0 : string) : (string -> (string [])) =
     closure20(v0)
-and method3 () : string =
+and method1 () : string =
     let v0 : string = ""
     v0
 and closure22 (v0 : (string [])) (v1 : string) : (string []) =
-    let v4 : bool = true
-    let mutable _v4 : (string []) option = None 
+    let v2 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v7 : string seq = v0 |> Seq.ofArray
-    let v14 : string = method3()
-    let v17 : (string -> (string seq -> string)) = String.concat
-    let v18 : (string seq -> string) = v17 v14
-    let v19 : string = v18 v7
-    let v26 : (string []) = v1.Split v19 
-    v26 
+    let v3 : string seq = v0 |> Seq.ofArray
+    let v6 : string = method1()
+    let v7 : (string -> (string seq -> string)) = String.concat
+    let v8 : (string seq -> string) = v7 v6
+    let v9 : string = v8 v3
+    let v12 : (string []) = v1.Split v9 
+    let _v2 = v12 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v29 : string seq = v0 |> Seq.ofArray
-    let v36 : string = method3()
-    let v39 : (string -> (string seq -> string)) = String.concat
-    let v40 : (string seq -> string) = v39 v36
-    let v41 : string = v40 v29
-    let v48 : (string []) = v1.Split v41 
-    v48 
+    let v13 : string seq = v0 |> Seq.ofArray
+    let v16 : string = method1()
+    let v17 : (string -> (string seq -> string)) = String.concat
+    let v18 : (string seq -> string) = v17 v16
+    let v19 : string = v18 v13
+    let v22 : (string []) = v1.Split v19 
+    let _v2 = v22 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v51 : string seq = v0 |> Seq.ofArray
-    let v58 : string = method3()
-    let v61 : (string -> (string seq -> string)) = String.concat
-    let v62 : (string seq -> string) = v61 v58
-    let v63 : string = v62 v51
-    let v70 : (string []) = v1.Split v63 
-    v70 
+    let v23 : string seq = v0 |> Seq.ofArray
+    let v26 : string = method1()
+    let v27 : (string -> (string seq -> string)) = String.concat
+    let v28 : (string seq -> string) = v27 v26
+    let v29 : string = v28 v23
+    let v32 : (string []) = v1.Split v29 
+    let _v2 = v32 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v73 : string seq = v0 |> Seq.ofArray
-    let v80 : string = method3()
-    let v83 : (string -> (string seq -> string)) = String.concat
-    let v84 : (string seq -> string) = v83 v80
-    let v85 : string = v84 v73
-    let v92 : (string []) = v1.Split v85 
-    v92 
+    let v33 : string seq = v0 |> Seq.ofArray
+    let v36 : string = method1()
+    let v37 : (string -> (string seq -> string)) = String.concat
+    let v38 : (string seq -> string) = v37 v36
+    let v39 : string = v38 v33
+    let v42 : (string []) = v1.Split v39 
+    let _v2 = v42 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v95 : string seq = v0 |> Seq.ofArray
-    let v102 : string = method3()
-    let v105 : (string -> (string seq -> string)) = String.concat
-    let v106 : (string seq -> string) = v105 v102
-    let v107 : string = v106 v95
-    let v114 : (string []) = v1.Split v107 
-    v114 
+    let v43 : string seq = v0 |> Seq.ofArray
+    let v46 : string = method1()
+    let v47 : (string -> (string seq -> string)) = String.concat
+    let v48 : (string seq -> string) = v47 v46
+    let v49 : string = v48 v43
+    let v52 : (string []) = v1.Split v49 
+    let _v2 = v52 
     #endif
 #else
-    let v115 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
-    v115 
+    let v53 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    let _v2 = v53 
     #endif
-    |> fun x -> _v4 <- Some x
-    let v116 : (string []) = match _v4 with Some x -> x | None -> failwith "base.run_target / _v4=None"
-    v116
+    let v54 : (string []) = _v2 
+    v54
 and closure21 () (v0 : (string [])) : (string -> (string [])) =
     closure22(v0)
 and closure24 (v0 : string) (v1 : string) : bool =
@@ -197,8 +187,8 @@ and closure26 (v0 : int32) (v1 : int32) : (string -> string) =
 and closure25 () (v0 : int32) : (int32 -> (string -> string)) =
     closure26(v0)
 and closure28 () (v0 : string) : string =
-    let v3 : (unit -> string) = v0.ToLower
-    v3 ()
+    let v1 : (unit -> string) = v0.ToLower
+    v1 ()
 and closure29 () (v0 : string) : string =
     let v1 : (unit -> string) = v0.ToUpper
     v1 ()
@@ -209,48 +199,48 @@ and closure33 (v0 : char) (v1 : UH0) : UH0 =
     UH0_1(v0, v1)
 and closure32 () (v0 : char) : (UH0 -> UH0) =
     closure33(v0)
-and method4 () : (char -> (UH0 -> UH0)) =
+and method2 () : (char -> (UH0 -> UH0)) =
     closure32()
-and method5 (v0 : UH0, v1 : char list) : char list =
+and method3 (v0 : UH0, v1 : char list) : char list =
     match v0 with
     | UH0_1(v2, v3) -> (* Cons *)
-        let v4 : char list = method5(v3, v1)
-        let v7 : char list = v2 :: v4 
-        v7
+        let v4 : char list = method3(v3, v1)
+        let v5 : char list = v2 :: v4 
+        v5
     | UH0_0 -> (* Nil *)
         v1
 and closure34 (v0 : UH0) (v1 : string) : string =
     let v2 : char list = []
-    let v3 : char list = method5(v0, v2)
-    let v8 : (char list -> (char [])) = List.toArray
-    let v9 : (char []) = v8 v3
-    let v16 : string = v1.TrimEnd v9 
-    v16
+    let v3 : char list = method3(v0, v2)
+    let v4 : (char list -> (char [])) = List.toArray
+    let v5 : (char []) = v4 v3
+    let v8 : string = v1.TrimEnd v5 
+    v8
 and closure31 () (v0 : (char [])) : (string -> string) =
     let v1 : char list = v0 |> Array.toList
-    let v4 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v5 : (char -> (UH0 -> UH0)) = method4()
-    let v6 : (char list -> (UH0 -> UH0)) = v4 v5
-    let v7 : (UH0 -> UH0) = v6 v1
-    let v8 : UH0 = UH0_0
-    let v9 : UH0 = v7 v8
-    closure34(v9)
+    let v2 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v3 : (char -> (UH0 -> UH0)) = method2()
+    let v4 : (char list -> (UH0 -> UH0)) = v2 v3
+    let v5 : (UH0 -> UH0) = v4 v1
+    let v6 : UH0 = UH0_0
+    let v7 : UH0 = v5 v6
+    closure34(v7)
 and closure36 (v0 : UH0) (v1 : string) : string =
     let v2 : char list = []
-    let v3 : char list = method5(v0, v2)
-    let v8 : (char list -> (char [])) = List.toArray
-    let v9 : (char []) = v8 v3
-    let v16 : string = v1.TrimStart v9 
-    v16
+    let v3 : char list = method3(v0, v2)
+    let v4 : (char list -> (char [])) = List.toArray
+    let v5 : (char []) = v4 v3
+    let v8 : string = v1.TrimStart v5 
+    v8
 and closure35 () (v0 : (char [])) : (string -> string) =
     let v1 : char list = v0 |> Array.toList
-    let v4 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v5 : (char -> (UH0 -> UH0)) = method4()
-    let v6 : (char list -> (UH0 -> UH0)) = v4 v5
-    let v7 : (UH0 -> UH0) = v6 v1
-    let v8 : UH0 = UH0_0
-    let v9 : UH0 = v7 v8
-    closure36(v9)
+    let v2 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v3 : (char -> (UH0 -> UH0)) = method2()
+    let v4 : (char list -> (UH0 -> UH0)) = v2 v3
+    let v5 : (UH0 -> UH0) = v4 v1
+    let v6 : UH0 = UH0_0
+    let v7 : UH0 = v5 v6
+    closure36(v7)
 and closure38 (v0 : int32) (v1 : string) : string =
     let v2 : int32 = v1.Length
     let v3 : bool = v2 <= v0
@@ -263,7 +253,7 @@ and closure38 (v0 : int32) (v1 : string) : string =
         v6
 and closure37 () (v0 : int32) : (string -> string) =
     closure38(v0)
-and method6 (v0 : int64, v1 : string) : string =
+and method4 (v0 : int64, v1 : string) : string =
     let v2 : int64 = System.Convert.ToInt64 v1.Length
     let v3 : bool = v2 <= v0
     if v3 then
@@ -287,49 +277,47 @@ and method6 (v0 : int64, v1 : string) : string =
         let v19 : string = v1.[int v17..int v18]
         let v20 : string = "..."
         let v21 : (string []) = [|v16; v20; v19|]
-        let v24 : string seq = v21 |> Seq.ofArray
-        let v33 : (string -> (string seq -> string)) = String.concat
-        let v34 : string = ""
-        let v35 : (string seq -> string) = v33 v34
-        v35 v24
+        let v22 : string seq = v21 |> Seq.ofArray
+        let v25 : (string -> (string seq -> string)) = String.concat
+        let v26 : string = ""
+        let v27 : (string seq -> string) = v25 v26
+        v27 v22
 and closure40 (v0 : int64) (v1 : string) : string =
-    method6(v0, v1)
+    method4(v0, v1)
 and closure39 () (v0 : int64) : (string -> string) =
     closure40(v0)
 and closure41 () (v0 : exn) : string =
-    let v3 : bool = true
-    let mutable _v3 : string option = None 
+    let v1 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v6 : string = $"%A{v0}"
-    v6 
+    let v2 : string = $"%A{v0}"
+    let _v1 = v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v15 : string = $"%A{v0}"
-    v15 
+    let v5 : string = $"%A{v0}"
+    let _v1 = v5 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v24 : string = $"%A{v0}"
-    v24 
+    let v8 : string = $"%A{v0}"
+    let _v1 = v8 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v33 : string = $"%A{v0}"
-    v33 
+    let v11 : string = $"%A{v0}"
+    let _v1 = v11 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v42 : string = $"%A{v0}"
-    v42 
+    let v14 : string = $"%A{v0}"
+    let _v1 = v14 
     #endif
 #else
-    let v49 : string = $"{v0.GetType ()}: {v0.Message}"
-    v49 
+    let v17 : string = $"{v0.GetType ()}: {v0.Message}"
+    let _v1 = v17 
     #endif
-    |> fun x -> _v3 <- Some x
-    let v50 : string = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
-    v50
-and method7 (v0 : int32, v1 : Mut0) : bool =
+    let v18 : string = _v1 
+    v18
+and method5 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -337,7 +325,7 @@ and closure43 (v0 : string) (v1 : (string [])) : string =
     let v2 : int32 = v1.Length
     let v3 : string = ""
     let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
-    while method7(v2, v4) do
+    while method5(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : string = v4.l1
         let v8 : string = v1.[int v6]
@@ -351,9 +339,9 @@ and closure43 (v0 : string) (v1 : (string [])) : string =
 and closure42 () (v0 : string) : ((string []) -> string) =
     closure43(v0)
 and closure45 (v0 : string) (v1 : string seq) : string =
-    let v4 : (string -> (string seq -> string)) = String.concat
-    let v5 : (string seq -> string) = v4 v0
-    v5 v1
+    let v2 : (string -> (string seq -> string)) = String.concat
+    let v3 : (string seq -> string) = v2 v0
+    v3 v1
 and closure44 () (v0 : string) : (string seq -> string) =
     closure45(v0)
 and closure47 (v0 : string) (v1 : (string [])) : string =
@@ -361,7 +349,7 @@ and closure47 (v0 : string) (v1 : (string [])) : string =
     v2
 and closure46 () (v0 : string) : ((string []) -> string) =
     closure47(v0)
-and method8 (v0 : int32, v1 : Mut1) : bool =
+and method6 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -369,7 +357,7 @@ and closure48 () (v0 : string) : (char []) =
     let v1 : int32 = v0.Length
     let v2 : (char []) = Array.zeroCreate<char> (v1)
     let v3 : Mut1 = {l0 = 0} : Mut1
-    while method8(v1, v3) do
+    while method6(v1, v3) do
         let v5 : int32 = v3.l0
         let v6 : char = v0.[int v5]
         v2.[int v5] <- v6

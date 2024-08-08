@@ -1,7 +1,7 @@
 import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { value as value_1, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 
 export class Disposable implements IDisposable {
     readonly f: (() => void);
@@ -53,15 +53,7 @@ export function US0_$reflection(): TypeInfo {
 }
 
 export function closure1(v0_1: any, unitVar: void): void {
-    let _v3: Option<void> = undefined;
     defaultOf();
-    _v3 = some(undefined);
-    if (_v3 == null) {
-        throw new Error("base.run_target / _v3=None");
-    }
-    else {
-        value_1(_v3);
-    }
 }
 
 export function method0(v0_1: any): (() => void) {
@@ -77,17 +69,9 @@ export function method1(v0_1: any): (() => void) {
 }
 
 export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
-    let _v3: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();
-    _v3 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
-    let patternInput_1: [any, IDisposable];
-    if (_v3 == null) {
-        throw new Error("base.run_target / _v3=None");
-    }
-    else {
-        patternInput_1 = value_1(_v3);
-    }
-    return [patternInput_1[0], patternInput_1[1]] as [any, IDisposable];
+    const _v1 = [patternInput[0], patternInput[1]] as [any, IDisposable];
+    return [_v1[0], _v1[1]] as [any, IDisposable];
 }
 
 export const v0 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);

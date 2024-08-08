@@ -101,30 +101,30 @@ inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
     inl args = args () |> dyn
     backend_switch {
         Fsharp = fun () =>
-            inl result = dyn true
-            $'let mutable _!result : `t option = None '
+            inl result = $'()' : $'unit'
+            inl emit_result x : () =
+                $'let _!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
             $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
             inl target = Rust Native
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif\n#if FABLE_COMPILER_RUST && WASM'
             inl target = Rust Wasm
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif\n#if FABLE_COMPILER_RUST && CONTRACT'
             inl target = Rust Contract
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif\n#if FABLE_COMPILER_TYPESCRIPT'
             inl target = TypeScript Native
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif\n#if FABLE_COMPILER_PYTHON'
             inl target = Python Native
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif\n#else'
             inl target = Fsharp Native
-            fn target args |> emit_unit
+            fn target args |> emit_result
             $'#endif'
-            $'|> fun x -> _!result <- Some x'
-            $'match _!result with Some x -> x | None -> failwith "base.run_target / _!result=None"' : t
+            $'_!result ' : t
         Python = fun () =>
             inl target = Cuda Native
             fn target args

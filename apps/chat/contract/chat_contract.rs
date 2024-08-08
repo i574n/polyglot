@@ -12,41 +12,9 @@ mod module_31a2fc18 {
     pub mod Chat_contract {
         use super::*;
         use fable_library_rust::Native_::Func0;
-        use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::OnceInit;
         use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::String_::printfn;
-        use fable_library_rust::String_::sprintf;
-        use fable_library_rust::String_::string;
         pub fn closure0(unitVar: (), unitVar_1: ()) {
-            let v1: string = string("b\"l\"");
-            let v2: &[u8] = b"l";
-            let v4:
-                    near_sdk::store::LookupMap<std::string::String, std::collections::HashMap<near_sdk::AccountId, (u64,
-                                                                                                                    u32)>> =
-                near_sdk::store::LookupMap::new(v2);
-            let v6: string = string("b\"c\"");
-            let v7: &[u8] = b"c";
-            let v9:
-                    near_sdk::store::LookupMap<near_sdk::AccountId, std::string::String> =
-                near_sdk::store::LookupMap::new(v7);
-            let _v12: MutCell<Option<std::string::String>> =
-                MutCell::new(None::<std::string::String>);
-            {
-                let x: std::string::String = format!("{:#?}", 1_u32);
-                _v12.set(Some(x))
-            }
-            {
-                let value: string =
-                    sprintf!("value: {}",
-                             match &_v12.get().clone() {
-                                 None =>
-                                 panic!("{}",
-                                        string("base.run_target / _v12=None"),),
-                                 Some(_v12_0_0) => _v12_0_0.clone(),
-                             });
-                printfn!("{0}", value)
-            }
             } //;
             #[near_sdk::near_bindgen] //;
             #[derive( //;

@@ -87,7 +87,7 @@ inl hash_read data : resultm.result' string stream.io_error =
     |> am'.from_vec
     |> fun x => x : _ i32 _
     |> seq.of_array'
-    |> sm'.concat ""
+    |> sm'.concat (join "")
     |> Ok
     |> resultm.box
 

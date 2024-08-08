@@ -127,22 +127,22 @@ pub mod Common {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-    pub enum US1 { US1_0(Common::US0), US1_1, }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+    pub enum US1 { US1_0(string), US1_1, }
     impl core::fmt::Display for Common::US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-    pub enum US2 { US2_0(i64), US2_1, }
+    pub enum US2 { US2_0(Common::US0), US2_1, }
     impl core::fmt::Display for Common::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-    pub enum US3 { US3_0(string), US3_1, }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+    pub enum US3 { US3_0(i64), US3_1, }
     impl core::fmt::Display for Common::US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -171,440 +171,134 @@ pub mod Common {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn method0() -> string { string("TRACE_LEVEL") }
-    pub fn method2() -> string { string("") }
-    pub fn method1(v0: string) -> string {
-        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v35: Result<std::string::String, std::env::VarError> =
-            std::env::var(&*v0);
-        let v37: bool = true; let _result = v35.map(|x| { //;
-        let v39: std::string::String = x;
-        let v41: string = fable_library_rust::String_::fromString(v39);
-        let v43: bool = true; v41 });
-        let v45: Result<string, std::env::VarError> = _result;
-        let v46: string = Common::method2();
-        { let x: string = v45.unwrap_or(v46); _v3.set(Some(x)) }
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
-        }
+    pub fn method1() -> string { string("TRACE_LEVEL") }
+    pub fn method3() -> string { string("") }
+    pub fn method2(v0_1: string) -> string {
+        let v33: Result<std::string::String, std::env::VarError> =
+            std::env::var(&*v0_1);
+        let v35: bool = true; let _result = v33.map(|x| { //;
+        let v37: std::string::String = x;
+        let v39: string = fable_library_rust::String_::fromString(v37);
+        let v41: bool = true; v39 });
+        let v43: Result<string, std::env::VarError> = _result;
+        let v44: string = Common::method3();
+        v43.unwrap_or(v44)
     }
-    pub fn method3() -> string { string("AUTOMATION") }
-    pub fn closure1(unitVar: (), v0: string) { (); }
-    pub fn closure0(unitVar: (), v0: Common::US0)
+    pub fn method4() -> string { string("AUTOMATION") }
+    pub fn closure0(unitVar: (), v0_1: string) { (); }
+    pub fn method0(v0_1: Common::US0)
      ->
          (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>, LrcPtr<Common::Mut2>,
           LrcPtr<Common::Mut3>, Option<i64>) {
-        let _v3: MutCell<Option<(Common::US1, Common::US2)>> =
-            MutCell::new(None::<(Common::US1, Common::US2)>);
-        let _v88: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v101: string = string("env!(\"AUTOMATION\")");
-        let v102: &str = env!("AUTOMATION");
-        let v104: std::string::String = String::from(v102);
-        {
-            let x: string = fable_library_rust::String_::fromString(v104);
-            _v88.set(Some(x))
-        }
-        {
-            let x_2: (Common::US1, Common::US2) =
-                (Common::US1::US1_1,
-                 if match &_v88.get().clone() {
-                        None =>
-                        panic!("{}", string("base.run_target / _v88=None"),),
-                        Some(_v88_0_0) => _v88_0_0.clone(),
-                    } != string("True") {
-                     Common::US2::US2_1
-                 } else {
-                     Common::US2::US2_0(near_sdk::env::block_timestamp() as
-                                            i64)
-                 });
-            _v3.set(Some(x_2))
-        }
-        {
-            let patternInput: (Common::US1, Common::US2) =
-                match &_v3.get().clone() {
-                    None =>
-                    panic!("{}", string("base.run_target / _v3=None"),),
-                    Some(_v3_0_0) => _v3_0_0.clone(),
-                };
-            let v402: Common::US2 = patternInput.1.clone();
-            let v401: Common::US1 = patternInput.0.clone();
-            (LrcPtr::new(Common::Mut0{l0: MutCell::new(0_i64),}),
-             LrcPtr::new(Common::Mut1{l0:
-                                          MutCell::new(Func1::new(move
-                                                                      |v:
-                                                                           string|
-                                                                      Common::closure1((),
-                                                                                       v))),}),
-             LrcPtr::new(Common::Mut2{l0: MutCell::new(true),}),
-             LrcPtr::new(Common::Mut3{l0:
-                                          MutCell::new(match &v401 {
-                                                           Common::US1::US1_0(v401_0_0)
-                                                           =>
-                                                           match &v401 {
-                                                               Common::US1::US1_0(x)
-                                                               => x.clone(),
-                                                               _ =>
-                                                               unreachable!(),
-                                                           },
-                                                           _ => v0,
-                                                       }),}),
-             match &v402 {
-                 Common::US2::US2_0(v402_0_0) =>
-                 Some(match &v402 {
-                          Common::US2::US2_0(x) => x.clone(),
-                          _ => unreachable!(),
-                      }),
-                 _ => None::<i64>,
-             })
-        }
+        let v79: string = string("env!(\"AUTOMATION\")");
+        let v80: &str = env!("AUTOMATION");
+        let v82: std::string::String = String::from(v80);
+        let _v1: (Common::US2, Common::US3) =
+            (Common::US2::US2_1,
+             if fable_library_rust::String_::fromString(v82) != string("True")
+                {
+                 Common::US3::US3_1
+             } else {
+                 Common::US3::US3_0(near_sdk::env::block_timestamp() as i64)
+             });
+        let v295: Common::US3 = _v1.1.clone();
+        let v294: Common::US2 = _v1.0.clone();
+        (LrcPtr::new(Common::Mut0{l0: MutCell::new(0_i64),}),
+         LrcPtr::new(Common::Mut1{l0:
+                                      MutCell::new(Func1::new(move |v: string|
+                                                                  Common::closure0((),
+                                                                                   v))),}),
+         LrcPtr::new(Common::Mut2{l0: MutCell::new(true),}),
+         LrcPtr::new(Common::Mut3{l0:
+                                      MutCell::new(match &v294 {
+                                                       Common::US2::US2_0(v294_0_0)
+                                                       =>
+                                                       match &v294 {
+                                                           Common::US2::US2_0(x)
+                                                           => x.clone(),
+                                                           _ =>
+                                                           unreachable!(),
+                                                       },
+                                                       _ => v0_1,
+                                                   }),}),
+         match &v295 {
+             Common::US3::US3_0(v295_0_0) =>
+             Some(match &v295 {
+                      Common::US3::US3_0(x) => x.clone(),
+                      _ => unreachable!(),
+                  }),
+             _ => None::<i64>,
+         })
     }
-    pub fn method4(v0: Func0<()>) -> Func0<()> { v0 }
-    pub fn method5(v0: Func0<()>) -> Func0<()> { v0 }
-    pub fn closure2(unitVar: (), v0: Func0<()>) -> LrcPtr<dyn IDisposable> {
-        let _v3: MutCell<Option<LrcPtr<dyn IDisposable>>> =
-            MutCell::new(None::<LrcPtr<dyn IDisposable>>);
-        let v8 = Common::method4(v0);
-        {
-            let x: LrcPtr<dyn IDisposable> =
-                interface_cast!(Common::Disposable::_ctor__3A5B6456(Func0::new({
-                                                   let v8 = v8.clone();
-                                                   move || v8.clone()()
+    pub fn method5(v0_1: Func0<()>) -> Func0<()> { v0_1 }
+    pub fn method6(v0_1: Func0<()>) -> Func0<()> { v0_1 }
+    pub fn closure1(unitVar: (), v0_1: Func0<()>) -> LrcPtr<dyn IDisposable> {
+        let v6 = Common::method5(v0_1);
+        interface_cast!(Common::Disposable::_ctor__3A5B6456(Func0::new({
+                                                   let v6 = v6.clone();
+                                                   move || v6.clone()()
                                                })),
-                                Lrc<dyn IDisposable>,);
-            _v3.set(Some(x))
-        }
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
-        }
+                        Lrc<dyn IDisposable>,)
     }
-    pub fn closure5(unitVar: (), v0: Common::US4) -> Common::US5 {
-        Common::US5::US5_0(v0)
+    pub fn closure4(unitVar: (), v0_1: Common::US4) -> Common::US5 {
+        Common::US5::US5_0(v0_1)
     }
-    pub fn closure6(v0: i32, v1: Func0<()>, v2_1: i32, unitVar: ())
+    pub fn closure5(v0_1: i32, v1: Func0<()>, v2: i32, unitVar: ())
      -> Common::US4 {
-        if v2_1 < v0 { v1(); Common::US4::US4_0 } else { Common::US4::US4_1 }
-    }
-    pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
-        string("common.retry_fn")
-    }
-    pub fn closure9(v0: i32, v1: LrcPtr<Exception>, unitVar: ())
-     -> (i32, LrcPtr<Exception>) {
-        (v0, v1)
+        if v2 < v0_1 { v1(); Common::US4::US4_0 } else { Common::US4::US4_1 }
     }
     pub fn method8() -> string { string("hh:mm:ss") }
     pub fn method9() -> string { string("HH:mm:ss") }
     pub fn method10() -> string { string("\u{001b}[0m") }
-    pub fn method12(v0: LrcPtr<Common::Mut4>, v1: string) {
-        let v4: string = sprintf!("{}", v1);
-        let v12: string = append(v0.l0.get().clone(), v4);
-        v0.l0.set(v12);
-        ()
+    pub fn method11() -> string { string("") }
+    pub fn closure7(unitVar: (), unitVar_1: ()) -> string {
+        string("common.retry_fn")
     }
-    pub fn method13(v0: LrcPtr<Common::Mut4>) { (); }
-    pub fn method14(v0: LrcPtr<Common::Mut4>, v1: i32) {
-        let v4: string = sprintf!("{}", v1);
-        let v12: string = append(v0.l0.get().clone(), v4);
-        v0.l0.set(v12);
-        ()
-    }
-    pub fn method15(v0: LrcPtr<Common::Mut4>, v1: LrcPtr<Exception>) {
-        Common::method12(v0, sprintf!("{:?}", v1));
-    }
-    pub fn method11(v0: LrcPtr<Common::Mut4>, v1: i32,
-                    v2_1: LrcPtr<Exception>) {
-        Common::method12(v0.clone(), string("{ "));
-        Common::method13(v0.clone());
-        Common::method12(v0.clone(), string("retry"));
-        Common::method12(v0.clone(), string(" = "));
-        Common::method14(v0.clone(), v1);
-        Common::method12(v0.clone(), string("; "));
-        Common::method12(v0.clone(), string("ex"));
-        Common::method12(v0.clone(), string(" = "));
-        Common::method15(v0.clone(), v2_1);
-        Common::method12(v0, string(" }"))
-    }
-    pub fn closure10(v0: Common::US0, v1: Func0<string>,
-                     v2_1: Func0<(i32, LrcPtr<Exception>)>, unitVar: ())
-     -> string {
+    pub fn closure6(v0_1: i32, v1: LrcPtr<Exception>) -> Common::US5 {
         if Common::State::trace_state().get().clone().is_none() {
-            Common::State::trace_state().set(Some(Common::closure0((),
-                                                                   Common::US0::US0_0)));
+            let patternInput:
+                    (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
+                     LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
+                     Option<i64>) = Common::method0(Common::US0::US0_0);
+            Common::State::trace_state().set(Some((patternInput.0.clone(),
+                                                   patternInput.1.clone(),
+                                                   patternInput.2.clone(),
+                                                   patternInput.3.clone(),
+                                                   patternInput.4.clone())));
+            ()
         }
         {
-            let patternInput:
+            let patternInput_1:
                     (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
                      LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
                      Option<i64>) =
                 getValue(Common::State::trace_state().get().clone());
-            let v18: Option<i64> = patternInput.4.clone();
-            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v331: u64 = near_sdk::env::block_timestamp();
-            let _v334: LrcPtr<MutCell<Option<Common::US2>>> =
-                refCell(None::<Common::US2>);
-            {
-                let x_2: Option<Common::US2> =
-                    match &v18 {
-                        None => None::<Common::US2>,
-                        Some(v18_0_0) => {
-                            let x: i64 = v18_0_0.clone();
-                            Some((Func0::new({
-                                                 let x = x.clone();
-                                                 move || Common::US2::US2_0(x)
-                                             }))())
-                        }
-                    };
-                _v334.set(x_2)
-            }
-            {
-                let v361: Common::US2 =
-                    defaultValue(Common::US2::US2_1, _v334.get().clone());
-                let v375: u64 =
-                    match &v361 {
-                        Common::US2::US2_0(v361_0_0) =>
-                        v331 -
-                            match &v361 {
-                                Common::US2::US2_0(x) => x.clone(),
-                                _ => unreachable!(),
-                            } as u64,
-                        _ => v331,
-                    } / 1000000000_u64;
-                let v376: u64 = v375 % 60_u64;
-                let v378: u64 = v375 / 60_u64 % 60_u64;
-                let v380: u64 = v375 / 3600_u64 % 24_u64;
-                let v382: std::string::String =
-                    format!("{:02}:{:02}:{:02}", v380, v378, v376);
-                {
-                    let x_3: string =
-                        fable_library_rust::String_::fromString(v382);
-                    _v35.set(Some(x_3))
-                }
-                {
-                    let v826: string =
-                        match &_v35.get().clone() {
-                            None =>
-                            panic!("{}",
-                                   string("base.run_target / _v35=None"),),
-                            Some(_v35_0_0) => _v35_0_0.clone(),
-                        };
-                    let v985: Common::US3 =
-                        if if let Common::US0::US0_0 = &v0 {
-                               true
-                           } else { false } {
-                            Common::US3::US3_0(string("Verbose"))
-                        } else { Common::US3::US3_1 };
-                    let v1034: Common::US3 =
-                        match &v985 {
-                            Common::US3::US3_0(v985_0_0) =>
-                            Common::US3::US3_0(match &v985 {
-                                                   Common::US3::US3_0(x) =>
-                                                   x.clone(),
-                                                   _ => unreachable!(),
-                                               }),
-                            _ => {
-                                let v994: Common::US3 =
-                                    if if let Common::US0::US0_1 = &v0 {
-                                           true
-                                       } else { false } {
-                                        Common::US3::US3_0(string("Debug"))
-                                    } else { Common::US3::US3_1 };
-                                match &v994 {
-                                    Common::US3::US3_0(v994_0_0) =>
-                                    Common::US3::US3_0(match &v994 {
-                                                           Common::US3::US3_0(x)
-                                                           => x.clone(),
-                                                           _ =>
-                                                           unreachable!(),
-                                                       }),
-                                    _ => {
-                                        let v1003: Common::US3 =
-                                            if if let Common::US0::US0_2 = &v0
-                                                  {
-                                                   true
-                                               } else { false } {
-                                                Common::US3::US3_0(string("Info"))
-                                            } else { Common::US3::US3_1 };
-                                        match &v1003 {
-                                            Common::US3::US3_0(v1003_0_0) =>
-                                            Common::US3::US3_0(match &v1003 {
-                                                                   Common::US3::US3_0(x)
-                                                                   =>
-                                                                   x.clone(),
-                                                                   _ =>
-                                                                   unreachable!(),
-                                                               }),
-                                            _ => {
-                                                let v1012: Common::US3 =
-                                                    if if let Common::US0::US0_3
-                                                              = &v0 {
-                                                           true
-                                                       } else { false } {
-                                                        Common::US3::US3_0(string("Warning"))
-                                                    } else {
-                                                        Common::US3::US3_1
-                                                    };
-                                                match &v1012 {
-                                                    Common::US3::US3_0(v1012_0_0)
-                                                    =>
-                                                    Common::US3::US3_0(match &v1012
-                                                                           {
-                                                                           Common::US3::US3_0(x)
-                                                                           =>
-                                                                           x.clone(),
-                                                                           _
-                                                                           =>
-                                                                           unreachable!(),
-                                                                       }),
-                                                    _ => {
-                                                        let v1021:
-                                                                Common::US3 =
-                                                            if if let Common::US0::US0_4
-                                                                      = &v0 {
-                                                                   true
-                                                               } else {
-                                                                   false
-                                                               } {
-                                                                Common::US3::US3_0(string("Critical"))
-                                                            } else {
-                                                                Common::US3::US3_1
-                                                            };
-                                                        match &v1021 {
-                                                            Common::US3::US3_0(v1021_0_0)
-                                                            =>
-                                                            Common::US3::US3_0(match &v1021
-                                                                                   {
-                                                                                   Common::US3::US3_0(x)
-                                                                                   =>
-                                                                                   x.clone(),
-                                                                                   _
-                                                                                   =>
-                                                                                   unreachable!(),
-                                                                               }),
-                                                            _ =>
-                                                            Common::US3::US3_1,
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        };
-                    let v1051: string =
-                        padLeft(toLower(match &v1034 {
-                                            Common::US3::US3_0(v1034_0_0) =>
-                                            match &v1034 {
-                                                Common::US3::US3_0(x) =>
-                                                x.clone(),
-                                                _ => unreachable!(),
-                                            },
-                                            _ =>
-                                            panic!("{}",
-                                                   string("Option does not have a value."),),
-                                        }), 7_i32, ' ');
-                    let _v1083: MutCell<Option<string>> =
-                        MutCell::new(None::<string>);
-                    let v1146: &str =
-                        match &v0 {
-                            Common::US0::US0_1 =>
-                            inline_colorization::color_bright_blue,
-                            Common::US0::US0_2 =>
-                            inline_colorization::color_bright_green,
-                            Common::US0::US0_0 =>
-                            inline_colorization::color_bright_black,
-                            Common::US0::US0_3 =>
-                            inline_colorization::color_yellow,
-                            _ => inline_colorization::color_bright_red,
-                        };
-                    let v1148: &str = &*v1051;
-                    let v1150: &str = inline_colorization::color_reset;
-                    let v1152: string =
-                        string("format!(\"{v1146}{v1148}{v1150}\")");
-                    let v1153: std::string::String =
-                        format!("{v1146}{v1148}{v1150}");
-                    {
-                        let x_5: string =
-                            fable_library_rust::String_::fromString(v1153);
-                        _v1083.set(Some(x_5))
-                    }
-                    {
-                        let v1195: string =
-                            match &_v1083.get().clone() {
-                                None =>
-                                panic!("{}",
-                                       string("base.run_target / _v1083=None"),),
-                                Some(_v1083_0_0) => _v1083_0_0.clone(),
-                            };
-                        let v1214: i64 =
-                            (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (i32, LrcPtr<Exception>) = v2_1();
-                        let v1218: LrcPtr<Common::Mut4> =
-                            LrcPtr::new(Common::Mut4{l0:
-                                                         MutCell::new(string("")),});
-                        Common::method11(v1218.clone(),
-                                         patternInput_1.0.clone(),
-                                         patternInput_1.1.clone());
-                        {
-                            let v1219: string = v1218.l0.get().clone();
-                            trimEndChars(trimStartChars(sprintf!("{} {} #{} {} / {}",
-                                                                 v826, v1195,
-                                                                 v1214, v1(),
-                                                                 v1219),
-                                                        toArray(empty::<char>())),
-                                         toArray(ofArray(new_array(&[' ',
-                                                                     '/']))))
-                        }
-                    }
-                }
-            }
-        }
-    }
-    pub fn method16(v0: Common::US0, v1: Func0<string>) {
-        fn v4(v: Common::US0)
-         ->
-             (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
-              LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>, Option<i64>) {
-            Common::closure0((), v)
-        }
-        if Common::State::trace_state().get().clone().is_none() {
-            Common::State::trace_state().set(Some(v4(Common::US0::US0_0)));
-        }
-        {
-            let patternInput:
-                    (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
-                     LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
-                     Option<i64>) =
-                getValue(Common::State::trace_state().get().clone());
-            let v13: LrcPtr<Common::Mut0> = patternInput.0.clone();
+            let v14_1: LrcPtr<Common::Mut0> = patternInput_1.0.clone();
             if Common::State::trace_state().get().clone().is_none() {
-                Common::State::trace_state().set(Some(v4(Common::US0::US0_0)));
+                let patternInput_2:
+                        (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
+                         LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
+                         Option<i64>) = Common::method0(Common::US0::US0_0);
+                Common::State::trace_state().set(Some((patternInput_2.0.clone(),
+                                                       patternInput_2.1.clone(),
+                                                       patternInput_2.2.clone(),
+                                                       patternInput_2.3.clone(),
+                                                       patternInput_2.4.clone())));
+                ()
             }
             {
-                let patternInput_1:
+                let patternInput_3:
                         (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
                          LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
                          Option<i64>) =
                     getValue(Common::State::trace_state().get().clone());
-                let v61: Common::US0 =
-                    (patternInput_1.3.clone()).l0.get().clone();
-                if if (patternInput_1.2.clone()).l0.get().clone() == false {
+                let v56: Common::US0 =
+                    (patternInput_3.3.clone()).l0.get().clone();
+                if if (patternInput_3.2.clone()).l0.get().clone() == false {
                        false
                    } else {
-                       find(v0,
-                            ofSeq(ofList(ofArray(new_array(&[LrcPtr::new((Common::US0::US0_0,
-                                                                          0_i32)),
-                                                             LrcPtr::new((Common::US0::US0_1,
-                                                                          1_i32)),
-                                                             LrcPtr::new((Common::US0::US0_2,
-                                                                          2_i32)),
-                                                             LrcPtr::new((Common::US0::US0_3,
-                                                                          3_i32)),
-                                                             LrcPtr::new((Common::US0::US0_4,
-                                                                          4_i32))])))))
-                           >=
-                           find(v61,
+                       3_i32 >=
+                           find(v56,
                                 ofSeq(ofList(ofArray(new_array(&[LrcPtr::new((Common::US0::US0_0,
                                                                               0_i32)),
                                                                  LrcPtr::new((Common::US0::US0_1,
@@ -616,169 +310,299 @@ pub mod Common {
                                                                  LrcPtr::new((Common::US0::US0_4,
                                                                               4_i32))])))))
                    } {
-                    let v69: i64 = v13.l0.get().clone() + 1_i64;
-                    v13.l0.set(v69);
+                    let v63: i64 = v14_1.l0.get().clone() + 1_i64;
+                    v14_1.l0.set(v63);
+                    if Common::State::trace_state().get().clone().is_none() {
+                        let patternInput_4:
+                                (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
+                                 LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
+                                 Option<i64>) =
+                            Common::method0(Common::US0::US0_0);
+                        Common::State::trace_state().set(Some((patternInput_4.0.clone(),
+                                                               patternInput_4.1.clone(),
+                                                               patternInput_4.2.clone(),
+                                                               patternInput_4.3.clone(),
+                                                               patternInput_4.4.clone())));
+                        ()
+                    }
                     {
-                        let v72: string = sprintf!("{}", v1());
-                        let _v81: MutCell<Option<()>> =
-                            MutCell::new(None::<()>);
-                        near_sdk::log!("{}", v72.clone());
-                        _v81.set(Some(()));
-                        match &_v81.get().clone() {
-                            None =>
-                            panic!("{}",
-                                   string("base.run_target / _v81=None"),),
-                            Some(_v81_0_0) => _v81_0_0.clone(),
+                        let patternInput_5:
+                                (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
+                                 LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
+                                 Option<i64>) =
+                            getValue(Common::State::trace_state().get().clone());
+                        let v80: Option<i64> = patternInput_5.4.clone();
+                        let v219: u64 = near_sdk::env::block_timestamp();
+                        let _v220: LrcPtr<MutCell<Option<Common::US3>>> =
+                            refCell(None::<Common::US3>);
+                        {
+                            let x_2: Option<Common::US3> =
+                                match &v80 {
+                                    None => None::<Common::US3>,
+                                    Some(v80_0_0) => {
+                                        let x: i64 = v80_0_0.clone();
+                                        Some((Func0::new({
+                                                             let x =
+                                                                 x.clone();
+                                                             move ||
+                                                                 Common::US3::US3_0(x)
+                                                         }))())
+                                    }
+                                };
+                            _v220.set(x_2)
                         }
-                        ((patternInput.1.clone()).l0.get().clone())(v72)
+                        {
+                            let v235: Common::US3 =
+                                defaultValue(Common::US3::US3_1,
+                                             _v220.get().clone());
+                            let v245: u64 =
+                                match &v235 {
+                                    Common::US3::US3_0(v235_0_0) =>
+                                    v219 -
+                                        match &v235 {
+                                            Common::US3::US3_0(x) =>
+                                            x.clone(),
+                                            _ => unreachable!(),
+                                        } as u64,
+                                    _ => v219,
+                                } / 1000000000_u64;
+                            let v246: u64 = v245 % 60_u64;
+                            let v248: u64 = v245 / 60_u64 % 60_u64;
+                            let v250: u64 = v245 / 3600_u64 % 24_u64;
+                            let v252: std::string::String =
+                                format!("{:02}:{:02}:{:02}", v250, v248, v246);
+                            let v254: string =
+                                fable_library_rust::String_::fromString(v252);
+                            let v514: string =
+                                padLeft(toLower(string("Warning")), 7_i32,
+                                        ' ');
+                            let v552: &str =
+                                inline_colorization::color_yellow;
+                            let v554: &str = &*v514;
+                            let v556: &str = inline_colorization::color_reset;
+                            let v558: string =
+                                string("format!(\"{v552}{v554}{v556}\")");
+                            let v559: std::string::String =
+                                format!("{v552}{v554}{v556}");
+                            let v561: string =
+                                fable_library_rust::String_::fromString(v559);
+                            let v580: i64 =
+                                (patternInput_5.0.clone()).l0.get().clone();
+                            let v582: LrcPtr<Common::Mut4> =
+                                LrcPtr::new(Common::Mut4{l0:
+                                                             MutCell::new(Common::method11()),});
+                            let v584: string = sprintf!("{}", string("{ "));
+                            let v588: string =
+                                append(v582.l0.get().clone(), v584);
+                            v582.l0.set(v588);
+                            {
+                                let v590: string =
+                                    sprintf!("{}", string("retry"));
+                                let v594: string =
+                                    append(v582.l0.get().clone(), v590);
+                                v582.l0.set(v594);
+                                {
+                                    let v596: string =
+                                        sprintf!("{}", string(" = "));
+                                    let v600: string =
+                                        append(v582.l0.get().clone(), v596);
+                                    v582.l0.set(v600);
+                                    {
+                                        let v601: string =
+                                            sprintf!("{}", v0_1);
+                                        let v605: string =
+                                            append(v582.l0.get().clone(),
+                                                   v601);
+                                        v582.l0.set(v605);
+                                        {
+                                            let v607: string =
+                                                sprintf!("{}", string("; "));
+                                            let v611: string =
+                                                append(v582.l0.get().clone(),
+                                                       v607);
+                                            v582.l0.set(v611);
+                                            {
+                                                let v613: string =
+                                                    sprintf!("{}",
+                                                             string("ex"));
+                                                let v617: string =
+                                                    append(v582.l0.get().clone(),
+                                                           v613);
+                                                v582.l0.set(v617);
+                                                {
+                                                    let v618: string =
+                                                        sprintf!("{}",
+                                                                 string(" = "));
+                                                    let v622: string =
+                                                        append(v582.l0.get().clone(),
+                                                               v618);
+                                                    v582.l0.set(v622);
+                                                    {
+                                                        let v633:
+                                                                std::string::String =
+                                                            format!("{:#?}", v1);
+                                                        let v650: string =
+                                                            sprintf!("{}",
+                                                                     fable_library_rust::String_::fromString(v633));
+                                                        let v654: string =
+                                                            append(v582.l0.get().clone(),
+                                                                   v650);
+                                                        v582.l0.set(v654);
+                                                        {
+                                                            let v656: string =
+                                                                sprintf!("{}",
+                                                                         string(" }"));
+                                                            let v660: string =
+                                                                append(v582.l0.get().clone(),
+                                                                       v656);
+                                                            v582.l0.set(v660);
+                                                            {
+                                                                let v661:
+                                                                        string =
+                                                                    v582.l0.get().clone();
+                                                                let v700:
+                                                                        string =
+                                                                    trimEndChars(trimStartChars(sprintf!("{} {} #{} {} / {}",
+                                                                                                         v254,
+                                                                                                         v561,
+                                                                                                         v580,
+                                                                                                         Common::closure7((),
+                                                                                                                          ()),
+                                                                                                         v661),
+                                                                                                toArray(empty::<char>())),
+                                                                                 toArray(ofArray(new_array(&[' ',
+                                                                                                             '/']))));
+                                                                near_sdk::log!("{}", v700.clone());
+                                                                ();
+                                                                ((patternInput_1.1.clone()).l0.get().clone())(v700)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+                Common::US5::US5_1
             }
         }
     }
-    pub fn method7(v0: Common::US0, v1: Func0<string>,
-                   v2_1: Func0<(i32, LrcPtr<Exception>)>) {
-        Common::method16(v0.clone(),
-                         Func0::new({
-                                        let v0 = v0.clone();
-                                        let v1 = v1.clone();
-                                        let v2_1 = v2_1.clone();
-                                        move ||
-                                            Common::closure10(v0.clone(),
-                                                              v1.clone(),
-                                                              v2_1.clone(),
-                                                              ())
-                                    }));
-    }
-    pub fn closure7(v0: i32, v1: LrcPtr<Exception>) -> Common::US5 {
-        Common::method7(Common::US0::US0_3,
-                        Func0::new(move || Common::closure8((), ())),
-                        Func0::new({
-                                       let v0 = v0.clone();
-                                       let v1 = v1.clone();
-                                       move ||
-                                           Common::closure9(v0, v1.clone(),
-                                                            ())
-                                   }));
-        Common::US5::US5_1
-    }
-    pub fn method6(v0: i32, v1: Func0<()>, v2_1: i32) -> Common::US4 {
-        let v0: MutCell<i32> = MutCell::new(v0);
+    pub fn method7(v0_1: i32, v1: Func0<()>, v2: i32) -> Common::US4 {
+        let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1 = MutCell::new(v1.clone());
-        let v2_1: MutCell<i32> = MutCell::new(v2_1);
-        '_method6:
+        let v2: MutCell<i32> = MutCell::new(v2);
+        '_method7:
             loop  {
-                break '_method6
+                break '_method7
                     ({
                          let result: LrcPtr<MutCell<Common::US5>> =
                              refCell(Common::US5::US5_1);
                          try_catch(||
-                                       result.set(Common::closure5((),
-                                                                   Common::closure6(v0.get().clone(),
+                                       result.set(Common::closure4((),
+                                                                   Common::closure5(v0_1.get().clone(),
                                                                                     v1.get().clone(),
-                                                                                    v2_1.get().clone(),
+                                                                                    v2.get().clone(),
                                                                                     ()))),
                                    |ex: LrcPtr<Exception>|
-                                       result.set(Common::closure7(v2_1.get().clone(),
+                                       result.set(Common::closure6(v2.get().clone(),
                                                                    ex.clone())));
                          {
-                             let v9_1: Common::US5 = result.get().clone();
-                             match &v9_1 {
-                                 Common::US5::US5_0(v9_1_0_0) =>
-                                 match &v9_1 {
+                             let v7: Common::US5 = result.get().clone();
+                             match &v7 {
+                                 Common::US5::US5_0(v7_0_0) =>
+                                 match &v7 {
                                      Common::US5::US5_0(x) => x.clone(),
                                      _ => unreachable!(),
                                  },
                                  _ => {
-                                     let v0_temp: i32 = v0.get().clone();
+                                     let v0_1_temp: i32 = v0_1.get().clone();
                                      let v1_temp = v1.get().clone();
-                                     let v2_1_temp: i32 =
-                                         v2_1.get().clone() + 1_i32;
-                                     v0.set(v0_temp);
+                                     let v2_temp: i32 =
+                                         v2.get().clone() + 1_i32;
+                                     v0_1.set(v0_1_temp);
                                      v1.set(v1_temp);
-                                     v2_1.set(v2_1_temp);
-                                     continue '_method6
+                                     v2.set(v2_temp);
+                                     continue '_method7
                                  }
                              }
                          }
                      }) ;
             }
     }
-    pub fn closure4(v0: i32, v1: Func0<()>) -> Option<()> {
-        let v3_1: Common::US4 = Common::method6(v0, v1, 0_i32);
-        match &v3_1 { Common::US4::US4_0 => Some(()), _ => None::<()>, }
+    pub fn closure3(v0_1: i32, v1: Func0<()>) -> Option<()> {
+        let v3: Common::US4 = Common::method7(v0_1, v1, 0_i32);
+        match &v3 { Common::US4::US4_0 => Some(()), _ => None::<()>, }
     }
-    pub fn closure3(unitVar: (), v0: i32) -> Func1<Func0<()>, Option<()>> {
+    pub fn closure2(unitVar: (), v0_1: i32) -> Func1<Func0<()>, Option<()>> {
         Func1::new({
-                       let v0 = v0.clone();
-                       move |v: Func0<()>| Common::closure4(v0, v)
+                       let v0_1 = v0_1.clone();
+                       move |v: Func0<()>| Common::closure3(v0_1, v)
                    })
     }
-    pub fn method17(v0: Func0<()>) -> Func0<()> { v0 }
-    pub fn closure12(v0: LrcPtr<Lazy_1<()>>, unitVar: ()) {
-        v0.get_Value();
+    pub fn method12(v0_1: Func0<()>) -> Func0<()> { v0_1 }
+    pub fn closure9(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
+        v0_1.get_Value();
         ()
     }
-    pub fn closure11(unitVar: (), v0: Func0<()>) -> Func0<()> {
-        let v1 = Common::method17(v0);
-        let v4: LrcPtr<Lazy_1<()>> =
+    pub fn closure8(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
+        let v1 = Common::method12(v0_1);
+        let v2: LrcPtr<Lazy_1<()>> =
             LazyExtensions::Create(Func0::new({
                                                   let v1 = v1.clone();
                                                   move || v1()
                                               }));
         Func0::new({
-                       let v4 = v4.clone();
-                       move || Common::closure12(v4.clone(), ())
+                       let v2 = v2.clone();
+                       move || Common::closure9(v2.clone(), ())
                    })
     }
-    pub fn v2()
-     ->
-         Func1<Common::US0,
-               (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
-                LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>, Option<i64>)> {
-        static v2:
-         OnceInit<Func1<Common::US0,
-                        (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>,
-                         LrcPtr<Common::Mut2>, LrcPtr<Common::Mut3>,
-                         Option<i64>)>> =
-            OnceInit::new();
-        v2.get_or_init(||
-                           Func1::new(move |v: Common::US0|
-                                          Common::closure0((), v))).clone()
+    pub fn v0() -> bool {
+        static v0: OnceInit<bool> = OnceInit::new();
+        v0.get_or_init(||
+                           Common::State::trace_state().get().clone().is_none()).clone()
     }
-    pub fn v3() -> Common::US0 {
-        static v3: OnceInit<Common::US0> = OnceInit::new();
-        v3.get_or_init(|| Common::US0::US0_0).clone()
-    }
-    on_startup!(if Common::State::trace_state().get().clone().is_none() {
-    Common::State::trace_state().set(Some((Common::v2())(Common::v3())));
+    on_startup!(if Common::v0() {
+    let patternInput:
+            (LrcPtr<Common::Mut0>, LrcPtr<Common::Mut1>, LrcPtr<Common::Mut2>,
+             LrcPtr<Common::Mut3>, Option<i64>) =
+        Common::method0(Common::US0::US0_0);
+    Common::State::trace_state().set(Some((patternInput.0.clone(),
+                                           patternInput.1.clone(),
+                                           patternInput.2.clone(),
+                                           patternInput.3.clone(),
+                                           patternInput.4.clone())));
+    ()
 });
-    pub fn v9() -> Func1<Func0<()>, LrcPtr<dyn IDisposable>> {
-        static v9: OnceInit<Func1<Func0<()>, LrcPtr<dyn IDisposable>>> =
+    pub fn v12() -> Func1<Func0<()>, LrcPtr<dyn IDisposable>> {
+        static v12: OnceInit<Func1<Func0<()>, LrcPtr<dyn IDisposable>>> =
             OnceInit::new();
-        v9.get_or_init(||
-                           Func1::new(move |v: Func0<()>|
-                                          Common::closure2((), v))).clone()
+        v12.get_or_init(||
+                            Func1::new(move |v: Func0<()>|
+                                           Common::closure1((), v))).clone()
     }
     pub fn new_disposable(x: Func0<()>) -> LrcPtr<dyn IDisposable> {
-        (Common::v9())(x)
+        (Common::v12())(x)
     }
-    pub fn v10() -> Func1<i32, Func1<Func0<()>, Option<()>>> {
-        static v10: OnceInit<Func1<i32, Func1<Func0<()>, Option<()>>>> =
+    pub fn v13() -> Func1<i32, Func1<Func0<()>, Option<()>>> {
+        static v13: OnceInit<Func1<i32, Func1<Func0<()>, Option<()>>>> =
             OnceInit::new();
-        v10.get_or_init(||
+        v13.get_or_init(||
                             Func1::new(move |v: i32|
-                                           Common::closure3((), v))).clone()
+                                           Common::closure2((), v))).clone()
     }
     pub fn retry_fn(x: i32) -> Func1<Func0<()>, Option<()>> {
-        (Common::v10())(x)
+        (Common::v13())(x)
     }
-    pub fn v11() -> Func1<Func0<()>, Func0<()>> {
-        static v11: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
-        v11.get_or_init(||
+    pub fn v14() -> Func1<Func0<()>, Func0<()>> {
+        static v14: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
+        v14.get_or_init(||
                             Func1::new(move |v: Func0<()>|
-                                           Common::closure11((), v))).clone()
+                                           Common::closure8((), v))).clone()
     }
-    pub fn memoize(x: Func0<()>) -> Func0<()> { (Common::v11())(x) }
+    pub fn memoize(x: Func0<()>) -> Func0<()> { (Common::v14())(x) }
     on_startup!(());
 }
