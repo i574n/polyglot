@@ -342,11 +342,11 @@ pub mod Common {
         v0_1
     }
     pub fn closure4(unitVar: (), v0_1: Func0<()>) -> LrcPtr<dyn IDisposable> {
-        let v6_1 = Common::method5(v0_1);
+        let v6 = Common::method5(v0_1);
         interface_cast!(
             Common::Disposable::_ctor__3A5B6456(Func0::new({
-                let v6_1 = v6_1.clone();
-                move || v6_1.clone()()
+                let v6 = v6.clone();
+                move || v6.clone()()
             })),
             Lrc<dyn IDisposable>,
         )
@@ -429,7 +429,7 @@ pub mod Common {
             LrcPtr<Common::Mut3>,
             Option<i64>,
         ) = getValue(Common::State::trace_state().get().clone());
-        let v23: () = {
+        let v33: () = {
             v3();
             ()
         };
@@ -440,13 +440,13 @@ pub mod Common {
             LrcPtr<Common::Mut3>,
             Option<i64>,
         ) = getValue(Common::State::trace_state().get().clone());
-        let v41: Common::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v61: Common::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             3_i32
                 >= find(
-                    v41,
+                    v61,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Common::US0::US0_0, 0_i32)),
                         LrcPtr::new((Common::US0::US0_1, 1_i32)),
@@ -456,11 +456,11 @@ pub mod Common {
                     ])))),
                 )
         } {
-            let v49: () = {
+            let v69: () = {
                 Common::closure11(patternInput.0.clone(), ());
                 ()
             };
-            let v51: () = {
+            let v73: () = {
                 v3();
                 ()
             };
@@ -471,104 +471,104 @@ pub mod Common {
                 LrcPtr<Common::Mut3>,
                 Option<i64>,
             ) = getValue(Common::State::trace_state().get().clone());
-            let v203: u64 = near_sdk::env::block_timestamp();
-            let _v204: LrcPtr<MutCell<Option<Common::US3>>> = refCell(None::<Common::US3>);
-            let v209: () = {
+            let v239: u64 = near_sdk::env::block_timestamp();
+            let _v240: LrcPtr<MutCell<Option<Common::US3>>> = refCell(None::<Common::US3>);
+            let v245: () = {
                 Common::closure13(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v204 = _v204.clone();
-                        move |v: Option<Common::US3>| Common::closure12(_v204.clone(), v)
+                        let _v240 = _v240.clone();
+                        move |v: Option<Common::US3>| Common::closure12(_v240.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v222: Common::US3 = defaultValue(Common::US3::US3_1, _v204.get().clone());
-            let v232: u64 = match &v222 {
-                Common::US3::US3_0(v222_0_0) => {
-                    v203 - match &v222 {
+            let v260: Common::US3 = defaultValue(Common::US3::US3_1, _v240.get().clone());
+            let v270: u64 = match &v260 {
+                Common::US3::US3_0(v260_0_0) => {
+                    v239 - match &v260 {
                         Common::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     } as u64
                 }
-                _ => v203,
+                _ => v239,
             } / 1000000000_u64;
-            let v233: u64 = v232 % 60_u64;
-            let v235: u64 = v232 / 60_u64 % 60_u64;
-            let v237: u64 = v232 / 3600_u64 % 24_u64;
-            let v239: std::string::String = format!("{:02}:{:02}:{:02}", v237, v235, v233);
-            let v241: string = fable_library_rust::String_::fromString(v239);
-            let v513: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-            let v551: &str = inline_colorization::color_yellow;
-            let v553: &str = &*v513;
-            let v555: &str = inline_colorization::color_reset;
-            let v557: string = string("format!(\"{v551}{v553}{v555}\")");
-            let v558: std::string::String = format!("{v551}{v553}{v555}");
-            let v560: string = fable_library_rust::String_::fromString(v558);
-            let v579: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v581: LrcPtr<Common::Mut4> = LrcPtr::new(Common::Mut4 {
+            let v271: u64 = v270 % 60_u64;
+            let v273: u64 = v270 / 60_u64 % 60_u64;
+            let v275: u64 = v270 / 3600_u64 % 24_u64;
+            let v277: std::string::String = format!("{:02}:{:02}:{:02}", v275, v273, v271);
+            let v279: string = fable_library_rust::String_::fromString(v277);
+            let v559: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
+            let v597: &str = inline_colorization::color_yellow;
+            let v599: &str = &*v559;
+            let v601: &str = inline_colorization::color_reset;
+            let v603: string = string("format!(\"{v597}{v599}{v601}\")");
+            let v604: std::string::String = format!("{v597}{v599}{v601}");
+            let v606: string = fable_library_rust::String_::fromString(v604);
+            let v625: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v627: LrcPtr<Common::Mut4> = LrcPtr::new(Common::Mut4 {
                 l0: MutCell::new(Common::method11()),
             });
-            let v588: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string("{ ")), ());
+            let v634: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string("{ ")), ());
                 ()
             };
-            let v595: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string("retry")), ());
+            let v643: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string("retry")), ());
                 ()
             };
-            let v602: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string(" = ")), ());
+            let v652: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v608: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", v0_1), ());
+            let v660: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", v0_1), ());
                 ()
             };
-            let v615: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string("; ")), ());
+            let v669: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v622: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string("ex")), ());
+            let v678: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string("ex")), ());
                 ()
             };
-            let v628: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string(" = ")), ());
+            let v686: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v639: std::string::String = format!("{:#?}", v1_1);
-            let v661: () = {
+            let v699: std::string::String = format!("{:#?}", v1_1);
+            let v721: () = {
                 Common::closure14(
-                    v581.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v639)),
+                    v627.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v699)),
                     (),
                 );
                 ()
             };
-            let v668: () = {
-                Common::closure14(v581.clone(), sprintf!("{}", string(" }")), ());
+            let v730: () = {
+                Common::closure14(v627.clone(), sprintf!("{}", string(" }")), ());
                 ()
             };
-            let v669: string = v581.l0.get().clone();
-            let v708: string = trimEndChars(
+            let v733: string = v627.l0.get().clone();
+            let v772: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v241,
-                        v560,
-                        v579,
+                        v279,
+                        v606,
+                        v625,
                         Common::closure15((), ()),
-                        v669
+                        v733
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            near_sdk::log!("{}", v708.clone());
+            near_sdk::log!("{}", v772.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v708)
+            ((patternInput.1.clone()).l0.get().clone())(v772)
         }
     }
     pub fn closure9(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US5 {
@@ -602,9 +602,9 @@ pub mod Common {
                     },
                 );
                 {
-                    let v7_1: Common::US5 = result.get().clone();
-                    match &v7_1 {
-                        Common::US5::US5_0(v7_1_0_0) => match &v7_1 {
+                    let v7: Common::US5 = result.get().clone();
+                    match &v7 {
+                        Common::US5::US5_0(v7_0_0) => match &v7 {
                             Common::US5::US5_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -670,29 +670,29 @@ pub mod Common {
         })
         .clone()
     }
-    pub fn v5() -> Func1<Func0<()>, LrcPtr<dyn IDisposable>> {
-        static v5: OnceInit<Func1<Func0<()>, LrcPtr<dyn IDisposable>>> = OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure4((), v)))
+    pub fn v15() -> Func1<Func0<()>, LrcPtr<dyn IDisposable>> {
+        static v15: OnceInit<Func1<Func0<()>, LrcPtr<dyn IDisposable>>> = OnceInit::new();
+        v15.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure4((), v)))
             .clone()
     }
     pub fn new_disposable(x: Func0<()>) -> LrcPtr<dyn IDisposable> {
-        (Common::v5())(x)
+        (Common::v15())(x)
     }
-    pub fn v6() -> Func1<i32, Func1<Func0<()>, Option<()>>> {
-        static v6: OnceInit<Func1<i32, Func1<Func0<()>, Option<()>>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: i32| Common::closure5((), v)))
+    pub fn v16() -> Func1<i32, Func1<Func0<()>, Option<()>>> {
+        static v16: OnceInit<Func1<i32, Func1<Func0<()>, Option<()>>>> = OnceInit::new();
+        v16.get_or_init(|| Func1::new(move |v: i32| Common::closure5((), v)))
             .clone()
     }
     pub fn retry_fn(x: i32) -> Func1<Func0<()>, Option<()>> {
-        (Common::v6())(x)
+        (Common::v16())(x)
     }
-    pub fn v7() -> Func1<Func0<()>, Func0<()>> {
-        static v7: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
-        v7.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure16((), v)))
+    pub fn v17() -> Func1<Func0<()>, Func0<()>> {
+        static v17: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
+        v17.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure16((), v)))
             .clone()
     }
     pub fn memoize(x: Func0<()>) -> Func0<()> {
-        (Common::v7())(x)
+        (Common::v17())(x)
     }
     on_startup!(());
 }

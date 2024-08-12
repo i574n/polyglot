@@ -33,7 +33,7 @@ rustup update
 
 #!pwsh
 
-{ cargo install trunk --version 0.20.2 } | Invoke-Block -OnError Continue
+{ cargo install trunk --version 0.20.3 } | Invoke-Block -OnError Continue
 
 #!pwsh
 

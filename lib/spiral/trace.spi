@@ -117,17 +117,13 @@ inl trace_raw level fn =
             inl text = fn ()
             open rust
             open rust.rust_operators
-            run_target function
-                | Rust (Contract) => fun () =>
+            run_target_args (fun () => text, console.write_line) function
+                | Rust (Contract) => fun text, _ =>
                     !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
-                | Rust _ => fun () =>
+                | Rust _ => fun text, _ =>
                     !\\(text, $'\@"println\!(""{}"", $0)"')
-                | _ => fun () =>
-                    backend_switch {
-                        Fsharp = fun () => $'System.Console.WriteLine !text ' : ()
-                        Python = fun () => $'print(!text)' : ()
-                    }
-
+                | _ => fun text, write_line =>
+                    text |> write_line
             *trace_state.trace_file text
     |> exec_unit
 
