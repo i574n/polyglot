@@ -53,6 +53,30 @@ nominal join_handle t =
         $'' : $'tokio_task_JoinHandle<`t>'
     )
 
+/// ### stream_collect
+inl stream_collect forall t u.
+    (stream : t)
+    : future_pin (am'.vec u)
+    =
+    !\($'"Box::pin(tokio_stream::StreamExt::collect(!stream))"')
+
+/// ### stream_next
+inl stream_next forall t u.
+    (stream : t)
+    : future_pin (optionm'.option' u)
+    =
+    !\($'"let mut !stream = !stream"')
+    !\($'"Box::pin(tokio_stream::StreamExt::next(&mut !stream))"')
+
+/// ### stream_filter_map
+inl stream_filter_map forall t u v.
+    (fn : u -> optionm'.option' v)
+    (stream : t)
+    : infer' v
+    =
+    inl fn = join fn
+    !\($'"tokio_stream::StreamExt::filter_map(!stream, |x| !fn(x))"')
+
 /// ### spawn
 inl spawn forall t. (fn : future_pin_send t) : join_handle t =
     !\($'"tokio::runtime::spawn(!fn)"')
@@ -132,7 +156,7 @@ nominal into_iter t =
 
 /// ### into_par_iter
 inl into_par_iter forall t. (x : am'.vec t) : into_iter t =
-    !\($'"rayon::iter::IntoParallelIterator::into_par_iter(!x)"')
+    !\\(x, $'"rayon::iter::IntoParallelIterator::into_par_iter($0)"')
 
 /// ### par_iter
 inl par_iter forall t. (x : am'.vec t) : into_iter t =
@@ -158,72 +182,49 @@ inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t
     inl x = join x
     !\($'"futures::future::try_join_all(!x)"')
 
-/// ### new_future
-inl new_future forall t. (x : () -> t) : future_pin t =
-    join
-        !\($'"{Box::pin(async { //"')
-        x () |> fun x => join $'!x '
-        !\($'"}}) //"')
-
-/// ### new_future_move
-inl new_future_move forall t. (x : () -> t) : future_pin t =
-    join
-        !\($'"{Box::pin(async move { //"')
-        x () |> fun x => join $'!x '
-        !\($'"}}) //"')
-
 /// ### future_init
-inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
-    // join
-    //     if flag = 1
-    //     then new_future_move x
-    //     else new_future x
-    if flag = 1
-    then !\($'"let __result = Box::pin(async move { //"')
-    else !\($'"let __result = Box::pin(async { //"')
+inl future_init forall t. (move : bool) (x : () -> t) : infer' t =
+    if move
+    then (!\($'"true; let __result = Box::pin(async move { //"') : bool) |> ignore
+    else (!\($'"true; let __result = Box::pin(async { //"') : bool) |> ignore
 
-    let x' = x ()
+    inl is_unit : bool =
+        real
+            typecase t with
+            | () => true
+            | _ => false
+
+    inl x' = x ()
     inl x' = join x'
+
+    inl depth =
+        if is_unit
+        then 2, 1
+        else 1, 0
 
     x' |> rust.fix_closure depth
 
     !\($'"__result"')
 
-/// ### future_init_send
-inl future_init_send forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin_send t =
-    // join
-    //     if flag = 1
-    //     then new_future_move x
-    //     else new_future x
-    join
-        if flag = 1
-        then !\($'"let __result = Box::pin(async move { //"')
-        else !\($'"let __result = Box::pin(async { //"')
+/// ### new_future
+inl new_future forall t. (x : () -> t) : future_pin t =
+    inl result = future_init false x
+    !\($'"!result"')
 
-        let x' = x ()
-        inl x' = join x'
+/// ### new_future_move
+inl new_future_move forall t. (x : () -> t) : future_pin t =
+    inl result = future_init true x
+    !\($'"!result"')
 
-        x' |> rust.fix_closure depth
+/// ### new_future_send
+inl new_future_send forall t. (x : () -> t) : future_pin_send t =
+    inl result = future_init false x
+    !\($'"!result"')
 
-        !\($'"__result"')
-
-/// ### new_future_move_init
-inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
-    future_init depth flag x
-    // join
-    //     !\($'"{Box::pin(async move { //"')
-    //     inl x' = x () |> fun x => join $'!x '
-    //         inl depth = depth |> fst
-    //         if depth = 1
-    //         then !\($'"!x' })"')
-    //         elif depth = 2
-    //         then !\($'"!x' }})"')
-    //         elif depth = 3
-    //         then !\($'"!x' }}})"')
-    //         elif depth = 4
-    //         then !\($'"!x' }}}})"')
-
-    //         !\($'"// 1"')
+/// ### new_future_move_send
+inl new_future_move_send forall t. (x : () -> t) : future_pin_send t =
+    inl result = future_init true x
+    !\($'"!result"')
 
 /// ## fsharp
 
@@ -246,6 +247,10 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
             $'let mutable _!result = !result '
             $'async {'
             fn ()
+            real
+                typecase t with
+                | () => $'()' : ()
+                | _ => ()
             $'}'
             $'|> fun x -> _!result <- Some x'
             $'match _!result with Some x -> x | None -> failwith "async.new_async_unit / _!result=None"'

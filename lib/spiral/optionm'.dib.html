@@ -8073,16 +8073,21 @@ a.anchor-link {
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' u = none'</span> <span class="p">()</span>
             <span class="err">$</span><span class="s1">'let _!result = ref !result '</span>
-            <span class="err">$</span><span class="s1">'match !x with'</span>
-            <span class="err">$</span><span class="s1">'| Some x -&gt; ('</span>
-            <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
-            <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
-            <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">dyn</span> <span class="err">$</span><span class="s1">'x'</span>
-            <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
-            <span class="err">$</span><span class="s1">')'</span>
-            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; x () |&gt; Some'</span>
-            <span class="err">$</span><span class="s1">') () ) | None -&gt; None'</span>
-            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result.Value &lt;- x'</span>
+            <span class="n">inl</span> <span class="n">set_result</span> <span class="p">(</span><span class="n">result</span> <span class="p">:</span> <span class="n">ref</span> <span class="p">(</span><span class="n">option</span><span class="s1">' u)) (x : option'</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">ref</span> <span class="p">(</span><span class="n">option</span><span class="s1">' u) =</span>
+                <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">ref_set_value</span> <span class="n">x</span>
+            <span class="n">inl</span> <span class="n">set_result</span> <span class="o">=</span> <span class="n">set_result</span> <span class="err">$</span><span class="s1">'_!result '</span> <span class="o">|&gt;</span> <span class="n">dyn</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="err">$</span><span class="s1">'match !x with'</span>
+                <span class="err">$</span><span class="s1">'| Some x -&gt; ('</span>
+                <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
+                <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
+                <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">dyn</span> <span class="err">$</span><span class="s1">'x'</span>
+                <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+                <span class="err">$</span><span class="s1">')'</span>
+                <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; x () |&gt; Some'</span>
+                <span class="err">$</span><span class="s1">') () ) | None -&gt; None'</span>
+                <span class="err">$</span><span class="s1">'|&gt; !set_result |&gt; ignore'</span>
+            <span class="o">|&gt;</span> <span class="n">exec_unit</span>
             <span class="err">$</span><span class="s1">'_!result.Value '</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' u</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="k">if</span> <span class="n">x</span> <span class="o">=.</span> <span class="n">none</span><span class="s1">' ()</span>

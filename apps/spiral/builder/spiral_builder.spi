@@ -870,10 +870,10 @@ inl process_typescript { fs_path deps trace_level } =
 
     inl lib_path = workspace_root </> "lib/typescript/fable/fable_modules"
 
-    inl versions =
+    inl versions : _ (string * string) =
         lib_path
         |> file_system.new_walk_dir
-        |> file_system.walk_dir_filter fun entry => async.future_init_send (2, 1) 1 fun () =>
+        |> file_system.walk_dir_filter fun entry => async.new_future_move_send fun () =>
             entry
             |> file_system.dir_entry_file_type
             |> async.await_send
@@ -881,8 +881,17 @@ inl process_typescript { fs_path deps trace_level } =
             |> resultm.unbox
             |> function
                 | Ok file_type when file_type |> file_system.file_type_is_dir |> not => file_system.Ignore
-                | _ => file_system.Continue
-        |> file_system.stream_filter_map fun entry =>
+                | _ =>
+                    inl path =
+                        entry
+                        |> file_system.dir_entry_path
+                        |> file_system.path_buf_display
+                        |> sm'.format'
+                        |> sm'.from_std_string
+                    if path |> file_system.get_directory_name |> sm'.starts_with "fable-library-ts."
+                    then file_system.Continue
+                    else file_system.IgnoreDir
+        |> async.stream_filter_map fun (entry : _ _ file_system.async_walkdir_error) =>
             inl entry = entry |> resultm.map_error' sm'.format' |> resultm.unbox
             match entry with
             | Ok entry =>
@@ -911,9 +920,10 @@ inl process_typescript { fs_path deps trace_level } =
                     fun () => { error }
                 None
             |> optionm'.box
+        |> async.stream_collect
+        |> async.await
         |> async.into_par_iter
-        |> async.par_map fun file =>
-            file
+        |> async.par_map id
         |> async.par_collect
 
     inl version =
@@ -1201,7 +1211,7 @@ inl process_python { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_python / Exception"
-                            fun () => { ex run_result new_code_path external_command }
+                            fun () => { ex new_code_path external_command run_result }
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1595,7 +1605,7 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
         |> sm'.serialize
         |> resultm.map_error' (sm'.format' >> sm'.from_std_string)
         |> resultm.map' sm'.from_std_string
-    |> async.future_init (3, 2) 1
+    |> async.new_future_move
 
 /// ## tests
 inl tests () =

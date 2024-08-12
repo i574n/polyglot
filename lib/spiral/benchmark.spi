@@ -11,8 +11,8 @@ type test_case_result =
         time_list : array_base i64
     }
 
-/// ### invoke
-inl invoke forall t. count (fn : () -> t) =
+/// ### run'
+inl run' forall t. count (fn : () -> t) =
     runtime.gc_collect ()
     inl stopwatch = date_time.stopwatch ()
     stopwatch |> date_time.stopwatch_start
@@ -47,7 +47,7 @@ inl run forall input expected.
         |> am'.map_base fun ((i : int), (test_name, solution)) =>
             inl result, time =
                 fun () => solution input
-                |> invoke count
+                |> run' count
             trace Verbose
                 fun () => $'$"benchmark.run / solutions.map"'
                 fun () => { i = i + 1; test_name time }

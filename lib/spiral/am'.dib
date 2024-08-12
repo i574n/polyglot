@@ -555,7 +555,7 @@ inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
 #!spiral
 
 inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
-    !\\((ar, fn), $'"$0.iter().for_each(|x| { $1(x.clone()); })"')
+    (!\\((ar, fn), $'"true; $0.iter().for_each(|x| { $1(x.clone()); }); //"') : bool) |> ignore
 
 #!markdown
 

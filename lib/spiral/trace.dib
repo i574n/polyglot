@@ -112,9 +112,11 @@ inl init_trace_state trace_level : () =
                 Fsharp = fun () =>
                     global "module State = let mutable trace_state = None"
             }
-            if $'State.trace_state.IsNone' then
-                inl trace_state = new_trace_state trace_level |> optionm'.some'
-                $'State.trace_state <- !trace_state ' : ()
+            fun () =>
+                if $'State.trace_state.IsNone' then
+                    inl trace_state = new_trace_state trace_level |> optionm'.some'
+                    $'State.trace_state <- !trace_state ' : ()
+            |> exec_unit
         Python = fun () =>
             global "class State: trace_state = None"
             $'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)' : ()
@@ -177,26 +179,29 @@ test_trace_level Verbose |> _assert_eq true
 #!spiral
 
 inl trace_raw level fn =
-    inl trace_state = get_trace_state_or_init None
-    if level |> test_trace_level then
-        inl count = trace_state.count
-        count <- *count + 1
+    fun () =>
+        inl trace_state = get_trace_state_or_init None
+        if level |> test_trace_level then
+            inl count = trace_state.count
+            fun () => count <- *count + 1
+            |> exec_unit
 
-        inl text = fn ()
-        open rust
-        open rust.rust_operators
-        run_target function
-            | Rust (Contract) => fun () =>
-                !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
-            | Rust _ => fun () =>
-                !\\(text, $'\@"println\!(""{}"", $0)"')
-            | _ => fun () =>
-                backend_switch {
-                    Fsharp = fun () => $'System.Console.WriteLine !text ' : ()
-                    Python = fun () => $'print(!text)' : ()
-                }
+            inl text = fn ()
+            open rust
+            open rust.rust_operators
+            run_target function
+                | Rust (Contract) => fun () =>
+                    !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
+                | Rust _ => fun () =>
+                    !\\(text, $'\@"println\!(""{}"", $0)"')
+                | _ => fun () =>
+                    backend_switch {
+                        Fsharp = fun () => $'System.Console.WriteLine !text ' : ()
+                        Python = fun () => $'print(!text)' : ()
+                    }
 
-        *trace_state.trace_file text
+            *trace_state.trace_file text
+    |> exec_unit
 
 #!markdown
 

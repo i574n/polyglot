@@ -7735,10 +7735,15 @@ __assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
     let v0 : string = "__assert_approx_eq"
     let v1 : string = $"{v0} / actual: %A{1.0} / expected: %A{2.0}"
-    v1 |&gt; System.Console.WriteLine
+    let v4 : unit = ()
+    let v5 : (unit -&gt; unit) = closure0(v1)
+    let v6 : unit = (fun () -&gt; v5 (); v4) ()
     ()
 method0()
 
@@ -7775,6 +7780,9 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method1 (v0 : bool) : bool =
     v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
 and method0 () : unit =
     let v0 : float = 1.0
     let v1 : float = 2.0 - v0
@@ -7793,9 +7801,11 @@ and method0 () : unit =
             method1(v5)
     let v8 : string = "__assert_approx_eq"
     let v9 : string = $"{v8} / actual: %A{v0} / expected: %A{2.0}"
-    v9 |&gt; System.Console.WriteLine
-    let v12 : bool = v7 = false
-    if v12 then
+    let v12 : unit = ()
+    let v13 : (unit -&gt; unit) = closure0(v9)
+    let v14 : unit = (fun () -&gt; v13 (); v12) ()
+    let v16 : bool = v7 = false
+    if v16 then
         failwith&lt;unit&gt; v9
 method0()
 

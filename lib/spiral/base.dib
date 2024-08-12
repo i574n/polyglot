@@ -163,12 +163,26 @@ run_target function
 
 #!markdown
 
-### invoke
+### eval
 
 #!spiral
 
-inl invoke fn =
+inl eval fn =
     fn ()
+
+#!markdown
+
+### exec_unit
+
+#!spiral
+
+inl exec_unit (fn : () -> ()) : () =
+    backend_switch {
+        Fsharp = fun () =>
+            inl unit = $'()' : $'unit'
+            ($'(fun () -> !fn (); !unit) ()' : $'unit') |> ignore
+        Python = fun () => fn ()
+    }
 
 #!markdown
 
@@ -396,7 +410,7 @@ inl (<>.) forall t. (a : t) (b : t) : bool =
 inl (<>..) a b =
     fun () => a = b
     |> dyn
-    |> invoke
+    |> eval
     |> not
 
 #!spiral
@@ -470,6 +484,14 @@ inl fix_condition x a b =
 #!spiral
 
 nominal infer = $'_'
+
+#!markdown
+
+### infer'
+
+#!spiral
+
+nominal infer' t = $'_'
 
 #!markdown
 

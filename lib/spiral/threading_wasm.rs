@@ -7,6 +7,7 @@ pub mod Threading {
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::LrcPtr;
+    use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     type CancellationToken = ();
     type CancellationTokenSource = ();
@@ -43,7 +44,34 @@ pub mod Threading {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn closure1(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
+    pub fn closure1(
+        v0_1: LrcPtr<MutCell<Option<Threading::US0>>>,
+        v1: Option<Threading::US0>,
+    ) -> LrcPtr<MutCell<Option<Threading::US0>>> {
+        v0_1.set(v1);
+        v0_1
+    }
+    pub fn closure2(
+        v0_1: Option<CancellationToken>,
+        v1: Func1<Option<Threading::US0>, LrcPtr<MutCell<Option<Threading::US0>>>>,
+        unitVar: (),
+    ) {
+        {
+            let value: LrcPtr<MutCell<Option<Threading::US0>>> = v1(match &v0_1 {
+                None => None::<Threading::US0>,
+                Some(v0_1_0_0) => {
+                    let x: CancellationToken = v0_1_0_0.clone();
+                    Some((Func0::new({
+                        let x = x.clone();
+                        move || Threading::US0::US0_0(x.clone())
+                    }))())
+                }
+            });
+            ()
+        }
+        ()
+    }
+    pub fn closure3(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
         defaultOf::<()>();
         ();
         ()
@@ -51,13 +79,13 @@ pub mod Threading {
     pub fn method0(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
-            move || Threading::closure1(v0_1.clone(), ())
+            move || Threading::closure3(v0_1.clone(), ())
         })
     }
     pub fn method1(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
-            move || Threading::closure1(v0_1.clone(), ())
+            move || Threading::closure3(v0_1.clone(), ())
         })
     }
     pub fn closure0(

@@ -22,7 +22,9 @@ inl set_foreground_color (color : console_color) : () =
 /// ### write_line
 inl write_line obj : () =
     backend_switch {
-        Fsharp = fun () => $'!obj |> System.Console.WriteLine' : ()
+        Fsharp = fun () =>
+            fun () => obj |> $'System.Console.WriteLine'
+            |> exec_unit
         Python = fun () => $'print(!obj)' : ()
     }
 

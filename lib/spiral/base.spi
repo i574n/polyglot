@@ -85,9 +85,18 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
 
 /// ## function
 
-/// ### invoke
-inl invoke fn =
+/// ### eval
+inl eval fn =
     fn ()
+
+/// ### exec_unit
+inl exec_unit (fn : () -> ()) : () =
+    backend_switch {
+        Fsharp = fun () =>
+            inl unit = $'()' : $'unit'
+            ($'(fun () -> !fn (); !unit) ()' : $'unit') |> ignore
+        Python = fun () => fn ()
+    }
 
 /// ### lazy
 nominal lazy t = $'Lazy<`t>'
@@ -166,7 +175,7 @@ inl (<>.) forall t. (a : t) (b : t) : bool =
 inl (<>..) a b =
     fun () => a = b
     |> dyn
-    |> invoke
+    |> eval
     |> not
 
 /// ## composition
@@ -197,6 +206,9 @@ inl fix_condition x a b =
 
 /// ### infer
 nominal infer = $'_'
+
+/// ### infer'
+nominal infer' t = $'_'
 
 /// ### any
 nominal any = $'obj'
