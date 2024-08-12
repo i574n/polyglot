@@ -940,7 +940,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 fun () => { exit_code std_trace_length = std_trace |> sm'.length : i32 }
                             new_pair exit_code std_trace
                 |> capture
-            // |> async.future_init (3, 2) 1
+            // |> async.new_future_move
             // |> async.block_on
             |> fun x => x ()
             |> from_pair

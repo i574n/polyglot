@@ -26,13 +26,13 @@ if (!$fast) {
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path common.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path resultm.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path console.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path base.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path date_time.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path math.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path mapm.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path optionm'.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path listm'.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path reflection.dib --retries 3" `
-            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path base.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path iter.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path wasm.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path leptos/leptos.dib --retries 3" `

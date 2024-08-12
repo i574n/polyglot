@@ -83,7 +83,7 @@ inl real_format forall t. (x : t) : string =
                             | _ => $'f"{!b}"' : string
                         ) : () -> string
                 }
-            result <- (+.) `string ((~*) `string result) s
+            exec_unit ((fun () => result <- (+.) `string ((~*) `string result) s) : () -> ())
 
         match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
         | () => ()

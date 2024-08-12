@@ -250,7 +250,7 @@ inl dev_deploy
     (worker : worker sandbox)
     : async.future_pin (resultm.result' contract near_workspaces_error)
     =
-    !\($'"Box::pin(!worker.dev_deploy(&!wasm))"')
+    !\\(worker, $'"Box::pin($0.dev_deploy(&!wasm))"')
 
 #!markdown
 
@@ -259,7 +259,7 @@ inl dev_deploy
 #!spiral
 
 inl call (fn_name : string) (contract : contract) : call_transaction =
-    !\\(fn_name, $'"!contract.call(&*$0)"')
+    !\\((contract, fn_name), $'"$0.call(&*$1)"')
 
 #!markdown
 
@@ -362,10 +362,10 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 
         result |> logs |> am'.vec_map sm'.ref_to_std_string |> am'.vec_for_each console.write_line
 
-        !\($'"  println\!(\\\"\\\\n\\\\n state_main transact result: {:#?}\\\", !result.clone()); //"') : ()
+        (!\($'"  true; println\!(\\\"\\\\n\\\\n state_main transact result: {:#?}\\\", !result.clone()); //"') : bool) |> ignore
 
-        !\($'"  println\!(\\\"\\\\n\\\\n print_usd:\\\"); //"') : ()
-        !\($'"  print_usd(!result.clone()); //"') : ()
+        (!\($'"  true; println\!(\\\"\\\\n\\\\n print_usd:\\\"); //"') : bool) |> ignore
+        (!\($'"  true; print_usd(!result.clone()); //"') : bool) |> ignore
 
         inl result2 = result |> into_result
         trace Debug (fun () => "") fun () => { result2 }
@@ -382,13 +382,13 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
         inl borsh = result |> borsh
         trace Debug (fun () => "") fun () => { borsh }
 
-        !\($'"  println\!(\\\"\\\\n\\\\n worker: {:#?}\\\", !worker); //"') : ()
-        !\($'"  println\!(\\\"\\\\n\\\\n contract: {:#?}\\\", !contract); //"') : ()
+        (!\($'"  true; println\!(\\\"\\\\n\\\\n worker: {:#?}\\\", !worker); //"') : bool) |> ignore
+        (!\($'"  true; println\!(\\\"\\\\n\\\\n contract: {:#?}\\\", !contract); //"') : bool) |> ignore
 
         if (receipt_failures |> am'.vec_len |> i32) = 0
         then Ok () |> resultm.box
         else "<error>" |> anyhow_error |> resultm.err
-    |> async.future_init (31, 30) 1
+    |> async.new_future_move
 
 #!markdown
 

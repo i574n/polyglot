@@ -265,8 +265,8 @@ inl to_mut forall t. (x : t) : t =
 inl ref_map forall t u. (fn : t -> u) (x : ref t) : ref u =
     !\($'"!fn(!x)"')
 
-/// ### ref_invoke
-inl ref_invoke forall t u. (fn : t -> u) (ref : ref t) : u =
+/// ### ref_eval
+inl ref_eval forall t u. (fn : t -> u) (ref : ref t) : u =
     !\\(fn, $'"$0(!ref.clone())"')
 
 /// ### cow_as_ref
@@ -298,8 +298,8 @@ inl deref forall t. (ref : ref t) : t =
 inl ops_deref forall t. (ref : t) : t =
     !\\(ref, $'"core::ops::Deref::deref(&$0)"')
 
-/// ### func0_invoke
-inl func0_invoke forall t. (x : func0 t) : t =
+/// ### func0_eval
+inl func0_eval forall t. (x : func0 t) : t =
     !\\(x, $'"$0()"')
 
 /// ### func0_move
@@ -339,12 +339,12 @@ inl fix_closure' (depth : u8 * u8) x =
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    $'"!x " + !a + "); " + !b + " // rust.fix_closure\'"'
+    $'"true; !x " + !a + "); " + !b + " // rust.fix_closure\'"' : string
 
 /// ### fix_closure
 inl fix_closure depth x =
     inl code = fix_closure' depth x
-    !\code
+    (!\code : bool) |> ignore
 
 /// ### loop
 inl loop (depth : i32) (fn : () -> ()) : () =

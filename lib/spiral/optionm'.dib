@@ -195,16 +195,21 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
         Fsharp = fun () =>
             inl result : option' u = none' ()
             $'let _!result = ref !result '
-            $'match !x with'
-            $'| Some x -> ('
-            $'(fun () ->'
-            $'(fun () ->'
-            inl x = dyn $'x'
-            x |> fn |> emit_unit
-            $')'
-            $'|> fun x -> x () |> Some'
-            $') () ) | None -> None'
-            $'|> fun x -> _!result.Value <- x'
+            inl set_result (result : ref (option' u)) (x : option' u) : ref (option' u) =
+                result |> ref_set_value x
+            inl set_result = set_result $'_!result ' |> dyn
+            fun () =>
+                $'match !x with'
+                $'| Some x -> ('
+                $'(fun () ->'
+                $'(fun () ->'
+                inl x = dyn $'x'
+                x |> fn |> emit_unit
+                $')'
+                $'|> fun x -> x () |> Some'
+                $') () ) | None -> None'
+                $'|> !set_result |> ignore'
+            |> exec_unit
             $'_!result.Value ' : option' u
         Python = fun () =>
             if x =. none' ()

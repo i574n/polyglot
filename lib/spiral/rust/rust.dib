@@ -496,11 +496,11 @@ inl ref_map forall t u. (fn : t -> u) (x : ref t) : ref u =
 
 #!markdown
 
-### ref_invoke
+### ref_eval
 
 #!spiral
 
-inl ref_invoke forall t u. (fn : t -> u) (ref : ref t) : u =
+inl ref_eval forall t u. (fn : t -> u) (ref : ref t) : u =
     !\\(fn, $'"$0(!ref.clone())"')
 
 #!markdown
@@ -569,11 +569,11 @@ inl ops_deref forall t. (ref : t) : t =
 
 #!markdown
 
-### func0_invoke
+### func0_eval
 
 #!spiral
 
-inl func0_invoke forall t. (x : func0 t) : t =
+inl func0_eval forall t. (x : func0 t) : t =
     !\\(x, $'"$0()"')
 
 #!markdown
@@ -653,21 +653,21 @@ inl fix_closure' (depth : u8 * u8) x =
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    $'"!x " + !a + "); " + !b + " // rust.fix_closure\'"'
+    $'"true; !x " + !a + "); " + !b + " // rust.fix_closure\'"' : string
 
 #!spiral
 
 //// test
 
 fix_closure' (3, 2) 0i32
-|> _assert_eq "0 }}}); {{ // rust.fix_closure'"
+|> _assert_eq "true; 0 }}}); {{ // rust.fix_closure'"
 
 #!spiral
 
 //// test
 
 fix_closure' (0, 0) ()
-|> _assert_eq "() );  // rust.fix_closure\'"
+|> _assert_eq "true; () );  // rust.fix_closure\'"
 
 #!markdown
 
@@ -677,7 +677,7 @@ fix_closure' (0, 0) ()
 
 inl fix_closure depth x =
     inl code = fix_closure' depth x
-    !\code
+    (!\code : bool) |> ignore
 
 #!markdown
 

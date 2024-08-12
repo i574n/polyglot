@@ -9237,7 +9237,7 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">vec_for_each</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="n">ar</span> <span class="p">:</span> <span class="n">vec</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">((</span><span class="n">ar</span><span class="p">,</span> <span class="n">fn</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.iter().for_each(|x| { $1(x.clone()); })"'</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">((</span><span class="n">ar</span><span class="p">,</span> <span class="n">fn</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0.iter().for_each(|x| { $1(x.clone()); }); //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
