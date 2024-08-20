@@ -23,6 +23,7 @@ pub mod Networking {
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -381,6 +382,16 @@ pub mod Networking {
     pub fn closure11(unitVar: (), unitVar_1: ()) -> string {
         string("networking.test_port_open")
     }
+    pub fn closure13(v0_1: string, unitVar: ()) {
+        printfn!("{0}", v0_1);
+    }
+    pub fn closure12(unitVar: (), v0_1: string) {
+        let v3: () = {
+            Networking::closure13(v0_1, ());
+            ()
+        };
+        ()
+    }
     pub fn closure6(v0_1: i32, v1_1: string, unitVar: ()) {
         fn v3() {
             Networking::closure0((), ());
@@ -542,16 +553,16 @@ pub mod Networking {
             move |v: i32| Networking::closure5(v0_1.clone(), v)
         })
     }
-    pub fn closure15(unitVar: (), v0_1: bool) -> Networking::US5 {
+    pub fn closure17(unitVar: (), v0_1: bool) -> Networking::US5 {
         Networking::US5::US5_0(v0_1)
     }
-    pub fn closure16(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US5 {
+    pub fn closure18(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US5 {
         Networking::US5::US5_1(v0_1)
     }
-    pub fn closure18(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure20(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async")
     }
-    pub fn closure17(v0_1: i32, unitVar: ()) {
+    pub fn closure19(v0_1: i32, unitVar: ()) {
         fn v2_1() {
             Networking::closure0((), ());
         }
@@ -675,7 +686,7 @@ pub mod Networking {
                         v278,
                         v605,
                         v624,
-                        Networking::closure18((), ()),
+                        Networking::closure20((), ()),
                         v671
                     ),
                     toArray(empty::<char>()),
@@ -687,10 +698,10 @@ pub mod Networking {
             ((patternInput.1.clone()).l0.get().clone())(v710)
         }
     }
-    pub fn closure20(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure22(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async**")
     }
-    pub fn closure19(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
+    pub fn closure21(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
         fn v3() {
             Networking::closure0((), ());
         }
@@ -831,7 +842,7 @@ pub mod Networking {
                         v279,
                         v606,
                         v625,
-                        Networking::closure20((), ()),
+                        Networking::closure22((), ()),
                         v728
                     ),
                     toArray(empty::<char>()),
@@ -843,30 +854,30 @@ pub mod Networking {
             ((patternInput.1.clone()).l0.get().clone())(v767)
         }
     }
-    pub fn closure14(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
+    pub fn closure16(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
         defaultOf()
     }
-    pub fn closure13(v0_1: i32, v1_1: string) -> Func1<i32, Arc<Async<bool>>> {
+    pub fn closure15(v0_1: i32, v1_1: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
-            move |v: i32| Networking::closure14(v0_1, v1_1.clone(), v)
+            move |v: i32| Networking::closure16(v0_1, v1_1.clone(), v)
         })
     }
-    pub fn closure12(unitVar: (), v0_1: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
+    pub fn closure14(unitVar: (), v0_1: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Networking::closure13(v0_1, v)
+            move |v: string| Networking::closure15(v0_1, v)
         })
     }
-    pub fn closure25(
+    pub fn closure27(
         v0_1: LrcPtr<MutCell<Option<Networking::US7>>>,
         v1_1: Option<Networking::US7>,
     ) -> LrcPtr<MutCell<Option<Networking::US7>>> {
         v0_1.set(v1_1);
         v0_1
     }
-    pub fn closure26(
+    pub fn closure28(
         v0_1: Option<i32>,
         v1_1: Func1<Option<Networking::US7>, LrcPtr<MutCell<Option<Networking::US7>>>>,
         unitVar: (),
@@ -886,10 +897,10 @@ pub mod Networking {
         }
         ()
     }
-    pub fn closure28(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure30(unitVar: (), unitVar_1: ()) -> string {
         string("networking.wait_for_port_access")
     }
-    pub fn closure27(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3: i64, unitVar: ()) {
+    pub fn closure29(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3: i64, unitVar: ()) {
         fn v5() {
             Networking::closure0((), ());
         }
@@ -1077,7 +1088,7 @@ pub mod Networking {
                         v281,
                         v608,
                         v627,
-                        Networking::closure28((), ()),
+                        Networking::closure30((), ()),
                         v804
                     ),
                     toArray(empty::<char>()),
@@ -1098,50 +1109,50 @@ pub mod Networking {
     ) -> Arc<Async<i64>> {
         defaultOf()
     }
-    pub fn closure24(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32) -> Arc<Async<i64>> {
+    pub fn closure26(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32) -> Arc<Async<i64>> {
         Networking::method9(v0_1, v1_1, v2_1, v3, 0_i64)
     }
-    pub fn closure23(v0_1: Option<i32>, v1_1: bool, v2_1: string) -> Func1<i32, Arc<Async<i64>>> {
+    pub fn closure25(v0_1: Option<i32>, v1_1: bool, v2_1: string) -> Func1<i32, Arc<Async<i64>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
             let v2_1 = v2_1.clone();
-            move |v: i32| Networking::closure24(v0_1.clone(), v1_1, v2_1.clone(), v)
+            move |v: i32| Networking::closure26(v0_1.clone(), v1_1, v2_1.clone(), v)
         })
     }
-    pub fn closure22(v0_1: Option<i32>, v1_1: bool) -> Func1<string, Func1<i32, Arc<Async<i64>>>> {
+    pub fn closure24(v0_1: Option<i32>, v1_1: bool) -> Func1<string, Func1<i32, Arc<Async<i64>>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
-            move |v: string| Networking::closure23(v0_1.clone(), v1_1, v)
+            move |v: string| Networking::closure25(v0_1.clone(), v1_1, v)
         })
     }
-    pub fn closure21(
+    pub fn closure23(
         unitVar: (),
         v0_1: Option<i32>,
     ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: bool| Networking::closure22(v0_1.clone(), v)
+            move |v: bool| Networking::closure24(v0_1.clone(), v)
         })
     }
     pub fn method10(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
         defaultOf()
     }
-    pub fn closure31(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
+    pub fn closure33(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
         Networking::method10(v0_1, v1_1, v2_1)
     }
-    pub fn closure30(v0_1: Option<i32>, v1_1: string) -> Func1<i32, Arc<Async<i32>>> {
+    pub fn closure32(v0_1: Option<i32>, v1_1: string) -> Func1<i32, Arc<Async<i32>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
-            move |v: i32| Networking::closure31(v0_1.clone(), v1_1.clone(), v)
+            move |v: i32| Networking::closure33(v0_1.clone(), v1_1.clone(), v)
         })
     }
-    pub fn closure29(unitVar: (), v0_1: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
+    pub fn closure31(unitVar: (), v0_1: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Networking::closure30(v0_1.clone(), v)
+            move |v: string| Networking::closure32(v0_1.clone(), v)
         })
     }
     pub fn v0() -> () {
@@ -1172,7 +1183,7 @@ pub mod Networking {
     pub fn v16() -> Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>> {
         static v16: OnceInit<Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>>> =
             OnceInit::new();
-        v16.get_or_init(|| Func1::new(move |v: i32| Networking::closure12((), v)))
+        v16.get_or_init(|| Func1::new(move |v: i32| Networking::closure14((), v)))
             .clone()
     }
     pub fn test_port_open_timeout(x: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
@@ -1182,7 +1193,7 @@ pub mod Networking {
         static v17: OnceInit<
             Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>>,
         > = OnceInit::new();
-        v17.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure21((), v)))
+        v17.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure23((), v)))
             .clone()
     }
     pub fn wait_for_port_access(
@@ -1193,7 +1204,7 @@ pub mod Networking {
     pub fn v18() -> Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>> {
         static v18: OnceInit<Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>>> =
             OnceInit::new();
-        v18.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure29((), v)))
+        v18.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure31((), v)))
             .clone()
     }
     pub fn get_available_port(x: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {

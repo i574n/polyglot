@@ -7929,17 +7929,13 @@ __assert_eq / actual: true / expected: true
             <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">fn</span> <span class="p">()</span>
             <span class="nb">open</span> <span class="n">rust</span>
             <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-            <span class="n">run_target</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
                     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'$"near_sdk::log\!(\\\"{{}}\\\", $0)"'</span><span class="o">)</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
                     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'\@"println\!(""{}"", $0)"'</span><span class="o">)</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="n">backend_switch</span> <span class="p">{</span>
-                        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.Console.WriteLine !text '</span> <span class="p">:</span> <span class="p">()</span>
-                        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'print(!text)'</span> <span class="p">:</span> <span class="p">()</span>
-                    <span class="p">}</span>
-
+                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">write_line</span> <span class="o">=&gt;</span>
+                    <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_line</span>
             <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">trace_file</span> <span class="n">text</span>
     <span class="o">|&gt;</span> <span class="n">exec_unit</span>
 </pre></div>

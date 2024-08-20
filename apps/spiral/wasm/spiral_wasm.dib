@@ -24,6 +24,7 @@ open sm'_operators
 
 inl get_args () =
     {
+        trace_level = "trace_level", 't'
         wasm = "wasm", 'w'
     }
 
@@ -36,6 +37,9 @@ inl get_args () =
 let get_command () =
     ##"command"
     |> runtime.new_command
+    |> runtime.command_init_arg (get_args () .trace_level) (
+        real runtime.arg_union `trace_level ignore
+    )
     |> runtime.command_init_arg (get_args () .wasm) (
         runtime.arg_required true
     )
@@ -66,6 +70,30 @@ nominal anyhow_error =
 
 inl anyhow_error error =
     !\\(error, $'"anyhow::anyhow\!($0)"')
+
+#!markdown
+
+### gas
+
+#!spiral
+
+nominal gas =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::Gas\")>]\n#endif\ntype near_workspaces_types_Gas = class end"
+        $'' : $'near_workspaces_types_Gas'
+    )
+
+#!markdown
+
+### near_token
+
+#!spiral
+
+nominal near_token =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::NearToken\")>]\n#endif\ntype near_token_NearToken = class end"
+        $'' : $'near_token_NearToken'
+    )
 
 #!markdown
 
@@ -153,26 +181,26 @@ nominal execution_result t =
 
 #!markdown
 
-### result_value
+### execution_success
 
 #!spiral
 
-nominal result_value =
+nominal execution_success =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::Value\")>]\n#endif\ntype near_workspaces_result_Value = class end"
-        $'' : $'near_workspaces_result_Value'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionSuccess\")>]\n#endif\ntype near_workspaces_result_ExecutionSuccess = class end"
+        $'' : $'near_workspaces_result_ExecutionSuccess'
     )
 
 #!markdown
 
-### tx_execution_error
+### execution_failure
 
 #!spiral
 
-nominal tx_execution_error =
+nominal execution_failure =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_primitives::errors::TxExecutionError\")>]\n#endif\ntype near_primitives_errors_TxExecutionError = class end"
-        $'' : $'near_primitives_errors_TxExecutionError'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFailure\")>]\n#endif\ntype near_workspaces_result_ExecutionFailure = class end"
+        $'' : $'near_workspaces_result_ExecutionFailure'
     )
 
 #!markdown
@@ -186,49 +214,6 @@ nominal execution_outcome =
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionOutcome\")>]\n#endif\ntype near_workspaces_result_ExecutionOutcome = class end"
         $'' : $'near_workspaces_result_ExecutionOutcome'
     )
-
-#!markdown
-
-### main_async
-
-#!spiral
-
-inl main_async () =
-    !\($'"} //"') : ()
-
-    !\($'"fn print_usd(result: near_workspaces::result::ExecutionFinalResult) { //"') : ()
-    !\($'"  const NEAR_PRICE_IN_USD: f64 = 6.68; //"') : ()
-
-    !\($'"  fn gas_to_usd(gas: u64) -> f64 { //"') : ()
-    !\($'"    (gas as f64) / 1e16 * NEAR_PRICE_IN_USD //"') : ()
-    !\($'"  } //"') : ()
-
-    !\($'"  fn tokens_to_usd(tokens: u128) -> f64 { //"') : ()
-    !\($'"    (tokens as f64) / 1e24 * NEAR_PRICE_IN_USD //"') : ()
-    !\($'"  } //"') : ()
-
-    !\($'"  println\!(\\\"gas_to_usd(result.total_gas_burnt.as_gas()): {:.6} ({:#?})\\\", //"') : ()
-    !\($'"    gas_to_usd(result.total_gas_burnt.as_gas()), //"') : ()
-    !\($'"    result.total_gas_burnt.as_gas() //"') : ()
-    !\($'"  ); //"') : ()
-
-    !\($'"  result.outcomes().iter().for_each(|outcome| { //"') : ()
-    !\($'"    println\!(\\\"outcome (success: {:#?}):\\\", outcome.is_success()); //"') : ()
-    !\($'"    println\!( //"') : ()
-    !\($'"      \\\"  gas_to_usd(outcome.gas_burnt.as_gas()): {:.6} ({:#?})\\\", //"') : ()
-    !\($'"      gas_to_usd(outcome.gas_burnt.as_gas()), //"') : ()
-    !\($'"      outcome.gas_burnt.as_gas() //"') : ()
-    !\($'"    ); //"') : ()
-    !\($'"    println\!( //"') : ()
-    !\($'"      \\\"  tokens_to_usd(outcome.tokens_burnt.as_yoctonear()): {:.6} ({:#?})\\\", //"') : ()
-    !\($'"      tokens_to_usd(outcome.tokens_burnt.as_yoctonear()), //"') : ()
-    !\($'"      outcome.tokens_burnt.as_yoctonear() //"') : ()
-    !\($'"    ); //"') : ()
-    !\($'"  }); //"') : ()
-
-    !\($'"} //"') : ()
-
-    !\($'"fn _main() { //"') : ()
 
 #!markdown
 
@@ -290,7 +275,7 @@ inl logs (result : execution_final_result) : am'.vec (rust.ref sm'.str) =
 
 inl into_result
     (result : execution_final_result)
-    : resultm.result' (execution_result result_value) (execution_result tx_execution_error)
+    : resultm.result' execution_success execution_failure
     =
     !\\(result, $'"$0.into_result()"')
 
@@ -334,6 +319,128 @@ inl borsh (result : execution_final_result) : resultm.result' sm'.std_string nea
 
 #!markdown
 
+### near_price_in_usd
+
+#!spiral
+
+inl near_price_in_usd () =
+    6.68f64
+
+#!markdown
+
+### gas_to_usd
+
+#!spiral
+
+inl gas_to_usd (gas : u64) =
+    (gas |> f64) / 10_000_000_000_000_000 * near_price_in_usd ()
+
+#!markdown
+
+### tokens_to_usd
+
+#!spiral
+
+inl tokens_to_usd (tokens : rust.u128) =
+    (tokens |> rust.f64) / 1_000_000_000_000_000_000_000_000 * near_price_in_usd ()
+
+#!markdown
+
+### total_gas_burnt
+
+#!spiral
+
+inl total_gas_burnt (result : execution_final_result) : gas =
+    !\\(result, $'"$0.total_gas_burnt"')
+
+#!markdown
+
+### as_gas
+
+#!spiral
+
+inl as_gas (gas : gas) : u64 =
+    !\\(gas, $'"$0.as_gas()"')
+
+#!markdown
+
+### as_yoctonear
+
+#!spiral
+
+inl as_yoctonear (gas : near_token) : rust.u128 =
+    !\\(gas, $'"$0.as_yoctonear()"')
+
+#!markdown
+
+### outcomes
+
+#!spiral
+
+inl outcomes (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
+    inl result = result |> rust.emit
+    !\\(result, $'"!result.outcomes()"')
+
+#!markdown
+
+### is_success
+
+#!spiral
+
+inl is_success (outcome : execution_outcome) : bool =
+    !\\(outcome, $'"$0.is_success()"')
+
+#!markdown
+
+### gas_burnt
+
+#!spiral
+
+inl gas_burnt (outcome : execution_outcome) : gas =
+    !\\(outcome, $'"$0.gas_burnt"')
+
+#!markdown
+
+### tokens_burnt
+
+#!spiral
+
+inl tokens_burnt (outcome : execution_outcome) : near_token =
+    !\\(outcome, $'"$0.tokens_burnt"')
+
+#!markdown
+
+### print_usd
+
+#!spiral
+
+inl print_usd (result : execution_final_result) =
+    inl total_gas_burnt = result |> total_gas_burnt |> as_gas
+    inl total_gas_burnt_usd = total_gas_burnt |> gas_to_usd
+
+    trace Debug
+        fun () => "spiral_wasm.print_usd"
+        fun () => { total_gas_burnt_usd total_gas_burnt }
+
+    result
+    |> outcomes
+    |> iter.into_iter
+    |> iter.cloned
+    |> iter.for_each fun outcome =>
+        inl is_success = outcome |> is_success
+
+        inl gas_burnt = outcome |> gas_burnt |> as_gas
+        inl gas_burnt_usd = gas_burnt |> gas_to_usd
+
+        inl tokens_burnt = outcome |> tokens_burnt |> as_yoctonear
+        inl tokens_burnt_usd = tokens_burnt |> tokens_to_usd
+
+        trace Debug
+            fun () => "spiral_wasm.print_usd / outcome"
+            fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }
+
+#!markdown
+
 ### run
 
 #!spiral
@@ -347,43 +454,45 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
             |> optionm.value
             |> sm'.from_std_string
 
-        trace Debug (fun () => "run") fun () => { wasm_path }
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { wasm_path }
 
         inl wasm = wasm_path |> file_system.read |> resultm.try'
 
         inl worker = sandbox_worker () |> resultm.try'
-        trace Debug (fun () => "") fun () => { worker }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { worker }
 
         inl contract = worker |> dev_deploy wasm |> async.await |> resultm.try'
-        trace Debug (fun () => "") fun () => { contract }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { contract }
 
         inl result = contract |> call "state_main" |> transact |> async.await |> resultm.try'
-        trace Debug (fun () => "") fun () => { result }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { result }
 
         result |> logs |> am'.vec_map sm'.ref_to_std_string |> am'.vec_for_each console.write_line
 
-        (!\($'"  true; println\!(\\\"\\\\n\\\\n state_main transact result: {:#?}\\\", !result.clone()); //"') : bool) |> ignore
-
-        (!\($'"  true; println\!(\\\"\\\\n\\\\n print_usd:\\\"); //"') : bool) |> ignore
-        (!\($'"  true; print_usd(!result.clone()); //"') : bool) |> ignore
+        result |> print_usd
 
         inl result2 = result |> into_result
-        trace Debug (fun () => "") fun () => { result2 }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { result2 }
 
         inl receipt_failures = result |> receipt_failures
-        trace Debug (fun () => "") fun () => { receipt_failures }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { receipt_failures }
 
         inl receipt_outcomes = result |> receipt_outcomes
-        trace Debug (fun () => "") fun () => { receipt_outcomes }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { receipt_outcomes }
 
         inl json = result |> json
-        trace Debug (fun () => "") fun () => { json }
+
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { json }
 
         inl borsh = result |> borsh
-        trace Debug (fun () => "") fun () => { borsh }
 
-        (!\($'"  true; println\!(\\\"\\\\n\\\\n worker: {:#?}\\\", !worker); //"') : bool) |> ignore
-        (!\($'"  true; println\!(\\\"\\\\n\\\\n contract: {:#?}\\\", !contract); //"') : bool) |> ignore
+        trace Verbose (fun () => "spiral_wasm.run") fun () => { borsh }
 
         if (receipt_failures |> am'.vec_len |> i32) = 0
         then Ok () |> resultm.box
@@ -399,14 +508,25 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 ///! _
 
 inl main (args : array_base string) =
-    inl trace_state = get_trace_state_or_init None
-
-    trace Debug
-        fun () => $'$"spiral_wasm.main"'
-        fun () => { args }
-
     inl command = get_command ()
     inl arg_matches = command |> runtime.command_get_matches
+
+    inl trace_level =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .trace_level |> fst)
+        |> optionm'.unbox
+        |> optionm.map (
+            sm'.from_std_string
+            >> reflection.union_try_pick
+        )
+        |> optionm'.flatten
+        |> optionm'.default_value Verbose
+
+    inl trace_state = get_trace_state_or_init (Some trace_level)
+
+    trace Verbose
+        fun () => $'$"spiral_wasm.main"'
+        fun () => { args }
 
     arg_matches
     |> run
@@ -416,5 +536,4 @@ inl main (args : array_base string) =
     0i32
 
 inl main () =
-    $'!main_async |> ignore' : ()
     $'let main args = !main args' : ()

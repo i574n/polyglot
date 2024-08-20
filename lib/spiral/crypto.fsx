@@ -835,6 +835,14 @@ and closure10 (v0 : Mut5, v1 : string) () : unit =
 and closure11 () () : string =
     let v0 : string = "crypto.hash_to_port"
     v0
+and closure13 (v0 : string) () : unit =
+    let v1 : (string -> unit) = System.Console.WriteLine
+    v1 v0
+and closure12 () (v0 : string) : unit =
+    let v1 : unit = ()
+    let v2 : (unit -> unit) = closure13(v0)
+    let v3 : unit = (fun () -> v2 (); v1) ()
+    ()
 and closure2 (v0 : int32, v1 : string, v2 : uint16) () : unit =
     let v3 : unit = ()
     let v4 : (unit -> unit) = closure3()
@@ -1236,40 +1244,41 @@ and closure2 (v0 : int32, v1 : string, v2 : uint16) () : unit =
         let v775 : (char list -> (char [])) = List.toArray
         let v776 : (char []) = v775 v772
         let v779 : string = v750.TrimEnd v776 
-        let v797 : unit = ()
+        let v797 : (string -> unit) = closure12()
+        let v798 : unit = ()
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v798 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v779 v798 
-        let _v797 = () 
-        #endif
-#if FABLE_COMPILER_RUST && WASM
         let v799 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v779 v799 
-        let _v797 = () 
+        let _v798 = () 
+        #endif
+#if FABLE_COMPILER_RUST && WASM
+        let v800 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v779 v800 
+        let _v798 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v800 : string = $"near_sdk::log!(\"{{}}\", $0)"
-        Fable.Core.RustInterop.emitRustExpr v779 v800 
-        let _v797 = () 
+        let v801 : string = $"near_sdk::log!(\"{{}}\", $0)"
+        Fable.Core.RustInterop.emitRustExpr v779 v801 
+        let _v798 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        System.Console.WriteLine v779 
-        let _v797 = () 
+        v797 v779
+        let _v798 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
-        System.Console.WriteLine v779 
-        let _v797 = () 
+        v797 v779
+        let _v798 = () 
         #endif
 #else
-        System.Console.WriteLine v779 
-        let _v797 = () 
+        v797 v779
+        let _v798 = () 
         #endif
-        _v797 
-        let v801 : (string -> unit) = v19.l0
-        v801 v779
+        _v798 
+        let v802 : (string -> unit) = v19.l0
+        v802 v779
 and closure1 () (v0 : string) : uint16 =
     let v1 : char = v0.[int 0]
     let v2 : (char -> int32) = int32
@@ -1282,9 +1291,9 @@ and closure1 () (v0 : string) : uint16 =
     let v9 : unit = ()
     let v10 : (unit -> unit) = closure2(v3, v4, v8)
     let v11 : unit = (fun () -> v10 (); v9) ()
-    let v811 : uint16 = v8 % 48128us
-    let v812 : uint16 = v811 + 1024us
-    v812
+    let v812 : uint16 = v8 % 48128us
+    let v813 : uint16 = v812 + 1024us
+    v813
 let v0 : (string -> string) = closure0()
 let hash_text x = v0 x
 let v1 : (string -> uint16) = closure1()

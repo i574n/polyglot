@@ -200,6 +200,20 @@ inl (~!\) forall t. (code : string) : t =
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
+/// ### u128
+nominal u128 =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"u128\")>]\n#endif\ntype u128 = class end"
+        $'' : $'u128'
+    )
+
+inl u128 forall t. (x : t) : u128 =
+    !\\(x, $'"$0 as u128"')
+
+/// ### f64
+inl f64 forall t. (x : t) : f64 =
+    !\\(x, $'"$0 as f64"')
+
 /// ### emit
 inl emit forall t. (x : t) : t =
     !\\(x, $'"$0"')

@@ -25,6 +25,7 @@ pub mod Crypto {
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -383,6 +384,16 @@ pub mod Crypto {
     }
     pub fn closure11(unitVar: (), unitVar_1: ()) -> string {
         string("crypto.hash_to_port")
+    }
+    pub fn closure13(v0_1: string, unitVar: ()) {
+        printfn!("{0}", v0_1);
+    }
+    pub fn closure12(unitVar: (), v0_1: string) {
+        let v3: () = {
+            Crypto::closure13(v0_1, ());
+            ()
+        };
+        ()
     }
     pub fn closure2(v0_1: i32, v1_1: string, v2: u16, unitVar: ()) {
         fn v4() {

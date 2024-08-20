@@ -8014,7 +8014,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 <span class="ansi-red-intense-fg">critical</span> #4 runWithTimeoutAsync** / ex: System.Exception: error
+<pre>00:00:02 <span class="ansi-red-intense-fg">critical</span> #4 runWithTimeoutAsync** / ex: System.Exception: error
    at FSI_0036.it@4-119.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
@@ -8394,7 +8394,7 @@ a.anchor-link {
                 <span class="k">else</span> <span class="n">lastError</span> <span class="o">|&gt;</span> <span class="n">Error</span> <span class="o">|&gt;</span> <span class="n">init</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Async.retryAsync / retry: </span><span class="si">{retry}</span><span class="s2">/</span><span class="si">{retries}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
-            <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1</span>
+            <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">30</span>
             <span class="k">return</span><span class="o">!</span><span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>retry<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>ex<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralSm.format_exception<span class="o">)</span>
     <span class="p">}</span>
     <span class="n">loop</span> <span class="mi">1</span> <span class="s2">"Async.retryAsync / invalid retries / retries: </span><span class="si">{retries}</span><span class="s2">"</span>
@@ -8474,8 +8474,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 Async.retryAsync / retry: 1/3 / ex: System.Exception: test
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 Async.retryAsync / retry: 2/3 / ex: System.Exception: test
+<pre>00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #8 Async.retryAsync / retry: 1/3 / ex: System.Exception: test
+00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #9 Async.retryAsync / retry: 2/3 / ex: System.Exception: test
 Ok 2
 
 </pre>

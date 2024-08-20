@@ -626,6 +626,14 @@ and closure11 (v0 : Mut4, v1 : string) () : unit =
     let v3 : string = v2 + v1 
     v0.l0 <- v3
     ()
+and closure13 (v0 : string) () : unit =
+    let v1 : (string -> unit) = System.Console.WriteLine
+    v1 v0
+and closure12 () (v0 : string) : unit =
+    let v1 : unit = ()
+    let v2 : (unit -> unit) = closure13(v0)
+    let v3 : unit = (fun () -> v2 (); v1) ()
+    ()
 and closure7 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : unit =
     let v3 : unit = ()
     let v4 : (unit -> unit) = closure0()
@@ -1168,40 +1176,41 @@ and closure7 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : unit 
         let v797 : (char list -> (char [])) = List.toArray
         let v798 : (char []) = v797 v794
         let v801 : string = v772.TrimEnd v798 
-        let v819 : unit = ()
+        let v819 : (string -> unit) = closure12()
+        let v820 : unit = ()
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v820 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v801 v820 
-        let _v819 = () 
-        #endif
-#if FABLE_COMPILER_RUST && WASM
         let v821 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v801 v821 
-        let _v819 = () 
+        let _v820 = () 
+        #endif
+#if FABLE_COMPILER_RUST && WASM
+        let v822 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v801 v822 
+        let _v820 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v822 : string = $"near_sdk::log!(\"{{}}\", $0)"
-        Fable.Core.RustInterop.emitRustExpr v801 v822 
-        let _v819 = () 
+        let v823 : string = $"near_sdk::log!(\"{{}}\", $0)"
+        Fable.Core.RustInterop.emitRustExpr v801 v823 
+        let _v820 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        System.Console.WriteLine v801 
-        let _v819 = () 
+        v819 v801
+        let _v820 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
-        System.Console.WriteLine v801 
-        let _v819 = () 
+        v819 v801
+        let _v820 = () 
         #endif
 #else
-        System.Console.WriteLine v801 
-        let _v819 = () 
+        v819 v801
+        let _v820 = () 
         #endif
-        _v819 
-        let v823 : (string -> unit) = v19.l0
-        v823 v801
+        _v820 
+        let v824 : (string -> unit) = v19.l0
+        v824 v801
 and closure6 (v0 : US0, v1 : (unit -> string)) (v2 : (unit -> string)) : unit =
     let v3 : unit = ()
     let v4 : (unit -> unit) = closure7(v0, v1, v2)

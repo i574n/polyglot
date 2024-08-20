@@ -189,9 +189,9 @@ def method2(v0_1: str) -> str:
 
     closure2(v61, v66, None)
     v69 = None
-    v82: US1 = default_arg(_v64.contents, US1(1))
-    if v82.tag == 0:
-        return v82.fields[0]
+    v84: US1 = default_arg(_v64.contents, US1(1))
+    if v84.tag == 0:
+        return v84.fields[0]
 
     else: 
         return ""
@@ -289,19 +289,29 @@ def closure11(v0_1: Mut4, v1_1: str, unit_var: None) -> None:
     v0_1.l0 = v3
 
 
+def closure13(v0_1: str, unit_var: None) -> None:
+    print(v0_1)
+
+
+def closure12(unit_var: None, v0_1: str) -> None:
+    v3: None
+    closure13(v0_1, None)
+    v3 = None
+
+
 def closure7(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> None:
     def v4(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> None:
         closure0(None, None)
 
-    v5_1: None
+    v5: None
     v4(None)
-    v5_1 = None
+    v5 = None
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v24: None
+    v34: None
     v4(None)
-    v24 = None
+    v34 = None
     pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-    v42: US0 = pattern_input_1[3].l0
+    v62: US0 = pattern_input_1[3].l0
     class ObjectExpr175:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
@@ -312,80 +322,80 @@ def closure7(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_v
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[2].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr175())) >= find(v42, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr176()))):
-        v51: None
+    if False if (pattern_input_1[2].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr175())) >= find(v62, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr176()))):
+        v71: None
         closure8(pattern_input[0], None)
-        v51 = None
-        v53: None
+        v71 = None
+        v75: None
         v4(None)
-        v53 = None
+        v75 = None
         pattern_input_2: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None] = value_1(State_trace_state())
-        _v310: FSharpRef[US3 | None] = FSharpRef(None)
-        v315: None
-        def v312(v: US3 | None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> FSharpRef[US3 | None]:
-            return closure9(_v310, v)
+        _v350: FSharpRef[US3 | None] = FSharpRef(None)
+        v355: None
+        def v352(v: US3 | None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> FSharpRef[US3 | None]:
+            return closure9(_v350, v)
 
-        closure10(pattern_input_2[4], v312, None)
-        v315 = None
-        v328: US3 = default_arg(_v310.contents, US3(1))
+        closure10(pattern_input_2[4], v352, None)
+        v355 = None
+        v370: US3 = default_arg(_v350.contents, US3(1))
         def _arrow177(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
-            v342: Any = create(op_subtraction(ticks_1(now()), v328.fields[0]))
-            return create_1(1, 1, 1, hours(v342), minutes(v342), seconds(v342), milliseconds(v342))
+            v384: Any = create(op_subtraction(ticks_1(now()), v370.fields[0]))
+            return create_1(1, 1, 1, hours(v384), minutes(v384), seconds(v384), milliseconds(v384))
 
-        v373: str = to_string(_arrow177() if (v328.tag == 0) else now(), method6())
-        v514: US1 = US1(0, "Verbose") if (True if (v0_1.tag == 0) else False) else US1(1)
-        v555: US1
-        if v514.tag == 0:
-            v555 = US1(0, v514.fields[0])
+        v415: str = to_string(_arrow177() if (v370.tag == 0) else now(), method6())
+        v560: US1 = US1(0, "Verbose") if (True if (v0_1.tag == 0) else False) else US1(1)
+        v601: US1
+        if v560.tag == 0:
+            v601 = US1(0, v560.fields[0])
 
         else: 
-            v521: US1 = US1(0, "Debug") if (True if (v0_1.tag == 1) else False) else US1(1)
-            if v521.tag == 0:
-                v555 = US1(0, v521.fields[0])
+            v567: US1 = US1(0, "Debug") if (True if (v0_1.tag == 1) else False) else US1(1)
+            if v567.tag == 0:
+                v601 = US1(0, v567.fields[0])
 
             else: 
-                v528: US1 = US1(0, "Info") if (True if (v0_1.tag == 2) else False) else US1(1)
-                if v528.tag == 0:
-                    v555 = US1(0, v528.fields[0])
+                v574: US1 = US1(0, "Info") if (True if (v0_1.tag == 2) else False) else US1(1)
+                if v574.tag == 0:
+                    v601 = US1(0, v574.fields[0])
 
                 else: 
-                    v535: US1 = US1(0, "Warning") if (True if (v0_1.tag == 3) else False) else US1(1)
-                    if v535.tag == 0:
-                        v555 = US1(0, v535.fields[0])
+                    v581: US1 = US1(0, "Warning") if (True if (v0_1.tag == 3) else False) else US1(1)
+                    if v581.tag == 0:
+                        v601 = US1(0, v581.fields[0])
 
                     else: 
-                        v542: US1 = US1(0, "Critical") if (True if (v0_1.tag == 4) else False) else US1(1)
-                        v555 = US1(0, v542.fields[0]) if (v542.tag == 0) else US1(1)
+                        v588: US1 = US1(0, "Critical") if (True if (v0_1.tag == 4) else False) else US1(1)
+                        v601 = US1(0, v588.fields[0]) if (v588.tag == 0) else US1(1)
 
 
 
 
-        v559: str
-        if v555.tag == 0:
-            v559 = v555.fields[0]
+        v605: str
+        if v601.tag == 0:
+            v605 = v601.fields[0]
 
         else: 
             raise Exception("Option does not have a value.")
 
-        v564: str = pad_left(v559.lower(), 7, " ")
-        v676: str = (("\u001b[94m" if (v0_1.tag == 1) else ("\u001b[92m" if (v0_1.tag == 2) else ("\u001b[90m" if (v0_1.tag == 0) else ("\u001b[93m" if (v0_1.tag == 3) else "\u001b[91m")))) + v564) + method7()
-        v705: int64 = pattern_input_2[0].l0
-        v706: str = v2_1(None)
-        v708: Mut4 = Mut4(method8())
-        v714: None
-        closure11(v708, ("" + v706) + "", None)
-        v714 = None
-        v715: str = v708.l0
-        v753: str = trim_end(trim_start(((((((((("" + v373) + " ") + v676) + " #") + str(v705)) + " ") + v1_1(None)) + " / ") + v715) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-        print(v753)
-        pattern_input[1].l0(v753)
+        v610: str = pad_left(v605.lower(), 7, " ")
+        v722: str = (("\u001b[94m" if (v0_1.tag == 1) else ("\u001b[92m" if (v0_1.tag == 2) else ("\u001b[90m" if (v0_1.tag == 0) else ("\u001b[93m" if (v0_1.tag == 3) else "\u001b[91m")))) + v610) + method7()
+        v751: int64 = pattern_input_2[0].l0
+        v752: str = v2_1(None)
+        v754: Mut4 = Mut4(method8())
+        v760: None
+        closure11(v754, ("" + v752) + "", None)
+        v760 = None
+        v763: str = v754.l0
+        v801: str = trim_end(trim_start(((((((((("" + v415) + " ") + v722) + " #") + str(v751)) + " ") + v1_1(None)) + " / ") + v763) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+        closure12(None, v801)
+        pattern_input[1].l0(v801)
 
 
 
 def closure6(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None:
-    v5_1: None
+    v5: None
     closure7(v0_1, v1_1, v2_1, None)
-    v5_1 = None
+    v5 = None
 
 
 def closure5(v0_1: US0, v1_1: Callable[[], str]) -> Callable[[Callable[[], str]], None]:
@@ -421,9 +431,9 @@ def _arrow182(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return closure4(None, v)
 
 
-v5: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow182
+v15: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow182
 
 def trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
-    return v5(x)
+    return v15(x)
 
 

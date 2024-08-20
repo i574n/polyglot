@@ -686,6 +686,14 @@ and closure14 (v0 : Mut4, v1 : string) () : unit =
 and closure15 () () : string =
     let v0 : string = "common.retry_fn"
     v0
+and closure17 (v0 : string) () : unit =
+    let v1 : (string -> unit) = System.Console.WriteLine
+    v1 v0
+and closure16 () (v0 : string) : unit =
+    let v1 : unit = ()
+    let v2 : (unit -> unit) = closure17(v0)
+    let v3 : unit = (fun () -> v2 (); v1) ()
+    ()
 and closure10 (v0 : int32, v1 : exn) () : unit =
     let v2 : unit = ()
     let v3 : (unit -> unit) = closure0()
@@ -1108,40 +1116,41 @@ and closure10 (v0 : int32, v1 : exn) () : unit =
         let v768 : (char list -> (char [])) = List.toArray
         let v769 : (char []) = v768 v765
         let v772 : string = v743.TrimEnd v769 
-        let v790 : unit = ()
+        let v790 : (string -> unit) = closure16()
+        let v791 : unit = ()
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v791 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v772 v791 
-        let _v790 = () 
-        #endif
-#if FABLE_COMPILER_RUST && WASM
         let v792 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v772 v792 
-        let _v790 = () 
+        let _v791 = () 
+        #endif
+#if FABLE_COMPILER_RUST && WASM
+        let v793 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v772 v793 
+        let _v791 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v793 : string = $"near_sdk::log!(\"{{}}\", $0)"
-        Fable.Core.RustInterop.emitRustExpr v772 v793 
-        let _v790 = () 
+        let v794 : string = $"near_sdk::log!(\"{{}}\", $0)"
+        Fable.Core.RustInterop.emitRustExpr v772 v794 
+        let _v791 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        System.Console.WriteLine v772 
-        let _v790 = () 
+        v790 v772
+        let _v791 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
-        System.Console.WriteLine v772 
-        let _v790 = () 
+        v790 v772
+        let _v791 = () 
         #endif
 #else
-        System.Console.WriteLine v772 
-        let _v790 = () 
+        v790 v772
+        let _v791 = () 
         #endif
-        _v790 
-        let v794 : (string -> unit) = v18.l0
-        v794 v772
+        _v791 
+        let v795 : (string -> unit) = v18.l0
+        v795 v772
 and closure9 (v0 : int32) (v1 : exn) : US5 =
     let v2 : unit = ()
     let v3 : (unit -> unit) = closure10(v0, v1)
@@ -1178,13 +1187,13 @@ and closure5 () (v0 : int32) : ((unit -> unit) -> unit option) =
     closure6(v0)
 and method12 (v0 : (unit -> unit)) : (unit -> unit) =
     v0
-and closure17 (v0 : Lazy<unit>) () : unit =
+and closure19 (v0 : Lazy<unit>) () : unit =
     v0.Value
     ()
-and closure16 () (v0 : (unit -> unit)) : (unit -> unit) =
+and closure18 () (v0 : (unit -> unit)) : (unit -> unit) =
     let v1 : (unit -> unit) = method12(v0)
     let v2 : Lazy<unit> = lazy v1 ()
-    closure17(v2)
+    closure19(v2)
 let v0 : unit = ()
 let v1 : (unit -> unit) = closure0()
 let v2 : unit = (fun () -> v1 (); v0) ()
@@ -1192,6 +1201,6 @@ let v15 : ((unit -> unit) -> System.IDisposable) = closure4()
 let new_disposable x = v15 x
 let v16 : (int32 -> ((unit -> unit) -> unit option)) = closure5()
 let retry_fn x = v16 x
-let v17 : ((unit -> unit) -> (unit -> unit)) = closure16()
+let v17 : ((unit -> unit) -> (unit -> unit)) = closure18()
 let memoize x = v17 x
 ()

@@ -431,9 +431,9 @@ pub mod Runtime {
         ()
     }
     pub fn method2(v0_1: string) -> string {
-        let v18: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
+        let v18_1: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
         let v20: bool = true;
-        let _result = v18.map(|x| {
+        let _result = v18_1.map(|x| {
             //;
             let v22: std::string::String = x;
             let v24: string = fable_library_rust::String_::fromString(v22);
@@ -556,6 +556,16 @@ pub mod Runtime {
     pub fn closure10(unitVar: (), unitVar_1: ()) -> string {
         string("runtime.current_process_kill / exiting... 3")
     }
+    pub fn closure12(v0_1: string, unitVar: ()) {
+        printfn!("{0}", v0_1);
+    }
+    pub fn closure11(unitVar: (), v0_1: string) {
+        let v3: () = {
+            Runtime::closure12(v0_1, ());
+            ()
+        };
+        ()
+    }
     pub fn closure6(unitVar: (), unitVar_1: ()) {
         fn v1_1() {
             Runtime::closure0((), ());
@@ -571,7 +581,7 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v21: () = {
+        let v31: () = {
             v1_1();
             ()
         };
@@ -582,13 +592,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v39: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v59: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             3_i32
                 >= find(
-                    v39,
+                    v59,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -598,11 +608,11 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v47: () = {
+            let v67: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v49: () = {
+            let v71: () = {
                 v1_1();
                 ()
             };
@@ -613,26 +623,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v134: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v139: () = {
+            let _v168: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v173: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v134 = _v134.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v134.clone(), v)
+                        let _v168 = _v168.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v168.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v152: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v134.get().clone());
-            let v192: DateTime = match &v152 {
-                Runtime::US3::US3_0(v152_0_0) => {
-                    let v166: TimeSpan = TimeSpan::new_ticks(
+            let v188: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v168.get().clone());
+            let v228: DateTime = match &v188 {
+                Runtime::US3::US3_0(v188_0_0) => {
+                    let v202: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v152 {
+                        } - match &v188 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -641,182 +651,51 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v166.hours(),
-                        v166.minutes(),
-                        v166.seconds(),
-                        v166.milliseconds(),
+                        v202.hours(),
+                        v202.minutes(),
+                        v202.seconds(),
+                        v202.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v197: string = {
+            let v233: string = {
                 let provider: string = Runtime::method5();
-                v192.toString(provider)
+                v228.toString(provider)
             };
-            let v511: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-            let v538: &str = inline_colorization::color_yellow;
-            let v540: &str = &*v511;
-            let v542: &str = inline_colorization::color_reset;
-            let v544: string = string("format!(\"{v538}{v540}{v542}\")");
-            let v545: std::string::String = format!("{v538}{v540}{v542}");
-            let v547: string = fable_library_rust::String_::fromString(v545);
-            let v577: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v579: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v557: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
+            let v584: &str = inline_colorization::color_yellow;
+            let v586: &str = &*v557;
+            let v588: &str = inline_colorization::color_reset;
+            let v590: string = string("format!(\"{v584}{v586}{v588}\")");
+            let v591: std::string::String = format!("{v584}{v586}{v588}");
+            let v593: string = fable_library_rust::String_::fromString(v591);
+            let v623: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v625: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v580: string = v579.l0.get().clone();
-            let v619: string = trimEndChars(
+            let v626: string = v625.l0.get().clone();
+            let v665: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v197,
-                        v547,
-                        v577,
+                        v233,
+                        v593,
+                        v623,
                         Runtime::closure10((), ()),
-                        v580
+                        v626
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v619.clone());
+            println!("{}", v665.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v619)
-        }
-    }
-    pub fn closure12(unitVar: (), unitVar_1: ()) -> string {
-        string("runtime.current_process_kill / exiting... 2")
-    }
-    pub fn closure11(unitVar: (), unitVar_1: ()) {
-        fn v1_1() {
-            Runtime::closure0((), ());
-        }
-        let v2_1: () = {
-            v1_1();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<Runtime::Mut0>,
-            LrcPtr<Runtime::Mut1>,
-            LrcPtr<Runtime::Mut2>,
-            LrcPtr<Runtime::Mut3>,
-            Option<i64>,
-        ) = getValue(Runtime::State::trace_state().get().clone());
-        let v21: () = {
-            v1_1();
-            ()
-        };
-        let patternInput_1: (
-            LrcPtr<Runtime::Mut0>,
-            LrcPtr<Runtime::Mut1>,
-            LrcPtr<Runtime::Mut2>,
-            LrcPtr<Runtime::Mut3>,
-            Option<i64>,
-        ) = getValue(Runtime::State::trace_state().get().clone());
-        let v39: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
-        if if (patternInput_1.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            3_i32
-                >= find(
-                    v39,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Runtime::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Runtime::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Runtime::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v47: () = {
-                Runtime::closure7(patternInput.0.clone(), ());
-                ()
-            };
-            let v49: () = {
-                v1_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Runtime::Mut0>,
-                LrcPtr<Runtime::Mut1>,
-                LrcPtr<Runtime::Mut2>,
-                LrcPtr<Runtime::Mut3>,
-                Option<i64>,
-            ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v134: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v139: () = {
-                Runtime::closure9(
-                    patternInput_2.4.clone(),
-                    Func1::new({
-                        let _v134 = _v134.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v134.clone(), v)
-                    }),
-                    (),
-                );
-                ()
-            };
-            let v152: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v134.get().clone());
-            let v192: DateTime = match &v152 {
-                Runtime::US3::US3_0(v152_0_0) => {
-                    let v166: TimeSpan = TimeSpan::new_ticks(
-                        {
-                            let _arg: DateTime = DateTime::now();
-                            _arg.ticks()
-                        } - match &v152 {
-                            Runtime::US3::US3_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        },
-                    );
-                    DateTime::new_ymdhms_milli(
-                        1_i32,
-                        1_i32,
-                        1_i32,
-                        v166.hours(),
-                        v166.minutes(),
-                        v166.seconds(),
-                        v166.milliseconds(),
-                    )
-                }
-                _ => DateTime::now(),
-            };
-            let v197: string = {
-                let provider: string = Runtime::method5();
-                v192.toString(provider)
-            };
-            let v511: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-            let v538: &str = inline_colorization::color_yellow;
-            let v540: &str = &*v511;
-            let v542: &str = inline_colorization::color_reset;
-            let v544: string = string("format!(\"{v538}{v540}{v542}\")");
-            let v545: std::string::String = format!("{v538}{v540}{v542}");
-            let v547: string = fable_library_rust::String_::fromString(v545);
-            let v577: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v579: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
-                l0: MutCell::new(Runtime::method8()),
-            });
-            let v580: string = v579.l0.get().clone();
-            let v619: string = trimEndChars(
-                trimStartChars(
-                    sprintf!(
-                        "{} {} #{} {} / {}",
-                        v197,
-                        v547,
-                        v577,
-                        Runtime::closure12((), ()),
-                        v580
-                    ),
-                    toArray(empty::<char>()),
-                ),
-                toArray(ofArray(new_array(&[' ', '/']))),
-            );
-            println!("{}", v619.clone());
-            ();
-            ((patternInput.1.clone()).l0.get().clone())(v619)
+            ((patternInput.1.clone()).l0.get().clone())(v665)
         }
     }
     pub fn closure14(unitVar: (), unitVar_1: ()) -> string {
-        string("runtime.current_process_kill / exiting... 1")
+        string("runtime.current_process_kill / exiting... 2")
     }
     pub fn closure13(unitVar: (), unitVar_1: ()) {
         fn v1_1() {
@@ -833,7 +712,7 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v21: () = {
+        let v31: () = {
             v1_1();
             ()
         };
@@ -844,13 +723,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v39: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v59: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             3_i32
                 >= find(
-                    v39,
+                    v59,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -860,11 +739,11 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v47: () = {
+            let v67: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v49: () = {
+            let v71: () = {
                 v1_1();
                 ()
             };
@@ -875,26 +754,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v134: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v139: () = {
+            let _v168: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v173: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v134 = _v134.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v134.clone(), v)
+                        let _v168 = _v168.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v168.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v152: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v134.get().clone());
-            let v192: DateTime = match &v152 {
-                Runtime::US3::US3_0(v152_0_0) => {
-                    let v166: TimeSpan = TimeSpan::new_ticks(
+            let v188: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v168.get().clone());
+            let v228: DateTime = match &v188 {
+                Runtime::US3::US3_0(v188_0_0) => {
+                    let v202: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v152 {
+                        } - match &v188 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -903,47 +782,178 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v166.hours(),
-                        v166.minutes(),
-                        v166.seconds(),
-                        v166.milliseconds(),
+                        v202.hours(),
+                        v202.minutes(),
+                        v202.seconds(),
+                        v202.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v197: string = {
+            let v233: string = {
                 let provider: string = Runtime::method5();
-                v192.toString(provider)
+                v228.toString(provider)
             };
-            let v511: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-            let v538: &str = inline_colorization::color_yellow;
-            let v540: &str = &*v511;
-            let v542: &str = inline_colorization::color_reset;
-            let v544: string = string("format!(\"{v538}{v540}{v542}\")");
-            let v545: std::string::String = format!("{v538}{v540}{v542}");
-            let v547: string = fable_library_rust::String_::fromString(v545);
-            let v577: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v579: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v557: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
+            let v584: &str = inline_colorization::color_yellow;
+            let v586: &str = &*v557;
+            let v588: &str = inline_colorization::color_reset;
+            let v590: string = string("format!(\"{v584}{v586}{v588}\")");
+            let v591: std::string::String = format!("{v584}{v586}{v588}");
+            let v593: string = fable_library_rust::String_::fromString(v591);
+            let v623: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v625: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v580: string = v579.l0.get().clone();
-            let v619: string = trimEndChars(
+            let v626: string = v625.l0.get().clone();
+            let v665: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v197,
-                        v547,
-                        v577,
+                        v233,
+                        v593,
+                        v623,
                         Runtime::closure14((), ()),
-                        v580
+                        v626
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v619.clone());
+            println!("{}", v665.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v619)
+            ((patternInput.1.clone()).l0.get().clone())(v665)
+        }
+    }
+    pub fn closure16(unitVar: (), unitVar_1: ()) -> string {
+        string("runtime.current_process_kill / exiting... 1")
+    }
+    pub fn closure15(unitVar: (), unitVar_1: ()) {
+        fn v1_1() {
+            Runtime::closure0((), ());
+        }
+        let v2_1: () = {
+            v1_1();
+            ()
+        };
+        let patternInput: (
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            LrcPtr<Runtime::Mut3>,
+            Option<i64>,
+        ) = getValue(Runtime::State::trace_state().get().clone());
+        let v31: () = {
+            v1_1();
+            ()
+        };
+        let patternInput_1: (
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            LrcPtr<Runtime::Mut3>,
+            Option<i64>,
+        ) = getValue(Runtime::State::trace_state().get().clone());
+        let v59: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        if if (patternInput_1.2.clone()).l0.get().clone() == false {
+            false
+        } else {
+            3_i32
+                >= find(
+                    v59,
+                    ofSeq(ofList(ofArray(new_array(&[
+                        LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
+                        LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
+                        LrcPtr::new((Runtime::US0::US0_2, 2_i32)),
+                        LrcPtr::new((Runtime::US0::US0_3, 3_i32)),
+                        LrcPtr::new((Runtime::US0::US0_4, 4_i32)),
+                    ])))),
+                )
+        } {
+            let v67: () = {
+                Runtime::closure7(patternInput.0.clone(), ());
+                ()
+            };
+            let v71: () = {
+                v1_1();
+                ()
+            };
+            let patternInput_2: (
+                LrcPtr<Runtime::Mut0>,
+                LrcPtr<Runtime::Mut1>,
+                LrcPtr<Runtime::Mut2>,
+                LrcPtr<Runtime::Mut3>,
+                Option<i64>,
+            ) = getValue(Runtime::State::trace_state().get().clone());
+            let _v168: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v173: () = {
+                Runtime::closure9(
+                    patternInput_2.4.clone(),
+                    Func1::new({
+                        let _v168 = _v168.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v168.clone(), v)
+                    }),
+                    (),
+                );
+                ()
+            };
+            let v188: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v168.get().clone());
+            let v228: DateTime = match &v188 {
+                Runtime::US3::US3_0(v188_0_0) => {
+                    let v202: TimeSpan = TimeSpan::new_ticks(
+                        {
+                            let _arg: DateTime = DateTime::now();
+                            _arg.ticks()
+                        } - match &v188 {
+                            Runtime::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        },
+                    );
+                    DateTime::new_ymdhms_milli(
+                        1_i32,
+                        1_i32,
+                        1_i32,
+                        v202.hours(),
+                        v202.minutes(),
+                        v202.seconds(),
+                        v202.milliseconds(),
+                    )
+                }
+                _ => DateTime::now(),
+            };
+            let v233: string = {
+                let provider: string = Runtime::method5();
+                v228.toString(provider)
+            };
+            let v557: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
+            let v584: &str = inline_colorization::color_yellow;
+            let v586: &str = &*v557;
+            let v588: &str = inline_colorization::color_reset;
+            let v590: string = string("format!(\"{v584}{v586}{v588}\")");
+            let v591: std::string::String = format!("{v584}{v586}{v588}");
+            let v593: string = fable_library_rust::String_::fromString(v591);
+            let v623: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v625: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+                l0: MutCell::new(Runtime::method8()),
+            });
+            let v626: string = v625.l0.get().clone();
+            let v665: string = trimEndChars(
+                trimStartChars(
+                    sprintf!(
+                        "{} {} #{} {} / {}",
+                        v233,
+                        v593,
+                        v623,
+                        Runtime::closure16((), ()),
+                        v626
+                    ),
+                    toArray(empty::<char>()),
+                ),
+                toArray(ofArray(new_array(&[' ', '/']))),
+            );
+            println!("{}", v665.clone());
+            ();
+            ((patternInput.1.clone()).l0.get().clone())(v665)
         }
     }
     pub fn closure5(unitVar: (), unitVar_1: ()) {
@@ -957,17 +967,17 @@ pub mod Runtime {
     pub fn method11(v0_1: i32, v1_1: LrcPtr<Runtime::Mut5>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure18(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
+    pub fn closure20(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
         LrcPtr::new(Runtime::UH0::UH0_1(v0_1, v1_1))
     }
-    pub fn closure17(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
+    pub fn closure19(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: LrcPtr<Runtime::UH0>| Runtime::closure18(v0_1, v)
+            move |v: LrcPtr<Runtime::UH0>| Runtime::closure20(v0_1, v)
         })
     }
     pub fn method12() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
-        Func1::new(move |v: char| Runtime::closure17((), v))
+        Func1::new(move |v: char| Runtime::closure19((), v))
     }
     pub fn method13(
         v0_1: LrcPtr<Runtime::UH0>,
@@ -987,8 +997,8 @@ pub mod Runtime {
                         Runtime::UH0::UH0_1(x, _) => x.clone(),
                         _ => unreachable!(),
                     };
-                    let v6_1: bool = '\n' == v4;
-                    let patternInput: (i32, i32) = if v6_1 {
+                    let v6: bool = '\n' == v4;
+                    let patternInput: (i32, i32) = if v6 {
                         (v2_1.get().clone() + 1_i32, 1_i32)
                     } else {
                         (v2_1.get().clone(), v3.get().clone() + 1_i32)
@@ -998,11 +1008,11 @@ pub mod Runtime {
                             Runtime::UH0::UH0_1(_, x) => x.clone(),
                             _ => unreachable!(),
                         };
-                        let v1_1_temp: LrcPtr<StringBuilder> = if v6_1 {
+                        let v1_1_temp: LrcPtr<StringBuilder> = if v6 {
                             let v12: LrcPtr<StringBuilder> = v1_1.get().clone().Clear();
                             v1_1.get().clone()
                         } else {
-                            let v18: LrcPtr<StringBuilder> = {
+                            let v18_1: LrcPtr<StringBuilder> = {
                                 let value: string = ofChar(v4);
                                 v1_1.get().clone().Append_Z721C83C5(value)
                             };
@@ -1020,7 +1030,7 @@ pub mod Runtime {
             });
         }
     }
-    pub fn closure16(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
+    pub fn closure18(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
         let v3: i32 = _arg.3.clone();
         let v2_1: i32 = _arg.2.clone();
         let v1_1: LrcPtr<StringBuilder> = _arg.1.clone();
@@ -1031,18 +1041,18 @@ pub mod Runtime {
                 (v1_1.clone(), v2_1, v3)
             ))
         } else {
-            let v7_1: char = getCharAt(v0_1.clone(), 0_i32);
-            if v7_1 == '\"' {
-                let v15: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
-                let v17: string = ofChar(v7_1);
-                let v20: i32 = length(v17.clone());
+            let v7: char = getCharAt(v0_1.clone(), 0_i32);
+            if v7 == '\"' {
+                let v15_1: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
+                let v17_1: string = ofChar(v7);
+                let v20: i32 = length(v17_1.clone());
                 let v21: Array<char> = new_init(&'\u{0000}', v20);
                 let v22: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
                     l0: MutCell::new(0_i32),
                 });
                 while Runtime::method11(v20, v22.clone()) {
                     let v24: i32 = v22.l0.get().clone();
-                    let v25: char = getCharAt(v17.clone(), v24);
+                    let v25: char = getCharAt(v17_1.clone(), v24);
                     v21.get_mut()[v24 as usize] = v25;
                     {
                         let v26: i32 = v24 + 1_i32;
@@ -1065,8 +1075,8 @@ pub mod Runtime {
                         v3,
                     );
                     Runtime::US5::US5_0(
-                        v7_1,
-                        v15,
+                        v7,
+                        v15_1,
                         patternInput.0.clone(),
                         patternInput.1.clone(),
                         patternInput.2.clone(),
@@ -1094,7 +1104,7 @@ pub mod Runtime {
             }
         }
     }
-    pub fn closure19(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
+    pub fn closure21(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
         let v3: i32 = _arg.3.clone();
         let v2_1: i32 = _arg.2.clone();
         let v1_1: LrcPtr<StringBuilder> = _arg.1.clone();
@@ -1105,18 +1115,18 @@ pub mod Runtime {
                 (v1_1.clone(), v2_1, v3)
             ))
         } else {
-            let v7_1: char = getCharAt(v0_1.clone(), 0_i32);
-            if v7_1 == '\'' {
-                let v15: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
-                let v17: string = ofChar(v7_1);
-                let v20: i32 = length(v17.clone());
+            let v7: char = getCharAt(v0_1.clone(), 0_i32);
+            if v7 == '\'' {
+                let v15_1: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
+                let v17_1: string = ofChar(v7);
+                let v20: i32 = length(v17_1.clone());
                 let v21: Array<char> = new_init(&'\u{0000}', v20);
                 let v22: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
                     l0: MutCell::new(0_i32),
                 });
                 while Runtime::method11(v20, v22.clone()) {
                     let v24: i32 = v22.l0.get().clone();
-                    let v25: char = getCharAt(v17.clone(), v24);
+                    let v25: char = getCharAt(v17_1.clone(), v24);
                     v21.get_mut()[v24 as usize] = v25;
                     {
                         let v26: i32 = v24 + 1_i32;
@@ -1139,8 +1149,8 @@ pub mod Runtime {
                         v3,
                     );
                     Runtime::US5::US5_0(
-                        v7_1,
-                        v15,
+                        v7,
+                        v15_1,
                         patternInput.0.clone(),
                         patternInput.1.clone(),
                         patternInput.2.clone(),
@@ -1180,7 +1190,7 @@ pub mod Runtime {
             break '_method14 (match v2_1.get().clone().as_ref() {
                 Runtime::UH1::UH1_0 => Runtime::US5::US5_1(string("choice / no parsers succeeded")),
                 Runtime::UH1::UH1_1(v2_1_1_0, v2_1_1_1) => {
-                    let v7_1: Runtime::US5 = (match v2_1.get().clone().as_ref() {
+                    let v7: Runtime::US5 = (match v2_1.get().clone().as_ref() {
                         Runtime::UH1::UH1_1(x, _) => x.clone(),
                         _ => unreachable!(),
                     })((
@@ -1189,10 +1199,8 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                     ));
-                    match &v7_1 {
-                        Runtime::US5::US5_0(v7_1_0_0, v7_1_0_1, v7_1_0_2, v7_1_0_3, v7_1_0_4) => {
-                            v7_1.clone()
-                        }
+                    match &v7 {
+                        Runtime::US5::US5_0(v7_0_0, v7_0_1, v7_0_2, v7_0_3, v7_0_4) => v7.clone(),
                         _ => {
                             let v0_1_temp: string = v0_1.get().clone();
                             let v1_1_temp: LrcPtr<StringBuilder> = v1_1.get().clone();
@@ -1221,11 +1229,11 @@ pub mod Runtime {
                 let v11: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
                     Runtime::US7::US7_0('\"')
                 } else {
-                    let v5_1: i64 = v1_1.get().clone() - 1_i64;
-                    if v5_1 == 0_i64 {
+                    let v5: i64 = v1_1.get().clone() - 1_i64;
+                    if v5 == 0_i64 {
                         Runtime::US7::US7_0('\'')
                     } else {
-                        let v8_1: i64 = v5_1 - 1_i64;
+                        let v8: i64 = v5 - 1_i64;
                         Runtime::US7::US7_1
                     }
                 };
@@ -1270,14 +1278,14 @@ pub mod Runtime {
                         (v2_1.get().clone(), v3.get().clone(), v4.get().clone())
                     ))
                 } else {
-                    let v19: char = getCharAt(v1_1.get().clone(), 0_i32);
+                    let v19_1: char = getCharAt(v1_1.get().clone(), 0_i32);
                     let v26: string = getSlice(
                         v1_1.get().clone(),
                         Some(1_i32),
                         Some(length(v1_1.get().clone())),
                     );
-                    if Runtime::method15(v19, 0_i64) == false {
-                        let v31: string = ofChar(v19);
+                    if Runtime::method15(v19_1, 0_i64) == false {
+                        let v31: string = ofChar(v19_1);
                         let v34: i32 = length(v31.clone());
                         let v35: Array<char> = new_init(&'\u{0000}', v34);
                         let v36: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
@@ -1308,7 +1316,7 @@ pub mod Runtime {
                                 v4.get().clone(),
                             );
                             Runtime::US5::US5_0(
-                                v19,
+                                v19_1,
                                 v26,
                                 patternInput.0.clone(),
                                 patternInput.1.clone(),
@@ -1318,7 +1326,7 @@ pub mod Runtime {
                     } else {
                         Runtime::US5::US5_1(sprintf!(
                             "parsing.none_of / unexpected char: \'{}\' / chars: {:?} / s: {:?}",
-                            v19,
+                            v19_1,
                             toArray(ofArray(new_array(&['\"', '\'']))),
                             (v2_1.get().clone(), v3.get().clone(), v4.get().clone())
                         ))
@@ -1378,7 +1386,7 @@ pub mod Runtime {
             break '_method17 (match v4.get().clone().as_ref() {
                 Runtime::UH1::UH1_0 => Runtime::US5::US5_1(string("choice / no parsers succeeded")),
                 Runtime::UH1::UH1_1(v4_1_0, v4_1_1) => {
-                    let v9_1: Runtime::US5 = (match v4.get().clone().as_ref() {
+                    let v9: Runtime::US5 = (match v4.get().clone().as_ref() {
                         Runtime::UH1::UH1_1(x, _) => x.clone(),
                         _ => unreachable!(),
                     })((
@@ -1387,10 +1395,8 @@ pub mod Runtime {
                         v2_1.get().clone(),
                         v3.get().clone(),
                     ));
-                    match &v9_1 {
-                        Runtime::US5::US5_0(v9_1_0_0, v9_1_0_1, v9_1_0_2, v9_1_0_3, v9_1_0_4) => {
-                            v9_1.clone()
-                        }
+                    match &v9 {
+                        Runtime::US5::US5_0(v9_0_0, v9_0_1, v9_0_2, v9_0_3, v9_0_4) => v9.clone(),
                         _ => {
                             let v0_1_temp: string = v0_1.get().clone();
                             let v1_1_temp: LrcPtr<StringBuilder> = v1_1.get().clone();
@@ -1419,25 +1425,25 @@ pub mod Runtime {
             break '_method18 (if v1_1.get().clone() >= 3_i64 {
                 false
             } else {
-                let v15: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
+                let v15_1: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
                     Runtime::US7::US7_0('\"')
                 } else {
-                    let v5_1: i64 = v1_1.get().clone() - 1_i64;
-                    if v5_1 == 0_i64 {
+                    let v5: i64 = v1_1.get().clone() - 1_i64;
+                    if v5 == 0_i64 {
                         Runtime::US7::US7_0('\'')
                     } else {
-                        let v8_1: i64 = v5_1 - 1_i64;
-                        if v8_1 == 0_i64 {
+                        let v8: i64 = v5 - 1_i64;
+                        if v8 == 0_i64 {
                             Runtime::US7::US7_0(' ')
                         } else {
-                            let v11: i64 = v8_1 - 1_i64;
+                            let v11: i64 = v8 - 1_i64;
                             Runtime::US7::US7_1
                         }
                     }
                 };
                 if v0_1.get().clone()
-                    == match &v15 {
-                        Runtime::US7::US7_0(v15_0_0) => match &v15 {
+                    == match &v15_1 {
+                        Runtime::US7::US7_0(v15_1_0_0) => match &v15_1 {
                             Runtime::US7::US7_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -1607,21 +1613,21 @@ pub mod Runtime {
                         (v2_1.get().clone(), v3.get().clone(), v4.get().clone())
                     ))
                 } else {
-                    let v8_1: char = getCharAt(v1_1.get().clone(), 0_i32);
-                    let v15: string = getSlice(
+                    let v8: char = getCharAt(v1_1.get().clone(), 0_i32);
+                    let v15_1: string = getSlice(
                         v1_1.get().clone(),
                         Some(1_i32),
                         Some(length(v1_1.get().clone())),
                     );
-                    let v17: string = ofChar(v8_1);
-                    let v20: i32 = length(v17.clone());
+                    let v17_1: string = ofChar(v8);
+                    let v20: i32 = length(v17_1.clone());
                     let v21: Array<char> = new_init(&'\u{0000}', v20);
                     let v22: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
                         l0: MutCell::new(0_i32),
                     });
                     while Runtime::method11(v20, v22.clone()) {
                         let v24: i32 = v22.l0.get().clone();
-                        let v25: char = getCharAt(v17.clone(), v24);
+                        let v25: char = getCharAt(v17_1.clone(), v24);
                         v21.get_mut()[v24 as usize] = v25;
                         {
                             let v26: i32 = v24 + 1_i32;
@@ -1644,8 +1650,8 @@ pub mod Runtime {
                             v4.get().clone(),
                         );
                         Runtime::US5::US5_0(
-                            v8_1,
-                            v15,
+                            v8,
+                            v15_1,
                             patternInput.0.clone(),
                             patternInput.1.clone(),
                             patternInput.2.clone(),
@@ -1681,7 +1687,7 @@ pub mod Runtime {
         let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
         _v0.set(Some(Some(v0_1)));
         {
-            let v7_1: string = defaultValue(
+            let v7: string = defaultValue(
                 string(""),
                 match &_v0.get().clone() {
                     None => panic!("{}", string("optionm\'.of_obj / _v0=None"),),
@@ -1690,13 +1696,13 @@ pub mod Runtime {
             );
             let v11: LrcPtr<StringBuilder> = StringBuilder::_ctor__Z721C83C5(string(""));
             fn v12(arg10_0040: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
-                Runtime::closure16((), arg10_0040)
+                Runtime::closure18((), arg10_0040)
             }
             fn v13(arg10_0040_1: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US5 {
-                Runtime::closure19((), arg10_0040_1)
+                Runtime::closure21((), arg10_0040_1)
             }
-            let v17: Runtime::US5 = Runtime::method14(
-                v7_1.clone(),
+            let v17_1: Runtime::US5 = Runtime::method14(
+                v7.clone(),
                 v11.clone(),
                 LrcPtr::new(Runtime::UH1::UH1_1(
                     Func1::from(v12),
@@ -1706,22 +1712,22 @@ pub mod Runtime {
                     )),
                 )),
             );
-            let v153: Runtime::US6 = match &v17 {
-                Runtime::US5::US5_0(v17_0_0, v17_0_1, v17_0_2, v17_0_3, v17_0_4) => {
-                    let v22: i32 = v17_0_4.clone();
-                    let v21: i32 = v17_0_3.clone();
-                    let v20: LrcPtr<StringBuilder> = v17_0_2.clone();
-                    let v19: string = v17_0_1.clone();
-                    let v88: Runtime::US5 = if string("") == v19.clone() {
+            let v153: Runtime::US6 = match &v17_1 {
+                Runtime::US5::US5_0(v17_1_0_0, v17_1_0_1, v17_1_0_2, v17_1_0_3, v17_1_0_4) => {
+                    let v22: i32 = v17_1_0_4.clone();
+                    let v21: i32 = v17_1_0_3.clone();
+                    let v20: LrcPtr<StringBuilder> = v17_1_0_2.clone();
+                    let v19_1: string = v17_1_0_1.clone();
+                    let v88: Runtime::US5 = if string("") == v19_1.clone() {
                         Runtime::US5::US5_1(sprintf!(
                             "parsing.none_of / unexpected end of input / chars: {:?} / s: {:?}",
                             toArray(ofArray(new_array(&['\"', '\'']))),
                             (v20.clone(), v21, v22)
                         ))
                     } else {
-                        let v37: char = getCharAt(v19.clone(), 0_i32);
+                        let v37: char = getCharAt(v19_1.clone(), 0_i32);
                         let v44: string =
-                            getSlice(v19.clone(), Some(1_i32), Some(length(v19.clone())));
+                            getSlice(v19_1.clone(), Some(1_i32), Some(length(v19_1.clone())));
                         if Runtime::method15(v37, 0_i64) == false {
                             let v49: string = ofChar(v37);
                             let v52: i32 = length(v49.clone());
@@ -1808,7 +1814,7 @@ pub mod Runtime {
                                 v114_0_4.clone(),
                             )
                         }
-                        _ => Runtime::US6::US6_0(string(""), v19.clone(), v20.clone(), v21, v22),
+                        _ => Runtime::US6::US6_0(string(""), v19_1.clone(), v20.clone(), v21, v22),
                     };
                     match &v124 {
                         Runtime::US6::US6_0(v124_0_0, v124_0_1, v124_0_2, v124_0_3, v124_0_4) => {
@@ -1841,11 +1847,11 @@ pub mod Runtime {
                                     Runtime::US5::US5_1(v133_1_0) =>
                                     Runtime::US6::US6_1(sprintf!("between / expected closing delimiter / e: {:?} / input: {:?} / rest1: {:?} / rest2: {:?}",
                                                                  v133_1_0.clone(),
-                                                                 (v7_1.clone(),
+                                                                 (v7.clone(),
                                                                   v11.clone(),
                                                                   1_i32,
                                                                   1_i32),
-                                                                 (v19, v20,
+                                                                 (v19_1, v20,
                                                                   v21, v22),
                                                                  (v126, v127,
                                                                   v128,
@@ -1855,23 +1861,23 @@ pub mod Runtime {
                         _ => Runtime::US6::US6_1(string("between / expected content")),
                     }
                 }
-                Runtime::US5::US5_1(v17_1_0) => Runtime::US6::US6_1(v17_1_0.clone()),
+                Runtime::US5::US5_1(v17_1_1_0) => Runtime::US6::US6_1(v17_1_1_0.clone()),
             };
             let v303: Runtime::US6 = match &v153 {
                 Runtime::US6::US6_0(v153_0_0, v153_0_1, v153_0_2, v153_0_3, v153_0_4) => {
                     v153.clone()
                 }
                 _ => {
-                    let v233: Runtime::US5 = if string("") == v7_1.clone() {
+                    let v233: Runtime::US5 = if string("") == v7.clone() {
                         Runtime::US5::US5_1(sprintf!(
                             "parsing.none_of / unexpected end of input / chars: {:?} / s: {:?}",
                             toArray(ofArray(new_array(&['\"', '\'', ' ']))),
                             (v11.clone(), 1_i32, 1_i32)
                         ))
                     } else {
-                        let v177: char = getCharAt(v7_1.clone(), 0_i32);
+                        let v177: char = getCharAt(v7.clone(), 0_i32);
                         let v184: string =
-                            getSlice(v7_1.clone(), Some(1_i32), Some(length(v7_1.clone())));
+                            getSlice(v7.clone(), Some(1_i32), Some(length(v7.clone())));
                         if Runtime::method18(v177, 0_i64) == false {
                             let v189: string = ofChar(v177);
                             let v192: i32 = length(v189.clone());
@@ -1953,12 +1959,12 @@ pub mod Runtime {
                             v259.clone()
                         }
                         _ => {
-                            let v271: Runtime::US8 = if length(v7_1.clone()) == 0_i32 {
-                                Runtime::US8::US8_0(v7_1.clone(), v11.clone(), 1_i32, 1_i32)
+                            let v271: Runtime::US8 = if length(v7.clone()) == 0_i32 {
+                                Runtime::US8::US8_0(v7.clone(), v11.clone(), 1_i32, 1_i32)
                             } else {
                                 Runtime::US8::US8_1(sprintf!(
                                     "parsing.eof / expected end of input / input: {:?}",
-                                    v7_1.clone()
+                                    v7.clone()
                                 ))
                             };
                             let v280: Runtime::US6 = match &v271 {
@@ -2214,29 +2220,29 @@ pub mod Runtime {
             }
         }
     }
-    pub fn closure21(v0_1: LrcPtr<Runtime::Mut4>, v1_1: string, unitVar: ()) {
+    pub fn closure23(v0_1: LrcPtr<Runtime::Mut4>, v1_1: string, unitVar: ()) {
         let v3: string = append(v0_1.l0.get().clone(), v1_1);
         v0_1.l0.set(v3);
         ()
     }
-    pub fn closure22(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure24(unitVar: (), unitVar_1: ()) -> string {
         string("runtime.execute_with_options_async")
     }
-    pub fn closure20(
+    pub fn closure22(
         v0_1: string,
         v1_1: Option<CancellationToken>,
         v2_1: Array<(string, string)>,
         v3: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
-        v5_1: bool,
-        v6_1: Option<string>,
+        v5: bool,
+        v6: Option<string>,
         unitVar: (),
     ) {
-        fn v8_1() {
+        fn v8() {
             Runtime::closure0((), ());
         }
-        let v9_1: () = {
-            v8_1();
+        let v9: () = {
+            v8();
             ()
         };
         let patternInput: (
@@ -2246,8 +2252,8 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v28: () = {
-            v8_1();
+        let v38: () = {
+            v8();
             ()
         };
         let patternInput_1: (
@@ -2257,13 +2263,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v46: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v66: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             1_i32
                 >= find(
-                    v46,
+                    v66,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -2273,12 +2279,12 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v54: () = {
+            let v74: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v56: () = {
-                v8_1();
+            let v78: () = {
+                v8();
                 ()
             };
             let patternInput_2: (
@@ -2288,26 +2294,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v141: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v146: () = {
+            let _v175: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v180: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v141 = _v141.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v141.clone(), v)
+                        let _v175 = _v175.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v175.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v159: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v141.get().clone());
-            let v199: DateTime = match &v159 {
-                Runtime::US3::US3_0(v159_0_0) => {
-                    let v173: TimeSpan = TimeSpan::new_ticks(
+            let v195: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v175.get().clone());
+            let v235: DateTime = match &v195 {
+                Runtime::US3::US3_0(v195_0_0) => {
+                    let v209: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v159 {
+                        } - match &v195 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -2316,232 +2322,225 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v173.hours(),
-                        v173.minutes(),
-                        v173.seconds(),
-                        v173.milliseconds(),
+                        v209.hours(),
+                        v209.minutes(),
+                        v209.seconds(),
+                        v209.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v204: string = {
+            let v240: string = {
                 let provider: string = Runtime::method5();
-                v199.toString(provider)
+                v235.toString(provider)
             };
-            let v518: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-            let v545: &str = inline_colorization::color_bright_blue;
-            let v547: &str = &*v518;
-            let v549: &str = inline_colorization::color_reset;
-            let v551: string = string("format!(\"{v545}{v547}{v549}\")");
-            let v552: std::string::String = format!("{v545}{v547}{v549}");
-            let v554: string = fable_library_rust::String_::fromString(v552);
-            let v584: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v586: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v564: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
+            let v591: &str = inline_colorization::color_bright_blue;
+            let v593: &str = &*v564;
+            let v595: &str = inline_colorization::color_reset;
+            let v597: string = string("format!(\"{v591}{v593}{v595}\")");
+            let v598: std::string::String = format!("{v591}{v593}{v595}");
+            let v600: string = fable_library_rust::String_::fromString(v598);
+            let v630: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v632: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v593: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("{ ")), ());
-                ()
-            };
-            let v600: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("options")), ());
-                ()
-            };
-            let v607: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
-                ()
-            };
-            let v613: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("{ ")), ());
-                ()
-            };
-            let v620: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("command")), ());
-                ()
-            };
-            let v626: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
-                ()
-            };
-            let v632: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", v0_1), ());
-                ()
-            };
             let v639: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("{ ")), ());
                 ()
             };
-            let v646: () = {
-                Runtime::closure21(
-                    v586.clone(),
+            let v648: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("options")), ());
+                ()
+            };
+            let v657: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
+                ()
+            };
+            let v665: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("{ ")), ());
+                ()
+            };
+            let v674: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("command")), ());
+                ()
+            };
+            let v682: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
+                ()
+            };
+            let v690: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", v0_1), ());
+                ()
+            };
+            let v699: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
+                ()
+            };
+            let v708: () = {
+                Runtime::closure23(
+                    v632.clone(),
                     sprintf!("{}", string("cancellation_token")),
                     (),
                 );
                 ()
             };
-            let v652: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v716: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v659: std::string::String = format!("{:#?}", v1_1);
-            let v685: () = {
-                Runtime::closure21(
-                    v586.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v659)),
+            let v725: std::string::String = format!("{:#?}", v1_1);
+            let v751: () = {
+                Runtime::closure23(
+                    v632.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v725)),
                     (),
                 );
                 ()
             };
-            let v691: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+            let v759: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v698: () = {
-                Runtime::closure21(
-                    v586.clone(),
+            let v768: () = {
+                Runtime::closure23(
+                    v632.clone(),
                     sprintf!("{}", string("environment_variables")),
                     (),
                 );
                 ()
             };
-            let v704: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v776: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v713: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", sprintf!("{:?}", v2_1)), ());
+            let v787: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", sprintf!("{:?}", v2_1)), ());
                 ()
             };
-            let v719: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+            let v795: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v726: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("on_line")), ());
+            let v804: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("on_line")), ());
                 ()
             };
-            let v732: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v812: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v739: std::string::String = format!("{:#?}", v3);
-            let v765: () = {
-                Runtime::closure21(
-                    v586.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v739)),
+            let v821: std::string::String = format!("{:#?}", v3);
+            let v847: () = {
+                Runtime::closure23(
+                    v632.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v821)),
                     (),
                 );
                 ()
             };
-            let v771: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+            let v855: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v778: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("stdin")), ());
+            let v864: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("stdin")), ());
                 ()
             };
-            let v784: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v872: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v791: std::string::String = format!("{:#?}", v4);
-            let v817: () = {
-                Runtime::closure21(
-                    v586.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v791)),
+            let v881: std::string::String = format!("{:#?}", v4);
+            let v907: () = {
+                Runtime::closure23(
+                    v632.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v881)),
                     (),
                 );
                 ()
             };
-            let v823: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+            let v915: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v830: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("trace")), ());
+            let v924: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("trace")), ());
                 ()
             };
-            let v836: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v932: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v845: () = {
-                Runtime::closure21(
-                    v586.clone(),
-                    sprintf!(
-                        "{}",
-                        if v5_1 {
-                            string("true")
-                        } else {
-                            string("false")
-                        }
-                    ),
+            let v943: () = {
+                Runtime::closure23(
+                    v632.clone(),
+                    sprintf!("{}", if v5 { string("true") } else { string("false") }),
                     (),
                 );
                 ()
             };
-            let v851: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string("; ")), ());
+            let v951: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string("; ")), ());
                 ()
             };
-            let v858: () = {
-                Runtime::closure21(
-                    v586.clone(),
+            let v960: () = {
+                Runtime::closure23(
+                    v632.clone(),
                     sprintf!("{}", string("working_directory")),
                     (),
                 );
                 ()
             };
-            let v864: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" = ")), ());
+            let v968: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v871: std::string::String = format!("{:#?}", v6_1);
-            let v897: () = {
-                Runtime::closure21(
-                    v586.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v871)),
+            let v977: std::string::String = format!("{:#?}", v6);
+            let v1003: () = {
+                Runtime::closure23(
+                    v632.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v977)),
                     (),
                 );
                 ()
             };
-            let v904: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" }")), ());
+            let v1012: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" }")), ());
                 ()
             };
-            let v910: () = {
-                Runtime::closure21(v586.clone(), sprintf!("{}", string(" }")), ());
+            let v1020: () = {
+                Runtime::closure23(v632.clone(), sprintf!("{}", string(" }")), ());
                 ()
             };
-            let v911: string = v586.l0.get().clone();
-            let v950: string = trimEndChars(
+            let v1023: string = v632.l0.get().clone();
+            let v1062: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v204,
-                        v554,
-                        v584,
-                        Runtime::closure22((), ()),
-                        v911
+                        v240,
+                        v600,
+                        v630,
+                        Runtime::closure24((), ()),
+                        v1023
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v950.clone());
+            println!("{}", v1062.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v950)
+            ((patternInput.1.clone()).l0.get().clone())(v1062)
         }
     }
-    pub fn closure24(
+    pub fn closure26(
         v0_1: LrcPtr<MutCell<Option<Runtime::US12>>>,
         v1_1: Option<Runtime::US12>,
     ) -> LrcPtr<MutCell<Option<Runtime::US12>>> {
         v0_1.set(v1_1);
         v0_1
     }
-    pub fn closure25(
+    pub fn closure27(
         v0_1: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
         v1_1: Func1<Option<Runtime::US12>, LrcPtr<MutCell<Option<Runtime::US12>>>>,
         unitVar: (),
@@ -2561,10 +2560,10 @@ pub mod Runtime {
         }
         ()
     }
-    pub fn closure27(v0_1: string, unitVar: ()) -> string {
+    pub fn closure29(v0_1: string, unitVar: ()) -> string {
         v0_1
     }
-    pub fn closure26(v0_1: string, unitVar: ()) {
+    pub fn closure28(v0_1: string, unitVar: ()) {
         fn v2_1() {
             Runtime::closure0((), ());
         }
@@ -2579,7 +2578,7 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v22: () = {
+        let v32: () = {
             v2_1();
             ()
         };
@@ -2590,13 +2589,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v40: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v60: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             0_i32
                 >= find(
-                    v40,
+                    v60,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -2606,11 +2605,11 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v48: () = {
+            let v68: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v50: () = {
+            let v72: () = {
                 v2_1();
                 ()
             };
@@ -2621,26 +2620,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v135: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v140: () = {
+            let _v169: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v174: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v135 = _v135.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v135.clone(), v)
+                        let _v169 = _v169.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v169.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v153: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v135.get().clone());
-            let v193: DateTime = match &v153 {
-                Runtime::US3::US3_0(v153_0_0) => {
-                    let v167: TimeSpan = TimeSpan::new_ticks(
+            let v189: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v169.get().clone());
+            let v229: DateTime = match &v189 {
+                Runtime::US3::US3_0(v189_0_0) => {
+                    let v203: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v153 {
+                        } - match &v189 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -2649,80 +2648,60 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v167.hours(),
-                        v167.minutes(),
-                        v167.seconds(),
-                        v167.milliseconds(),
+                        v203.hours(),
+                        v203.minutes(),
+                        v203.seconds(),
+                        v203.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v198: string = {
+            let v234: string = {
                 let provider: string = Runtime::method5();
-                v193.toString(provider)
+                v229.toString(provider)
             };
-            let v512: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
-            let v539: &str = inline_colorization::color_bright_black;
-            let v541: &str = &*v512;
-            let v543: &str = inline_colorization::color_reset;
-            let v545: string = string("format!(\"{v539}{v541}{v543}\")");
-            let v546: std::string::String = format!("{v539}{v541}{v543}");
-            let v548: string = fable_library_rust::String_::fromString(v546);
-            let v578: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v580: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v558: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
+            let v585: &str = inline_colorization::color_bright_black;
+            let v587: &str = &*v558;
+            let v589: &str = inline_colorization::color_reset;
+            let v591: string = string("format!(\"{v585}{v587}{v589}\")");
+            let v592: std::string::String = format!("{v585}{v587}{v589}");
+            let v594: string = fable_library_rust::String_::fromString(v592);
+            let v624: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v626: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v581: string = v580.l0.get().clone();
-            let v620: string = trimEndChars(
+            let v627: string = v626.l0.get().clone();
+            let v666: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v198,
-                        v548,
-                        v578,
-                        Runtime::closure27(v0_1, ()),
-                        v581
+                        v234,
+                        v594,
+                        v624,
+                        Runtime::closure29(v0_1, ()),
+                        v627
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v620.clone());
+            println!("{}", v666.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v620)
+            ((patternInput.1.clone()).l0.get().clone())(v666)
         }
     }
-    pub fn closure28(v0_1: string, unitVar: ()) {
-        printfn!("{0}", v0_1);
-    }
-    pub fn closure23(
+    pub fn closure25(
         v0_1: string,
         v1_1: Option<CancellationToken>,
         v2_1: Array<(string, string)>,
         v3: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
-        v5_1: bool,
-        v6_1: Option<string>,
-        v7_1: (),
-        v8_1: LrcPtr<ConcurrentStack_1<string>>,
-        v9_1: (),
-    ) {
-        let v14: Arc<Async<()>> = defaultOf();
-        defaultOf::<()>();
-        ();
-        ()
-    }
-    pub fn closure29(
-        v0_1: string,
-        v1_1: Option<CancellationToken>,
-        v2_1: Array<(string, string)>,
-        v3: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
-        v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
-        v5_1: bool,
-        v6_1: Option<string>,
-        v7_1: (),
-        v8_1: LrcPtr<ConcurrentStack_1<string>>,
-        v9_1: (),
+        v5: bool,
+        v6: Option<string>,
+        v7: (),
+        v8: LrcPtr<ConcurrentStack_1<string>>,
+        v9: (),
     ) {
         let v14: Arc<Async<()>> = defaultOf();
         defaultOf::<()>();
@@ -2730,13 +2709,30 @@ pub mod Runtime {
         ()
     }
     pub fn closure30(
+        v0_1: string,
+        v1_1: Option<CancellationToken>,
+        v2_1: Array<(string, string)>,
+        v3: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
+        v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+        v5: bool,
+        v6: Option<string>,
+        v7: (),
+        v8: LrcPtr<ConcurrentStack_1<string>>,
+        v9: (),
+    ) {
+        let v14: Arc<Async<()>> = defaultOf();
+        defaultOf::<()>();
+        ();
+        ()
+    }
+    pub fn closure31(
         v0_1: LrcPtr<MutCell<Option<Runtime::US13>>>,
         v1_1: Option<Runtime::US13>,
     ) -> LrcPtr<MutCell<Option<Runtime::US13>>> {
         v0_1.set(v1_1);
         v0_1
     }
-    pub fn closure31(
+    pub fn closure32(
         v0_1: Option<CancellationToken>,
         v1_1: Func1<Option<Runtime::US13>, LrcPtr<MutCell<Option<Runtime::US13>>>>,
         unitVar: (),
@@ -2756,16 +2752,16 @@ pub mod Runtime {
         }
         ()
     }
-    pub fn closure32(v0_1: (), unitVar: ()) {
+    pub fn closure33(v0_1: (), unitVar: ()) {
         if unbox::<bool>(&defaultOf()) == false {
             ();
             ()
         };
     }
-    pub fn closure34(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure35(unitVar: (), unitVar_1: ()) -> string {
         string("runtime.execute_with_options_async / WaitForExitAsync")
     }
-    pub fn closure33(v0_1: LrcPtr<TaskCanceledException>, unitVar: ()) {
+    pub fn closure34(v0_1: LrcPtr<TaskCanceledException>, unitVar: ()) {
         fn v2_1() {
             Runtime::closure0((), ());
         }
@@ -2780,7 +2776,7 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v22: () = {
+        let v32: () = {
             v2_1();
             ()
         };
@@ -2791,13 +2787,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v40: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v60: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             3_i32
                 >= find(
-                    v40,
+                    v60,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -2807,11 +2803,11 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v48: () = {
+            let v68: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v50: () = {
+            let v72: () = {
                 v2_1();
                 ()
             };
@@ -2822,26 +2818,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v135: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v140: () = {
+            let _v169: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v174: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v135 = _v135.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v135.clone(), v)
+                        let _v169 = _v169.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v169.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v153: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v135.get().clone());
-            let v193: DateTime = match &v153 {
-                Runtime::US3::US3_0(v153_0_0) => {
-                    let v167: TimeSpan = TimeSpan::new_ticks(
+            let v189: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v169.get().clone());
+            let v229: DateTime = match &v189 {
+                Runtime::US3::US3_0(v189_0_0) => {
+                    let v203: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v153 {
+                        } - match &v189 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -2850,78 +2846,78 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v167.hours(),
-                        v167.minutes(),
-                        v167.seconds(),
-                        v167.milliseconds(),
+                        v203.hours(),
+                        v203.minutes(),
+                        v203.seconds(),
+                        v203.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v198: string = {
+            let v234: string = {
                 let provider: string = Runtime::method5();
-                v193.toString(provider)
+                v229.toString(provider)
             };
-            let v512: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-            let v539: &str = inline_colorization::color_yellow;
-            let v541: &str = &*v512;
-            let v543: &str = inline_colorization::color_reset;
-            let v545: string = string("format!(\"{v539}{v541}{v543}\")");
-            let v546: std::string::String = format!("{v539}{v541}{v543}");
-            let v548: string = fable_library_rust::String_::fromString(v546);
-            let v578: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v580: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v558: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
+            let v585: &str = inline_colorization::color_yellow;
+            let v587: &str = &*v558;
+            let v589: &str = inline_colorization::color_reset;
+            let v591: string = string("format!(\"{v585}{v587}{v589}\")");
+            let v592: std::string::String = format!("{v585}{v587}{v589}");
+            let v594: string = fable_library_rust::String_::fromString(v592);
+            let v624: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v626: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v587: () = {
-                Runtime::closure21(v580.clone(), sprintf!("{}", string("{ ")), ());
+            let v633: () = {
+                Runtime::closure23(v626.clone(), sprintf!("{}", string("{ ")), ());
                 ()
             };
-            let v594: () = {
-                Runtime::closure21(v580.clone(), sprintf!("{}", string("ex")), ());
+            let v642: () = {
+                Runtime::closure23(v626.clone(), sprintf!("{}", string("ex")), ());
                 ()
             };
-            let v601: () = {
-                Runtime::closure21(v580.clone(), sprintf!("{}", string(" = ")), ());
+            let v651: () = {
+                Runtime::closure23(v626.clone(), sprintf!("{}", string(" = ")), ());
                 ()
             };
-            let v608: std::string::String = format!("{:#?}", v0_1);
-            let v634: () = {
-                Runtime::closure21(
-                    v580.clone(),
-                    sprintf!("{}", fable_library_rust::String_::fromString(v608)),
+            let v660: std::string::String = format!("{:#?}", v0_1);
+            let v686: () = {
+                Runtime::closure23(
+                    v626.clone(),
+                    sprintf!("{}", fable_library_rust::String_::fromString(v660)),
                     (),
                 );
                 ()
             };
-            let v641: () = {
-                Runtime::closure21(v580.clone(), sprintf!("{}", string(" }")), ());
+            let v695: () = {
+                Runtime::closure23(v626.clone(), sprintf!("{}", string(" }")), ());
                 ()
             };
-            let v642: string = v580.l0.get().clone();
-            let v681: string = trimEndChars(
+            let v698: string = v626.l0.get().clone();
+            let v737: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v198,
-                        v548,
-                        v578,
-                        Runtime::closure34((), ()),
-                        v642
+                        v234,
+                        v594,
+                        v624,
+                        Runtime::closure35((), ()),
+                        v698
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v681.clone());
+            println!("{}", v737.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v681)
+            ((patternInput.1.clone()).l0.get().clone())(v737)
         }
     }
-    pub fn closure36(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure37(unitVar: (), unitVar_1: ()) -> string {
         string("runtime.execute_with_options_async")
     }
-    pub fn closure35(v0_1: i32, v1_1: string, unitVar: ()) {
+    pub fn closure36(v0_1: i32, v1_1: string, unitVar: ()) {
         fn v3() {
             Runtime::closure0((), ());
         }
@@ -2936,7 +2932,7 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v23: () = {
+        let v33: () = {
             v3();
             ()
         };
@@ -2947,13 +2943,13 @@ pub mod Runtime {
             LrcPtr<Runtime::Mut3>,
             Option<i64>,
         ) = getValue(Runtime::State::trace_state().get().clone());
-        let v41: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
+        let v61: Runtime::US0 = (patternInput_1.3.clone()).l0.get().clone();
         if if (patternInput_1.2.clone()).l0.get().clone() == false {
             false
         } else {
             1_i32
                 >= find(
-                    v41,
+                    v61,
                     ofSeq(ofList(ofArray(new_array(&[
                         LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                         LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -2963,11 +2959,11 @@ pub mod Runtime {
                     ])))),
                 )
         } {
-            let v49: () = {
+            let v69: () = {
                 Runtime::closure7(patternInput.0.clone(), ());
                 ()
             };
-            let v51: () = {
+            let v73: () = {
                 v3();
                 ()
             };
@@ -2978,26 +2974,26 @@ pub mod Runtime {
                 LrcPtr<Runtime::Mut3>,
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let _v136: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
-            let v141: () = {
+            let _v170: LrcPtr<MutCell<Option<Runtime::US3>>> = refCell(None::<Runtime::US3>);
+            let v175: () = {
                 Runtime::closure9(
                     patternInput_2.4.clone(),
                     Func1::new({
-                        let _v136 = _v136.clone();
-                        move |v: Option<Runtime::US3>| Runtime::closure8(_v136.clone(), v)
+                        let _v170 = _v170.clone();
+                        move |v: Option<Runtime::US3>| Runtime::closure8(_v170.clone(), v)
                     }),
                     (),
                 );
                 ()
             };
-            let v154: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v136.get().clone());
-            let v194: DateTime = match &v154 {
-                Runtime::US3::US3_0(v154_0_0) => {
-                    let v168: TimeSpan = TimeSpan::new_ticks(
+            let v190: Runtime::US3 = defaultValue(Runtime::US3::US3_1, _v170.get().clone());
+            let v230: DateTime = match &v190 {
+                Runtime::US3::US3_0(v190_0_0) => {
+                    let v204: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v154 {
+                        } - match &v190 {
                             Runtime::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -3006,84 +3002,84 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v168.hours(),
-                        v168.minutes(),
-                        v168.seconds(),
-                        v168.milliseconds(),
+                        v204.hours(),
+                        v204.minutes(),
+                        v204.seconds(),
+                        v204.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let v199: string = {
+            let v235: string = {
                 let provider: string = Runtime::method5();
-                v194.toString(provider)
+                v230.toString(provider)
             };
-            let v513: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-            let v540: &str = inline_colorization::color_bright_blue;
-            let v542: &str = &*v513;
-            let v544: &str = inline_colorization::color_reset;
-            let v546: string = string("format!(\"{v540}{v542}{v544}\")");
-            let v547: std::string::String = format!("{v540}{v542}{v544}");
-            let v549: string = fable_library_rust::String_::fromString(v547);
-            let v579: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v580: i32 = length(v1_1);
-            let v582: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+            let v559: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
+            let v586: &str = inline_colorization::color_bright_blue;
+            let v588: &str = &*v559;
+            let v590: &str = inline_colorization::color_reset;
+            let v592: string = string("format!(\"{v586}{v588}{v590}\")");
+            let v593: std::string::String = format!("{v586}{v588}{v590}");
+            let v595: string = fable_library_rust::String_::fromString(v593);
+            let v625: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v626: i32 = length(v1_1);
+            let v628: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                 l0: MutCell::new(Runtime::method8()),
             });
-            let v589: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string("{ ")), ());
-                ()
-            };
-            let v596: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string("exit_code")), ());
-                ()
-            };
-            let v603: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string(" = ")), ());
-                ()
-            };
-            let v609: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", v0_1), ());
-                ()
-            };
-            let v616: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string("; ")), ());
-                ()
-            };
-            let v623: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string("output_length")), ());
-                ()
-            };
-            let v629: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string(" = ")), ());
-                ()
-            };
             let v635: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", v580), ());
+                Runtime::closure23(v628.clone(), sprintf!("{}", string("{ ")), ());
                 ()
             };
-            let v642: () = {
-                Runtime::closure21(v582.clone(), sprintf!("{}", string(" }")), ());
+            let v644: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string("exit_code")), ());
                 ()
             };
-            let v643: string = v582.l0.get().clone();
-            let v682: string = trimEndChars(
+            let v653: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string(" = ")), ());
+                ()
+            };
+            let v661: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", v0_1), ());
+                ()
+            };
+            let v670: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string("; ")), ());
+                ()
+            };
+            let v679: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string("output_length")), ());
+                ()
+            };
+            let v687: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string(" = ")), ());
+                ()
+            };
+            let v695: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", v626), ());
+                ()
+            };
+            let v704: () = {
+                Runtime::closure23(v628.clone(), sprintf!("{}", string(" }")), ());
+                ()
+            };
+            let v707: string = v628.l0.get().clone();
+            let v746: string = trimEndChars(
                 trimStartChars(
                     sprintf!(
                         "{} {} #{} {} / {}",
-                        v199,
-                        v549,
-                        v579,
-                        Runtime::closure36((), ()),
-                        v643
+                        v235,
+                        v595,
+                        v625,
+                        Runtime::closure37((), ()),
+                        v707
                     ),
                     toArray(empty::<char>()),
                 ),
                 toArray(ofArray(new_array(&[' ', '/']))),
             );
-            println!("{}", v682.clone());
+            println!("{}", v746.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v682)
+            ((patternInput.1.clone()).l0.get().clone())(v746)
         }
     }
     pub fn method9(
@@ -3092,12 +3088,12 @@ pub mod Runtime {
         v2_1: Array<(string, string)>,
         v3: Option<Func1<(i32, string, bool), Arc<Async<()>>>>,
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
-        v5_1: bool,
-        v6_1: Option<string>,
+        v5: bool,
+        v6: Option<string>,
     ) -> Arc<Async<(i32, string)>> {
         defaultOf()
     }
-    pub fn closure15(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
+    pub fn closure17(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
         Runtime::method9(
             v0_1,
             None::<CancellationToken>,
@@ -3108,7 +3104,7 @@ pub mod Runtime {
             None::<string>,
         )
     }
-    pub fn closure37(
+    pub fn closure38(
         unitVar: (),
         _arg: (
             string,
@@ -3130,7 +3126,7 @@ pub mod Runtime {
             _arg.6.clone(),
         )
     }
-    pub fn closure38(
+    pub fn closure39(
         unitVar: (),
         v0_1: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
     ) -> (
@@ -3142,7 +3138,7 @@ pub mod Runtime {
         bool,
         Option<string>,
     ) {
-        let v8_1: LrcPtr<Runtime::Heap0> = v0_1(LrcPtr::new(Runtime::Heap0 {
+        let v8: LrcPtr<Runtime::Heap0> = v0_1(LrcPtr::new(Runtime::Heap0 {
             l0: string(""),
             l1: None::<CancellationToken>,
             l2: new_empty::<(string, string)>(),
@@ -3152,13 +3148,13 @@ pub mod Runtime {
             l6: None::<string>,
         }));
         (
-            v8_1.l0.clone(),
-            v8_1.l1.clone(),
-            v8_1.l2.clone(),
-            v8_1.l3.clone(),
-            v8_1.l4.clone(),
-            v8_1.l5,
-            v8_1.l6.clone(),
+            v8.l0.clone(),
+            v8.l1.clone(),
+            v8.l2.clone(),
+            v8.l3.clone(),
+            v8.l4.clone(),
+            v8.l5,
+            v8.l6.clone(),
         )
     }
     pub fn method24(v0_1: char, v1_1: i64) -> bool {
@@ -3168,18 +3164,18 @@ pub mod Runtime {
             break '_method24 (if v1_1.get().clone() >= 4_i64 {
                 false
             } else {
-                let v19: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
+                let v19_1: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
                     Runtime::US7::US7_0('\\')
                 } else {
-                    let v5_1: i64 = v1_1.get().clone() - 1_i64;
-                    if v5_1 == 0_i64 {
+                    let v5: i64 = v1_1.get().clone() - 1_i64;
+                    if v5 == 0_i64 {
                         Runtime::US7::US7_0('`')
                     } else {
-                        let v8_1: i64 = v5_1 - 1_i64;
-                        if v8_1 == 0_i64 {
+                        let v8: i64 = v5 - 1_i64;
+                        if v8 == 0_i64 {
                             Runtime::US7::US7_0('\"')
                         } else {
-                            let v11: i64 = v8_1 - 1_i64;
+                            let v11: i64 = v8 - 1_i64;
                             if v11 == 0_i64 {
                                 Runtime::US7::US7_0(' ')
                             } else {
@@ -3190,8 +3186,8 @@ pub mod Runtime {
                     }
                 };
                 if v0_1.get().clone()
-                    == match &v19 {
-                        Runtime::US7::US7_0(v19_0_0) => match &v19 {
+                    == match &v19_1 {
+                        Runtime::US7::US7_0(v19_1_0_0) => match &v19_1 {
                             Runtime::US7::US7_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -3316,25 +3312,25 @@ pub mod Runtime {
             break '_method27 (if v1_1.get().clone() >= 3_i64 {
                 false
             } else {
-                let v15: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
+                let v15_1: Runtime::US7 = if v1_1.get().clone() == 0_i64 {
                     Runtime::US7::US7_0('\\')
                 } else {
-                    let v5_1: i64 = v1_1.get().clone() - 1_i64;
-                    if v5_1 == 0_i64 {
+                    let v5: i64 = v1_1.get().clone() - 1_i64;
+                    if v5 == 0_i64 {
                         Runtime::US7::US7_0('`')
                     } else {
-                        let v8_1: i64 = v5_1 - 1_i64;
-                        if v8_1 == 0_i64 {
+                        let v8: i64 = v5 - 1_i64;
+                        if v8 == 0_i64 {
                             Runtime::US7::US7_0('\"')
                         } else {
-                            let v11: i64 = v8_1 - 1_i64;
+                            let v11: i64 = v8 - 1_i64;
                             Runtime::US7::US7_1
                         }
                     }
                 };
                 if v0_1.get().clone()
-                    == match &v15 {
-                        Runtime::US7::US7_0(v15_0_0) => match &v15 {
+                    == match &v15_1 {
+                        Runtime::US7::US7_0(v15_1_0_0) => match &v15_1 {
                             Runtime::US7::US7_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -3352,7 +3348,7 @@ pub mod Runtime {
             });
         }
     }
-    pub fn closure40(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US6 {
+    pub fn closure41(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US6 {
         let v3: i32 = _arg.3.clone();
         let v2_1: i32 = _arg.2.clone();
         let v1_1: LrcPtr<StringBuilder> = _arg.1.clone();
@@ -3363,18 +3359,18 @@ pub mod Runtime {
                 (v1_1.clone(), v2_1, v3)
             ))
         } else {
-            let v7_1: char = getCharAt(v0_1.clone(), 0_i32);
-            if v7_1 == '\\' {
-                let v15: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
-                let v17: string = ofChar(v7_1);
-                let v20: i32 = length(v17.clone());
+            let v7: char = getCharAt(v0_1.clone(), 0_i32);
+            if v7 == '\\' {
+                let v15_1: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
+                let v17_1: string = ofChar(v7);
+                let v20: i32 = length(v17_1.clone());
                 let v21: Array<char> = new_init(&'\u{0000}', v20);
                 let v22: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
                     l0: MutCell::new(0_i32),
                 });
                 while Runtime::method11(v20, v22.clone()) {
                     let v24: i32 = v22.l0.get().clone();
-                    let v25: char = getCharAt(v17.clone(), v24);
+                    let v25: char = getCharAt(v17_1.clone(), v24);
                     v21.get_mut()[v24 as usize] = v25;
                     {
                         let v26: i32 = v24 + 1_i32;
@@ -3397,8 +3393,8 @@ pub mod Runtime {
                         v3,
                     );
                     Runtime::US5::US5_0(
-                        v7_1,
-                        v15,
+                        v7,
+                        v15_1,
                         patternInput.0.clone(),
                         patternInput.1.clone(),
                         patternInput.2.clone(),
@@ -3494,7 +3490,7 @@ pub mod Runtime {
             Runtime::US5::US5_1(v114_1_0) => Runtime::US6::US6_1(v114_1_0.clone()),
         }
     }
-    pub fn closure41(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US6 {
+    pub fn closure42(unitVar: (), _arg: (string, LrcPtr<StringBuilder>, i32, i32)) -> Runtime::US6 {
         let v3: i32 = _arg.3.clone();
         let v2_1: i32 = _arg.2.clone();
         let v1_1: LrcPtr<StringBuilder> = _arg.1.clone();
@@ -3505,18 +3501,18 @@ pub mod Runtime {
                 (v1_1.clone(), v2_1, v3)
             ))
         } else {
-            let v7_1: char = getCharAt(v0_1.clone(), 0_i32);
-            if v7_1 == '`' {
-                let v15: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
-                let v17: string = ofChar(v7_1);
-                let v20: i32 = length(v17.clone());
+            let v7: char = getCharAt(v0_1.clone(), 0_i32);
+            if v7 == '`' {
+                let v15_1: string = getSlice(v0_1.clone(), Some(1_i32), Some(length(v0_1.clone())));
+                let v17_1: string = ofChar(v7);
+                let v20: i32 = length(v17_1.clone());
                 let v21: Array<char> = new_init(&'\u{0000}', v20);
                 let v22: LrcPtr<Runtime::Mut5> = LrcPtr::new(Runtime::Mut5 {
                     l0: MutCell::new(0_i32),
                 });
                 while Runtime::method11(v20, v22.clone()) {
                     let v24: i32 = v22.l0.get().clone();
-                    let v25: char = getCharAt(v17.clone(), v24);
+                    let v25: char = getCharAt(v17_1.clone(), v24);
                     v21.get_mut()[v24 as usize] = v25;
                     {
                         let v26: i32 = v24 + 1_i32;
@@ -3539,8 +3535,8 @@ pub mod Runtime {
                         v3,
                     );
                     Runtime::US5::US5_0(
-                        v7_1,
-                        v15,
+                        v7,
+                        v15_1,
                         patternInput.0.clone(),
                         patternInput.1.clone(),
                         patternInput.2.clone(),
@@ -3652,7 +3648,7 @@ pub mod Runtime {
             break '_method28 (match v4.get().clone().as_ref() {
                 Runtime::UH3::UH3_0 => Runtime::US6::US6_1(string("choice / no parsers succeeded")),
                 Runtime::UH3::UH3_1(v4_1_0, v4_1_1) => {
-                    let v9_1: Runtime::US6 = (match v4.get().clone().as_ref() {
+                    let v9: Runtime::US6 = (match v4.get().clone().as_ref() {
                         Runtime::UH3::UH3_1(x, _) => x.clone(),
                         _ => unreachable!(),
                     })((
@@ -3661,10 +3657,8 @@ pub mod Runtime {
                         v2_1.get().clone(),
                         v3.get().clone(),
                     ));
-                    match &v9_1 {
-                        Runtime::US6::US6_0(v9_1_0_0, v9_1_0_1, v9_1_0_2, v9_1_0_3, v9_1_0_4) => {
-                            v9_1.clone()
-                        }
+                    match &v9 {
+                        Runtime::US6::US6_0(v9_0_0, v9_0_1, v9_0_2, v9_0_3, v9_0_4) => v9.clone(),
                         _ => {
                             let v0_1_temp: string = v0_1.get().clone();
                             let v1_1_temp: LrcPtr<StringBuilder> = v1_1.get().clone();
@@ -3811,7 +3805,7 @@ pub mod Runtime {
                         LrcPtr::new(Runtime::UH3::UH3_1(
                             Func1::new(
                                 move |arg10_0040: (string, LrcPtr<StringBuilder>, i32, i32)| {
-                                    Runtime::closure40((), arg10_0040)
+                                    Runtime::closure41((), arg10_0040)
                                 },
                             ),
                             LrcPtr::new(Runtime::UH3::UH3_1(
@@ -3822,7 +3816,7 @@ pub mod Runtime {
                                         i32,
                                         i32,
                                     )| {
-                                        Runtime::closure41((), arg10_0040_1)
+                                        Runtime::closure42((), arg10_0040_1)
                                     },
                                 ),
                                 LrcPtr::new(Runtime::UH3::UH3_0),
@@ -4020,8 +4014,8 @@ pub mod Runtime {
         let v4: MutCell<i32> = MutCell::new(v4);
         '_method23: loop {
             break '_method23 ({
-                let v5_1: bool = string("") == v1_1.get().clone();
-                let v82: Runtime::US5 = if v5_1 {
+                let v5: bool = string("") == v1_1.get().clone();
+                let v82: Runtime::US5 = if v5 {
                     Runtime::US5::US5_1(sprintf!(
                         "parsing.none_of / unexpected end of input / chars: {:?} / s: {:?}",
                         toArray(ofArray(new_array(&['\\', '`', '\"', ' ']))),
@@ -4097,7 +4091,7 @@ pub mod Runtime {
                 let v341: Runtime::US6 = match &v96 {
                     Runtime::US6::US6_0(v96_0_0, v96_0_1, v96_0_2, v96_0_3, v96_0_4) => v96.clone(),
                     _ => {
-                        let v165: Runtime::US5 = if v5_1 {
+                        let v165: Runtime::US5 = if v5 {
                             Runtime::US5::US5_1(sprintf!(
                                 "parsing.p_char / unexpected end of input / s: {:?}",
                                 (v2_1.get().clone(), v3.get().clone(), v4.get().clone())
@@ -4387,7 +4381,7 @@ pub mod Runtime {
                                                 i32,
                                                 i32,
                                             )| {
-                                                Runtime::closure40((), arg10_0040)
+                                                Runtime::closure41((), arg10_0040)
                                             },
                                         ),
                                         LrcPtr::new(Runtime::UH3::UH3_1(
@@ -4398,7 +4392,7 @@ pub mod Runtime {
                                                     i32,
                                                     i32,
                                                 )| {
-                                                    Runtime::closure41((), arg10_0040_1)
+                                                    Runtime::closure42((), arg10_0040_1)
                                                 },
                                             ),
                                             LrcPtr::new(Runtime::UH3::UH3_0),
@@ -4551,7 +4545,7 @@ pub mod Runtime {
         let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
         _v0.set(Some(Some(v0_1)));
         {
-            let v15: Runtime::US15 = Runtime::method23(
+            let v15_1: Runtime::US15 = Runtime::method23(
                 LrcPtr::new(Runtime::UH2::UH2_0),
                 defaultValue(
                     string(""),
@@ -4564,18 +4558,18 @@ pub mod Runtime {
                 1_i32,
                 1_i32,
             );
-            match &v15 {
-                Runtime::US15::US15_0(v15_0_0, v15_0_1, v15_0_2, v15_0_3, v15_0_4) => {
+            match &v15_1 {
+                Runtime::US15::US15_0(v15_1_0_0, v15_1_0_1, v15_1_0_2, v15_1_0_3, v15_1_0_4) => {
                     Runtime::US14::US14_0(toArray(Runtime::method30(
-                        v15_0_0.clone(),
+                        v15_1_0_0.clone(),
                         empty::<string>(),
                     )))
                 }
-                Runtime::US15::US15_1(v15_1_0) => Runtime::US14::US14_1(v15_1_0.clone()),
+                Runtime::US15::US15_1(v15_1_1_0) => Runtime::US14::US14_1(v15_1_1_0.clone()),
             }
         }
     }
-    pub fn closure39(unitVar: (), v0_1: string) -> Result<Array<string>, string> {
+    pub fn closure40(unitVar: (), v0_1: string) -> Result<Array<string>, string> {
         let v1_1: Runtime::US14 = Runtime::method22(v0_1);
         match &v1_1 {
             Runtime::US14::US14_0(v1_1_0_0) => Ok::<Array<string>, string>(v1_1_0_0.clone()),
@@ -4599,23 +4593,23 @@ pub mod Runtime {
         })
         .clone()
     }
-    pub fn v5() -> Func0<()> {
-        static v5: OnceInit<Func0<()>> = OnceInit::new();
-        v5.get_or_init(|| Func0::new(move || Runtime::closure4((), ())))
+    pub fn v15() -> Func0<()> {
+        static v15: OnceInit<Func0<()>> = OnceInit::new();
+        v15.get_or_init(|| Func0::new(move || Runtime::closure4((), ())))
             .clone()
     }
     pub fn current_process_kill() {
-        (Runtime::v5())();
+        (Runtime::v15())();
     }
-    pub fn v6() -> Func1<string, Arc<Async<(i32, string)>>> {
-        static v6: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: string| Runtime::closure15((), v)))
+    pub fn v16() -> Func1<string, Arc<Async<(i32, string)>>> {
+        static v16: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
+        v16.get_or_init(|| Func1::new(move |v: string| Runtime::closure17((), v)))
             .clone()
     }
     pub fn execute_async(x: string) -> Arc<Async<(i32, string)>> {
-        (Runtime::v6())(x)
+        (Runtime::v16())(x)
     }
-    pub fn v7() -> Func1<
+    pub fn v17() -> Func1<
         (
             string,
             Option<CancellationToken>,
@@ -4627,7 +4621,7 @@ pub mod Runtime {
         ),
         Arc<Async<(i32, string)>>,
     > {
-        static v7: OnceInit<
+        static v17: OnceInit<
             Func1<
                 (
                     string,
@@ -4641,7 +4635,7 @@ pub mod Runtime {
                 Arc<Async<(i32, string)>>,
             >,
         > = OnceInit::new();
-        v7.get_or_init(|| {
+        v17.get_or_init(|| {
             Func1::new(
                 move |arg10_0040: (
                     string,
@@ -4651,7 +4645,7 @@ pub mod Runtime {
                     Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
                     bool,
                     Option<string>,
-                )| Runtime::closure37((), arg10_0040),
+                )| Runtime::closure38((), arg10_0040),
             )
         })
         .clone()
@@ -4667,9 +4661,9 @@ pub mod Runtime {
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        (Runtime::v7())(x)
+        (Runtime::v17())(x)
     }
-    pub fn v8() -> Func1<
+    pub fn v18() -> Func1<
         Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
         (
             string,
@@ -4681,7 +4675,7 @@ pub mod Runtime {
             Option<string>,
         ),
     > {
-        static v8: OnceInit<
+        static v18: OnceInit<
             Func1<
                 Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
                 (
@@ -4695,10 +4689,10 @@ pub mod Runtime {
                 ),
             >,
         > = OnceInit::new();
-        v8.get_or_init(|| {
+        v18.get_or_init(|| {
             Func1::new(
                 move |v: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>| {
-                    Runtime::closure38((), v)
+                    Runtime::closure39((), v)
                 },
             )
         })
@@ -4715,15 +4709,15 @@ pub mod Runtime {
         bool,
         Option<string>,
     ) {
-        (Runtime::v8())(x)
+        (Runtime::v18())(x)
     }
-    pub fn v9() -> Func1<string, Result<Array<string>, string>> {
-        static v9: OnceInit<Func1<string, Result<Array<string>, string>>> = OnceInit::new();
-        v9.get_or_init(|| Func1::new(move |v: string| Runtime::closure39((), v)))
+    pub fn v19() -> Func1<string, Result<Array<string>, string>> {
+        static v19: OnceInit<Func1<string, Result<Array<string>, string>>> = OnceInit::new();
+        v19.get_or_init(|| Func1::new(move |v: string| Runtime::closure40((), v)))
             .clone()
     }
     pub fn split_args(x: string) -> Result<Array<string>, string> {
-        (Runtime::v9())(x)
+        (Runtime::v19())(x)
     }
     on_startup!(());
 }
