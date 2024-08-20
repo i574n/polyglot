@@ -361,6 +361,32 @@ inl (~!\\) forall t u. ((args : t), (code : string)) : u =
 
 #!markdown
 
+### u128
+
+#!spiral
+
+nominal u128 =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"u128\")>]\n#endif\ntype u128 = class end"
+        $'' : $'u128'
+    )
+
+#!spiral
+
+inl u128 forall t. (x : t) : u128 =
+    !\\(x, $'"$0 as u128"')
+
+#!markdown
+
+### f64
+
+#!spiral
+
+inl f64 forall t. (x : t) : f64 =
+    !\\(x, $'"$0 as f64"')
+
+#!markdown
+
 ### emit
 
 #!spiral

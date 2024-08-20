@@ -7857,7 +7857,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-red-intense-fg">critical</span> #2 runWithTimeoutChoiceAsync / ex: System.Exception: error / timeout: 60
+<pre>00:00:01 <span class="ansi-red-intense-fg">critical</span> #2 runWithTimeoutChoiceAsync / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 
 </pre>
@@ -8125,7 +8125,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #5 runWithTimeoutStrict / timeout: 10
+<pre>00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #5 runWithTimeoutStrict / ex: System.TimeoutException: The operation has timed out. / timeout: 10
 &lt;null&gt;
 
 </pre>
@@ -8394,7 +8394,7 @@ a.anchor-link {
                 <span class="k">else</span> <span class="n">lastError</span> <span class="o">|&gt;</span> <span class="n">Error</span> <span class="o">|&gt;</span> <span class="n">init</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Async.retryAsync / retry: </span><span class="si">{retry}</span><span class="s2">/</span><span class="si">{retries}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
+            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="n">loop</span> <span class="mi">1</span> <span class="s2">"Async.retryAsync / invalid retries / retries: </span><span class="si">{retries}</span><span class="s2">"</span>

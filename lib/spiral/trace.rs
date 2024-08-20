@@ -21,6 +21,7 @@ pub mod Trace {
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -403,6 +404,16 @@ pub mod Trace {
     pub fn closure11(v0_1: LrcPtr<Trace::Mut4>, v1_1: string, unitVar: ()) {
         let v3: string = append(v0_1.l0.get().clone(), v1_1);
         v0_1.l0.set(v3);
+        ()
+    }
+    pub fn closure13(v0_1: string, unitVar: ()) {
+        printfn!("{0}", v0_1);
+    }
+    pub fn closure12(unitVar: (), v0_1: string) {
+        let v3: () = {
+            Trace::closure13(v0_1, ());
+            ()
+        };
         ()
     }
     pub fn closure7(v0_1: Trace::US0, v1_1: Func0<string>, v2_1: Func0<string>, unitVar: ()) {

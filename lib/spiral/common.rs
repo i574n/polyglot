@@ -26,6 +26,7 @@ pub mod Common {
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -485,6 +486,16 @@ pub mod Common {
     pub fn closure15(unitVar: (), unitVar_1: ()) -> string {
         string("common.retry_fn")
     }
+    pub fn closure17(v0_1: string, unitVar: ()) {
+        printfn!("{0}", v0_1);
+    }
+    pub fn closure16(unitVar: (), v0_1: string) {
+        let v3: () = {
+            Common::closure17(v0_1, ());
+            ()
+        };
+        ()
+    }
     pub fn closure10(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
         fn v3() {
             Common::closure0((), ());
@@ -721,11 +732,11 @@ pub mod Common {
     pub fn method12(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
-    pub fn closure17(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
+    pub fn closure19(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
         v0_1.get_Value();
         ()
     }
-    pub fn closure16(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
+    pub fn closure18(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
         let v1_1 = Common::method12(v0_1);
         let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
             let v1_1 = v1_1.clone();
@@ -733,7 +744,7 @@ pub mod Common {
         }));
         Func0::new({
             let v2_1 = v2_1.clone();
-            move || Common::closure17(v2_1.clone(), ())
+            move || Common::closure19(v2_1.clone(), ())
         })
     }
     pub fn v0() -> () {
@@ -771,7 +782,7 @@ pub mod Common {
     }
     pub fn v17() -> Func1<Func0<()>, Func0<()>> {
         static v17: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
-        v17.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure16((), v)))
+        v17.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure18((), v)))
             .clone()
     }
     pub fn memoize(x: Func0<()>) -> Func0<()> {

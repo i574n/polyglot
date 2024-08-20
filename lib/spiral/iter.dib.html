@@ -7584,7 +7584,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="iter_enumerate">iter_enumerate<a class="anchor-link" href="#iter_enumerate">¶</a></h3>
+<h3 id="enumerate">enumerate<a class="anchor-link" href="#enumerate">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7596,7 +7596,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">iter_enumerate</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="p">(</span><span class="n">pair</span> <span class="n">unativeint</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">enumerate</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="p">(</span><span class="n">pair</span> <span class="n">unativeint</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!iter.enumerate().map(std::sync::Arc::new)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7662,7 +7662,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="iter_map">iter_map<a class="anchor-link" href="#iter_map">¶</a></h3>
+<h3 id="map">map<a class="anchor-link" href="#map">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7674,7 +7674,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">iter_map</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">u</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">u</span> <span class="o">=</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"!iter.map(|x| $0(x))"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7688,11 +7688,63 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="try_for_each">try_for_each<a class="anchor-link" href="#try_for_each">¶</a></h3>
+<h3 id="cloned">cloned<a class="anchor-link" href="#cloned">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">cloned</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!iter.cloned()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="for_each">for_each<a class="anchor-link" href="#for_each">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">for_each</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="nb">iter</span> <span class="p">:</span> <span class="n">into_iterator</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; !iter.for_each(|x| $0(x))"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="try_for_each">try_for_each<a class="anchor-link" href="#try_for_each">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7710,7 +7762,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7720,7 +7772,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7733,7 +7785,7 @@ a.anchor-link {
     <span class="n">ar</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
     <span class="o">|&gt;</span> <span class="n">into_iter</span>
-    <span class="o">|&gt;</span> <span class="n">iter_enumerate</span>
+    <span class="o">|&gt;</span> <span class="nb">enumerate</span>
     <span class="o">|&gt;</span> <span class="n">iter_collect</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map'</span> <span class="n">from_pair</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.from_vec</span>
@@ -7742,7 +7794,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

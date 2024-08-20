@@ -30150,7 +30150,7 @@ pwsh_replace_html_result: {v4599}"
                                                 struct (v11164, v11165, v11166)
                                             else
                                                 let v11167 : string = $"target/spiral_builder/{v8057}/target/wasm32-unknown-unknown/release/spiral_builder_{v6532}.wasm"
-                                                let v11168 : string = $"'workspace/target/release/spiral_wasm -w {v11167}'"
+                                                let v11168 : string = $"'workspace/target/release/spiral_wasm -t Debug -w {v11167}'"
                                                 let v11169 : string = "scripts/invoke-block.ps1"
                                                 let v11170 : string = $"pwsh -c \"pwsh {v11169} {v11168} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\""
                                                 let v11171 : bool = v10277 = 0

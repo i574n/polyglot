@@ -411,8 +411,18 @@ export function closure15(unitVar: void, unitVar_1: void): string {
     return "common.retry_fn";
 }
 
+export function closure17(v0_1: string, unitVar: void): void {
+    console.log(v0_1);
+}
+
+export function closure16(unitVar: void, v0_1: string): void {
+    let v3: any;
+    closure17(v0_1, undefined);
+    v3 = undefined;
+}
+
 export function closure10(v0_1: int32, v1_1: Error, unitVar: void): void {
-    let v264: int64, v274: number;
+    let v304: int64, v314: number;
     const v3 = (): void => {
         closure0(undefined, undefined);
     };
@@ -420,61 +430,61 @@ export function closure10(v0_1: int32, v1_1: Error, unitVar: void): void {
     v3();
     v4 = undefined;
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    let v23: any;
+    let v33: any;
     v3();
-    v23 = undefined;
+    v33 = undefined;
     const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    const v41: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (3 >= find<US0_$union, int32>(v41, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    const v61: US0_$union = patternInput_1[3].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (3 >= find<US0_$union, int32>(v61, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v49: any;
+        let v69: any;
         closure11(patternInput[0], undefined);
-        v49 = undefined;
-        let v51: any;
+        v69 = undefined;
+        let v73: any;
         v3();
-        v51 = undefined;
+        v73 = undefined;
         const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-        const _v242: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v247: any;
-        closure13(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure12(_v242, v), undefined);
-        v247 = undefined;
-        const v260: US3_$union = defaultArg(_v242.contents, US3_US3_1());
-        const v305: string = toString((v260.tag === /* US3_0 */ 0) ? ((v264 = v260.fields[0], (v274 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v264))), create(1, 1, 1, hours(v274), minutes(v274), seconds(v274), milliseconds(v274))))) : now(), method9());
-        const v564: string = ("\u001b[93m" + padLeft("Warning".toLocaleLowerCase(), 7, " ")) + method10();
-        const v579: int64 = patternInput_2[0].l0;
-        const v581: Mut4 = new Mut4(method11());
-        let v588: any;
-        closure14(v581, `${"{ "}`, undefined);
-        v588 = undefined;
-        let v595: any;
-        closure14(v581, `${"retry"}`, undefined);
-        v595 = undefined;
-        let v602: any;
-        closure14(v581, `${" = "}`, undefined);
-        v602 = undefined;
-        let v608: any;
-        closure14(v581, `${v0_1}`, undefined);
-        v608 = undefined;
-        let v615: any;
-        closure14(v581, `${"; "}`, undefined);
-        v615 = undefined;
-        let v622: any;
-        closure14(v581, `${"ex"}`, undefined);
-        v622 = undefined;
-        let v628: any;
-        closure14(v581, `${" = "}`, undefined);
-        v628 = undefined;
-        let v661: any;
-        closure14(v581, `${toText(interpolate("%A%P()", [v1_1]))}`, undefined);
-        v661 = undefined;
-        let v668: any;
-        closure14(v581, `${" }"}`, undefined);
-        v668 = undefined;
-        const v669: string = v581.l0;
-        const v708: string = trimEnd(trimStart(`${v305} ${v564} #${v579} ${closure15(undefined, undefined)} / ${v669}`, ...[]), ...[" ", "/"]);
-        console.log(v708);
-        patternInput[1].l0(v708);
+        const _v280: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v285: any;
+        closure13(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure12(_v280, v), undefined);
+        v285 = undefined;
+        const v300: US3_$union = defaultArg(_v280.contents, US3_US3_1());
+        const v345: string = toString((v300.tag === /* US3_0 */ 0) ? ((v304 = v300.fields[0], (v314 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v304))), create(1, 1, 1, hours(v314), minutes(v314), seconds(v314), milliseconds(v314))))) : now(), method9());
+        const v610: string = ("\u001b[93m" + padLeft("Warning".toLocaleLowerCase(), 7, " ")) + method10();
+        const v625: int64 = patternInput_2[0].l0;
+        const v627: Mut4 = new Mut4(method11());
+        let v634: any;
+        closure14(v627, `${"{ "}`, undefined);
+        v634 = undefined;
+        let v643: any;
+        closure14(v627, `${"retry"}`, undefined);
+        v643 = undefined;
+        let v652: any;
+        closure14(v627, `${" = "}`, undefined);
+        v652 = undefined;
+        let v660: any;
+        closure14(v627, `${v0_1}`, undefined);
+        v660 = undefined;
+        let v669: any;
+        closure14(v627, `${"; "}`, undefined);
+        v669 = undefined;
+        let v678: any;
+        closure14(v627, `${"ex"}`, undefined);
+        v678 = undefined;
+        let v686: any;
+        closure14(v627, `${" = "}`, undefined);
+        v686 = undefined;
+        let v721: any;
+        closure14(v627, `${toText(interpolate("%A%P()", [v1_1]))}`, undefined);
+        v721 = undefined;
+        let v730: any;
+        closure14(v627, `${" }"}`, undefined);
+        v730 = undefined;
+        const v733: string = v627.l0;
+        const v772: string = trimEnd(trimStart(`${v345} ${v610} #${v625} ${closure15(undefined, undefined)} / ${v733}`, ...[]), ...[" ", "/"]);
+        closure16(undefined, v772);
+        patternInput[1].l0(v772);
     }
 }
 
@@ -496,9 +506,9 @@ export function method7(v0_1_mut: int32, v1_1_mut: (() => void), v2_1_mut: int32
         catch (ex: any) {
             result.contents = closure9(v2_1, ex);
         }
-        const v7_1: US5_$union = result.contents;
-        if (v7_1.tag === /* US5_0 */ 0) {
-            return v7_1.fields[0];
+        const v7: US5_$union = result.contents;
+        if (v7.tag === /* US5_0 */ 0) {
+            return v7.fields[0];
         }
         else {
             v0_1_mut = v0_1;
@@ -528,17 +538,17 @@ export function method12(v0_1: (() => void)): (() => void) {
     return v0_1;
 }
 
-export function closure17(v0_1: any, unitVar: void): void {
+export function closure19(v0_1: any, unitVar: void): void {
     v0_1.Value;
 }
 
-export function closure16(unitVar: void, v0_1: (() => void)): (() => void) {
+export function closure18(unitVar: void, v0_1: (() => void)): (() => void) {
     const v1_1: (() => void) = method12(v0_1);
     const v2_1: any = new Lazy<void>((): void => {
         v1_1();
     });
     return (): void => {
-        closure17(v2_1, undefined);
+        closure19(v2_1, undefined);
     };
 }
 
@@ -550,22 +560,22 @@ export const v1 = (): void => {
 
 export const v2: any = (v1(), v0);
 
-export const v5 = (v: (() => void)): IDisposable => closure4(undefined, v);
+export const v15 = (v: (() => void)): IDisposable => closure4(undefined, v);
 
 export function new_disposable(x: (() => void)): IDisposable {
-    return v5(x);
+    return v15(x);
 }
 
-export const v6 = (v: int32): ((arg0: (() => void)) => Option<void>) => closure5(undefined, v);
+export const v16 = (v: int32): ((arg0: (() => void)) => Option<void>) => closure5(undefined, v);
 
 export function retry_fn(x: int32): ((arg0: (() => void)) => Option<void>) {
-    return v6(x);
+    return v16(x);
 }
 
-export const v7 = (v: (() => void)): (() => void) => closure16(undefined, v);
+export const v17 = (v: (() => void)): (() => void) => closure18(undefined, v);
 
 export function memoize(x: (() => void)): (() => void) {
-    return v7(x);
+    return v17(x);
 }
 
 

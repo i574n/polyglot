@@ -21,5 +21,4 @@ tokio = { workspace = true }
 anyhow = "~1.0"
 sha2 = "~0.11.0-pre.3"
 near-workspaces = { version = "~0.11", features = ["experimental", "unstable"] }
-near-primitives = "~0.23"
 near-sandbox-utils = { version = "~0.9", features = ["global_install"] }

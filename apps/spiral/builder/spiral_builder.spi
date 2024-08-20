@@ -707,8 +707,9 @@ inl process_rust { fs_path deps trace_level runtime } =
 
                 inl command =
                     inl invoke_block_path = "scripts/invoke-block.ps1"
-                    inl spiral_wasm : string = $'$"\'workspace/target/release/spiral_wasm -w {!wasm_path}\'"'
-                    $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\\\""'
+                    inl spiral_wasm_command : string =
+                        $'$"\'workspace/target/release/spiral_wasm -t Debug -w {!wasm_path}\'"'
+                    $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm_command} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\\\""'
 
                 if exit_code = 0 then
                     inl exit_code, spiral_wasm_result =

@@ -7984,30 +7984,43 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">streamAsyncChild</span> <span class="o">=</span>
                 <span class="n">stream</span>
                 <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span>
-                        <span class="k">match</span> <span class="n">event</span> <span class="k">with</span>
-                        <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">codePath</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span>
-                            <span class="n">when</span> <span class="p">[</span> <span class="s2">"main.spi"</span><span class="p">;</span> <span class="s2">"real_main.spir"</span> <span class="p">]</span>
-                                <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileName</span> <span class="n">codePath</span><span class="p">)</span>
-                            <span class="o">-&gt;</span>
-                            <span class="k">async</span> <span class="p">{</span>
-                                <span class="n">let</span> <span class="n">hashDir</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetParent</span>
-                                <span class="n">let</span> <span class="n">hashHex</span> <span class="o">=</span> <span class="n">hashDir</span><span class="o">.</span><span class="n">Name</span>
-                                <span class="n">let</span> <span class="n">codePath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">codePath</span>
-                                <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">hashHex</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
-                                <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
+                    <span class="k">match</span> <span class="n">event</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">codePath</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span>
+                        <span class="n">when</span> <span class="p">[</span> <span class="s2">"main.spi"</span><span class="p">;</span> <span class="s2">"real_main.spir"</span> <span class="p">]</span>
+                            <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileName</span> <span class="n">codePath</span><span class="p">)</span>
+                        <span class="o">-&gt;</span>
+                        <span class="k">async</span> <span class="p">{</span>
+                            <span class="n">let</span> <span class="n">hashDir</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetParent</span>
+                            <span class="n">let</span> <span class="n">hashHex</span> <span class="o">=</span> <span class="n">hashDir</span><span class="o">.</span><span class="n">Name</span>
+                            <span class="n">let</span> <span class="n">codePath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">codePath</span>
+                            <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">hashHex</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
+                            <span class="o">//</span> <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
+                            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
                                 <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="kc">None</span> <span class="kc">None</span>
-                                <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
-                                <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
-                                    <span class="n">do</span><span class="err">!</span>
-                                        <span class="n">tokens</span>
-                                        <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
-                                        <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_exists</span> <span class="n">tokensPath</span>
-                                <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
-                                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None"</span><span class="p">)</span> <span class="n">_locals</span>
+                                <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">||</span> <span class="n">tokens</span> <span class="o">&lt;&gt;</span> <span class="n">Some</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+                                <span class="n">then</span> <span class="k">return</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">retry</span>
+                                <span class="k">else</span>
+                                    <span class="n">trace</span> <span class="n">Debug</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel"</span><span class="p">)</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / tokens: </span><span class="si">{tokens}</span><span class="s2">"</span><span class="p">)</span>
+                                    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
+                                    <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                             <span class="p">}</span>
-                            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">retryAsync</span> <span class="mi">2</span>
-                            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">Result</span><span class="o">.</span><span class="n">toOption</span> <span class="o">&gt;&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
-                        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">init</span>
+                            <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">loop</span> <span class="mi">1</span>
+                            <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
+                            <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
+                                <span class="n">do</span><span class="err">!</span>
+                                    <span class="n">tokens</span>
+                                    <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
+                                    <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_exists</span> <span class="n">tokensPath</span>
+                            <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
+                                <span class="n">trace</span> <span class="n">Debug</span>
+                                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel"</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"retries: </span><span class="si">{retries}</span><span class="s2"> / tokens: </span><span class="si">{tokens}</span><span class="s2">"</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">retryAsync</span> <span class="mi">3</span>
+                        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">Result</span><span class="o">.</span><span class="n">toOption</span> <span class="o">&gt;&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">())</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">init</span>
                 <span class="p">)</span>
 
             <span class="n">let</span> <span class="n">parentAsyncChild</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
@@ -8019,7 +8032,7 @@ a.anchor-link {
                 <span class="k">if</span> <span class="n">parentProcessId</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="n">u</span> <span class="n">then</span>
                     <span class="n">let</span> <span class="n">parentProcess</span> <span class="o">=</span> <span class="n">parentProcessId</span> <span class="o">|&gt;</span> <span class="nb">int</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">GetProcessById</span>
                     <span class="n">do</span><span class="err">!</span> <span class="n">parentProcess</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span>
+                    <span class="n">trace</span> <span class="n">Debug</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.parentAsyncChild / Parent process has exited. Performing cleanup..."</span><span class="p">)</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"{_locals ()}"</span><span class="p">)</span>
                     <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1000</span>

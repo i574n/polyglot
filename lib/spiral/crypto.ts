@@ -345,8 +345,18 @@ export function closure11(unitVar: void, unitVar_1: void): string {
     return "crypto.hash_to_port";
 }
 
+export function closure13(v0_1: string, unitVar: void): void {
+    console.log(v0_1);
+}
+
+export function closure12(unitVar: void, v0_1: string): void {
+    let v3: any;
+    closure13(v0_1, undefined);
+    v3 = undefined;
+}
+
 export function closure2(v0_1: int32, v1_1: string, v2: uint16, unitVar: void): void {
-    let v265: int64, v275: number;
+    let v305: int64, v315: number;
     const v4 = (): void => {
         closure3(undefined, undefined);
     };
@@ -354,73 +364,73 @@ export function closure2(v0_1: int32, v1_1: string, v2: uint16, unitVar: void): 
     v4();
     v5 = undefined;
     const patternInput: [Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_2(State_trace_state());
-    let v24: any;
+    let v34: any;
     v4();
-    v24 = undefined;
+    v34 = undefined;
     const patternInput_1: [Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_2(State_trace_state());
-    const v42: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v42, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    const v62: US0_$union = patternInput_1[3].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v62, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v50: any;
+        let v70: any;
         closure7(patternInput[0], undefined);
-        v50 = undefined;
-        let v52: any;
+        v70 = undefined;
+        let v74: any;
         v4();
-        v52 = undefined;
+        v74 = undefined;
         const patternInput_2: [Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_2(State_trace_state());
-        const _v243: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v248: any;
-        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v243, v), undefined);
-        v248 = undefined;
-        const v261: US3_$union = defaultArg(_v243.contents, US3_US3_1());
-        const v306: string = toString((v261.tag === /* US3_0 */ 0) ? ((v265 = v261.fields[0], (v275 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v265))), create(1, 1, 1, hours(v275), minutes(v275), seconds(v275), milliseconds(v275))))) : now(), method10());
-        const v565: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method11();
-        const v580: int64 = patternInput_2[0].l0;
-        const v582: Mut5 = new Mut5(method12());
-        let v589: any;
-        closure10(v582, `${"{ "}`, undefined);
-        v589 = undefined;
-        let v596: any;
-        closure10(v582, `${"first_letter_code"}`, undefined);
-        v596 = undefined;
-        let v603: any;
-        closure10(v582, `${" = "}`, undefined);
-        v603 = undefined;
-        let v609: any;
-        closure10(v582, `${v0_1}`, undefined);
-        v609 = undefined;
-        let v616: any;
-        closure10(v582, `${"; "}`, undefined);
-        v616 = undefined;
-        let v623: any;
-        closure10(v582, `${"hash_part"}`, undefined);
-        v623 = undefined;
-        let v629: any;
-        closure10(v582, `${" = "}`, undefined);
-        v629 = undefined;
+        const _v281: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v286: any;
+        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v281, v), undefined);
+        v286 = undefined;
+        const v301: US3_$union = defaultArg(_v281.contents, US3_US3_1());
+        const v346: string = toString((v301.tag === /* US3_0 */ 0) ? ((v305 = v301.fields[0], (v315 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v305))), create(1, 1, 1, hours(v315), minutes(v315), seconds(v315), milliseconds(v315))))) : now(), method10());
+        const v611: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method11();
+        const v626: int64 = patternInput_2[0].l0;
+        const v628: Mut5 = new Mut5(method12());
         let v635: any;
-        closure10(v582, `${v1_1}`, undefined);
+        closure10(v628, `${"{ "}`, undefined);
         v635 = undefined;
-        let v641: any;
-        closure10(v582, `${"; "}`, undefined);
-        v641 = undefined;
-        let v648: any;
-        closure10(v582, `${"combined_value"}`, undefined);
-        v648 = undefined;
-        let v654: any;
-        closure10(v582, `${" = "}`, undefined);
-        v654 = undefined;
-        let v660: any;
-        closure10(v582, `${v2}`, undefined);
-        v660 = undefined;
-        let v667: any;
-        closure10(v582, `${" }"}`, undefined);
-        v667 = undefined;
-        const v668: string = v582.l0;
-        const v707: string = trimEnd(trimStart(`${v306} ${v565} #${v580} ${closure11(undefined, undefined)} / ${v668}`, ...[]), ...[" ", "/"]);
-        console.log(v707);
-        patternInput[1].l0(v707);
+        let v644: any;
+        closure10(v628, `${"first_letter_code"}`, undefined);
+        v644 = undefined;
+        let v653: any;
+        closure10(v628, `${" = "}`, undefined);
+        v653 = undefined;
+        let v661: any;
+        closure10(v628, `${v0_1}`, undefined);
+        v661 = undefined;
+        let v670: any;
+        closure10(v628, `${"; "}`, undefined);
+        v670 = undefined;
+        let v679: any;
+        closure10(v628, `${"hash_part"}`, undefined);
+        v679 = undefined;
+        let v687: any;
+        closure10(v628, `${" = "}`, undefined);
+        v687 = undefined;
+        let v695: any;
+        closure10(v628, `${v1_1}`, undefined);
+        v695 = undefined;
+        let v703: any;
+        closure10(v628, `${"; "}`, undefined);
+        v703 = undefined;
+        let v712: any;
+        closure10(v628, `${"combined_value"}`, undefined);
+        v712 = undefined;
+        let v720: any;
+        closure10(v628, `${" = "}`, undefined);
+        v720 = undefined;
+        let v728: any;
+        closure10(v628, `${v2}`, undefined);
+        v728 = undefined;
+        let v737: any;
+        closure10(v628, `${" }"}`, undefined);
+        v737 = undefined;
+        const v740: string = v628.l0;
+        const v779: string = trimEnd(trimStart(`${v346} ${v611} #${v626} ${closure11(undefined, undefined)} / ${v740}`, ...[]), ...[" ", "/"]);
+        closure12(undefined, v779);
+        patternInput[1].l0(v779);
     }
 }
 

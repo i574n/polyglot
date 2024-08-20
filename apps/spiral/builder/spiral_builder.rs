@@ -17841,7 +17841,7 @@ mod module_7e2cd9e0 {
                                                                                                     string =
                                                                                                 sprintf!("pwsh -c \"pwsh {} {} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\"",
                                                                                                          string("scripts/invoke-block.ps1"),
-                                                                                                         sprintf!("\'workspace/target/release/spiral_wasm -w {}\'",
+                                                                                                         sprintf!("\'workspace/target/release/spiral_wasm -t Debug -w {}\'",
                                                                                                                   v11167.clone()));
                                                                                             let patternInput_16:
                                                                                                     (Spiral_builder::US1,

@@ -105,80 +105,80 @@ pub mod Date_time {
         string("hhmm")
     }
     pub fn method0(v0_1: Guid, v1_1: DateTime) -> Guid {
-        let v170: DateTime = {
+        let v172: DateTime = {
             let _arg: DateTime =
                 DateTime::new_ymdhms_kind(1970_i32, 1_i32, 1_i32, 0_i32, 0_i32, 0_i32, 1_i32);
             _arg.toUniversalTime()
         };
-        let v188: i64 = ({
+        let v190: i64 = ({
             let _arg_2: DateTime = {
                 let _arg_1: DateTime = DateTime::specifyKind(v1_1, 2_i32);
                 _arg_1.toUniversalTime()
             };
             _arg_2.ticks()
-        } - v170.ticks())
+        } - v172.ticks())
             / 10_i64;
-        let v190: Option<chrono::DateTime<chrono::Utc>> =
-            chrono::DateTime::from_timestamp_micros(v188);
-        let _v191: LrcPtr<MutCell<Option<Date_time::US0>>> = refCell(None::<Date_time::US0>);
-        let v196: () = {
+        let v192: Option<chrono::DateTime<chrono::Utc>> =
+            chrono::DateTime::from_timestamp_micros(v190);
+        let _v193: LrcPtr<MutCell<Option<Date_time::US0>>> = refCell(None::<Date_time::US0>);
+        let v198: () = {
             Date_time::closure3(
-                v190,
+                v192,
                 Func1::new({
-                    let _v191 = _v191.clone();
-                    move |v: Option<Date_time::US0>| Date_time::closure2(_v191.clone(), v)
+                    let _v193 = _v193.clone();
+                    move |v: Option<Date_time::US0>| Date_time::closure2(_v193.clone(), v)
                 }),
                 (),
             );
             ()
         };
-        let v209: Date_time::US0 = defaultValue(Date_time::US0::US0_1, _v191.get().clone());
-        let v229: Date_time::US1 = match &v209 {
-            Date_time::US0::US0_0(v209_0_0) => {
-                let v215: chrono::NaiveDateTime = match &v209 {
+        let v213: Date_time::US0 = defaultValue(Date_time::US0::US0_1, _v193.get().clone());
+        let v233: Date_time::US1 = match &v213 {
+            Date_time::US0::US0_0(v213_0_0) => {
+                let v219: chrono::NaiveDateTime = match &v213 {
                     Date_time::US0::US0_0(x) => x.clone(),
                     _ => unreachable!(),
                 }
                 .naive_utc();
-                let v217: chrono::DateTime<chrono::Local> =
-                    chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v215);
-                let v219: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
-                let v220: &str = r#"%Y%m%d-%H%M-%S%f"#;
-                let v222: std::string::String = v217.format(v220).to_string();
-                let v224: string = fable_library_rust::String_::fromString(v222);
+                let v221: chrono::DateTime<chrono::Local> =
+                    chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v219);
+                let v223: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
+                let v224: &str = r#"%Y%m%d-%H%M-%S%f"#;
+                let v226: std::string::String = v221.format(v224).to_string();
+                let v228: string = fable_library_rust::String_::fromString(v226);
                 Date_time::US1::US1_0(sprintf!(
                     "{}-{}-{}",
-                    getSlice(v224.clone(), Some(0_i32), Some(17_i32)),
-                    getSlice(v224.clone(), Some(18_i32), Some(21_i32)),
-                    getCharAt(v224, 22_i32)
+                    getSlice(v228.clone(), Some(0_i32), Some(17_i32)),
+                    getSlice(v228.clone(), Some(18_i32), Some(21_i32)),
+                    getCharAt(v228, 22_i32)
                 ))
             }
             _ => Date_time::US1::US1_1,
         };
-        let v233: string = match &v229 {
-            Date_time::US1::US1_0(v229_0_0) => match &v229 {
+        let v237: string = match &v233 {
+            Date_time::US1::US1_0(v233_0_0) => match &v233 {
                 Date_time::US1::US1_0(x) => x.clone(),
                 _ => unreachable!(),
             },
             _ => string(""),
         };
-        let v237: LrcPtr<TimeZoneInfo> = defaultOf();
-        let v311: u8 = if zero.hours() > 0_i32 { 1_u8 } else { 0_u8 };
-        let v312: string = Date_time::method1();
-        let v320: string = zero.to_string(v312);
-        let v323: string = sprintf!(
+        let v241: LrcPtr<TimeZoneInfo> = defaultOf();
+        let v315: u8 = if zero.hours() > 0_i32 { 1_u8 } else { 0_u8 };
+        let v316: string = Date_time::method1();
+        let v324: string = zero.to_string(v316);
+        let v327: string = sprintf!(
             "{}{}{}",
-            v311,
-            getSlice(v320.clone(), Some(0_i32), Some(1_i32)),
-            getSlice(v320, Some(3_i32), Some(4_i32))
+            v315,
+            getSlice(v324.clone(), Some(0_i32), Some(1_i32)),
+            getSlice(v324, Some(3_i32), Some(4_i32))
         );
         parse(sprintf!(
             "{}{}{}",
-            v233.clone(),
-            v323.clone(),
+            v237.clone(),
+            v327.clone(),
             getSlice(
                 toString(v0_1),
-                Some(length(v233) + length(v323)),
+                Some(length(v237) + length(v327)),
                 None::<i32>
             )
         ))

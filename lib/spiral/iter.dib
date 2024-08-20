@@ -23,11 +23,11 @@ open testing
 
 #!markdown
 
-### iter_enumerate
+### enumerate
 
 #!spiral
 
-inl iter_enumerate forall t. (iter : into_iterator t) : into_iterator (pair unativeint t) =
+inl enumerate forall t. (iter : into_iterator t) : into_iterator (pair unativeint t) =
     !\($'"!iter.enumerate().map(std::sync::Arc::new)"')
 
 #!markdown
@@ -50,12 +50,30 @@ inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 
 #!markdown
 
-### iter_map
+### map
 
 #!spiral
 
-inl iter_map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator u =
+inl map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator u =
     !\\(fn, $'"!iter.map(|x| $0(x))"')
+
+#!markdown
+
+### cloned
+
+#!spiral
+
+inl cloned forall t. (iter : into_iterator (rust.ref t)) : into_iterator t =
+    !\($'"!iter.cloned()"')
+
+#!markdown
+
+### for_each
+
+#!spiral
+
+inl for_each forall t. (fn : t -> ()) (iter : into_iterator t) : () =
+    (!\\(fn, $'"true; !iter.for_each(|x| $0(x))"') : bool) |> ignore
 
 #!markdown
 
@@ -79,7 +97,7 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
     ar
     |> am'.to_vec
     |> into_iter
-    |> iter_enumerate
+    |> enumerate
     |> iter_collect
     |> am'.vec_map' from_pair
     |> am'.from_vec

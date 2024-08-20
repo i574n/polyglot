@@ -162,30 +162,43 @@ module Eval =
                 let streamAsyncChild =
                     stream
                     |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) ->
-                            match event with
-                            | FileSystem.FileSystemChange.Changed (codePath, _)
-                                when [ "main.spi"; "real_main.spir" ]
-                                    |> List.contains (System.IO.Path.GetFileName codePath)
-                                ->
-                                async {
-                                    let hashDir = codePath |> System.IO.Directory.GetParent
-                                    let hashHex = hashDir.Name
-                                    let codePath = tokensDir </> codePath
-                                    let tokensPath = tokensDir </> hashHex </> "tokens.json"
-                                    do! Async.Sleep 30
+                        match event with
+                        | FileSystem.FileSystemChange.Changed (codePath, _)
+                            when [ "main.spi"; "real_main.spir" ]
+                                |> List.contains (System.IO.Path.GetFileName codePath)
+                            ->
+                            async {
+                                let hashDir = codePath |> System.IO.Directory.GetParent
+                                let hashHex = hashDir.Name
+                                let codePath = tokensDir </> codePath
+                                let tokensPath = tokensDir </> hashHex </> "tokens.json"
+                                // do! Async.Sleep 30
+                                let rec loop retry = async {
                                     let! tokens = codePath |> Supervisor.getFileTokenRange None None
-                                    match tokens with
-                                    | Some tokens ->
-                                        do!
-                                            tokens
-                                            |> FSharp.Json.Json.serialize
-                                            |> SpiralFileSystem.write_all_text_exists tokensPath
-                                    | None ->
-                                        trace Verbose (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None") _locals
+                                    if retry = 3 || tokens <> Some [||]
+                                    then return tokens, retry
+                                    else
+                                        trace Debug
+                                            (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel")
+                                            (fun () -> $"retry: {retry} / tokens: {tokens}")
+                                        do! Async.Sleep 30
+                                        return! loop (retry + 1)
                                 }
-                                |> Async.retryAsync 2
-                                |> Async.map (Result.toOption >> Option.get)
-                            | _ -> () |> Async.init
+                                let! tokens, retries = loop 1
+                                match tokens with
+                                | Some tokens ->
+                                    do!
+                                        tokens
+                                        |> FSharp.Json.Json.serialize
+                                        |> SpiralFileSystem.write_all_text_exists tokensPath
+                                | None ->
+                                    trace Debug
+                                        (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel")
+                                        (fun () -> $"retries: {retries} / tokens: {tokens}")
+                            }
+                            |> Async.retryAsync 3
+                            |> Async.map (Result.toOption >> Option.defaultValue ())
+                        | _ -> () |> Async.init
                     )
 
                 let parentAsyncChild = async {
@@ -197,7 +210,7 @@ module Eval =
                     if parentProcessId > 0u then
                         let parentProcess = parentProcessId |> int |> System.Diagnostics.Process.GetProcessById
                         do! parentProcess.WaitForExitAsync () |> Async.AwaitTask
-                        trace Verbose
+                        trace Debug
                             (fun () -> "Eval.parentAsyncChild / Parent process has exited. Performing cleanup...")
                             (fun () -> $"{_locals ()}")
                         System.Threading.Thread.Sleep 1000
