@@ -37,7 +37,19 @@ inl length forall dim {int} el. (a : a dim el) : dim =
 #!spiral
 
 inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
-    index a i
+    backend_switch {
+        Fsharp = fun () => index a i
+        Python = fun () => $'!a[!i]' : el
+    }
+
+#!markdown
+
+### index_base
+
+#!spiral
+
+inl index_base forall el. (i : int) (ar : array_base el) : el =
+    ar |> a |> index i
 
 #!markdown
 

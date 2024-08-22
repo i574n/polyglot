@@ -136,7 +136,10 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 
 /// ### starts_with
 inl starts_with (value : string) (s : string) : bool =
-    $'!s.StartsWith !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.StartsWith !value ' : bool
+        Python = fun () => $'!s.startswith(!value)' : bool
+    }
 
 /// ### is_white_space
 inl is_white_space (c : char) : bool =
@@ -238,7 +241,10 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 /// ### split
 inl split (separator : string) (str : string) : array_base string =
-    $'!str.Split !separator '
+    backend_switch {
+        Fsharp = fun () => $'!str.Split !separator ' : array_base string
+        Python = fun () => $'!str.split(!separator)' : array_base string
+    }
 
 /// ### split_string
 inl split_string (separator : array_base string) (str : string) : array_base string =

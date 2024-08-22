@@ -411,6 +411,11 @@ and method4 (v0 : US0) : struct (Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = method5()
     let v3 : string = method6(v2)
+    
+    
+    
+    
+    
     let v4 : bool = "Verbose" = v3
     let v8 : US2 =
         if v4 then
@@ -549,6 +554,11 @@ and method4 (v0 : US0) : struct (Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =
 #if FABLE_COMPILER_TYPESCRIPT
     let v111 : string = method5()
     let v112 : string = method6(v111)
+    
+    
+    
+    
+    
     let v113 : bool = "Verbose" = v112
     let v117 : US2 =
         if v113 then
@@ -622,6 +632,11 @@ and method4 (v0 : US0) : struct (Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =
 #if FABLE_COMPILER_PYTHON
     let v172 : string = method5()
     let v173 : string = method6(v172)
+    
+    
+    
+    
+    
     let v174 : bool = "Verbose" = v173
     let v178 : US2 =
         if v174 then
@@ -695,6 +710,11 @@ and method4 (v0 : US0) : struct (Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =
 #else
     let v233 : string = method5()
     let v234 : string = method6(v233)
+    
+    
+    
+    
+    
     let v235 : bool = "Verbose" = v234
     let v239 : US2 =
         if v235 then
@@ -1097,6 +1117,11 @@ and closure2 (v0 : int32, v1 : string, v2 : uint16) () : unit =
         let _v102 = v482 
         #endif
         let v485 : string = _v102 
+        
+        
+        
+        
+        
         let v555 : string = "Verbose"
         let v556 : (unit -> string) = v555.ToLower
         let v557 : string = v556 ()

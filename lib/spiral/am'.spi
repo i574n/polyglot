@@ -10,7 +10,14 @@ inl length forall dim {int} el. (a : a dim el) : dim =
 
 /// ### index
 inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
-    index a i
+    backend_switch {
+        Fsharp = fun () => index a i
+        Python = fun () => $'!a[!i]' : el
+    }
+
+/// ### index_base
+inl index_base forall el. (i : int) (ar : array_base el) : el =
+    ar |> a |> index i
 
 /// ### base
 inl base forall dim {int} el. ((a a) : a dim el) : array_base el =

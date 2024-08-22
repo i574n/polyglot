@@ -7783,17 +7783,241 @@ a.anchor-link {
         99,
     ],
 } } }
-09:33:14 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001337; total_gas_burnt = 2001863107385 }
-09:33:14 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-09:33:14 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
-09:33:14 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
+14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c<span class="o">=</span>-t<span class="o">=</span>Verbose
+
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>14:58:54 <span class="ansi-black-intense-fg">verbose</span> #1 spiral_wasm.main / { args = Array(MutCell(["-t", "Debug", "-w", "target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm", "-t=Verbose"])) }
+14:58:54 <span class="ansi-black-intense-fg">verbose</span> #2 spiral_wasm.run / { wasm_path = target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm }
+14:58:56 <span class="ansi-black-intense-fg">verbose</span> #3 spiral_wasm.run / { worker = Worker {
+    workspace: Sandbox {
+        root_id: AccountId(
+            "test.near",
+        ),
+        rpc_url: Url {
+            scheme: "http",
+            cannot_be_a_base: false,
+            username: "",
+            password: None,
+            host: Some(
+                Ipv4(
+                    127.0.0.1,
+                ),
+            ),
+            port: Some(
+                60827,
+            ),
+            path: "/",
+            query: None,
+            fragment: None,
+        },
+        rpc_port: Some(
+            60827,
+        ),
+        net_port: Some(
+            60817,
+        ),
+        version: Some(
+            "1.40.0/7dd0b5993577f592be15eb102e5a3da37be66271",
+        ),
+    },
+} }
+14:58:57 <span class="ansi-black-intense-fg">verbose</span> #4 spiral_wasm.run / { contract = Contract {
+    id: AccountId(
+        "dev-20240822175856-47650502035559",
+    ),
+} }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #5 spiral_wasm.run / { result = ExecutionFinalResult {
+    total_gas_burnt: NearGas {
+        inner: 1778680544885,
+    },
+    transaction: ExecutionOutcome {
+        transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
+        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
+        logs: [],
+        receipt_ids: [
+            3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
+        ],
+        gas_burnt: NearGas {
+            inner: 308081859340,
+        },
+        tokens_burnt: NearToken {
+            inner: 30808185934000000000,
+        },
+        executor_id: AccountId(
+            "dev-20240822175856-47650502035559",
+        ),
+        status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
+    },
+    receipts: [
+        ExecutionOutcome {
+            transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
+            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
+            logs: [
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
+            ],
+            receipt_ids: [
+                DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
+            ],
+            gas_burnt: NearGas {
+                inner: 1470598685545,
+            },
+            tokens_burnt: NearToken {
+                inner: 147059868554500000000,
+            },
+            executor_id: AccountId(
+                "dev-20240822175856-47650502035559",
+            ),
+            status: SuccessValue(''),
+        },
+    ],
+    status: SuccessValue(''),
+} }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace / { trace1 = 1; trace2 = 2 }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace / { state = { version = 1; alias_map = LookupMap {
+    prefix: [
+        108,
+    ],
+}; account_map = LookupMap {
+    prefix: [
+        99,
+    ],
+} } }
+14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
+14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #9 spiral_wasm.run / { result2 = Ok(
+    ExecutionResult {
+        total_gas_burnt: NearGas {
+            inner: 1778680544885,
+        },
+        transaction: ExecutionOutcome {
+            transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
+            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
+            logs: [],
+            receipt_ids: [
+                3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
+            ],
+            gas_burnt: NearGas {
+                inner: 308081859340,
+            },
+            tokens_burnt: NearToken {
+                inner: 30808185934000000000,
+            },
+            executor_id: AccountId(
+                "dev-20240822175856-47650502035559",
+            ),
+            status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
+        },
+        receipts: [
+            ExecutionOutcome {
+                transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
+                block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
+                logs: [
+                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
+                ],
+                receipt_ids: [
+                    DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
+                ],
+                gas_burnt: NearGas {
+                    inner: 1470598685545,
+                },
+                tokens_burnt: NearToken {
+                    inner: 147059868554500000000,
+                },
+                executor_id: AccountId(
+                    "dev-20240822175856-47650502035559",
+                ),
+                status: SuccessValue(''),
+            },
+        ],
+        value: Value {
+            repr: "",
+        },
+    },
+) }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #10 spiral_wasm.run / { receipt_failures = [] }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #11 spiral_wasm.run / { receipt_outcomes = [
+    ExecutionOutcome {
+        transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
+        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
+        logs: [
+            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
+            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
+        ],
+        receipt_ids: [
+            DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
+        ],
+        gas_burnt: NearGas {
+            inner: 1470598685545,
+        },
+        tokens_burnt: NearToken {
+            inner: 147059868554500000000,
+        },
+        executor_id: AccountId(
+            "dev-20240822175856-47650502035559",
+        ),
+        status: SuccessValue(''),
+    },
+] }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #12 spiral_wasm.run / { json = Err(
+    Error {
+        repr: Custom {
+            kind: DataConversion,
+            error: "the function call returned an empty value, which cannot be parsed as JSON",
+        },
+    },
+) }
+14:58:58 <span class="ansi-black-intense-fg">verbose</span> #13 spiral_wasm.run / { borsh = Err(
+    Error {
+        repr: Custom {
+            kind: DataConversion,
+            error: Custom {
+                kind: InvalidData,
+                error: "Unexpected length of input",
+            },
+        },
+    },
+) }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7803,7 +8027,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

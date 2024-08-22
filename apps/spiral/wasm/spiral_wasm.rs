@@ -35,7 +35,9 @@ mod module_fb49c4a9 {
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::padLeft;
         use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::split;
         use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::startsWith;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toLower;
         use fable_library_rust::String_::trimEndChars;
@@ -203,52 +205,53 @@ mod module_fb49c4a9 {
             let v1: string = string("r#\"command\"#");
             let v2: &'static str = r#"command"#;
             let v4: clap::Command = clap::Command::new(v2);
-            let v6: string = string("r#\"trace_level\"#");
-            let v7: &'static str = r#"trace_level"#;
-            let v9: clap::Arg = clap::Arg::new(v7);
-            let v11: clap::Arg = v9.short('t');
-            let v12: string = string("r#\"trace_level\"#");
-            let v13: &'static str = r#"trace_level"#;
-            let v15: clap::Arg = v11.long(v13);
-            let v38: Array<string> = toArray(ofArray(new_array(&[
+            let v6: clap::Command = clap::Command::args_override_self(v4, true);
+            let v8: string = string("r#\"trace_level\"#");
+            let v9: &'static str = r#"trace_level"#;
+            let v11: clap::Arg = clap::Arg::new(v9);
+            let v13: clap::Arg = v11.short('t');
+            let v14: string = string("r#\"trace_level\"#");
+            let v15: &'static str = r#"trace_level"#;
+            let v17: clap::Arg = v13.long(v15);
+            let v40: Array<string> = toArray(ofArray(new_array(&[
                 string("Verbose"),
                 string("Debug"),
                 string("Info"),
                 string("Warning"),
                 string("Critical"),
             ])));
-            let v42: Vec<string> = v38.to_vec();
-            let v44: bool = true;
-            let _result: Vec<_> = v42
+            let v44: Vec<string> = v40.to_vec();
+            let v46: bool = true;
+            let _result: Vec<_> = v44
                 .into_iter()
                 .map(|x| {
                     //;
-                    let v46: string = x;
-                    let v48: &str = &*v46;
-                    let v50: std::string::String = String::from(v48);
-                    let v52: Box<std::string::String> = Box::new(v50);
-                    let v54: &'static mut std::string::String = Box::leak(v52);
-                    let v56: clap::builder::PossibleValue =
-                        clap::builder::PossibleValue::new(&**v54);
-                    let v58: bool = true;
-                    v56
+                    let v48: string = x;
+                    let v50: &str = &*v48;
+                    let v52: std::string::String = String::from(v50);
+                    let v54: Box<std::string::String> = Box::new(v52);
+                    let v56: &'static mut std::string::String = Box::leak(v54);
+                    let v58: clap::builder::PossibleValue =
+                        clap::builder::PossibleValue::new(&**v56);
+                    let v60: bool = true;
+                    v58
                 })
                 .collect::<Vec<_>>();
-            let v60: Vec<clap::builder::PossibleValue> = _result;
-            let v62: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
-                clap::builder::PossibleValuesParser::new(v60),
+            let v62: Vec<clap::builder::PossibleValue> = _result;
+            let v64: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
+                clap::builder::PossibleValuesParser::new(v62),
             );
-            let v64: clap::Arg = v15.value_parser(v62);
-            let v66: clap::Command = clap::Command::arg(v4, v64);
-            let v68: string = string("r#\"wasm\"#");
-            let v69: &'static str = r#"wasm"#;
-            let v71: clap::Arg = clap::Arg::new(v69);
-            let v73: clap::Arg = v71.short('w');
-            let v74: string = string("r#\"wasm\"#");
-            let v75: &'static str = r#"wasm"#;
-            let v77: clap::Arg = v73.long(v75);
-            let v79: clap::Arg = v77.required(true);
-            clap::Command::arg(v66, v79)
+            let v66: clap::Arg = v17.value_parser(v64);
+            let v68: clap::Command = clap::Command::arg(v6, v66);
+            let v70: string = string("r#\"wasm\"#");
+            let v71: &'static str = r#"wasm"#;
+            let v73: clap::Arg = clap::Arg::new(v71);
+            let v75: clap::Arg = v73.short('w');
+            let v76: string = string("r#\"wasm\"#");
+            let v77: &'static str = r#"wasm"#;
+            let v79: clap::Arg = v75.long(v77);
+            let v81: clap::Arg = v79.required(true);
+            clap::Command::arg(v68, v81)
         }
         pub fn method1() -> string {
             string("trace_level")
@@ -1365,6 +1368,12 @@ mod module_fb49c4a9 {
             };
             ()
         }
+        pub fn method13() -> string {
+            string("(")
+        }
+        pub fn method14() -> string {
+            string(" ")
+        }
         pub fn closure27(unitVar: (), unitVar_1: ()) -> string {
             string("spiral_wasm.print_usd")
         }
@@ -1469,79 +1478,126 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v162.toString(provider)
                 };
-                let v559: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-                let v575: &str = inline_colorization::color_bright_blue;
-                let v577: &str = &*v559;
-                let v579: &str = inline_colorization::color_reset;
-                let v581: string = string("format!(\"{v575}{v577}{v579}\")");
-                let v582: std::string::String = format!("{v575}{v577}{v579}");
-                let v584: string = fable_library_rust::String_::fromString(v582);
-                let v625: i64 = (patternInput_2.0.clone()).l0.get().clone();
-                let v627: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                let v555: string = Spiral_wasm::method13();
+                let v567: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
-                let v634: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", string("{ ")), ());
+                let v578: () = {
+                    Spiral_wasm::closure12(
+                        v567.clone(),
+                        sprintf!("{}", sprintf!("{:?}", Spiral_wasm::US3::US3_0)),
+                        (),
+                    );
                     ()
                 };
-                let v643: () = {
+                let v582: Array<string> = split(v567.l0.get().clone(), v555, -1_i32, 0_i32);
+                let v585: string = v582[0_i32].clone();
+                let v589: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                    l0: MutCell::new(Spiral_wasm::method10()),
+                });
+                let v600: () = {
                     Spiral_wasm::closure12(
-                        v627.clone(),
+                        v589.clone(),
+                        sprintf!("{}", sprintf!("{:?}", Spiral_wasm::US3::US3_1)),
+                        (),
+                    );
+                    ()
+                };
+                let v610: Spiral_wasm::US4 = if startsWith(v589.l0.get().clone(), v585, false) {
+                    Spiral_wasm::US4::US4_0(string("Verbose"))
+                } else {
+                    Spiral_wasm::US4::US4_1
+                };
+                let v616: Spiral_wasm::US4 = match &v610 {
+                    Spiral_wasm::US4::US4_0(v610_0_0) => Spiral_wasm::US4::US4_0(match &v610 {
+                        Spiral_wasm::US4::US4_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => Spiral_wasm::US4::US4_0(string("Debug")),
+                };
+                let v625: string = padLeft(
+                    toLower(match &v616 {
+                        Spiral_wasm::US4::US4_0(v616_0_0) => match &v616 {
+                            Spiral_wasm::US4::US4_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        },
+                        _ => panic!("{}", string("Option does not have a value."),),
+                    }),
+                    7_i32,
+                    ' ',
+                );
+                let v641: &str = inline_colorization::color_bright_blue;
+                let v643: &str = &*v625;
+                let v645: &str = inline_colorization::color_reset;
+                let v647: string = string("format!(\"{v641}{v643}{v645}\")");
+                let v648: std::string::String = format!("{v641}{v643}{v645}");
+                let v650: string = fable_library_rust::String_::fromString(v648);
+                let v691: i64 = (patternInput_2.0.clone()).l0.get().clone();
+                let v693: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                    l0: MutCell::new(Spiral_wasm::method10()),
+                });
+                let v700: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", string("{ ")), ());
+                    ()
+                };
+                let v709: () = {
+                    Spiral_wasm::closure12(
+                        v693.clone(),
                         sprintf!("{}", string("total_gas_burnt_usd")),
                         (),
                     );
                     ()
                 };
-                let v652: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", string(" = ")), ());
+                let v718: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v660: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{:+.6}", v1), ());
+                let v726: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{:+.6}", v1), ());
                     ()
                 };
-                let v669: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", string("; ")), ());
+                let v735: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v678: () = {
+                let v744: () = {
                     Spiral_wasm::closure12(
-                        v627.clone(),
+                        v693.clone(),
                         sprintf!("{}", string("total_gas_burnt")),
                         (),
                     );
                     ()
                 };
-                let v686: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", string(" = ")), ());
+                let v752: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v694: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", v0_1), ());
+                let v760: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", v0_1), ());
                     ()
                 };
-                let v703: () = {
-                    Spiral_wasm::closure12(v627.clone(), sprintf!("{}", string(" }")), ());
+                let v769: () = {
+                    Spiral_wasm::closure12(v693.clone(), sprintf!("{}", string(" }")), ());
                     ()
                 };
-                let v706: string = v627.l0.get().clone();
-                let v745: string = trimEndChars(
+                let v772: string = v693.l0.get().clone();
+                let v811: string = trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v167,
-                            v584,
-                            v625,
+                            v650,
+                            v691,
                             Spiral_wasm::closure27((), ()),
-                            v706
+                            v772
                         ),
                         toArray(empty::<char>()),
                     ),
                     toArray(ofArray(new_array(&[' ', '/']))),
                 );
-                println!("{}", v745.clone());
+                println!("{}", v811.clone());
                 ();
-                ((patternInput.1.clone()).l0.get().clone())(v745)
+                ((patternInput.1.clone()).l0.get().clone())(v811)
             }
         }
         pub fn closure30(unitVar: (), unitVar_1: ()) -> string {
@@ -1648,32 +1704,79 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v165.toString(provider)
                 };
-                let v562: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-                let v578: &str = inline_colorization::color_bright_blue;
-                let v580: &str = &*v562;
-                let v582: &str = inline_colorization::color_reset;
-                let v584: string = string("format!(\"{v578}{v580}{v582}\")");
-                let v585: std::string::String = format!("{v578}{v580}{v582}");
-                let v587: string = fable_library_rust::String_::fromString(v585);
-                let v628: i64 = (patternInput_2.0.clone()).l0.get().clone();
-                let v630: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                let v558: string = Spiral_wasm::method13();
+                let v570: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
-                let v637: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("{ ")), ());
-                    ()
-                };
-                let v646: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("is_success")), ());
-                    ()
-                };
-                let v655: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" = ")), ());
-                    ()
-                };
-                let v666: () = {
+                let v581: () = {
                     Spiral_wasm::closure12(
-                        v630.clone(),
+                        v570.clone(),
+                        sprintf!("{}", sprintf!("{:?}", Spiral_wasm::US3::US3_0)),
+                        (),
+                    );
+                    ()
+                };
+                let v585: Array<string> = split(v570.l0.get().clone(), v558, -1_i32, 0_i32);
+                let v588: string = v585[0_i32].clone();
+                let v592: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                    l0: MutCell::new(Spiral_wasm::method10()),
+                });
+                let v603: () = {
+                    Spiral_wasm::closure12(
+                        v592.clone(),
+                        sprintf!("{}", sprintf!("{:?}", Spiral_wasm::US3::US3_1)),
+                        (),
+                    );
+                    ()
+                };
+                let v613: Spiral_wasm::US4 = if startsWith(v592.l0.get().clone(), v588, false) {
+                    Spiral_wasm::US4::US4_0(string("Verbose"))
+                } else {
+                    Spiral_wasm::US4::US4_1
+                };
+                let v619: Spiral_wasm::US4 = match &v613 {
+                    Spiral_wasm::US4::US4_0(v613_0_0) => Spiral_wasm::US4::US4_0(match &v613 {
+                        Spiral_wasm::US4::US4_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => Spiral_wasm::US4::US4_0(string("Debug")),
+                };
+                let v628: string = padLeft(
+                    toLower(match &v619 {
+                        Spiral_wasm::US4::US4_0(v619_0_0) => match &v619 {
+                            Spiral_wasm::US4::US4_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        },
+                        _ => panic!("{}", string("Option does not have a value."),),
+                    }),
+                    7_i32,
+                    ' ',
+                );
+                let v644: &str = inline_colorization::color_bright_blue;
+                let v646: &str = &*v628;
+                let v648: &str = inline_colorization::color_reset;
+                let v650: string = string("format!(\"{v644}{v646}{v648}\")");
+                let v651: std::string::String = format!("{v644}{v646}{v648}");
+                let v653: string = fable_library_rust::String_::fromString(v651);
+                let v694: i64 = (patternInput_2.0.clone()).l0.get().clone();
+                let v696: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
+                    l0: MutCell::new(Spiral_wasm::method10()),
+                });
+                let v703: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("{ ")), ());
+                    ()
+                };
+                let v712: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("is_success")), ());
+                    ()
+                };
+                let v721: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" = ")), ());
+                    ()
+                };
+                let v732: () = {
+                    Spiral_wasm::closure12(
+                        v696.clone(),
                         sprintf!(
                             "{}",
                             if v0_1 {
@@ -1686,109 +1789,109 @@ mod module_fb49c4a9 {
                     );
                     ()
                 };
-                let v675: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("; ")), ());
+                let v741: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v684: () = {
+                let v750: () = {
                     Spiral_wasm::closure12(
-                        v630.clone(),
+                        v696.clone(),
                         sprintf!("{}", string("gas_burnt_usd")),
                         (),
                     );
                     ()
                 };
-                let v692: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" = ")), ());
+                let v758: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v700: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{:+.6}", v2), ());
+                let v766: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{:+.6}", v2), ());
                     ()
                 };
-                let v708: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("; ")), ());
+                let v774: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v717: () = {
+                let v783: () = {
                     Spiral_wasm::closure12(
-                        v630.clone(),
+                        v696.clone(),
                         sprintf!("{}", string("tokens_burnt_usd")),
                         (),
                     );
                     ()
                 };
-                let v725: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" = ")), ());
+                let v791: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v733: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{:+.6}", v4), ());
+                let v799: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{:+.6}", v4), ());
                     ()
                 };
-                let v741: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("; ")), ());
+                let v807: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v750: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("gas_burnt")), ());
+                let v816: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("gas_burnt")), ());
                     ()
                 };
-                let v758: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" = ")), ());
+                let v824: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v766: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", v1), ());
+                let v832: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", v1), ());
                     ()
                 };
-                let v774: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string("; ")), ());
+                let v840: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v783: () = {
+                let v849: () = {
                     Spiral_wasm::closure12(
-                        v630.clone(),
+                        v696.clone(),
                         sprintf!("{}", string("tokens_burnt")),
                         (),
                     );
                     ()
                 };
-                let v791: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" = ")), ());
+                let v857: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v796: std::string::String = format!("{:#?}", v3);
-                let v826: () = {
+                let v862: std::string::String = format!("{:#?}", v3);
+                let v892: () = {
                     Spiral_wasm::closure12(
-                        v630.clone(),
-                        sprintf!("{}", fable_library_rust::String_::fromString(v796)),
+                        v696.clone(),
+                        sprintf!("{}", fable_library_rust::String_::fromString(v862)),
                         (),
                     );
                     ()
                 };
-                let v835: () = {
-                    Spiral_wasm::closure12(v630.clone(), sprintf!("{}", string(" }")), ());
+                let v901: () = {
+                    Spiral_wasm::closure12(v696.clone(), sprintf!("{}", string(" }")), ());
                     ()
                 };
-                let v838: string = v630.l0.get().clone();
-                let v877: string = trimEndChars(
+                let v904: string = v696.l0.get().clone();
+                let v943: string = trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v170,
-                            v587,
-                            v628,
+                            v653,
+                            v694,
                             Spiral_wasm::closure30((), ()),
-                            v838
+                            v904
                         ),
                         toArray(empty::<char>()),
                     ),
                     toArray(ofArray(new_array(&[' ', '/']))),
                 );
-                println!("{}", v877.clone());
+                println!("{}", v943.clone());
                 ();
-                ((patternInput.1.clone()).l0.get().clone())(v877)
+                ((patternInput.1.clone()).l0.get().clone())(v943)
             }
         }
         pub fn closure28(unitVar: (), v0_1: near_workspaces::result::ExecutionOutcome) {
@@ -1977,7 +2080,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v737)
             }
         }
-        pub fn method13(
+        pub fn method15(
             v0_1: near_workspaces::result::ExecutionFinalResult,
         ) -> near_workspaces::result::ExecutionFinalResult {
             v0_1
@@ -2146,7 +2249,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v737)
             }
         }
-        pub fn method14(
+        pub fn method16(
             v0_1: near_workspaces::result::ExecutionFinalResult,
         ) -> near_workspaces::result::ExecutionFinalResult {
             v0_1
@@ -2641,7 +2744,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v737)
             }
         }
-        pub fn method15(v0_1: Result<(), anyhow::Error>) -> Result<(), anyhow::Error> {
+        pub fn method17(v0_1: Result<(), anyhow::Error>) -> Result<(), anyhow::Error> {
             v0_1
         }
         pub fn method11(
@@ -2759,55 +2862,55 @@ mod module_fb49c4a9 {
                     );
                     ()
                 };
-                let v3880: near_workspaces::result::ExecutionFinalResult = v2322.clone();
-                let v3882: Vec<&near_workspaces::result::ExecutionOutcome> = v3880.outcomes();
-                let v3884 = v3882.into_iter();
-                let v3886 = v3884.cloned();
-                let v3889: bool = true;
-                v3886.for_each(|x| {
+                let v3946: near_workspaces::result::ExecutionFinalResult = v2322.clone();
+                let v3948: Vec<&near_workspaces::result::ExecutionOutcome> = v3946.outcomes();
+                let v3950 = v3948.into_iter();
+                let v3952 = v3950.cloned();
+                let v3955: bool = true;
+                v3952.for_each(|x| {
                     Func1::new(move |v_2: near_workspaces::result::ExecutionOutcome| {
                         Spiral_wasm::closure28((), v_2)
                     })(x)
                 });
-                let v3894: () = {
+                let v3960: () = {
                     Spiral_wasm::closure31(v2322.clone().into_result(), ());
                     ()
                 };
-                let v4655: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method13(v2322.clone());
-                let v4657: Vec<&near_workspaces::result::ExecutionOutcome> =
-                    v4655.receipt_failures();
-                let v4660: () = {
-                    Spiral_wasm::closure33(v4657.clone(), ());
+                let v4721: near_workspaces::result::ExecutionFinalResult =
+                    Spiral_wasm::method15(v2322.clone());
+                let v4723: Vec<&near_workspaces::result::ExecutionOutcome> =
+                    v4721.receipt_failures();
+                let v4726: () = {
+                    Spiral_wasm::closure33(v4723.clone(), ());
                     ()
                 };
-                let v5421: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method14(v2322.clone());
-                let v5426: () = {
-                    Spiral_wasm::closure35(v5421.receipt_outcomes(), ());
+                let v5487: near_workspaces::result::ExecutionFinalResult =
+                    Spiral_wasm::method16(v2322.clone());
+                let v5492: () = {
+                    Spiral_wasm::closure35(v5487.receipt_outcomes(), ());
                     ()
                 };
-                let v6191: () = {
+                let v6257: () = {
                     Spiral_wasm::closure37(v2322.clone().json(), ());
                     ()
                 };
-                let v6956: () = {
+                let v7022: () = {
                     Spiral_wasm::closure39(v2322.borsh(), ());
                     ()
                 };
-                let v7729: Result<(), anyhow::Error> =
-                    Spiral_wasm::method15(if v4657.len() as i32 == 0_i32 {
+                let v7795: Result<(), anyhow::Error> =
+                    Spiral_wasm::method17(if v4723.len() as i32 == 0_i32 {
                         Ok::<(), anyhow::Error>(())
                     } else {
-                        let v7725: anyhow::Error = anyhow::anyhow!(string("<error>"));
-                        Err(v7725)
+                        let v7791: anyhow::Error = anyhow::anyhow!(string("<error>"));
+                        Err(v7791)
                     });
-                let v7733: string = string("true; v7729 });  // rust.fix_closure\'");
-                let v7734: bool = true;
-                v7729
+                let v7799: string = string("true; v7795 });  // rust.fix_closure\'");
+                let v7800: bool = true;
+                v7795
             }); // rust.fix_closure';
-            let v7736 = __result;
-            v7736
+            let v7802 = __result;
+            v7802
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: clap::Command = Spiral_wasm::method0();

@@ -533,7 +533,10 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 #!spiral
 
 inl starts_with (value : string) (s : string) : bool =
-    $'!s.StartsWith !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.StartsWith !value ' : bool
+        Python = fun () => $'!s.startswith(!value)' : bool
+    }
 
 #!markdown
 
@@ -725,7 +728,10 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 #!spiral
 
 inl split (separator : string) (str : string) : array_base string =
-    $'!str.Split !separator '
+    backend_switch {
+        Fsharp = fun () => $'!str.Split !separator ' : array_base string
+        Python = fun () => $'!str.split(!separator)' : array_base string
+    }
 
 #!markdown
 

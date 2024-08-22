@@ -100,6 +100,7 @@ let get_command () =
             runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
             >> runtime.arg_num_args_range (
                 runtime.new_value_range
+                    false
                     (am'.Start (1i32 |> convert : unativeint))
                     (am'.End id)
             )
@@ -126,16 +127,31 @@ let get_command () =
             runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
             >> runtime.arg_num_args_range (
                 runtime.new_value_range
+                    false
                     (am'.Start (1i32 |> convert : unativeint))
                     (am'.End id)
             )
             >> runtime.arg_action runtime.Append
         )
         |> runtime.command_init_arg ((get_args () .rust |> snd).wasm) (
-            runtime.arg_action runtime.SetTrue
+            runtime.arg_num_args_range (
+                runtime.new_value_range
+                    true
+                    (am'.End id)
+                    (am'.End fun _ => (1i32 |> convert : unativeint))
+            )
+            >> runtime.arg_require_equals true
+            >> runtime.arg_default_missing_value ""
         )
         |> runtime.command_init_arg ((get_args () .rust |> snd).contract) (
-            runtime.arg_action runtime.SetTrue
+            runtime.arg_num_args_range (
+                runtime.new_value_range
+                    true
+                    (am'.End id)
+                    (am'.End fun _ => (1i32 |> convert : unativeint))
+            )
+            >> runtime.arg_require_equals true
+            >> runtime.arg_default_missing_value ""
         )
     )
     |> runtime.command_subcommand (
@@ -148,6 +164,7 @@ let get_command () =
             runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
             >> runtime.arg_num_args_range (
                 runtime.new_value_range
+                    false
                     (am'.Start (1i32 |> convert : unativeint))
                     (am'.End id)
             )
@@ -164,6 +181,7 @@ let get_command () =
             runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
             >> runtime.arg_num_args_range (
                 runtime.new_value_range
+                    false
                     (am'.Start (1i32 |> convert : unativeint))
                     (am'.End id)
             )
@@ -207,8 +225,8 @@ union fable_target =
 #!spiral
 
 union fable_runtime =
-    | Wasm
-    | Contract
+    | Wasm : string
+    | Contract : string
 
 #!markdown
 
@@ -846,7 +864,12 @@ inl process_rust { fs_path deps trace_level runtime } =
                 inl command =
                     inl invoke_block_path = "scripts/invoke-block.ps1"
                     inl spiral_wasm_command : string =
-                        $'$"\'workspace/target/release/spiral_wasm -t Debug -w {!wasm_path}\'"'
+                        inl runtime_cmd =
+                            match runtime with
+                            | Some (Wasm cmd) => cmd
+                            | Some (Contract cmd) => cmd
+                            | _ => ""
+                        $'$"\'workspace/target/release/spiral_wasm -t Debug -w {!wasm_path} {!runtime_cmd}\'"'
                     $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm_command} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\\\""'
 
                 if exit_code = 0 then
@@ -914,7 +937,7 @@ inl process_dib { path retries working_directory } =
                         "AUTOMATION", "True"
                     ]
                     trace = false
-                    working_directory
+                    working_directory = working_directory |> optionm'.box
                 }
                 |> runtime.execute_with_options
 
@@ -1687,9 +1710,10 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
                 |> runtime.matches_get_one ((get_args () .dib |> snd).retries |> fst)
                 |> optionm'.default_value' 1u8
 
-            inl working_directory : optionm'.option' string =
+            inl working_directory =
                 arg_matches
                 |> runtime.matches_get_one ((get_args () .dib |> snd).working_directory |> fst)
+                |> optionm'.unbox
 
             process_dib { path retries working_directory }
 
@@ -1711,20 +1735,23 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
                     |> optionm'.unbox
                     |> optionm'.default_value (;[] |> am'.to_vec)
 
-                inl wasm : bool =
+                inl wasm =
                     arg_matches
-                    |> runtime.matches_get_flag ((get_args () .rust |> snd).wasm |> fst)
+                    |> runtime.matches_get_one ((get_args () .rust |> snd).wasm |> fst)
+                    |> optionm'.unbox
+                    |> optionm.map sm'.from_std_string
 
-                inl contract : bool =
+                inl contract =
                     arg_matches
-                    |> runtime.matches_get_flag ((get_args () .rust |> snd).contract |> fst)
+                    |> runtime.matches_get_one ((get_args () .rust |> snd).contract |> fst)
+                    |> optionm'.unbox
+                    |> optionm.map sm'.from_std_string
 
                 inl runtime =
-                    if wasm
-                    then Some Wasm
-                    elif contract
-                    then Some Contract
-                    else None
+                    match wasm, contract with
+                    | Some wasm, _ => Wasm wasm |> Some
+                    | _, Some contract => Contract contract |> Some
+                    | _ => None
 
                 process_rust { fs_path deps trace_level runtime }
 
