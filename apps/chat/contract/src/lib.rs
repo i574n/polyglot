@@ -64,7 +64,7 @@ impl State {
         let account_id = env::signer_account_id();
         let timestamp = env::block_timestamp();
 
-        log!(format!("claim_alias / alias: {alias:#?} / account_id: {account_id:#?} / timestamp: {timestamp:#?}"));
+        log!("{}", format!("claim_alias / alias: {alias:#?} / account_id: {account_id:#?} / timestamp: {timestamp:#?}"));
 
         if !Self::is_valid_alias(&alias) {
             env::panic_str("Invalid alias");
@@ -72,7 +72,7 @@ impl State {
 
         if let Some(previous_alias) = self.account_map.get(&account_id) {
             if *previous_alias == alias {
-                log!("Alias already claimed");
+                log!("{}", "Alias already claimed");
                 return;
             }
 
@@ -109,7 +109,10 @@ impl State {
     }
 
     pub fn get_account_info(&self, account_id: AccountId) -> Option<(String, (u64, u32))> {
-        log!(format!("get_account_info / account_id: {account_id:#?}"));
+        log!(
+            "{}",
+            format!("get_account_info / account_id: {account_id:#?}")
+        );
 
         self.account_map.get(&account_id).and_then(|alias| {
             self.alias_map
@@ -119,7 +122,7 @@ impl State {
     }
 
     pub fn get_alias_map(&self, alias: String) -> Option<HashMap<AccountId, (u64, u32)>> {
-        log!(format!("get_alias_map / alias: {alias:#?}"));
+        log!("{}", format!("get_alias_map / alias: {alias:#?}"));
 
         self.alias_map.get(&alias).cloned()
     }

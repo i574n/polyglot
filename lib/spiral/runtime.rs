@@ -435,14 +435,14 @@ pub mod Runtime {
     pub fn method2(v0_1: string) -> string {
         let v3: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
         let v5: bool = true;
-        let _result = v3.map(|x| {
+        let _result_map_ = v3.map(|x| {
             //;
             let v7: std::string::String = x;
             let v9: string = fable_library_rust::String_::fromString(v7);
             let v11: bool = true;
             v9
         });
-        let v13: Result<string, std::env::VarError> = _result;
+        let v13: Result<string, std::env::VarError> = _result_map_;
         let v14: string = Runtime::method3();
         v13.unwrap_or(v14)
     }

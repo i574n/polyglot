@@ -7,7 +7,8 @@ import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-libr
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { trimStart, trimEnd, padLeft, split, interpolate, toText } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { item } from "../../deps/Fable/src/fable-library-ts/Array.js";
 
 export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>>(undefined);
 
@@ -285,16 +286,24 @@ export function method6(): string {
 }
 
 export function method7(): string {
-    return "\u001b[0m";
+    return "(";
 }
 
 export function method8(): string {
+    return " ";
+}
+
+export function method9(): string {
     return "";
 }
 
 export function closure11(v0_1: Mut4, v1_1: string, unitVar: void): void {
     const v3: string = v0_1.l0 + v1_1;
     v0_1.l0 = v3;
+}
+
+export function method10(): string {
+    return "\u001b[0m";
 }
 
 export function closure13(v0_1: string, unitVar: void): void {
@@ -339,52 +348,137 @@ export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
         v287 = undefined;
         const v302: US3_$union = defaultArg(_v282.contents, US3_US3_1());
         const v347: string = toString((v302.tag === /* US3_0 */ 0) ? ((v306 = v302.fields[0], (v316 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v306))), create(1, 1, 1, hours(v316), minutes(v316), seconds(v316), milliseconds(v316))))) : now(), method6());
-        const v560: US1_$union = (v0_1.tag === /* US0_0 */ 0) ? US1_US1_0("Verbose") : US1_US1_1();
-        let v601: US1_$union;
-        if (v560.tag === /* US1_0 */ 0) {
-            v601 = US1_US1_0(v560.fields[0]);
+        let v614: US1_$union;
+        if (v0_1.tag === /* US0_0 */ 0) {
+            v614 = US1_US1_0("Verbose");
         }
         else {
-            const v567: US1_$union = (v0_1.tag === /* US0_1 */ 1) ? US1_US1_0("Debug") : US1_US1_1();
-            if (v567.tag === /* US1_0 */ 0) {
-                v601 = US1_US1_0(v567.fields[0]);
+            const v563: string = method8();
+            const v572: Mut4 = new Mut4(method9());
+            let v583: any;
+            closure11(v572, `${toText(interpolate("%A%P()", [US0_US0_0()]))}`, undefined);
+            v583 = undefined;
+            const v590: string = item(0, split(v572.l0, [v563], undefined, 0));
+            const v594: Mut4 = new Mut4(method9());
+            let v603: any;
+            closure11(v594, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+            v603 = undefined;
+            const v606: string = v594.l0;
+            v614 = ((v606.indexOf(v590) === 0) ? US1_US1_0("Verbose") : US1_US1_1());
+        }
+        let v871: US1_$union;
+        if (v614.tag === /* US1_0 */ 0) {
+            v871 = US1_US1_0(v614.fields[0]);
+        }
+        else {
+            let v675: US1_$union;
+            if (v0_1.tag === /* US0_1 */ 1) {
+                v675 = US1_US1_0("Debug");
             }
             else {
-                const v574: US1_$union = (v0_1.tag === /* US0_2 */ 2) ? US1_US1_0("Info") : US1_US1_1();
-                if (v574.tag === /* US1_0 */ 0) {
-                    v601 = US1_US1_0(v574.fields[0]);
+                const v624: string = method8();
+                const v633: Mut4 = new Mut4(method9());
+                let v644: any;
+                closure11(v633, `${toText(interpolate("%A%P()", [US0_US0_1()]))}`, undefined);
+                v644 = undefined;
+                const v651: string = item(0, split(v633.l0, [v624], undefined, 0));
+                const v655: Mut4 = new Mut4(method9());
+                let v664: any;
+                closure11(v655, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+                v664 = undefined;
+                const v667: string = v655.l0;
+                v675 = ((v667.indexOf(v651) === 0) ? US1_US1_0("Debug") : US1_US1_1());
+            }
+            if (v675.tag === /* US1_0 */ 0) {
+                v871 = US1_US1_0(v675.fields[0]);
+            }
+            else {
+                let v736: US1_$union;
+                if (v0_1.tag === /* US0_2 */ 2) {
+                    v736 = US1_US1_0("Info");
                 }
                 else {
-                    const v581: US1_$union = (v0_1.tag === /* US0_3 */ 3) ? US1_US1_0("Warning") : US1_US1_1();
-                    if (v581.tag === /* US1_0 */ 0) {
-                        v601 = US1_US1_0(v581.fields[0]);
+                    const v685: string = method8();
+                    const v694: Mut4 = new Mut4(method9());
+                    let v705: any;
+                    closure11(v694, `${toText(interpolate("%A%P()", [US0_US0_2()]))}`, undefined);
+                    v705 = undefined;
+                    const v712: string = item(0, split(v694.l0, [v685], undefined, 0));
+                    const v716: Mut4 = new Mut4(method9());
+                    let v725: any;
+                    closure11(v716, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+                    v725 = undefined;
+                    const v728: string = v716.l0;
+                    v736 = ((v728.indexOf(v712) === 0) ? US1_US1_0("Info") : US1_US1_1());
+                }
+                if (v736.tag === /* US1_0 */ 0) {
+                    v871 = US1_US1_0(v736.fields[0]);
+                }
+                else {
+                    let v797: US1_$union;
+                    if (v0_1.tag === /* US0_3 */ 3) {
+                        v797 = US1_US1_0("Warning");
                     }
                     else {
-                        const v588: US1_$union = (v0_1.tag === /* US0_4 */ 4) ? US1_US1_0("Critical") : US1_US1_1();
-                        v601 = ((v588.tag === /* US1_0 */ 0) ? US1_US1_0(v588.fields[0]) : US1_US1_1());
+                        const v746: string = method8();
+                        const v755: Mut4 = new Mut4(method9());
+                        let v766: any;
+                        closure11(v755, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
+                        v766 = undefined;
+                        const v773: string = item(0, split(v755.l0, [v746], undefined, 0));
+                        const v777: Mut4 = new Mut4(method9());
+                        let v786: any;
+                        closure11(v777, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+                        v786 = undefined;
+                        const v789: string = v777.l0;
+                        v797 = ((v789.indexOf(v773) === 0) ? US1_US1_0("Warning") : US1_US1_1());
+                    }
+                    if (v797.tag === /* US1_0 */ 0) {
+                        v871 = US1_US1_0(v797.fields[0]);
+                    }
+                    else {
+                        let v858: US1_$union;
+                        if (v0_1.tag === /* US0_4 */ 4) {
+                            v858 = US1_US1_0("Critical");
+                        }
+                        else {
+                            const v807: string = method8();
+                            const v816: Mut4 = new Mut4(method9());
+                            let v827: any;
+                            closure11(v816, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
+                            v827 = undefined;
+                            const v834: string = item(0, split(v816.l0, [v807], undefined, 0));
+                            const v838: Mut4 = new Mut4(method9());
+                            let v847: any;
+                            closure11(v838, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+                            v847 = undefined;
+                            const v850: string = v838.l0;
+                            v858 = ((v850.indexOf(v834) === 0) ? US1_US1_0("Critical") : US1_US1_1());
+                        }
+                        v871 = ((v858.tag === /* US1_0 */ 0) ? US1_US1_0(v858.fields[0]) : US1_US1_1());
                     }
                 }
             }
         }
-        let v605: string;
-        if (v601.tag === /* US1_0 */ 0) {
-            v605 = v601.fields[0];
+        let v875: string;
+        if (v871.tag === /* US1_0 */ 0) {
+            v875 = v871.fields[0];
         }
         else {
             throw new Error("Option does not have a value.");
         }
-        const v610: string = padLeft(v605.toLocaleLowerCase(), 7, " ");
-        const v709: string = (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v610) + method7();
-        const v751: int64 = patternInput_2[0].l0;
-        const v752: string = v2_1();
-        const v754: Mut4 = new Mut4(method8());
-        let v760: any;
-        closure11(v754, `${v752}`, undefined);
-        v760 = undefined;
-        const v763: string = v754.l0;
-        const v801: string = trimEnd(trimStart(`${v347} ${v709} #${v751} ${v1_1()} / ${v763}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v801);
-        patternInput[1].l0(v801);
+        const v880: string = padLeft(v875.toLocaleLowerCase(), 7, " ");
+        const v979: string = (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v880) + method10();
+        const v1021: int64 = patternInput_2[0].l0;
+        const v1022: string = v2_1();
+        const v1024: Mut4 = new Mut4(method9());
+        let v1030: any;
+        closure11(v1024, `${v1022}`, undefined);
+        v1030 = undefined;
+        const v1033: string = v1024.l0;
+        const v1071: string = trimEnd(trimStart(`${v347} ${v979} #${v1021} ${v1_1()} / ${v1033}`, ...[]), ...[" ", "/"]);
+        closure12(undefined, v1071);
+        patternInput[1].l0(v1071);
     }
 }
 

@@ -7,7 +7,8 @@ import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-libr
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { trimStart, trimEnd, interpolate, toText, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { trimStart, trimEnd, padLeft, split, interpolate, toText } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { item } from "../../deps/Fable/src/fable-library-ts/Array.js";
 
 export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>>(undefined);
 
@@ -395,16 +396,24 @@ export function method9(): string {
 }
 
 export function method10(): string {
-    return "\u001b[0m";
+    return "(";
 }
 
 export function method11(): string {
+    return " ";
+}
+
+export function method12(): string {
     return "";
 }
 
 export function closure14(v0_1: Mut4, v1_1: string, unitVar: void): void {
     const v3: string = v0_1.l0 + v1_1;
     v0_1.l0 = v3;
+}
+
+export function method13(): string {
+    return "\u001b[0m";
 }
 
 export function closure15(unitVar: void, unitVar_1: void): string {
@@ -451,40 +460,95 @@ export function closure10(v0_1: int32, v1_1: Error, unitVar: void): void {
         v285 = undefined;
         const v300: US3_$union = defaultArg(_v280.contents, US3_US3_1());
         const v345: string = toString((v300.tag === /* US3_0 */ 0) ? ((v304 = v300.fields[0], (v314 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v304))), create(1, 1, 1, hours(v314), minutes(v314), seconds(v314), milliseconds(v314))))) : now(), method9());
-        const v610: string = ("\u001b[93m" + padLeft("Warning".toLocaleLowerCase(), 7, " ")) + method10();
-        const v625: int64 = patternInput_2[0].l0;
-        const v627: Mut4 = new Mut4(method11());
-        let v634: any;
-        closure14(v627, `${"{ "}`, undefined);
-        v634 = undefined;
-        let v643: any;
-        closure14(v627, `${"retry"}`, undefined);
-        v643 = undefined;
-        let v652: any;
-        closure14(v627, `${" = "}`, undefined);
-        v652 = undefined;
-        let v660: any;
-        closure14(v627, `${v0_1}`, undefined);
-        v660 = undefined;
-        let v669: any;
-        closure14(v627, `${"; "}`, undefined);
-        v669 = undefined;
-        let v678: any;
-        closure14(v627, `${"ex"}`, undefined);
-        v678 = undefined;
-        let v686: any;
-        closure14(v627, `${" = "}`, undefined);
-        v686 = undefined;
-        let v721: any;
-        closure14(v627, `${toText(interpolate("%A%P()", [v1_1]))}`, undefined);
-        v721 = undefined;
-        let v730: any;
-        closure14(v627, `${" }"}`, undefined);
-        v730 = undefined;
-        const v733: string = v627.l0;
-        const v772: string = trimEnd(trimStart(`${v345} ${v610} #${v625} ${closure15(undefined, undefined)} / ${v733}`, ...[]), ...[" ", "/"]);
-        closure16(undefined, v772);
-        patternInput[1].l0(v772);
+        const v558: string = method11();
+        const v567: Mut4 = new Mut4(method12());
+        let v578: any;
+        closure14(v567, `${toText(interpolate("%A%P()", [US0_US0_0()]))}`, undefined);
+        v578 = undefined;
+        const v585: string = item(0, split(v567.l0, [v558], undefined, 0));
+        const v589: Mut4 = new Mut4(method12());
+        let v600: any;
+        closure14(v589, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
+        v600 = undefined;
+        const v603: string = v589.l0;
+        const v610: US1_$union = (v603.indexOf(v585) === 0) ? US1_US1_0("Verbose") : US1_US1_1();
+        let v738: US1_$union;
+        if (v610.tag === /* US1_0 */ 0) {
+            v738 = US1_US1_0(v610.fields[0]);
+        }
+        else {
+            const v617: string = method11();
+            const v626: Mut4 = new Mut4(method12());
+            let v637: any;
+            closure14(v626, `${toText(interpolate("%A%P()", [US0_US0_1()]))}`, undefined);
+            v637 = undefined;
+            const v644: string = item(0, split(v626.l0, [v617], undefined, 0));
+            const v648: Mut4 = new Mut4(method12());
+            let v659: any;
+            closure14(v648, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
+            v659 = undefined;
+            const v662: string = v648.l0;
+            const v669: US1_$union = (v662.indexOf(v644) === 0) ? US1_US1_0("Debug") : US1_US1_1();
+            if (v669.tag === /* US1_0 */ 0) {
+                v738 = US1_US1_0(v669.fields[0]);
+            }
+            else {
+                const v676: string = method11();
+                const v685: Mut4 = new Mut4(method12());
+                let v696: any;
+                closure14(v685, `${toText(interpolate("%A%P()", [US0_US0_2()]))}`, undefined);
+                v696 = undefined;
+                const v703: string = item(0, split(v685.l0, [v676], undefined, 0));
+                const v707: Mut4 = new Mut4(method12());
+                let v718: any;
+                closure14(v707, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
+                v718 = undefined;
+                const v721: string = v707.l0;
+                const v728: US1_$union = (v721.indexOf(v703) === 0) ? US1_US1_0("Info") : US1_US1_1();
+                v738 = ((v728.tag === /* US1_0 */ 0) ? US1_US1_0(v728.fields[0]) : US1_US1_0("Warning"));
+            }
+        }
+        let v742: string;
+        if (v738.tag === /* US1_0 */ 0) {
+            v742 = v738.fields[0];
+        }
+        else {
+            throw new Error("Option does not have a value.");
+        }
+        const v798: string = ("\u001b[93m" + padLeft(v742.toLocaleLowerCase(), 7, " ")) + method13();
+        const v813: int64 = patternInput_2[0].l0;
+        const v815: Mut4 = new Mut4(method12());
+        let v822: any;
+        closure14(v815, `${"{ "}`, undefined);
+        v822 = undefined;
+        let v831: any;
+        closure14(v815, `${"retry"}`, undefined);
+        v831 = undefined;
+        let v840: any;
+        closure14(v815, `${" = "}`, undefined);
+        v840 = undefined;
+        let v848: any;
+        closure14(v815, `${v0_1}`, undefined);
+        v848 = undefined;
+        let v857: any;
+        closure14(v815, `${"; "}`, undefined);
+        v857 = undefined;
+        let v866: any;
+        closure14(v815, `${"ex"}`, undefined);
+        v866 = undefined;
+        let v874: any;
+        closure14(v815, `${" = "}`, undefined);
+        v874 = undefined;
+        let v909: any;
+        closure14(v815, `${toText(interpolate("%A%P()", [v1_1]))}`, undefined);
+        v909 = undefined;
+        let v918: any;
+        closure14(v815, `${" }"}`, undefined);
+        v918 = undefined;
+        const v921: string = v815.l0;
+        const v960: string = trimEnd(trimStart(`${v345} ${v798} #${v813} ${closure15(undefined, undefined)} / ${v921}`, ...[]), ...[" ", "/"]);
+        closure16(undefined, v960);
+        patternInput[1].l0(v960);
     }
 }
 
@@ -534,7 +598,7 @@ export function closure5(unitVar: void, v0_1: int32): ((arg0: (() => void)) => O
     return (v: (() => void)): Option<void> => closure6(v0_1, v);
 }
 
-export function method12(v0_1: (() => void)): (() => void) {
+export function method14(v0_1: (() => void)): (() => void) {
     return v0_1;
 }
 
@@ -543,7 +607,7 @@ export function closure19(v0_1: any, unitVar: void): void {
 }
 
 export function closure18(unitVar: void, v0_1: (() => void)): (() => void) {
-    const v1_1: (() => void) = method12(v0_1);
+    const v1_1: (() => void) = method14(v0_1);
     const v2_1: any = new Lazy<void>((): void => {
         v1_1();
     });

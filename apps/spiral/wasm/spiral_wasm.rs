@@ -222,7 +222,7 @@ mod module_fb49c4a9 {
             ])));
             let v44: Vec<string> = v40.to_vec();
             let v46: bool = true;
-            let _result: Vec<_> = v44
+            let _vec_map: Vec<_> = v44
                 .into_iter()
                 .map(|x| {
                     //;
@@ -237,7 +237,7 @@ mod module_fb49c4a9 {
                     v58
                 })
                 .collect::<Vec<_>>();
-            let v62: Vec<clap::builder::PossibleValue> = _result;
+            let v62: Vec<clap::builder::PossibleValue> = _vec_map;
             let v64: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
                 clap::builder::PossibleValuesParser::new(v62),
             );
@@ -319,14 +319,14 @@ mod module_fb49c4a9 {
         pub fn method4(v0_1: string) -> string {
             let v3: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
             let v5: bool = true;
-            let _result = v3.map(|x| {
+            let _result_map_ = v3.map(|x| {
                 //;
                 let v7: std::string::String = x;
                 let v9: string = fable_library_rust::String_::fromString(v7);
                 let v11: bool = true;
                 v9
             });
-            let v13: Result<string, std::env::VarError> = _result;
+            let v13: Result<string, std::env::VarError> = _result_map_;
             let v14: string = Spiral_wasm::method5();
             v13.unwrap_or(v14)
         }
@@ -2752,7 +2752,7 @@ mod module_fb49c4a9 {
         ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Result<(), anyhow::Error>>>>
         {
             let v2: bool = true;
-            let __result = Box::pin(async move {
+            let __future_init = Box::pin(async move {
                 //;
                 let v3: string = Spiral_wasm::method12();
                 let v5: &str = &*v3;
@@ -2835,7 +2835,7 @@ mod module_fb49c4a9 {
                 };
                 let v3087: Vec<&str> = v2322.logs();
                 let v3089: bool = true;
-                let _result: Vec<_> = v3087
+                let _vec_map: Vec<_> = v3087
                     .into_iter()
                     .map(|x| {
                         //;
@@ -2845,7 +2845,7 @@ mod module_fb49c4a9 {
                         v3093
                     })
                     .collect::<Vec<_>>();
-                let v3097: Vec<std::string::String> = _result;
+                let v3097: Vec<std::string::String> = _vec_map;
                 let v3100: bool = true;
                 v3097.iter().for_each(|x| {
                     Func1::new(move |v_1: std::string::String| Spiral_wasm::closure24((), v_1))(
@@ -2909,7 +2909,7 @@ mod module_fb49c4a9 {
                 let v7800: bool = true;
                 v7795
             }); // rust.fix_closure';
-            let v7802 = __result;
+            let v7802 = __future_init;
             v7802
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {

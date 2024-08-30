@@ -140,9 +140,10 @@ inl try' forall t. (x : option' t) : t =
 
 /// ### map'
 inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    (!\\(x, $'"true; let _optionm_map_ = $0.map(|x| { //"') : bool) |> ignore
+    inl result = fn !\($'"x"')
+    (!\\(result, $'"true; $0 })"') : bool) |> ignore
+    !\($'"_optionm_map_"')
 
 /// ### unwrap
 inl unwrap forall t. (x : option' t) : t =

@@ -7589,7 +7589,21 @@ a.anchor-link {
                 <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold</span>
                     <span class="n">fun</span> <span class="n">acc</span> <span class="n">key</span> <span class="o">=&gt;</span>
                         <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="o">=&gt;</span>
-                            <span class="n">inl</span> <span class="n">item</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">())</span>
+                            <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span>
+                                <span class="n">typecase</span> <span class="n">value</span> <span class="k">with</span>
+                                <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="n">value</span>
+                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
+                                    <span class="n">backend_switch</span> <span class="err">`</span><span class="n">value</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+                                        <span class="n">Fsharp</span> <span class="o">=</span>
+                                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                                                <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;_&gt;'</span> <span class="p">:</span> <span class="n">value</span>
+                                            <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">value</span>
+                                        <span class="n">Python</span> <span class="o">=</span>
+                                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                                                <span class="err">$</span><span class="s1">'None'</span> <span class="p">:</span> <span class="n">value</span>
+                                            <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">value</span>
+                                    <span class="p">}</span>
+                            <span class="n">inl</span> <span class="n">item</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
                             <span class="n">inl</span> <span class="n">key</span><span class="s1">' = real_sm'</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
                             <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="s1">', item) acc</span>
                     <span class="p">(</span><span class="n">Nil</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">))</span>
@@ -7654,8 +7668,63 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+
+<span class="n">get_union_fields</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">a</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sort_by snd</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "Some", Some 0i32; "None", None ]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+__assert_eq' / actual: Array(MutCell([("Some", US0_0(0)), ("None", US0_1)])) / expected: Array(MutCell([("Some", US0_0(0)), ("None", US0_1)]))
+
+.ts output:
+__assert_eq' / actual: Some,US0_0 0,None,US0_1 / expected: Some,US0_0 0,None,US0_1
+
+.py output:
+__assert_eq' / actual: [('Some', US0_0 0), ('None', US0_1)] / expected: [('Some', US0_0 0), ('None', US0_1)]
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq' / actual: [|struct ("Some", US0_0 0); struct ("None", US0_1)|] / expected: [|struct ("Some", US0_0 0); struct ("None", US0_1)|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7665,7 +7734,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7686,9 +7755,28 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
                                     <span class="n">real_core</span><span class="o">.</span><span class="n">union_untag</span> <span class="err">`</span><span class="n">union_type</span> <span class="n">i</span>
                                         <span class="p">(</span><span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span> <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="o">=&gt;</span>
                                             <span class="n">inl</span> <span class="n">key</span><span class="s1">' = real_sm'</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
-                                            <span class="n">key</span><span class="s1">', real_core.nominal_create `union_type (key, ())</span>
+                                            <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span>
+                                                <span class="n">typecase</span> <span class="n">value</span> <span class="k">with</span>
+                                                <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="n">value</span>
+                                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
+                                                    <span class="n">backend_switch</span> <span class="err">`</span><span class="n">value</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+                                                        <span class="n">Fsharp</span> <span class="o">=</span>
+                                                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                                                                <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;_&gt;'</span> <span class="p">:</span> <span class="n">value</span>
+                                                            <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">value</span>
+                                                        <span class="n">Python</span> <span class="o">=</span>
+                                                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                                                                <span class="err">$</span><span class="s1">'None'</span> <span class="p">:</span> <span class="n">value</span>
+                                                            <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">value</span>
+                                                    <span class="p">}</span>
+                                            <span class="n">inl</span> <span class="n">item</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                                            <span class="n">key</span><span class="s1">', item</span>
                                         <span class="p">)</span>
-                                        <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="s2">"reflection.get_union_fields_untag / invalid tag"</span><span class="p">)</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span>
+                                            <span class="n">failwith</span>
+                                                <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span>
+                                                <span class="s2">"reflection.get_union_fields_untag / invalid tag"</span>
+                                        <span class="p">)</span>
                                 <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="err">`</span><span class="n">i32</span> <span class="n">i</span> <span class="mi">1</span>
                         <span class="err">`</span><span class="n">union_record_type</span>
                         <span class="p">(</span><span class="n">Nil</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">),</span> <span class="mi">0</span><span class="n">i32</span><span class="p">)</span>
@@ -7699,7 +7787,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7709,14 +7797,13 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
 <span class="o">///!</span><span class="w"> </span>rust
 <span class="o">///!</span><span class="w"> </span>typescript
 <span class="o">///!</span><span class="w"> </span>python
 
 <span class="n">get_union_fields_untag</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
-<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' [ "Native", Native; "Wasm", Wasm; "Contract", Contract ]</span>
 </pre></div>
 </div>
 </div>
@@ -7729,14 +7816,17 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
-__assert_eq' / actual: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)])) / expected: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)]))
+<pre>.py output (Cuda):
+__assert_eq' / actual: UH0_1(v0='Native', v1=US0_0(), v2=UH0_1(v0='Wasm', v1=US0_1(), v2=UH0_1(v0='Contract', v1=US0_2(), v2=UH0_0()))) / expected: UH0_1(v0='Native', v1=US0_0(), v2=UH0_1(v0='Wasm', v1=US0_1(), v2=UH0_1(v0='Contract', v1=US0_2(), v2=UH0_0())))
+
+.rs output:
+__assert_eq' / actual: UH0_1("Native", US0_0, UH0_1("Wasm", US0_1, UH0_1("Contract", US0_2, UH0_0))) / expected: UH0_1("Native", US0_0, UH0_1("Wasm", US0_1, UH0_1("Contract", US0_2, UH0_0)))
 
 .ts output:
-__assert_eq' / actual: Native,US0_0,Wasm,US0_1,Contract,US0_2 / expected: Native,US0_0,Wasm,US0_1,Contract,US0_2
+__assert_eq' / actual: UH0_1 (Native, US0_0, UH0_1 (Wasm, US0_1, UH0_1 (Contract, US0_2, UH0_0))) / expected: UH0_1 (Native, US0_0, UH0_1 (Wasm, US0_1, UH0_1 (Contract, US0_2, UH0_0)))
 
 .py output:
-__assert_eq' / actual: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)] / expected: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)]
+__assert_eq' / actual: UH0_1 ("Native", US0_0, UH0_1 ("Wasm", US0_1, UH0_1 ("Contract", US0_2, UH0_0))) / expected: UH0_1 ("Native", US0_0, UH0_1 ("Wasm", US0_1, UH0_1 ("Contract", US0_2, UH0_0)))
 
 </pre>
 </div>
@@ -7745,14 +7835,68 @@ __assert_eq' / actual: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)]
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|] / expected: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|]
+__assert_eq' / actual: UH0_1 ("Native", US0_0, UH0_1 ("Wasm", US0_1, UH0_1 ("Contract", US0_2, UH0_0))) / expected: UH0_1 ("Native", US0_0, UH0_1 ("Wasm", US0_1, UH0_1 ("Contract", US0_2, UH0_0)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+
+<span class="n">get_union_fields_untag</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' [ "Some", Some (); "None", None ]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq' / actual: UH0_1(v0='Some', v1=US0_0(), v2=UH0_1(v0='None', v1=US0_1(), v2=UH0_0())) / expected: UH0_1(v0='Some', v1=US0_0(), v2=UH0_1(v0='None', v1=US0_1(), v2=UH0_0()))
+
+.rs output:
+__assert_eq' / actual: UH0_1("Some", US0_0, UH0_1("None", US0_1, UH0_0)) / expected: UH0_1("Some", US0_0, UH0_1("None", US0_1, UH0_0))
+
+.ts output:
+__assert_eq' / actual: UH0_1 (Some, US0_0, UH0_1 (None, US0_1, UH0_0)) / expected: UH0_1 (Some, US0_0, UH0_1 (None, US0_1, UH0_0))
+
+.py output:
+__assert_eq' / actual: UH0_1 ("Some", US0_0, UH0_1 ("None", US0_1, UH0_0)) / expected: UH0_1 ("Some", US0_0, UH0_1 ("None", US0_1, UH0_0))
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq' / actual: UH0_1 ("Some", US0_0, UH0_1 ("None", US0_1, UH0_0)) / expected: UH0_1 ("Some", US0_0, UH0_1 ("None", US0_1, UH0_0))
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7762,7 +7906,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7782,7 +7926,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7792,7 +7936,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7805,15 +7949,83 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_pick fun key, x'</span> <span class="o">=&gt;</span>
         <span class="k">if</span> <span class="n">x</span><span class="s1">' = x</span>
         <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
-        <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">else</span>
+            <span class="o">//</span> <span class="n">TODO</span><span class="p">:</span> <span class="n">split</span> <span class="n">only</span> <span class="k">if</span> <span class="n">there</span><span class="s1">'s a non-unit case (union_to_record check)</span>
+            <span class="n">inl</span> <span class="n">separator</span> <span class="o">=</span>
+                <span class="n">backend_switch</span> <span class="p">{</span>
+                    <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                        <span class="n">run_target</span> <span class="n">function</span>
+                            <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"("</span>
+                            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">" "</span>
+                    <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"("</span>
+                <span class="p">}</span>
+            <span class="n">inl</span> <span class="n">x</span><span class="s1">' = x'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">split</span> <span class="n">separator</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index_base 0</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">x</span><span class="s1">'</span>
+            <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
+            <span class="k">else</span> <span class="kc">None</span>
     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+
+<span class="n">Some</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">union_to_string</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' "Some"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq' / actual: Some / expected: Some
+
+.rs output:
+__assert_eq' / actual: "Some" / expected: "Some"
+
+.ts output:
+__assert_eq' / actual: Some / expected: Some
+
+.py output:
+__assert_eq' / actual: Some / expected: Some
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq' / actual: "Some" / expected: "Some"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7823,7 +8035,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7844,7 +8056,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7876,7 +8088,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7886,7 +8098,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7909,7 +8121,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7941,7 +8153,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7951,7 +8163,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7989,7 +8201,7 @@ __assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struc
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

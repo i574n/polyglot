@@ -167,7 +167,14 @@ inl box forall t u. (x : result t u) : result' t u =
 #!spiral
 
 inl try' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0?"')
+    inl is_unit =
+        real
+            typecase t with
+            | () => true
+            | _ => false
+    if is_unit
+    then (!\\(x, $'"true; $0?"') : bool) |> fun _ => $''
+    else !\\(x, $'"$0?"')
 
 #!markdown
 
@@ -218,9 +225,9 @@ inl unbox' forall t u. (x : result' t u) : result t u =
 #!spiral
 
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
-    (!\\(source, $'"true; let _result = $0.map(|x| { //"') : bool) |> ignore
+    (!\\(source, $'"true; let _result_map_ = $0.map(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_result_map_"')
 
 #!markdown
 
@@ -250,9 +257,9 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
 #!spiral
 
 inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
-    (!\\(source, $'"true; let _result = $0.map_err(|x| { //"') : bool) |> ignore
+    (!\\(source, $'"true; let _result_map_error__ = $0.map_err(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_result_map_error__"')
 
 #!markdown
 
@@ -270,9 +277,9 @@ inl option_ok_or forall t e. (e : e) (source : optionm'.option' t) : result' t e
 #!spiral
 
 inl unwrap_or_else forall t e u. (fn : e -> u) (source : result' t e) : u =
-    (!\\(source, $'"true; let _result = $0.unwrap_or_else(|x| { //"') : bool) |> ignore
+    (!\\(source, $'"true; let _result_unwrap_or_else = $0.unwrap_or_else(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_result_unwrap_or_else"')
 
 #!markdown
 
@@ -281,10 +288,10 @@ inl unwrap_or_else forall t e u. (fn : e -> u) (source : result' t e) : u =
 #!spiral
 
 inl map_or_else forall t e u v. (fn : e -> v) (fn2 : u -> v) (source : result' t e) : v =
-    (!\\(source, $'"true; let _result = $0.map_or_else(|x| { //"') : bool) |> ignore
+    (!\\(source, $'"true; let _result_map_or_else = $0.map_or_else(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }, |x| { //"') : bool) |> ignore
     (!\\(fn2 !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_result_map_or_else"')
 
 #!markdown
 

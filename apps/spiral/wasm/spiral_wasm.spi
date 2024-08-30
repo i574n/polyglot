@@ -204,7 +204,7 @@ inl as_yoctonear (gas : near_token) : rust.u128 =
 /// ### outcomes
 inl outcomes (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
     inl result = result |> rust.emit
-    !\\(result, $'"!result.outcomes()"')
+    !\($'"!result.outcomes()"')
 
 /// ### is_success
 inl is_success (outcome : execution_outcome) : bool =

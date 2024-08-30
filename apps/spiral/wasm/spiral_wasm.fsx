@@ -193,8 +193,8 @@ let rec method0 () : clap_Command =
     let v40 : (string []) = v39 v36
     let v43 : string = "$0.to_vec()"
     let v44 : Vec<string> = Fable.Core.RustInterop.emitRustExpr v40 v43 
-    let v45 : string = "true; let _result : Vec<_> = v44.into_iter().map(|x| { //"
-    let v46 : bool = Fable.Core.RustInterop.emitRustExpr () v45 
+    let v45 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
+    let v46 : bool = Fable.Core.RustInterop.emitRustExpr v44 v45 
     let v47 : string = "x"
     let v48 : string = Fable.Core.RustInterop.emitRustExpr () v47 
     let v49 : string = "&*$0"
@@ -209,7 +209,7 @@ let rec method0 () : clap_Command =
     let v58 : clap_builder_PossibleValue = Fable.Core.RustInterop.emitRustExpr v56 v57 
     let v59 : string = "true; $0 }).collect::<Vec<_>>()"
     let v60 : bool = Fable.Core.RustInterop.emitRustExpr v58 v59 
-    let v61 : string = "_result"
+    let v61 : string = "_vec_map"
     let v62 : Vec<clap_builder_PossibleValue> = Fable.Core.RustInterop.emitRustExpr () v61 
     let v63 : string = "Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"
     let v64 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr v62 v63 
@@ -282,7 +282,7 @@ and method4 (v0 : string) : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = "std::env::var(&*$0)"
     let v3 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v2 
-    let v4 : string = "true; let _result = $0.map(|x| { //"
+    let v4 : string = "true; let _result_map_ = $0.map(|x| { //"
     let v5 : bool = Fable.Core.RustInterop.emitRustExpr v3 v4 
     let v6 : string = "x"
     let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v6 
@@ -290,7 +290,7 @@ and method4 (v0 : string) : string =
     let v9 : string = Fable.Core.RustInterop.emitRustExpr v7 v8 
     let v10 : string = "true; $0 })"
     let v11 : bool = Fable.Core.RustInterop.emitRustExpr v9 v10 
-    let v12 : string = "_result"
+    let v12 : string = "_result_map_"
     let v13 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v12 
     let v14 : string = method5()
     let v15 : string = "$0.unwrap_or($1)"
@@ -300,7 +300,7 @@ and method4 (v0 : string) : string =
 #if FABLE_COMPILER_RUST && WASM
     let v17 : string = "std::env::var(&*$0)"
     let v18 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v17 
-    let v19 : string = "true; let _result = $0.map(|x| { //"
+    let v19 : string = "true; let _result_map_ = $0.map(|x| { //"
     let v20 : bool = Fable.Core.RustInterop.emitRustExpr v18 v19 
     let v21 : string = "x"
     let v22 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v21 
@@ -308,7 +308,7 @@ and method4 (v0 : string) : string =
     let v24 : string = Fable.Core.RustInterop.emitRustExpr v22 v23 
     let v25 : string = "true; $0 })"
     let v26 : bool = Fable.Core.RustInterop.emitRustExpr v24 v25 
-    let v27 : string = "_result"
+    let v27 : string = "_result_map_"
     let v28 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v27 
     let v29 : string = method5()
     let v30 : string = "$0.unwrap_or($1)"
@@ -318,7 +318,7 @@ and method4 (v0 : string) : string =
 #if FABLE_COMPILER_RUST && CONTRACT
     let v32 : string = "std::env::var(&*$0)"
     let v33 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v32 
-    let v34 : string = "true; let _result = $0.map(|x| { //"
+    let v34 : string = "true; let _result_map_ = $0.map(|x| { //"
     let v35 : bool = Fable.Core.RustInterop.emitRustExpr v33 v34 
     let v36 : string = "x"
     let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v36 
@@ -326,7 +326,7 @@ and method4 (v0 : string) : string =
     let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
     let v40 : string = "true; $0 })"
     let v41 : bool = Fable.Core.RustInterop.emitRustExpr v39 v40 
-    let v42 : string = "_result"
+    let v42 : string = "_result_map_"
     let v43 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v42 
     let v44 : string = method5()
     let v45 : string = "$0.unwrap_or($1)"
@@ -6405,7 +6405,7 @@ and closure39 (v0 : Result<std_string_String, near_workspaces_error_Error>) () :
 and method17 (v0 : Result<unit, anyhow_Error>) : Result<unit, anyhow_Error> =
     v0
 and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Result<unit, anyhow_Error>>>>> =
-    let v1 : string = "true; let __result = Box::pin(async move { //"
+    let v1 : string = "true; let __future_init = Box::pin(async move { //"
     let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
     let v3 : string = method12()
     let v4 : string = "&*$0"
@@ -6467,15 +6467,15 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v2325 : unit = (fun () -> v2324 (); v2323) ()
     let v3086 : string = "v2322.logs()"
     let v3087 : Vec<Ref<Str>> = Fable.Core.RustInterop.emitRustExpr () v3086 
-    let v3088 : string = "true; let _result : Vec<_> = v3087.into_iter().map(|x| { //"
-    let v3089 : bool = Fable.Core.RustInterop.emitRustExpr () v3088 
+    let v3088 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
+    let v3089 : bool = Fable.Core.RustInterop.emitRustExpr v3087 v3088 
     let v3090 : string = "x"
     let v3091 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v3090 
     let v3092 : string = "String::from($0)"
     let v3093 : std_string_String = Fable.Core.RustInterop.emitRustExpr v3091 v3092 
     let v3094 : string = "true; $0 }).collect::<Vec<_>>()"
     let v3095 : bool = Fable.Core.RustInterop.emitRustExpr v3093 v3094 
-    let v3096 : string = "_result"
+    let v3096 : string = "_vec_map"
     let v3097 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v3096 
     let v3098 : string = "true; $0.iter().for_each(|x| { $1(x.clone()); }); //"
     let v3099 : (std_string_String -> unit) = closure24()
@@ -6494,7 +6494,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v3945 : string = "$0"
     let v3946 : near_workspaces_result_ExecutionFinalResult = Fable.Core.RustInterop.emitRustExpr v2322 v3945 
     let v3947 : string = "v3946.outcomes()"
-    let v3948 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr v3946 v3947 
+    let v3948 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v3947 
     let v3949 : string = "v3948.into_iter()"
     let v3950 : _ = Fable.Core.RustInterop.emitRustExpr () v3949 
     let v3951 : string = "v3950.cloned()"
@@ -6551,7 +6551,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v7798 : string = v7796 + v7797 
     let v7799 : string = "true; v7795 " + v7798 + "); " + v7796 + " // rust.fix_closure'"
     let v7800 : bool = Fable.Core.RustInterop.emitRustExpr () v7799 
-    let v7801 : string = "__result"
+    let v7801 : string = "__future_init"
     let v7802 : _ = Fable.Core.RustInterop.emitRustExpr () v7801 
     let v7803 : string = "v7802"
     let v7804 : std_pin_Pin<Box<Dyn<std_future_Future<Result<unit, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v7803 

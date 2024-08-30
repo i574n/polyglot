@@ -249,14 +249,14 @@ pub mod Crypto {
     pub fn method6(v0_1: string) -> string {
         let v18: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
         let v20: bool = true;
-        let _result = v18.map(|x| {
+        let _result_map_ = v18.map(|x| {
             //;
             let v22: std::string::String = x;
             let v24: string = fable_library_rust::String_::fromString(v22);
             let v26: bool = true;
             v24
         });
-        let v28: Result<string, std::env::VarError> = _result;
+        let v28: Result<string, std::env::VarError> = _result_map_;
         let v29: string = Crypto::method7();
         v28.unwrap_or(v29)
     }

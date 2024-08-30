@@ -278,7 +278,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
     join
         !\($'"pyo3::prepare_freethreaded_python()"') : ()
 
-        !\($'"let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
+        !\($'"let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
 
         let x' = fn_ (!\($'"py"') : python)
         inl x' = join x'
@@ -286,7 +286,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
         inl closure_fix = 2u8, 1u8
         x' |> rust.fix_closure closure_fix
 
-        (!\($'"__result"') : _ () pyerr)
+        (!\($'"__run_test"') : _ () pyerr)
         |> resultm.unwrap'
 
 /// ## test_zeta_at_known_values_

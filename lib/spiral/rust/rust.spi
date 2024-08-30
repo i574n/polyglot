@@ -200,6 +200,17 @@ inl (~!\) forall t. (code : string) : t =
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
+/// ### ptr
+nominal ptr t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"*const $0\")>]\n#endif\ntype Ptr<'T> = class end"
+        $'' : $'Ptr<`t>'
+    )
+
+/// ### ptr_read
+inl ptr_read forall t. (x : ptr t) : t =
+    !\\(x, $'"std::ptr::read($0)"')
+
 /// ### u128
 nominal u128 =
     `(
@@ -213,6 +224,14 @@ inl u128 forall t. (x : t) : u128 =
 /// ### f64
 inl f64 forall t. (x : t) : f64 =
     !\\(x, $'"$0 as f64"')
+
+/// ### unwrap_0
+inl unwrap_0 forall (t : * -> *) u. (x : t u) : u =
+    !\\(x, $'"$0.0"')
+
+/// ### unwrap_0_ref
+inl unwrap_0_ref forall (t : * -> *) u. (x : ref (t u)) : ref u =
+    !\\(x, $'"&$0.0"')
 
 /// ### emit
 inl emit forall t. (x : t) : t =
@@ -308,6 +327,14 @@ inl to_ref forall t. (x : t) : ref t =
 inl deref forall t. (ref : ref t) : t =
     !\\(ref, $'"*$0"')
 
+/// ### from_ref
+inl from_ref forall t. (ref : ref t) : t =
+    !\($'"!ref"')
+
+/// ### into
+inl into forall t u. (x : t) : u =
+    !\($'"!x.into()"')
+
 /// ### ops_deref
 inl ops_deref forall t. (ref : t) : t =
     !\\(ref, $'"core::ops::Deref::deref(&$0)"')
@@ -339,7 +366,7 @@ inl box_leak forall t. (x : box t) : static_ref (mut' t) =
 
 /// ### drop
 inl drop forall t. (x : t) : () =
-    !\\(x, $'"drop($0)"')
+    (!\\(x, $'"true; drop($0)"') : bool) |> ignore
 
 /// ### break
 inl break () : () =
@@ -377,12 +404,60 @@ inl loop (depth : i32) (fn : () -> ()) : () =
 
 /// ### capture
 inl capture forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (|| { // rust.capture"') : bool) |> ignore
+    (!\($'"true; let _capture = (|| { //"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_capture"')
 
 /// ### capture_move
 inl capture_move forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (move || { // rust.capture_move"') : bool) |> ignore
+    (!\($'"true; let _capture_move = (move || { //"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_capture_move"')
+
+/// ### type_emit
+nominal type_emit t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"*/ $0 /*\")>]\n#endif\ntype TypeEmit<'T> = class end"
+        $'' : $'TypeEmit<`t>'
+    )
+
+/// ### partial_eq_wrapper
+nominal partial_eq_wrapper t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"PartialEqWrapper<$0>\")>]\n#endif\ntype PartialEqWrapper<'T> = class end"
+        $'' : $'PartialEqWrapper<`t>'
+    )
+
+/// ### new_partial_eq_wrapper
+inl new_partial_eq_wrapper forall t.
+    (eq_fn : ref (partial_eq_wrapper t) -> ref (partial_eq_wrapper t) -> bool)
+    (x : t)
+    : partial_eq_wrapper t
+    =
+    inl struct () =
+        !\($'"} //"') : ()
+
+        !\($'"#[derive( //"') : ()
+        !\($'"  Debug, //"') : ()
+        !\($'"  Clone, //"') : ()
+        !\($'")] //"') : ()
+        !\($'"pub struct PartialEqWrapper<T>(T); /*"') : ()
+
+        !\($'"*/ impl PartialEq for PartialEqWrapper< /*"') : ()
+        (null () : type_emit t) |> ignore
+        !\($'"*/ > { //"') : ()
+
+        !\($'"fn eq(&self, other: &Self) -> bool { //"') : ()
+
+        inl self : ref (partial_eq_wrapper t) = !\($'$"self"')
+        inl other : ref (partial_eq_wrapper t) = !\($'$"other"')
+
+        self
+        |> eq_fn other
+        |> fun x => !\($'$"!x //"')
+
+        !\($'"} } } fn _main() { { { //"') : ()
+
+    $'let _!struct = true' : ()
+
+    !\\(x, $'"PartialEqWrapper($0)"')

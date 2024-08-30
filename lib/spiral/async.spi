@@ -185,8 +185,8 @@ inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t
 /// ### future_init
 inl future_init forall t. (move : bool) (x : () -> t) : infer' t =
     if move
-    then (!\($'"true; let __result = Box::pin(async move { //"') : bool) |> ignore
-    else (!\($'"true; let __result = Box::pin(async { //"') : bool) |> ignore
+    then (!\($'"true; let __future_init = Box::pin(async move { //"') : bool) |> ignore
+    else (!\($'"true; let __future_init = Box::pin(async { //"') : bool) |> ignore
 
     inl is_unit : bool =
         real
@@ -204,7 +204,7 @@ inl future_init forall t. (move : bool) (x : () -> t) : infer' t =
 
     x' |> rust.fix_closure depth
 
-    !\($'"__result"')
+    !\($'"__future_init"')
 
 /// ### new_future
 inl new_future forall t. (x : () -> t) : future_pin t =

@@ -157,8 +157,8 @@ export function method1(): string {
 }
 
 export function closure22(v0_1: string[], v1_1: string): string[] {
-    const v33: Iterable<string> = ofArray<string>(v0_1);
-    return split_1(v1_1, [join(method1(), v33)], undefined, 0);
+    const v39: Iterable<string> = ofArray<string>(v0_1);
+    return split_1(v1_1, [join(method1(), v39)], undefined, 0);
 }
 
 export function closure21(unitVar: void, v0_1: string[]): ((arg0: string) => string[]) {

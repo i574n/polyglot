@@ -9,9 +9,9 @@ repository.workspace = true
 [dependencies]
 
 fable_library_rust = { workspace = true, features = ["static_do_bindings"] }
-thiserror = "~1.0"
-proptest = "~1.4"
-nom = "~7.1"
+thiserror = "1.0"
+proptest = "1.4"
+nom = "7.1"
 
 [[bin]]
 name = "spiral_temp_test"

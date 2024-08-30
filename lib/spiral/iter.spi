@@ -30,9 +30,9 @@ inl for_each forall t. (fn : t -> ()) (iter : into_iterator t) : () =
 
 /// ### try_for_each
 inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () string =
-    (!\($'"true; let mut !x = !x; let _result = !x.try_for_each(|x| { //"') : bool) |> ignore
+    (!\($'"true; let mut !x = !x; let _iter_try_for_each = !x.try_for_each(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }); //"') : bool) |> ignore
-    !\($'"_result.map_err(|x| x.into())"')
+    !\($'"_iter_try_for_each.map_err(|x| x.into())"')
 
 /// ### enumerate
 inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =

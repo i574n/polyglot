@@ -226,15 +226,17 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 
 /// ### vec_map
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
-    !\($'"_result"')
-
-/// ### vec_map'''
-inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
-    !\($'"_result"')
+    (!\\(ar, $'"true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"') : bool) |> ignore
+    inl result = fn !\($'"x"')
+    inl is_unit =
+        real
+            typecase u with
+            | () => true
+            | _ => false
+    if is_unit
+    then (!\($'"true; }}).collect::<Vec<_>>()"') : bool) |> ignore
+    else (!\\(result, $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
+    !\($'"_vec_map"')
 
 /// ### vec_map'
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
@@ -242,9 +244,9 @@ inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
 
 /// ### vec_fold'
 inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
-    (!\\(ar, $'"true; let _result = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
+    (!\\(ar, $'"true; let _vec_fold_ = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
     (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_vec_fold_"')
 
 /// ### vec_for_each
 inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
@@ -252,9 +254,9 @@ inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
 
 /// ### vec_for_each'
 inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
-    (!\($'"true; !ar.into_iter().for_each(|x| { //"') : bool) |> ignore
-    inl x = fn !\($'"x"')
-    (!\($'"true; !x }}); { //"') : bool) |> ignore
+    (!\\(ar, $'"true; $0.into_iter().for_each(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'$"true;"') : bool) |> ignore
+    (!\($'"true; }}); { //"') : bool) |> ignore
 
 /// ### vec_filter
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =

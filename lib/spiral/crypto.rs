@@ -269,7 +269,7 @@ pub mod Crypto {
                     let v68: &[u8] = &sha2::Digest::finalize(v16);
                     let v70: Vec<u8> = v68.iter().map(|x| *x).collect::<Vec<_>>();
                     let v72: bool = true;
-                    let _result: Vec<_> = v70
+                    let _vec_map: Vec<_> = v70
                         .into_iter()
                         .map(|x| {
                             //;
@@ -280,7 +280,7 @@ pub mod Crypto {
                             v78
                         })
                         .collect::<Vec<_>>();
-                    let v82: Vec<string> = _result;
+                    let v82: Vec<string> = _vec_map;
                     let v84: Array<string> = fable_library_rust::NativeArray_::array_from(v82);
                     let v85: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
                         let v84 = v84.clone();
@@ -339,14 +339,14 @@ pub mod Crypto {
     pub fn method6(v0_1: string) -> string {
         let v3: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
         let v5: bool = true;
-        let _result = v3.map(|x| {
+        let _result_map_ = v3.map(|x| {
             //;
             let v7: std::string::String = x;
             let v9: string = fable_library_rust::String_::fromString(v7);
             let v11: bool = true;
             v9
         });
-        let v13: Result<string, std::env::VarError> = _result;
+        let v13: Result<string, std::env::VarError> = _result_map_;
         let v14: string = Crypto::method7();
         v13.unwrap_or(v14)
     }
