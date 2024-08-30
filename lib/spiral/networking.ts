@@ -7,7 +7,8 @@ import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { split, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { item } from "../../deps/Fable/src/fable-library-ts/Array.js";
 
 export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>>(undefined);
 
@@ -573,6 +574,14 @@ export function closure19(v0_1: int32, unitVar: void): void {
     }
 }
 
+export function method9(): string {
+    return "(";
+}
+
+export function method10(): string {
+    return " ";
+}
+
 export function closure22(unitVar: void, unitVar_1: void): string {
     return "async.run_with_timeout_async**";
 }
@@ -607,41 +616,113 @@ export function closure21(v0_1: int32, v1_1: Error, unitVar: void): void {
         v285 = undefined;
         const v300: US3_$union = defaultArg(_v280.contents, US3_US3_1());
         const v345: string = toString((v300.tag === /* US3_0 */ 0) ? ((v304 = v300.fields[0], (v314 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v304))), create(1, 1, 1, hours(v314), minutes(v314), seconds(v314), milliseconds(v314))))) : now(), method6());
-        const v610: string = ("\u001b[91m" + padLeft("Critical".toLocaleLowerCase(), 7, " ")) + method7();
-        const v625: int64 = patternInput_2[0].l0;
-        const v636: string = toText(interpolate("%A%P()", [v1_1]));
-        const v649: Mut4 = new Mut4(method8());
-        let v656: any;
-        closure10(v649, `${"{ "}`, undefined);
-        v656 = undefined;
-        let v665: any;
-        closure10(v649, `${"timeout"}`, undefined);
-        v665 = undefined;
-        let v674: any;
-        closure10(v649, `${" = "}`, undefined);
-        v674 = undefined;
-        let v682: any;
-        closure10(v649, `${v0_1}`, undefined);
-        v682 = undefined;
-        let v691: any;
-        closure10(v649, `${"; "}`, undefined);
-        v691 = undefined;
-        let v700: any;
-        closure10(v649, `${"ex"}`, undefined);
-        v700 = undefined;
-        let v708: any;
-        closure10(v649, `${" = "}`, undefined);
-        v708 = undefined;
-        let v716: any;
-        closure10(v649, `${v636}`, undefined);
-        v716 = undefined;
-        let v725: any;
-        closure10(v649, `${" }"}`, undefined);
-        v725 = undefined;
-        const v728: string = v649.l0;
-        const v767: string = trimEnd(trimStart(`${v345} ${v610} #${v625} ${closure22(undefined, undefined)} / ${v728}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v767);
-        patternInput[1].l0(v767);
+        const v558: string = method10();
+        const v567: Mut4 = new Mut4(method8());
+        let v578: any;
+        closure10(v567, `${toText(interpolate("%A%P()", [US0_US0_0()]))}`, undefined);
+        v578 = undefined;
+        const v585: string = item(0, split(v567.l0, [v558], undefined, 0));
+        const v589: Mut4 = new Mut4(method8());
+        let v600: any;
+        closure10(v589, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
+        v600 = undefined;
+        const v603: string = v589.l0;
+        const v610: US1_$union = (v603.indexOf(v585) === 0) ? US1_US1_0("Verbose") : US1_US1_1();
+        let v799: US1_$union;
+        if (v610.tag === /* US1_0 */ 0) {
+            v799 = US1_US1_0(v610.fields[0]);
+        }
+        else {
+            const v617: string = method10();
+            const v626: Mut4 = new Mut4(method8());
+            let v637: any;
+            closure10(v626, `${toText(interpolate("%A%P()", [US0_US0_1()]))}`, undefined);
+            v637 = undefined;
+            const v644: string = item(0, split(v626.l0, [v617], undefined, 0));
+            const v648: Mut4 = new Mut4(method8());
+            let v659: any;
+            closure10(v648, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
+            v659 = undefined;
+            const v662: string = v648.l0;
+            const v669: US1_$union = (v662.indexOf(v644) === 0) ? US1_US1_0("Debug") : US1_US1_1();
+            if (v669.tag === /* US1_0 */ 0) {
+                v799 = US1_US1_0(v669.fields[0]);
+            }
+            else {
+                const v676: string = method10();
+                const v685: Mut4 = new Mut4(method8());
+                let v696: any;
+                closure10(v685, `${toText(interpolate("%A%P()", [US0_US0_2()]))}`, undefined);
+                v696 = undefined;
+                const v703: string = item(0, split(v685.l0, [v676], undefined, 0));
+                const v707: Mut4 = new Mut4(method8());
+                let v718: any;
+                closure10(v707, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
+                v718 = undefined;
+                const v721: string = v707.l0;
+                const v728: US1_$union = (v721.indexOf(v703) === 0) ? US1_US1_0("Info") : US1_US1_1();
+                if (v728.tag === /* US1_0 */ 0) {
+                    v799 = US1_US1_0(v728.fields[0]);
+                }
+                else {
+                    const v735: string = method10();
+                    const v744: Mut4 = new Mut4(method8());
+                    let v755: any;
+                    closure10(v744, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
+                    v755 = undefined;
+                    const v762: string = item(0, split(v744.l0, [v735], undefined, 0));
+                    const v766: Mut4 = new Mut4(method8());
+                    let v777: any;
+                    closure10(v766, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
+                    v777 = undefined;
+                    const v780: string = v766.l0;
+                    const v787: US1_$union = (v780.indexOf(v762) === 0) ? US1_US1_0("Warning") : US1_US1_1();
+                    v799 = ((v787.tag === /* US1_0 */ 0) ? US1_US1_0(v787.fields[0]) : US1_US1_0("Critical"));
+                }
+            }
+        }
+        let v803: string;
+        if (v799.tag === /* US1_0 */ 0) {
+            v803 = v799.fields[0];
+        }
+        else {
+            throw new Error("Option does not have a value.");
+        }
+        const v859: string = ("\u001b[91m" + padLeft(v803.toLocaleLowerCase(), 7, " ")) + method7();
+        const v874: int64 = patternInput_2[0].l0;
+        const v885: string = toText(interpolate("%A%P()", [v1_1]));
+        const v898: Mut4 = new Mut4(method8());
+        let v905: any;
+        closure10(v898, `${"{ "}`, undefined);
+        v905 = undefined;
+        let v914: any;
+        closure10(v898, `${"timeout"}`, undefined);
+        v914 = undefined;
+        let v923: any;
+        closure10(v898, `${" = "}`, undefined);
+        v923 = undefined;
+        let v931: any;
+        closure10(v898, `${v0_1}`, undefined);
+        v931 = undefined;
+        let v940: any;
+        closure10(v898, `${"; "}`, undefined);
+        v940 = undefined;
+        let v949: any;
+        closure10(v898, `${"ex"}`, undefined);
+        v949 = undefined;
+        let v957: any;
+        closure10(v898, `${" = "}`, undefined);
+        v957 = undefined;
+        let v965: any;
+        closure10(v898, `${v885}`, undefined);
+        v965 = undefined;
+        let v974: any;
+        closure10(v898, `${" }"}`, undefined);
+        v974 = undefined;
+        const v977: string = v898.l0;
+        const v1016: string = trimEnd(trimStart(`${v345} ${v859} #${v874} ${closure22(undefined, undefined)} / ${v977}`, ...[]), ...[" ", "/"]);
+        closure12(undefined, v1016);
+        patternInput[1].l0(v1016);
     }
 }
 
@@ -762,12 +843,12 @@ export function closure29(v0_1: Option<int32>, v1_1: boolean, v2_1: int32, v3: i
     }
 }
 
-export function method9(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32, v4: int64): any {
+export function method11(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32, v4: int64): any {
     return defaultOf();
 }
 
 export function closure26(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32): any {
-    return method9(v0_1, v1_1, v2_1, v3, 0n);
+    return method11(v0_1, v1_1, v2_1, v3, 0n);
 }
 
 export function closure25(v0_1: Option<int32>, v1_1: boolean, v2_1: string): ((arg0: int32) => any) {
@@ -782,12 +863,12 @@ export function closure23(unitVar: void, v0_1: Option<int32>): ((arg0: boolean) 
     return (v: boolean): ((arg0: string) => ((arg0: int32) => any)) => closure24(v0_1, v);
 }
 
-export function method10(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
+export function method12(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
     return defaultOf();
 }
 
 export function closure33(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
-    return method10(v0_1, v1_1, v2_1);
+    return method12(v0_1, v1_1, v2_1);
 }
 
 export function closure32(v0_1: Option<int32>, v1_1: string): ((arg0: int32) => any) {

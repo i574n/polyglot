@@ -136,7 +136,10 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 
 /// ### starts_with
 inl starts_with (value : string) (s : string) : bool =
-    $'!s.StartsWith !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.StartsWith !value ' : bool
+        Python = fun () => $'!s.startswith(!value)' : bool
+    }
 
 /// ### is_white_space
 inl is_white_space (c : char) : bool =
@@ -238,7 +241,10 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 /// ### split
 inl split (separator : string) (str : string) : array_base string =
-    $'!str.Split !separator '
+    backend_switch {
+        Fsharp = fun () => $'!str.Split !separator ' : array_base string
+        Python = fun () => $'!str.split(!separator)' : array_base string
+    }
 
 /// ### split_string
 inl split_string (separator : array_base string) (str : string) : array_base string =
@@ -510,13 +516,13 @@ inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string 
             inl s = s |> rust.new_box |> rust.box_leak
             regex |> regex_captures_iter s
 
-        (!\($'"true; let _result : Vec<_> = !matches.map(|x| { //"') : bool) |> ignore
+        (!\($'"true; let _regex_captures : Vec<_> = !matches.map(|x| { //"') : bool) |> ignore
 
         inl fn (match' : rust.static_ref (rust.mut' (regex_captures rust.static_lifetime))) : mapm.hash_map string string =
 
             inl names = regex |> regex_capture_names
 
-            (!\($'"true; let _result : std::collections::HashMap<_, _> = !names.map(|x| { //"') : bool) |> ignore
+            (!\($'"true; let _regex_captures : std::collections::HashMap<_, _> = !names.map(|x| { //"') : bool) |> ignore
 
             inl fn (n : string) : pair string string =
                 inl n' = n |> rust.clone
@@ -525,7 +531,7 @@ inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string 
 
             (!\\(fn !\($'"x.unwrap_or(\\\"\\\").to_string().into()"'), $'"true; $0 }).map(|x| std::sync::Arc::try_unwrap(x).unwrap_or_else(|x| (*x).clone())).collect()"') : bool) |> ignore
 
-            !\($'"_result"')
+            !\($'"_regex_captures"')
 
         inl x =
             !\($'$"x"')
@@ -534,7 +540,7 @@ inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string 
 
         (!\\(fn x, $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
 
-        !\($'"_result"')
+        !\($'"_regex_captures"')
 
     |> rust.capture_move
 

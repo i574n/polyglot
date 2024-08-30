@@ -51,15 +51,15 @@ nominal join_handle t =
 
 inl spawn forall t. depth flag (x : () -> t) : join_handle t =
     if flag = 1u8
-    then (!\($'"true; let __result = std::thread::spawn(move || { //"') : bool) |> ignore
-    else (!\($'"true; let __result = std::thread::spawn(|| { //"') : bool) |> ignore
+    then (!\($'"true; let __spawn = std::thread::spawn(move || { //"') : bool) |> ignore
+    else (!\($'"true; let __spawn = std::thread::spawn(|| { //"') : bool) |> ignore
 
     let x' = x ()
     inl x' = join x'
 
     x' |> rust.fix_closure depth
 
-    !\($'"__result"')
+    !\($'"__spawn"')
 
 #!markdown
 
@@ -132,12 +132,42 @@ inl new_mutex forall t. (x : t) : mutex t =
 
 #!markdown
 
+### rw_lock
+
+#!spiral
+
+nominal rw_lock t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::RwLock<$0>\")>]\n#endif\ntype std_sync_RwLock<'T> = class end"
+        $'' : $'std_sync_RwLock<`t>'
+    )
+
+#!markdown
+
+### new_rw_lock
+
+#!spiral
+
+inl new_rw_lock forall t. (x : t) : rw_lock t =
+    !\\(x, $'"std::sync::RwLock::new($0)"')
+
+#!markdown
+
 ### new_arc_mutex
 
 #!spiral
 
 inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
     x |> new_mutex |> new_arc
+
+#!markdown
+
+### new_arc_rw_lock
+
+#!spiral
+
+inl new_arc_rw_lock forall t. (x : t) : arc (rw_lock t) =
+    x |> new_rw_lock |> new_arc
 
 #!markdown
 
@@ -151,6 +181,68 @@ inl arc_clone forall t. (x : arc t) : arc t =
 
 #!markdown
 
+### arc_ptr_eq
+
+#!spiral
+
+inl arc_ptr_eq forall t. (a : rust.ref (arc t)) (b : rust.ref (arc t)) : bool =
+    !\\((a, b), $'"std::sync::Arc::ptr_eq($0, $1)"')
+
+#!markdown
+
+### arc_try_unwrap
+
+#!spiral
+
+inl arc_try_unwrap forall t. (x : arc t) : resultm.result' t (arc t) =
+    !\\(x, $'"std::sync::Arc::try_unwrap($0)"')
+
+#!markdown
+
+### arc_into_raw
+
+#!spiral
+
+inl arc_into_raw forall t. (x : arc t) : rust.ptr t =
+    !\\(x, $'"std::sync::Arc::into_raw($0)"')
+
+#!markdown
+
+### arc_from_raw
+
+#!spiral
+
+inl arc_from_raw forall t. (x : rust.ptr t) : arc t =
+    !\\(x, $'"std::sync::Arc::from_raw($0)"')
+
+#!markdown
+
+### partial_eq_wrapper_arc_eq
+
+#!spiral
+
+inl partial_eq_wrapper_arc_eq forall t.
+    (self : rust.ref (rust.partial_eq_wrapper (arc t)))
+    (other : rust.ref (rust.partial_eq_wrapper (arc t)))
+    =
+    self
+    |> rust.unwrap_0_ref
+    |> arc_ptr_eq (
+        other
+        |> rust.unwrap_0_ref
+    )
+
+#!markdown
+
+### new_partial_eq_wrapper_arc
+
+#!spiral
+
+inl new_partial_eq_wrapper_arc forall t. (x : arc t) : rust.partial_eq_wrapper (arc t) =
+    x |> rust.new_partial_eq_wrapper partial_eq_wrapper_arc_eq
+
+#!markdown
+
 ### mutex_guard
 
 #!spiral
@@ -159,6 +251,30 @@ nominal mutex_guard t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
         $'' : $'std_sync_MutexGuard<`t>'
+    )
+
+#!markdown
+
+### rw_lock_read_guard
+
+#!spiral
+
+nominal rw_lock_read_guard t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::RwLockReadGuard<$0>\")>]\n#endif\ntype std_sync_RwLockReadGuard<'T> = class end"
+        $'' : $'std_sync_RwLockReadGuard<`t>'
+    )
+
+#!markdown
+
+### rw_lock_write_guard
+
+#!spiral
+
+nominal rw_lock_write_guard t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::RwLockWriteGuard<$0>\")>]\n#endif\ntype std_sync_RwLockWriteGuard<'T> = class end"
+        $'' : $'std_sync_RwLockWriteGuard<`t>'
     )
 
 #!markdown
@@ -175,13 +291,65 @@ nominal poison_error t =
 
 #!markdown
 
+### try_lock_error
+
+#!spiral
+
+nominal try_lock_error t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::TryLockError<$0>\")>]\n#endif\ntype std_sync_TryLockError<'T> = class end"
+        $'' : $'std_sync_TryLockError<`t>'
+    )
+
+#!markdown
+
 ### arc_mutex_lock
 
 #!spiral
 
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    inl x = join x
+    inl x = x |> rust.emit
     !\($'"!x.lock()"')
+
+#!markdown
+
+### arc_rw_lock_read
+
+#!spiral
+
+inl arc_rw_lock_read forall t. (x : arc (rw_lock t)) : resultm.result' (rw_lock_read_guard t) (poison_error (rw_lock_read_guard t)) =
+    inl x = x |> rust.emit
+    !\($'"!x.read()"')
+
+#!markdown
+
+### arc_rw_lock_write
+
+#!spiral
+
+inl arc_rw_lock_write forall t. (x : arc (rw_lock t)) : resultm.result' (rw_lock_write_guard t) (poison_error (rw_lock_write_guard t)) =
+    inl x = x |> rust.emit
+    !\($'"!x.write()"')
+
+#!markdown
+
+### arc_rw_lock_try_read
+
+#!spiral
+
+inl arc_rw_lock_try_read forall t. (x : arc (rw_lock t)) : resultm.result' (rw_lock_read_guard t) (try_lock_error (rw_lock_read_guard t)) =
+    inl x = x |> rust.emit
+    !\($'"!x.try_read()"')
+
+#!markdown
+
+### arc_rw_lock_try_write
+
+#!spiral
+
+inl arc_rw_lock_try_write forall t. (x : arc (rw_lock t)) : resultm.result' (rw_lock_write_guard t) (try_lock_error (rw_lock_write_guard t)) =
+    inl x = x |> rust.emit
+    !\($'"!x.try_write()"')
 
 #!markdown
 
@@ -190,6 +358,24 @@ inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard 
 #!spiral
 
 inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref t =
+    !\\(x, $'"&$0"')
+
+#!markdown
+
+### rw_lock_read_guard_ref
+
+#!spiral
+
+inl rw_lock_read_guard_ref forall t. (x : rw_lock_read_guard t) : rust.ref t =
+    !\\(x, $'"&$0"')
+
+#!markdown
+
+### rw_lock_write_guard_ref
+
+#!spiral
+
+inl rw_lock_write_guard_ref forall t. (x : rw_lock_write_guard t) : rust.ref t =
     !\\(x, $'"&$0"')
 
 #!markdown

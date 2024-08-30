@@ -37,6 +37,7 @@ inl get_args () =
 let get_command () =
     ##"command"
     |> runtime.new_command
+    |> runtime.command_args_override_self true
     |> runtime.command_init_arg (get_args () .trace_level) (
         real runtime.arg_union `trace_level ignore
     )
@@ -379,7 +380,7 @@ inl as_yoctonear (gas : near_token) : rust.u128 =
 
 inl outcomes (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
     inl result = result |> rust.emit
-    !\\(result, $'"!result.outcomes()"')
+    !\($'"!result.outcomes()"')
 
 #!markdown
 

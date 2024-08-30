@@ -679,7 +679,6 @@ instance signal_set write_signal = signal_set'
 
 /// ### create_local_resource
 inl create_local_resource forall t u.
-    closure_fix
     (source : () -> t)
     (fetcher : t -> async.future_pin u)
     : resource t u
@@ -699,16 +698,17 @@ inl create_local_resource forall t u.
 
 
     join
-        !\\(source, $'"let __result = leptos::create_local_resource(move || $0(), |x| async move { //"')
+        !\\(source, $'"let __create_local_resource = leptos::create_local_resource(move || $0(), |x| async move { //"')
 
         inl x = !\($'"x"')
         inl x' = fetcher x
         inl x' = join x'
         inl x' = x' |> async.await
 
+        inl closure_fix = 2u8, 1u8
         x' |> rust.fix_closure closure_fix
 
-        !\($'"__result"')
+        !\($'"__create_local_resource"')
 
 /// ### create_resource
 // inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =

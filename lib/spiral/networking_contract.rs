@@ -17,6 +17,7 @@ pub mod Networking {
     use fable_library_rust::Native_::defaultOf;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::refCell;
+    use fable_library_rust::NativeArray_::Array;
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
@@ -24,7 +25,9 @@ pub mod Networking {
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::printfn;
+    use fable_library_rust::String_::split;
     use fable_library_rust::String_::sprintf;
+    use fable_library_rust::String_::startsWith;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
     use fable_library_rust::String_::trimEndChars;
@@ -196,11 +199,11 @@ pub mod Networking {
     pub fn method2(v0_1: string) -> string {
         let v33: Result<std::string::String, std::env::VarError> =
             std::env::var(&*v0_1);
-        let v35: bool = true; let _result = v33.map(|x| { //;
+        let v35: bool = true; let _result_map_ = v33.map(|x| { //;
         let v37: std::string::String = x;
         let v39: string = fable_library_rust::String_::fromString(v37);
         let v41: bool = true; v39 });
-        let v43: Result<string, std::env::VarError> = _result;
+        let v43: Result<string, std::env::VarError> = _result_map_;
         let v44: string = Networking::method3();
         v43.unwrap_or(v44)
     }
@@ -626,6 +629,8 @@ pub mod Networking {
             ((patternInput.1.clone()).l0.get().clone())(v710)
         }
     }
+    pub fn method9() -> string { string("(") }
+    pub fn method10() -> string { string(" ") }
     pub fn closure22(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async**")
     }
@@ -704,86 +709,277 @@ pub mod Networking {
             let v277: std::string::String =
                 format!("{:02}:{:02}:{:02}", v275, v273, v271);
             let v279: string = fable_library_rust::String_::fromString(v277);
-            let v559: string =
-                padLeft(toLower(string("Critical")), 7_i32, ' ');
-            let v597: &str = inline_colorization::color_bright_red;
-            let v599: &str = &*v559;
-            let v601: &str = inline_colorization::color_reset;
-            let v603: string = string("format!(\"{v597}{v599}{v601}\")");
-            let v604: std::string::String = format!("{v597}{v599}{v601}");
-            let v606: string = fable_library_rust::String_::fromString(v604);
-            let v625: i64 = (patternInput_2.0.clone()).l0.get().clone();
-            let v633: string = sprintf!("{:?}", v1_1);
-            let v649: LrcPtr<Networking::Mut4> =
+            let v557: string = Networking::method9();
+            let v567: LrcPtr<Networking::Mut4> =
                 LrcPtr::new(Networking::Mut4{l0:
                                                  MutCell::new(Networking::method8()),});
-            let v656: () =
+            let v578: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v567.clone(),
+                                          sprintf!("{}",
+                                                   sprintf!("{:?}",
+                                                            Networking::US0::US0_0)),
+                                          ());
+                    ()
+                };
+            let v582: Array<string> =
+                split(v567.l0.get().clone(), v557, -1_i32, 0_i32);
+            let v585: string = v582[0_i32].clone();
+            let v589: LrcPtr<Networking::Mut4> =
+                LrcPtr::new(Networking::Mut4{l0:
+                                                 MutCell::new(Networking::method8()),});
+            let v600: () =
+                {
+                    Networking::closure10(v589.clone(),
+                                          sprintf!("{}",
+                                                   sprintf!("{:?}",
+                                                            Networking::US0::US0_4)),
+                                          ());
+                    ()
+                };
+            let v610: Networking::US1 =
+                if startsWith(v589.l0.get().clone(), v585, false) {
+                    Networking::US1::US1_0(string("Verbose"))
+                } else { Networking::US1::US1_1 };
+            let v799: Networking::US1 =
+                match &v610 {
+                    Networking::US1::US1_0(v610_0_0) =>
+                    Networking::US1::US1_0(match &v610 {
+                                               Networking::US1::US1_0(x) =>
+                                               x.clone(),
+                                               _ => unreachable!(),
+                                           }),
+                    _ => {
+                        let v616: string = Networking::method9();
+                        let v626: LrcPtr<Networking::Mut4> =
+                            LrcPtr::new(Networking::Mut4{l0:
+                                                             MutCell::new(Networking::method8()),});
+                        let v637: () =
+                            {
+                                Networking::closure10(v626.clone(),
+                                                      sprintf!("{}",
+                                                               sprintf!("{:?}",
+                                                                        Networking::US0::US0_1)),
+                                                      ());
+                                ()
+                            };
+                        let v641: Array<string> =
+                            split(v626.l0.get().clone(), v616, -1_i32, 0_i32);
+                        let v644: string = v641[0_i32].clone();
+                        let v648: LrcPtr<Networking::Mut4> =
+                            LrcPtr::new(Networking::Mut4{l0:
+                                                             MutCell::new(Networking::method8()),});
+                        let v659: () =
+                            {
+                                Networking::closure10(v648.clone(),
+                                                      sprintf!("{}",
+                                                               sprintf!("{:?}",
+                                                                        Networking::US0::US0_4)),
+                                                      ());
+                                ()
+                            };
+                        let v669: Networking::US1 =
+                            if startsWith(v648.l0.get().clone(), v644, false)
+                               {
+                                Networking::US1::US1_0(string("Debug"))
+                            } else { Networking::US1::US1_1 };
+                        match &v669 {
+                            Networking::US1::US1_0(v669_0_0) =>
+                            Networking::US1::US1_0(match &v669 {
+                                                       Networking::US1::US1_0(x)
+                                                       => x.clone(),
+                                                       _ => unreachable!(),
+                                                   }),
+                            _ => {
+                                let v675: string = Networking::method9();
+                                let v685: LrcPtr<Networking::Mut4> =
+                                    LrcPtr::new(Networking::Mut4{l0:
+                                                                     MutCell::new(Networking::method8()),});
+                                let v696: () =
+                                    {
+                                        Networking::closure10(v685.clone(),
+                                                              sprintf!("{}",
+                                                                       sprintf!("{:?}",
+                                                                                Networking::US0::US0_2)),
+                                                              ());
+                                        ()
+                                    };
+                                let v700: Array<string> =
+                                    split(v685.l0.get().clone(), v675, -1_i32,
+                                          0_i32);
+                                let v703: string = v700[0_i32].clone();
+                                let v707: LrcPtr<Networking::Mut4> =
+                                    LrcPtr::new(Networking::Mut4{l0:
+                                                                     MutCell::new(Networking::method8()),});
+                                let v718: () =
+                                    {
+                                        Networking::closure10(v707.clone(),
+                                                              sprintf!("{}",
+                                                                       sprintf!("{:?}",
+                                                                                Networking::US0::US0_4)),
+                                                              ());
+                                        ()
+                                    };
+                                let v728: Networking::US1 =
+                                    if startsWith(v707.l0.get().clone(), v703,
+                                                  false) {
+                                        Networking::US1::US1_0(string("Info"))
+                                    } else { Networking::US1::US1_1 };
+                                match &v728 {
+                                    Networking::US1::US1_0(v728_0_0) =>
+                                    Networking::US1::US1_0(match &v728 {
+                                                               Networking::US1::US1_0(x)
+                                                               => x.clone(),
+                                                               _ =>
+                                                               unreachable!(),
+                                                           }),
+                                    _ => {
+                                        let v734: string =
+                                            Networking::method9();
+                                        let v744: LrcPtr<Networking::Mut4> =
+                                            LrcPtr::new(Networking::Mut4{l0:
+                                                                             MutCell::new(Networking::method8()),});
+                                        let v755: () =
+                                            {
+                                                Networking::closure10(v744.clone(),
+                                                                      sprintf!("{}",
+                                                                               sprintf!("{:?}",
+                                                                                        Networking::US0::US0_3)),
+                                                                      ());
+                                                ()
+                                            };
+                                        let v759: Array<string> =
+                                            split(v744.l0.get().clone(), v734,
+                                                  -1_i32, 0_i32);
+                                        let v762: string =
+                                            v759[0_i32].clone();
+                                        let v766: LrcPtr<Networking::Mut4> =
+                                            LrcPtr::new(Networking::Mut4{l0:
+                                                                             MutCell::new(Networking::method8()),});
+                                        let v777: () =
+                                            {
+                                                Networking::closure10(v766.clone(),
+                                                                      sprintf!("{}",
+                                                                               sprintf!("{:?}",
+                                                                                        Networking::US0::US0_4)),
+                                                                      ());
+                                                ()
+                                            };
+                                        let v787: Networking::US1 =
+                                            if startsWith(v766.l0.get().clone(),
+                                                          v762, false) {
+                                                Networking::US1::US1_0(string("Warning"))
+                                            } else { Networking::US1::US1_1 };
+                                        match &v787 {
+                                            Networking::US1::US1_0(v787_0_0)
+                                            =>
+                                            Networking::US1::US1_0(match &v787
+                                                                       {
+                                                                       Networking::US1::US1_0(x)
+                                                                       =>
+                                                                       x.clone(),
+                                                                       _ =>
+                                                                       unreachable!(),
+                                                                   }),
+                                            _ =>
+                                            Networking::US1::US1_0(string("Critical")),
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+            let v808: string =
+                padLeft(toLower(match &v799 {
+                                    Networking::US1::US1_0(v799_0_0) =>
+                                    match &v799 {
+                                        Networking::US1::US1_0(x) =>
+                                        x.clone(),
+                                        _ => unreachable!(),
+                                    },
+                                    _ =>
+                                    panic!("{}",
+                                           string("Option does not have a value."),),
+                                }), 7_i32, ' ');
+            let v846: &str = inline_colorization::color_bright_red;
+            let v848: &str = &*v808;
+            let v850: &str = inline_colorization::color_reset;
+            let v852: string = string("format!(\"{v846}{v848}{v850}\")");
+            let v853: std::string::String = format!("{v846}{v848}{v850}");
+            let v855: string = fable_library_rust::String_::fromString(v853);
+            let v874: i64 = (patternInput_2.0.clone()).l0.get().clone();
+            let v882: string = sprintf!("{:?}", v1_1);
+            let v898: LrcPtr<Networking::Mut4> =
+                LrcPtr::new(Networking::Mut4{l0:
+                                                 MutCell::new(Networking::method8()),});
+            let v905: () =
+                {
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string("{ ")), ());
                     ()
                 };
-            let v665: () =
+            let v914: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string("timeout")),
                                           ());
                     ()
                 };
-            let v674: () =
+            let v923: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string(" = ")), ());
                     ()
                 };
-            let v682: () =
+            let v931: () =
                 {
-                    Networking::closure10(v649.clone(), sprintf!("{}", v0_1),
+                    Networking::closure10(v898.clone(), sprintf!("{}", v0_1),
                                           ());
                     ()
                 };
-            let v691: () =
+            let v940: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string("; ")), ());
                     ()
                 };
-            let v700: () =
+            let v949: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string("ex")), ());
                     ()
                 };
-            let v708: () =
+            let v957: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string(" = ")), ());
                     ()
                 };
-            let v716: () =
+            let v965: () =
                 {
-                    Networking::closure10(v649.clone(), sprintf!("{}", v633),
+                    Networking::closure10(v898.clone(), sprintf!("{}", v882),
                                           ());
                     ()
                 };
-            let v725: () =
+            let v974: () =
                 {
-                    Networking::closure10(v649.clone(),
+                    Networking::closure10(v898.clone(),
                                           sprintf!("{}", string(" }")), ());
                     ()
                 };
-            let v728: string = v649.l0.get().clone();
-            let v767: string =
+            let v977: string = v898.l0.get().clone();
+            let v1016: string =
                 trimEndChars(trimStartChars(sprintf!("{} {} #{} {} / {}",
-                                                     v279, v606, v625,
+                                                     v279, v855, v874,
                                                      Networking::closure22((),
                                                                            ()),
-                                                     v728),
+                                                     v977),
                                             toArray(empty::<char>())),
                              toArray(ofArray(new_array(&[' ', '/']))));
-            near_sdk::log!("{}", v767.clone());
+            near_sdk::log!("{}", v1016.clone());
             ();
-            ((patternInput.1.clone()).l0.get().clone())(v767)
+            ((patternInput.1.clone()).l0.get().clone())(v1016)
         }
     }
     pub fn closure16(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
@@ -1051,13 +1247,13 @@ pub mod Networking {
             ((patternInput.1.clone()).l0.get().clone())(v843)
         }
     }
-    pub fn method9(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32,
-                   v4: i64) -> Arc<Async<i64>> {
+    pub fn method11(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32,
+                    v4: i64) -> Arc<Async<i64>> {
         defaultOf()
     }
     pub fn closure26(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32)
      -> Arc<Async<i64>> {
-        Networking::method9(v0_1, v1_1, v2_1, v3, 0_i64)
+        Networking::method11(v0_1, v1_1, v2_1, v3, 0_i64)
     }
     pub fn closure25(v0_1: Option<i32>, v1_1: bool, v2_1: string)
      -> Func1<i32, Arc<Async<i64>>> {
@@ -1086,13 +1282,13 @@ pub mod Networking {
                        move |v: bool| Networking::closure24(v0_1.clone(), v)
                    })
     }
-    pub fn method10(v0_1: Option<i32>, v1_1: string, v2_1: i32)
+    pub fn method12(v0_1: Option<i32>, v1_1: string, v2_1: i32)
      -> Arc<Async<i32>> {
         defaultOf()
     }
     pub fn closure33(v0_1: Option<i32>, v1_1: string, v2_1: i32)
      -> Arc<Async<i32>> {
-        Networking::method10(v0_1, v1_1, v2_1)
+        Networking::method12(v0_1, v1_1, v2_1)
     }
     pub fn closure32(v0_1: Option<i32>, v1_1: string)
      -> Func1<i32, Arc<Async<i32>>> {

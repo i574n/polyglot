@@ -312,6 +312,25 @@ inl command_arg (arg : arg) (command : command) : command =
 inl arg_required (value : bool) (arg : arg) : arg =
     !\\((arg, value), $'"$0.required($1)"')
 
+/// ### arg_require_equals
+inl arg_require_equals (value : bool) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.require_equals($1)"')
+
+/// ### arg_default_value
+inl arg_default_value (value : string) (arg : arg) : arg =
+    inl value = #value
+    !\\((arg, value), $'"$0.default_value($1)"')
+
+/// ### arg_default_missing_value
+inl arg_default_missing_value (value : string) (arg : arg) : arg =
+    inl value = #value
+    !\\((arg, value), $'"$0.default_missing_value($1)"')
+
+/// ### arg_overrides_with
+inl arg_overrides_with (value : string) (arg : arg) : arg =
+    inl value = #value
+    !\\((arg, value), $'"$0.overrides_with($1)"')
+
 /// ### arg_short
 inl arg_short (value : char) (arg : arg) : arg =
     !\\((arg, value), $'"$0.short($1)"')
@@ -337,7 +356,7 @@ nominal value_range =
     )
 
 /// ### new_value_range
-inl new_value_range start end : value_range =
+inl new_value_range inclusive start end : value_range =
     inl len = 0i32 |> convert
     inl start, end =
         open am'
@@ -346,9 +365,13 @@ inl new_value_range start end : value_range =
             start, len |> fn
         | End start_fn, End end_fn =>
             start_fn len, end_fn len
+    inl inclusive =
+        if inclusive
+        then "="
+        else ""
     match start, end with
-    | start, end when end =. len => !\($'"clap::builder::ValueRange::new(!start..)"')
-    | start, end => !\($'"clap::builder::ValueRange::new(!start..!end)"')
+    | start, end when end =. len => !\\(start, $'"clap::builder::ValueRange::new($0..)"')
+    | start, end => !\\((start, end), $'"clap::builder::ValueRange::new($0.." + !inclusive + "$1)"')
 
 /// ### arg_num_args_range
 inl arg_num_args_range (value : value_range) (arg : arg) : arg =
@@ -441,6 +464,10 @@ inl command_get_matches (command : command) : arg_matches =
 inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
     inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
     !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
+
+/// ### command_args_override_self
+inl command_args_override_self (yes : bool) (command : command) : command =
+    !\\(command, $'"clap::Command::args_override_self($0, !yes)"')
 
 /// ### command_init_arg
 inl command_init_arg (long, short) fn command =

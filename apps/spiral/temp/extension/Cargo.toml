@@ -11,25 +11,25 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 serde_json = { workspace = true }
-wasm-bindgen = "~0.2"
-borsh = { version = "~1.5" }
-console_error_panic_hook = { version = "0.1" }
-console_log = { version = "1" }
-futures = "~0.3"
-gloo-net = { version = "0.5", features = ["http"] }
-js-sys = "~0.3"
-leptos = { version = "~0.6", features = ["csr", "nightly"] }
-leptos_meta = { version = "~0.6", features = ["csr", "nightly"] }
-leptos_router = { version = "~0.6", features = ["csr", "nightly"] }
-log = "~0.4"
-reqwest-wasm = { version = "~0.11", features = ["json"] }
-rexie = "~0.5"
-serde = "~1.0"
-serde-wasm-bindgen = "~0.6"
-wasm-bindgen-futures = "~0.4"
+wasm-bindgen = ">=0.2,<1"
+borsh = { version = "1.5" }
+console_error_panic_hook = { version = ">=0.1,<1" }
+console_log = { version = "1.0" }
+futures = ">=0.3,<1"
+gloo-net = { version = ">=0.6,<1", features = ["http"] }
+js-sys = ">=0.3,<1"
+leptos = { version = ">=0.6,<1", features = ["csr", "nightly"] }
+leptos_meta = { version = ">=0.6,<1", features = ["csr", "nightly"] }
+leptos_router = { version = ">=0.6,<1", features = ["csr", "nightly"] }
+log = ">=0.4,<1"
+reqwest-wasm = { version = ">=0.11,<1", features = ["json"] }
+rexie = ">=0.6,<1"
+serde = "1.0"
+serde-wasm-bindgen = ">=0.6,<1"
+wasm-bindgen-futures = ">=0.4,<1"
 
 [dependencies.web-sys]
-version = "~0.3"
+version = ">=0.3,<1"
 features = [
     'Document',
     'Element',

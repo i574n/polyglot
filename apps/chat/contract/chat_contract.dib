@@ -98,6 +98,33 @@ inl state = new () |> sm'.format
 trace Verbose (fun () => "trace") fun () => { trace1 = 1i32; trace2 = "2" }
 trace Verbose (fun () => "trace") fun () => { state }
 
+#!spiral
+
+//// test
+///! rust -c
+
+inl state = new () |> sm'.format
+trace Verbose (fun () => "trace") fun () => { trace1 = 1i32; trace2 = "2" }
+trace Verbose (fun () => "trace") fun () => { state }
+
+#!spiral
+
+//// test
+///! rust -c
+
+inl state = new () |> sm'.format
+trace Verbose (fun () => "trace") fun () => { trace1 = 1i32; trace2 = "2" }
+trace Verbose (fun () => "trace") fun () => { state }
+
+#!spiral
+
+//// test
+///! rust -c=-t=Verbose
+
+inl state = new () |> sm'.format
+trace Verbose (fun () => "trace") fun () => { trace1 = 1i32; trace2 = "2" }
+trace Verbose (fun () => "trace") fun () => { state }
+
 #!markdown
 
 ### main

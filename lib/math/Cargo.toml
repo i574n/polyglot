@@ -11,11 +11,11 @@ fable_library_rust = { workspace = true, features = ["static_do_bindings", "date
 inline_colorization = { workspace = true }
 chrono = { workspace = true }
 regex = { workspace = true }
-num-complex = "~0.4"
-statrs = "~0.16"
-float-cmp = "~0.9"
-pyo3 = "~0.21.1"
-sha2 = "~0.11.0-pre.3"
+num-complex = ">=0.4,<1"
+statrs = ">=0.17,<1"
+float-cmp = ">=0.9,<1"
+pyo3 = ">=0.22,<1"
+sha2 = "~0.11.0-pre.4"
 
 [[bin]]
 name = "math"

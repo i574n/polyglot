@@ -23,7 +23,9 @@ $versions = Get-ChildItem -Path $path -Directory
 if ($versions.Count -gt 1) {
     Write-Output "More than one directory in $path `n`n$versions"
 
-    $versions | Sort-Object LastWriteTime -Descending | Select-Object -Skip 1 | ForEach-Object {
+    $versions `
+    | Where-Object { !"$($netVersion)".StartsWith("$($_)$([IO.Path]::DirectorySeparatorChar)") } `
+    | ForEach-Object {
         Write-Output "Deleting $_"
         Remove-Item $_.FullName -Recurse -Force
     }

@@ -1,4 +1,5 @@
 open rust.rust_operators
+open rust
 
 inl storage_get forall t. (key : string) (storage : wasm.storage) : result (option t) wasm.js_value =
     inl storage = join storage
@@ -27,15 +28,15 @@ inl store_get forall t. (key : string) (store : wasm.rexie_store) : async.future
     inl key = join key
     inl key = key |> sm'.as_str
     inl key : wasm.js_value = !\($'"wasm_bindgen::JsValue::from_str(!key)"')
-    !\($'$"Box::pin(rexie::Store::get(&!store, &!key))"')
+    !\($'$"Box::pin(rexie::Store::get(&!store, !key))"')
 
-inl transaction_read_only (store_names : array_base string) (rexie : wasm.rexie) : resultm.result' wasm.rexie_transaction sm'.std_string =
+inl transaction_read_only forall (t : * -> *). (store_names : array_base string) (rexie : t wasm.rexie) : resultm.result' wasm.rexie_transaction sm'.std_string =
     inl store_names =
         store_names
         |> am'.to_vec
         |> am'.vec_map' sm'.to_std_string
     inl rexie = join rexie
-    !\($'"!rexie.transaction(&!store_names, rexie::TransactionMode::ReadOnly)"')
+    !\\(rexie, $'"$0.transaction(&!store_names, rexie::TransactionMode::ReadOnly)"')
     |> resultm.map_error' fun (x : wasm.rexie_error) => x |> sm'.format'
 
 inl transaction_store (store_name : string) (transaction : wasm.rexie_transaction) : resultm.result' wasm.rexie_store sm'.std_string =

@@ -1087,7 +1087,7 @@ and method22 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
 and method0 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1102,7 +1102,7 @@ and method0 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1188,7 +1188,7 @@ and method24 (v0 : pyo3_Python) : unit =
 and method23 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1203,7 +1203,7 @@ and method23 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1303,7 +1303,7 @@ and method26 (v0 : pyo3_Python) : unit =
 and method25 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1318,7 +1318,7 @@ and method25 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1422,7 +1422,7 @@ and method30 (v0 : pyo3_Python) : unit =
 and method29 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1437,7 +1437,7 @@ and method29 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1518,7 +1518,7 @@ and method32 (v0 : pyo3_Python) : unit =
 and method31 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1533,7 +1533,7 @@ and method31 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1603,7 +1603,7 @@ and method34 (v0 : pyo3_Python) : unit =
 and method33 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1618,7 +1618,7 @@ and method33 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1729,7 +1729,7 @@ and method36 (v0 : pyo3_Python) : unit =
 and method35 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1744,7 +1744,7 @@ and method35 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1814,7 +1814,7 @@ and method38 (v0 : pyo3_Python) : unit =
 and method37 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1829,7 +1829,7 @@ and method37 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -1919,7 +1919,7 @@ and method40 (v0 : pyo3_Python) : unit =
 and method39 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -1934,7 +1934,7 @@ and method39 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -2027,7 +2027,7 @@ and method44 (v0 : pyo3_Python) : unit =
 and method43 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -2042,7 +2042,7 @@ and method43 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -2249,7 +2249,7 @@ and method48 (v0 : pyo3_Python) : unit =
 and method47 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -2264,7 +2264,7 @@ and method47 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 
@@ -2394,7 +2394,7 @@ and method52 (v0 : pyo3_Python) : unit =
 and method51 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0 
-    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
+    let v1 : string = "let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
@@ -2409,7 +2409,7 @@ and method51 () : unit =
     let v11 : string = v6 + v10 
     let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__result"
+    let v14 : string = "__run_test"
     let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v15 v16 

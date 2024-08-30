@@ -1027,7 +1027,7 @@ mod module_b7a9935b {
         }
         pub fn method0() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method1(py);
                 {
@@ -1039,7 +1039,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1117,7 +1117,7 @@ mod module_b7a9935b {
         }
         pub fn method23() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method24(py);
                 {
@@ -1129,7 +1129,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1256,7 +1256,7 @@ mod module_b7a9935b {
         }
         pub fn method25() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method26(py);
                 {
@@ -1268,7 +1268,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1367,7 +1367,7 @@ mod module_b7a9935b {
         }
         pub fn method29() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method30(py);
                 {
@@ -1379,7 +1379,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1470,7 +1470,7 @@ mod module_b7a9935b {
         }
         pub fn method31() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method32(py);
                 {
@@ -1482,7 +1482,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1556,7 +1556,7 @@ mod module_b7a9935b {
         }
         pub fn method33() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method34(py);
                 {
@@ -1568,7 +1568,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1678,7 +1678,7 @@ mod module_b7a9935b {
         }
         pub fn method35() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method36(py);
                 {
@@ -1690,7 +1690,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1764,7 +1764,7 @@ mod module_b7a9935b {
         }
         pub fn method37() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method38(py);
                 {
@@ -1776,7 +1776,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -1913,7 +1913,7 @@ mod module_b7a9935b {
         }
         pub fn method39() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method40(py);
                 {
@@ -1925,7 +1925,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -2044,7 +2044,7 @@ mod module_b7a9935b {
         }
         pub fn method43() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method44(py);
                 {
@@ -2056,7 +2056,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -2265,7 +2265,7 @@ mod module_b7a9935b {
         }
         pub fn method47() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method48(py);
                 {
@@ -2277,7 +2277,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
@@ -2463,7 +2463,7 @@ mod module_b7a9935b {
         }
         pub fn method51() {
             pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method52(py);
                 {
@@ -2475,7 +2475,7 @@ mod module_b7a9935b {
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __result;
+                let v15: Result<(), pyo3::PyErr> = __run_test;
                 v15.unwrap();
                 ()
             }
