@@ -7642,41 +7642,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="state">state<a class="anchor-link" href="#state">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">state</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">version</span> <span class="p">:</span> <span class="n">u32</span>
-        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map account_id (u64 * u32))</span>
-        <span class="n">account_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="byte_slice">byte_slice<a class="anchor-link" href="#byte_slice">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7692,13 +7662,39 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="new_lookup_map">new_lookup_map<a class="anchor-link" href="#new_lookup_map">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_lookup_map</span> <span class="n">prefix</span> <span class="o">=</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"near_sdk::store::LookupMap::new(!prefix)"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="state">state<a class="anchor-link" href="#state">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7710,8 +7706,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_lookup_map</span> <span class="n">prefix</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"near_sdk::store::LookupMap::new(!prefix)"'</span><span class="o">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">state</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">version</span> <span class="p">:</span> <span class="n">u32</span>
+        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map account_id (u64 * u32))</span>
+        <span class="n">account_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7783,241 +7783,16 @@ a.anchor-link {
         99,
     ],
 } } }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c<span class="o">=</span>-t<span class="o">=</span>Verbose
-
-<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>14:58:54 <span class="ansi-black-intense-fg">verbose</span> #1 spiral_wasm.main / { args = Array(MutCell(["-t", "Debug", "-w", "target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm", "-t=Verbose"])) }
-14:58:54 <span class="ansi-black-intense-fg">verbose</span> #2 spiral_wasm.run / { wasm_path = target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm }
-14:58:56 <span class="ansi-black-intense-fg">verbose</span> #3 spiral_wasm.run / { worker = Worker {
-    workspace: Sandbox {
-        root_id: AccountId(
-            "test.near",
-        ),
-        rpc_url: Url {
-            scheme: "http",
-            cannot_be_a_base: false,
-            username: "",
-            password: None,
-            host: Some(
-                Ipv4(
-                    127.0.0.1,
-                ),
-            ),
-            port: Some(
-                60827,
-            ),
-            path: "/",
-            query: None,
-            fragment: None,
-        },
-        rpc_port: Some(
-            60827,
-        ),
-        net_port: Some(
-            60817,
-        ),
-        version: Some(
-            "1.40.0/7dd0b5993577f592be15eb102e5a3da37be66271",
-        ),
-    },
-} }
-14:58:57 <span class="ansi-black-intense-fg">verbose</span> #4 spiral_wasm.run / { contract = Contract {
-    id: AccountId(
-        "dev-20240822175856-47650502035559",
-    ),
-} }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #5 spiral_wasm.run / { result = ExecutionFinalResult {
-    total_gas_burnt: NearGas {
-        inner: 1778680544885,
-    },
-    transaction: ExecutionOutcome {
-        transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
-        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-        logs: [],
-        receipt_ids: [
-            3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-        ],
-        gas_burnt: NearGas {
-            inner: 308081859340,
-        },
-        tokens_burnt: NearToken {
-            inner: 30808185934000000000,
-        },
-        executor_id: AccountId(
-            "dev-20240822175856-47650502035559",
-        ),
-        status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
-    },
-    receipts: [
-        ExecutionOutcome {
-            transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-            logs: [
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-            ],
-            receipt_ids: [
-                DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-            ],
-            gas_burnt: NearGas {
-                inner: 1470598685545,
-            },
-            tokens_burnt: NearToken {
-                inner: 147059868554500000000,
-            },
-            executor_id: AccountId(
-                "dev-20240822175856-47650502035559",
-            ),
-            status: SuccessValue(''),
-        },
-    ],
-    status: SuccessValue(''),
-} }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace / { trace1 = 1; trace2 = 2 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #9 spiral_wasm.run / { result2 = Ok(
-    ExecutionResult {
-        total_gas_burnt: NearGas {
-            inner: 1778680544885,
-        },
-        transaction: ExecutionOutcome {
-            transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
-            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-            logs: [],
-            receipt_ids: [
-                3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-            ],
-            gas_burnt: NearGas {
-                inner: 308081859340,
-            },
-            tokens_burnt: NearToken {
-                inner: 30808185934000000000,
-            },
-            executor_id: AccountId(
-                "dev-20240822175856-47650502035559",
-            ),
-            status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
-        },
-        receipts: [
-            ExecutionOutcome {
-                transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-                block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-                logs: [
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-                ],
-                receipt_ids: [
-                    DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-                ],
-                gas_burnt: NearGas {
-                    inner: 1470598685545,
-                },
-                tokens_burnt: NearToken {
-                    inner: 147059868554500000000,
-                },
-                executor_id: AccountId(
-                    "dev-20240822175856-47650502035559",
-                ),
-                status: SuccessValue(''),
-            },
-        ],
-        value: Value {
-            repr: "",
-        },
-    },
-) }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #10 spiral_wasm.run / { receipt_failures = [] }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #11 spiral_wasm.run / { receipt_outcomes = [
-    ExecutionOutcome {
-        transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-        logs: [
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-        ],
-        receipt_ids: [
-            DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-        ],
-        gas_burnt: NearGas {
-            inner: 1470598685545,
-        },
-        tokens_burnt: NearToken {
-            inner: 147059868554500000000,
-        },
-        executor_id: AccountId(
-            "dev-20240822175856-47650502035559",
-        ),
-        status: SuccessValue(''),
-    },
-] }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #12 spiral_wasm.run / { json = Err(
-    Error {
-        repr: Custom {
-            kind: DataConversion,
-            error: "the function call returned an empty value, which cannot be parsed as JSON",
-        },
-    },
-) }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #13 spiral_wasm.run / { borsh = Err(
-    Error {
-        repr: Custom {
-            kind: DataConversion,
-            error: Custom {
-                kind: InvalidData,
-                error: "Unexpected length of input",
-            },
-        },
-    },
-) }
+09:39:02 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
+09:39:02 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+09:39:02 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8027,7 +7802,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8056,6 +7831,12 @@ a.anchor-link {
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'")] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub struct State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    version: u32, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    alias_map: near_sdk::store::LookupMap&lt; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    &gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    account_map: near_sdk::store::LookupMap&lt;near_sdk::AccountId, String&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
 
@@ -8065,7 +7846,46 @@ a.anchor-link {
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[init] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn new() -&gt; Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    version: 1, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    alias_map: near_sdk::store::LookupMap::new(b\\\"l\\\"), //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    account_map: near_sdk::store::LookupMap::new(b\\\"c\\\"), //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn is_valid_alias(alias: &amp;str) -&gt; bool { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias.len() &gt; 0 //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    &amp;&amp; alias.len() &lt; 64 //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    &amp;&amp; \!alias.starts_with(\'-\') //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    &amp;&amp; \!alias.ends_with(\'-\') //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    &amp;&amp; alias.chars().all(|c| c.is_alphanumeric() || c == \'-\') //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn generate_cid( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  fn encode_u64(value: u64) -&gt; Vec&lt;u8&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    let mut buffer = unsigned_varint::encode::u64_buffer(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    unsigned_varint::encode::u64(value, &amp;mut buffer).to_vec() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  fn sha256_hash(content: &amp;[u8]) -&gt; Vec&lt;u8&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    let mut hasher: sha2::Sha256 = sha2::Digest::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    sha2::Digest::update(&amp;mut hasher, content); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    sha2::Digest::finalize(hasher).to_vec() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let version: u8 = 1; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let codec_raw: u64 = 0x55; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let codec_bytes = encode_u64(codec_raw); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let hash_result = sha256_hash(&amp;content); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let multihash = std::iter::once(0x12) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .chain(std::iter::once(32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .chain(hash_result.into_iter()) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .collect(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let cid_bytes = [vec\![version], codec_bytes, multihash].concat(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  multibase::encode(multibase::Base::Base32Lower, &amp;cid_bytes) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
@@ -8073,27 +7893,94 @@ a.anchor-link {
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"\\\"\\\".to_string() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.generate_cid(content) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn claim_alias( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;mut self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'") { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let account_id = near_sdk::env::signer_account_id(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let timestamp = near_sdk::env::block_timestamp(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      \\\"claim_alias "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            alias: {alias:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            account_id: {account_id:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            timestamp: {timestamp:#?}\\\" //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    ) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if \!Self::is_valid_alias(&amp;alias) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if let Some(previous_alias) = self.account_map.get(&amp;account_id) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    if *previous_alias == alias { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      return; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    self.alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get_mut(previous_alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .unwrap() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .remove(&amp;account_id); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.account_map.insert(account_id.clone(), alias.clone()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let new_alias_account_map = match self.alias_map.get(&amp;alias) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    None =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = std::collections::HashMap::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, 0u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Some(accounts) =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut accounts_vec = accounts.iter().collect::&lt;Vec&lt;_&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = accounts_vec //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .iter() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .enumerate() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .map(|(i, (account_id, (timestamp, _)))| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          ((*account_id).clone(), (*timestamp, i as u32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .collect::&lt;std::collections::HashMap&lt;_, _&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.alias_map.insert(alias, new_alias_account_map); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_account_info( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  account_id: near_sdk::AccountId, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, (u64, u32))&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_account_info / account_id: {account_id:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.account_map.get(&amp;account_id).and_then(|alias| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    self.alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .map(|accounts| (alias.clone(), *accounts.get(&amp;account_id).unwrap())) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_alias_map / alias: {alias:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.alias_map.get(&amp;alias).cloned() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
@@ -8101,7 +7988,7 @@ a.anchor-link {
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.get_alias_map(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
