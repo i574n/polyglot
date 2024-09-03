@@ -11,9 +11,22 @@
 mod module_31a2fc18 {
     pub mod Chat_contract {
         use super::*;
+        use fable_library_rust::Native_::defaultOf;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::Func0;
+        use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::String_::endsWith;
+        use fable_library_rust::String_::length;
+        use fable_library_rust::String_::startsWith;
+        use fable_library_rust::String_::string;
+        pub fn closure1(unitVar: (), v0_1: char) -> bool {
+            if v0_1.is_alphanumeric() {
+                true
+            } else {
+                v0_1 == '-'
+            }
+        }
         pub fn closure0(unitVar: (), unitVar_1: ()) {} //;
         #[near_sdk::near_bindgen] //;
         #[derive(
@@ -24,35 +37,105 @@ mod module_31a2fc18 {
         )] //;
         pub struct State {
             //;
-            version: u32, //;
-            alias_map: near_sdk::store::LookupMap<
-                //;
-                String,                                                     //;
-                std::collections::HashMap<near_sdk::AccountId, (u64, u32)>, //;
-            >, //;
-            account_map: near_sdk::store::LookupMap<near_sdk::AccountId, String>, //;
+            state: (
+                u32,
+                near_sdk::store::LookupMap<
+                    std::string::String,
+                    std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                >,
+                near_sdk::store::LookupMap<near_sdk::AccountId, std::string::String>,
+            ), /* =
+                  defaultOf::<()>();
+               */
         } //;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
             #[init] //;
             pub fn new() -> Self {
-                //;
-                Self {
-                    //;
-                    version: 1,                                         //;
-                    alias_map: near_sdk::store::LookupMap::new(b"l"),   //;
-                    account_map: near_sdk::store::LookupMap::new(b"c"), //;
-                } //;
-            } //;
+                // 1;
+                {
+                    let v18: bool = true; /*;
+                                          let v19: */
+                    () /* = defaultOf();
+                    let v23: bool = true; */;
+                    let v25: string = string("b\"l\"");
+                    let v26: &[u8] = b"l";
+                    let v28: near_sdk::store::LookupMap<
+                        std::string::String,
+                        std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                    > = near_sdk::store::LookupMap::new(v26);
+                    let v30: string = string("b\"c\"");
+                    let v31: &[u8] = b"c";
+                    {
+                        let x: (
+                            u32,
+                            near_sdk::store::LookupMap<
+                                std::string::String,
+                                std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                            >,
+                            near_sdk::store::LookupMap<near_sdk::AccountId, std::string::String>,
+                        ) = (1_u32, v28, near_sdk::store::LookupMap::new(v31));
+                        State { state: x } // x
+                    }
+                } // 2.;
+            } // 1.;
+        } /* c;
+          {
+              let v38: bool =
+                  true; // ??? / i: 1uy / i': 1uy / acc: 0uy / n: 2uy;
+              let v40: bool =
+                  true; */
+ // ???? / i: 1uy / i': 2uy / acc: 0uy / n: 2uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             fn is_valid_alias(alias: &str) -> bool {
                 //;
-                alias.len() > 0 //;
-                && alias.len() < 64 //;
-                && !alias.starts_with('-') //;
-                && !alias.ends_with('-') //;
-                && alias.chars().all(|c| c.is_alphanumeric() || c == '-') //;
+                {
+                    let v45: &str = alias;
+                    let v47: std::string::String = String::from(v45);
+                    let v49: string = fable_library_rust::String_::fromString(v47);
+                    let v50: i32 = length(v49.clone());
+                    {
+                        let x_1: bool = if v50 > 0_i32 {
+                            if v50 < 64_i32 {
+                                if startsWith(v49.clone(), string("-"), false) == false {
+                                    if endsWith(v49, string("-"), false) == false {
+                                        let v61 = v45.chars();
+                                        let v63: bool = true; // 1;
+                                        let mut v61 = v61;
+                                        v61.all(|x| {
+                                            Func1::new(move |v: char| {
+                                                Chat_contract::closure1((), v)
+                                            })(x)
+                                        })
+                                    } else {
+                                        false
+                                    }
+                                } else {
+                                    false
+                                }
+                            } else {
+                                false
+                            }
+                        } else {
+                            false
+                        };
+                        x_1
+                    }
+                }
             } //;
+        } /* c;
+          {
+              let v75: bool =
+                  true; // ??? / i: 2uy / i': 1uy / acc: 2uy / n: 1uy;
+              let v77: bool =
+                  true; */
+ // ???? / i: 2uy / i': 2uy / acc: 2uy / n: 1uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             pub fn generate_cid(
                 //;
                 &self,            //;
@@ -81,6 +164,16 @@ mod module_31a2fc18 {
                 let cid_bytes = [vec![version], codec_bytes, multihash].concat(); //;
                 multibase::encode(multibase::Base::Base32Lower, &cid_bytes) //;
             } //;
+        } /* c;
+          {
+              let v106: bool =
+                  true; // ??? / i: 3uy / i': 1uy / acc: 3uy / n: 1uy;
+              let v108: bool =
+                  true; */
+ // ???? / i: 3uy / i': 2uy / acc: 3uy / n: 1uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             #[result_serializer(borsh)] //;
             pub fn generate_cid_borsh(
                 //;
@@ -90,99 +183,165 @@ mod module_31a2fc18 {
                 //;
                 self.generate_cid(content) //;
             } //;
+        } /* c;
+          {
+              let v120: bool =
+                  true; // ??? / i: 4uy / i': 1uy / acc: 4uy / n: 1uy;
+              let v122: bool =
+                  true; */
+ // ???? / i: 4uy / i': 2uy / acc: 4uy / n: 1uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             pub fn claim_alias(
                 //;
                 &mut self,     //;
                 alias: String, //;
             ) {
                 //;
-                let account_id = near_sdk::env::signer_account_id(); //;
-                let timestamp = near_sdk::env::block_timestamp(); //;
-                near_sdk::log!(
-                    //;
-                    "{}", //;
-                    format!(
+                {
+                    let v130: &mut near_sdk::store::LookupMap<
+                        near_sdk::AccountId,
+                        std::string::String,
+                    > = &mut self.state.2;
+                    let v132: &mut near_sdk::store::LookupMap<
+                        std::string::String,
+                        std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                    > = &mut self.state.1;
+                    let account_id = near_sdk::env::signer_account_id(); //;
+                    let timestamp = near_sdk::env::block_timestamp(); //;
+                    near_sdk::log!(
                         //;
-                        "claim_alias ;
-                        alias: {alias:#?} ;
-                        account_id: {account_id:#?} ;
-                        timestamp: {timestamp:#?}" //;
-                    )  //;
-                ); //;
-                if !Self::is_valid_alias(&alias) {
-                    //;
-                    near_sdk::env::panic_str("Invalid alias"); //;
+                        "{}", //;
+                        format!(
+                            //;
+                            "claim_alias ;
+                                                        alias: {alias:#?} ;
+                                                        account_id: {account_id:#?} ;
+                                                        timestamp: {timestamp:#?}" //;
+                        )  //;
+                    ); //;
+                    if !Self::is_valid_alias(&alias) {
+                        //;
+                        near_sdk::env::panic_str("Invalid alias"); //;
+                    } //;
+                    if let Some(previous_alias) = v130.get(&account_id) {
+                        //;
+                        if *previous_alias == alias {
+                            //;
+                            near_sdk::log!("{}", "Alias already claimed"); //;
+                            return; //;
+                        } //;
+                        v132 //;
+                            .get_mut(previous_alias) //;
+                            .unwrap() //;
+                            .remove(&account_id); //;
+                    } //;
+                    v130.insert(account_id.clone(), alias.clone()); //;
+                    let new_alias_account_map = match v132.get(&alias) {
+                        //;
+                        None => {
+                            //;
+                            let mut new_map = std::collections::HashMap::new(); //;
+                            new_map.insert(account_id, (timestamp, 0u32)); //;
+                            new_map //;
+                        } //;
+                        Some(accounts) => {
+                            //;
+                            let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //;
+                            accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //;
+                            let mut new_map = accounts_vec //;
+                                                    .iter() //;
+                                                    .enumerate() //;
+                                                    .map(|(i, (account_id, (timestamp, _)))| { //;
+                                                      ((*account_id).clone(), (*timestamp, i as u32)) //;
+                                                    }) //;
+                                                    .collect::<std::collections::HashMap<_, _>>(); //;
+                            new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //;
+                            new_map //;
+                        } //;
+                    }; //;
+                    v132.insert(alias, new_alias_account_map); //;
                 } //;
-                if let Some(previous_alias) = self.account_map.get(&account_id) {
-                    //;
-                    if *previous_alias == alias {
-                        //;
-                        near_sdk::log!("{}", "Alias already claimed"); //;
-                        return; //;
-                    } //;
-                    self.alias_map //;
-                        .get_mut(previous_alias) //;
-                        .unwrap() //;
-                        .remove(&account_id); //;
-                } //;
-                self.account_map.insert(account_id.clone(), alias.clone()); //;
-                let new_alias_account_map = match self.alias_map.get(&alias) {
-                    //;
-                    None => {
-                        //;
-                        let mut new_map = std::collections::HashMap::new(); //;
-                        new_map.insert(account_id, (timestamp, 0u32)); //;
-                        new_map //;
-                    } //;
-                    Some(accounts) => {
-                        //;
-                        let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //;
-                        accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //;
-                        let mut new_map = accounts_vec //;
-                    .iter() //;
-                    .enumerate() //;
-                    .map(|(i, (account_id, (timestamp, _)))| { //;
-                      ((*account_id).clone(), (*timestamp, i as u32)) //;
-                    }) //;
-                    .collect::<std::collections::HashMap<_, _>>(); //;
-                        new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //;
-                        new_map //;
-                    } //;
-                }; //;
-                self.alias_map.insert(alias, new_alias_account_map); //;
             } //;
+        } /* c;
+          {
+              let v183: bool =
+                  true; // ??? / i: 5uy / i': 1uy / acc: 5uy / n: 2uy;
+              let v185: bool =
+                  true; */
+ // ???? / i: 5uy / i': 2uy / acc: 5uy / n: 2uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             pub fn get_account_info(
                 //;
                 &self,                           //;
                 account_id: near_sdk::AccountId, //;
             ) -> Option<(String, (u64, u32))> {
                 //;
-                near_sdk::log!(
-                    //;
-                    "{}",                                                      //;
-                    format!("get_account_info / account_id: {account_id:#?}")  //;
-                ); //;
-                self.account_map.get(&account_id).and_then(|alias| {
-                    //;
-                    self.alias_map //;
-                  .get(alias) //;
-                  .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap()))
-                    //;
-                }) //;
+                {
+                    let v193: &near_sdk::store::LookupMap<
+                        near_sdk::AccountId,
+                        std::string::String,
+                    > = &self.state.2;
+                    let v195: &near_sdk::store::LookupMap<
+                        std::string::String,
+                        std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                    > = &self.state.1;
+                    near_sdk::log!(
+                        //;
+                        "{}",                                                      //;
+                        format!("get_account_info / account_id: {account_id:#?}")  //;
+                    ); //;
+                    v193.get(&account_id).and_then(|alias| { //;
+                                                        v195 //;
+                                                          .get(alias) //;
+                                                          .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap())) //;
+                                                      }) //;
+                } //;
             } //;
+        } /* c;
+          {
+              let v209: bool =
+                  true; // ??? / i: 6uy / i': 1uy / acc: 7uy / n: 2uy;
+              let v211: bool =
+                  true; */
+ // ???? / i: 6uy / i': 2uy / acc: 7uy / n: 2uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             pub fn get_alias_map(
                 //;
                 &self,         //;
                 alias: String, //;
             ) -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> {
                 //;
-                near_sdk::log!(
-                    //;
-                    "{}",                                         //;
-                    format!("get_alias_map / alias: {alias:#?}")  //;
-                ); //;
-                self.alias_map.get(&alias).cloned() //;
+                {
+                    let v219: &near_sdk::store::LookupMap<
+                        std::string::String,
+                        std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                    > = &self.state.1;
+                    near_sdk::log!(
+                        //;
+                        "{}",                                         //;
+                        format!("get_alias_map / alias: {alias:#?}")  //;
+                    ); //;
+                    v219.get(&alias).cloned() //;
+                } //;
             } //;
+        } /* c;
+          {
+              let v229:
+                      bool =
+                  true; // ??? / i: 7uy / i': 1uy / acc: 9uy / n: 2uy;
+              let v231:
+                      bool =
+                  true; */
+ // ???? / i: 7uy / i': 2uy / acc: 9uy / n: 2uy;
+        #[near_sdk::near_bindgen] //;
+        impl State {
+            //;
             #[result_serializer(borsh)] //;
             pub fn get_alias_map_borsh(
                 //;
@@ -192,10 +351,75 @@ mod module_31a2fc18 {
                 //;
                 self.get_alias_map(alias) //;
             } //;
-        } //;
-        fn _main() {
+        } /* c;
+          {
+              let v243:
+                      bool =
+                  true; // ??? / i: 8uy / i': 1uy / acc: 11uy / n: 1uy;
+              let v245:
+                      bool =
+                  true; */
+ // ???? / i: 8uy / i': 2uy / acc: 11uy / n: 1uy;
+        fn _main() //;
+        {
             //;
-            ()
+            {
+                let v249: bool = true;
+                {
+                    (); // ?? / i': 1uy / n: 12uy;
+                    let v251: bool = true;
+                    {
+                        (); // ?? / i': 2uy / n: 12uy;
+                        let v253: bool = true;
+                        {
+                            (); // ?? / i': 3uy / n: 12uy;
+                            let v255: bool = true;
+                            {
+                                (); // ?? / i': 4uy / n: 12uy;
+                                let v257: bool = true;
+                                {
+                                    (); // ?? / i': 5uy / n: 12uy;
+                                    let v259: bool = true;
+                                    {
+                                        (); // ?? / i': 6uy / n: 12uy;
+                                        let v261: bool = true;
+                                        {
+                                            (); // ?? / i': 7uy / n: 12uy;
+                                            let v263: bool = true;
+                                            {
+                                                (); // ?? / i': 8uy / n: 12uy;
+                                                let v265: bool = true;
+                                                {
+                                                    (); // ?? / i': 9uy / n: 12uy;
+                                                    let v267: bool = true;
+                                                    {
+                                                        (); // ?? / i': 10uy / n: 12uy;
+                                                        let v269: bool = true;
+                                                        {
+                                                            (); // ?? / i': 11uy / n: 12uy;
+                                                            let v271: bool = true;
+                                                            {
+                                                                (); // ?? / i': 12uy / n: 12uy;
+                                                                let v273: bool = true;
+                                                                {
+                                                                    {
+                                                                        (); // ? / i': 13uy / n: 12uy;
+                                                                        ()
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         pub fn v0() -> Func0<()> {
             static v0: OnceInit<Func0<()>> = OnceInit::new();

@@ -202,9 +202,13 @@ inl real_format forall t. (x : t) : string =
 
 /// ## rust
 
-/// ### display
-
 /// ### str
+
+/// ### chars
+
+/// ### char_is_alphanumeric
+
+/// ### display
 
 /// ### base64_decode_error
 

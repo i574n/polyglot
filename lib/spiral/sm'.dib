@@ -794,18 +794,6 @@ inl byte_to_string (format : string) (x : u8) : string =
 
 #!markdown
 
-### display
-
-#!spiral
-
-nominal display t =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
-        $'' : $'std_fmt_Display<`t>'
-    )
-
-#!markdown
-
 ### str
 
 #!spiral
@@ -814,6 +802,36 @@ nominal str =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
         $'' : $'Str'
+    )
+
+#!markdown
+
+### chars
+
+#!spiral
+
+inl chars (x : rust.ref str) : rust.mut' (into_iterator char) =
+    !\($'$"!x.chars()"')
+
+#!markdown
+
+### char_is_alphanumeric
+
+#!spiral
+
+inl char_is_alphanumeric (x : char) : bool =
+    !\\(x, $'$"$0.is_alphanumeric()"')
+
+#!markdown
+
+### display
+
+#!spiral
+
+nominal display t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
+        $'' : $'std_fmt_Display<`t>'
     )
 
 #!markdown
