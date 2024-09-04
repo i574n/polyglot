@@ -233,6 +233,21 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
     !\\(version, $'$"&mut ($0, !alias_map, !account_map)"')
 )
 
+#!spiral
+
+//// test
+///! rust -c=-e
+
+""
+|> sm'.to_std_string
+|> claim_alias (
+    inl state = new ()
+    inl version = state.version
+    inl alias_map = state.alias_map
+    inl account_map = state.account_map
+    !\\(version, $'$"&mut ($0, !alias_map, !account_map)"')
+)
+
 #!markdown
 
 ### main

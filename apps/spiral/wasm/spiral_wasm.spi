@@ -8,6 +8,7 @@ open sm'_operators
 /// ### get_args
 inl get_args () =
     {
+        exception = "exception", 'e'
         trace_level = "trace_level", 't'
         wasm = "wasm", 'w'
     }
@@ -17,6 +18,9 @@ let get_command () =
     ##"command"
     |> runtime.new_command
     |> runtime.command_args_override_self true
+    |> runtime.command_init_arg (get_args () .exception) (
+        runtime.arg_action runtime.SetTrue
+    )
     |> runtime.command_init_arg (get_args () .trace_level) (
         real runtime.arg_union `trace_level ignore
     )
@@ -229,7 +233,7 @@ inl print_usd retry (result : execution_final_result) =
             fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }
 
 /// ### run
-let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' () resultm.anyhow_error) =
+let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' u8 resultm.anyhow_error) =
     fun () =>
         inl wasm_path =
             matches
@@ -291,7 +295,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
             |> async.new_future_move
 
         inl rec loop (retry : u8) =
-            inl max = 15
+            inl max = 30
             inl init () =
                 fun () =>
                     retry
@@ -332,7 +336,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
         trace Verbose (fun () => "spiral_wasm.run") fun () => { retries }
 
         match retries with
-        | Ok _retries => Ok () |> resultm.box
+        | Ok retries => Ok retries |> resultm.box
         | Error retries => { retries } |> sm'.format |> resultm.anyhow_error |> resultm.err
 
     |> async.new_future_move
@@ -361,10 +365,21 @@ inl main (args : array_base string) =
         fun () => $'$"spiral_wasm.main"'
         fun () => { args }
 
-    arg_matches
-    |> run
-    |> async.block_on
-    |> resultm.unwrap'
+    inl exception : bool =
+        arg_matches
+        |> runtime.matches_get_flag (get_args () .exception |> fst)
+
+    inl result =
+        arg_matches
+        |> run
+        |> async.block_on
+        |> resultm.map_error' sm'.format'
+
+    match result |> resultm.ok' |> optionm'.unbox with
+    | Some retries when exception => "spiral_wasm.main / exception=true" |> resultm.err |> resultm.unwrap'
+    | None when exception => ()
+    | Some retries => retries |> ignore
+    | None => result |> resultm.unwrap' |> ignore
 
     0i32
 
