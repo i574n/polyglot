@@ -28,7 +28,7 @@ $targetDir = GetTargetDir $projectName
 { BuildFable $targetDir $projectName "rs" "CONTRACT" } | Invoke-Block
 
 (Get-Content "$targetDir/target/rs/$projectName.rs") `
-    -replace "../../../lib", "../../lib" `
+    -replace "../../../../lib", "../../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
     -replace ".rs`"]", "_contract.rs`"]" `
     | FixRust `

@@ -4,67 +4,121 @@ open rust.rust_operators
 
 /// ## chat_contract
 
-/// ### lookup_map
-nominal lookup_map k v =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::store::LookupMap<$0, $1>\")>]\n#endif\ntype near_sdk_store_LookupMap<'K, 'V> = class end"
-        $'' : $'near_sdk_store_LookupMap<`k, `v>'
-    )
-
-/// ### account_id
-nominal account_id =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::AccountId\")>]\n#endif\ntype near_sdk_AccountId = class end"
-        $'' : $'near_sdk_AccountId'
-    )
-
-/// ### byte_slice
-inl byte_slice (s : string) : rust.ref (am'.slice u8) =
-    !\($'"b\\\"" + !s + "\\\""')
-
-/// ### new_lookup_map
-inl new_lookup_map prefix =
-    !\($'"near_sdk::store::LookupMap::new(!prefix)"')
-
-/// ### clone_wrapper_lookup_map_clone
-inl clone_wrapper_lookup_map_clone forall k v.
-    (self : rust.ref (rust.clone_wrapper (lookup_map k v)))
-    =
-    self
-    // |> rust.unwrap_0_ref
-    // |> rust.clone
-    |> fun x => !\($'$"&!x.clone()"')
-
-/// ### new_clone_wrapper_lookup_map
-inl new_clone_wrapper_lookup_map forall k v. (x : lookup_map k v) : rust.clone_wrapper (lookup_map k v) =
-    x |> rust.new_clone_wrapper clone_wrapper_lookup_map_clone
-
 /// ### state
 type state =
     {
         version : u32
-        alias_map : lookup_map sm'.std_string (mapm.hash_map account_id (u64 * u32))
-        account_map : lookup_map account_id sm'.std_string
+        alias_map : near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))
+        account_map : near.lookup_map near.account_id sm'.std_string
     }
 
 /// ### new
 inl new () : state =
     {
         version = 1
-        alias_map = "l" |> byte_slice |> new_lookup_map
-        account_map = "c" |> byte_slice |> new_lookup_map
+        alias_map = "l" |> sm'.byte_slice |> near.new_lookup_map
+        account_map = "c" |> sm'.byte_slice |> near.new_lookup_map
     }
 
 /// ### is_valid_alias
-inl is_valid_alias (alias : rust.ref sm'.str) : bool =
-    inl alias' = alias |> sm'.ref_to_std_string |> sm'.from_std_string
+inl is_valid_alias (alias : sm'.std_string) : bool =
+    inl alias' = alias |> sm'.from_std_string
     inl alias_len = alias' |> sm'.length
 
     alias_len > 0i32
         && alias_len < 64
         && (alias' |> sm'.starts_with "-" |> not)
         && (alias' |> sm'.ends_with "-" |> not)
-        && (alias |> sm'.chars |> iter.all (fun c => (c |> sm'.char_is_alphanumeric) || c = '-'))
+        && (alias' |> sm'.as_str |> sm'.chars |> iter.all (fun c => (c |> sm'.char_is_alphanumeric) || c = '-'))
+
+/// ### generate_cid
+inl generate_cid (content : am'.vec u8) : sm'.std_string =
+    !\($'"  fn encode_u64(value: u64) -> Vec<u8> { //"') : ()
+    !\($'"    let mut buffer = unsigned_varint::encode::u64_buffer(); //"') : ()
+    !\($'"    unsigned_varint::encode::u64(value, &mut buffer).to_vec() //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  fn sha256_hash(content: &[u8]) -> Vec<u8> { //"') : ()
+    !\($'"    let mut hasher: sha2::Sha256 = sha2::Digest::new(); //"') : ()
+    !\($'"    sha2::Digest::update(&mut hasher, content); //"') : ()
+    !\($'"    sha2::Digest::finalize(hasher).to_vec() //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  let version: u8 = 1; //"') : ()
+    !\($'"  let codec_raw: u64 = 0x55; //"') : ()
+
+    !\($'"  let codec_bytes = encode_u64(codec_raw); //"') : ()
+    !\($'"  let hash_result = sha256_hash(&!content); //"') : ()
+    !\($'"  let multihash = std::iter::once(0x12) //"') : ()
+    !\($'"    .chain(std::iter::once(32)) //"') : ()
+    !\($'"    .chain(hash_result.into_iter()) //"') : ()
+    !\($'"    .collect(); //"') : ()
+    !\($'"  let cid_bytes = [vec\![version], codec_bytes, multihash].concat(); //"') : ()
+    !\($'"  let result = multibase::encode(multibase::Base::Base32Lower, &cid_bytes); //"') : ()
+    !\($'"result"')
+
+/// ### claim_alias
+inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : () =
+    inl account_map : rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) =
+        !\($'$"&mut !state.2"')
+
+    inl alias_map : rust.ref (rust.mut' (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32)))) =
+        !\($'$"&mut !state.1"')
+
+    !\($'"  let account_id = near_sdk::env::signer_account_id(); //"') : ()
+    !\($'"  let timestamp = near_sdk::env::block_timestamp(); //"') : ()
+
+    !\($'"  near_sdk::log\!( //"') : ()
+    !\($'"    \\\"{}\\\", //"') : ()
+    !\($'"    format\!( //"') : ()
+    !\($'"      \\\"claim_alias "') : ()
+    !\($'"            alias: {!alias:#?} "') : ()
+    !\($'"            account_id: {account_id:#?} "') : ()
+    !\($'"            timestamp: {timestamp:#?}\\\" //"') : ()
+    !\($'"    ) //"') : ()
+    !\($'"  ); //"') : ()
+
+    inl is_valid_alias = join is_valid_alias
+    !\($'"  if \!!is_valid_alias(!alias.clone()) { //"') : ()
+    !\($'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  if let Some(previous_alias) = !account_map.get(&account_id) { //"') : ()
+    !\($'"    if *previous_alias == !alias { //"') : ()
+    !\($'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"') : ()
+    !\($'"      return; //"') : ()
+    !\($'"    } //"') : ()
+
+    !\($'"    !alias_map //"') : ()
+    !\($'"      .get_mut(previous_alias) //"') : ()
+    !\($'"      .unwrap() //"') : ()
+    !\($'"      .remove(&account_id); //"') : ()
+    !\($'"  } //"') : ()
+
+    !\($'"  !account_map.insert(account_id.clone(), !alias.clone()); //"') : ()
+
+    !\($'"  let new_alias_account_map = match !alias_map.get(&!alias) { //"') : ()
+    !\($'"    None => { //"') : ()
+    !\($'"      let mut new_map = std::collections::HashMap::new(); //"') : ()
+    !\($'"      new_map.insert(account_id, (timestamp, 0u32)); //"') : ()
+    !\($'"      new_map //"') : ()
+    !\($'"    } //"') : ()
+    !\($'"    Some(accounts) => { //"') : ()
+    !\($'"      let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //"') : ()
+    !\($'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"') : ()
+    !\($'"      let mut new_map = accounts_vec //"') : ()
+    !\($'"        .iter() //"') : ()
+    !\($'"        .enumerate() //"') : ()
+    !\($'"        .map(|(i, (account_id, (timestamp, _)))| { //"') : ()
+    !\($'"          ((*account_id).clone(), (*timestamp, i as u32)) //"') : ()
+    !\($'"        }) //"') : ()
+    !\($'"        .collect::<std::collections::HashMap<_, _>>(); //"') : ()
+    !\($'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"') : ()
+    !\($'"      new_map //"') : ()
+    !\($'"    } //"') : ()
+    !\($'"  }; //"') : ()
+
+    !\($'"  !alias_map.insert(!alias, new_alias_account_map); //"') : ()
 
 /// ### main
 ///! _
@@ -80,11 +134,11 @@ inl main () =
     !\($'"  borsh::BorshSerialize, //"') : ()
     !\($'")] //"') : ()
 
-    !\($'"pub struct State { //"') : ()
+    !\($'"pub struct State ( //"') : ()
 
-    !\($'"    state: /*"') : ()
+    !\($'"/*"') : ()
     (null () : rust.type_emit state) |> ignore
-    !\($'"*/ } //"') : ()
+    !\($'"*/ )"') : ()
 
     inl new_ () =
         !\($'"#[init] //"') : ()
@@ -97,7 +151,7 @@ inl main () =
         (!\($'"true; */"') : bool) |> ignore
 
         inl result = new ()
-        $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x $"State {{ state: $0 }} // x") // 2' : ()
+        $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x $"Self($0) // x") // 2' : ()
 
         !\($'"} // 2."') : ()
 
@@ -106,8 +160,8 @@ inl main () =
         2
 
     inl is_valid_alias () =
-        !\($'"fn is_valid_alias(alias: &str) -> bool { //"') : ()
-        inl alias : rust.ref sm'.str = !\($'$"alias"')
+        !\($'"fn is_valid_alias(alias: String) -> bool { //"') : ()
+        inl alias = !\($'$"alias"')
         inl result = alias |> is_valid_alias
         $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x "$0 }") // 2' : ()
         !\($'"} //"') : ()
@@ -118,30 +172,11 @@ inl main () =
         !\($'"  &self, //"') : ()
         !\($'"  content: Vec<u8>, //"') : ()
         !\($'") -> String { //"') : ()
-        !\($'"  fn encode_u64(value: u64) -> Vec<u8> { //"') : ()
-        !\($'"    let mut buffer = unsigned_varint::encode::u64_buffer(); //"') : ()
-        !\($'"    unsigned_varint::encode::u64(value, &mut buffer).to_vec() //"') : ()
-        !\($'"  } //"') : ()
-
-        !\($'"  fn sha256_hash(content: &[u8]) -> Vec<u8> { //"') : ()
-        !\($'"    let mut hasher: sha2::Sha256 = sha2::Digest::new(); //"') : ()
-        !\($'"    sha2::Digest::update(&mut hasher, content); //"') : ()
-        !\($'"    sha2::Digest::finalize(hasher).to_vec() //"') : ()
-        !\($'"  } //"') : ()
-
-        !\($'"  let version: u8 = 1; //"') : ()
-        !\($'"  let codec_raw: u64 = 0x55; //"') : ()
-
-        !\($'"  let codec_bytes = encode_u64(codec_raw); //"') : ()
-        !\($'"  let hash_result = sha256_hash(&content); //"') : ()
-        !\($'"  let multihash = std::iter::once(0x12) //"') : ()
-        !\($'"    .chain(std::iter::once(32)) //"') : ()
-        !\($'"    .chain(hash_result.into_iter()) //"') : ()
-        !\($'"    .collect(); //"') : ()
-        !\($'"  let cid_bytes = [vec\![version], codec_bytes, multihash].concat(); //"') : ()
-        !\($'"  multibase::encode(multibase::Base::Base32Lower, &cid_bytes) //"') : ()
+        inl content = !\($'$"content"')
+        inl result = generate_cid content
+        $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x "$0 }") // 2' : ()
         !\($'"} //"') : ()
-        1
+        2
 
     inl generate_cid_borsh () =
         !\($'"#[result_serializer(borsh)] //"') : ()
@@ -158,71 +193,19 @@ inl main () =
         !\($'"  &mut self, //"') : ()
         !\($'"  alias: String, //"') : ()
         !\($'") { //"') : ()
+        
+        inl state = !\($'$"&mut self.0"')
+        inl alias = !\($'$"alias"')
+        
+        inl result = claim_alias state alias
 
-        inl account_map : rust.ref (rust.mut' (lookup_map account_id sm'.std_string)) =
-            !\($'$"&mut self.state.2"')
+        !\($'"} //"') : ()
 
-        inl alias_map : rust.ref (rust.mut' (lookup_map sm'.std_string (mapm.hash_map account_id (u64 * u32)))) =
-            !\($'$"&mut self.state.1"')
-
-        !\($'"  let account_id = near_sdk::env::signer_account_id(); //"') : ()
-        !\($'"  let timestamp = near_sdk::env::block_timestamp(); //"') : ()
-
-        !\($'"  near_sdk::log\!( //"') : ()
-        !\($'"    \\\"{}\\\", //"') : ()
-        !\($'"    format\!( //"') : ()
-        !\($'"      \\\"claim_alias "') : ()
-        !\($'"            alias: {alias:#?} "') : ()
-        !\($'"            account_id: {account_id:#?} "') : ()
-        !\($'"            timestamp: {timestamp:#?}\\\" //"') : ()
-        !\($'"    ) //"') : ()
-        !\($'"  ); //"') : ()
-
-        !\($'"  if \!Self::is_valid_alias(&alias) { //"') : ()
-        !\($'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"') : ()
-        !\($'"  } //"') : ()
-
-        !\($'"  if let Some(previous_alias) = !account_map.get(&account_id) { //"') : ()
-        !\($'"    if *previous_alias == alias { //"') : ()
-        !\($'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"') : ()
-        !\($'"      return; //"') : ()
-        !\($'"    } //"') : ()
-
-        !\($'"    !alias_map //"') : ()
-        !\($'"      .get_mut(previous_alias) //"') : ()
-        !\($'"      .unwrap() //"') : ()
-        !\($'"      .remove(&account_id); //"') : ()
-        !\($'"  } //"') : ()
-
-        !\($'"  !account_map.insert(account_id.clone(), alias.clone()); //"') : ()
-
-        !\($'"  let new_alias_account_map = match !alias_map.get(&alias) { //"') : ()
-        !\($'"    None => { //"') : ()
-        !\($'"      let mut new_map = std::collections::HashMap::new(); //"') : ()
-        !\($'"      new_map.insert(account_id, (timestamp, 0u32)); //"') : ()
-        !\($'"      new_map //"') : ()
-        !\($'"    } //"') : ()
-        !\($'"    Some(accounts) => { //"') : ()
-        !\($'"      let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //"') : ()
-        !\($'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"') : ()
-        !\($'"      let mut new_map = accounts_vec //"') : ()
-        !\($'"        .iter() //"') : ()
-        !\($'"        .enumerate() //"') : ()
-        !\($'"        .map(|(i, (account_id, (timestamp, _)))| { //"') : ()
-        !\($'"          ((*account_id).clone(), (*timestamp, i as u32)) //"') : ()
-        !\($'"        }) //"') : ()
-        !\($'"        .collect::<std::collections::HashMap<_, _>>(); //"') : ()
-        !\($'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"') : ()
-        !\($'"      new_map //"') : ()
-        !\($'"    } //"') : ()
-        !\($'"  }; //"') : ()
-
-        !\($'"  !alias_map.insert(alias, new_alias_account_map); //"') : ()
         !\($'"} //"') : ()
 
         !\($'"} //"') : ()
 
-        2
+        3
 
     inl get_account_info () =
         !\($'"pub fn get_account_info( //"') : ()
@@ -230,11 +213,11 @@ inl main () =
         !\($'"  account_id: near_sdk::AccountId, //"') : ()
         !\($'") -> Option<(String, (u64, u32))> { //"') : ()
 
-        inl account_map : rust.ref (lookup_map account_id sm'.std_string) =
-            !\($'$"&self.state.2"')
+        inl account_map : rust.ref (near.lookup_map near.account_id sm'.std_string) =
+            !\($'$"&self.0.2"')
 
-        inl alias_map : rust.ref (lookup_map sm'.std_string (mapm.hash_map account_id (u64 * u32))) =
-            !\($'$"&self.state.1"')
+        inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
+            !\($'$"&self.0.1"')
 
         !\($'"  near_sdk::log\!( //"') : ()
         !\($'"    \\\"{}\\\", //"') : ()
@@ -258,8 +241,8 @@ inl main () =
         !\($'"  alias: String, //"') : ()
         !\($'") -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> { //"') : ()
 
-        inl alias_map : rust.ref (lookup_map sm'.std_string (mapm.hash_map account_id (u64 * u32))) =
-            !\($'$"&self.state.1"')
+        inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
+            !\($'$"&self.0.1"')
 
         !\($'"  near_sdk::log\!( //"') : ()
         !\($'"    \\\"{}\\\", //"') : ()

@@ -162,6 +162,33 @@ inl box forall t u. (x : result t u) : result' t u =
 
 #!markdown
 
+### anyhow_result
+
+#!spiral
+
+nominal anyhow_result t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Result<$0>\")>]\n#endif\ntype anyhow_Result<'T> = class end"
+        $'' : $'anyhow_Result<`t>'
+    )
+
+#!markdown
+
+### anyhow_error
+
+#!spiral
+
+nominal anyhow_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Error\")>]\n#endif\ntype anyhow_Error = class end"
+        $'' : $'anyhow_Error'
+    )
+
+inl anyhow_error error =
+    !\\(error, $'"anyhow::anyhow\!($0)"')
+
+#!markdown
+
 ### try'
 
 #!spiral

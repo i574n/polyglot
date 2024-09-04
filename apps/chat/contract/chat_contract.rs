@@ -27,6 +27,36 @@ mod module_31a2fc18 {
                 v0_1 == '-'
             }
         }
+        pub fn closure2(unitVar: (), v0_1: std::string::String) -> bool {
+            let v2: string = fable_library_rust::String_::fromString(v0_1);
+            let v3: i32 = length(v2.clone());
+            if v3 > 0_i32 {
+                if v3 < 64_i32 {
+                    if startsWith(v2.clone(), string("-"), false) == false {
+                        if endsWith(v2.clone(), string("-"), false) == false {
+                            let v14: &str = &*v2;
+                            let v16 = v14.chars();
+                            let v18: bool = true; // 1;
+                            let mut v16 = v16;
+                            v16.all(|x| {
+                                Func1::new(move |v: char| Chat_contract::closure1((), v))(x)
+                            })
+                        } else {
+                            false
+                        }
+                    } else {
+                        false
+                    }
+                } else {
+                    false
+                }
+            } else {
+                false
+            }
+        }
+        pub fn method0() -> Func1<std::string::String, bool> {
+            Func1::new(move |v: std::string::String| Chat_contract::closure2((), v))
+        }
         pub fn closure0(unitVar: (), unitVar_1: ()) {} //;
         #[near_sdk::near_bindgen] //;
         #[derive(
@@ -35,9 +65,13 @@ mod module_31a2fc18 {
             borsh::BorshDeserialize,  //;
             borsh::BorshSerialize,    //;
         )] //;
-        pub struct State {
+        pub struct State(
             //;
-            state: (
+            /*;
+            {
+                let v9:
+                        */
+            (
                 u32,
                 near_sdk::store::LookupMap<
                     std::string::String,
@@ -47,7 +81,7 @@ mod module_31a2fc18 {
             ), /* =
                   defaultOf::<()>();
                */
-        } //;
+        );
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -76,7 +110,7 @@ mod module_31a2fc18 {
                             >,
                             near_sdk::store::LookupMap<near_sdk::AccountId, std::string::String>,
                         ) = (1_u32, v28, near_sdk::store::LookupMap::new(v31));
-                        State { state: x } // x
+                        Self(x) // x
                     }
                 } // 2.;
             } // 1.;
@@ -90,19 +124,19 @@ mod module_31a2fc18 {
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
-            fn is_valid_alias(alias: &str) -> bool {
+            fn is_valid_alias(alias: String) -> bool {
                 //;
                 {
-                    let v45: &str = alias;
-                    let v47: std::string::String = String::from(v45);
-                    let v49: string = fable_library_rust::String_::fromString(v47);
-                    let v50: i32 = length(v49.clone());
+                    let v45: std::string::String = alias;
+                    let v47: string = fable_library_rust::String_::fromString(v45);
+                    let v48: i32 = length(v47.clone());
                     {
-                        let x_1: bool = if v50 > 0_i32 {
-                            if v50 < 64_i32 {
-                                if startsWith(v49.clone(), string("-"), false) == false {
-                                    if endsWith(v49, string("-"), false) == false {
-                                        let v61 = v45.chars();
+                        let x_1: bool = if v48 > 0_i32 {
+                            if v48 < 64_i32 {
+                                if startsWith(v47.clone(), string("-"), false) == false {
+                                    if endsWith(v47.clone(), string("-"), false) == false {
+                                        let v59: &str = &*v47;
+                                        let v61 = v59.chars();
                                         let v63: bool = true; // 1;
                                         let mut v61 = v61;
                                         v61.all(|x| {
@@ -142,35 +176,43 @@ mod module_31a2fc18 {
                 content: Vec<u8>, //;
             ) -> String {
                 //;
-                fn encode_u64(value: u64) -> Vec<u8> {
-                    //;
-                    let mut buffer = unsigned_varint::encode::u64_buffer(); //;
-                    unsigned_varint::encode::u64(value, &mut buffer).to_vec() //;
-                } //;
-                fn sha256_hash(content: &[u8]) -> Vec<u8> {
-                    //;
-                    let mut hasher: sha2::Sha256 = sha2::Digest::new(); //;
-                    sha2::Digest::update(&mut hasher, content); //;
-                    sha2::Digest::finalize(hasher).to_vec() //;
-                } //;
-                let version: u8 = 1; //;
-                let codec_raw: u64 = 0x55; //;
-                let codec_bytes = encode_u64(codec_raw); //;
-                let hash_result = sha256_hash(&content); //;
-                let multihash = std::iter::once(0x12) //;
-                    .chain(std::iter::once(32)) //;
-                    .chain(hash_result.into_iter()) //;
-                    .collect(); //;
-                let cid_bytes = [vec![version], codec_bytes, multihash].concat(); //;
-                multibase::encode(multibase::Base::Base32Lower, &cid_bytes) //;
+                {
+                    let v85: Vec<u8> = content;
+                    fn encode_u64(value: u64) -> Vec<u8> {
+                        //;
+                        let mut buffer = unsigned_varint::encode::u64_buffer(); //;
+                        unsigned_varint::encode::u64(value, &mut buffer).to_vec()
+                        //;
+                    } //;
+                    fn sha256_hash(content: &[u8]) -> Vec<u8> {
+                        //;
+                        let mut hasher: sha2::Sha256 = sha2::Digest::new(); //;
+                        sha2::Digest::update(&mut hasher, content); //;
+                        sha2::Digest::finalize(hasher).to_vec() //;
+                    } //;
+                    let version: u8 = 1; //;
+                    let codec_raw: u64 = 0x55; //;
+                    let codec_bytes = encode_u64(codec_raw); //;
+                    let hash_result = sha256_hash(&v85); //;
+                    let multihash = std::iter::once(0x12) //;
+                        .chain(std::iter::once(32)) //;
+                        .chain(hash_result.into_iter()) //;
+                        .collect(); //;
+                    let cid_bytes = [vec![version], codec_bytes, multihash].concat(); //;
+                    let result = multibase::encode(multibase::Base::Base32Lower, &cid_bytes); //;
+                    {
+                        let x_2: std::string::String = result;
+                        x_2
+                    }
+                }
             } //;
         } /* c;
           {
-              let v106: bool =
-                  true; // ??? / i: 3uy / i': 1uy / acc: 3uy / n: 1uy;
-              let v108: bool =
+              let v110: bool =
+                  true; // ??? / i: 3uy / i': 1uy / acc: 3uy / n: 2uy;
+              let v112: bool =
                   true; */
- // ???? / i: 3uy / i': 2uy / acc: 3uy / n: 1uy;
+ // ???? / i: 3uy / i': 2uy / acc: 3uy / n: 2uy;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -185,11 +227,11 @@ mod module_31a2fc18 {
             } //;
         } /* c;
           {
-              let v120: bool =
-                  true; // ??? / i: 4uy / i': 1uy / acc: 4uy / n: 1uy;
-              let v122: bool =
+              let v124: bool =
+                  true; // ??? / i: 4uy / i': 1uy / acc: 5uy / n: 1uy;
+              let v126: bool =
                   true; */
- // ???? / i: 4uy / i': 2uy / acc: 4uy / n: 1uy;
+ // ???? / i: 4uy / i': 2uy / acc: 5uy / n: 1uy;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -200,14 +242,23 @@ mod module_31a2fc18 {
             ) {
                 //;
                 {
-                    let v130: &mut near_sdk::store::LookupMap<
+                    let v134: &mut (
+                        u32,
+                        near_sdk::store::LookupMap<
+                            std::string::String,
+                            std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
+                        >,
+                        near_sdk::store::LookupMap<near_sdk::AccountId, std::string::String>,
+                    ) = &mut self.0;
+                    let v136: std::string::String = alias;
+                    let v138: &mut near_sdk::store::LookupMap<
                         near_sdk::AccountId,
                         std::string::String,
-                    > = &mut self.state.2;
-                    let v132: &mut near_sdk::store::LookupMap<
+                    > = &mut v134.2;
+                    let v140: &mut near_sdk::store::LookupMap<
                         std::string::String,
                         std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
-                    > = &mut self.state.1;
+                    > = &mut v134.1;
                     let account_id = near_sdk::env::signer_account_id(); //;
                     let timestamp = near_sdk::env::block_timestamp(); //;
                     near_sdk::log!(
@@ -216,61 +267,64 @@ mod module_31a2fc18 {
                         format!(
                             //;
                             "claim_alias ;
-                                                        alias: {alias:#?} ;
-                                                        account_id: {account_id:#?} ;
-                                                        timestamp: {timestamp:#?}" //;
+                                                            alias: {v136:#?} ;
+                                                            account_id: {account_id:#?} ;
+                                                            timestamp: {timestamp:#?}" //;
                         )  //;
                     ); //;
-                    if !Self::is_valid_alias(&alias) {
-                        //;
-                        near_sdk::env::panic_str("Invalid alias"); //;
+                    {
+                        let v152 = Chat_contract::method0();
+                        if !v152(v136.clone()) {
+                            //;
+                            near_sdk::env::panic_str("Invalid alias"); //;
+                        } //;
+                        if let Some(previous_alias) = v138.get(&account_id) {
+                            //;
+                            if *previous_alias == v136 {
+                                //;
+                                near_sdk::log!("{}", "Alias already claimed"); //;
+                                return; //;
+                            } //;
+                            v140 //;
+                                .get_mut(previous_alias) //;
+                                .unwrap() //;
+                                .remove(&account_id); //;
+                        } //;
+                        v138.insert(account_id.clone(), v136.clone()); //;
+                        let new_alias_account_map = match v140.get(&v136) {
+                            //;
+                            None => {
+                                //;
+                                let mut new_map = std::collections::HashMap::new(); //;
+                                new_map.insert(account_id, (timestamp, 0u32)); //;
+                                new_map //;
+                            } //;
+                            Some(accounts) => {
+                                //;
+                                let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //;
+                                accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //;
+                                let mut new_map = accounts_vec //;
+                                                            .iter() //;
+                                                            .enumerate() //;
+                                                            .map(|(i, (account_id, (timestamp, _)))| { //;
+                                                              ((*account_id).clone(), (*timestamp, i as u32)) //;
+                                                            }) //;
+                                                            .collect::<std::collections::HashMap<_, _>>(); //;
+                                new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //;
+                                new_map //;
+                            } //;
+                        }; //;
+                        v140.insert(v136, new_alias_account_map); //;
                     } //;
-                    if let Some(previous_alias) = v130.get(&account_id) {
-                        //;
-                        if *previous_alias == alias {
-                            //;
-                            near_sdk::log!("{}", "Alias already claimed"); //;
-                            return; //;
-                        } //;
-                        v132 //;
-                            .get_mut(previous_alias) //;
-                            .unwrap() //;
-                            .remove(&account_id); //;
-                    } //;
-                    v130.insert(account_id.clone(), alias.clone()); //;
-                    let new_alias_account_map = match v132.get(&alias) {
-                        //;
-                        None => {
-                            //;
-                            let mut new_map = std::collections::HashMap::new(); //;
-                            new_map.insert(account_id, (timestamp, 0u32)); //;
-                            new_map //;
-                        } //;
-                        Some(accounts) => {
-                            //;
-                            let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //;
-                            accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //;
-                            let mut new_map = accounts_vec //;
-                                                    .iter() //;
-                                                    .enumerate() //;
-                                                    .map(|(i, (account_id, (timestamp, _)))| { //;
-                                                      ((*account_id).clone(), (*timestamp, i as u32)) //;
-                                                    }) //;
-                                                    .collect::<std::collections::HashMap<_, _>>(); //;
-                            new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //;
-                            new_map //;
-                        } //;
-                    }; //;
-                    v132.insert(alias, new_alias_account_map); //;
                 } //;
             } //;
         } /* c;
           {
-              let v183: bool =
-                  true; // ??? / i: 5uy / i': 1uy / acc: 5uy / n: 2uy;
-              let v185: bool =
+              let v193: bool =
+                  true; // ??? / i: 5uy / i': 1uy / acc: 6uy / n: 3uy;
+              let v195: bool =
                   true; */
- // ???? / i: 5uy / i': 2uy / acc: 5uy / n: 2uy;
+ // ???? / i: 5uy / i': 2uy / acc: 6uy / n: 3uy;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -281,33 +335,35 @@ mod module_31a2fc18 {
             ) -> Option<(String, (u64, u32))> {
                 //;
                 {
-                    let v193: &near_sdk::store::LookupMap<
+                    let v203: &near_sdk::store::LookupMap<
                         near_sdk::AccountId,
                         std::string::String,
-                    > = &self.state.2;
-                    let v195: &near_sdk::store::LookupMap<
+                    > = &self.0 .2;
+                    let v205: &near_sdk::store::LookupMap<
                         std::string::String,
                         std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
-                    > = &self.state.1;
+                    > = &self.0 .1;
                     near_sdk::log!(
                         //;
                         "{}",                                                      //;
                         format!("get_account_info / account_id: {account_id:#?}")  //;
                     ); //;
-                    v193.get(&account_id).and_then(|alias| { //;
-                                                        v195 //;
-                                                          .get(alias) //;
-                                                          .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap())) //;
-                                                      }) //;
+                    v203.get(&account_id).and_then(|alias| { //;
+                                                                v205 //;
+                                                                  .get(alias) //;
+                                                                  .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap())) //;
+                                                              }) //;
                 } //;
             } //;
         } /* c;
           {
-              let v209: bool =
-                  true; // ??? / i: 6uy / i': 1uy / acc: 7uy / n: 2uy;
-              let v211: bool =
+              let v219:
+                      bool =
+                  true; // ??? / i: 6uy / i': 1uy / acc: 9uy / n: 2uy;
+              let v221:
+                      bool =
                   true; */
- // ???? / i: 6uy / i': 2uy / acc: 7uy / n: 2uy;
+ // ???? / i: 6uy / i': 2uy / acc: 9uy / n: 2uy;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -318,27 +374,27 @@ mod module_31a2fc18 {
             ) -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> {
                 //;
                 {
-                    let v219: &near_sdk::store::LookupMap<
+                    let v229: &near_sdk::store::LookupMap<
                         std::string::String,
                         std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
-                    > = &self.state.1;
+                    > = &self.0 .1;
                     near_sdk::log!(
                         //;
                         "{}",                                         //;
                         format!("get_alias_map / alias: {alias:#?}")  //;
                     ); //;
-                    v219.get(&alias).cloned() //;
+                    v229.get(&alias).cloned() //;
                 } //;
             } //;
         } /* c;
           {
-              let v229:
+              let v239:
                       bool =
-                  true; // ??? / i: 7uy / i': 1uy / acc: 9uy / n: 2uy;
-              let v231:
+                  true; // ??? / i: 7uy / i': 1uy / acc: 11uy / n: 2uy;
+              let v241:
                       bool =
                   true; */
- // ???? / i: 7uy / i': 2uy / acc: 9uy / n: 2uy;
+ // ???? / i: 7uy / i': 2uy / acc: 11uy / n: 2uy;
         #[near_sdk::near_bindgen] //;
         impl State {
             //;
@@ -353,58 +409,66 @@ mod module_31a2fc18 {
             } //;
         } /* c;
           {
-              let v243:
+              let v253:
                       bool =
-                  true; // ??? / i: 8uy / i': 1uy / acc: 11uy / n: 1uy;
-              let v245:
+                  true; // ??? / i: 8uy / i': 1uy / acc: 13uy / n: 1uy;
+              let v255:
                       bool =
                   true; */
- // ???? / i: 8uy / i': 2uy / acc: 11uy / n: 1uy;
+ // ???? / i: 8uy / i': 2uy / acc: 13uy / n: 1uy;
         fn _main() //;
         {
             //;
             {
-                let v249: bool = true;
+                let v259: bool = true;
                 {
-                    (); // ?? / i': 1uy / n: 12uy;
-                    let v251: bool = true;
+                    (); // ?? / i': 1uy / n: 14uy;
+                    let v261: bool = true;
                     {
-                        (); // ?? / i': 2uy / n: 12uy;
-                        let v253: bool = true;
+                        (); // ?? / i': 2uy / n: 14uy;
+                        let v263: bool = true;
                         {
-                            (); // ?? / i': 3uy / n: 12uy;
-                            let v255: bool = true;
+                            (); // ?? / i': 3uy / n: 14uy;
+                            let v265: bool = true;
                             {
-                                (); // ?? / i': 4uy / n: 12uy;
-                                let v257: bool = true;
+                                (); // ?? / i': 4uy / n: 14uy;
+                                let v267: bool = true;
                                 {
-                                    (); // ?? / i': 5uy / n: 12uy;
-                                    let v259: bool = true;
+                                    (); // ?? / i': 5uy / n: 14uy;
+                                    let v269: bool = true;
                                     {
-                                        (); // ?? / i': 6uy / n: 12uy;
-                                        let v261: bool = true;
+                                        (); // ?? / i': 6uy / n: 14uy;
+                                        let v271: bool = true;
                                         {
-                                            (); // ?? / i': 7uy / n: 12uy;
-                                            let v263: bool = true;
+                                            (); // ?? / i': 7uy / n: 14uy;
+                                            let v273: bool = true;
                                             {
-                                                (); // ?? / i': 8uy / n: 12uy;
-                                                let v265: bool = true;
+                                                (); // ?? / i': 8uy / n: 14uy;
+                                                let v275: bool = true;
                                                 {
-                                                    (); // ?? / i': 9uy / n: 12uy;
-                                                    let v267: bool = true;
+                                                    (); // ?? / i': 9uy / n: 14uy;
+                                                    let v277: bool = true;
                                                     {
-                                                        (); // ?? / i': 10uy / n: 12uy;
-                                                        let v269: bool = true;
+                                                        (); // ?? / i': 10uy / n: 14uy;
+                                                        let v279: bool = true;
                                                         {
-                                                            (); // ?? / i': 11uy / n: 12uy;
-                                                            let v271: bool = true;
+                                                            (); // ?? / i': 11uy / n: 14uy;
+                                                            let v281: bool = true;
                                                             {
-                                                                (); // ?? / i': 12uy / n: 12uy;
-                                                                let v273: bool = true;
+                                                                (); // ?? / i': 12uy / n: 14uy;
+                                                                let v283: bool = true;
                                                                 {
+                                                                    (); // ?? / i': 13uy / n: 14uy;
+                                                                    let v285: bool = true;
                                                                     {
-                                                                        (); // ? / i': 13uy / n: 12uy;
-                                                                        ()
+                                                                        (); // ?? / i': 14uy / n: 14uy;
+                                                                        let v287: bool = true;
+                                                                        {
+                                                                            {
+                                                                                (); // ? / i': 15uy / n: 14uy;
+                                                                                ()
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -430,43 +494,43 @@ mod module_31a2fc18 {
     }
 }
 pub use module_31a2fc18::*;
-#[path = "../../lib/fsharp/Common_contract.rs"]
+#[path = "../../../lib/fsharp/Common_contract.rs"]
 mod module_ad43931;
 pub use module_ad43931::*;
-#[path = "../../lib/spiral/async__contract.rs"]
+#[path = "../../../lib/spiral/async__contract.rs"]
 mod module_67c461a2;
 pub use module_67c461a2::*;
-#[path = "../../lib/spiral/common_contract.rs"]
+#[path = "../../../lib/spiral/common_contract.rs"]
 mod module_181b15d6;
 pub use module_181b15d6::*;
-#[path = "../../lib/spiral/crypto_contract.rs"]
+#[path = "../../../lib/spiral/crypto_contract.rs"]
 mod module_90d9c778;
 pub use module_90d9c778::*;
-#[path = "../../lib/spiral/date_time_contract.rs"]
+#[path = "../../../lib/spiral/date_time_contract.rs"]
 mod module_e43a8385;
 pub use module_e43a8385::*;
-#[path = "../../lib/spiral/file_system_contract.rs"]
+#[path = "../../../lib/spiral/file_system_contract.rs"]
 mod module_a7db9b47;
 pub use module_a7db9b47::*;
-#[path = "../../lib/spiral/lib_contract.rs"]
+#[path = "../../../lib/spiral/lib_contract.rs"]
 mod module_98e448fc;
 pub use module_98e448fc::*;
-#[path = "../../lib/spiral/networking_contract.rs"]
+#[path = "../../../lib/spiral/networking_contract.rs"]
 mod module_268024e5;
 pub use module_268024e5::*;
-#[path = "../../lib/spiral/platform_contract.rs"]
+#[path = "../../../lib/spiral/platform_contract.rs"]
 mod module_7d8ad484;
 pub use module_7d8ad484::*;
-#[path = "../../lib/spiral/runtime_contract.rs"]
+#[path = "../../../lib/spiral/runtime_contract.rs"]
 mod module_485aae07;
 pub use module_485aae07::*;
-#[path = "../../lib/spiral/sm_contract.rs"]
+#[path = "../../../lib/spiral/sm_contract.rs"]
 mod module_582b4305;
 pub use module_582b4305::*;
-#[path = "../../lib/spiral/threading_contract.rs"]
+#[path = "../../../lib/spiral/threading_contract.rs"]
 mod module_d5afb6f5;
 pub use module_d5afb6f5::*;
-#[path = "../../lib/spiral/trace_contract.rs"]
+#[path = "../../../lib/spiral/trace_contract.rs"]
 mod module_9e77af3a;
 pub use module_9e77af3a::*;
 pub mod Polyglot {

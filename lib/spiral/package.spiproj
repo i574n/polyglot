@@ -28,6 +28,7 @@ modules:
     reflection
     rust/
         testing
+        near
     guid
     parsing
     platform

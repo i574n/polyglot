@@ -208,6 +208,8 @@ inl real_format forall t. (x : t) : string =
 
 /// ### char_is_alphanumeric
 
+/// ### byte_slice
+
 /// ### display
 
 /// ### base64_decode_error

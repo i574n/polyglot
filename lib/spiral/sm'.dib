@@ -811,7 +811,7 @@ nominal str =
 #!spiral
 
 inl chars (x : rust.ref str) : rust.mut' (into_iterator char) =
-    !\($'$"!x.chars()"')
+    !\\(x, $'$"$0.chars()"')
 
 #!markdown
 
@@ -821,6 +821,15 @@ inl chars (x : rust.ref str) : rust.mut' (into_iterator char) =
 
 inl char_is_alphanumeric (x : char) : bool =
     !\\(x, $'$"$0.is_alphanumeric()"')
+
+#!markdown
+
+### byte_slice
+
+#!spiral
+
+inl byte_slice (s : string) : rust.ref (am'.slice u8) =
+    !\($'"b\\\"" + !s + "\\\""')
 
 #!markdown
 
