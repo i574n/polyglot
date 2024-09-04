@@ -21966,8 +21966,8 @@ and method99 (v0 : US33, v1 : string, v2 : string, v3 : string, v4 : US12) : str
         | US12_0(v187) -> (* Ok *)
             let v188 : Result<string, string> = Ok v187 
             v188
-    let v193 : string = "v192.ok()"
-    let v194 : string option = Fable.Core.RustInterop.emitRustExpr () v193 
+    let v193 : string = "$0.ok()"
+    let v194 : string option = Fable.Core.RustInterop.emitRustExpr v192 v193 
     let v195 : uint8 = 3uy
     let v196 : bool = true
     method100(v195, v186, v5, v6, v7, v8, v196, v194)
@@ -23220,8 +23220,8 @@ and method106 (v0 : US12, v1 : string, v2 : uint8) : struct (int32 * string) =
         | US12_0(v9) -> (* Ok *)
             let v10 : Result<string, string> = Ok v9 
             v10
-    let v15 : string = "v14.ok()"
-    let v16 : string option = Fable.Core.RustInterop.emitRustExpr () v15 
+    let v15 : string = "$0.ok()"
+    let v16 : string option = Fable.Core.RustInterop.emitRustExpr v14 v15 
     let v17 : bool = true
     let struct (v18 : int32, v19 : string) = method42(v8, v3, v4, v5, v6, v17, v16)
     let v20 : string = "failed to load manifest for workspace member"
@@ -36958,8 +36958,8 @@ pwsh_replace_html_result: {v5564}"
                                             | US12_0(v12305) -> (* Ok *)
                                                 let v12306 : Result<string, string> = Ok v12305 
                                                 v12306
-                                        let v12311 : string = "v12310.ok()"
-                                        let v12312 : string option = Fable.Core.RustInterop.emitRustExpr () v12311 
+                                        let v12311 : string = "$0.ok()"
+                                        let v12312 : string option = Fable.Core.RustInterop.emitRustExpr v12310 v12311 
                                         let v12313 : bool = true
                                         let struct (v12314 : int32, v12315 : string) = method42(v12288, v12300, v12299, v12302, v12303, v12313, v12312)
                                         let v12316 : bool =
@@ -37864,8 +37864,8 @@ pwsh_replace_html_result: {v5564}"
                                                     | US12_0(v21638) -> (* Ok *)
                                                         let v21639 : Result<string, string> = Ok v21638 
                                                         v21639
-                                                let v21644 : string = "v21643.ok()"
-                                                let v21645 : string option = Fable.Core.RustInterop.emitRustExpr () v21644 
+                                                let v21644 : string = "$0.ok()"
+                                                let v21645 : string option = Fable.Core.RustInterop.emitRustExpr v21643 v21644 
                                                 let v21646 : bool = true
                                                 let struct (v21647 : int32, v21648 : string) = method42(v21580, v21633, v21630, v21635, v21636, v21646, v21645)
                                                 let v21649 : int32 = v21630.Length
@@ -38594,8 +38594,8 @@ pwsh_replace_html_result: {v5564}"
                                                             | US12_0(v27069) -> (* Ok *)
                                                                 let v27070 : Result<string, string> = Ok v27069 
                                                                 v27070
-                                                        let v27075 : string = "v27074.ok()"
-                                                        let v27076 : string option = Fable.Core.RustInterop.emitRustExpr () v27075 
+                                                        let v27075 : string = "$0.ok()"
+                                                        let v27076 : string option = Fable.Core.RustInterop.emitRustExpr v27074 v27075 
                                                         let v27077 : bool = true
                                                         let struct (v27078 : int32, v27079 : string) = method42(v27060, v27064, v27063, v27066, v27067, v27077, v27076)
                                                         let v27080 : int32 = v27063.Length

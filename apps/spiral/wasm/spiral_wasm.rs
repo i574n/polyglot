@@ -221,57 +221,77 @@ mod module_fb49c4a9 {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US8 {
+            US8_0(u8),
+            US8_1,
+        }
+        impl core::fmt::Display for Spiral_wasm::US8 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
         pub fn method0() -> clap::Command {
             let v1: string = string("r#\"command\"#");
             let v2: &'static str = r#"command"#;
             let v4: clap::Command = clap::Command::new(v2);
             let v6: clap::Command = clap::Command::args_override_self(v4, true);
-            let v8: string = string("r#\"trace_level\"#");
-            let v9: &'static str = r#"trace_level"#;
+            let v8: string = string("r#\"exception\"#");
+            let v9: &'static str = r#"exception"#;
             let v11: clap::Arg = clap::Arg::new(v9);
-            let v13: clap::Arg = v11.short('t');
-            let v14: string = string("r#\"trace_level\"#");
-            let v15: &'static str = r#"trace_level"#;
+            let v13: clap::Arg = v11.short('e');
+            let v14: string = string("r#\"exception\"#");
+            let v15: &'static str = r#"exception"#;
             let v17: clap::Arg = v13.long(v15);
-            let v40: Array<string> = toArray(ofArray(new_array(&[
+            let v19: clap::ArgAction = clap::ArgAction::SetTrue;
+            let v21: clap::Arg = v17.action(v19);
+            let v23: clap::Command = clap::Command::arg(v6, v21);
+            let v25: string = string("r#\"trace_level\"#");
+            let v26: &'static str = r#"trace_level"#;
+            let v28: clap::Arg = clap::Arg::new(v26);
+            let v30: clap::Arg = v28.short('t');
+            let v31: string = string("r#\"trace_level\"#");
+            let v32: &'static str = r#"trace_level"#;
+            let v34: clap::Arg = v30.long(v32);
+            let v57: Array<string> = toArray(ofArray(new_array(&[
                 string("Verbose"),
                 string("Debug"),
                 string("Info"),
                 string("Warning"),
                 string("Critical"),
             ])));
-            let v44: Vec<string> = v40.to_vec();
-            let v46: bool = true;
-            let _vec_map: Vec<_> = v44
+            let v61: Vec<string> = v57.to_vec();
+            let v63: bool = true;
+            let _vec_map: Vec<_> = v61
                 .into_iter()
                 .map(|x| {
                     //;
-                    let v48: string = x;
-                    let v50: &str = &*v48;
-                    let v52: std::string::String = String::from(v50);
-                    let v54: Box<std::string::String> = Box::new(v52);
-                    let v56: &'static mut std::string::String = Box::leak(v54);
-                    let v58: clap::builder::PossibleValue =
-                        clap::builder::PossibleValue::new(&**v56);
-                    let v60: bool = true;
-                    v58
+                    let v65: string = x;
+                    let v67: &str = &*v65;
+                    let v69: std::string::String = String::from(v67);
+                    let v71: Box<std::string::String> = Box::new(v69);
+                    let v73: &'static mut std::string::String = Box::leak(v71);
+                    let v75: clap::builder::PossibleValue =
+                        clap::builder::PossibleValue::new(&**v73);
+                    let v77: bool = true;
+                    v75
                 })
                 .collect::<Vec<_>>();
-            let v62: Vec<clap::builder::PossibleValue> = _vec_map;
-            let v64: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
-                clap::builder::PossibleValuesParser::new(v62),
+            let v79: Vec<clap::builder::PossibleValue> = _vec_map;
+            let v81: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
+                clap::builder::PossibleValuesParser::new(v79),
             );
-            let v66: clap::Arg = v17.value_parser(v64);
-            let v68: clap::Command = clap::Command::arg(v6, v66);
-            let v70: string = string("r#\"wasm\"#");
-            let v71: &'static str = r#"wasm"#;
-            let v73: clap::Arg = clap::Arg::new(v71);
-            let v75: clap::Arg = v73.short('w');
-            let v76: string = string("r#\"wasm\"#");
-            let v77: &'static str = r#"wasm"#;
-            let v79: clap::Arg = v75.long(v77);
-            let v81: clap::Arg = v79.required(true);
-            clap::Command::arg(v68, v81)
+            let v83: clap::Arg = v34.value_parser(v81);
+            let v85: clap::Command = clap::Command::arg(v23, v83);
+            let v87: string = string("r#\"wasm\"#");
+            let v88: &'static str = r#"wasm"#;
+            let v90: clap::Arg = clap::Arg::new(v88);
+            let v92: clap::Arg = v90.short('w');
+            let v93: string = string("r#\"wasm\"#");
+            let v94: &'static str = r#"wasm"#;
+            let v96: clap::Arg = v92.long(v94);
+            let v98: clap::Arg = v96.required(true);
+            clap::Command::arg(v85, v98)
         }
         pub fn method1() -> string {
             string("trace_level")
@@ -737,7 +757,10 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v713)
             }
         }
-        pub fn method12() -> string {
+        pub fn method11() -> string {
+            string("exception")
+        }
+        pub fn method13() -> string {
             string("wasm")
         }
         pub fn closure17(unitVar: (), unitVar_1: ()) -> string {
@@ -1437,10 +1460,10 @@ mod module_fb49c4a9 {
             };
             ()
         }
-        pub fn method14() -> string {
+        pub fn method15() -> string {
             string("(")
         }
-        pub fn method15() -> string {
+        pub fn method16() -> string {
             string(" ")
         }
         pub fn closure27(unitVar: (), unitVar_1: ()) -> string {
@@ -1547,7 +1570,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v163.toString(provider)
                 };
-                let v556: string = Spiral_wasm::method14();
+                let v556: string = Spiral_wasm::method15();
                 let v568: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -1789,7 +1812,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v165.toString(provider)
                 };
-                let v558: string = Spiral_wasm::method14();
+                let v558: string = Spiral_wasm::method15();
                 let v570: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -2165,7 +2188,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v737)
             }
         }
-        pub fn method16(
+        pub fn method17(
             v0_1: near_workspaces::result::ExecutionFinalResult,
         ) -> near_workspaces::result::ExecutionFinalResult {
             v0_1
@@ -2358,7 +2381,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v772)
             }
         }
-        pub fn method17(
+        pub fn method18(
             v0_1: near_workspaces::result::ExecutionFinalResult,
         ) -> near_workspaces::result::ExecutionFinalResult {
             v0_1
@@ -2877,12 +2900,12 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v737)
             }
         }
-        pub fn method18(
+        pub fn method19(
             v0_1: Result<Spiral_wasm::US4, anyhow::Error>,
         ) -> Result<Spiral_wasm::US4, anyhow::Error> {
             v0_1
         }
-        pub fn method13(
+        pub fn method14(
             v0_1: Vec<u8>,
             v1: u8,
         ) -> std::pin::Pin<
@@ -2983,7 +3006,7 @@ mod module_fb49c4a9 {
                     ()
                 };
                 let v4082: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method16(v1616.clone());
+                    Spiral_wasm::method17(v1616.clone());
                 let v4084: Vec<&near_workspaces::result::ExecutionOutcome> =
                     v4082.receipt_failures();
                 let v4088: i32 = v4084.clone().len() as i32;
@@ -2992,7 +3015,7 @@ mod module_fb49c4a9 {
                     ()
                 };
                 let v4886: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method17(v1616.clone());
+                    Spiral_wasm::method18(v1616.clone());
                 let v4888: &[near_workspaces::result::ExecutionOutcome] = v4886.receipt_outcomes();
                 let v4890: Vec<near_workspaces::result::ExecutionOutcome> = v4888.into();
                 let v4894: i32 = v4890.clone().len() as i32;
@@ -3078,7 +3101,7 @@ mod module_fb49c4a9 {
                 };
                 let v7362: string = v7223.l0.get().clone();
                 let v7375: Result<Spiral_wasm::US4, anyhow::Error> =
-                    Spiral_wasm::method18(if v4088 > 0_i32 {
+                    Spiral_wasm::method19(if v4088 > 0_i32 {
                         Ok::<Spiral_wasm::US4, anyhow::Error>(Spiral_wasm::US4::US4_0(
                             v7362.clone(),
                         ))
@@ -3100,7 +3123,7 @@ mod module_fb49c4a9 {
         pub fn closure41(unitVar: (), v0_1: anyhow::Error) -> std::string::String {
             format!("{}", v0_1)
         }
-        pub fn method19() -> Func1<anyhow::Error, std::string::String> {
+        pub fn method20() -> Func1<anyhow::Error, std::string::String> {
             Func1::new(move |v: anyhow::Error| Spiral_wasm::closure41((), v))
         }
         pub fn closure42(unitVar: (), v0_1: Spiral_wasm::US4) -> Spiral_wasm::US6 {
@@ -3213,7 +3236,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -3249,7 +3272,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -3288,7 +3311,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -3518,7 +3541,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -3554,7 +3577,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -3593,7 +3616,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -3823,7 +3846,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -3859,7 +3882,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -3898,7 +3921,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -4128,7 +4151,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -4164,7 +4187,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -4203,7 +4226,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -4433,7 +4456,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -4469,7 +4492,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -4508,7 +4531,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -4738,7 +4761,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -4774,7 +4797,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -4813,7 +4836,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -5043,7 +5066,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -5079,7 +5102,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -5118,7 +5141,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -5348,7 +5371,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -5384,7 +5407,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -5423,7 +5446,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -5653,7 +5676,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -5689,7 +5712,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -5728,7 +5751,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -5958,7 +5981,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -5994,7 +6017,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -6033,7 +6056,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -6263,7 +6286,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -6299,7 +6322,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -6338,7 +6361,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -6568,7 +6591,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -6604,7 +6627,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -6643,7 +6666,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -6873,7 +6896,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -6909,7 +6932,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -6948,7 +6971,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -7178,7 +7201,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -7214,7 +7237,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -7253,7 +7276,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -7483,7 +7506,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -7519,7 +7542,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -7558,7 +7581,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -7788,7 +7811,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -7824,7 +7847,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -7863,7 +7886,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -8093,7 +8116,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -8129,7 +8152,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -8168,7 +8191,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -8398,7 +8421,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -8434,7 +8457,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -8473,7 +8496,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -8703,7 +8726,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -8739,7 +8762,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -8778,7 +8801,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -9008,7 +9031,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -9044,7 +9067,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -9083,7 +9106,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -9313,7 +9336,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -9349,7 +9372,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -9388,7 +9411,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -9618,7 +9641,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -9654,7 +9677,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -9693,7 +9716,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -9923,7 +9946,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -9959,7 +9982,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -9998,7 +10021,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -10228,7 +10251,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -10264,7 +10287,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -10303,7 +10326,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -10533,7 +10556,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -10569,7 +10592,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -10608,7 +10631,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -10838,7 +10861,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -10874,7 +10897,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -10913,7 +10936,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -11143,7 +11166,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -11179,7 +11202,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -11218,7 +11241,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -11448,7 +11471,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -11484,7 +11507,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -11523,7 +11546,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -11753,7 +11776,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -11789,7 +11812,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -11828,7 +11851,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -11957,16 +11980,16 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v959)
             }
         }
-        pub fn method20() -> u8 {
+        pub fn method21() -> u8 {
             30_u8
         }
-        pub fn method21(v0_1: u8) -> Spiral_wasm::US7 {
+        pub fn method22(v0_1: u8) -> Spiral_wasm::US7 {
             Spiral_wasm::US7::US7_1(v0_1)
         }
-        pub fn method22() -> u8 {
+        pub fn method23() -> u8 {
             29_u8
         }
-        pub fn method23(v0_1: u8) -> Spiral_wasm::US7 {
+        pub fn method24(v0_1: u8) -> Spiral_wasm::US7 {
             Spiral_wasm::US7::US7_0(v0_1)
         }
         pub fn closure75(unitVar: (), unitVar_1: ()) -> string {
@@ -12073,7 +12096,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -12109,7 +12132,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -12148,7 +12171,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -12190,7 +12213,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -12322,7 +12345,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method24() -> u8 {
+        pub fn method25() -> u8 {
             28_u8
         }
         pub fn closure76(v0_1: string, unitVar: ()) {
@@ -12426,7 +12449,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -12462,7 +12485,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -12501,7 +12524,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -12543,7 +12566,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -12675,7 +12698,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method25() -> u8 {
+        pub fn method26() -> u8 {
             27_u8
         }
         pub fn closure77(v0_1: string, unitVar: ()) {
@@ -12779,7 +12802,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -12815,7 +12838,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -12854,7 +12877,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -12896,7 +12919,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -13028,7 +13051,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method26() -> u8 {
+        pub fn method27() -> u8 {
             26_u8
         }
         pub fn closure78(v0_1: string, unitVar: ()) {
@@ -13132,7 +13155,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -13168,7 +13191,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -13207,7 +13230,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -13249,7 +13272,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -13381,7 +13404,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method27() -> u8 {
+        pub fn method28() -> u8 {
             25_u8
         }
         pub fn closure79(v0_1: string, unitVar: ()) {
@@ -13485,7 +13508,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -13521,7 +13544,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -13560,7 +13583,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -13602,7 +13625,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -13734,7 +13757,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method28() -> u8 {
+        pub fn method29() -> u8 {
             24_u8
         }
         pub fn closure80(v0_1: string, unitVar: ()) {
@@ -13838,7 +13861,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -13874,7 +13897,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -13913,7 +13936,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -13955,7 +13978,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -14087,7 +14110,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method29() -> u8 {
+        pub fn method30() -> u8 {
             23_u8
         }
         pub fn closure81(v0_1: string, unitVar: ()) {
@@ -14191,7 +14214,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -14227,7 +14250,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -14266,7 +14289,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -14308,7 +14331,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -14440,7 +14463,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method30() -> u8 {
+        pub fn method31() -> u8 {
             22_u8
         }
         pub fn closure82(v0_1: string, unitVar: ()) {
@@ -14544,7 +14567,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -14580,7 +14603,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -14619,7 +14642,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -14661,7 +14684,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -14793,7 +14816,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method31() -> u8 {
+        pub fn method32() -> u8 {
             21_u8
         }
         pub fn closure83(v0_1: string, unitVar: ()) {
@@ -14897,7 +14920,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -14933,7 +14956,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -14972,7 +14995,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -15014,7 +15037,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -15146,7 +15169,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method32() -> u8 {
+        pub fn method33() -> u8 {
             20_u8
         }
         pub fn closure84(v0_1: string, unitVar: ()) {
@@ -15250,7 +15273,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -15286,7 +15309,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -15325,7 +15348,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -15367,7 +15390,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -15499,7 +15522,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method33() -> u8 {
+        pub fn method34() -> u8 {
             19_u8
         }
         pub fn closure85(v0_1: string, unitVar: ()) {
@@ -15603,7 +15626,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -15639,7 +15662,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -15678,7 +15701,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -15720,7 +15743,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -15852,7 +15875,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method34() -> u8 {
+        pub fn method35() -> u8 {
             18_u8
         }
         pub fn closure86(v0_1: string, unitVar: ()) {
@@ -15956,7 +15979,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -15992,7 +16015,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -16031,7 +16054,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -16073,7 +16096,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -16205,7 +16228,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method35() -> u8 {
+        pub fn method36() -> u8 {
             17_u8
         }
         pub fn closure87(v0_1: string, unitVar: ()) {
@@ -16309,7 +16332,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -16345,7 +16368,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -16384,7 +16407,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -16426,7 +16449,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -16558,7 +16581,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method36() -> u8 {
+        pub fn method37() -> u8 {
             16_u8
         }
         pub fn closure88(v0_1: string, unitVar: ()) {
@@ -16662,7 +16685,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -16698,7 +16721,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -16737,7 +16760,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -16779,7 +16802,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -16911,7 +16934,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method37() -> u8 {
+        pub fn method38() -> u8 {
             15_u8
         }
         pub fn closure89(v0_1: string, unitVar: ()) {
@@ -17015,7 +17038,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -17051,7 +17074,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -17090,7 +17113,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -17132,7 +17155,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -17264,7 +17287,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method38() -> u8 {
+        pub fn method39() -> u8 {
             14_u8
         }
         pub fn closure90(v0_1: string, unitVar: ()) {
@@ -17368,7 +17391,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -17404,7 +17427,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -17443,7 +17466,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -17485,7 +17508,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -17617,7 +17640,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method39() -> u8 {
+        pub fn method40() -> u8 {
             13_u8
         }
         pub fn closure91(v0_1: string, unitVar: ()) {
@@ -17721,7 +17744,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -17757,7 +17780,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -17796,7 +17819,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -17838,7 +17861,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -17970,7 +17993,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method40() -> u8 {
+        pub fn method41() -> u8 {
             12_u8
         }
         pub fn closure92(v0_1: string, unitVar: ()) {
@@ -18074,7 +18097,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -18110,7 +18133,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -18149,7 +18172,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -18191,7 +18214,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -18323,7 +18346,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method41() -> u8 {
+        pub fn method42() -> u8 {
             11_u8
         }
         pub fn closure93(v0_1: string, unitVar: ()) {
@@ -18427,7 +18450,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -18463,7 +18486,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -18502,7 +18525,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -18544,7 +18567,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -18676,7 +18699,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method42() -> u8 {
+        pub fn method43() -> u8 {
             10_u8
         }
         pub fn closure94(v0_1: string, unitVar: ()) {
@@ -18780,7 +18803,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -18816,7 +18839,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -18855,7 +18878,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -18897,7 +18920,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -19029,7 +19052,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method43() -> u8 {
+        pub fn method44() -> u8 {
             9_u8
         }
         pub fn closure95(v0_1: string, unitVar: ()) {
@@ -19133,7 +19156,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -19169,7 +19192,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -19208,7 +19231,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -19250,7 +19273,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -19382,7 +19405,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method44() -> u8 {
+        pub fn method45() -> u8 {
             8_u8
         }
         pub fn closure96(v0_1: string, unitVar: ()) {
@@ -19486,7 +19509,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -19522,7 +19545,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -19561,7 +19584,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -19603,7 +19626,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -19735,7 +19758,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method45() -> u8 {
+        pub fn method46() -> u8 {
             7_u8
         }
         pub fn closure97(v0_1: string, unitVar: ()) {
@@ -19839,7 +19862,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -19875,7 +19898,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -19914,7 +19937,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -19956,7 +19979,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -20088,7 +20111,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method46() -> u8 {
+        pub fn method47() -> u8 {
             6_u8
         }
         pub fn closure98(v0_1: string, unitVar: ()) {
@@ -20192,7 +20215,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -20228,7 +20251,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -20267,7 +20290,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -20309,7 +20332,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -20441,7 +20464,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method47() -> u8 {
+        pub fn method48() -> u8 {
             5_u8
         }
         pub fn closure99(v0_1: string, unitVar: ()) {
@@ -20545,7 +20568,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -20581,7 +20604,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -20620,7 +20643,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -20662,7 +20685,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -20794,7 +20817,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method48() -> u8 {
+        pub fn method49() -> u8 {
             4_u8
         }
         pub fn closure100(v0_1: string, unitVar: ()) {
@@ -20898,7 +20921,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -20934,7 +20957,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -20973,7 +20996,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -21015,7 +21038,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -21147,7 +21170,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method49() -> u8 {
+        pub fn method50() -> u8 {
             3_u8
         }
         pub fn closure101(v0_1: string, unitVar: ()) {
@@ -21251,7 +21274,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -21287,7 +21310,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -21326,7 +21349,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -21368,7 +21391,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -21500,7 +21523,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method50() -> u8 {
+        pub fn method51() -> u8 {
             2_u8
         }
         pub fn closure102(v0_1: string, unitVar: ()) {
@@ -21604,7 +21627,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -21640,7 +21663,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -21679,7 +21702,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -21721,7 +21744,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -21853,7 +21876,7 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v993)
             }
         }
-        pub fn method51() -> u8 {
+        pub fn method52() -> u8 {
             1_u8
         }
         pub fn closure103(v0_1: string, unitVar: ()) {
@@ -21957,7 +21980,7 @@ mod module_fb49c4a9 {
                     let provider: string = Spiral_wasm::method7();
                     v161.toString(provider)
                 };
-                let v554: string = Spiral_wasm::method14();
+                let v554: string = Spiral_wasm::method15();
                 let v566: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                     l0: MutCell::new(Spiral_wasm::method10()),
                 });
@@ -21993,7 +22016,7 @@ mod module_fb49c4a9 {
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v613: string = Spiral_wasm::method14();
+                        let v613: string = Spiral_wasm::method15();
                         let v625: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
                         });
@@ -22032,7 +22055,7 @@ mod module_fb49c4a9 {
                                 })
                             }
                             _ => {
-                                let v672: string = Spiral_wasm::method14();
+                                let v672: string = Spiral_wasm::method15();
                                 let v684: LrcPtr<Spiral_wasm::Mut4> =
                                     LrcPtr::new(Spiral_wasm::Mut4 {
                                         l0: MutCell::new(Spiral_wasm::method10()),
@@ -22074,7 +22097,7 @@ mod module_fb49c4a9 {
                                         })
                                     }
                                     _ => {
-                                        let v731: string = Spiral_wasm::method14();
+                                        let v731: string = Spiral_wasm::method15();
                                         let v743: LrcPtr<Spiral_wasm::Mut4> =
                                             LrcPtr::new(Spiral_wasm::Mut4 {
                                                 l0: MutCell::new(Spiral_wasm::method10()),
@@ -22365,17 +22388,17 @@ mod module_fb49c4a9 {
                 ((patternInput.1.clone()).l0.get().clone())(v713)
             }
         }
-        pub fn method52(v0_1: Result<(), anyhow::Error>) -> Result<(), anyhow::Error> {
+        pub fn method53(v0_1: Result<u8, anyhow::Error>) -> Result<u8, anyhow::Error> {
             v0_1
         }
-        pub fn method11(
+        pub fn method12(
             v0_1: clap::ArgMatches,
-        ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Result<(), anyhow::Error>>>>
+        ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Result<u8, anyhow::Error>>>>
         {
             let v2: bool = true;
             let __future_init = Box::pin(async move {
                 //;
-                let v3: string = Spiral_wasm::method12();
+                let v3: string = Spiral_wasm::method13();
                 let v5: &str = &*v3;
                 let v7: Option<std::string::String> = clap::ArgMatches::get_one(&v0_1, v5).cloned();
                 let _v8: LrcPtr<MutCell<Option<Spiral_wasm::US0>>> =
@@ -22409,9 +22432,9 @@ mod module_fb49c4a9 {
                 let v777: Vec<u8> = v775?;
                 let v779: std::pin::Pin<
                     Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4, anyhow::Error>>>,
-                > = Spiral_wasm::method13(v777.clone(), 1_u8);
+                > = Spiral_wasm::method14(v777.clone(), 1_u8);
                 let v781: Result<Spiral_wasm::US4, anyhow::Error> = v779.await;
-                let v782 = Spiral_wasm::method19();
+                let v782 = Spiral_wasm::method20();
                 let v784: Result<Spiral_wasm::US4, std::string::String> = v781.map_err(|x| v782(x));
                 fn v785(v_1: Spiral_wasm::US4) -> Spiral_wasm::US6 {
                     Spiral_wasm::closure42((), v_1)
@@ -22445,7 +22468,7 @@ mod module_fb49c4a9 {
                                         let v1836: bool = true;
                                         let __future_init = Box::pin(async move {
                                             //;
-                                            let v1837: u8 = Spiral_wasm::method51();
+                                            let v1837: u8 = Spiral_wasm::method52();
                                             let v1841: string =
                                                 string("true; v1837 });  // rust.fix_closure\'");
                                             let v1842: bool = true;
@@ -22456,7 +22479,7 @@ mod module_fb49c4a9 {
                                             Box<dyn std::future::Future<Output = u8>>,
                                         > = v1844;
                                         let v1849: Spiral_wasm::US7 =
-                                            Spiral_wasm::method21(v1846.await);
+                                            Spiral_wasm::method22(v1846.await);
                                         let v1851: string =
                                             string("true; v1849 });  // rust.fix_closure\'");
                                         let v1852: bool = true;
@@ -22472,7 +22495,7 @@ mod module_fb49c4a9 {
                                         let v792: bool = true;
                                         let __future_init = Box::pin(async move {
                                             //;
-                                            let v793: u8 = Spiral_wasm::method51();
+                                            let v793: u8 = Spiral_wasm::method52();
                                             let v797: string =
                                                 string("true; v793 });  // rust.fix_closure\'");
                                             let v798: bool = true;
@@ -22483,7 +22506,7 @@ mod module_fb49c4a9 {
                                             Box<dyn std::future::Future<Output = u8>>,
                                         > = v800;
                                         let v805: Spiral_wasm::US7 =
-                                            Spiral_wasm::method23(v802.await);
+                                            Spiral_wasm::method24(v802.await);
                                         let v807: string =
                                             string("true; v805 });  // rust.fix_closure\'");
                                         let v808: bool = true;
@@ -22505,9 +22528,9 @@ mod module_fb49c4a9 {
                                         Output = Result<Spiral_wasm::US4, anyhow::Error>,
                                     >,
                                 >,
-                            > = Spiral_wasm::method13(v777.clone(), 2_u8);
+                            > = Spiral_wasm::method14(v777.clone(), 2_u8);
                             let v2848: Result<Spiral_wasm::US4, anyhow::Error> = v2846.await;
-                            let v2849 = Spiral_wasm::method19();
+                            let v2849 = Spiral_wasm::method20();
                             let v2851: Result<Spiral_wasm::US4, std::string::String> =
                                 v2848.map_err(|x| v2849(x));
                             let v2852: Spiral_wasm::US6 = match &v2851 {
@@ -22535,7 +22558,7 @@ mod module_fb49c4a9 {
                                                 let v3901: bool = true;
                                                 let __future_init = Box::pin(async move {
                                                     //;
-                                                    let v3902: u8 = Spiral_wasm::method50();
+                                                    let v3902: u8 = Spiral_wasm::method51();
                                                     let v3906: string = string(
                                                         "true; v3902 });  // rust.fix_closure\'",
                                                     );
@@ -22547,7 +22570,7 @@ mod module_fb49c4a9 {
                                                     Box<dyn std::future::Future<Output = u8>>,
                                                 > = v3909;
                                                 let v3914: Spiral_wasm::US7 =
-                                                    Spiral_wasm::method21(v3911.await);
+                                                    Spiral_wasm::method22(v3911.await);
                                                 let v3916: string = string(
                                                     "true; v3914 });  // rust.fix_closure\'",
                                                 );
@@ -22564,7 +22587,7 @@ mod module_fb49c4a9 {
                                                 let v2857: bool = true;
                                                 let __future_init = Box::pin(async move {
                                                     //;
-                                                    let v2858: u8 = Spiral_wasm::method50();
+                                                    let v2858: u8 = Spiral_wasm::method51();
                                                     let v2862: string = string(
                                                         "true; v2858 });  // rust.fix_closure\'",
                                                     );
@@ -22576,7 +22599,7 @@ mod module_fb49c4a9 {
                                                     Box<dyn std::future::Future<Output = u8>>,
                                                 > = v2865;
                                                 let v2870: Spiral_wasm::US7 =
-                                                    Spiral_wasm::method23(v2867.await);
+                                                    Spiral_wasm::method24(v2867.await);
                                                 let v2872: string = string(
                                                     "true; v2870 });  // rust.fix_closure\'",
                                                 );
@@ -22599,10 +22622,10 @@ mod module_fb49c4a9 {
                                                 Output = Result<Spiral_wasm::US4, anyhow::Error>,
                                             >,
                                         >,
-                                    > = Spiral_wasm::method13(v777.clone(), 3_u8);
+                                    > = Spiral_wasm::method14(v777.clone(), 3_u8);
                                     let v4913: Result<Spiral_wasm::US4, anyhow::Error> =
                                         v4911.await;
-                                    let v4914 = Spiral_wasm::method19();
+                                    let v4914 = Spiral_wasm::method20();
                                     let v4916: Result<Spiral_wasm::US4, std::string::String> =
                                         v4913.map_err(|x| v4914(x));
                                     let v4917: Spiral_wasm::US6 = match &v4916 {
@@ -22632,7 +22655,7 @@ mod module_fb49c4a9 {
                                                         let v5966: bool = true;
                                                         let __future_init = Box::pin(async move {
                                                             //;
-                                                            let v5967: u8 = Spiral_wasm::method49();
+                                                            let v5967: u8 = Spiral_wasm::method50();
                                                             let v5971: string =
                                                     string("true; v5967 });  // rust.fix_closure\'");
                                                             let v5972: bool = true;
@@ -22647,7 +22670,7 @@ mod module_fb49c4a9 {
                                                             >,
                                                         > = v5974;
                                                         let v5979: Spiral_wasm::US7 =
-                                                            Spiral_wasm::method21(v5976.await);
+                                                            Spiral_wasm::method22(v5976.await);
                                                         let v5981: string =
                                                     string("true; v5979 });  // rust.fix_closure\'");
                                                         let v5982: bool = true;
@@ -22663,7 +22686,7 @@ mod module_fb49c4a9 {
                                                         let v4922: bool = true;
                                                         let __future_init = Box::pin(async move {
                                                             //;
-                                                            let v4923: u8 = Spiral_wasm::method49();
+                                                            let v4923: u8 = Spiral_wasm::method50();
                                                             let v4927: string =
                                                     string("true; v4923 });  // rust.fix_closure\'");
                                                             let v4928: bool = true;
@@ -22678,7 +22701,7 @@ mod module_fb49c4a9 {
                                                             >,
                                                         > = v4930;
                                                         let v4935: Spiral_wasm::US7 =
-                                                            Spiral_wasm::method23(v4932.await);
+                                                            Spiral_wasm::method24(v4932.await);
                                                         let v4937: string =
                                                     string("true; v4935 });  // rust.fix_closure\'");
                                                         let v4938: bool = true;
@@ -22703,10 +22726,10 @@ mod module_fb49c4a9 {
                                                         >,
                                                     >,
                                                 >,
-                                            > = Spiral_wasm::method13(v777.clone(), 4_u8);
+                                            > = Spiral_wasm::method14(v777.clone(), 4_u8);
                                             let v6978: Result<Spiral_wasm::US4, anyhow::Error> =
                                                 v6976.await;
-                                            let v6979 = Spiral_wasm::method19();
+                                            let v6979 = Spiral_wasm::method20();
                                             let v6981: Result<
                                                 Spiral_wasm::US4,
                                                 std::string::String,
@@ -22741,7 +22764,7 @@ mod module_fb49c4a9 {
                                                                         async move {
                                                                             //;
                                                                             let v8032: u8 =
-                                                            Spiral_wasm::method48();
+                                                            Spiral_wasm::method49();
                                                                             let v8036: string =
                                                             string("true; v8032 });  // rust.fix_closure\'");
                                                                             let v8037: bool = true;
@@ -22757,7 +22780,7 @@ mod module_fb49c4a9 {
                                                                         >,
                                                                     > = v8039;
                                                                     let v8044: Spiral_wasm::US7 =
-                                                                        Spiral_wasm::method21(
+                                                                        Spiral_wasm::method22(
                                                                             v8041.await,
                                                                         );
                                                                     let v8046: string =
@@ -22779,7 +22802,7 @@ mod module_fb49c4a9 {
                                                                         async move {
                                                                             //;
                                                                             let v6988: u8 =
-                                                            Spiral_wasm::method48();
+                                                            Spiral_wasm::method49();
                                                                             let v6992: string =
                                                             string("true; v6988 });  // rust.fix_closure\'");
                                                                             let v6993: bool = true;
@@ -22795,7 +22818,7 @@ mod module_fb49c4a9 {
                                                                         >,
                                                                     > = v6995;
                                                                     let v7000: Spiral_wasm::US7 =
-                                                                        Spiral_wasm::method23(
+                                                                        Spiral_wasm::method24(
                                                                             v6997.await,
                                                                         );
                                                                     let v7002: string =
@@ -22826,12 +22849,12 @@ mod module_fb49c4a9 {
                                                                 >,
                                                             >,
                                                         >,
-                                                    > = Spiral_wasm::method13(v777.clone(), 5_u8);
+                                                    > = Spiral_wasm::method14(v777.clone(), 5_u8);
                                                     let v9043: Result<
                                                         Spiral_wasm::US4,
                                                         anyhow::Error,
                                                     > = v9041.await;
-                                                    let v9044 = Spiral_wasm::method19();
+                                                    let v9044 = Spiral_wasm::method20();
                                                     let v9046: Result<
                                                         Spiral_wasm::US4,
                                                         std::string::String,
@@ -22872,7 +22895,7 @@ mod module_fb49c4a9 {
                                                                                         //;
                                                                                         let v10097:
                                                                         u8 =
-                                                                    Spiral_wasm::method47();
+                                                                    Spiral_wasm::method48();
                                                                                         let v10101:
                                                                         string =
                                                                     string("true; v10097 });  // rust.fix_closure\'");
@@ -22889,7 +22912,7 @@ mod module_fb49c4a9 {
                                                                     v10104;
                                                                             let v10109:
                                                                         Spiral_wasm::US7 =
-                                                                    Spiral_wasm::method21(v10106.await);
+                                                                    Spiral_wasm::method22(v10106.await);
                                                                             let v10111:
                                                                         string =
                                                                     string("true; v10109 });  // rust.fix_closure\'");
@@ -22912,7 +22935,7 @@ mod module_fb49c4a9 {
                                                                                         //;
                                                                                         let v9053:
                                                                         u8 =
-                                                                    Spiral_wasm::method47();
+                                                                    Spiral_wasm::method48();
                                                                                         let v9057:
                                                                         string =
                                                                     string("true; v9053 });  // rust.fix_closure\'");
@@ -22929,7 +22952,7 @@ mod module_fb49c4a9 {
                                                                     v9060;
                                                                             let v9065:
                                                                         Spiral_wasm::US7 =
-                                                                    Spiral_wasm::method23(v9062.await);
+                                                                    Spiral_wasm::method24(v9062.await);
                                                                             let v9067:
                                                                         string =
                                                                     string("true; v9065 });  // rust.fix_closure\'");
@@ -22959,7 +22982,7 @@ mod module_fb49c4a9 {
                                                                         >,
                                                                     >,
                                                                 >,
-                                                            > = Spiral_wasm::method13(
+                                                            > = Spiral_wasm::method14(
                                                                 v777.clone(),
                                                                 6_u8,
                                                             );
@@ -22967,7 +22990,7 @@ mod module_fb49c4a9 {
                                                                 Spiral_wasm::US4,
                                                                 anyhow::Error,
                                                             > = v11106.await;
-                                                            let v11109 = Spiral_wasm::method19();
+                                                            let v11109 = Spiral_wasm::method20();
                                                             let v11111: Result<
                                                                 Spiral_wasm::US4,
                                                                 std::string::String,
@@ -23018,7 +23041,7 @@ mod module_fb49c4a9 {
                                                                                                     //;
                                                                                                     let v12162:
                                                                                 u8 =
-                                                                            Spiral_wasm::method46();
+                                                                            Spiral_wasm::method47();
                                                                                                     let v12166:
                                                                                 string =
                                                                             string("true; v12162 });  // rust.fix_closure\'");
@@ -23035,7 +23058,7 @@ mod module_fb49c4a9 {
                                                                             v12169;
                                                                                         let v12174:
                                                                                 Spiral_wasm::US7 =
-                                                                            Spiral_wasm::method21(v12171.await);
+                                                                            Spiral_wasm::method22(v12171.await);
                                                                                         let v12176:
                                                                                 string =
                                                                             string("true; v12174 });  // rust.fix_closure\'");
@@ -23064,7 +23087,7 @@ mod module_fb49c4a9 {
                                                                                                     //;
                                                                                                     let v11118:
                                                                                 u8 =
-                                                                            Spiral_wasm::method46();
+                                                                            Spiral_wasm::method47();
                                                                                                     let v11122:
                                                                                 string =
                                                                             string("true; v11118 });  // rust.fix_closure\'");
@@ -23081,7 +23104,7 @@ mod module_fb49c4a9 {
                                                                             v11125;
                                                                                         let v11130:
                                                                                 Spiral_wasm::US7 =
-                                                                            Spiral_wasm::method23(v11127.await);
+                                                                            Spiral_wasm::method24(v11127.await);
                                                                                         let v11132:
                                                                                 string =
                                                                             string("true; v11130 });  // rust.fix_closure\'");
@@ -23110,14 +23133,14 @@ mod module_fb49c4a9 {
                                                                     let v13171:
                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                   anyhow::Error>>>> =
-                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                           7_u8);
                                                                     let v13173: Result<
                                                                         Spiral_wasm::US4,
                                                                         anyhow::Error,
                                                                     > = v13171.await;
                                                                     let v13174 =
-                                                                        Spiral_wasm::method19();
+                                                                        Spiral_wasm::method20();
                                                                     let v13176: Result<
                                                                         Spiral_wasm::US4,
                                                                         std::string::String,
@@ -23170,7 +23193,7 @@ mod module_fb49c4a9 {
                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                 let v14227:
                                                                                         u8 =
-                                                                                    Spiral_wasm::method45();
+                                                                                    Spiral_wasm::method46();
                                                                                 let v14231:
                                                                                         string =
                                                                                     string("true; v14227 });  // rust.fix_closure\'");
@@ -23184,7 +23207,7 @@ mod module_fb49c4a9 {
                                                                                     v14234;
                                                                                 let v14239:
                                                                                         Spiral_wasm::US7 =
-                                                                                    Spiral_wasm::method21(v14236.await);
+                                                                                    Spiral_wasm::method22(v14236.await);
                                                                                 let v14241:
                                                                                         string =
                                                                                     string("true; v14239 });  // rust.fix_closure\'");
@@ -23206,7 +23229,7 @@ mod module_fb49c4a9 {
                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                 let v13183:
                                                                                         u8 =
-                                                                                    Spiral_wasm::method45();
+                                                                                    Spiral_wasm::method46();
                                                                                 let v13187:
                                                                                         string =
                                                                                     string("true; v13183 });  // rust.fix_closure\'");
@@ -23220,7 +23243,7 @@ mod module_fb49c4a9 {
                                                                                     v13190;
                                                                                 let v13195:
                                                                                         Spiral_wasm::US7 =
-                                                                                    Spiral_wasm::method23(v13192.await);
+                                                                                    Spiral_wasm::method24(v13192.await);
                                                                                 let v13197:
                                                                                         string =
                                                                                     string("true; v13195 });  // rust.fix_closure\'");
@@ -23244,14 +23267,14 @@ mod module_fb49c4a9 {
                                                                             let v15236:
                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                           anyhow::Error>>>> =
-                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                   8_u8);
                                                                             let v15238: Result<
                                                                                 Spiral_wasm::US4,
                                                                                 anyhow::Error,
                                                                             > = v15236.await;
                                                                             let v15239 =
-                                                                            Spiral_wasm::method19();
+                                                                            Spiral_wasm::method20();
                                                                             let v15241: Result<
                                                                                 Spiral_wasm::US4,
                                                                                 std::string::String,
@@ -23305,7 +23328,7 @@ mod module_fb49c4a9 {
                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                         let v16292:
                                                                                                 u8 =
-                                                                                            Spiral_wasm::method44();
+                                                                                            Spiral_wasm::method45();
                                                                                         let v16296:
                                                                                                 string =
                                                                                             string("true; v16292 });  // rust.fix_closure\'");
@@ -23319,7 +23342,7 @@ mod module_fb49c4a9 {
                                                                                             v16299;
                                                                                         let v16304:
                                                                                                 Spiral_wasm::US7 =
-                                                                                            Spiral_wasm::method21(v16301.await);
+                                                                                            Spiral_wasm::method22(v16301.await);
                                                                                         let v16306:
                                                                                                 string =
                                                                                             string("true; v16304 });  // rust.fix_closure\'");
@@ -23341,7 +23364,7 @@ mod module_fb49c4a9 {
                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                         let v15248:
                                                                                                 u8 =
-                                                                                            Spiral_wasm::method44();
+                                                                                            Spiral_wasm::method45();
                                                                                         let v15252:
                                                                                                 string =
                                                                                             string("true; v15248 });  // rust.fix_closure\'");
@@ -23355,7 +23378,7 @@ mod module_fb49c4a9 {
                                                                                             v15255;
                                                                                         let v15260:
                                                                                                 Spiral_wasm::US7 =
-                                                                                            Spiral_wasm::method23(v15257.await);
+                                                                                            Spiral_wasm::method24(v15257.await);
                                                                                         let v15262:
                                                                                                 string =
                                                                                             string("true; v15260 });  // rust.fix_closure\'");
@@ -23381,14 +23404,14 @@ mod module_fb49c4a9 {
                                                                                 let v17301:
                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                   anyhow::Error>>>> =
-                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                           9_u8);
                                                                                 let v17303:
                                                                                         Result<Spiral_wasm::US4,
                                                                                                anyhow::Error> =
                                                                                     v17301.await;
                                                                                 let v17304 =
-                                                                                    Spiral_wasm::method19();
+                                                                                    Spiral_wasm::method20();
                                                                                 let v17306:
                                                                                         Result<Spiral_wasm::US4,
                                                                                                std::string::String> =
@@ -23440,7 +23463,7 @@ mod module_fb49c4a9 {
                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                 let v18357:
                                                                                                         u8 =
-                                                                                                    Spiral_wasm::method43();
+                                                                                                    Spiral_wasm::method44();
                                                                                                 let v18361:
                                                                                                         string =
                                                                                                     string("true; v18357 });  // rust.fix_closure\'");
@@ -23454,7 +23477,7 @@ mod module_fb49c4a9 {
                                                                                                     v18364;
                                                                                                 let v18369:
                                                                                                         Spiral_wasm::US7 =
-                                                                                                    Spiral_wasm::method21(v18366.await);
+                                                                                                    Spiral_wasm::method22(v18366.await);
                                                                                                 let v18371:
                                                                                                         string =
                                                                                                     string("true; v18369 });  // rust.fix_closure\'");
@@ -23476,7 +23499,7 @@ mod module_fb49c4a9 {
                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                 let v17313:
                                                                                                         u8 =
-                                                                                                    Spiral_wasm::method43();
+                                                                                                    Spiral_wasm::method44();
                                                                                                 let v17317:
                                                                                                         string =
                                                                                                     string("true; v17313 });  // rust.fix_closure\'");
@@ -23490,7 +23513,7 @@ mod module_fb49c4a9 {
                                                                                                     v17320;
                                                                                                 let v17325:
                                                                                                         Spiral_wasm::US7 =
-                                                                                                    Spiral_wasm::method23(v17322.await);
+                                                                                                    Spiral_wasm::method24(v17322.await);
                                                                                                 let v17327:
                                                                                                         string =
                                                                                                     string("true; v17325 });  // rust.fix_closure\'");
@@ -23516,14 +23539,14 @@ mod module_fb49c4a9 {
                                                                                         let v19366:
                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                           anyhow::Error>>>> =
-                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                   10_u8);
                                                                                         let v19368:
                                                                                                 Result<Spiral_wasm::US4,
                                                                                                        anyhow::Error> =
                                                                                             v19366.await;
                                                                                         let v19369 =
-                                                                                            Spiral_wasm::method19();
+                                                                                            Spiral_wasm::method20();
                                                                                         let v19371:
                                                                                                 Result<Spiral_wasm::US4,
                                                                                                        std::string::String> =
@@ -23575,7 +23598,7 @@ mod module_fb49c4a9 {
                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                         let v20422:
                                                                                                                 u8 =
-                                                                                                            Spiral_wasm::method42();
+                                                                                                            Spiral_wasm::method43();
                                                                                                         let v20426:
                                                                                                                 string =
                                                                                                             string("true; v20422 });  // rust.fix_closure\'");
@@ -23589,7 +23612,7 @@ mod module_fb49c4a9 {
                                                                                                             v20429;
                                                                                                         let v20434:
                                                                                                                 Spiral_wasm::US7 =
-                                                                                                            Spiral_wasm::method21(v20431.await);
+                                                                                                            Spiral_wasm::method22(v20431.await);
                                                                                                         let v20436:
                                                                                                                 string =
                                                                                                             string("true; v20434 });  // rust.fix_closure\'");
@@ -23611,7 +23634,7 @@ mod module_fb49c4a9 {
                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                         let v19378:
                                                                                                                 u8 =
-                                                                                                            Spiral_wasm::method42();
+                                                                                                            Spiral_wasm::method43();
                                                                                                         let v19382:
                                                                                                                 string =
                                                                                                             string("true; v19378 });  // rust.fix_closure\'");
@@ -23625,7 +23648,7 @@ mod module_fb49c4a9 {
                                                                                                             v19385;
                                                                                                         let v19390:
                                                                                                                 Spiral_wasm::US7 =
-                                                                                                            Spiral_wasm::method23(v19387.await);
+                                                                                                            Spiral_wasm::method24(v19387.await);
                                                                                                         let v19392:
                                                                                                                 string =
                                                                                                             string("true; v19390 });  // rust.fix_closure\'");
@@ -23651,14 +23674,14 @@ mod module_fb49c4a9 {
                                                                                                 let v21431:
                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                           11_u8);
                                                                                                 let v21433:
                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                anyhow::Error> =
                                                                                                     v21431.await;
                                                                                                 let v21434 =
-                                                                                                    Spiral_wasm::method19();
+                                                                                                    Spiral_wasm::method20();
                                                                                                 let v21436:
                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                std::string::String> =
@@ -23710,7 +23733,7 @@ mod module_fb49c4a9 {
                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                 let v22487:
                                                                                                                         u8 =
-                                                                                                                    Spiral_wasm::method41();
+                                                                                                                    Spiral_wasm::method42();
                                                                                                                 let v22491:
                                                                                                                         string =
                                                                                                                     string("true; v22487 });  // rust.fix_closure\'");
@@ -23724,7 +23747,7 @@ mod module_fb49c4a9 {
                                                                                                                     v22494;
                                                                                                                 let v22499:
                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                    Spiral_wasm::method21(v22496.await);
+                                                                                                                    Spiral_wasm::method22(v22496.await);
                                                                                                                 let v22501:
                                                                                                                         string =
                                                                                                                     string("true; v22499 });  // rust.fix_closure\'");
@@ -23746,7 +23769,7 @@ mod module_fb49c4a9 {
                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                 let v21443:
                                                                                                                         u8 =
-                                                                                                                    Spiral_wasm::method41();
+                                                                                                                    Spiral_wasm::method42();
                                                                                                                 let v21447:
                                                                                                                         string =
                                                                                                                     string("true; v21443 });  // rust.fix_closure\'");
@@ -23760,7 +23783,7 @@ mod module_fb49c4a9 {
                                                                                                                     v21450;
                                                                                                                 let v21455:
                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                    Spiral_wasm::method23(v21452.await);
+                                                                                                                    Spiral_wasm::method24(v21452.await);
                                                                                                                 let v21457:
                                                                                                                         string =
                                                                                                                     string("true; v21455 });  // rust.fix_closure\'");
@@ -23786,14 +23809,14 @@ mod module_fb49c4a9 {
                                                                                                         let v23496:
                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                   12_u8);
                                                                                                         let v23498:
                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                        anyhow::Error> =
                                                                                                             v23496.await;
                                                                                                         let v23499 =
-                                                                                                            Spiral_wasm::method19();
+                                                                                                            Spiral_wasm::method20();
                                                                                                         let v23501:
                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                        std::string::String> =
@@ -23845,7 +23868,7 @@ mod module_fb49c4a9 {
                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                         let v24552:
                                                                                                                                 u8 =
-                                                                                                                            Spiral_wasm::method40();
+                                                                                                                            Spiral_wasm::method41();
                                                                                                                         let v24556:
                                                                                                                                 string =
                                                                                                                             string("true; v24552 });  // rust.fix_closure\'");
@@ -23859,7 +23882,7 @@ mod module_fb49c4a9 {
                                                                                                                             v24559;
                                                                                                                         let v24564:
                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                            Spiral_wasm::method21(v24561.await);
+                                                                                                                            Spiral_wasm::method22(v24561.await);
                                                                                                                         let v24566:
                                                                                                                                 string =
                                                                                                                             string("true; v24564 });  // rust.fix_closure\'");
@@ -23881,7 +23904,7 @@ mod module_fb49c4a9 {
                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                         let v23508:
                                                                                                                                 u8 =
-                                                                                                                            Spiral_wasm::method40();
+                                                                                                                            Spiral_wasm::method41();
                                                                                                                         let v23512:
                                                                                                                                 string =
                                                                                                                             string("true; v23508 });  // rust.fix_closure\'");
@@ -23895,7 +23918,7 @@ mod module_fb49c4a9 {
                                                                                                                             v23515;
                                                                                                                         let v23520:
                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                            Spiral_wasm::method23(v23517.await);
+                                                                                                                            Spiral_wasm::method24(v23517.await);
                                                                                                                         let v23522:
                                                                                                                                 string =
                                                                                                                             string("true; v23520 });  // rust.fix_closure\'");
@@ -23921,14 +23944,14 @@ mod module_fb49c4a9 {
                                                                                                                 let v25561:
                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                           13_u8);
                                                                                                                 let v25563:
                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                anyhow::Error> =
                                                                                                                     v25561.await;
                                                                                                                 let v25564 =
-                                                                                                                    Spiral_wasm::method19();
+                                                                                                                    Spiral_wasm::method20();
                                                                                                                 let v25566:
                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                std::string::String> =
@@ -23980,7 +24003,7 @@ mod module_fb49c4a9 {
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                 let v26617:
                                                                                                                                         u8 =
-                                                                                                                                    Spiral_wasm::method39();
+                                                                                                                                    Spiral_wasm::method40();
                                                                                                                                 let v26621:
                                                                                                                                         string =
                                                                                                                                     string("true; v26617 });  // rust.fix_closure\'");
@@ -23994,7 +24017,7 @@ mod module_fb49c4a9 {
                                                                                                                                     v26624;
                                                                                                                                 let v26629:
                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                    Spiral_wasm::method21(v26626.await);
+                                                                                                                                    Spiral_wasm::method22(v26626.await);
                                                                                                                                 let v26631:
                                                                                                                                         string =
                                                                                                                                     string("true; v26629 });  // rust.fix_closure\'");
@@ -24016,7 +24039,7 @@ mod module_fb49c4a9 {
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                 let v25573:
                                                                                                                                         u8 =
-                                                                                                                                    Spiral_wasm::method39();
+                                                                                                                                    Spiral_wasm::method40();
                                                                                                                                 let v25577:
                                                                                                                                         string =
                                                                                                                                     string("true; v25573 });  // rust.fix_closure\'");
@@ -24030,7 +24053,7 @@ mod module_fb49c4a9 {
                                                                                                                                     v25580;
                                                                                                                                 let v25585:
                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                    Spiral_wasm::method23(v25582.await);
+                                                                                                                                    Spiral_wasm::method24(v25582.await);
                                                                                                                                 let v25587:
                                                                                                                                         string =
                                                                                                                                     string("true; v25585 });  // rust.fix_closure\'");
@@ -24056,14 +24079,14 @@ mod module_fb49c4a9 {
                                                                                                                         let v27626:
                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                   14_u8);
                                                                                                                         let v27628:
                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                        anyhow::Error> =
                                                                                                                             v27626.await;
                                                                                                                         let v27629 =
-                                                                                                                            Spiral_wasm::method19();
+                                                                                                                            Spiral_wasm::method20();
                                                                                                                         let v27631:
                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                        std::string::String> =
@@ -24115,7 +24138,7 @@ mod module_fb49c4a9 {
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                         let v28682:
                                                                                                                                                 u8 =
-                                                                                                                                            Spiral_wasm::method38();
+                                                                                                                                            Spiral_wasm::method39();
                                                                                                                                         let v28686:
                                                                                                                                                 string =
                                                                                                                                             string("true; v28682 });  // rust.fix_closure\'");
@@ -24129,7 +24152,7 @@ mod module_fb49c4a9 {
                                                                                                                                             v28689;
                                                                                                                                         let v28694:
                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                            Spiral_wasm::method21(v28691.await);
+                                                                                                                                            Spiral_wasm::method22(v28691.await);
                                                                                                                                         let v28696:
                                                                                                                                                 string =
                                                                                                                                             string("true; v28694 });  // rust.fix_closure\'");
@@ -24151,7 +24174,7 @@ mod module_fb49c4a9 {
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                         let v27638:
                                                                                                                                                 u8 =
-                                                                                                                                            Spiral_wasm::method38();
+                                                                                                                                            Spiral_wasm::method39();
                                                                                                                                         let v27642:
                                                                                                                                                 string =
                                                                                                                                             string("true; v27638 });  // rust.fix_closure\'");
@@ -24165,7 +24188,7 @@ mod module_fb49c4a9 {
                                                                                                                                             v27645;
                                                                                                                                         let v27650:
                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                            Spiral_wasm::method23(v27647.await);
+                                                                                                                                            Spiral_wasm::method24(v27647.await);
                                                                                                                                         let v27652:
                                                                                                                                                 string =
                                                                                                                                             string("true; v27650 });  // rust.fix_closure\'");
@@ -24191,14 +24214,14 @@ mod module_fb49c4a9 {
                                                                                                                                 let v29691:
                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                           15_u8);
                                                                                                                                 let v29693:
                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                anyhow::Error> =
                                                                                                                                     v29691.await;
                                                                                                                                 let v29694 =
-                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                 let v29696:
                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                std::string::String> =
@@ -24250,7 +24273,7 @@ mod module_fb49c4a9 {
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                 let v30747:
                                                                                                                                                         u8 =
-                                                                                                                                                    Spiral_wasm::method37();
+                                                                                                                                                    Spiral_wasm::method38();
                                                                                                                                                 let v30751:
                                                                                                                                                         string =
                                                                                                                                                     string("true; v30747 });  // rust.fix_closure\'");
@@ -24264,7 +24287,7 @@ mod module_fb49c4a9 {
                                                                                                                                                     v30754;
                                                                                                                                                 let v30759:
                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                    Spiral_wasm::method21(v30756.await);
+                                                                                                                                                    Spiral_wasm::method22(v30756.await);
                                                                                                                                                 let v30761:
                                                                                                                                                         string =
                                                                                                                                                     string("true; v30759 });  // rust.fix_closure\'");
@@ -24286,7 +24309,7 @@ mod module_fb49c4a9 {
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                 let v29703:
                                                                                                                                                         u8 =
-                                                                                                                                                    Spiral_wasm::method37();
+                                                                                                                                                    Spiral_wasm::method38();
                                                                                                                                                 let v29707:
                                                                                                                                                         string =
                                                                                                                                                     string("true; v29703 });  // rust.fix_closure\'");
@@ -24300,7 +24323,7 @@ mod module_fb49c4a9 {
                                                                                                                                                     v29710;
                                                                                                                                                 let v29715:
                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                    Spiral_wasm::method23(v29712.await);
+                                                                                                                                                    Spiral_wasm::method24(v29712.await);
                                                                                                                                                 let v29717:
                                                                                                                                                         string =
                                                                                                                                                     string("true; v29715 });  // rust.fix_closure\'");
@@ -24326,14 +24349,14 @@ mod module_fb49c4a9 {
                                                                                                                                         let v31756:
                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                   16_u8);
                                                                                                                                         let v31758:
                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                        anyhow::Error> =
                                                                                                                                             v31756.await;
                                                                                                                                         let v31759 =
-                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                         let v31761:
                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                        std::string::String> =
@@ -24385,7 +24408,7 @@ mod module_fb49c4a9 {
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                         let v32812:
                                                                                                                                                                 u8 =
-                                                                                                                                                            Spiral_wasm::method36();
+                                                                                                                                                            Spiral_wasm::method37();
                                                                                                                                                         let v32816:
                                                                                                                                                                 string =
                                                                                                                                                             string("true; v32812 });  // rust.fix_closure\'");
@@ -24399,7 +24422,7 @@ mod module_fb49c4a9 {
                                                                                                                                                             v32819;
                                                                                                                                                         let v32824:
                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                            Spiral_wasm::method21(v32821.await);
+                                                                                                                                                            Spiral_wasm::method22(v32821.await);
                                                                                                                                                         let v32826:
                                                                                                                                                                 string =
                                                                                                                                                             string("true; v32824 });  // rust.fix_closure\'");
@@ -24421,7 +24444,7 @@ mod module_fb49c4a9 {
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                         let v31768:
                                                                                                                                                                 u8 =
-                                                                                                                                                            Spiral_wasm::method36();
+                                                                                                                                                            Spiral_wasm::method37();
                                                                                                                                                         let v31772:
                                                                                                                                                                 string =
                                                                                                                                                             string("true; v31768 });  // rust.fix_closure\'");
@@ -24435,7 +24458,7 @@ mod module_fb49c4a9 {
                                                                                                                                                             v31775;
                                                                                                                                                         let v31780:
                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                            Spiral_wasm::method23(v31777.await);
+                                                                                                                                                            Spiral_wasm::method24(v31777.await);
                                                                                                                                                         let v31782:
                                                                                                                                                                 string =
                                                                                                                                                             string("true; v31780 });  // rust.fix_closure\'");
@@ -24461,14 +24484,14 @@ mod module_fb49c4a9 {
                                                                                                                                                 let v33821:
                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                           17_u8);
                                                                                                                                                 let v33823:
                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                anyhow::Error> =
                                                                                                                                                     v33821.await;
                                                                                                                                                 let v33824 =
-                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                 let v33826:
                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                std::string::String> =
@@ -24520,7 +24543,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                 let v34877:
                                                                                                                                                                         u8 =
-                                                                                                                                                                    Spiral_wasm::method35();
+                                                                                                                                                                    Spiral_wasm::method36();
                                                                                                                                                                 let v34881:
                                                                                                                                                                         string =
                                                                                                                                                                     string("true; v34877 });  // rust.fix_closure\'");
@@ -24534,7 +24557,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                     v34884;
                                                                                                                                                                 let v34889:
                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                    Spiral_wasm::method21(v34886.await);
+                                                                                                                                                                    Spiral_wasm::method22(v34886.await);
                                                                                                                                                                 let v34891:
                                                                                                                                                                         string =
                                                                                                                                                                     string("true; v34889 });  // rust.fix_closure\'");
@@ -24556,7 +24579,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                 let v33833:
                                                                                                                                                                         u8 =
-                                                                                                                                                                    Spiral_wasm::method35();
+                                                                                                                                                                    Spiral_wasm::method36();
                                                                                                                                                                 let v33837:
                                                                                                                                                                         string =
                                                                                                                                                                     string("true; v33833 });  // rust.fix_closure\'");
@@ -24570,7 +24593,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                     v33840;
                                                                                                                                                                 let v33845:
                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                    Spiral_wasm::method23(v33842.await);
+                                                                                                                                                                    Spiral_wasm::method24(v33842.await);
                                                                                                                                                                 let v33847:
                                                                                                                                                                         string =
                                                                                                                                                                     string("true; v33845 });  // rust.fix_closure\'");
@@ -24596,14 +24619,14 @@ mod module_fb49c4a9 {
                                                                                                                                                         let v35886:
                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                   18_u8);
                                                                                                                                                         let v35888:
                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                             v35886.await;
                                                                                                                                                         let v35889 =
-                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                         let v35891:
                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                        std::string::String> =
@@ -24655,7 +24678,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                         let v36942:
                                                                                                                                                                                 u8 =
-                                                                                                                                                                            Spiral_wasm::method34();
+                                                                                                                                                                            Spiral_wasm::method35();
                                                                                                                                                                         let v36946:
                                                                                                                                                                                 string =
                                                                                                                                                                             string("true; v36942 });  // rust.fix_closure\'");
@@ -24669,7 +24692,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                             v36949;
                                                                                                                                                                         let v36954:
                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                            Spiral_wasm::method21(v36951.await);
+                                                                                                                                                                            Spiral_wasm::method22(v36951.await);
                                                                                                                                                                         let v36956:
                                                                                                                                                                                 string =
                                                                                                                                                                             string("true; v36954 });  // rust.fix_closure\'");
@@ -24691,7 +24714,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                         let v35898:
                                                                                                                                                                                 u8 =
-                                                                                                                                                                            Spiral_wasm::method34();
+                                                                                                                                                                            Spiral_wasm::method35();
                                                                                                                                                                         let v35902:
                                                                                                                                                                                 string =
                                                                                                                                                                             string("true; v35898 });  // rust.fix_closure\'");
@@ -24705,7 +24728,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                             v35905;
                                                                                                                                                                         let v35910:
                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                            Spiral_wasm::method23(v35907.await);
+                                                                                                                                                                            Spiral_wasm::method24(v35907.await);
                                                                                                                                                                         let v35912:
                                                                                                                                                                                 string =
                                                                                                                                                                             string("true; v35910 });  // rust.fix_closure\'");
@@ -24731,14 +24754,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                 let v37951:
                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                           19_u8);
                                                                                                                                                                 let v37953:
                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                     v37951.await;
                                                                                                                                                                 let v37954 =
-                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                 let v37956:
                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                std::string::String> =
@@ -24790,7 +24813,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                 let v39007:
                                                                                                                                                                                         u8 =
-                                                                                                                                                                                    Spiral_wasm::method33();
+                                                                                                                                                                                    Spiral_wasm::method34();
                                                                                                                                                                                 let v39011:
                                                                                                                                                                                         string =
                                                                                                                                                                                     string("true; v39007 });  // rust.fix_closure\'");
@@ -24804,7 +24827,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                     v39014;
                                                                                                                                                                                 let v39019:
                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                    Spiral_wasm::method21(v39016.await);
+                                                                                                                                                                                    Spiral_wasm::method22(v39016.await);
                                                                                                                                                                                 let v39021:
                                                                                                                                                                                         string =
                                                                                                                                                                                     string("true; v39019 });  // rust.fix_closure\'");
@@ -24826,7 +24849,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                 let v37963:
                                                                                                                                                                                         u8 =
-                                                                                                                                                                                    Spiral_wasm::method33();
+                                                                                                                                                                                    Spiral_wasm::method34();
                                                                                                                                                                                 let v37967:
                                                                                                                                                                                         string =
                                                                                                                                                                                     string("true; v37963 });  // rust.fix_closure\'");
@@ -24840,7 +24863,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                     v37970;
                                                                                                                                                                                 let v37975:
                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                    Spiral_wasm::method23(v37972.await);
+                                                                                                                                                                                    Spiral_wasm::method24(v37972.await);
                                                                                                                                                                                 let v37977:
                                                                                                                                                                                         string =
                                                                                                                                                                                     string("true; v37975 });  // rust.fix_closure\'");
@@ -24866,14 +24889,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                         let v40016:
                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                   20_u8);
                                                                                                                                                                         let v40018:
                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                                             v40016.await;
                                                                                                                                                                         let v40019 =
-                                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                                         let v40021:
                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                        std::string::String> =
@@ -24925,7 +24948,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                         let v41072:
                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                            Spiral_wasm::method32();
+                                                                                                                                                                                            Spiral_wasm::method33();
                                                                                                                                                                                         let v41076:
                                                                                                                                                                                                 string =
                                                                                                                                                                                             string("true; v41072 });  // rust.fix_closure\'");
@@ -24939,7 +24962,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                             v41079;
                                                                                                                                                                                         let v41084:
                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                            Spiral_wasm::method21(v41081.await);
+                                                                                                                                                                                            Spiral_wasm::method22(v41081.await);
                                                                                                                                                                                         let v41086:
                                                                                                                                                                                                 string =
                                                                                                                                                                                             string("true; v41084 });  // rust.fix_closure\'");
@@ -24961,7 +24984,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                         let v40028:
                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                            Spiral_wasm::method32();
+                                                                                                                                                                                            Spiral_wasm::method33();
                                                                                                                                                                                         let v40032:
                                                                                                                                                                                                 string =
                                                                                                                                                                                             string("true; v40028 });  // rust.fix_closure\'");
@@ -24975,7 +24998,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                             v40035;
                                                                                                                                                                                         let v40040:
                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                            Spiral_wasm::method23(v40037.await);
+                                                                                                                                                                                            Spiral_wasm::method24(v40037.await);
                                                                                                                                                                                         let v40042:
                                                                                                                                                                                                 string =
                                                                                                                                                                                             string("true; v40040 });  // rust.fix_closure\'");
@@ -25001,14 +25024,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                 let v42081:
                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                           21_u8);
                                                                                                                                                                                 let v42083:
                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                                     v42081.await;
                                                                                                                                                                                 let v42084 =
-                                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                                 let v42086:
                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                std::string::String> =
@@ -25060,7 +25083,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                 let v43137:
                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                    Spiral_wasm::method31();
+                                                                                                                                                                                                    Spiral_wasm::method32();
                                                                                                                                                                                                 let v43141:
                                                                                                                                                                                                         string =
                                                                                                                                                                                                     string("true; v43137 });  // rust.fix_closure\'");
@@ -25074,7 +25097,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                     v43144;
                                                                                                                                                                                                 let v43149:
                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                    Spiral_wasm::method21(v43146.await);
+                                                                                                                                                                                                    Spiral_wasm::method22(v43146.await);
                                                                                                                                                                                                 let v43151:
                                                                                                                                                                                                         string =
                                                                                                                                                                                                     string("true; v43149 });  // rust.fix_closure\'");
@@ -25096,7 +25119,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                 let v42093:
                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                    Spiral_wasm::method31();
+                                                                                                                                                                                                    Spiral_wasm::method32();
                                                                                                                                                                                                 let v42097:
                                                                                                                                                                                                         string =
                                                                                                                                                                                                     string("true; v42093 });  // rust.fix_closure\'");
@@ -25110,7 +25133,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                     v42100;
                                                                                                                                                                                                 let v42105:
                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                    Spiral_wasm::method23(v42102.await);
+                                                                                                                                                                                                    Spiral_wasm::method24(v42102.await);
                                                                                                                                                                                                 let v42107:
                                                                                                                                                                                                         string =
                                                                                                                                                                                                     string("true; v42105 });  // rust.fix_closure\'");
@@ -25136,14 +25159,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                         let v44146:
                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                   22_u8);
                                                                                                                                                                                         let v44148:
                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                                                             v44146.await;
                                                                                                                                                                                         let v44149 =
-                                                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                                                         let v44151:
                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                        std::string::String> =
@@ -25195,7 +25218,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                         let v45202:
                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                            Spiral_wasm::method30();
+                                                                                                                                                                                                            Spiral_wasm::method31();
                                                                                                                                                                                                         let v45206:
                                                                                                                                                                                                                 string =
                                                                                                                                                                                                             string("true; v45202 });  // rust.fix_closure\'");
@@ -25209,7 +25232,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                             v45209;
                                                                                                                                                                                                         let v45214:
                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                            Spiral_wasm::method21(v45211.await);
+                                                                                                                                                                                                            Spiral_wasm::method22(v45211.await);
                                                                                                                                                                                                         let v45216:
                                                                                                                                                                                                                 string =
                                                                                                                                                                                                             string("true; v45214 });  // rust.fix_closure\'");
@@ -25231,7 +25254,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                         let v44158:
                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                            Spiral_wasm::method30();
+                                                                                                                                                                                                            Spiral_wasm::method31();
                                                                                                                                                                                                         let v44162:
                                                                                                                                                                                                                 string =
                                                                                                                                                                                                             string("true; v44158 });  // rust.fix_closure\'");
@@ -25245,7 +25268,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                             v44165;
                                                                                                                                                                                                         let v44170:
                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                            Spiral_wasm::method23(v44167.await);
+                                                                                                                                                                                                            Spiral_wasm::method24(v44167.await);
                                                                                                                                                                                                         let v44172:
                                                                                                                                                                                                                 string =
                                                                                                                                                                                                             string("true; v44170 });  // rust.fix_closure\'");
@@ -25271,14 +25294,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                 let v46211:
                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                           23_u8);
                                                                                                                                                                                                 let v46213:
                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                                                     v46211.await;
                                                                                                                                                                                                 let v46214 =
-                                                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                                                 let v46216:
                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                std::string::String> =
@@ -25330,7 +25353,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                 let v47267:
                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                    Spiral_wasm::method29();
+                                                                                                                                                                                                                    Spiral_wasm::method30();
                                                                                                                                                                                                                 let v47271:
                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                     string("true; v47267 });  // rust.fix_closure\'");
@@ -25344,7 +25367,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                     v47274;
                                                                                                                                                                                                                 let v47279:
                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                    Spiral_wasm::method21(v47276.await);
+                                                                                                                                                                                                                    Spiral_wasm::method22(v47276.await);
                                                                                                                                                                                                                 let v47281:
                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                     string("true; v47279 });  // rust.fix_closure\'");
@@ -25366,7 +25389,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                 let v46223:
                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                    Spiral_wasm::method29();
+                                                                                                                                                                                                                    Spiral_wasm::method30();
                                                                                                                                                                                                                 let v46227:
                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                     string("true; v46223 });  // rust.fix_closure\'");
@@ -25380,7 +25403,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                     v46230;
                                                                                                                                                                                                                 let v46235:
                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                    Spiral_wasm::method23(v46232.await);
+                                                                                                                                                                                                                    Spiral_wasm::method24(v46232.await);
                                                                                                                                                                                                                 let v46237:
                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                     string("true; v46235 });  // rust.fix_closure\'");
@@ -25406,14 +25429,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                         let v48276:
                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                   24_u8);
                                                                                                                                                                                                         let v48278:
                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                                                                             v48276.await;
                                                                                                                                                                                                         let v48279 =
-                                                                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                                                                         let v48281:
                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                        std::string::String> =
@@ -25465,7 +25488,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                         let v49332:
                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                            Spiral_wasm::method28();
+                                                                                                                                                                                                                            Spiral_wasm::method29();
                                                                                                                                                                                                                         let v49336:
                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                             string("true; v49332 });  // rust.fix_closure\'");
@@ -25479,7 +25502,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                             v49339;
                                                                                                                                                                                                                         let v49344:
                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                            Spiral_wasm::method21(v49341.await);
+                                                                                                                                                                                                                            Spiral_wasm::method22(v49341.await);
                                                                                                                                                                                                                         let v49346:
                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                             string("true; v49344 });  // rust.fix_closure\'");
@@ -25501,7 +25524,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                         let v48288:
                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                            Spiral_wasm::method28();
+                                                                                                                                                                                                                            Spiral_wasm::method29();
                                                                                                                                                                                                                         let v48292:
                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                             string("true; v48288 });  // rust.fix_closure\'");
@@ -25515,7 +25538,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                             v48295;
                                                                                                                                                                                                                         let v48300:
                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                            Spiral_wasm::method23(v48297.await);
+                                                                                                                                                                                                                            Spiral_wasm::method24(v48297.await);
                                                                                                                                                                                                                         let v48302:
                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                             string("true; v48300 });  // rust.fix_closure\'");
@@ -25541,14 +25564,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                 let v50341:
                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                           25_u8);
                                                                                                                                                                                                                 let v50343:
                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                                                                     v50341.await;
                                                                                                                                                                                                                 let v50344 =
-                                                                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                                                                 let v50346:
                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                std::string::String> =
@@ -25600,7 +25623,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                 let v51397:
                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                    Spiral_wasm::method27();
+                                                                                                                                                                                                                                    Spiral_wasm::method28();
                                                                                                                                                                                                                                 let v51401:
                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                     string("true; v51397 });  // rust.fix_closure\'");
@@ -25614,7 +25637,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                     v51404;
                                                                                                                                                                                                                                 let v51409:
                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                    Spiral_wasm::method21(v51406.await);
+                                                                                                                                                                                                                                    Spiral_wasm::method22(v51406.await);
                                                                                                                                                                                                                                 let v51411:
                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                     string("true; v51409 });  // rust.fix_closure\'");
@@ -25636,7 +25659,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                 let v50353:
                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                    Spiral_wasm::method27();
+                                                                                                                                                                                                                                    Spiral_wasm::method28();
                                                                                                                                                                                                                                 let v50357:
                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                     string("true; v50353 });  // rust.fix_closure\'");
@@ -25650,7 +25673,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                     v50360;
                                                                                                                                                                                                                                 let v50365:
                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                    Spiral_wasm::method23(v50362.await);
+                                                                                                                                                                                                                                    Spiral_wasm::method24(v50362.await);
                                                                                                                                                                                                                                 let v50367:
                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                     string("true; v50365 });  // rust.fix_closure\'");
@@ -25676,14 +25699,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                         let v52406:
                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                                   26_u8);
                                                                                                                                                                                                                         let v52408:
                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                                                                                             v52406.await;
                                                                                                                                                                                                                         let v52409 =
-                                                                                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                                                                                         let v52411:
                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                        std::string::String> =
@@ -25735,7 +25758,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                         let v53462:
                                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                                            Spiral_wasm::method26();
+                                                                                                                                                                                                                                            Spiral_wasm::method27();
                                                                                                                                                                                                                                         let v53466:
                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                             string("true; v53462 });  // rust.fix_closure\'");
@@ -25749,7 +25772,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                             v53469;
                                                                                                                                                                                                                                         let v53474:
                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                            Spiral_wasm::method21(v53471.await);
+                                                                                                                                                                                                                                            Spiral_wasm::method22(v53471.await);
                                                                                                                                                                                                                                         let v53476:
                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                             string("true; v53474 });  // rust.fix_closure\'");
@@ -25771,7 +25794,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                         let v52418:
                                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                                            Spiral_wasm::method26();
+                                                                                                                                                                                                                                            Spiral_wasm::method27();
                                                                                                                                                                                                                                         let v52422:
                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                             string("true; v52418 });  // rust.fix_closure\'");
@@ -25785,7 +25808,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                             v52425;
                                                                                                                                                                                                                                         let v52430:
                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                            Spiral_wasm::method23(v52427.await);
+                                                                                                                                                                                                                                            Spiral_wasm::method24(v52427.await);
                                                                                                                                                                                                                                         let v52432:
                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                             string("true; v52430 });  // rust.fix_closure\'");
@@ -25811,14 +25834,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                 let v54471:
                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                                           27_u8);
                                                                                                                                                                                                                                 let v54473:
                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                                                                                     v54471.await;
                                                                                                                                                                                                                                 let v54474 =
-                                                                                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                                                                                 let v54476:
                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                std::string::String> =
@@ -25870,7 +25893,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                 let v55527:
                                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method25();
+                                                                                                                                                                                                                                                    Spiral_wasm::method26();
                                                                                                                                                                                                                                                 let v55531:
                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                     string("true; v55527 });  // rust.fix_closure\'");
@@ -25884,7 +25907,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                     v55534;
                                                                                                                                                                                                                                                 let v55539:
                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method21(v55536.await);
+                                                                                                                                                                                                                                                    Spiral_wasm::method22(v55536.await);
                                                                                                                                                                                                                                                 let v55541:
                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                     string("true; v55539 });  // rust.fix_closure\'");
@@ -25906,7 +25929,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                 let v54483:
                                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method25();
+                                                                                                                                                                                                                                                    Spiral_wasm::method26();
                                                                                                                                                                                                                                                 let v54487:
                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                     string("true; v54483 });  // rust.fix_closure\'");
@@ -25920,7 +25943,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                     v54490;
                                                                                                                                                                                                                                                 let v54495:
                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method23(v54492.await);
+                                                                                                                                                                                                                                                    Spiral_wasm::method24(v54492.await);
                                                                                                                                                                                                                                                 let v54497:
                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                     string("true; v54495 });  // rust.fix_closure\'");
@@ -25946,14 +25969,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                         let v56536:
                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                                                            Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                                                            Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                                                   28_u8);
                                                                                                                                                                                                                                         let v56538:
                                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                        anyhow::Error> =
                                                                                                                                                                                                                                             v56536.await;
                                                                                                                                                                                                                                         let v56539 =
-                                                                                                                                                                                                                                            Spiral_wasm::method19();
+                                                                                                                                                                                                                                            Spiral_wasm::method20();
                                                                                                                                                                                                                                         let v56541:
                                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                        std::string::String> =
@@ -26005,7 +26028,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                         let v57592:
                                                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method24();
+                                                                                                                                                                                                                                                            Spiral_wasm::method25();
                                                                                                                                                                                                                                                         let v57596:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v57592 });  // rust.fix_closure\'");
@@ -26019,7 +26042,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             v57599;
                                                                                                                                                                                                                                                         let v57604:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method21(v57601.await);
+                                                                                                                                                                                                                                                            Spiral_wasm::method22(v57601.await);
                                                                                                                                                                                                                                                         let v57606:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v57604 });  // rust.fix_closure\'");
@@ -26041,7 +26064,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                         let v56548:
                                                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method24();
+                                                                                                                                                                                                                                                            Spiral_wasm::method25();
                                                                                                                                                                                                                                                         let v56552:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v56548 });  // rust.fix_closure\'");
@@ -26055,7 +26078,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             v56555;
                                                                                                                                                                                                                                                         let v56560:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method23(v56557.await);
+                                                                                                                                                                                                                                                            Spiral_wasm::method24(v56557.await);
                                                                                                                                                                                                                                                         let v56562:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v56560 });  // rust.fix_closure\'");
@@ -26081,14 +26104,14 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                 let v58601:
                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                                                    Spiral_wasm::method13(v777.clone(),
+                                                                                                                                                                                                                                                    Spiral_wasm::method14(v777.clone(),
                                                                                                                                                                                                                                                                           29_u8);
                                                                                                                                                                                                                                                 let v58603:
                                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                anyhow::Error> =
                                                                                                                                                                                                                                                     v58601.await;
                                                                                                                                                                                                                                                 let v58604 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method19();
+                                                                                                                                                                                                                                                    Spiral_wasm::method20();
                                                                                                                                                                                                                                                 let v58606:
                                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                std::string::String> =
@@ -26140,7 +26163,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                                 let v59657:
                                                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method22();
+                                                                                                                                                                                                                                                                    Spiral_wasm::method23();
                                                                                                                                                                                                                                                                 let v59661:
                                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                                     string("true; v59657 });  // rust.fix_closure\'");
@@ -26154,7 +26177,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                     v59664;
                                                                                                                                                                                                                                                                 let v59669:
                                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method21(v59666.await);
+                                                                                                                                                                                                                                                                    Spiral_wasm::method22(v59666.await);
                                                                                                                                                                                                                                                                 let v59671:
                                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                                     string("true; v59669 });  // rust.fix_closure\'");
@@ -26176,7 +26199,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                                 let v58613:
                                                                                                                                                                                                                                                                         u8 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method22();
+                                                                                                                                                                                                                                                                    Spiral_wasm::method23();
                                                                                                                                                                                                                                                                 let v58617:
                                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                                     string("true; v58613 });  // rust.fix_closure\'");
@@ -26190,7 +26213,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                     v58620;
                                                                                                                                                                                                                                                                 let v58625:
                                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method23(v58622.await);
+                                                                                                                                                                                                                                                                    Spiral_wasm::method24(v58622.await);
                                                                                                                                                                                                                                                                 let v58627:
                                                                                                                                                                                                                                                                         string =
                                                                                                                                                                                                                                                                     string("true; v58625 });  // rust.fix_closure\'");
@@ -26221,7 +26244,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
                                                                                                                                                                                                                                                         let v60669:
                                                                                                                                                                                                                                                                 u8 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method20();
+                                                                                                                                                                                                                                                            Spiral_wasm::method21();
                                                                                                                                                                                                                                                         let v60673:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v60669 });  // rust.fix_closure\'");
@@ -26235,7 +26258,7 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                             v60676;
                                                                                                                                                                                                                                                         let v60681:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method21(v60678.await);
+                                                                                                                                                                                                                                                            Spiral_wasm::method22(v60678.await);
                                                                                                                                                                                                                                                         let v60683:
                                                                                                                                                                                                                                                                 string =
                                                                                                                                                                                                                                                             string("true; v60681 });  // rust.fix_closure\'");
@@ -26308,8 +26331,10 @@ mod module_fb49c4a9 {
                     Spiral_wasm::closure104(v60748.clone(), ());
                     ()
                 };
-                let v61544: Result<(), anyhow::Error> = Spiral_wasm::method52(match &v60748 {
-                    Spiral_wasm::US7::US7_0(v60748_0_0) => Ok::<(), anyhow::Error>(()),
+                let v61544: Result<u8, anyhow::Error> = Spiral_wasm::method53(match &v60748 {
+                    Spiral_wasm::US7::US7_0(v60748_0_0) => {
+                        Ok::<u8, anyhow::Error>(v60748_0_0.clone())
+                    }
                     Spiral_wasm::US7::US7_1(v60748_1_0) => {
                         let v61492: LrcPtr<Spiral_wasm::Mut4> = LrcPtr::new(Spiral_wasm::Mut4 {
                             l0: MutCell::new(Spiral_wasm::method10()),
@@ -26365,6 +26390,33 @@ mod module_fb49c4a9 {
             }); // rust.fix_closure';
             let v61551 = __future_init;
             v61551
+        }
+        pub fn closure106(
+            v0_1: LrcPtr<MutCell<Option<Spiral_wasm::US8>>>,
+            v1: Option<Spiral_wasm::US8>,
+        ) -> LrcPtr<MutCell<Option<Spiral_wasm::US8>>> {
+            v0_1.set(v1);
+            v0_1
+        }
+        pub fn closure107(
+            v0_1: Option<u8>,
+            v1: Func1<Option<Spiral_wasm::US8>, LrcPtr<MutCell<Option<Spiral_wasm::US8>>>>,
+            unitVar: (),
+        ) {
+            {
+                let value: LrcPtr<MutCell<Option<Spiral_wasm::US8>>> = v1(match &v0_1 {
+                    None => None::<Spiral_wasm::US8>,
+                    Some(v0_1_0_0) => {
+                        let x: u8 = v0_1_0_0.clone();
+                        Some((Func0::new({
+                            let x = x.clone();
+                            move || Spiral_wasm::US8::US8_0(x)
+                        }))())
+                    }
+                });
+                ()
+            }
+            ()
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: clap::Command = Spiral_wasm::method0();
@@ -26513,15 +26565,54 @@ mod module_fb49c4a9 {
                 Spiral_wasm::closure7(v0_1, ());
                 ()
             };
-            let v864: std::pin::Pin<
-                Box<dyn std::future::Future<Output = Result<(), anyhow::Error>>>,
-            > = Spiral_wasm::method11(v3);
-            let v866 = tokio::runtime::Builder::new_multi_thread()
+            let v864: string = Spiral_wasm::method11();
+            let v866: &str = &*v864;
+            let v868: bool = clap::ArgMatches::get_flag(&v3, v866);
+            let v869: std::pin::Pin<
+                Box<dyn std::future::Future<Output = Result<u8, anyhow::Error>>>,
+            > = Spiral_wasm::method12(v3);
+            let v871 = tokio::runtime::Builder::new_multi_thread()
                 .enable_all()
                 .build()
                 .unwrap();
-            let v868: Result<(), anyhow::Error> = v866.handle().block_on(v864);
-            v868.unwrap();
+            let v873: Result<u8, anyhow::Error> = v871.handle().block_on(v869);
+            let v874 = Spiral_wasm::method20();
+            let v876: Result<u8, std::string::String> = v873.map_err(|x| v874(x));
+            let v878: Option<u8> = v876.clone().ok();
+            let _v879: LrcPtr<MutCell<Option<Spiral_wasm::US8>>> =
+                refCell(None::<Spiral_wasm::US8>);
+            let v884: () = {
+                Spiral_wasm::closure107(
+                    v878,
+                    Func1::new({
+                        let _v879 = _v879.clone();
+                        move |v_1: Option<Spiral_wasm::US8>| {
+                            Spiral_wasm::closure106(_v879.clone(), v_1)
+                        }
+                    }),
+                    (),
+                );
+                ()
+            };
+            let v899: Spiral_wasm::US8 = defaultValue(Spiral_wasm::US8::US8_1, _v879.get().clone());
+            match &v899 {
+                Spiral_wasm::US8::US8_0(v899_0_0) => {
+                    if v868 {
+                        let v906: Result<(), string> =
+                            Err(string("spiral_wasm.main / exception=true"));
+                        v906.unwrap();
+                        ()
+                    }
+                }
+                _ => {
+                    if v868 {
+                        ()
+                    } else {
+                        let v909: u8 = v876.unwrap();
+                        ()
+                    }
+                }
+            }
             0_i32
         }
         pub fn v0() -> Func1<Array<string>, i32> {

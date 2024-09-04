@@ -8830,7 +8830,7 @@ __assert_eq / actual: false / expected: false
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #422 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #423 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #424 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #425 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #425 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #426 _2
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #427 _3
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #428 4
@@ -9094,8 +9094,8 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #11 networking.wait_for_port_access / { port = 5555; retry = 200; timeout = None; status = false }
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #12 networking.wait_for_port_access / { port = 5555; retry = 300; timeout = None; status = false }
 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #13 _4
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #14 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #15 _5
+00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #14 _5
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #16 5
 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #17 6
 __assert_eq / actual: 5557 / expected: 5557
@@ -9173,19 +9173,19 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _3
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 3
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 networking.test_port_open / { port = 5557; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 4
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #10 _5
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #12 5
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #13 6
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 networking.test_port_open / { port = 5557; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 4
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #10 _4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #11 _5
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #12 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #13 5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #14 6
 __assert_eq / actual: 5557 / expected: 5557
 __assert_between / actual: 12L / expected: struct (1L, 120L)
 __assert_eq / actual: true / expected: true

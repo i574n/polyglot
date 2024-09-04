@@ -372,7 +372,7 @@ inl is_err forall t u. (x : result' t u) : bool =
 #!spiral
 
 inl ok' forall t. (x : result' t _) : optionm'.option' t =
-    !\($'"!x.ok()"')
+    !\\(x, $'"$0.ok()"')
 
 #!markdown
 
@@ -381,7 +381,7 @@ inl ok' forall t. (x : result' t _) : optionm'.option' t =
 #!spiral
 
 inl err forall t u. (x : u) : result' t u =
-    !\($'"Err(!x)"')
+    !\\(x, $'"Err($0)"')
 
 #!markdown
 

@@ -196,11 +196,11 @@ inl is_err forall t u. (x : result' t u) : bool =
 
 /// ### ok'
 inl ok' forall t. (x : result' t _) : optionm'.option' t =
-    !\($'"!x.ok()"')
+    !\\(x, $'"$0.ok()"')
 
 /// ### err
 inl err forall t u. (x : u) : result' t u =
-    !\($'"Err(!x)"')
+    !\\(x, $'"Err($0)"')
 
 /// ### transpose
 inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (optionm'.option' t) u =

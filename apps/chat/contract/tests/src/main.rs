@@ -1,5 +1,3 @@
-use near_workspaces::AccountId;
-use serde_json::json;
 use std::collections::HashMap;
 
 // const GAS_PRICE_IN_NEAR: f64 = 0.0001;
@@ -51,7 +49,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(contract, '')
     let result = contract
         .call("claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "",
         }))
         .transact()
@@ -78,7 +76,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account1, alias1)
     let result = account1
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .transact()
@@ -89,7 +87,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account1, alias1)
     let result = account1
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .transact()
@@ -100,7 +98,7 @@ async fn main() -> anyhow::Result<()> {
     // get_account_info(account1)
     let result: Option<(String, (u64, u32))> = account1
         .view(contract_id, "get_account_info")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
         }))
         .await?
@@ -117,9 +115,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account1, alias1)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account1
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account1
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .await?
@@ -147,7 +145,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account2, alias2)
     let result = account2
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias2",
         }))
         .transact()
@@ -158,7 +156,7 @@ async fn main() -> anyhow::Result<()> {
     // get_account_info(account2)
     let result: Option<(String, (u64, u32))> = account2
         .view(contract_id, "get_account_info")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "account_id": account2.id(),
         }))
         .await?
@@ -175,7 +173,7 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map_borsh(alias2)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account2
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account2
         .view(contract_id, "get_alias_map_borsh")
         .args_borsh("alias2")
         .await?
@@ -199,7 +197,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account2, alias1)
     let result = account2
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .transact()
@@ -210,7 +208,7 @@ async fn main() -> anyhow::Result<()> {
     // get_account_info(account2)
     let result: Option<(String, (u64, u32))> = account2
         .view(contract_id, "get_account_info")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "account_id": account2.id(),
         }))
         .await?
@@ -227,9 +225,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account2, alias1)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account2
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account2
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .await?
@@ -257,9 +255,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account2, alias2)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account2
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account2
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias2",
         }))
         .await?
@@ -280,7 +278,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account1, alias2)
     let result = account1
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias2",
         }))
         .transact()
@@ -291,7 +289,7 @@ async fn main() -> anyhow::Result<()> {
     // get_account_info(account1)
     let result: Option<(String, (u64, u32))> = account1
         .view(contract_id, "get_account_info")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
         }))
         .await?
@@ -308,9 +306,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account1, alias2)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account1
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account1
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias2",
         }))
         .await?
@@ -332,9 +330,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account1, alias1)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account1
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account1
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .await?
@@ -358,7 +356,7 @@ async fn main() -> anyhow::Result<()> {
     // claim_alias(account1, alias1)
     let result = account1
         .call(contract_id, "claim_alias")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .transact()
@@ -369,7 +367,7 @@ async fn main() -> anyhow::Result<()> {
     // get_account_info(account1)
     let result: Option<(String, (u64, u32))> = account1
         .view(contract_id, "get_account_info")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
         }))
         .await?
@@ -386,9 +384,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account1, alias1)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account1
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account1
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias1",
         }))
         .await?
@@ -416,9 +414,9 @@ async fn main() -> anyhow::Result<()> {
     }
 
     // get_alias_map(account1, alias2)
-    let result: Option<HashMap<AccountId, (u64, u32)>> = account1
+    let result: Option<HashMap<near_workspaces::AccountId, (u64, u32)>> = account1
         .view(contract_id, "get_alias_map")
-        .args_json(json!({
+        .args_json(near_sdk::serde_json::json!({
             "alias": "alias2",
         }))
         .await?

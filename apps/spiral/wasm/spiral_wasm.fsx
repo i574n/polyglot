@@ -11,6 +11,10 @@ type clap_Command = class end
 #endif
 type clap_Arg = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgAction")>]
+#endif
+type clap_ArgAction = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
 #endif
 type Vec<'T> = class end
@@ -160,6 +164,9 @@ and [<Struct>] US6 =
 and [<Struct>] US7 =
     | US7_0 of f0_0 : uint8
     | US7_1 of f1_0 : uint8
+and [<Struct>] US8 =
+    | US8_0 of f0_0 : uint8
+    | US8_1
 let rec method0 () : clap_Command =
     let v0 : string = "command"
     let v1 : string = "r#\"" + v0 + "\"#"
@@ -168,77 +175,94 @@ let rec method0 () : clap_Command =
     let v4 : clap_Command = Fable.Core.RustInterop.emitRustExpr v2 v3 
     let v5 : string = "clap::Command::args_override_self($0, true)"
     let v6 : clap_Command = Fable.Core.RustInterop.emitRustExpr v4 v5 
-    let v7 : string = "trace_level"
+    let v7 : string = "exception"
     let v8 : string = "r#\"" + v7 + "\"#"
     let v9 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v8 
     let v10 : string = "clap::Arg::new($0)"
     let v11 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v9 v10 
     let v12 : string = "$0.short($1)"
-    let v13 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v11, 't') v12 
+    let v13 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v11, 'e') v12 
     let v14 : string = "r#\"" + v7 + "\"#"
     let v15 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v14 
     let v16 : string = "$0.long($1)"
     let v17 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v13, v15) v16 
+    let v18 : string = "clap::ArgAction::SetTrue"
+    let v19 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v18 
+    let v20 : string = "$0.action($1)"
+    let v21 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v17, v19) v20 
+    let v22 : string = "clap::Command::arg($0, $1)"
+    let v23 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v6, v21) v22 
+    let v24 : string = "trace_level"
+    let v25 : string = "r#\"" + v24 + "\"#"
+    let v26 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v25 
+    let v27 : string = "clap::Arg::new($0)"
+    let v28 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v26 v27 
+    let v29 : string = "$0.short($1)"
+    let v30 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v28, 't') v29 
+    let v31 : string = "r#\"" + v24 + "\"#"
+    let v32 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v31 
+    let v33 : string = "$0.long($1)"
+    let v34 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v30, v32) v33 
     
     
     
     
     
-    let v18 : string list = []
-    let v19 : string = "Critical"
-    let v20 : string list = v19 :: v18 
-    let v23 : string = "Warning"
-    let v24 : string list = v23 :: v20 
-    let v27 : string = "Info"
-    let v28 : string list = v27 :: v24 
-    let v31 : string = "Debug"
-    let v32 : string list = v31 :: v28 
-    let v35 : string = "Verbose"
-    let v36 : string list = v35 :: v32 
-    let v39 : (string list -> (string [])) = List.toArray
-    let v40 : (string []) = v39 v36
-    let v43 : string = "$0.to_vec()"
-    let v44 : Vec<string> = Fable.Core.RustInterop.emitRustExpr v40 v43 
-    let v45 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
-    let v46 : bool = Fable.Core.RustInterop.emitRustExpr v44 v45 
-    let v47 : string = "x"
-    let v48 : string = Fable.Core.RustInterop.emitRustExpr () v47 
-    let v49 : string = "&*$0"
-    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v48 v49 
-    let v51 : string = "String::from($0)"
-    let v52 : std_string_String = Fable.Core.RustInterop.emitRustExpr v50 v51 
-    let v53 : string = "Box::new($0)"
-    let v54 : Box<std_string_String> = Fable.Core.RustInterop.emitRustExpr v52 v53 
-    let v55 : string = "Box::leak($0)"
-    let v56 : Ref<Lifetime<StaticLifetime, Mut<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v54 v55 
-    let v57 : string = "clap::builder::PossibleValue::new(&**$0)"
-    let v58 : clap_builder_PossibleValue = Fable.Core.RustInterop.emitRustExpr v56 v57 
-    let v59 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v60 : bool = Fable.Core.RustInterop.emitRustExpr v58 v59 
-    let v61 : string = "_vec_map"
-    let v62 : Vec<clap_builder_PossibleValue> = Fable.Core.RustInterop.emitRustExpr () v61 
-    let v63 : string = "Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"
-    let v64 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr v62 v63 
-    let v65 : string = "$0.value_parser($1)"
-    let v66 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v17, v64) v65 
-    let v67 : string = "clap::Command::arg($0, $1)"
-    let v68 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v6, v66) v67 
-    let v69 : string = "wasm"
-    let v70 : string = "r#\"" + v69 + "\"#"
-    let v71 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v70 
-    let v72 : string = "clap::Arg::new($0)"
-    let v73 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v71 v72 
-    let v74 : string = "$0.short($1)"
-    let v75 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v73, 'w') v74 
-    let v76 : string = "r#\"" + v69 + "\"#"
-    let v77 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v76 
-    let v78 : string = "$0.long($1)"
-    let v79 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v75, v77) v78 
-    let v80 : string = "$0.required($1)"
-    let v81 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v79, true) v80 
-    let v82 : string = "clap::Command::arg($0, $1)"
-    let v83 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v68, v81) v82 
-    v83
+    let v35 : string list = []
+    let v36 : string = "Critical"
+    let v37 : string list = v36 :: v35 
+    let v40 : string = "Warning"
+    let v41 : string list = v40 :: v37 
+    let v44 : string = "Info"
+    let v45 : string list = v44 :: v41 
+    let v48 : string = "Debug"
+    let v49 : string list = v48 :: v45 
+    let v52 : string = "Verbose"
+    let v53 : string list = v52 :: v49 
+    let v56 : (string list -> (string [])) = List.toArray
+    let v57 : (string []) = v56 v53
+    let v60 : string = "$0.to_vec()"
+    let v61 : Vec<string> = Fable.Core.RustInterop.emitRustExpr v57 v60 
+    let v62 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
+    let v63 : bool = Fable.Core.RustInterop.emitRustExpr v61 v62 
+    let v64 : string = "x"
+    let v65 : string = Fable.Core.RustInterop.emitRustExpr () v64 
+    let v66 : string = "&*$0"
+    let v67 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v65 v66 
+    let v68 : string = "String::from($0)"
+    let v69 : std_string_String = Fable.Core.RustInterop.emitRustExpr v67 v68 
+    let v70 : string = "Box::new($0)"
+    let v71 : Box<std_string_String> = Fable.Core.RustInterop.emitRustExpr v69 v70 
+    let v72 : string = "Box::leak($0)"
+    let v73 : Ref<Lifetime<StaticLifetime, Mut<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v71 v72 
+    let v74 : string = "clap::builder::PossibleValue::new(&**$0)"
+    let v75 : clap_builder_PossibleValue = Fable.Core.RustInterop.emitRustExpr v73 v74 
+    let v76 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v77 : bool = Fable.Core.RustInterop.emitRustExpr v75 v76 
+    let v78 : string = "_vec_map"
+    let v79 : Vec<clap_builder_PossibleValue> = Fable.Core.RustInterop.emitRustExpr () v78 
+    let v80 : string = "Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"
+    let v81 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr v79 v80 
+    let v82 : string = "$0.value_parser($1)"
+    let v83 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v34, v81) v82 
+    let v84 : string = "clap::Command::arg($0, $1)"
+    let v85 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v23, v83) v84 
+    let v86 : string = "wasm"
+    let v87 : string = "r#\"" + v86 + "\"#"
+    let v88 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v87 
+    let v89 : string = "clap::Arg::new($0)"
+    let v90 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v88 v89 
+    let v91 : string = "$0.short($1)"
+    let v92 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v90, 'w') v91 
+    let v93 : string = "r#\"" + v86 + "\"#"
+    let v94 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v93 
+    let v95 : string = "$0.long($1)"
+    let v96 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v92, v94) v95 
+    let v97 : string = "$0.required($1)"
+    let v98 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v96, true) v97 
+    let v99 : string = "clap::Command::arg($0, $1)"
+    let v100 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v85, v98) v99 
+    v100
 and method1 () : string =
     let v0 : string = "trace_level"
     v0
@@ -1293,7 +1317,10 @@ and closure7 (v0 : (string [])) () : unit =
         _v732 
         let v736 : (string -> unit) = v17.l0
         v736 v713
-and method12 () : string =
+and method11 () : string =
+    let v0 : string = "exception"
+    v0
+and method13 () : string =
     let v0 : string = "wasm"
     v0
 and closure17 () () : string =
@@ -3108,10 +3135,10 @@ and closure24 () (v0 : std_string_String) : unit =
     let v2 : (unit -> unit) = closure25(v0)
     let v3 : unit = (fun () -> v2 (); v1) ()
     ()
-and method14 () : string =
+and method15 () : string =
     let v0 : string = "("
     v0
-and method15 () : string =
+and method16 () : string =
     let v0 : string = " "
     v0
 and closure27 () () : string =
@@ -3381,27 +3408,27 @@ and closure26 (v0 : uint8, v1 : uint64, v2 : float) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v555 = v556 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v557 : string = method14()
+        let v557 : string = method15()
         let _v555 = v557 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v558 : string = method14()
+        let v558 : string = method15()
         let _v555 = v558 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v555 = v559 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v560 : string = method15()
+        let v560 : string = method16()
         let _v555 = v560 
         #endif
 #else
-        let v561 : string = method15()
+        let v561 : string = method16()
         let _v555 = v561 
         #endif
         let v562 : string = _v555 
@@ -3893,27 +3920,27 @@ and closure29 (v0 : bool, v1 : uint64, v2 : float, v3 : u128, v4 : float) () : u
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v558 : string = method14()
+        let v558 : string = method15()
         let _v557 = v558 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v559 : string = method14()
+        let v559 : string = method15()
         let _v557 = v559 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v560 : string = method14()
+        let v560 : string = method15()
         let _v557 = v560 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v561 : string = method15()
+        let v561 : string = method16()
         let _v557 = v561 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v562 : string = method15()
+        let v562 : string = method16()
         let _v557 = v562 
         #endif
 #else
-        let v563 : string = method15()
+        let v563 : string = method16()
         let _v557 = v563 
         #endif
         let v564 : string = _v557 
@@ -4687,7 +4714,7 @@ and closure31 (v0 : Result<near_workspaces_result_ExecutionSuccess, near_workspa
         _v756 
         let v760 : (string -> unit) = v17.l0
         v760 v737
-and method16 (v0 : near_workspaces_result_ExecutionFinalResult) : near_workspaces_result_ExecutionFinalResult =
+and method17 (v0 : near_workspaces_result_ExecutionFinalResult) : near_workspaces_result_ExecutionFinalResult =
     v0
 and closure34 () () : string =
     let v0 : string = "spiral_wasm.run"
@@ -5154,7 +5181,7 @@ and closure33 (v0 : Vec<Ref<near_workspaces_result_ExecutionOutcome>>, v1 : int3
         _v791 
         let v795 : (string -> unit) = v18.l0
         v795 v772
-and method17 (v0 : near_workspaces_result_ExecutionFinalResult) : near_workspaces_result_ExecutionFinalResult =
+and method18 (v0 : near_workspaces_result_ExecutionFinalResult) : near_workspaces_result_ExecutionFinalResult =
     v0
 and closure36 () () : string =
     let v0 : string = "spiral_wasm.run"
@@ -6515,9 +6542,9 @@ and closure39 (v0 : Result<std_string_String, near_workspaces_error_Error>) () :
         _v756 
         let v760 : (string -> unit) = v17.l0
         v760 v737
-and method18 (v0 : Result<US4, anyhow_Error>) : Result<US4, anyhow_Error> =
+and method19 (v0 : Result<US4, anyhow_Error>) : Result<US4, anyhow_Error> =
     v0
-and method13 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> =
+and method14 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> =
     let v2 : string = "true; let __future_init = Box::pin(async move { //"
     let v3 : bool = Fable.Core.RustInterop.emitRustExpr () v2 
     let v4 : string = "near_workspaces::sandbox().await"
@@ -6590,7 +6617,7 @@ and method13 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Futu
     let v3319 : unit = ()
     let v3320 : (unit -> unit) = closure31(v3318)
     let v3321 : unit = (fun () -> v3320 (); v3319) ()
-    let v4082 : near_workspaces_result_ExecutionFinalResult = method16(v1616)
+    let v4082 : near_workspaces_result_ExecutionFinalResult = method17(v1616)
     let v4083 : string = "v4082.receipt_failures()"
     let v4084 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v4083 
     let v4085 : string = "$0.len()"
@@ -6600,7 +6627,7 @@ and method13 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Futu
     let v4089 : unit = ()
     let v4090 : (unit -> unit) = closure33(v4084, v4088)
     let v4091 : unit = (fun () -> v4090 (); v4089) ()
-    let v4886 : near_workspaces_result_ExecutionFinalResult = method17(v1616)
+    let v4886 : near_workspaces_result_ExecutionFinalResult = method18(v1616)
     let v4887 : string = "v4886.receipt_outcomes()"
     let v4888 : Ref<Slice<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v4887 
     let v4889 : string = "v4888.into()"
@@ -6737,10 +6764,10 @@ and method13 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Futu
             else
                 let v7369 : string = "anyhow::anyhow!($0)"
                 let v7370 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v7362 v7369 
-                let v7371 : string = "Err(v7370)"
-                let v7372 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7371 
+                let v7371 : string = "Err($0)"
+                let v7372 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v7370 v7371 
                 v7372
-    let v7375 : Result<US4, anyhow_Error> = method18(v7374)
+    let v7375 : Result<US4, anyhow_Error> = method19(v7374)
     let v7376 : string = ""
     let v7377 : string = "}"
     let v7378 : string = v7376 + v7377 
@@ -6785,7 +6812,7 @@ and closure41 () (v0 : anyhow_Error) : std_string_String =
     #endif
     let v17 : std_string_String = _v1 
     v17
-and method19 () : (anyhow_Error -> std_string_String) =
+and method20 () : (anyhow_Error -> std_string_String) =
     closure41()
 and closure42 () (v0 : US4) : US6 =
     US6_0(v0)
@@ -7058,27 +7085,27 @@ and closure44 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -7117,27 +7144,27 @@ and closure44 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -7175,27 +7202,27 @@ and closure44 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -7708,27 +7735,27 @@ and closure46 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -7767,27 +7794,27 @@ and closure46 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -7825,27 +7852,27 @@ and closure46 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -8358,27 +8385,27 @@ and closure47 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -8417,27 +8444,27 @@ and closure47 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -8475,27 +8502,27 @@ and closure47 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -9008,27 +9035,27 @@ and closure48 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -9067,27 +9094,27 @@ and closure48 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -9125,27 +9152,27 @@ and closure48 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -9658,27 +9685,27 @@ and closure49 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -9717,27 +9744,27 @@ and closure49 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -9775,27 +9802,27 @@ and closure49 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -10308,27 +10335,27 @@ and closure50 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -10367,27 +10394,27 @@ and closure50 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -10425,27 +10452,27 @@ and closure50 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -10958,27 +10985,27 @@ and closure51 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -11017,27 +11044,27 @@ and closure51 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -11075,27 +11102,27 @@ and closure51 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -11608,27 +11635,27 @@ and closure52 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -11667,27 +11694,27 @@ and closure52 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -11725,27 +11752,27 @@ and closure52 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -12258,27 +12285,27 @@ and closure53 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -12317,27 +12344,27 @@ and closure53 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -12375,27 +12402,27 @@ and closure53 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -12908,27 +12935,27 @@ and closure54 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -12967,27 +12994,27 @@ and closure54 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -13025,27 +13052,27 @@ and closure54 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -13558,27 +13585,27 @@ and closure55 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -13617,27 +13644,27 @@ and closure55 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -13675,27 +13702,27 @@ and closure55 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -14208,27 +14235,27 @@ and closure56 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -14267,27 +14294,27 @@ and closure56 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -14325,27 +14352,27 @@ and closure56 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -14858,27 +14885,27 @@ and closure57 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -14917,27 +14944,27 @@ and closure57 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -14975,27 +15002,27 @@ and closure57 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -15508,27 +15535,27 @@ and closure58 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -15567,27 +15594,27 @@ and closure58 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -15625,27 +15652,27 @@ and closure58 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -16158,27 +16185,27 @@ and closure59 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -16217,27 +16244,27 @@ and closure59 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -16275,27 +16302,27 @@ and closure59 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -16808,27 +16835,27 @@ and closure60 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -16867,27 +16894,27 @@ and closure60 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -16925,27 +16952,27 @@ and closure60 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -17458,27 +17485,27 @@ and closure61 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -17517,27 +17544,27 @@ and closure61 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -17575,27 +17602,27 @@ and closure61 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -18108,27 +18135,27 @@ and closure62 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -18167,27 +18194,27 @@ and closure62 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -18225,27 +18252,27 @@ and closure62 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -18758,27 +18785,27 @@ and closure63 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -18817,27 +18844,27 @@ and closure63 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -18875,27 +18902,27 @@ and closure63 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -19408,27 +19435,27 @@ and closure64 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -19467,27 +19494,27 @@ and closure64 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -19525,27 +19552,27 @@ and closure64 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -20058,27 +20085,27 @@ and closure65 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -20117,27 +20144,27 @@ and closure65 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -20175,27 +20202,27 @@ and closure65 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -20708,27 +20735,27 @@ and closure66 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -20767,27 +20794,27 @@ and closure66 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -20825,27 +20852,27 @@ and closure66 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -21358,27 +21385,27 @@ and closure67 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -21417,27 +21444,27 @@ and closure67 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -21475,27 +21502,27 @@ and closure67 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -22008,27 +22035,27 @@ and closure68 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -22067,27 +22094,27 @@ and closure68 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -22125,27 +22152,27 @@ and closure68 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -22658,27 +22685,27 @@ and closure69 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -22717,27 +22744,27 @@ and closure69 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -22775,27 +22802,27 @@ and closure69 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -23308,27 +23335,27 @@ and closure70 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -23367,27 +23394,27 @@ and closure70 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -23425,27 +23452,27 @@ and closure70 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -23958,27 +23985,27 @@ and closure71 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -24017,27 +24044,27 @@ and closure71 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -24075,27 +24102,27 @@ and closure71 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -24608,27 +24635,27 @@ and closure72 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -24667,27 +24694,27 @@ and closure72 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -24725,27 +24752,27 @@ and closure72 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -25258,27 +25285,27 @@ and closure73 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -25317,27 +25344,27 @@ and closure73 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -25375,27 +25402,27 @@ and closure73 (v0 : std_string_String) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -25644,13 +25671,13 @@ and closure73 (v0 : std_string_String) () : unit =
         _v978 
         let v982 : (string -> unit) = v17.l0
         v982 v959
-and method20 () : uint8 =
+and method21 () : uint8 =
     30uy
-and method21 (v0 : uint8) : US7 =
+and method22 (v0 : uint8) : US7 =
     US7_1(v0)
-and method22 () : uint8 =
+and method23 () : uint8 =
     29uy
-and method23 (v0 : uint8) : US7 =
+and method24 (v0 : uint8) : US7 =
     US7_0(v0)
 and closure75 () () : string =
     let v0 : string = "spiral_wasm.run / Ok (Some error)"
@@ -25919,27 +25946,27 @@ and closure74 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -25978,27 +26005,27 @@ and closure74 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -26036,27 +26063,27 @@ and closure74 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -26094,27 +26121,27 @@ and closure74 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -26327,7 +26354,7 @@ and closure74 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method24 () : uint8 =
+and method25 () : uint8 =
     28uy
 and closure76 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -26593,27 +26620,27 @@ and closure76 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -26652,27 +26679,27 @@ and closure76 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -26710,27 +26737,27 @@ and closure76 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -26768,27 +26795,27 @@ and closure76 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -27001,7 +27028,7 @@ and closure76 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method25 () : uint8 =
+and method26 () : uint8 =
     27uy
 and closure77 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -27267,27 +27294,27 @@ and closure77 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -27326,27 +27353,27 @@ and closure77 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -27384,27 +27411,27 @@ and closure77 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -27442,27 +27469,27 @@ and closure77 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -27675,7 +27702,7 @@ and closure77 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method26 () : uint8 =
+and method27 () : uint8 =
     26uy
 and closure78 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -27941,27 +27968,27 @@ and closure78 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -28000,27 +28027,27 @@ and closure78 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -28058,27 +28085,27 @@ and closure78 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -28116,27 +28143,27 @@ and closure78 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -28349,7 +28376,7 @@ and closure78 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method27 () : uint8 =
+and method28 () : uint8 =
     25uy
 and closure79 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -28615,27 +28642,27 @@ and closure79 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -28674,27 +28701,27 @@ and closure79 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -28732,27 +28759,27 @@ and closure79 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -28790,27 +28817,27 @@ and closure79 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -29023,7 +29050,7 @@ and closure79 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method28 () : uint8 =
+and method29 () : uint8 =
     24uy
 and closure80 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -29289,27 +29316,27 @@ and closure80 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -29348,27 +29375,27 @@ and closure80 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -29406,27 +29433,27 @@ and closure80 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -29464,27 +29491,27 @@ and closure80 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -29697,7 +29724,7 @@ and closure80 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method29 () : uint8 =
+and method30 () : uint8 =
     23uy
 and closure81 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -29963,27 +29990,27 @@ and closure81 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -30022,27 +30049,27 @@ and closure81 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -30080,27 +30107,27 @@ and closure81 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -30138,27 +30165,27 @@ and closure81 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -30371,7 +30398,7 @@ and closure81 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method30 () : uint8 =
+and method31 () : uint8 =
     22uy
 and closure82 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -30637,27 +30664,27 @@ and closure82 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -30696,27 +30723,27 @@ and closure82 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -30754,27 +30781,27 @@ and closure82 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -30812,27 +30839,27 @@ and closure82 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -31045,7 +31072,7 @@ and closure82 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method31 () : uint8 =
+and method32 () : uint8 =
     21uy
 and closure83 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -31311,27 +31338,27 @@ and closure83 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -31370,27 +31397,27 @@ and closure83 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -31428,27 +31455,27 @@ and closure83 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -31486,27 +31513,27 @@ and closure83 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -31719,7 +31746,7 @@ and closure83 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method32 () : uint8 =
+and method33 () : uint8 =
     20uy
 and closure84 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -31985,27 +32012,27 @@ and closure84 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -32044,27 +32071,27 @@ and closure84 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -32102,27 +32129,27 @@ and closure84 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -32160,27 +32187,27 @@ and closure84 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -32393,7 +32420,7 @@ and closure84 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method33 () : uint8 =
+and method34 () : uint8 =
     19uy
 and closure85 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -32659,27 +32686,27 @@ and closure85 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -32718,27 +32745,27 @@ and closure85 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -32776,27 +32803,27 @@ and closure85 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -32834,27 +32861,27 @@ and closure85 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -33067,7 +33094,7 @@ and closure85 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method34 () : uint8 =
+and method35 () : uint8 =
     18uy
 and closure86 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -33333,27 +33360,27 @@ and closure86 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -33392,27 +33419,27 @@ and closure86 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -33450,27 +33477,27 @@ and closure86 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -33508,27 +33535,27 @@ and closure86 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -33741,7 +33768,7 @@ and closure86 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method35 () : uint8 =
+and method36 () : uint8 =
     17uy
 and closure87 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -34007,27 +34034,27 @@ and closure87 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -34066,27 +34093,27 @@ and closure87 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -34124,27 +34151,27 @@ and closure87 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -34182,27 +34209,27 @@ and closure87 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -34415,7 +34442,7 @@ and closure87 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method36 () : uint8 =
+and method37 () : uint8 =
     16uy
 and closure88 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -34681,27 +34708,27 @@ and closure88 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -34740,27 +34767,27 @@ and closure88 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -34798,27 +34825,27 @@ and closure88 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -34856,27 +34883,27 @@ and closure88 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -35089,7 +35116,7 @@ and closure88 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method37 () : uint8 =
+and method38 () : uint8 =
     15uy
 and closure89 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -35355,27 +35382,27 @@ and closure89 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -35414,27 +35441,27 @@ and closure89 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -35472,27 +35499,27 @@ and closure89 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -35530,27 +35557,27 @@ and closure89 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -35763,7 +35790,7 @@ and closure89 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method38 () : uint8 =
+and method39 () : uint8 =
     14uy
 and closure90 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -36029,27 +36056,27 @@ and closure90 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -36088,27 +36115,27 @@ and closure90 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -36146,27 +36173,27 @@ and closure90 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -36204,27 +36231,27 @@ and closure90 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -36437,7 +36464,7 @@ and closure90 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method39 () : uint8 =
+and method40 () : uint8 =
     13uy
 and closure91 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -36703,27 +36730,27 @@ and closure91 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -36762,27 +36789,27 @@ and closure91 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -36820,27 +36847,27 @@ and closure91 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -36878,27 +36905,27 @@ and closure91 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -37111,7 +37138,7 @@ and closure91 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method40 () : uint8 =
+and method41 () : uint8 =
     12uy
 and closure92 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -37377,27 +37404,27 @@ and closure92 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -37436,27 +37463,27 @@ and closure92 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -37494,27 +37521,27 @@ and closure92 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -37552,27 +37579,27 @@ and closure92 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -37785,7 +37812,7 @@ and closure92 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method41 () : uint8 =
+and method42 () : uint8 =
     11uy
 and closure93 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -38051,27 +38078,27 @@ and closure93 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -38110,27 +38137,27 @@ and closure93 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -38168,27 +38195,27 @@ and closure93 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -38226,27 +38253,27 @@ and closure93 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -38459,7 +38486,7 @@ and closure93 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method42 () : uint8 =
+and method43 () : uint8 =
     10uy
 and closure94 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -38725,27 +38752,27 @@ and closure94 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -38784,27 +38811,27 @@ and closure94 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -38842,27 +38869,27 @@ and closure94 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -38900,27 +38927,27 @@ and closure94 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -39133,7 +39160,7 @@ and closure94 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method43 () : uint8 =
+and method44 () : uint8 =
     9uy
 and closure95 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -39399,27 +39426,27 @@ and closure95 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -39458,27 +39485,27 @@ and closure95 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -39516,27 +39543,27 @@ and closure95 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -39574,27 +39601,27 @@ and closure95 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -39807,7 +39834,7 @@ and closure95 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method44 () : uint8 =
+and method45 () : uint8 =
     8uy
 and closure96 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -40073,27 +40100,27 @@ and closure96 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -40132,27 +40159,27 @@ and closure96 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -40190,27 +40217,27 @@ and closure96 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -40248,27 +40275,27 @@ and closure96 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -40481,7 +40508,7 @@ and closure96 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method45 () : uint8 =
+and method46 () : uint8 =
     7uy
 and closure97 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -40747,27 +40774,27 @@ and closure97 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -40806,27 +40833,27 @@ and closure97 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -40864,27 +40891,27 @@ and closure97 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -40922,27 +40949,27 @@ and closure97 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -41155,7 +41182,7 @@ and closure97 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method46 () : uint8 =
+and method47 () : uint8 =
     6uy
 and closure98 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -41421,27 +41448,27 @@ and closure98 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -41480,27 +41507,27 @@ and closure98 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -41538,27 +41565,27 @@ and closure98 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -41596,27 +41623,27 @@ and closure98 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -41829,7 +41856,7 @@ and closure98 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method47 () : uint8 =
+and method48 () : uint8 =
     5uy
 and closure99 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -42095,27 +42122,27 @@ and closure99 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -42154,27 +42181,27 @@ and closure99 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -42212,27 +42239,27 @@ and closure99 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -42270,27 +42297,27 @@ and closure99 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -42503,7 +42530,7 @@ and closure99 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method48 () : uint8 =
+and method49 () : uint8 =
     4uy
 and closure100 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -42769,27 +42796,27 @@ and closure100 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -42828,27 +42855,27 @@ and closure100 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -42886,27 +42913,27 @@ and closure100 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -42944,27 +42971,27 @@ and closure100 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -43177,7 +43204,7 @@ and closure100 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method49 () : uint8 =
+and method50 () : uint8 =
     3uy
 and closure101 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -43443,27 +43470,27 @@ and closure101 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -43502,27 +43529,27 @@ and closure101 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -43560,27 +43587,27 @@ and closure101 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -43618,27 +43645,27 @@ and closure101 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -43851,7 +43878,7 @@ and closure101 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method50 () : uint8 =
+and method51 () : uint8 =
     2uy
 and closure102 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -44117,27 +44144,27 @@ and closure102 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -44176,27 +44203,27 @@ and closure102 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -44234,27 +44261,27 @@ and closure102 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -44292,27 +44319,27 @@ and closure102 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -44525,7 +44552,7 @@ and closure102 (v0 : string) () : unit =
         _v1012 
         let v1016 : (string -> unit) = v17.l0
         v1016 v993
-and method51 () : uint8 =
+and method52 () : uint8 =
     1uy
 and closure103 (v0 : string) () : unit =
     let v1 : unit = ()
@@ -44791,27 +44818,27 @@ and closure103 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v554 : string = method14()
+        let v554 : string = method15()
         let _v553 = v554 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v555 : string = method14()
+        let v555 : string = method15()
         let _v553 = v555 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v556 : string = method14()
+        let v556 : string = method15()
         let _v553 = v556 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v557 : string = method15()
+        let v557 : string = method16()
         let _v553 = v557 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v558 : string = method15()
+        let v558 : string = method16()
         let _v553 = v558 
         #endif
 #else
-        let v559 : string = method15()
+        let v559 : string = method16()
         let _v553 = v559 
         #endif
         let v560 : string = _v553 
@@ -44850,27 +44877,27 @@ and closure103 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v613 : string = method14()
+                let v613 : string = method15()
                 let _v612 = v613 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v614 : string = method14()
+                let v614 : string = method15()
                 let _v612 = v614 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v615 : string = method14()
+                let v615 : string = method15()
                 let _v612 = v615 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v616 : string = method15()
+                let v616 : string = method16()
                 let _v612 = v616 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v617 : string = method15()
+                let v617 : string = method16()
                 let _v612 = v617 
                 #endif
 #else
-                let v618 : string = method15()
+                let v618 : string = method16()
                 let _v612 = v618 
                 #endif
                 let v619 : string = _v612 
@@ -44908,27 +44935,27 @@ and closure103 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v672 : string = method14()
+                    let v672 : string = method15()
                     let _v671 = v672 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v673 : string = method14()
+                    let v673 : string = method15()
                     let _v671 = v673 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v674 : string = method14()
+                    let v674 : string = method15()
                     let _v671 = v674 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v675 : string = method15()
+                    let v675 : string = method16()
                     let _v671 = v675 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v676 : string = method15()
+                    let v676 : string = method16()
                     let _v671 = v676 
                     #endif
 #else
-                    let v677 : string = method15()
+                    let v677 : string = method16()
                     let _v671 = v677 
                     #endif
                     let v678 : string = _v671 
@@ -44966,27 +44993,27 @@ and closure103 (v0 : string) () : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v731 : string = method14()
+                        let v731 : string = method15()
                         let _v730 = v731 
                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                        let v732 : string = method14()
+                        let v732 : string = method15()
                         let _v730 = v732 
                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v733 : string = method14()
+                        let v733 : string = method15()
                         let _v730 = v733 
                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v734 : string = method15()
+                        let v734 : string = method16()
                         let _v730 = v734 
                         #endif
 #if FABLE_COMPILER_PYTHON
-                        let v735 : string = method15()
+                        let v735 : string = method16()
                         let _v730 = v735 
                         #endif
 #else
-                        let v736 : string = method15()
+                        let v736 : string = method16()
                         let _v730 = v736 
                         #endif
                         let v737 : string = _v730 
@@ -45609,12 +45636,12 @@ and closure104 (v0 : US7) () : unit =
         _v732 
         let v736 : (string -> unit) = v17.l0
         v736 v713
-and method52 (v0 : Result<unit, anyhow_Error>) : Result<unit, anyhow_Error> =
+and method53 (v0 : Result<uint8, anyhow_Error>) : Result<uint8, anyhow_Error> =
     v0
-and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Result<unit, anyhow_Error>>>>> =
+and method12 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> =
     let v1 : string = "true; let __future_init = Box::pin(async move { //"
     let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
-    let v3 : string = method12()
+    let v3 : string = method13()
     let v4 : string = "&*$0"
     let v5 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v4 
     let v6 : string = "clap::ArgMatches::get_one(&$0, v5).cloned()"
@@ -45645,10 +45672,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v776 : string = "$0?"
     let v777 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v775 v776 
     let v778 : uint8 = 1uy
-    let v779 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v778)
+    let v779 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v778)
     let v780 : string = "v779.await"
     let v781 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v780 
-    let v782 : (anyhow_Error -> std_string_String) = method19()
+    let v782 : (anyhow_Error -> std_string_String) = method20()
     let v783 : string = "$0.map_err(|x| $1(x))"
     let v784 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v781, v782) v783 
     let v785 : (US4 -> US6) = closure42()
@@ -45661,10 +45688,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
             let v1861 : (unit -> unit) = closure44(v1859)
             let v1862 : unit = (fun () -> v1861 (); v1860) ()
             let v2845 : uint8 = 2uy
-            let v2846 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v2845)
+            let v2846 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v2845)
             let v2847 : string = "v2846.await"
             let v2848 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2847 
-            let v2849 : (anyhow_Error -> std_string_String) = method19()
+            let v2849 : (anyhow_Error -> std_string_String) = method20()
             let v2850 : string = "$0.map_err(|x| $1(x))"
             let v2851 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2848, v2849) v2850 
             let v2852 : US6 = match v2851 with Ok x -> v785 x | Error x -> v786 x
@@ -45674,10 +45701,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                 let v3926 : (unit -> unit) = closure46(v3924)
                 let v3927 : unit = (fun () -> v3926 (); v3925) ()
                 let v4910 : uint8 = 3uy
-                let v4911 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v4910)
+                let v4911 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v4910)
                 let v4912 : string = "v4911.await"
                 let v4913 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4912 
-                let v4914 : (anyhow_Error -> std_string_String) = method19()
+                let v4914 : (anyhow_Error -> std_string_String) = method20()
                 let v4915 : string = "$0.map_err(|x| $1(x))"
                 let v4916 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4913, v4914) v4915 
                 let v4917 : US6 = match v4916 with Ok x -> v785 x | Error x -> v786 x
@@ -45687,10 +45714,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                     let v5991 : (unit -> unit) = closure47(v5989)
                     let v5992 : unit = (fun () -> v5991 (); v5990) ()
                     let v6975 : uint8 = 4uy
-                    let v6976 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v6975)
+                    let v6976 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v6975)
                     let v6977 : string = "v6976.await"
                     let v6978 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6977 
-                    let v6979 : (anyhow_Error -> std_string_String) = method19()
+                    let v6979 : (anyhow_Error -> std_string_String) = method20()
                     let v6980 : string = "$0.map_err(|x| $1(x))"
                     let v6981 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6978, v6979) v6980 
                     let v6982 : US6 = match v6981 with Ok x -> v785 x | Error x -> v786 x
@@ -45700,10 +45727,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                         let v8056 : (unit -> unit) = closure48(v8054)
                         let v8057 : unit = (fun () -> v8056 (); v8055) ()
                         let v9040 : uint8 = 5uy
-                        let v9041 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v9040)
+                        let v9041 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v9040)
                         let v9042 : string = "v9041.await"
                         let v9043 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v9042 
-                        let v9044 : (anyhow_Error -> std_string_String) = method19()
+                        let v9044 : (anyhow_Error -> std_string_String) = method20()
                         let v9045 : string = "$0.map_err(|x| $1(x))"
                         let v9046 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v9043, v9044) v9045 
                         let v9047 : US6 = match v9046 with Ok x -> v785 x | Error x -> v786 x
@@ -45713,10 +45740,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                             let v10121 : (unit -> unit) = closure49(v10119)
                             let v10122 : unit = (fun () -> v10121 (); v10120) ()
                             let v11105 : uint8 = 6uy
-                            let v11106 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v11105)
+                            let v11106 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v11105)
                             let v11107 : string = "v11106.await"
                             let v11108 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v11107 
-                            let v11109 : (anyhow_Error -> std_string_String) = method19()
+                            let v11109 : (anyhow_Error -> std_string_String) = method20()
                             let v11110 : string = "$0.map_err(|x| $1(x))"
                             let v11111 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v11108, v11109) v11110 
                             let v11112 : US6 = match v11111 with Ok x -> v785 x | Error x -> v786 x
@@ -45726,10 +45753,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                 let v12186 : (unit -> unit) = closure50(v12184)
                                 let v12187 : unit = (fun () -> v12186 (); v12185) ()
                                 let v13170 : uint8 = 7uy
-                                let v13171 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v13170)
+                                let v13171 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v13170)
                                 let v13172 : string = "v13171.await"
                                 let v13173 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v13172 
-                                let v13174 : (anyhow_Error -> std_string_String) = method19()
+                                let v13174 : (anyhow_Error -> std_string_String) = method20()
                                 let v13175 : string = "$0.map_err(|x| $1(x))"
                                 let v13176 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v13173, v13174) v13175 
                                 let v13177 : US6 = match v13176 with Ok x -> v785 x | Error x -> v786 x
@@ -45739,10 +45766,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                     let v14251 : (unit -> unit) = closure51(v14249)
                                     let v14252 : unit = (fun () -> v14251 (); v14250) ()
                                     let v15235 : uint8 = 8uy
-                                    let v15236 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v15235)
+                                    let v15236 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v15235)
                                     let v15237 : string = "v15236.await"
                                     let v15238 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v15237 
-                                    let v15239 : (anyhow_Error -> std_string_String) = method19()
+                                    let v15239 : (anyhow_Error -> std_string_String) = method20()
                                     let v15240 : string = "$0.map_err(|x| $1(x))"
                                     let v15241 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v15238, v15239) v15240 
                                     let v15242 : US6 = match v15241 with Ok x -> v785 x | Error x -> v786 x
@@ -45752,10 +45779,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                         let v16316 : (unit -> unit) = closure52(v16314)
                                         let v16317 : unit = (fun () -> v16316 (); v16315) ()
                                         let v17300 : uint8 = 9uy
-                                        let v17301 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v17300)
+                                        let v17301 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v17300)
                                         let v17302 : string = "v17301.await"
                                         let v17303 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v17302 
-                                        let v17304 : (anyhow_Error -> std_string_String) = method19()
+                                        let v17304 : (anyhow_Error -> std_string_String) = method20()
                                         let v17305 : string = "$0.map_err(|x| $1(x))"
                                         let v17306 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v17303, v17304) v17305 
                                         let v17307 : US6 = match v17306 with Ok x -> v785 x | Error x -> v786 x
@@ -45765,10 +45792,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                             let v18381 : (unit -> unit) = closure53(v18379)
                                             let v18382 : unit = (fun () -> v18381 (); v18380) ()
                                             let v19365 : uint8 = 10uy
-                                            let v19366 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v19365)
+                                            let v19366 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v19365)
                                             let v19367 : string = "v19366.await"
                                             let v19368 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v19367 
-                                            let v19369 : (anyhow_Error -> std_string_String) = method19()
+                                            let v19369 : (anyhow_Error -> std_string_String) = method20()
                                             let v19370 : string = "$0.map_err(|x| $1(x))"
                                             let v19371 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v19368, v19369) v19370 
                                             let v19372 : US6 = match v19371 with Ok x -> v785 x | Error x -> v786 x
@@ -45778,10 +45805,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                 let v20446 : (unit -> unit) = closure54(v20444)
                                                 let v20447 : unit = (fun () -> v20446 (); v20445) ()
                                                 let v21430 : uint8 = 11uy
-                                                let v21431 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v21430)
+                                                let v21431 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v21430)
                                                 let v21432 : string = "v21431.await"
                                                 let v21433 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v21432 
-                                                let v21434 : (anyhow_Error -> std_string_String) = method19()
+                                                let v21434 : (anyhow_Error -> std_string_String) = method20()
                                                 let v21435 : string = "$0.map_err(|x| $1(x))"
                                                 let v21436 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v21433, v21434) v21435 
                                                 let v21437 : US6 = match v21436 with Ok x -> v785 x | Error x -> v786 x
@@ -45791,10 +45818,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                     let v22511 : (unit -> unit) = closure55(v22509)
                                                     let v22512 : unit = (fun () -> v22511 (); v22510) ()
                                                     let v23495 : uint8 = 12uy
-                                                    let v23496 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v23495)
+                                                    let v23496 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v23495)
                                                     let v23497 : string = "v23496.await"
                                                     let v23498 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v23497 
-                                                    let v23499 : (anyhow_Error -> std_string_String) = method19()
+                                                    let v23499 : (anyhow_Error -> std_string_String) = method20()
                                                     let v23500 : string = "$0.map_err(|x| $1(x))"
                                                     let v23501 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v23498, v23499) v23500 
                                                     let v23502 : US6 = match v23501 with Ok x -> v785 x | Error x -> v786 x
@@ -45804,10 +45831,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v24576 : (unit -> unit) = closure56(v24574)
                                                         let v24577 : unit = (fun () -> v24576 (); v24575) ()
                                                         let v25560 : uint8 = 13uy
-                                                        let v25561 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v25560)
+                                                        let v25561 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v25560)
                                                         let v25562 : string = "v25561.await"
                                                         let v25563 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v25562 
-                                                        let v25564 : (anyhow_Error -> std_string_String) = method19()
+                                                        let v25564 : (anyhow_Error -> std_string_String) = method20()
                                                         let v25565 : string = "$0.map_err(|x| $1(x))"
                                                         let v25566 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v25563, v25564) v25565 
                                                         let v25567 : US6 = match v25566 with Ok x -> v785 x | Error x -> v786 x
@@ -45817,10 +45844,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                             let v26641 : (unit -> unit) = closure57(v26639)
                                                             let v26642 : unit = (fun () -> v26641 (); v26640) ()
                                                             let v27625 : uint8 = 14uy
-                                                            let v27626 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v27625)
+                                                            let v27626 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v27625)
                                                             let v27627 : string = "v27626.await"
                                                             let v27628 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v27627 
-                                                            let v27629 : (anyhow_Error -> std_string_String) = method19()
+                                                            let v27629 : (anyhow_Error -> std_string_String) = method20()
                                                             let v27630 : string = "$0.map_err(|x| $1(x))"
                                                             let v27631 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v27628, v27629) v27630 
                                                             let v27632 : US6 = match v27631 with Ok x -> v785 x | Error x -> v786 x
@@ -45830,10 +45857,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                 let v28706 : (unit -> unit) = closure58(v28704)
                                                                 let v28707 : unit = (fun () -> v28706 (); v28705) ()
                                                                 let v29690 : uint8 = 15uy
-                                                                let v29691 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v29690)
+                                                                let v29691 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v29690)
                                                                 let v29692 : string = "v29691.await"
                                                                 let v29693 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v29692 
-                                                                let v29694 : (anyhow_Error -> std_string_String) = method19()
+                                                                let v29694 : (anyhow_Error -> std_string_String) = method20()
                                                                 let v29695 : string = "$0.map_err(|x| $1(x))"
                                                                 let v29696 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v29693, v29694) v29695 
                                                                 let v29697 : US6 = match v29696 with Ok x -> v785 x | Error x -> v786 x
@@ -45843,10 +45870,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                     let v30771 : (unit -> unit) = closure59(v30769)
                                                                     let v30772 : unit = (fun () -> v30771 (); v30770) ()
                                                                     let v31755 : uint8 = 16uy
-                                                                    let v31756 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v31755)
+                                                                    let v31756 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v31755)
                                                                     let v31757 : string = "v31756.await"
                                                                     let v31758 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v31757 
-                                                                    let v31759 : (anyhow_Error -> std_string_String) = method19()
+                                                                    let v31759 : (anyhow_Error -> std_string_String) = method20()
                                                                     let v31760 : string = "$0.map_err(|x| $1(x))"
                                                                     let v31761 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v31758, v31759) v31760 
                                                                     let v31762 : US6 = match v31761 with Ok x -> v785 x | Error x -> v786 x
@@ -45856,10 +45883,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                         let v32836 : (unit -> unit) = closure60(v32834)
                                                                         let v32837 : unit = (fun () -> v32836 (); v32835) ()
                                                                         let v33820 : uint8 = 17uy
-                                                                        let v33821 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v33820)
+                                                                        let v33821 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v33820)
                                                                         let v33822 : string = "v33821.await"
                                                                         let v33823 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v33822 
-                                                                        let v33824 : (anyhow_Error -> std_string_String) = method19()
+                                                                        let v33824 : (anyhow_Error -> std_string_String) = method20()
                                                                         let v33825 : string = "$0.map_err(|x| $1(x))"
                                                                         let v33826 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v33823, v33824) v33825 
                                                                         let v33827 : US6 = match v33826 with Ok x -> v785 x | Error x -> v786 x
@@ -45869,10 +45896,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                             let v34901 : (unit -> unit) = closure61(v34899)
                                                                             let v34902 : unit = (fun () -> v34901 (); v34900) ()
                                                                             let v35885 : uint8 = 18uy
-                                                                            let v35886 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v35885)
+                                                                            let v35886 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v35885)
                                                                             let v35887 : string = "v35886.await"
                                                                             let v35888 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v35887 
-                                                                            let v35889 : (anyhow_Error -> std_string_String) = method19()
+                                                                            let v35889 : (anyhow_Error -> std_string_String) = method20()
                                                                             let v35890 : string = "$0.map_err(|x| $1(x))"
                                                                             let v35891 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v35888, v35889) v35890 
                                                                             let v35892 : US6 = match v35891 with Ok x -> v785 x | Error x -> v786 x
@@ -45882,10 +45909,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                 let v36966 : (unit -> unit) = closure62(v36964)
                                                                                 let v36967 : unit = (fun () -> v36966 (); v36965) ()
                                                                                 let v37950 : uint8 = 19uy
-                                                                                let v37951 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v37950)
+                                                                                let v37951 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v37950)
                                                                                 let v37952 : string = "v37951.await"
                                                                                 let v37953 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v37952 
-                                                                                let v37954 : (anyhow_Error -> std_string_String) = method19()
+                                                                                let v37954 : (anyhow_Error -> std_string_String) = method20()
                                                                                 let v37955 : string = "$0.map_err(|x| $1(x))"
                                                                                 let v37956 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v37953, v37954) v37955 
                                                                                 let v37957 : US6 = match v37956 with Ok x -> v785 x | Error x -> v786 x
@@ -45895,10 +45922,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                     let v39031 : (unit -> unit) = closure63(v39029)
                                                                                     let v39032 : unit = (fun () -> v39031 (); v39030) ()
                                                                                     let v40015 : uint8 = 20uy
-                                                                                    let v40016 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v40015)
+                                                                                    let v40016 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v40015)
                                                                                     let v40017 : string = "v40016.await"
                                                                                     let v40018 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v40017 
-                                                                                    let v40019 : (anyhow_Error -> std_string_String) = method19()
+                                                                                    let v40019 : (anyhow_Error -> std_string_String) = method20()
                                                                                     let v40020 : string = "$0.map_err(|x| $1(x))"
                                                                                     let v40021 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v40018, v40019) v40020 
                                                                                     let v40022 : US6 = match v40021 with Ok x -> v785 x | Error x -> v786 x
@@ -45908,10 +45935,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                         let v41096 : (unit -> unit) = closure64(v41094)
                                                                                         let v41097 : unit = (fun () -> v41096 (); v41095) ()
                                                                                         let v42080 : uint8 = 21uy
-                                                                                        let v42081 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v42080)
+                                                                                        let v42081 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v42080)
                                                                                         let v42082 : string = "v42081.await"
                                                                                         let v42083 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v42082 
-                                                                                        let v42084 : (anyhow_Error -> std_string_String) = method19()
+                                                                                        let v42084 : (anyhow_Error -> std_string_String) = method20()
                                                                                         let v42085 : string = "$0.map_err(|x| $1(x))"
                                                                                         let v42086 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v42083, v42084) v42085 
                                                                                         let v42087 : US6 = match v42086 with Ok x -> v785 x | Error x -> v786 x
@@ -45921,10 +45948,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                             let v43161 : (unit -> unit) = closure65(v43159)
                                                                                             let v43162 : unit = (fun () -> v43161 (); v43160) ()
                                                                                             let v44145 : uint8 = 22uy
-                                                                                            let v44146 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v44145)
+                                                                                            let v44146 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v44145)
                                                                                             let v44147 : string = "v44146.await"
                                                                                             let v44148 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v44147 
-                                                                                            let v44149 : (anyhow_Error -> std_string_String) = method19()
+                                                                                            let v44149 : (anyhow_Error -> std_string_String) = method20()
                                                                                             let v44150 : string = "$0.map_err(|x| $1(x))"
                                                                                             let v44151 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v44148, v44149) v44150 
                                                                                             let v44152 : US6 = match v44151 with Ok x -> v785 x | Error x -> v786 x
@@ -45934,10 +45961,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                 let v45226 : (unit -> unit) = closure66(v45224)
                                                                                                 let v45227 : unit = (fun () -> v45226 (); v45225) ()
                                                                                                 let v46210 : uint8 = 23uy
-                                                                                                let v46211 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v46210)
+                                                                                                let v46211 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v46210)
                                                                                                 let v46212 : string = "v46211.await"
                                                                                                 let v46213 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v46212 
-                                                                                                let v46214 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                let v46214 : (anyhow_Error -> std_string_String) = method20()
                                                                                                 let v46215 : string = "$0.map_err(|x| $1(x))"
                                                                                                 let v46216 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v46213, v46214) v46215 
                                                                                                 let v46217 : US6 = match v46216 with Ok x -> v785 x | Error x -> v786 x
@@ -45947,10 +45974,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                     let v47291 : (unit -> unit) = closure67(v47289)
                                                                                                     let v47292 : unit = (fun () -> v47291 (); v47290) ()
                                                                                                     let v48275 : uint8 = 24uy
-                                                                                                    let v48276 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v48275)
+                                                                                                    let v48276 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v48275)
                                                                                                     let v48277 : string = "v48276.await"
                                                                                                     let v48278 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v48277 
-                                                                                                    let v48279 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                    let v48279 : (anyhow_Error -> std_string_String) = method20()
                                                                                                     let v48280 : string = "$0.map_err(|x| $1(x))"
                                                                                                     let v48281 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v48278, v48279) v48280 
                                                                                                     let v48282 : US6 = match v48281 with Ok x -> v785 x | Error x -> v786 x
@@ -45960,10 +45987,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                         let v49356 : (unit -> unit) = closure68(v49354)
                                                                                                         let v49357 : unit = (fun () -> v49356 (); v49355) ()
                                                                                                         let v50340 : uint8 = 25uy
-                                                                                                        let v50341 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v50340)
+                                                                                                        let v50341 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v50340)
                                                                                                         let v50342 : string = "v50341.await"
                                                                                                         let v50343 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v50342 
-                                                                                                        let v50344 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                        let v50344 : (anyhow_Error -> std_string_String) = method20()
                                                                                                         let v50345 : string = "$0.map_err(|x| $1(x))"
                                                                                                         let v50346 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v50343, v50344) v50345 
                                                                                                         let v50347 : US6 = match v50346 with Ok x -> v785 x | Error x -> v786 x
@@ -45973,10 +46000,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                             let v51421 : (unit -> unit) = closure69(v51419)
                                                                                                             let v51422 : unit = (fun () -> v51421 (); v51420) ()
                                                                                                             let v52405 : uint8 = 26uy
-                                                                                                            let v52406 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v52405)
+                                                                                                            let v52406 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v52405)
                                                                                                             let v52407 : string = "v52406.await"
                                                                                                             let v52408 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v52407 
-                                                                                                            let v52409 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                            let v52409 : (anyhow_Error -> std_string_String) = method20()
                                                                                                             let v52410 : string = "$0.map_err(|x| $1(x))"
                                                                                                             let v52411 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v52408, v52409) v52410 
                                                                                                             let v52412 : US6 = match v52411 with Ok x -> v785 x | Error x -> v786 x
@@ -45986,10 +46013,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                 let v53486 : (unit -> unit) = closure70(v53484)
                                                                                                                 let v53487 : unit = (fun () -> v53486 (); v53485) ()
                                                                                                                 let v54470 : uint8 = 27uy
-                                                                                                                let v54471 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v54470)
+                                                                                                                let v54471 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v54470)
                                                                                                                 let v54472 : string = "v54471.await"
                                                                                                                 let v54473 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v54472 
-                                                                                                                let v54474 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                                let v54474 : (anyhow_Error -> std_string_String) = method20()
                                                                                                                 let v54475 : string = "$0.map_err(|x| $1(x))"
                                                                                                                 let v54476 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v54473, v54474) v54475 
                                                                                                                 let v54477 : US6 = match v54476 with Ok x -> v785 x | Error x -> v786 x
@@ -45999,10 +46026,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                     let v55551 : (unit -> unit) = closure71(v55549)
                                                                                                                     let v55552 : unit = (fun () -> v55551 (); v55550) ()
                                                                                                                     let v56535 : uint8 = 28uy
-                                                                                                                    let v56536 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v56535)
+                                                                                                                    let v56536 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v56535)
                                                                                                                     let v56537 : string = "v56536.await"
                                                                                                                     let v56538 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v56537 
-                                                                                                                    let v56539 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                                    let v56539 : (anyhow_Error -> std_string_String) = method20()
                                                                                                                     let v56540 : string = "$0.map_err(|x| $1(x))"
                                                                                                                     let v56541 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v56538, v56539) v56540 
                                                                                                                     let v56542 : US6 = match v56541 with Ok x -> v785 x | Error x -> v786 x
@@ -46012,10 +46039,10 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                         let v57616 : (unit -> unit) = closure72(v57614)
                                                                                                                         let v57617 : unit = (fun () -> v57616 (); v57615) ()
                                                                                                                         let v58600 : uint8 = 29uy
-                                                                                                                        let v58601 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method13(v777, v58600)
+                                                                                                                        let v58601 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method14(v777, v58600)
                                                                                                                         let v58602 : string = "v58601.await"
                                                                                                                         let v58603 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v58602 
-                                                                                                                        let v58604 : (anyhow_Error -> std_string_String) = method19()
+                                                                                                                        let v58604 : (anyhow_Error -> std_string_String) = method20()
                                                                                                                         let v58605 : string = "$0.map_err(|x| $1(x))"
                                                                                                                         let v58606 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v58603, v58604) v58605 
                                                                                                                         let v58607 : US6 = match v58606 with Ok x -> v785 x | Error x -> v786 x
@@ -46028,7 +46055,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v60666 : bool = Fable.Core.RustInterop.emitRustExpr () v60665 
                                                                                                                             let v60667 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                             let v60668 : bool = Fable.Core.RustInterop.emitRustExpr () v60667 
-                                                                                                                            let v60669 : uint8 = method20()
+                                                                                                                            let v60669 : uint8 = method21()
                                                                                                                             let v60670 : string = ""
                                                                                                                             let v60671 : string = "}"
                                                                                                                             let v60672 : string = v60670 + v60671 
@@ -46040,7 +46067,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v60678 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v60677 
                                                                                                                             let v60679 : string = "v60678.await"
                                                                                                                             let v60680 : uint8 = Fable.Core.RustInterop.emitRustExpr () v60679 
-                                                                                                                            let v60681 : US7 = method21(v60680)
+                                                                                                                            let v60681 : US7 = method22(v60680)
                                                                                                                             let v60682 : string = v60670 + v60671 
                                                                                                                             let v60683 : string = "true; v60681 " + v60682 + "); " + v60670 + " // rust.fix_closure'"
                                                                                                                             let v60684 : bool = Fable.Core.RustInterop.emitRustExpr () v60683 
@@ -46056,7 +46083,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                                 let v58610 : bool = Fable.Core.RustInterop.emitRustExpr () v58609 
                                                                                                                                 let v58611 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                                 let v58612 : bool = Fable.Core.RustInterop.emitRustExpr () v58611 
-                                                                                                                                let v58613 : uint8 = method22()
+                                                                                                                                let v58613 : uint8 = method23()
                                                                                                                                 let v58614 : string = ""
                                                                                                                                 let v58615 : string = "}"
                                                                                                                                 let v58616 : string = v58614 + v58615 
@@ -46068,7 +46095,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                                 let v58622 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v58621 
                                                                                                                                 let v58623 : string = "v58622.await"
                                                                                                                                 let v58624 : uint8 = Fable.Core.RustInterop.emitRustExpr () v58623 
-                                                                                                                                let v58625 : US7 = method23(v58624)
+                                                                                                                                let v58625 : US7 = method24(v58624)
                                                                                                                                 let v58626 : string = v58614 + v58615 
                                                                                                                                 let v58627 : string = "true; v58625 " + v58626 + "); " + v58614 + " // rust.fix_closure'"
                                                                                                                                 let v58628 : bool = Fable.Core.RustInterop.emitRustExpr () v58627 
@@ -46085,7 +46112,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                                 let v59654 : bool = Fable.Core.RustInterop.emitRustExpr () v59653 
                                                                                                                                 let v59655 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                                 let v59656 : bool = Fable.Core.RustInterop.emitRustExpr () v59655 
-                                                                                                                                let v59657 : uint8 = method22()
+                                                                                                                                let v59657 : uint8 = method23()
                                                                                                                                 let v59658 : string = ""
                                                                                                                                 let v59659 : string = "}"
                                                                                                                                 let v59660 : string = v59658 + v59659 
@@ -46097,7 +46124,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                                 let v59666 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v59665 
                                                                                                                                 let v59667 : string = "v59666.await"
                                                                                                                                 let v59668 : uint8 = Fable.Core.RustInterop.emitRustExpr () v59667 
-                                                                                                                                let v59669 : US7 = method21(v59668)
+                                                                                                                                let v59669 : US7 = method22(v59668)
                                                                                                                                 let v59670 : string = v59658 + v59659 
                                                                                                                                 let v59671 : string = "true; v59669 " + v59670 + "); " + v59658 + " // rust.fix_closure'"
                                                                                                                                 let v59672 : bool = Fable.Core.RustInterop.emitRustExpr () v59671 
@@ -46113,7 +46140,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v56545 : bool = Fable.Core.RustInterop.emitRustExpr () v56544 
                                                                                                                             let v56546 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                             let v56547 : bool = Fable.Core.RustInterop.emitRustExpr () v56546 
-                                                                                                                            let v56548 : uint8 = method24()
+                                                                                                                            let v56548 : uint8 = method25()
                                                                                                                             let v56549 : string = ""
                                                                                                                             let v56550 : string = "}"
                                                                                                                             let v56551 : string = v56549 + v56550 
@@ -46125,7 +46152,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v56557 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v56556 
                                                                                                                             let v56558 : string = "v56557.await"
                                                                                                                             let v56559 : uint8 = Fable.Core.RustInterop.emitRustExpr () v56558 
-                                                                                                                            let v56560 : US7 = method23(v56559)
+                                                                                                                            let v56560 : US7 = method24(v56559)
                                                                                                                             let v56561 : string = v56549 + v56550 
                                                                                                                             let v56562 : string = "true; v56560 " + v56561 + "); " + v56549 + " // rust.fix_closure'"
                                                                                                                             let v56563 : bool = Fable.Core.RustInterop.emitRustExpr () v56562 
@@ -46142,7 +46169,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v57589 : bool = Fable.Core.RustInterop.emitRustExpr () v57588 
                                                                                                                             let v57590 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                             let v57591 : bool = Fable.Core.RustInterop.emitRustExpr () v57590 
-                                                                                                                            let v57592 : uint8 = method24()
+                                                                                                                            let v57592 : uint8 = method25()
                                                                                                                             let v57593 : string = ""
                                                                                                                             let v57594 : string = "}"
                                                                                                                             let v57595 : string = v57593 + v57594 
@@ -46154,7 +46181,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                             let v57601 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v57600 
                                                                                                                             let v57602 : string = "v57601.await"
                                                                                                                             let v57603 : uint8 = Fable.Core.RustInterop.emitRustExpr () v57602 
-                                                                                                                            let v57604 : US7 = method21(v57603)
+                                                                                                                            let v57604 : US7 = method22(v57603)
                                                                                                                             let v57605 : string = v57593 + v57594 
                                                                                                                             let v57606 : string = "true; v57604 " + v57605 + "); " + v57593 + " // rust.fix_closure'"
                                                                                                                             let v57607 : bool = Fable.Core.RustInterop.emitRustExpr () v57606 
@@ -46170,7 +46197,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                         let v54480 : bool = Fable.Core.RustInterop.emitRustExpr () v54479 
                                                                                                                         let v54481 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                         let v54482 : bool = Fable.Core.RustInterop.emitRustExpr () v54481 
-                                                                                                                        let v54483 : uint8 = method25()
+                                                                                                                        let v54483 : uint8 = method26()
                                                                                                                         let v54484 : string = ""
                                                                                                                         let v54485 : string = "}"
                                                                                                                         let v54486 : string = v54484 + v54485 
@@ -46182,7 +46209,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                         let v54492 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v54491 
                                                                                                                         let v54493 : string = "v54492.await"
                                                                                                                         let v54494 : uint8 = Fable.Core.RustInterop.emitRustExpr () v54493 
-                                                                                                                        let v54495 : US7 = method23(v54494)
+                                                                                                                        let v54495 : US7 = method24(v54494)
                                                                                                                         let v54496 : string = v54484 + v54485 
                                                                                                                         let v54497 : string = "true; v54495 " + v54496 + "); " + v54484 + " // rust.fix_closure'"
                                                                                                                         let v54498 : bool = Fable.Core.RustInterop.emitRustExpr () v54497 
@@ -46199,7 +46226,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                         let v55524 : bool = Fable.Core.RustInterop.emitRustExpr () v55523 
                                                                                                                         let v55525 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                         let v55526 : bool = Fable.Core.RustInterop.emitRustExpr () v55525 
-                                                                                                                        let v55527 : uint8 = method25()
+                                                                                                                        let v55527 : uint8 = method26()
                                                                                                                         let v55528 : string = ""
                                                                                                                         let v55529 : string = "}"
                                                                                                                         let v55530 : string = v55528 + v55529 
@@ -46211,7 +46238,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                         let v55536 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v55535 
                                                                                                                         let v55537 : string = "v55536.await"
                                                                                                                         let v55538 : uint8 = Fable.Core.RustInterop.emitRustExpr () v55537 
-                                                                                                                        let v55539 : US7 = method21(v55538)
+                                                                                                                        let v55539 : US7 = method22(v55538)
                                                                                                                         let v55540 : string = v55528 + v55529 
                                                                                                                         let v55541 : string = "true; v55539 " + v55540 + "); " + v55528 + " // rust.fix_closure'"
                                                                                                                         let v55542 : bool = Fable.Core.RustInterop.emitRustExpr () v55541 
@@ -46227,7 +46254,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                     let v52415 : bool = Fable.Core.RustInterop.emitRustExpr () v52414 
                                                                                                                     let v52416 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                     let v52417 : bool = Fable.Core.RustInterop.emitRustExpr () v52416 
-                                                                                                                    let v52418 : uint8 = method26()
+                                                                                                                    let v52418 : uint8 = method27()
                                                                                                                     let v52419 : string = ""
                                                                                                                     let v52420 : string = "}"
                                                                                                                     let v52421 : string = v52419 + v52420 
@@ -46239,7 +46266,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                     let v52427 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v52426 
                                                                                                                     let v52428 : string = "v52427.await"
                                                                                                                     let v52429 : uint8 = Fable.Core.RustInterop.emitRustExpr () v52428 
-                                                                                                                    let v52430 : US7 = method23(v52429)
+                                                                                                                    let v52430 : US7 = method24(v52429)
                                                                                                                     let v52431 : string = v52419 + v52420 
                                                                                                                     let v52432 : string = "true; v52430 " + v52431 + "); " + v52419 + " // rust.fix_closure'"
                                                                                                                     let v52433 : bool = Fable.Core.RustInterop.emitRustExpr () v52432 
@@ -46256,7 +46283,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                     let v53459 : bool = Fable.Core.RustInterop.emitRustExpr () v53458 
                                                                                                                     let v53460 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                     let v53461 : bool = Fable.Core.RustInterop.emitRustExpr () v53460 
-                                                                                                                    let v53462 : uint8 = method26()
+                                                                                                                    let v53462 : uint8 = method27()
                                                                                                                     let v53463 : string = ""
                                                                                                                     let v53464 : string = "}"
                                                                                                                     let v53465 : string = v53463 + v53464 
@@ -46268,7 +46295,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                     let v53471 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v53470 
                                                                                                                     let v53472 : string = "v53471.await"
                                                                                                                     let v53473 : uint8 = Fable.Core.RustInterop.emitRustExpr () v53472 
-                                                                                                                    let v53474 : US7 = method21(v53473)
+                                                                                                                    let v53474 : US7 = method22(v53473)
                                                                                                                     let v53475 : string = v53463 + v53464 
                                                                                                                     let v53476 : string = "true; v53474 " + v53475 + "); " + v53463 + " // rust.fix_closure'"
                                                                                                                     let v53477 : bool = Fable.Core.RustInterop.emitRustExpr () v53476 
@@ -46284,7 +46311,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                 let v50350 : bool = Fable.Core.RustInterop.emitRustExpr () v50349 
                                                                                                                 let v50351 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                 let v50352 : bool = Fable.Core.RustInterop.emitRustExpr () v50351 
-                                                                                                                let v50353 : uint8 = method27()
+                                                                                                                let v50353 : uint8 = method28()
                                                                                                                 let v50354 : string = ""
                                                                                                                 let v50355 : string = "}"
                                                                                                                 let v50356 : string = v50354 + v50355 
@@ -46296,7 +46323,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                 let v50362 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v50361 
                                                                                                                 let v50363 : string = "v50362.await"
                                                                                                                 let v50364 : uint8 = Fable.Core.RustInterop.emitRustExpr () v50363 
-                                                                                                                let v50365 : US7 = method23(v50364)
+                                                                                                                let v50365 : US7 = method24(v50364)
                                                                                                                 let v50366 : string = v50354 + v50355 
                                                                                                                 let v50367 : string = "true; v50365 " + v50366 + "); " + v50354 + " // rust.fix_closure'"
                                                                                                                 let v50368 : bool = Fable.Core.RustInterop.emitRustExpr () v50367 
@@ -46313,7 +46340,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                 let v51394 : bool = Fable.Core.RustInterop.emitRustExpr () v51393 
                                                                                                                 let v51395 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                                 let v51396 : bool = Fable.Core.RustInterop.emitRustExpr () v51395 
-                                                                                                                let v51397 : uint8 = method27()
+                                                                                                                let v51397 : uint8 = method28()
                                                                                                                 let v51398 : string = ""
                                                                                                                 let v51399 : string = "}"
                                                                                                                 let v51400 : string = v51398 + v51399 
@@ -46325,7 +46352,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                                 let v51406 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v51405 
                                                                                                                 let v51407 : string = "v51406.await"
                                                                                                                 let v51408 : uint8 = Fable.Core.RustInterop.emitRustExpr () v51407 
-                                                                                                                let v51409 : US7 = method21(v51408)
+                                                                                                                let v51409 : US7 = method22(v51408)
                                                                                                                 let v51410 : string = v51398 + v51399 
                                                                                                                 let v51411 : string = "true; v51409 " + v51410 + "); " + v51398 + " // rust.fix_closure'"
                                                                                                                 let v51412 : bool = Fable.Core.RustInterop.emitRustExpr () v51411 
@@ -46341,7 +46368,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                             let v48285 : bool = Fable.Core.RustInterop.emitRustExpr () v48284 
                                                                                                             let v48286 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                             let v48287 : bool = Fable.Core.RustInterop.emitRustExpr () v48286 
-                                                                                                            let v48288 : uint8 = method28()
+                                                                                                            let v48288 : uint8 = method29()
                                                                                                             let v48289 : string = ""
                                                                                                             let v48290 : string = "}"
                                                                                                             let v48291 : string = v48289 + v48290 
@@ -46353,7 +46380,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                             let v48297 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v48296 
                                                                                                             let v48298 : string = "v48297.await"
                                                                                                             let v48299 : uint8 = Fable.Core.RustInterop.emitRustExpr () v48298 
-                                                                                                            let v48300 : US7 = method23(v48299)
+                                                                                                            let v48300 : US7 = method24(v48299)
                                                                                                             let v48301 : string = v48289 + v48290 
                                                                                                             let v48302 : string = "true; v48300 " + v48301 + "); " + v48289 + " // rust.fix_closure'"
                                                                                                             let v48303 : bool = Fable.Core.RustInterop.emitRustExpr () v48302 
@@ -46370,7 +46397,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                             let v49329 : bool = Fable.Core.RustInterop.emitRustExpr () v49328 
                                                                                                             let v49330 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                             let v49331 : bool = Fable.Core.RustInterop.emitRustExpr () v49330 
-                                                                                                            let v49332 : uint8 = method28()
+                                                                                                            let v49332 : uint8 = method29()
                                                                                                             let v49333 : string = ""
                                                                                                             let v49334 : string = "}"
                                                                                                             let v49335 : string = v49333 + v49334 
@@ -46382,7 +46409,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                             let v49341 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v49340 
                                                                                                             let v49342 : string = "v49341.await"
                                                                                                             let v49343 : uint8 = Fable.Core.RustInterop.emitRustExpr () v49342 
-                                                                                                            let v49344 : US7 = method21(v49343)
+                                                                                                            let v49344 : US7 = method22(v49343)
                                                                                                             let v49345 : string = v49333 + v49334 
                                                                                                             let v49346 : string = "true; v49344 " + v49345 + "); " + v49333 + " // rust.fix_closure'"
                                                                                                             let v49347 : bool = Fable.Core.RustInterop.emitRustExpr () v49346 
@@ -46398,7 +46425,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                         let v46220 : bool = Fable.Core.RustInterop.emitRustExpr () v46219 
                                                                                                         let v46221 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                         let v46222 : bool = Fable.Core.RustInterop.emitRustExpr () v46221 
-                                                                                                        let v46223 : uint8 = method29()
+                                                                                                        let v46223 : uint8 = method30()
                                                                                                         let v46224 : string = ""
                                                                                                         let v46225 : string = "}"
                                                                                                         let v46226 : string = v46224 + v46225 
@@ -46410,7 +46437,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                         let v46232 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v46231 
                                                                                                         let v46233 : string = "v46232.await"
                                                                                                         let v46234 : uint8 = Fable.Core.RustInterop.emitRustExpr () v46233 
-                                                                                                        let v46235 : US7 = method23(v46234)
+                                                                                                        let v46235 : US7 = method24(v46234)
                                                                                                         let v46236 : string = v46224 + v46225 
                                                                                                         let v46237 : string = "true; v46235 " + v46236 + "); " + v46224 + " // rust.fix_closure'"
                                                                                                         let v46238 : bool = Fable.Core.RustInterop.emitRustExpr () v46237 
@@ -46427,7 +46454,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                         let v47264 : bool = Fable.Core.RustInterop.emitRustExpr () v47263 
                                                                                                         let v47265 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                         let v47266 : bool = Fable.Core.RustInterop.emitRustExpr () v47265 
-                                                                                                        let v47267 : uint8 = method29()
+                                                                                                        let v47267 : uint8 = method30()
                                                                                                         let v47268 : string = ""
                                                                                                         let v47269 : string = "}"
                                                                                                         let v47270 : string = v47268 + v47269 
@@ -46439,7 +46466,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                         let v47276 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v47275 
                                                                                                         let v47277 : string = "v47276.await"
                                                                                                         let v47278 : uint8 = Fable.Core.RustInterop.emitRustExpr () v47277 
-                                                                                                        let v47279 : US7 = method21(v47278)
+                                                                                                        let v47279 : US7 = method22(v47278)
                                                                                                         let v47280 : string = v47268 + v47269 
                                                                                                         let v47281 : string = "true; v47279 " + v47280 + "); " + v47268 + " // rust.fix_closure'"
                                                                                                         let v47282 : bool = Fable.Core.RustInterop.emitRustExpr () v47281 
@@ -46455,7 +46482,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                     let v44155 : bool = Fable.Core.RustInterop.emitRustExpr () v44154 
                                                                                                     let v44156 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                     let v44157 : bool = Fable.Core.RustInterop.emitRustExpr () v44156 
-                                                                                                    let v44158 : uint8 = method30()
+                                                                                                    let v44158 : uint8 = method31()
                                                                                                     let v44159 : string = ""
                                                                                                     let v44160 : string = "}"
                                                                                                     let v44161 : string = v44159 + v44160 
@@ -46467,7 +46494,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                     let v44167 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v44166 
                                                                                                     let v44168 : string = "v44167.await"
                                                                                                     let v44169 : uint8 = Fable.Core.RustInterop.emitRustExpr () v44168 
-                                                                                                    let v44170 : US7 = method23(v44169)
+                                                                                                    let v44170 : US7 = method24(v44169)
                                                                                                     let v44171 : string = v44159 + v44160 
                                                                                                     let v44172 : string = "true; v44170 " + v44171 + "); " + v44159 + " // rust.fix_closure'"
                                                                                                     let v44173 : bool = Fable.Core.RustInterop.emitRustExpr () v44172 
@@ -46484,7 +46511,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                     let v45199 : bool = Fable.Core.RustInterop.emitRustExpr () v45198 
                                                                                                     let v45200 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                     let v45201 : bool = Fable.Core.RustInterop.emitRustExpr () v45200 
-                                                                                                    let v45202 : uint8 = method30()
+                                                                                                    let v45202 : uint8 = method31()
                                                                                                     let v45203 : string = ""
                                                                                                     let v45204 : string = "}"
                                                                                                     let v45205 : string = v45203 + v45204 
@@ -46496,7 +46523,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                     let v45211 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v45210 
                                                                                                     let v45212 : string = "v45211.await"
                                                                                                     let v45213 : uint8 = Fable.Core.RustInterop.emitRustExpr () v45212 
-                                                                                                    let v45214 : US7 = method21(v45213)
+                                                                                                    let v45214 : US7 = method22(v45213)
                                                                                                     let v45215 : string = v45203 + v45204 
                                                                                                     let v45216 : string = "true; v45214 " + v45215 + "); " + v45203 + " // rust.fix_closure'"
                                                                                                     let v45217 : bool = Fable.Core.RustInterop.emitRustExpr () v45216 
@@ -46512,7 +46539,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                 let v42090 : bool = Fable.Core.RustInterop.emitRustExpr () v42089 
                                                                                                 let v42091 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                 let v42092 : bool = Fable.Core.RustInterop.emitRustExpr () v42091 
-                                                                                                let v42093 : uint8 = method31()
+                                                                                                let v42093 : uint8 = method32()
                                                                                                 let v42094 : string = ""
                                                                                                 let v42095 : string = "}"
                                                                                                 let v42096 : string = v42094 + v42095 
@@ -46524,7 +46551,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                 let v42102 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v42101 
                                                                                                 let v42103 : string = "v42102.await"
                                                                                                 let v42104 : uint8 = Fable.Core.RustInterop.emitRustExpr () v42103 
-                                                                                                let v42105 : US7 = method23(v42104)
+                                                                                                let v42105 : US7 = method24(v42104)
                                                                                                 let v42106 : string = v42094 + v42095 
                                                                                                 let v42107 : string = "true; v42105 " + v42106 + "); " + v42094 + " // rust.fix_closure'"
                                                                                                 let v42108 : bool = Fable.Core.RustInterop.emitRustExpr () v42107 
@@ -46541,7 +46568,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                 let v43134 : bool = Fable.Core.RustInterop.emitRustExpr () v43133 
                                                                                                 let v43135 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                                 let v43136 : bool = Fable.Core.RustInterop.emitRustExpr () v43135 
-                                                                                                let v43137 : uint8 = method31()
+                                                                                                let v43137 : uint8 = method32()
                                                                                                 let v43138 : string = ""
                                                                                                 let v43139 : string = "}"
                                                                                                 let v43140 : string = v43138 + v43139 
@@ -46553,7 +46580,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                                 let v43146 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v43145 
                                                                                                 let v43147 : string = "v43146.await"
                                                                                                 let v43148 : uint8 = Fable.Core.RustInterop.emitRustExpr () v43147 
-                                                                                                let v43149 : US7 = method21(v43148)
+                                                                                                let v43149 : US7 = method22(v43148)
                                                                                                 let v43150 : string = v43138 + v43139 
                                                                                                 let v43151 : string = "true; v43149 " + v43150 + "); " + v43138 + " // rust.fix_closure'"
                                                                                                 let v43152 : bool = Fable.Core.RustInterop.emitRustExpr () v43151 
@@ -46569,7 +46596,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                             let v40025 : bool = Fable.Core.RustInterop.emitRustExpr () v40024 
                                                                                             let v40026 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                             let v40027 : bool = Fable.Core.RustInterop.emitRustExpr () v40026 
-                                                                                            let v40028 : uint8 = method32()
+                                                                                            let v40028 : uint8 = method33()
                                                                                             let v40029 : string = ""
                                                                                             let v40030 : string = "}"
                                                                                             let v40031 : string = v40029 + v40030 
@@ -46581,7 +46608,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                             let v40037 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v40036 
                                                                                             let v40038 : string = "v40037.await"
                                                                                             let v40039 : uint8 = Fable.Core.RustInterop.emitRustExpr () v40038 
-                                                                                            let v40040 : US7 = method23(v40039)
+                                                                                            let v40040 : US7 = method24(v40039)
                                                                                             let v40041 : string = v40029 + v40030 
                                                                                             let v40042 : string = "true; v40040 " + v40041 + "); " + v40029 + " // rust.fix_closure'"
                                                                                             let v40043 : bool = Fable.Core.RustInterop.emitRustExpr () v40042 
@@ -46598,7 +46625,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                             let v41069 : bool = Fable.Core.RustInterop.emitRustExpr () v41068 
                                                                                             let v41070 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                             let v41071 : bool = Fable.Core.RustInterop.emitRustExpr () v41070 
-                                                                                            let v41072 : uint8 = method32()
+                                                                                            let v41072 : uint8 = method33()
                                                                                             let v41073 : string = ""
                                                                                             let v41074 : string = "}"
                                                                                             let v41075 : string = v41073 + v41074 
@@ -46610,7 +46637,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                             let v41081 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v41080 
                                                                                             let v41082 : string = "v41081.await"
                                                                                             let v41083 : uint8 = Fable.Core.RustInterop.emitRustExpr () v41082 
-                                                                                            let v41084 : US7 = method21(v41083)
+                                                                                            let v41084 : US7 = method22(v41083)
                                                                                             let v41085 : string = v41073 + v41074 
                                                                                             let v41086 : string = "true; v41084 " + v41085 + "); " + v41073 + " // rust.fix_closure'"
                                                                                             let v41087 : bool = Fable.Core.RustInterop.emitRustExpr () v41086 
@@ -46626,7 +46653,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                         let v37960 : bool = Fable.Core.RustInterop.emitRustExpr () v37959 
                                                                                         let v37961 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                         let v37962 : bool = Fable.Core.RustInterop.emitRustExpr () v37961 
-                                                                                        let v37963 : uint8 = method33()
+                                                                                        let v37963 : uint8 = method34()
                                                                                         let v37964 : string = ""
                                                                                         let v37965 : string = "}"
                                                                                         let v37966 : string = v37964 + v37965 
@@ -46638,7 +46665,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                         let v37972 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v37971 
                                                                                         let v37973 : string = "v37972.await"
                                                                                         let v37974 : uint8 = Fable.Core.RustInterop.emitRustExpr () v37973 
-                                                                                        let v37975 : US7 = method23(v37974)
+                                                                                        let v37975 : US7 = method24(v37974)
                                                                                         let v37976 : string = v37964 + v37965 
                                                                                         let v37977 : string = "true; v37975 " + v37976 + "); " + v37964 + " // rust.fix_closure'"
                                                                                         let v37978 : bool = Fable.Core.RustInterop.emitRustExpr () v37977 
@@ -46655,7 +46682,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                         let v39004 : bool = Fable.Core.RustInterop.emitRustExpr () v39003 
                                                                                         let v39005 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                         let v39006 : bool = Fable.Core.RustInterop.emitRustExpr () v39005 
-                                                                                        let v39007 : uint8 = method33()
+                                                                                        let v39007 : uint8 = method34()
                                                                                         let v39008 : string = ""
                                                                                         let v39009 : string = "}"
                                                                                         let v39010 : string = v39008 + v39009 
@@ -46667,7 +46694,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                         let v39016 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v39015 
                                                                                         let v39017 : string = "v39016.await"
                                                                                         let v39018 : uint8 = Fable.Core.RustInterop.emitRustExpr () v39017 
-                                                                                        let v39019 : US7 = method21(v39018)
+                                                                                        let v39019 : US7 = method22(v39018)
                                                                                         let v39020 : string = v39008 + v39009 
                                                                                         let v39021 : string = "true; v39019 " + v39020 + "); " + v39008 + " // rust.fix_closure'"
                                                                                         let v39022 : bool = Fable.Core.RustInterop.emitRustExpr () v39021 
@@ -46683,7 +46710,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                     let v35895 : bool = Fable.Core.RustInterop.emitRustExpr () v35894 
                                                                                     let v35896 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                     let v35897 : bool = Fable.Core.RustInterop.emitRustExpr () v35896 
-                                                                                    let v35898 : uint8 = method34()
+                                                                                    let v35898 : uint8 = method35()
                                                                                     let v35899 : string = ""
                                                                                     let v35900 : string = "}"
                                                                                     let v35901 : string = v35899 + v35900 
@@ -46695,7 +46722,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                     let v35907 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v35906 
                                                                                     let v35908 : string = "v35907.await"
                                                                                     let v35909 : uint8 = Fable.Core.RustInterop.emitRustExpr () v35908 
-                                                                                    let v35910 : US7 = method23(v35909)
+                                                                                    let v35910 : US7 = method24(v35909)
                                                                                     let v35911 : string = v35899 + v35900 
                                                                                     let v35912 : string = "true; v35910 " + v35911 + "); " + v35899 + " // rust.fix_closure'"
                                                                                     let v35913 : bool = Fable.Core.RustInterop.emitRustExpr () v35912 
@@ -46712,7 +46739,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                     let v36939 : bool = Fable.Core.RustInterop.emitRustExpr () v36938 
                                                                                     let v36940 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                     let v36941 : bool = Fable.Core.RustInterop.emitRustExpr () v36940 
-                                                                                    let v36942 : uint8 = method34()
+                                                                                    let v36942 : uint8 = method35()
                                                                                     let v36943 : string = ""
                                                                                     let v36944 : string = "}"
                                                                                     let v36945 : string = v36943 + v36944 
@@ -46724,7 +46751,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                     let v36951 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v36950 
                                                                                     let v36952 : string = "v36951.await"
                                                                                     let v36953 : uint8 = Fable.Core.RustInterop.emitRustExpr () v36952 
-                                                                                    let v36954 : US7 = method21(v36953)
+                                                                                    let v36954 : US7 = method22(v36953)
                                                                                     let v36955 : string = v36943 + v36944 
                                                                                     let v36956 : string = "true; v36954 " + v36955 + "); " + v36943 + " // rust.fix_closure'"
                                                                                     let v36957 : bool = Fable.Core.RustInterop.emitRustExpr () v36956 
@@ -46740,7 +46767,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                 let v33830 : bool = Fable.Core.RustInterop.emitRustExpr () v33829 
                                                                                 let v33831 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                 let v33832 : bool = Fable.Core.RustInterop.emitRustExpr () v33831 
-                                                                                let v33833 : uint8 = method35()
+                                                                                let v33833 : uint8 = method36()
                                                                                 let v33834 : string = ""
                                                                                 let v33835 : string = "}"
                                                                                 let v33836 : string = v33834 + v33835 
@@ -46752,7 +46779,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                 let v33842 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v33841 
                                                                                 let v33843 : string = "v33842.await"
                                                                                 let v33844 : uint8 = Fable.Core.RustInterop.emitRustExpr () v33843 
-                                                                                let v33845 : US7 = method23(v33844)
+                                                                                let v33845 : US7 = method24(v33844)
                                                                                 let v33846 : string = v33834 + v33835 
                                                                                 let v33847 : string = "true; v33845 " + v33846 + "); " + v33834 + " // rust.fix_closure'"
                                                                                 let v33848 : bool = Fable.Core.RustInterop.emitRustExpr () v33847 
@@ -46769,7 +46796,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                 let v34874 : bool = Fable.Core.RustInterop.emitRustExpr () v34873 
                                                                                 let v34875 : string = "true; let __future_init = Box::pin(async move { //"
                                                                                 let v34876 : bool = Fable.Core.RustInterop.emitRustExpr () v34875 
-                                                                                let v34877 : uint8 = method35()
+                                                                                let v34877 : uint8 = method36()
                                                                                 let v34878 : string = ""
                                                                                 let v34879 : string = "}"
                                                                                 let v34880 : string = v34878 + v34879 
@@ -46781,7 +46808,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                                 let v34886 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v34885 
                                                                                 let v34887 : string = "v34886.await"
                                                                                 let v34888 : uint8 = Fable.Core.RustInterop.emitRustExpr () v34887 
-                                                                                let v34889 : US7 = method21(v34888)
+                                                                                let v34889 : US7 = method22(v34888)
                                                                                 let v34890 : string = v34878 + v34879 
                                                                                 let v34891 : string = "true; v34889 " + v34890 + "); " + v34878 + " // rust.fix_closure'"
                                                                                 let v34892 : bool = Fable.Core.RustInterop.emitRustExpr () v34891 
@@ -46797,7 +46824,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                             let v31765 : bool = Fable.Core.RustInterop.emitRustExpr () v31764 
                                                                             let v31766 : string = "true; let __future_init = Box::pin(async move { //"
                                                                             let v31767 : bool = Fable.Core.RustInterop.emitRustExpr () v31766 
-                                                                            let v31768 : uint8 = method36()
+                                                                            let v31768 : uint8 = method37()
                                                                             let v31769 : string = ""
                                                                             let v31770 : string = "}"
                                                                             let v31771 : string = v31769 + v31770 
@@ -46809,7 +46836,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                             let v31777 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v31776 
                                                                             let v31778 : string = "v31777.await"
                                                                             let v31779 : uint8 = Fable.Core.RustInterop.emitRustExpr () v31778 
-                                                                            let v31780 : US7 = method23(v31779)
+                                                                            let v31780 : US7 = method24(v31779)
                                                                             let v31781 : string = v31769 + v31770 
                                                                             let v31782 : string = "true; v31780 " + v31781 + "); " + v31769 + " // rust.fix_closure'"
                                                                             let v31783 : bool = Fable.Core.RustInterop.emitRustExpr () v31782 
@@ -46826,7 +46853,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                             let v32809 : bool = Fable.Core.RustInterop.emitRustExpr () v32808 
                                                                             let v32810 : string = "true; let __future_init = Box::pin(async move { //"
                                                                             let v32811 : bool = Fable.Core.RustInterop.emitRustExpr () v32810 
-                                                                            let v32812 : uint8 = method36()
+                                                                            let v32812 : uint8 = method37()
                                                                             let v32813 : string = ""
                                                                             let v32814 : string = "}"
                                                                             let v32815 : string = v32813 + v32814 
@@ -46838,7 +46865,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                             let v32821 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v32820 
                                                                             let v32822 : string = "v32821.await"
                                                                             let v32823 : uint8 = Fable.Core.RustInterop.emitRustExpr () v32822 
-                                                                            let v32824 : US7 = method21(v32823)
+                                                                            let v32824 : US7 = method22(v32823)
                                                                             let v32825 : string = v32813 + v32814 
                                                                             let v32826 : string = "true; v32824 " + v32825 + "); " + v32813 + " // rust.fix_closure'"
                                                                             let v32827 : bool = Fable.Core.RustInterop.emitRustExpr () v32826 
@@ -46854,7 +46881,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                         let v29700 : bool = Fable.Core.RustInterop.emitRustExpr () v29699 
                                                                         let v29701 : string = "true; let __future_init = Box::pin(async move { //"
                                                                         let v29702 : bool = Fable.Core.RustInterop.emitRustExpr () v29701 
-                                                                        let v29703 : uint8 = method37()
+                                                                        let v29703 : uint8 = method38()
                                                                         let v29704 : string = ""
                                                                         let v29705 : string = "}"
                                                                         let v29706 : string = v29704 + v29705 
@@ -46866,7 +46893,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                         let v29712 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v29711 
                                                                         let v29713 : string = "v29712.await"
                                                                         let v29714 : uint8 = Fable.Core.RustInterop.emitRustExpr () v29713 
-                                                                        let v29715 : US7 = method23(v29714)
+                                                                        let v29715 : US7 = method24(v29714)
                                                                         let v29716 : string = v29704 + v29705 
                                                                         let v29717 : string = "true; v29715 " + v29716 + "); " + v29704 + " // rust.fix_closure'"
                                                                         let v29718 : bool = Fable.Core.RustInterop.emitRustExpr () v29717 
@@ -46883,7 +46910,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                         let v30744 : bool = Fable.Core.RustInterop.emitRustExpr () v30743 
                                                                         let v30745 : string = "true; let __future_init = Box::pin(async move { //"
                                                                         let v30746 : bool = Fable.Core.RustInterop.emitRustExpr () v30745 
-                                                                        let v30747 : uint8 = method37()
+                                                                        let v30747 : uint8 = method38()
                                                                         let v30748 : string = ""
                                                                         let v30749 : string = "}"
                                                                         let v30750 : string = v30748 + v30749 
@@ -46895,7 +46922,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                         let v30756 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v30755 
                                                                         let v30757 : string = "v30756.await"
                                                                         let v30758 : uint8 = Fable.Core.RustInterop.emitRustExpr () v30757 
-                                                                        let v30759 : US7 = method21(v30758)
+                                                                        let v30759 : US7 = method22(v30758)
                                                                         let v30760 : string = v30748 + v30749 
                                                                         let v30761 : string = "true; v30759 " + v30760 + "); " + v30748 + " // rust.fix_closure'"
                                                                         let v30762 : bool = Fable.Core.RustInterop.emitRustExpr () v30761 
@@ -46911,7 +46938,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                     let v27635 : bool = Fable.Core.RustInterop.emitRustExpr () v27634 
                                                                     let v27636 : string = "true; let __future_init = Box::pin(async move { //"
                                                                     let v27637 : bool = Fable.Core.RustInterop.emitRustExpr () v27636 
-                                                                    let v27638 : uint8 = method38()
+                                                                    let v27638 : uint8 = method39()
                                                                     let v27639 : string = ""
                                                                     let v27640 : string = "}"
                                                                     let v27641 : string = v27639 + v27640 
@@ -46923,7 +46950,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                     let v27647 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v27646 
                                                                     let v27648 : string = "v27647.await"
                                                                     let v27649 : uint8 = Fable.Core.RustInterop.emitRustExpr () v27648 
-                                                                    let v27650 : US7 = method23(v27649)
+                                                                    let v27650 : US7 = method24(v27649)
                                                                     let v27651 : string = v27639 + v27640 
                                                                     let v27652 : string = "true; v27650 " + v27651 + "); " + v27639 + " // rust.fix_closure'"
                                                                     let v27653 : bool = Fable.Core.RustInterop.emitRustExpr () v27652 
@@ -46940,7 +46967,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                     let v28679 : bool = Fable.Core.RustInterop.emitRustExpr () v28678 
                                                                     let v28680 : string = "true; let __future_init = Box::pin(async move { //"
                                                                     let v28681 : bool = Fable.Core.RustInterop.emitRustExpr () v28680 
-                                                                    let v28682 : uint8 = method38()
+                                                                    let v28682 : uint8 = method39()
                                                                     let v28683 : string = ""
                                                                     let v28684 : string = "}"
                                                                     let v28685 : string = v28683 + v28684 
@@ -46952,7 +46979,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                     let v28691 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v28690 
                                                                     let v28692 : string = "v28691.await"
                                                                     let v28693 : uint8 = Fable.Core.RustInterop.emitRustExpr () v28692 
-                                                                    let v28694 : US7 = method21(v28693)
+                                                                    let v28694 : US7 = method22(v28693)
                                                                     let v28695 : string = v28683 + v28684 
                                                                     let v28696 : string = "true; v28694 " + v28695 + "); " + v28683 + " // rust.fix_closure'"
                                                                     let v28697 : bool = Fable.Core.RustInterop.emitRustExpr () v28696 
@@ -46968,7 +46995,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                 let v25570 : bool = Fable.Core.RustInterop.emitRustExpr () v25569 
                                                                 let v25571 : string = "true; let __future_init = Box::pin(async move { //"
                                                                 let v25572 : bool = Fable.Core.RustInterop.emitRustExpr () v25571 
-                                                                let v25573 : uint8 = method39()
+                                                                let v25573 : uint8 = method40()
                                                                 let v25574 : string = ""
                                                                 let v25575 : string = "}"
                                                                 let v25576 : string = v25574 + v25575 
@@ -46980,7 +47007,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                 let v25582 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v25581 
                                                                 let v25583 : string = "v25582.await"
                                                                 let v25584 : uint8 = Fable.Core.RustInterop.emitRustExpr () v25583 
-                                                                let v25585 : US7 = method23(v25584)
+                                                                let v25585 : US7 = method24(v25584)
                                                                 let v25586 : string = v25574 + v25575 
                                                                 let v25587 : string = "true; v25585 " + v25586 + "); " + v25574 + " // rust.fix_closure'"
                                                                 let v25588 : bool = Fable.Core.RustInterop.emitRustExpr () v25587 
@@ -46997,7 +47024,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                 let v26614 : bool = Fable.Core.RustInterop.emitRustExpr () v26613 
                                                                 let v26615 : string = "true; let __future_init = Box::pin(async move { //"
                                                                 let v26616 : bool = Fable.Core.RustInterop.emitRustExpr () v26615 
-                                                                let v26617 : uint8 = method39()
+                                                                let v26617 : uint8 = method40()
                                                                 let v26618 : string = ""
                                                                 let v26619 : string = "}"
                                                                 let v26620 : string = v26618 + v26619 
@@ -47009,7 +47036,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                                 let v26626 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v26625 
                                                                 let v26627 : string = "v26626.await"
                                                                 let v26628 : uint8 = Fable.Core.RustInterop.emitRustExpr () v26627 
-                                                                let v26629 : US7 = method21(v26628)
+                                                                let v26629 : US7 = method22(v26628)
                                                                 let v26630 : string = v26618 + v26619 
                                                                 let v26631 : string = "true; v26629 " + v26630 + "); " + v26618 + " // rust.fix_closure'"
                                                                 let v26632 : bool = Fable.Core.RustInterop.emitRustExpr () v26631 
@@ -47025,7 +47052,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                             let v23505 : bool = Fable.Core.RustInterop.emitRustExpr () v23504 
                                                             let v23506 : string = "true; let __future_init = Box::pin(async move { //"
                                                             let v23507 : bool = Fable.Core.RustInterop.emitRustExpr () v23506 
-                                                            let v23508 : uint8 = method40()
+                                                            let v23508 : uint8 = method41()
                                                             let v23509 : string = ""
                                                             let v23510 : string = "}"
                                                             let v23511 : string = v23509 + v23510 
@@ -47037,7 +47064,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                             let v23517 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v23516 
                                                             let v23518 : string = "v23517.await"
                                                             let v23519 : uint8 = Fable.Core.RustInterop.emitRustExpr () v23518 
-                                                            let v23520 : US7 = method23(v23519)
+                                                            let v23520 : US7 = method24(v23519)
                                                             let v23521 : string = v23509 + v23510 
                                                             let v23522 : string = "true; v23520 " + v23521 + "); " + v23509 + " // rust.fix_closure'"
                                                             let v23523 : bool = Fable.Core.RustInterop.emitRustExpr () v23522 
@@ -47054,7 +47081,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                             let v24549 : bool = Fable.Core.RustInterop.emitRustExpr () v24548 
                                                             let v24550 : string = "true; let __future_init = Box::pin(async move { //"
                                                             let v24551 : bool = Fable.Core.RustInterop.emitRustExpr () v24550 
-                                                            let v24552 : uint8 = method40()
+                                                            let v24552 : uint8 = method41()
                                                             let v24553 : string = ""
                                                             let v24554 : string = "}"
                                                             let v24555 : string = v24553 + v24554 
@@ -47066,7 +47093,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                             let v24561 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v24560 
                                                             let v24562 : string = "v24561.await"
                                                             let v24563 : uint8 = Fable.Core.RustInterop.emitRustExpr () v24562 
-                                                            let v24564 : US7 = method21(v24563)
+                                                            let v24564 : US7 = method22(v24563)
                                                             let v24565 : string = v24553 + v24554 
                                                             let v24566 : string = "true; v24564 " + v24565 + "); " + v24553 + " // rust.fix_closure'"
                                                             let v24567 : bool = Fable.Core.RustInterop.emitRustExpr () v24566 
@@ -47082,7 +47109,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v21440 : bool = Fable.Core.RustInterop.emitRustExpr () v21439 
                                                         let v21441 : string = "true; let __future_init = Box::pin(async move { //"
                                                         let v21442 : bool = Fable.Core.RustInterop.emitRustExpr () v21441 
-                                                        let v21443 : uint8 = method41()
+                                                        let v21443 : uint8 = method42()
                                                         let v21444 : string = ""
                                                         let v21445 : string = "}"
                                                         let v21446 : string = v21444 + v21445 
@@ -47094,7 +47121,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v21452 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v21451 
                                                         let v21453 : string = "v21452.await"
                                                         let v21454 : uint8 = Fable.Core.RustInterop.emitRustExpr () v21453 
-                                                        let v21455 : US7 = method23(v21454)
+                                                        let v21455 : US7 = method24(v21454)
                                                         let v21456 : string = v21444 + v21445 
                                                         let v21457 : string = "true; v21455 " + v21456 + "); " + v21444 + " // rust.fix_closure'"
                                                         let v21458 : bool = Fable.Core.RustInterop.emitRustExpr () v21457 
@@ -47111,7 +47138,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v22484 : bool = Fable.Core.RustInterop.emitRustExpr () v22483 
                                                         let v22485 : string = "true; let __future_init = Box::pin(async move { //"
                                                         let v22486 : bool = Fable.Core.RustInterop.emitRustExpr () v22485 
-                                                        let v22487 : uint8 = method41()
+                                                        let v22487 : uint8 = method42()
                                                         let v22488 : string = ""
                                                         let v22489 : string = "}"
                                                         let v22490 : string = v22488 + v22489 
@@ -47123,7 +47150,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v22496 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v22495 
                                                         let v22497 : string = "v22496.await"
                                                         let v22498 : uint8 = Fable.Core.RustInterop.emitRustExpr () v22497 
-                                                        let v22499 : US7 = method21(v22498)
+                                                        let v22499 : US7 = method22(v22498)
                                                         let v22500 : string = v22488 + v22489 
                                                         let v22501 : string = "true; v22499 " + v22500 + "); " + v22488 + " // rust.fix_closure'"
                                                         let v22502 : bool = Fable.Core.RustInterop.emitRustExpr () v22501 
@@ -47139,7 +47166,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                     let v19375 : bool = Fable.Core.RustInterop.emitRustExpr () v19374 
                                                     let v19376 : string = "true; let __future_init = Box::pin(async move { //"
                                                     let v19377 : bool = Fable.Core.RustInterop.emitRustExpr () v19376 
-                                                    let v19378 : uint8 = method42()
+                                                    let v19378 : uint8 = method43()
                                                     let v19379 : string = ""
                                                     let v19380 : string = "}"
                                                     let v19381 : string = v19379 + v19380 
@@ -47151,7 +47178,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                     let v19387 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v19386 
                                                     let v19388 : string = "v19387.await"
                                                     let v19389 : uint8 = Fable.Core.RustInterop.emitRustExpr () v19388 
-                                                    let v19390 : US7 = method23(v19389)
+                                                    let v19390 : US7 = method24(v19389)
                                                     let v19391 : string = v19379 + v19380 
                                                     let v19392 : string = "true; v19390 " + v19391 + "); " + v19379 + " // rust.fix_closure'"
                                                     let v19393 : bool = Fable.Core.RustInterop.emitRustExpr () v19392 
@@ -47168,7 +47195,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                     let v20419 : bool = Fable.Core.RustInterop.emitRustExpr () v20418 
                                                     let v20420 : string = "true; let __future_init = Box::pin(async move { //"
                                                     let v20421 : bool = Fable.Core.RustInterop.emitRustExpr () v20420 
-                                                    let v20422 : uint8 = method42()
+                                                    let v20422 : uint8 = method43()
                                                     let v20423 : string = ""
                                                     let v20424 : string = "}"
                                                     let v20425 : string = v20423 + v20424 
@@ -47180,7 +47207,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                     let v20431 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v20430 
                                                     let v20432 : string = "v20431.await"
                                                     let v20433 : uint8 = Fable.Core.RustInterop.emitRustExpr () v20432 
-                                                    let v20434 : US7 = method21(v20433)
+                                                    let v20434 : US7 = method22(v20433)
                                                     let v20435 : string = v20423 + v20424 
                                                     let v20436 : string = "true; v20434 " + v20435 + "); " + v20423 + " // rust.fix_closure'"
                                                     let v20437 : bool = Fable.Core.RustInterop.emitRustExpr () v20436 
@@ -47196,7 +47223,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                 let v17310 : bool = Fable.Core.RustInterop.emitRustExpr () v17309 
                                                 let v17311 : string = "true; let __future_init = Box::pin(async move { //"
                                                 let v17312 : bool = Fable.Core.RustInterop.emitRustExpr () v17311 
-                                                let v17313 : uint8 = method43()
+                                                let v17313 : uint8 = method44()
                                                 let v17314 : string = ""
                                                 let v17315 : string = "}"
                                                 let v17316 : string = v17314 + v17315 
@@ -47208,7 +47235,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                 let v17322 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v17321 
                                                 let v17323 : string = "v17322.await"
                                                 let v17324 : uint8 = Fable.Core.RustInterop.emitRustExpr () v17323 
-                                                let v17325 : US7 = method23(v17324)
+                                                let v17325 : US7 = method24(v17324)
                                                 let v17326 : string = v17314 + v17315 
                                                 let v17327 : string = "true; v17325 " + v17326 + "); " + v17314 + " // rust.fix_closure'"
                                                 let v17328 : bool = Fable.Core.RustInterop.emitRustExpr () v17327 
@@ -47225,7 +47252,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                 let v18354 : bool = Fable.Core.RustInterop.emitRustExpr () v18353 
                                                 let v18355 : string = "true; let __future_init = Box::pin(async move { //"
                                                 let v18356 : bool = Fable.Core.RustInterop.emitRustExpr () v18355 
-                                                let v18357 : uint8 = method43()
+                                                let v18357 : uint8 = method44()
                                                 let v18358 : string = ""
                                                 let v18359 : string = "}"
                                                 let v18360 : string = v18358 + v18359 
@@ -47237,7 +47264,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                 let v18366 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v18365 
                                                 let v18367 : string = "v18366.await"
                                                 let v18368 : uint8 = Fable.Core.RustInterop.emitRustExpr () v18367 
-                                                let v18369 : US7 = method21(v18368)
+                                                let v18369 : US7 = method22(v18368)
                                                 let v18370 : string = v18358 + v18359 
                                                 let v18371 : string = "true; v18369 " + v18370 + "); " + v18358 + " // rust.fix_closure'"
                                                 let v18372 : bool = Fable.Core.RustInterop.emitRustExpr () v18371 
@@ -47253,7 +47280,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                             let v15245 : bool = Fable.Core.RustInterop.emitRustExpr () v15244 
                                             let v15246 : string = "true; let __future_init = Box::pin(async move { //"
                                             let v15247 : bool = Fable.Core.RustInterop.emitRustExpr () v15246 
-                                            let v15248 : uint8 = method44()
+                                            let v15248 : uint8 = method45()
                                             let v15249 : string = ""
                                             let v15250 : string = "}"
                                             let v15251 : string = v15249 + v15250 
@@ -47265,7 +47292,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                             let v15257 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v15256 
                                             let v15258 : string = "v15257.await"
                                             let v15259 : uint8 = Fable.Core.RustInterop.emitRustExpr () v15258 
-                                            let v15260 : US7 = method23(v15259)
+                                            let v15260 : US7 = method24(v15259)
                                             let v15261 : string = v15249 + v15250 
                                             let v15262 : string = "true; v15260 " + v15261 + "); " + v15249 + " // rust.fix_closure'"
                                             let v15263 : bool = Fable.Core.RustInterop.emitRustExpr () v15262 
@@ -47282,7 +47309,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                             let v16289 : bool = Fable.Core.RustInterop.emitRustExpr () v16288 
                                             let v16290 : string = "true; let __future_init = Box::pin(async move { //"
                                             let v16291 : bool = Fable.Core.RustInterop.emitRustExpr () v16290 
-                                            let v16292 : uint8 = method44()
+                                            let v16292 : uint8 = method45()
                                             let v16293 : string = ""
                                             let v16294 : string = "}"
                                             let v16295 : string = v16293 + v16294 
@@ -47294,7 +47321,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                             let v16301 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v16300 
                                             let v16302 : string = "v16301.await"
                                             let v16303 : uint8 = Fable.Core.RustInterop.emitRustExpr () v16302 
-                                            let v16304 : US7 = method21(v16303)
+                                            let v16304 : US7 = method22(v16303)
                                             let v16305 : string = v16293 + v16294 
                                             let v16306 : string = "true; v16304 " + v16305 + "); " + v16293 + " // rust.fix_closure'"
                                             let v16307 : bool = Fable.Core.RustInterop.emitRustExpr () v16306 
@@ -47310,7 +47337,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                         let v13180 : bool = Fable.Core.RustInterop.emitRustExpr () v13179 
                                         let v13181 : string = "true; let __future_init = Box::pin(async move { //"
                                         let v13182 : bool = Fable.Core.RustInterop.emitRustExpr () v13181 
-                                        let v13183 : uint8 = method45()
+                                        let v13183 : uint8 = method46()
                                         let v13184 : string = ""
                                         let v13185 : string = "}"
                                         let v13186 : string = v13184 + v13185 
@@ -47322,7 +47349,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                         let v13192 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v13191 
                                         let v13193 : string = "v13192.await"
                                         let v13194 : uint8 = Fable.Core.RustInterop.emitRustExpr () v13193 
-                                        let v13195 : US7 = method23(v13194)
+                                        let v13195 : US7 = method24(v13194)
                                         let v13196 : string = v13184 + v13185 
                                         let v13197 : string = "true; v13195 " + v13196 + "); " + v13184 + " // rust.fix_closure'"
                                         let v13198 : bool = Fable.Core.RustInterop.emitRustExpr () v13197 
@@ -47339,7 +47366,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                         let v14224 : bool = Fable.Core.RustInterop.emitRustExpr () v14223 
                                         let v14225 : string = "true; let __future_init = Box::pin(async move { //"
                                         let v14226 : bool = Fable.Core.RustInterop.emitRustExpr () v14225 
-                                        let v14227 : uint8 = method45()
+                                        let v14227 : uint8 = method46()
                                         let v14228 : string = ""
                                         let v14229 : string = "}"
                                         let v14230 : string = v14228 + v14229 
@@ -47351,7 +47378,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                         let v14236 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v14235 
                                         let v14237 : string = "v14236.await"
                                         let v14238 : uint8 = Fable.Core.RustInterop.emitRustExpr () v14237 
-                                        let v14239 : US7 = method21(v14238)
+                                        let v14239 : US7 = method22(v14238)
                                         let v14240 : string = v14228 + v14229 
                                         let v14241 : string = "true; v14239 " + v14240 + "); " + v14228 + " // rust.fix_closure'"
                                         let v14242 : bool = Fable.Core.RustInterop.emitRustExpr () v14241 
@@ -47367,7 +47394,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                     let v11115 : bool = Fable.Core.RustInterop.emitRustExpr () v11114 
                                     let v11116 : string = "true; let __future_init = Box::pin(async move { //"
                                     let v11117 : bool = Fable.Core.RustInterop.emitRustExpr () v11116 
-                                    let v11118 : uint8 = method46()
+                                    let v11118 : uint8 = method47()
                                     let v11119 : string = ""
                                     let v11120 : string = "}"
                                     let v11121 : string = v11119 + v11120 
@@ -47379,7 +47406,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                     let v11127 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v11126 
                                     let v11128 : string = "v11127.await"
                                     let v11129 : uint8 = Fable.Core.RustInterop.emitRustExpr () v11128 
-                                    let v11130 : US7 = method23(v11129)
+                                    let v11130 : US7 = method24(v11129)
                                     let v11131 : string = v11119 + v11120 
                                     let v11132 : string = "true; v11130 " + v11131 + "); " + v11119 + " // rust.fix_closure'"
                                     let v11133 : bool = Fable.Core.RustInterop.emitRustExpr () v11132 
@@ -47396,7 +47423,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                     let v12159 : bool = Fable.Core.RustInterop.emitRustExpr () v12158 
                                     let v12160 : string = "true; let __future_init = Box::pin(async move { //"
                                     let v12161 : bool = Fable.Core.RustInterop.emitRustExpr () v12160 
-                                    let v12162 : uint8 = method46()
+                                    let v12162 : uint8 = method47()
                                     let v12163 : string = ""
                                     let v12164 : string = "}"
                                     let v12165 : string = v12163 + v12164 
@@ -47408,7 +47435,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                     let v12171 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v12170 
                                     let v12172 : string = "v12171.await"
                                     let v12173 : uint8 = Fable.Core.RustInterop.emitRustExpr () v12172 
-                                    let v12174 : US7 = method21(v12173)
+                                    let v12174 : US7 = method22(v12173)
                                     let v12175 : string = v12163 + v12164 
                                     let v12176 : string = "true; v12174 " + v12175 + "); " + v12163 + " // rust.fix_closure'"
                                     let v12177 : bool = Fable.Core.RustInterop.emitRustExpr () v12176 
@@ -47424,7 +47451,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                 let v9050 : bool = Fable.Core.RustInterop.emitRustExpr () v9049 
                                 let v9051 : string = "true; let __future_init = Box::pin(async move { //"
                                 let v9052 : bool = Fable.Core.RustInterop.emitRustExpr () v9051 
-                                let v9053 : uint8 = method47()
+                                let v9053 : uint8 = method48()
                                 let v9054 : string = ""
                                 let v9055 : string = "}"
                                 let v9056 : string = v9054 + v9055 
@@ -47436,7 +47463,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                 let v9062 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v9061 
                                 let v9063 : string = "v9062.await"
                                 let v9064 : uint8 = Fable.Core.RustInterop.emitRustExpr () v9063 
-                                let v9065 : US7 = method23(v9064)
+                                let v9065 : US7 = method24(v9064)
                                 let v9066 : string = v9054 + v9055 
                                 let v9067 : string = "true; v9065 " + v9066 + "); " + v9054 + " // rust.fix_closure'"
                                 let v9068 : bool = Fable.Core.RustInterop.emitRustExpr () v9067 
@@ -47453,7 +47480,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                 let v10094 : bool = Fable.Core.RustInterop.emitRustExpr () v10093 
                                 let v10095 : string = "true; let __future_init = Box::pin(async move { //"
                                 let v10096 : bool = Fable.Core.RustInterop.emitRustExpr () v10095 
-                                let v10097 : uint8 = method47()
+                                let v10097 : uint8 = method48()
                                 let v10098 : string = ""
                                 let v10099 : string = "}"
                                 let v10100 : string = v10098 + v10099 
@@ -47465,7 +47492,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                 let v10106 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v10105 
                                 let v10107 : string = "v10106.await"
                                 let v10108 : uint8 = Fable.Core.RustInterop.emitRustExpr () v10107 
-                                let v10109 : US7 = method21(v10108)
+                                let v10109 : US7 = method22(v10108)
                                 let v10110 : string = v10098 + v10099 
                                 let v10111 : string = "true; v10109 " + v10110 + "); " + v10098 + " // rust.fix_closure'"
                                 let v10112 : bool = Fable.Core.RustInterop.emitRustExpr () v10111 
@@ -47481,7 +47508,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                             let v6985 : bool = Fable.Core.RustInterop.emitRustExpr () v6984 
                             let v6986 : string = "true; let __future_init = Box::pin(async move { //"
                             let v6987 : bool = Fable.Core.RustInterop.emitRustExpr () v6986 
-                            let v6988 : uint8 = method48()
+                            let v6988 : uint8 = method49()
                             let v6989 : string = ""
                             let v6990 : string = "}"
                             let v6991 : string = v6989 + v6990 
@@ -47493,7 +47520,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                             let v6997 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6996 
                             let v6998 : string = "v6997.await"
                             let v6999 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6998 
-                            let v7000 : US7 = method23(v6999)
+                            let v7000 : US7 = method24(v6999)
                             let v7001 : string = v6989 + v6990 
                             let v7002 : string = "true; v7000 " + v7001 + "); " + v6989 + " // rust.fix_closure'"
                             let v7003 : bool = Fable.Core.RustInterop.emitRustExpr () v7002 
@@ -47510,7 +47537,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                             let v8029 : bool = Fable.Core.RustInterop.emitRustExpr () v8028 
                             let v8030 : string = "true; let __future_init = Box::pin(async move { //"
                             let v8031 : bool = Fable.Core.RustInterop.emitRustExpr () v8030 
-                            let v8032 : uint8 = method48()
+                            let v8032 : uint8 = method49()
                             let v8033 : string = ""
                             let v8034 : string = "}"
                             let v8035 : string = v8033 + v8034 
@@ -47522,7 +47549,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                             let v8041 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8040 
                             let v8042 : string = "v8041.await"
                             let v8043 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8042 
-                            let v8044 : US7 = method21(v8043)
+                            let v8044 : US7 = method22(v8043)
                             let v8045 : string = v8033 + v8034 
                             let v8046 : string = "true; v8044 " + v8045 + "); " + v8033 + " // rust.fix_closure'"
                             let v8047 : bool = Fable.Core.RustInterop.emitRustExpr () v8046 
@@ -47538,7 +47565,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                         let v4920 : bool = Fable.Core.RustInterop.emitRustExpr () v4919 
                         let v4921 : string = "true; let __future_init = Box::pin(async move { //"
                         let v4922 : bool = Fable.Core.RustInterop.emitRustExpr () v4921 
-                        let v4923 : uint8 = method49()
+                        let v4923 : uint8 = method50()
                         let v4924 : string = ""
                         let v4925 : string = "}"
                         let v4926 : string = v4924 + v4925 
@@ -47550,7 +47577,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                         let v4932 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4931 
                         let v4933 : string = "v4932.await"
                         let v4934 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4933 
-                        let v4935 : US7 = method23(v4934)
+                        let v4935 : US7 = method24(v4934)
                         let v4936 : string = v4924 + v4925 
                         let v4937 : string = "true; v4935 " + v4936 + "); " + v4924 + " // rust.fix_closure'"
                         let v4938 : bool = Fable.Core.RustInterop.emitRustExpr () v4937 
@@ -47567,7 +47594,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                         let v5964 : bool = Fable.Core.RustInterop.emitRustExpr () v5963 
                         let v5965 : string = "true; let __future_init = Box::pin(async move { //"
                         let v5966 : bool = Fable.Core.RustInterop.emitRustExpr () v5965 
-                        let v5967 : uint8 = method49()
+                        let v5967 : uint8 = method50()
                         let v5968 : string = ""
                         let v5969 : string = "}"
                         let v5970 : string = v5968 + v5969 
@@ -47579,7 +47606,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                         let v5976 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5975 
                         let v5977 : string = "v5976.await"
                         let v5978 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5977 
-                        let v5979 : US7 = method21(v5978)
+                        let v5979 : US7 = method22(v5978)
                         let v5980 : string = v5968 + v5969 
                         let v5981 : string = "true; v5979 " + v5980 + "); " + v5968 + " // rust.fix_closure'"
                         let v5982 : bool = Fable.Core.RustInterop.emitRustExpr () v5981 
@@ -47595,7 +47622,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                     let v2855 : bool = Fable.Core.RustInterop.emitRustExpr () v2854 
                     let v2856 : string = "true; let __future_init = Box::pin(async move { //"
                     let v2857 : bool = Fable.Core.RustInterop.emitRustExpr () v2856 
-                    let v2858 : uint8 = method50()
+                    let v2858 : uint8 = method51()
                     let v2859 : string = ""
                     let v2860 : string = "}"
                     let v2861 : string = v2859 + v2860 
@@ -47607,7 +47634,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                     let v2867 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2866 
                     let v2868 : string = "v2867.await"
                     let v2869 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2868 
-                    let v2870 : US7 = method23(v2869)
+                    let v2870 : US7 = method24(v2869)
                     let v2871 : string = v2859 + v2860 
                     let v2872 : string = "true; v2870 " + v2871 + "); " + v2859 + " // rust.fix_closure'"
                     let v2873 : bool = Fable.Core.RustInterop.emitRustExpr () v2872 
@@ -47624,7 +47651,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                     let v3899 : bool = Fable.Core.RustInterop.emitRustExpr () v3898 
                     let v3900 : string = "true; let __future_init = Box::pin(async move { //"
                     let v3901 : bool = Fable.Core.RustInterop.emitRustExpr () v3900 
-                    let v3902 : uint8 = method50()
+                    let v3902 : uint8 = method51()
                     let v3903 : string = ""
                     let v3904 : string = "}"
                     let v3905 : string = v3903 + v3904 
@@ -47636,7 +47663,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                     let v3911 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3910 
                     let v3912 : string = "v3911.await"
                     let v3913 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3912 
-                    let v3914 : US7 = method21(v3913)
+                    let v3914 : US7 = method22(v3913)
                     let v3915 : string = v3903 + v3904 
                     let v3916 : string = "true; v3914 " + v3915 + "); " + v3903 + " // rust.fix_closure'"
                     let v3917 : bool = Fable.Core.RustInterop.emitRustExpr () v3916 
@@ -47652,7 +47679,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                 let v790 : bool = Fable.Core.RustInterop.emitRustExpr () v789 
                 let v791 : string = "true; let __future_init = Box::pin(async move { //"
                 let v792 : bool = Fable.Core.RustInterop.emitRustExpr () v791 
-                let v793 : uint8 = method51()
+                let v793 : uint8 = method52()
                 let v794 : string = ""
                 let v795 : string = "}"
                 let v796 : string = v794 + v795 
@@ -47664,7 +47691,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                 let v802 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v801 
                 let v803 : string = "v802.await"
                 let v804 : uint8 = Fable.Core.RustInterop.emitRustExpr () v803 
-                let v805 : US7 = method23(v804)
+                let v805 : US7 = method24(v804)
                 let v806 : string = v794 + v795 
                 let v807 : string = "true; v805 " + v806 + "); " + v794 + " // rust.fix_closure'"
                 let v808 : bool = Fable.Core.RustInterop.emitRustExpr () v807 
@@ -47681,7 +47708,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                 let v1834 : bool = Fable.Core.RustInterop.emitRustExpr () v1833 
                 let v1835 : string = "true; let __future_init = Box::pin(async move { //"
                 let v1836 : bool = Fable.Core.RustInterop.emitRustExpr () v1835 
-                let v1837 : uint8 = method51()
+                let v1837 : uint8 = method52()
                 let v1838 : string = ""
                 let v1839 : string = "}"
                 let v1840 : string = v1838 + v1839 
@@ -47693,7 +47720,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                 let v1846 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1845 
                 let v1847 : string = "v1846.await"
                 let v1848 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1847 
-                let v1849 : US7 = method21(v1848)
+                let v1849 : US7 = method22(v1848)
                 let v1850 : string = v1838 + v1839 
                 let v1851 : string = "true; v1849 " + v1850 + "); " + v1838 + " // rust.fix_closure'"
                 let v1852 : bool = Fable.Core.RustInterop.emitRustExpr () v1851 
@@ -47707,7 +47734,7 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v60749 : unit = ()
     let v60750 : (unit -> unit) = closure104(v60748)
     let v60751 : unit = (fun () -> v60750 (); v60749) ()
-    let v61543 : Result<unit, anyhow_Error> =
+    let v61543 : Result<uint8, anyhow_Error> =
         match v60748 with
         | US7_1(v61490) -> (* Error *)
             let v61491 : string = method10()
@@ -47739,13 +47766,13 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
             let v61537 : string = v61492.l0
             let v61538 : string = "anyhow::anyhow!($0)"
             let v61539 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v61537 v61538 
-            let v61540 : string = "Err(v61539)"
-            let v61541 : Result<unit, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v61540 
+            let v61540 : string = "Err($0)"
+            let v61541 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v61539 v61540 
             v61541
         | US7_0(v61488) -> (* Ok *)
-            let v61489 : Result<unit, anyhow_Error> = Ok () 
+            let v61489 : Result<uint8, anyhow_Error> = Ok v61488 
             v61489
-    let v61544 : Result<unit, anyhow_Error> = method52(v61543)
+    let v61544 : Result<uint8, anyhow_Error> = method53(v61543)
     let v61545 : string = ""
     let v61546 : string = "}"
     let v61547 : string = v61545 + v61546 
@@ -47754,8 +47781,24 @@ and method11 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v61550 : string = "__future_init"
     let v61551 : _ = Fable.Core.RustInterop.emitRustExpr () v61550 
     let v61552 : string = "v61551"
-    let v61553 : std_pin_Pin<Box<Dyn<std_future_Future<Result<unit, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v61552 
+    let v61553 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v61552 
     v61553
+and closure106 (v0 : US8 option ref) (v1 : US8 option) : US8 option ref =
+    v0.Value <- v1 
+    v0
+and closure107 (v0 : uint8 option, v1 : (US8 option -> US8 option ref)) () : unit =
+    match v0 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v2 : uint8 = x
+    let v3 : US8 = US8_0(v2)
+    v3 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> v1 |> ignore
+    ()
 and closure0 () (v0 : (string [])) : int32 =
     let v1 : clap_Command = method0()
     let v2 : string = "clap::Command::get_matches($0)"
@@ -47868,13 +47911,47 @@ and closure0 () (v0 : (string [])) : int32 =
     let v125 : unit = ()
     let v126 : (unit -> unit) = closure7(v0)
     let v127 : unit = (fun () -> v126 (); v125) ()
-    let v864 : std_pin_Pin<Box<Dyn<std_future_Future<Result<unit, anyhow_Error>>>>> = method11(v3)
-    let v865 : string = $"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"
-    let v866 : _ = Fable.Core.RustInterop.emitRustExpr () v865 
-    let v867 : string = "v866.handle().block_on($0)"
-    let v868 : Result<unit, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v864 v867 
-    let v869 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v868 v869 
+    let v864 : string = method11()
+    let v865 : string = "&*$0"
+    let v866 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v864 v865 
+    let v867 : string = "clap::ArgMatches::get_flag(&v3, v866)"
+    let v868 : bool = Fable.Core.RustInterop.emitRustExpr () v867 
+    let v869 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = method12(v3)
+    let v870 : string = $"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"
+    let v871 : _ = Fable.Core.RustInterop.emitRustExpr () v870 
+    let v872 : string = "v871.handle().block_on($0)"
+    let v873 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v869 v872 
+    let v874 : (anyhow_Error -> std_string_String) = method20()
+    let v875 : string = "$0.map_err(|x| $1(x))"
+    let v876 : Result<uint8, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v873, v874) v875 
+    let v877 : string = "$0.ok()"
+    let v878 : uint8 option = Fable.Core.RustInterop.emitRustExpr v876 v877 
+    let v879 : US8 option = None
+    let _v879 = ref v879 
+    let v880 : US8 option ref = _v879 
+    let v881 : (US8 option -> US8 option ref) = closure106(v880)
+    let v882 : unit = ()
+    let v883 : (unit -> unit) = closure107(v878, v881)
+    let v884 : unit = (fun () -> v883 (); v882) ()
+    let v887 : US8 option = _v879.Value 
+    let v898 : US8 = US8_1
+    let v899 : US8 = v887 |> Option.defaultValue v898 
+    match v899 with
+    | US8_1 -> (* None *)
+        if v868 then
+            ()
+        else
+            let v908 : string = "$0.unwrap()"
+            let v909 : uint8 = Fable.Core.RustInterop.emitRustExpr v876 v908 
+            ()
+    | US8_0(v903) -> (* Some *)
+        if v868 then
+            let v904 : string = "Err($0)"
+            let v905 : string = "spiral_wasm.main / exception=true"
+            let v906 : Result<unit, string> = Fable.Core.RustInterop.emitRustExpr v905 v904 
+            let v907 : string = "$0.unwrap()"
+            Fable.Core.RustInterop.emitRustExpr v906 v907 
+            ()
     0
 let v0 : ((string []) -> int32) = closure0()
 let main args = v0 args
