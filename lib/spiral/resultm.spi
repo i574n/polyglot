@@ -79,6 +79,23 @@ inl box forall t u. (x : result t u) : result' t u =
 
 /// ## rust
 
+/// ### anyhow_result
+nominal anyhow_result t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Result<$0>\")>]\n#endif\ntype anyhow_Result<'T> = class end"
+        $'' : $'anyhow_Result<`t>'
+    )
+
+/// ### anyhow_error
+nominal anyhow_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"anyhow::Error\")>]\n#endif\ntype anyhow_Error = class end"
+        $'' : $'anyhow_Error'
+    )
+
+inl anyhow_error error =
+    !\\(error, $'"anyhow::anyhow\!($0)"')
+
 /// ### try'
 inl try' forall t u. (x : result' t u) : t =
     inl is_unit =

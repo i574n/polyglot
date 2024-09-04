@@ -283,11 +283,11 @@ inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
     !\\(x, $'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&$0))"')
 
 /// ### to_mut
-inl to_mut forall t. (x : t) : t =
+inl to_mut forall t. (x : t) : () =
     (!\($'"true; // 1"') : bool) |> ignore
-    (!\($'"true; let mut !x = !x"') : bool) |> ignore
-    (!\($'"true; !x"') : bool) |> ignore
-    !\($'"!x"')
+    !\($'"let mut !x = !x"') : ()
+    // (!\($'"true; !x"') : bool) |> ignore
+    // !\($'"!x"')
     // inl result = !\($'"!x"') : mut' t
     // !\($'"!result"')
     // inl result = !\($'"*/ // a"') : mut' t
@@ -322,6 +322,10 @@ inl box_pin forall t. (x : t) : pin (box t) =
 /// ### to_ref
 inl to_ref forall t. (x : t) : ref t =
     !\\(x, $'"&$0"')
+
+/// ### to_ref_mut
+inl to_ref_mut forall t. (x : t) : ref (mut' t) =
+    !\\(x, $'"&mut $0"')
 
 /// ### deref
 inl deref forall t. (ref : ref t) : t =
@@ -461,3 +465,42 @@ inl new_partial_eq_wrapper forall t.
     $'let _!struct = true' : ()
 
     !\\(x, $'"PartialEqWrapper($0)"')
+
+/// ### clone_wrapper
+nominal clone_wrapper t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"CloneWrapper<$0>\")>]\n#endif\ntype CloneWrapper<'T> = class end"
+        $'' : $'CloneWrapper<`t>'
+    )
+
+/// ### new_clone_wrapper
+inl new_clone_wrapper forall t.
+    (clone_fn : ref (clone_wrapper t) -> ref (clone_wrapper t))
+    (x : t)
+    : clone_wrapper t
+    =
+    inl struct () =
+        !\($'"} //"') : ()
+
+        !\($'"#[derive( //"') : ()
+        !\($'"  Debug, //"') : ()
+        !\($'")] //"') : ()
+        !\($'"pub struct CloneWrapper<T>(T); /*"') : ()
+
+        !\($'"*/ impl Clone for CloneWrapper< /*"') : ()
+        (null () : type_emit t) |> ignore
+        !\($'"*/ > { //"') : ()
+
+        !\($'"fn clone(&self) -> Self { //"') : ()
+
+        inl self : ref (clone_wrapper t) = !\($'$"self"')
+
+        self
+        |> clone_fn
+        |> fun x => !\($'$"!x.clone() //"')
+
+        !\($'"} } } fn _main() { { { //"') : ()
+
+    $'let _!struct = true' : ()
+
+    !\\(x, $'"CloneWrapper($0)"')

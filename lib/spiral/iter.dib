@@ -88,6 +88,16 @@ inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () string
 
 #!markdown
 
+### all
+
+#!spiral
+
+inl all forall t. (fn : t -> bool) (x : rust.mut' (into_iterator t)) : bool =
+    x |> rust.to_mut
+    !\\(fn, $'$"!x.all(|x| $0(x))"')
+
+#!markdown
+
 ### enumerate
 
 #!spiral

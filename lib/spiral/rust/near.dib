@@ -1,0 +1,55 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# near
+
+#!spiral
+
+open rust
+open rust.rust_operators
+
+#!spiral
+
+//// test
+
+open testing
+
+#!markdown
+
+## near
+
+#!markdown
+
+### lookup_map
+
+#!spiral
+
+nominal lookup_map k v =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::store::LookupMap<$0, $1>\")>]\n#endif\ntype near_sdk_store_LookupMap<'K, 'V> = class end"
+        $'' : $'near_sdk_store_LookupMap<`k, `v>'
+    )
+
+#!markdown
+
+### account_id
+
+#!spiral
+
+nominal account_id =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::AccountId\")>]\n#endif\ntype near_sdk_AccountId = class end"
+        $'' : $'near_sdk_AccountId'
+    )
+
+#!markdown
+
+### new_lookup_map
+
+#!spiral
+
+inl new_lookup_map prefix =
+    !\($'"near_sdk::store::LookupMap::new(!prefix)"')

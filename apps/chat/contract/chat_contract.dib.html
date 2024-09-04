@@ -7584,7 +7584,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="lookup_map">lookup_map<a class="anchor-link" href="#lookup_map">¶</a></h3>
+<h3 id="state">state<a class="anchor-link" href="#state">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7596,158 +7596,18 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">lookup_map</span> <span class="n">k</span> <span class="n">v</span> <span class="o">=</span>
-    <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">near_sdk::store::LookupMap&lt;$0, $1&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type near_sdk_store_LookupMap&lt;'K, 'V&gt; = class end"</span>
-        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'near_sdk_store_LookupMap&lt;`k, `v&gt;'</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="account_id">account_id<a class="anchor-link" href="#account_id">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">account_id</span> <span class="o">=</span>
-    <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">near_sdk::AccountId</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type near_sdk_AccountId = class end"</span>
-        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'near_sdk_AccountId'</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="state">state<a class="anchor-link" href="#state">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">state</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">version</span> <span class="p">:</span> <span class="n">u32</span>
-        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map account_id (u64 * u32))</span>
-        <span class="n">account_map</span> <span class="p">:</span> <span class="n">lookup_map</span> <span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string</span>
+        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))</span>
+        <span class="n">account_map</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string</span>
     <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="byte_slice">byte_slice<a class="anchor-link" href="#byte_slice">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">byte_slice</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"b\\\"" + !s + "\\\""'</span><span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="new_lookup_map">new_lookup_map<a class="anchor-link" href="#new_lookup_map">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_lookup_map</span> <span class="n">prefix</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"near_sdk::store::LookupMap::new(!prefix)"'</span><span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="new">new<a class="anchor-link" href="#new">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new</span> <span class="p">()</span> <span class="p">:</span> <span class="n">state</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">alias_map</span> <span class="o">=</span> <span class="s2">"l"</span> <span class="o">|&gt;</span> <span class="n">byte_slice</span> <span class="o">|&gt;</span> <span class="n">new_lookup_map</span>
-        <span class="n">account_map</span> <span class="o">=</span> <span class="s2">"c"</span> <span class="o">|&gt;</span> <span class="n">byte_slice</span> <span class="o">|&gt;</span> <span class="n">new_lookup_map</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7758,9 +7618,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
 
-<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+<span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7773,8 +7631,75 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace / { trace1 = 1; trace2 = 2 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace / { state = { version = 1; alias_map = LookupMap {
+<pre>23:51:46 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000808; total_gas_burnt = 1209371440851 }
+23:51:46 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:51:46 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000602; tokens_burnt_usd = +0.000602; gas_burnt = 901289581511; tokens_burnt = 90128958151100000000 }
+23:51:46 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+23:51:53 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.000957; total_gas_burnt = 1432554003351 }
+23:51:53 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:51:53 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000602; tokens_burnt_usd = +0.000602; gas_burnt = 901289581511; tokens_burnt = 90128958151100000000 }
+23:51:53 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="new">new<a class="anchor-link" href="#new">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new</span> <span class="p">()</span> <span class="p">:</span> <span class="n">state</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">alias_map</span> <span class="o">=</span> <span class="s2">"l"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
+        <span class="n">account_map</span> <span class="o">=</span> <span class="s2">"c"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
     prefix: [
         108,
     ],
@@ -7783,10 +7708,263 @@ a.anchor-link {
         99,
     ],
 } } }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-14:58:46 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
+23:52:06 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
+23:52:06 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:06 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
+23:52:06 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
+    prefix: [
+        108,
+    ],
+}; account_map = LookupMap {
+    prefix: [
+        99,
+    ],
+} } }
+23:52:13 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
+23:52:13 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:13 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
+23:52:13 <span class="ansi-yellow-fg">warning</span> #8 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 2 }" }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
+    prefix: [
+        108,
+    ],
+}; account_map = LookupMap {
+    prefix: [
+        99,
+    ],
+} } }
+23:52:19 <span class="ansi-blue-intense-fg">  debug</span> #9 spiral_wasm.print_usd / { retry = 3; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
+23:52:19 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:19 <span class="ansi-blue-intense-fg">  debug</span> #11 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
+23:52:19 <span class="ansi-yellow-fg">warning</span> #12 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 3 }" }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
+    prefix: [
+        108,
+    ],
+}; account_map = LookupMap {
+    prefix: [
+        99,
+    ],
+} } }
+23:52:25 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_wasm.print_usd / { retry = 4; total_gas_burnt_usd = +0.001236; total_gas_burnt = 1850862951194 }
+23:52:25 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:25 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
+23:52:25 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="is_valid_alias">is_valid_alias<a class="anchor-link" href="#is_valid_alias">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">is_valid_alias</span> <span class="p">(</span><span class="n">alias</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string) : bool =</span>
+    <span class="n">inl</span> <span class="n">alias</span><span class="s1">' = alias |&gt; sm'</span><span class="o">.</span><span class="n">from_std_string</span>
+    <span class="n">inl</span> <span class="n">alias_len</span> <span class="o">=</span> <span class="n">alias</span><span class="s1">' |&gt; sm'</span><span class="o">.</span><span class="n">length</span>
+
+    <span class="n">alias_len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="n">i32</span>
+        <span class="o">&amp;&amp;</span> <span class="n">alias_len</span> <span class="o">&lt;</span> <span class="mi">64</span>
+        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">alias</span><span class="s1">' |&gt; sm'</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"-"</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span>
+        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">alias</span><span class="s1">' |&gt; sm'</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"-"</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span>
+        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">alias</span><span class="s1">' |&gt; sm'</span><span class="o">.</span><span class="n">as_str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars |&gt; iter.all (fun c =&gt; (c |&gt; sm'</span><span class="o">.</span><span class="n">char_is_alphanumeric</span><span class="p">)</span> <span class="o">||</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'-'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">is_valid_alias</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">false</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>23:52:36 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+23:52:36 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:36 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+23:52:36 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+23:52:43 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.000971; total_gas_burnt = 1454121045668 }
+23:52:43 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:52:43 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+23:52:43 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="s2">"a-"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">is_valid_alias</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">false</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>23:53:11 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000973; total_gas_burnt = 1456087363091 }
+23:53:11 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:53:11 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+23:53:11 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="s2">"a-a"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">is_valid_alias</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>23:53:40 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+23:53:40 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:53:40 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:53:40 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+23:53:48 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+23:53:48 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:53:48 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:53:48 <span class="ansi-yellow-fg">warning</span> #8 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 2 }" }
+23:53:54 <span class="ansi-blue-intense-fg">  debug</span> #9 spiral_wasm.print_usd / { retry = 3; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+23:53:54 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:53:54 <span class="ansi-blue-intense-fg">  debug</span> #11 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:53:54 <span class="ansi-yellow-fg">warning</span> #12 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 3 }" }
+23:54:00 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_wasm.print_usd / { retry = 4; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+23:54:00 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:00 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:54:00 <span class="ansi-yellow-fg">warning</span> #16 spiral_wasm.run / Error error / { retry = 4; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 4 }" }
+23:54:06 <span class="ansi-blue-intense-fg">  debug</span> #17 spiral_wasm.print_usd / { retry = 5; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+23:54:06 <span class="ansi-blue-intense-fg">  debug</span> #18 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:06 <span class="ansi-blue-intense-fg">  debug</span> #19 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:54:06 <span class="ansi-yellow-fg">warning</span> #20 spiral_wasm.run / Error error / { retry = 5; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 5 }" }
+23:54:12 <span class="ansi-blue-intense-fg">  debug</span> #21 spiral_wasm.print_usd / { retry = 6; total_gas_burnt_usd = +0.000974; total_gas_burnt = 1457681122890 }
+23:54:12 <span class="ansi-blue-intense-fg">  debug</span> #22 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:12 <span class="ansi-blue-intense-fg">  debug</span> #23 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+23:54:12 <span class="ansi-blue-intense-fg">  debug</span> #24 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="generate_cid">generate_cid<a class="anchor-link" href="#generate_cid">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">generate_cid</span> <span class="p">(</span><span class="n">content</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="o">=</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  fn encode_u64(value: u64) -&gt; Vec&lt;u8&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    let mut buffer = unsigned_varint::encode::u64_buffer(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    unsigned_varint::encode::u64(value, &amp;mut buffer).to_vec() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  fn sha256_hash(content: &amp;[u8]) -&gt; Vec&lt;u8&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    let mut hasher: sha2::Sha256 = sha2::Digest::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    sha2::Digest::update(&amp;mut hasher, content); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    sha2::Digest::finalize(hasher).to_vec() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let version: u8 = 1; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let codec_raw: u64 = 0x55; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let codec_bytes = encode_u64(codec_raw); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let hash_result = sha256_hash(&amp;!content); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let multihash = std::iter::once(0x12) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .chain(std::iter::once(32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .chain(hash_result.into_iter()) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    .collect(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let cid_bytes = [vec\![version], codec_bytes, multihash].concat(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let result = multibase::encode(multibase::Base::Base32Lower, &amp;cid_bytes); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"result"'</span><span class="o">)</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -7800,11 +7978,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c<span class="o">=</span>-t<span class="o">=</span>Verbose
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span>multibase<span class="w"> </span>sha2<span class="w"> </span>unsigned-varint
 
-<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace1</span> <span class="o">=</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="n">trace2</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="p">}</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"trace"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+<span class="p">;[]</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
+<span class="o">|&gt;</span> <span class="n">generate_cid</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku"</span>
 </pre></div>
 </div>
 </div>
@@ -7817,200 +7997,26 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>14:58:54 <span class="ansi-black-intense-fg">verbose</span> #1 spiral_wasm.main / { args = Array(MutCell(["-t", "Debug", "-w", "target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm", "-t=Verbose"])) }
-14:58:54 <span class="ansi-black-intense-fg">verbose</span> #2 spiral_wasm.run / { wasm_path = target/spiral_builder/spiral_builder/target/wasm32-unknown-unknown/release/spiral_builder_2b1d83505df324fd0d511813811dc2cb8f99c0037aa8125e056f404f3aefca55.wasm }
-14:58:56 <span class="ansi-black-intense-fg">verbose</span> #3 spiral_wasm.run / { worker = Worker {
-    workspace: Sandbox {
-        root_id: AccountId(
-            "test.near",
-        ),
-        rpc_url: Url {
-            scheme: "http",
-            cannot_be_a_base: false,
-            username: "",
-            password: None,
-            host: Some(
-                Ipv4(
-                    127.0.0.1,
-                ),
-            ),
-            port: Some(
-                60827,
-            ),
-            path: "/",
-            query: None,
-            fragment: None,
-        },
-        rpc_port: Some(
-            60827,
-        ),
-        net_port: Some(
-            60817,
-        ),
-        version: Some(
-            "1.40.0/7dd0b5993577f592be15eb102e5a3da37be66271",
-        ),
-    },
-} }
-14:58:57 <span class="ansi-black-intense-fg">verbose</span> #4 spiral_wasm.run / { contract = Contract {
-    id: AccountId(
-        "dev-20240822175856-47650502035559",
-    ),
-} }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #5 spiral_wasm.run / { result = ExecutionFinalResult {
-    total_gas_burnt: NearGas {
-        inner: 1778680544885,
-    },
-    transaction: ExecutionOutcome {
-        transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
-        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-        logs: [],
-        receipt_ids: [
-            3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-        ],
-        gas_burnt: NearGas {
-            inner: 308081859340,
-        },
-        tokens_burnt: NearToken {
-            inner: 30808185934000000000,
-        },
-        executor_id: AccountId(
-            "dev-20240822175856-47650502035559",
-        ),
-        status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
-    },
-    receipts: [
-        ExecutionOutcome {
-            transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-            logs: [
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-                "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-            ],
-            receipt_ids: [
-                DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-            ],
-            gas_burnt: NearGas {
-                inner: 1470598685545,
-            },
-            tokens_burnt: NearToken {
-                inner: 147059868554500000000,
-            },
-            executor_id: AccountId(
-                "dev-20240822175856-47650502035559",
-            ),
-            status: SuccessValue(''),
-        },
-    ],
-    status: SuccessValue(''),
-} }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 trace / { trace1 = 1; trace2 = 2 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 trace / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / { total_gas_burnt_usd = +0.001188; total_gas_burnt = 1778680544885 }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-14:58:58 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000982; tokens_burnt_usd = +0.000982; gas_burnt = 1470598685545; tokens_burnt = 147059868554500000000 }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #9 spiral_wasm.run / { result2 = Ok(
-    ExecutionResult {
-        total_gas_burnt: NearGas {
-            inner: 1778680544885,
-        },
-        transaction: ExecutionOutcome {
-            transaction_hash: 2ANvyEoag9h5mpJhFTf4oPLr9L5QKiKs7ABiFPPF5zYQ,
-            block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-            logs: [],
-            receipt_ids: [
-                3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-            ],
-            gas_burnt: NearGas {
-                inner: 308081859340,
-            },
-            tokens_burnt: NearToken {
-                inner: 30808185934000000000,
-            },
-            executor_id: AccountId(
-                "dev-20240822175856-47650502035559",
-            ),
-            status: SuccessReceiptId(3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B),
-        },
-        receipts: [
-            ExecutionOutcome {
-                transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-                block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-                logs: [
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-                    "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-                ],
-                receipt_ids: [
-                    DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-                ],
-                gas_burnt: NearGas {
-                    inner: 1470598685545,
-                },
-                tokens_burnt: NearToken {
-                    inner: 147059868554500000000,
-                },
-                executor_id: AccountId(
-                    "dev-20240822175856-47650502035559",
-                ),
-                status: SuccessValue(''),
-            },
-        ],
-        value: Value {
-            repr: "",
-        },
-    },
-) }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #10 spiral_wasm.run / { receipt_failures = [] }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #11 spiral_wasm.run / { receipt_outcomes = [
-    ExecutionOutcome {
-        transaction_hash: 3vFKLjYv7myRS2jXpzEtiVzKuJyT7dn7zVjunYTtDE6B,
-        block_hash: 2zaqX2bswWF1aePjSmFGoTB7GiZ684MGq2wDLC35iHUK,
-        logs: [
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #1 trace / { trace1 = 1; trace2 = 2 }",
-            "00:00:00 \u{1b}[90mverbose\u{1b}[39m #2 trace / { state = { version = 1; alias_map = LookupMap {\n    prefix: [\n        108,\n    ],\n}; account_map = LookupMap {\n    prefix: [\n        99,\n    ],\n} } }",
-        ],
-        receipt_ids: [
-            DTRsdf7gBYhBLReYZ1M2iBwpAMNyW7s3rhHnx2x2jsr5,
-        ],
-        gas_burnt: NearGas {
-            inner: 1470598685545,
-        },
-        tokens_burnt: NearToken {
-            inner: 147059868554500000000,
-        },
-        executor_id: AccountId(
-            "dev-20240822175856-47650502035559",
-        ),
-        status: SuccessValue(''),
-    },
-] }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #12 spiral_wasm.run / { json = Err(
-    Error {
-        repr: Custom {
-            kind: DataConversion,
-            error: "the function call returned an empty value, which cannot be parsed as JSON",
-        },
-    },
-) }
-14:58:58 <span class="ansi-black-intense-fg">verbose</span> #13 spiral_wasm.run / { borsh = Err(
-    Error {
-        repr: Custom {
-            kind: DataConversion,
-            error: Custom {
-                kind: InvalidData,
-                error: "Unexpected length of input",
-            },
-        },
-    },
-) }
+<pre>23:54:26 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000876; total_gas_burnt = 1311823195738 }
+23:54:26 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:26 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+23:54:26 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+23:54:33 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.000876; total_gas_burnt = 1311823195738 }
+23:54:33 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:33 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+23:54:33 <span class="ansi-yellow-fg">warning</span> #8 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 2 }" }
+23:54:39 <span class="ansi-blue-intense-fg">  debug</span> #9 spiral_wasm.print_usd / { retry = 3; total_gas_burnt_usd = +0.000876; total_gas_burnt = 1311823195738 }
+23:54:39 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:39 <span class="ansi-blue-intense-fg">  debug</span> #11 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+23:54:39 <span class="ansi-yellow-fg">warning</span> #12 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 3 }" }
+23:54:44 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_wasm.print_usd / { retry = 4; total_gas_burnt_usd = +0.000876; total_gas_burnt = 1311823195738 }
+23:54:44 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:44 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+23:54:44 <span class="ansi-yellow-fg">warning</span> #16 spiral_wasm.run / Error error / { retry = 4; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 4 }" }
+23:54:50 <span class="ansi-blue-intense-fg">  debug</span> #17 spiral_wasm.print_usd / { retry = 5; total_gas_burnt_usd = +0.001025; total_gas_burnt = 1535005758238 }
+23:54:50 <span class="ansi-blue-intense-fg">  debug</span> #18 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:54:50 <span class="ansi-blue-intense-fg">  debug</span> #19 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+23:54:50 <span class="ansi-blue-intense-fg">  debug</span> #20 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
@@ -8023,7 +8029,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="main">main<a class="anchor-link" href="#main">¶</a></h3>
+<h3 id="claim_alias">claim_alias<a class="anchor-link" href="#claim_alias">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8035,14 +8041,169 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">///!</span><span class="w"> </span>_
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">claim_alias</span> <span class="p">(</span><span class="n">state</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' state)) (alias : sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map near.account_id sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">))</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.2"'</span><span class="o">)</span>
 
-<span class="o">//</span> <span class="n">inl</span> <span class="n">is_valid_alias</span> <span class="p">(</span><span class="n">alias</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str) : bool =</span>
-<span class="o">//</span>     <span class="n">str_len</span> <span class="n">alias</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="o">//</span>     <span class="o">&amp;&amp;</span> <span class="n">str_len</span> <span class="n">alias</span> <span class="o">&lt;</span> <span class="mi">64</span>
-<span class="o">//</span>     <span class="o">&amp;&amp;</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.starts_with "-"</span>
-<span class="o">//</span>     <span class="o">&amp;&amp;</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.ends_with "-"</span>
-<span class="o">//</span>     <span class="o">&amp;&amp;</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars |&gt;</span>
+    <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="p">(</span><span class="n">mapm</span><span class="o">.</span><span class="n">hash_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="n">u32</span><span class="p">))))</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.1"'</span><span class="o">)</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let account_id = near_sdk::env::signer_account_id(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let timestamp = near_sdk::env::block_timestamp(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      \\\"claim_alias "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            alias: {!alias:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            account_id: {account_id:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            timestamp: {timestamp:#?}\\\" //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    ) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="n">inl</span> <span class="n">is_valid_alias</span> <span class="o">=</span> <span class="n">join</span> <span class="n">is_valid_alias</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if \!!is_valid_alias(!alias.clone()) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if let Some(previous_alias) = !account_map.get(&amp;account_id) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    if *previous_alias == !alias { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      return; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get_mut(previous_alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .unwrap() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .remove(&amp;account_id); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !account_map.insert(account_id.clone(), !alias.clone()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let new_alias_account_map = match !alias_map.get(&amp;!alias) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    None =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = std::collections::HashMap::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, 0u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Some(accounts) =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut accounts_vec = accounts.iter().collect::&lt;Vec&lt;_&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = accounts_vec //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .iter() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .enumerate() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .map(|(i, (account_id, (timestamp, _)))| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          ((*account_id).clone(), (*timestamp, i as u32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .collect::&lt;std::collections::HashMap&lt;_, _&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !alias_map.insert(!alias, new_alias_account_map); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="s2">"alias1"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="p">(</span>
+    <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
+    <span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
+    <span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>version,<span class="w"> </span><span class="s1">$'$"&amp;mut ($0, !alias_map, !account_map)"'</span><span class="o">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>claim_alias ;
+                        alias: "alias1" ;
+                        account_id: AccountId(
+    "dev-20240904035503-46578596888006",
+) ;
+                        timestamp: 1725422105088790853
+23:55:05 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001133; total_gas_burnt = 1695648430674 }
+23:55:05 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:55:05 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000927; tokens_burnt_usd = +0.000927; gas_burnt = 1387566571334; tokens_burnt = 138756657133400000000 }
+23:55:05 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
+claim_alias ;
+                        alias: "alias1" ;
+                        account_id: AccountId(
+    "dev-20240904035510-66476990981478",
+) ;
+                        timestamp: 1725422111844619135
+23:55:11 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.001133; total_gas_burnt = 1695648430674 }
+23:55:11 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:55:11 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000927; tokens_burnt_usd = +0.000927; gas_burnt = 1387566571334; tokens_burnt = 138756657133400000000 }
+23:55:11 <span class="ansi-yellow-fg">warning</span> #8 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 2 }" }
+claim_alias ;
+                        alias: "alias1" ;
+                        account_id: AccountId(
+    "dev-20240904035517-41074574509767",
+) ;
+                        timestamp: 1725422118595948008
+23:55:18 <span class="ansi-blue-intense-fg">  debug</span> #9 spiral_wasm.print_usd / { retry = 3; total_gas_burnt_usd = +0.001133; total_gas_burnt = 1695648430674 }
+23:55:18 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:55:18 <span class="ansi-blue-intense-fg">  debug</span> #11 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000927; tokens_burnt_usd = +0.000927; gas_burnt = 1387566571334; tokens_burnt = 138756657133400000000 }
+23:55:18 <span class="ansi-yellow-fg">warning</span> #12 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 3 }" }
+claim_alias ;
+                        alias: "alias1" ;
+                        account_id: AccountId(
+    "dev-20240904035522-30433201184355",
+) ;
+                        timestamp: 1725422124215017820
+23:55:24 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_wasm.print_usd / { retry = 4; total_gas_burnt_usd = +0.001282; total_gas_burnt = 1918830993174 }
+23:55:24 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+23:55:24 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000927; tokens_burnt_usd = +0.000927; gas_burnt = 1387566571334; tokens_burnt = 138756657133400000000 }
+23:55:24 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="main">main<a class="anchor-link" href="#main">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">///!</span><span class="w"> </span>_
 
 <span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
@@ -8055,58 +8216,185 @@ a.anchor-link {
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  borsh::BorshSerialize, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'")] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub struct State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub struct State ( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"/*"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="p">(</span><span class="n">null</span> <span class="p">()</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">type_emit</span> <span class="n">state</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"*/ )"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="n">inl</span> <span class="n">new_</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[init] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn new() -&gt; Self { // 1"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; /*"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+
+        <span class="p">(</span><span class="n">null</span> <span class="p">()</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">type_emit</span> <span class="p">())</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+
+        <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; */"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+        <span class="err">$</span><span class="s1">'let _result = !result in _result |&gt; (fun x -&gt; Fable.Core.RustInterop.emitRustExpr x $"Self($0) // x") // 2'</span> <span class="p">:</span> <span class="p">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // 2."'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // 1."'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="mi">2</span>
+
+    <span class="n">inl</span> <span class="n">is_valid_alias</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn is_valid_alias(alias: String) -&gt; bool { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="n">inl</span> <span class="n">alias</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"alias"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">is_valid_alias</span>
+        <span class="err">$</span><span class="s1">'let _result = !result in _result |&gt; (fun x -&gt; Fable.Core.RustInterop.emitRustExpr x "$0 }") // 2'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="mi">1</span>
+
+    <span class="n">inl</span> <span class="n">generate_cid</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn generate_cid( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="n">inl</span> <span class="n">content</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"content"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">generate_cid</span> <span class="n">content</span>
+        <span class="err">$</span><span class="s1">'let _result = !result in _result |&gt; (fun x -&gt; Fable.Core.RustInterop.emitRustExpr x "$0 }") // 2'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="mi">2</span>
+
+    <span class="n">inl</span> <span class="n">generate_cid_borsh</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn generate_cid_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.generate_cid(content) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="mi">1</span>
+
+    <span class="n">inl</span> <span class="n">claim_alias</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn claim_alias( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;mut self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        
+        <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut self.0"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">alias</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"alias"'</span><span class="o">)</span>
+        
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">claim_alias</span> <span class="n">state</span> <span class="n">alias</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="mi">3</span>
+
+    <span class="n">inl</span> <span class="n">get_account_info</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_account_info( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  account_id: near_sdk::AccountId, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, (u64, u32))&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string) =</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.2"'</span><span class="o">)</span>
+
+        <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))) =</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.1"'</span><span class="o">)</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_account_info / account_id: {account_id:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !account_map.get(&amp;account_id).and_then(|alias| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .map(|accounts| (alias.clone(), *accounts.get(&amp;account_id).unwrap())) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="mi">2</span>
+
+    <span class="n">inl</span> <span class="n">get_alias_map</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))) =</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.1"'</span><span class="o">)</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_alias_map / alias: {alias:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !alias_map.get(&amp;alias).cloned() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="mi">2</span>
+
+    <span class="n">inl</span> <span class="n">get_alias_map_borsh</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  self.get_alias_map(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="mi">1</span>
+
+    <span class="n">inl</span> <span class="n">fns</span> <span class="o">=</span>
+        <span class="p">[</span>
+            <span class="n">new_</span>
+            <span class="n">is_valid_alias</span>
+            <span class="n">generate_cid</span>
+            <span class="n">generate_cid_borsh</span>
+            <span class="n">claim_alias</span>
+            <span class="n">get_account_info</span>
+            <span class="n">get_alias_map</span>
+            <span class="n">get_alias_map_borsh</span>
+        <span class="p">]</span>
+
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">fns</span> <span class="n">i</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">fns</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+        <span class="o">|</span> <span class="n">x</span> <span class="p">::</span> <span class="n">xs</span> <span class="o">=&gt;</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[near_sdk::near_bindgen] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"impl State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="n">inl</span> <span class="n">n</span> <span class="o">=</span> <span class="n">x</span> <span class="p">()</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} /* c"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span><span class="s1">' i'</span> <span class="o">=</span>
+                <span class="k">if</span> <span class="n">i</span><span class="s1">' &lt;&gt; 1 // &lt;= n</span>
+                <span class="n">then</span> <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; */ // ???? / i: !i / i\': !i'</span><span class="w"> </span>/<span class="w"> </span>acc:<span class="w"> </span>!acc<span class="w"> </span>/<span class="w"> </span>n:<span class="w"> </span>!n<span class="s2">"') : bool) |&gt; ignore</span>
+                <span class="k">else</span>
+                    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; // ??? / i: !i / i\': !i'</span><span class="w"> </span>/<span class="w"> </span>acc:<span class="w"> </span>!acc<span class="w"> </span>/<span class="w"> </span>n:<span class="w"> </span>!n<span class="s2">"') : bool) |&gt; ignore</span>
+                    <span class="n">loop</span><span class="s1">' (i'</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">loop</span><span class="s1">' 1u8</span>
+            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="n">xs</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">n</span> <span class="o">=</span> <span class="n">loop</span> <span class="mi">0</span><span class="n">u8</span> <span class="n">fns</span> <span class="mi">1</span><span class="n">u8</span>
 
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[near_sdk::near_bindgen] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"impl State { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"/* a"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[init] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn new() -&gt; Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  Self { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // b"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn generate_cid_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] content: Vec&lt;u8&gt;, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; String { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"\\\"\\\".to_string() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn _main() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn claim_alias( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;mut self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_account_info( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  account_id: near_sdk::AccountId, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, (u64, u32))&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"#[result_serializer(borsh)] //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_alias_map_borsh( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  #[serializer(borsh)] alias: String, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;std::collections::HashMap&lt;near_sdk::AccountId, (u64, u32)&gt;&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"None //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn _main() { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span><span class="s1">' i'</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">i</span><span class="s1">' &lt;= n</span>
+        <span class="n">then</span>
+            <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; { (); // ?? / i\': !i'</span><span class="w"> </span>/<span class="w"> </span>n:<span class="w"> </span>!n<span class="s2">"') : bool) |&gt; ignore</span>
+            <span class="n">loop</span><span class="s1">' (i'</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; { { (); // ? / i\': !i'</span><span class="w"> </span>/<span class="w"> </span>n:<span class="w"> </span>!n<span class="s2">"') : bool) |&gt; ignore</span>
+            <span class="o">//</span> <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; */ // ?? / i\': !i'</span><span class="w"> </span>/<span class="w"> </span>n:<span class="w"> </span>!n<span class="s2">"') : bool) |&gt; ignore</span>
+    <span class="n">loop</span><span class="s1">' 1u8</span>
 
 <span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="err">$</span><span class="s1">'!main |&gt; ignore'</span> <span class="p">:</span> <span class="p">()</span>

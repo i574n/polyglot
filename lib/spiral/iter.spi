@@ -34,6 +34,11 @@ inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () string
     (!\\(fn !\($'"x"'), $'"true; $0 }); //"') : bool) |> ignore
     !\($'"_iter_try_for_each.map_err(|x| x.into())"')
 
+/// ### all
+inl all forall t. (fn : t -> bool) (x : rust.mut' (into_iterator t)) : bool =
+    x |> rust.to_mut
+    !\\(fn, $'$"!x.all(|x| $0(x))"')
+
 /// ### enumerate
 inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
     inl (a ar) = ar

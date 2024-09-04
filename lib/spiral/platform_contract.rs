@@ -1,17 +1,21 @@
 pub mod Platform {
     use super::*;
+    use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Native_::on_startup;
     use fable_library_rust::String_::string;
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-    pub enum US0 { US0_0, US0_1, US0_2, }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US0 {
+        US0_0,
+        US0_1,
+        US0_2,
+    }
     impl core::fmt::Display for Platform::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US1 {
         US1_0(Platform::US0),
         US1_1(Platform::US0),
@@ -24,23 +28,31 @@ pub mod Platform {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn closure0(unitVar: (), unitVar_1: ()) -> bool { cfg!(windows) }
+    pub fn closure0(unitVar: (), unitVar_1: ()) -> bool {
+        cfg!(windows)
+    }
     pub fn closure1(unitVar: (), unitVar_1: ()) -> string {
-        if cfg!(windows) { string(".exe") } else { string("") }
+        if cfg!(windows) {
+            string(".exe")
+        } else {
+            string("")
+        }
     }
     pub fn v0() -> Func0<bool> {
         static v0: OnceInit<Func0<bool>> = OnceInit::new();
-        v0.get_or_init(||
-                           Func0::new(move ||
-                                          Platform::closure0((), ()))).clone()
+        v0.get_or_init(|| Func0::new(move || Platform::closure0((), ())))
+            .clone()
     }
-    pub fn is_windows() -> bool { (Platform::v0())() }
+    pub fn is_windows() -> bool {
+        (Platform::v0())()
+    }
     pub fn v1() -> Func0<string> {
         static v1: OnceInit<Func0<string>> = OnceInit::new();
-        v1.get_or_init(||
-                           Func0::new(move ||
-                                          Platform::closure1((), ()))).clone()
+        v1.get_or_init(|| Func0::new(move || Platform::closure1((), ())))
+            .clone()
     }
-    pub fn get_executable_suffix() -> string { (Platform::v1())() }
+    pub fn get_executable_suffix() -> string {
+        (Platform::v1())()
+    }
     on_startup!(());
 }

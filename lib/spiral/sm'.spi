@@ -273,18 +273,30 @@ inl byte_to_string (format : string) (x : u8) : string =
 
 /// ## rust
 
-/// ### display
-nominal display t =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
-        $'' : $'std_fmt_Display<`t>'
-    )
-
 /// ### str
 nominal str =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
         $'' : $'Str'
+    )
+
+/// ### chars
+inl chars (x : rust.ref str) : rust.mut' (into_iterator char) =
+    !\\(x, $'$"$0.chars()"')
+
+/// ### char_is_alphanumeric
+inl char_is_alphanumeric (x : char) : bool =
+    !\\(x, $'$"$0.is_alphanumeric()"')
+
+/// ### byte_slice
+inl byte_slice (s : string) : rust.ref (am'.slice u8) =
+    !\($'"b\\\"" + !s + "\\\""')
+
+/// ### display
+nominal display t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
+        $'' : $'std_fmt_Display<`t>'
     )
 
 /// ### base64_decode_error
