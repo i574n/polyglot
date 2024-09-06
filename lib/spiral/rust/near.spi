@@ -4,6 +4,13 @@ open rust.rust_operators
 
 /// ## near
 
+/// ### vector
+nominal vector t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::store::vec::Vector<$0>\")>]\n#endif\ntype near_sdk_store_vec_Vector<'T> = class end"
+        $'' : $'near_sdk_store_vec_Vector<`t>'
+    )
+
 /// ### lookup_map
 nominal lookup_map k v =
     `(
@@ -21,3 +28,7 @@ nominal account_id =
 /// ### new_lookup_map
 inl new_lookup_map prefix =
     !\($'"near_sdk::store::LookupMap::new(!prefix)"')
+
+/// ### new_vector
+inl new_vector prefix =
+    !\($'"near_sdk::store::vec::Vector::new(!prefix)"')

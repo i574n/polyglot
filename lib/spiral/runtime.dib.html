@@ -10890,7 +10890,7 @@ __assert_string_contains / actual: "not exist" / expected: "<span class="ansi-de
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9" } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
 __assert_eq / actual: 0 / expected: 0
 __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 __assert_eq / actual: true / expected: true
