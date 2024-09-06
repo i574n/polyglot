@@ -38,7 +38,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr23() -> TypeInfo:
+def _expr17() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -46,9 +46,9 @@ def _expr23() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr23
+Mut0_reflection = _expr17
 
-def _expr24() -> TypeInfo:
+def _expr22() -> TypeInfo:
     return union_type("Crypto.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -64,9 +64,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr24
+US0_reflection = _expr22
 
-def _expr25() -> TypeInfo:
+def _expr23() -> TypeInfo:
     return record_type("Crypto.Mut1", [], Mut1, lambda: [("l0", int64_type)])
 
 
@@ -74,7 +74,7 @@ def _expr25() -> TypeInfo:
 class Mut1(Record):
     l0: int64
 
-Mut1_reflection = _expr25
+Mut1_reflection = _expr23
 
 def _expr26() -> TypeInfo:
     return record_type("Crypto.Mut2", [], Mut2, lambda: [("l0", lambda_type(string_type, unit_type))])
@@ -96,7 +96,7 @@ class Mut3(Record):
 
 Mut3_reflection = _expr27
 
-def _expr30() -> TypeInfo:
+def _expr28() -> TypeInfo:
     return record_type("Crypto.Mut4", [], Mut4, lambda: [("l0", US0_reflection())])
 
 
@@ -104,9 +104,9 @@ def _expr30() -> TypeInfo:
 class Mut4(Record):
     l0: US0
 
-Mut4_reflection = _expr30
+Mut4_reflection = _expr28
 
-def _expr33() -> TypeInfo:
+def _expr29() -> TypeInfo:
     return union_type("Crypto.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -122,9 +122,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr33
+US1_reflection = _expr29
 
-def _expr36() -> TypeInfo:
+def _expr30() -> TypeInfo:
     return union_type("Crypto.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -140,9 +140,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr36
+US2_reflection = _expr30
 
-def _expr39() -> TypeInfo:
+def _expr33() -> TypeInfo:
     return union_type("Crypto.US3", [], US3, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -158,9 +158,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr39
+US3_reflection = _expr33
 
-def _expr40() -> TypeInfo:
+def _expr34() -> TypeInfo:
     return record_type("Crypto.Mut5", [], Mut5, lambda: [("l0", string_type)])
 
 
@@ -168,7 +168,7 @@ def _expr40() -> TypeInfo:
 class Mut5(Record):
     l0: str
 
-Mut5_reflection = _expr40
+Mut5_reflection = _expr34
 
 def method1(__unit: None=None) -> str:
     return ""
@@ -208,14 +208,14 @@ def closure4(v0_1: FSharpRef[US1 | None], v1_1: US1 | None=None) -> FSharpRef[US
 
 
 def closure5(v0_1: str | None, v1_1: Callable[[US1 | None], FSharpRef[US1 | None]], unit_var: None) -> None:
-    def _arrow47(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US1 | None:
+    def _arrow49(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US1 | None:
         x: str = v0_1
         def x_1(__unit: None=None) -> US1:
             return US1(0, x)
 
         return x_1(None)
 
-    ignore(v1_1(None if (v0_1 is None) else _arrow47()))
+    ignore(v1_1(None if (v0_1 is None) else _arrow49()))
 
 
 def method6(v0_1: str) -> str:
@@ -258,7 +258,7 @@ def closure6(unit_var: None, v0_1: str) -> None:
 def method4(v0_1: US0) -> tuple[Mut1, Mut2, Mut3, Mut4, int64 | None]:
     v173: str = method6(method5())
     v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
-    def _arrow53(__unit: None=None, v0_1: Any=v0_1) -> US2:
+    def _arrow55(__unit: None=None, v0_1: Any=v0_1) -> US2:
         v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
         if v185.tag == 0:
             return US2(0, v185.fields[0])
@@ -280,7 +280,7 @@ def method4(v0_1: US0) -> tuple[Mut1, Mut2, Mut3, Mut4, int64 | None]:
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow53(), US3(0, ticks_1(now())) if (method6(method8()) == "True") else US3(1))
+    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow55(), US3(0, ticks_1(now())) if (method6(method8()) == "True") else US3(1))
     v295: US3 = _v1[1]
     v294: US2 = _v1[0]
     def v365(v: str, v0_1: Any=v0_1) -> None:
@@ -307,14 +307,14 @@ def closure8(v0_1: FSharpRef[US3 | None], v1_1: US3 | None=None) -> FSharpRef[US
 
 
 def closure9(v0_1: int64 | None, v1_1: Callable[[US3 | None], FSharpRef[US3 | None]], unit_var: None) -> None:
-    def _arrow57(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US3 | None:
+    def _arrow58(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US3 | None:
         x: int64 = v0_1
         def x_1(__unit: None=None) -> US3:
             return US3(0, x)
 
         return x_1(None)
 
-    ignore(v1_1(None if (v0_1 is None) else _arrow57()))
+    ignore(v1_1(None if (v0_1 is None) else _arrow58()))
 
 
 def method9(__unit: None=None) -> str:
@@ -365,12 +365,12 @@ def closure2(v0_1: int, v1_1: str, v2: uint16, unit_var: None) -> None:
     v34 = None
     pattern_input_1: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] = value_2(State_trace_state())
     v62: US0 = pattern_input_1[3].l0
-    class ObjectExpr66:
+    class ObjectExpr64:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[2].l0 == False) else (0 >= find(v62, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr66()))):
+    if False if (pattern_input_1[2].l0 == False) else (0 >= find(v62, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr64()))):
         v70: None
         closure7(pattern_input[0], None)
         v70 = None
@@ -452,21 +452,21 @@ def closure1(unit_var: None, v0_1: str) -> uint16:
     return (v8 % uint16(48128)) + uint16(1024)
 
 
-def _arrow83(v: str) -> str:
+def _arrow81(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow83
+v0: Callable[[str], str] = _arrow81
 
 def hash_text(x: str) -> str:
     return v0(x)
 
 
-def _arrow85(v: str) -> uint16:
+def _arrow83(v: str) -> uint16:
     return closure1(None, v)
 
 
-v1: Callable[[str], uint16] = _arrow85
+v1: Callable[[str], uint16] = _arrow83
 
 def hash_to_port(x: str) -> uint16:
     return v1(x)

@@ -3635,12 +3635,12 @@ dependencies = [
  "linked-hash-map",
  "near-abi",
  "near-crypto",
- "near-gas",
+ "near-gas 0.2.5",
  "near-jsonrpc-client",
  "near-jsonrpc-primitives",
  "near-primitives",
  "near-socialdb-client",
- "near-token",
+ "near-token 0.2.1",
  "open",
  "openssl",
  "prettytable",
@@ -3721,6 +3721,16 @@ dependencies = [
  "borsh",
  "interactive-clap",
  "schemars",
+ "serde",
+]
+
+[[package]]
+name = "near-gas"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "180edcc7dc2fac41f93570d0c7b759c1b6d492f6ad093d749d644a40b4310a97"
+dependencies = [
+ "borsh",
  "serde",
 ]
 
@@ -3948,18 +3958,18 @@ dependencies = [
 
 [[package]]
 name = "near-sdk"
-version = "5.3.0"
+version = "5.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d817ec6e678b52ad82d2e05886fb0c379b44beaedf5df6141b2365aadcd7a482"
+checksum = "8e3d8d80b1e3f6b1403a18704c5a2fc60176943e32ed9896d238805cd4c65390"
 dependencies = [
- "base64 0.21.7",
+ "base64 0.22.1",
  "borsh",
  "bs58 0.5.1",
  "near-account-id",
- "near-gas",
+ "near-gas 0.3.0",
  "near-sdk-macros",
  "near-sys",
- "near-token",
+ "near-token 0.3.0",
  "once_cell",
  "serde",
  "serde_json",
@@ -3968,9 +3978,9 @@ dependencies = [
 
 [[package]]
 name = "near-sdk-macros"
-version = "5.3.0"
+version = "5.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2046b1c44f866e46c2ed6944a43c8caab125cc216322ab1f552a02e9c2bcda8a"
+checksum = "e359ccd96ddcc1dad8402ee80c5f4900b8fa5895b4f0bf84c182066a0aa6ed3f"
 dependencies = [
  "Inflector",
  "darling",
@@ -3994,7 +4004,7 @@ dependencies = [
  "near-jsonrpc-client",
  "near-jsonrpc-primitives",
  "near-primitives",
- "near-token",
+ "near-token 0.2.1",
  "serde",
  "serde_json",
  "url",
@@ -4036,6 +4046,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "near-token"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cd3e60aa26a74dc514b1b6408fdd06cefe2eb0ff029020956c1c6517594048fd"
+dependencies = [
+ "borsh",
+ "serde",
+]
+
+[[package]]
 name = "near-workspaces"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4054,13 +4074,13 @@ dependencies = [
  "near-account-id",
  "near-chain-configs",
  "near-crypto",
- "near-gas",
+ "near-gas 0.2.5",
  "near-jsonrpc-client",
  "near-jsonrpc-primitives",
  "near-primitives",
  "near-sandbox-utils 0.8.0",
  "near-sandbox-utils 0.9.0",
- "near-token",
+ "near-token 0.2.1",
  "rand 0.8.5",
  "reqwest",
  "serde",

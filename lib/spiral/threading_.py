@@ -6,7 +6,7 @@ from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_
 from fable_modules.fable_library.types import (Array, Union, FSharpRef)
 from fable_modules.fable_library.util import (IDisposable, ignore)
 
-def _expr29() -> TypeInfo:
+def _expr31() -> TypeInfo:
     return class_type("Threading.Disposable", None, Disposable)
 
 
@@ -19,13 +19,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr29
+Disposable_reflection = _expr31
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr34() -> TypeInfo:
+def _expr36() -> TypeInfo:
     return union_type("Threading.US0", [], US0, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -41,7 +41,7 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr34
+US0_reflection = _expr36
 
 def closure1(v0_1: FSharpRef[US0 | None], v1: US0 | None=None) -> FSharpRef[US0 | None]:
     v0_1.contents = v1
@@ -49,14 +49,14 @@ def closure1(v0_1: FSharpRef[US0 | None], v1: US0 | None=None) -> FSharpRef[US0 
 
 
 def closure2(v0_1: CancellationToken | None, v1: Callable[[US0 | None], FSharpRef[US0 | None]], unit_var: None) -> None:
-    def _arrow49(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, unit_var: Any=unit_var) -> US0 | None:
+    def _arrow48(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, unit_var: Any=unit_var) -> US0 | None:
         x: CancellationToken = v0_1
         def x_1(__unit: None=None) -> US0:
             return US0(0, x)
 
         return x_1(None)
 
-    ignore(v1(None if (v0_1 is None) else _arrow49()))
+    ignore(v1(None if (v0_1 is None) else _arrow48()))
 
 
 def closure3(v0_1: Any, unit_var: None) -> None:
