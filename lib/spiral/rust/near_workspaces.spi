@@ -1,0 +1,193 @@
+/// # near_workspaces
+open rust
+open rust.rust_operators
+
+/// ## near
+
+/// ### near_token_workspaces
+nominal near_token_workspaces =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::NearToken\")>]\n#endif\ntype near_workspaces_types_NearToken = class end"
+        $'' : $'near_workspaces_types_NearToken'
+    )
+
+/// ### gas
+nominal gas =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::Gas\")>]\n#endif\ntype near_workspaces_types_Gas = class end"
+        $'' : $'near_workspaces_types_Gas'
+    )
+
+/// ### near_workspaces_error
+nominal near_workspaces_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::error::Error\")>]\n#endif\ntype near_workspaces_error_Error = class end"
+        $'' : $'near_workspaces_error_Error'
+    )
+
+/// ### sandbox
+nominal sandbox =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::network::Sandbox\")>]\n#endif\ntype near_workspaces_network_Sandbox = class end"
+        $'' : $'near_workspaces_network_Sandbox'
+    )
+
+/// ### worker
+nominal worker t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Worker<$0>\")>]\n#endif\ntype near_workspaces_Worker<'T> = class end"
+        $'' : $'near_workspaces_Worker<`t>'
+    )
+
+/// ### contract
+nominal contract =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Contract\")>]\n#endif\ntype near_workspaces_Contract = class end"
+        $'' : $'near_workspaces_Contract'
+    )
+
+/// ### call_transaction
+nominal call_transaction =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::operations::CallTransaction\")>]\n#endif\ntype near_workspaces_operations_CallTransaction = class end"
+        $'' : $'near_workspaces_operations_CallTransaction'
+    )
+
+/// ### execution_final_result
+nominal execution_final_result =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFinalResult\")>]\n#endif\ntype near_workspaces_result_ExecutionFinalResult = class end"
+        $'' : $'near_workspaces_result_ExecutionFinalResult'
+    )
+
+/// ### execution_result
+nominal execution_result t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionResult<$0>\")>]\n#endif\ntype near_workspaces_result_ExecutionResult<'T> = class end"
+        $'' : $'near_workspaces_result_ExecutionResult<`t>'
+    )
+
+/// ### execution_success
+nominal execution_success =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionSuccess\")>]\n#endif\ntype near_workspaces_result_ExecutionSuccess = class end"
+        $'' : $'near_workspaces_result_ExecutionSuccess'
+    )
+
+/// ### execution_failure
+nominal execution_failure =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFailure\")>]\n#endif\ntype near_workspaces_result_ExecutionFailure = class end"
+        $'' : $'near_workspaces_result_ExecutionFailure'
+    )
+
+/// ### execution_outcome
+nominal execution_outcome =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionOutcome\")>]\n#endif\ntype near_workspaces_result_ExecutionOutcome = class end"
+        $'' : $'near_workspaces_result_ExecutionOutcome'
+    )
+
+/// ### sandbox_worker
+inl sandbox_worker () : resultm.result' (worker sandbox) near_workspaces_error =
+    !\($'"near_workspaces::sandbox().await"')
+
+/// ### dev_deploy
+inl dev_deploy
+    (wasm : am'.vec u8)
+    (worker : worker sandbox)
+    : async.future_pin (resultm.result' contract near_workspaces_error)
+    =
+    !\\((worker, wasm), $'"Box::pin($0.dev_deploy(&$1))"')
+
+/// ### call
+inl call (fn_name : string) (contract : contract) : call_transaction =
+    !\\((contract, fn_name), $'"$0.call(&*$1)"')
+
+/// ### transact
+inl transact
+    (call : call_transaction)
+    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
+    =
+    !\($'"Box::pin(!call.transact())"')
+
+/// ### logs
+inl logs (result : execution_final_result) : am'.vec (rust.ref sm'.str) =
+    !\($'"!result.logs()"')
+
+/// ### into_result
+inl into_result
+    (result : execution_final_result)
+    : resultm.result' execution_success execution_failure
+    =
+    !\\(result, $'"$0.into_result()"')
+
+/// ### receipt_failures
+inl receipt_failures (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
+    inl result = join result
+    !\($'"!result.receipt_failures()"')
+
+/// ### receipt_outcomes
+inl receipt_outcomes (result : execution_final_result) : am'.vec execution_outcome =
+    inl result = join result
+    inl result : rust.ref (am'.slice execution_outcome) = !\($'"!result.receipt_outcomes()"')
+    result |> rust.into
+
+/// ### json
+inl json (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
+    !\\(result, $'"$0.json()"')
+
+/// ### borsh
+inl borsh (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
+    !\\(result, $'"$0.borsh()"')
+
+/// ### total_gas_burnt
+inl total_gas_burnt (result : execution_final_result) : gas =
+    !\\(result, $'"$0.total_gas_burnt"')
+
+/// ### as_gas
+inl as_gas (gas : gas) : u64 =
+    !\\(gas, $'"$0.as_gas()"')
+
+/// ### outcomes
+inl outcomes (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
+    inl result = result |> rust.emit
+    !\($'"!result.outcomes()"')
+
+/// ### is_success
+inl is_success (outcome : execution_outcome) : bool =
+    !\\(outcome, $'"$0.is_success()"')
+
+/// ### gas_burnt
+inl gas_burnt (outcome : execution_outcome) : gas =
+    !\\(outcome, $'"$0.gas_burnt"')
+
+/// ### tokens_burnt
+inl tokens_burnt (outcome : execution_outcome) : near_token_workspaces =
+    !\\(outcome, $'"$0.tokens_burnt"')
+
+/// ### print_usd
+inl print_usd retry (result : execution_final_result) =
+    inl total_gas_burnt = result |> total_gas_burnt |> as_gas
+    inl total_gas_burnt_usd = total_gas_burnt |> near.gas_to_usd
+
+    trace Debug
+        fun () => "near_workspaces.print_usd"
+        fun () => { retry total_gas_burnt_usd total_gas_burnt }
+
+    result
+    |> outcomes
+    |> iter.into_iter
+    |> iter.cloned
+    |> iter.for_each fun outcome =>
+        inl is_success = outcome |> is_success
+
+        inl gas_burnt = outcome |> gas_burnt |> as_gas
+        inl gas_burnt_usd = gas_burnt |> near.gas_to_usd
+
+        inl tokens_burnt = outcome |> tokens_burnt |> near.as_yoctonear
+        inl tokens_burnt_usd = tokens_burnt |> near.tokens_to_usd
+
+        trace Debug
+            fun () => "near_workspaces.print_usd / outcome"
+            fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }

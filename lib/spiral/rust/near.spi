@@ -32,3 +32,82 @@ inl new_lookup_map prefix =
 /// ### new_vector
 inl new_vector prefix =
     !\($'"near_sdk::store::vec::Vector::new(!prefix)"')
+
+/// ### log
+inl log text : () =
+    !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
+
+/// ### panic_str
+inl panic_str (text : string) : () =
+    (!\\(text, $'$"true; near_sdk::env::panic_str(&*$0); //"') : bool) |> ignore
+
+/// ### lookup_get
+inl lookup_get forall k v.
+    (key : k)
+    (map : rust.ref (rust.mut' (lookup_map k v)))
+    : optionm'.option' (rust.ref v)
+    =
+    !\\(key, $'$"!map.get(&$0)"')
+
+/// ### lookup_insert
+inl lookup_insert forall k v.
+    (key : k)
+    (value : v)
+    (map : rust.ref (rust.mut' (lookup_map k v)))
+    : ()
+    =
+    (!\\((key, value), $'$"true; !map.insert(&$0, $1); //"') : bool) |> ignore
+
+/// ### near_token
+nominal near_token =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_token::NearToken\")>]\n#endif\ntype near_token_NearToken = class end"
+        $'' : $'near_token_NearToken'
+    )
+
+/// ### near_token_sdk
+nominal near_token_sdk =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::NearToken\")>]\n#endif\ntype near_sdk_NearToken = class end"
+        $'' : $'near_sdk_NearToken'
+    )
+
+/// ### random_seed
+inl random_seed () : am'.vec u8 =
+    !\($'$"near_sdk::env::random_seed()"')
+
+/// ### block_timestamp
+inl block_timestamp () : u64 =
+    !\($'$"near_sdk::env::block_timestamp()"')
+
+/// ### block_height
+inl block_height () : u64 =
+    !\($'$"near_sdk::env::block_height()"')
+
+/// ### epoch_height
+inl epoch_height () : u64 =
+    !\($'$"near_sdk::env::epoch_height()"')
+
+/// ### account_balance
+inl account_balance () : near_token =
+    !\($'$"near_sdk::env::account_balance()"')
+
+/// ### signer_account_id
+inl signer_account_id () : account_id =
+    !\($'$"near_sdk::env::signer_account_id()"')
+
+/// ### as_yoctonear
+inl as_yoctonear forall t. (gas : t) : rust.u128 =
+    !\\(gas, $'"$0.as_yoctonear()"')
+
+/// ### near_price_in_usd
+inl near_price_in_usd () =
+    6.68f64
+
+/// ### gas_to_usd
+inl gas_to_usd (gas : u64) =
+    (gas |> f64) / 10_000_000_000_000_000 * near_price_in_usd ()
+
+/// ### tokens_to_usd
+inl tokens_to_usd (tokens : rust.u128) =
+    (tokens |> rust.f64) / 1_000_000_000_000_000_000_000_000 * near_price_in_usd ()

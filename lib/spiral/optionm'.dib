@@ -383,6 +383,15 @@ inl take_ref_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' t =
 
 #!markdown
 
+### cloned
+
+#!spiral
+
+inl cloned forall t. (x : option' (rust.ref t)) : option' t =
+    !\\(x, $'"$0.cloned()"')
+
+#!markdown
+
 ### as_ref
 
 #!spiral

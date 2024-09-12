@@ -5,13 +5,13 @@ from fable_modules.fable_library.option import (to_array, default_arg_with, map)
 from fable_modules.fable_library.seq import iterate
 from fable_modules.fable_library.types import (uint16, int64, Array)
 from fable_modules.fable_library.util import (IEnumerable_1, IDisposable)
-from .....lib.spiral.common import (US0 as US0_4, Mut0 as Mut0_3, Mut1 as Mut1_3, Mut2 as Mut2_3, Mut3 as Mut3_3, State_trace_state as State_trace_state_3)
+from .....lib.spiral.common import (US0 as US0_4, Mut0 as Mut0_3, Mut1 as Mut1_3, Mut2 as Mut2_3, Mut3 as Mut3_3, Mut4 as Mut4_3, TraceState_trace_state as TraceState_trace_state_3)
 from .....lib.spiral.crypto import (hash_text, hash_to_port)
-from .....lib.spiral.file_system import (get_workspace_root, get_source_directory, normalize_path, new_file_uri, create_temp_dir, create_temp_dir_0027, create_temp_path, US0 as US0_2, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, Mut3 as Mut3_1, State_trace_state as State_trace_state_1)
-from .....lib.spiral.networking import (US0 as US0_1, Mut0, Mut1, Mut2, Mut3, State_trace_state)
-from .....lib.spiral.runtime import (US0 as US0_3, Mut0 as Mut0_2, Mut1 as Mut1_2, Mut2 as Mut2_2, Mut3 as Mut3_2, State_trace_state as State_trace_state_2)
+from .....lib.spiral.file_system import (get_workspace_root, get_source_directory, normalize_path, new_file_uri, create_temp_dir, create_temp_dir_0027, create_temp_path, US0 as US0_2, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, Mut3 as Mut3_1, Mut4 as Mut4_1, TraceState_trace_state as TraceState_trace_state_1)
+from .....lib.spiral.networking import (US0 as US0_1, Mut0, Mut1, Mut2, Mut3, Mut4, TraceState_trace_state)
+from .....lib.spiral.runtime import (US0 as US0_3, Mut0 as Mut0_2, Mut1 as Mut1_2, Mut2 as Mut2_2, Mut3 as Mut3_2, Mut4 as Mut4_2, TraceState_trace_state as TraceState_trace_state_2)
 from .....lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, replace_regex, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
-from .....lib.spiral.trace import (trace, US0, Mut0 as Mut0_4, Mut1 as Mut1_4, Mut2 as Mut2_4, Mut3 as Mut3_4, State_trace_state as State_trace_state_4)
+from .....lib.spiral.trace import (trace, US0, Mut0 as Mut0_4, Mut1 as Mut1_4, Mut2 as Mut2_4, Mut3 as Mut3_4, Mut4 as Mut4_4, TraceState_trace_state as TraceState_trace_state_4)
 
 def SpiralTrace_trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return trace(x)
@@ -122,35 +122,35 @@ def SpiralFileSystem_create_temp_path(__unit: None=None) -> str:
 
 
 def set_trace_level(new_level: US0) -> None:
-    def action(_arg: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None], new_level: Any=new_level) -> None:
-        _arg[3].l0 = US0_1(1) if (new_level.tag == 1) else (US0_1(2) if (new_level.tag == 2) else (US0_1(3) if (new_level.tag == 3) else (US0_1(4) if (new_level.tag == 4) else US0_1(0))))
+    def action(_arg: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None], new_level: Any=new_level) -> None:
+        _arg[4].l0 = US0_1(1) if (new_level.tag == 1) else (US0_1(2) if (new_level.tag == 2) else (US0_1(3) if (new_level.tag == 3) else (US0_1(4) if (new_level.tag == 4) else US0_1(0))))
 
-    iterate(action, to_array(State_trace_state()))
-    def action_1(_arg_1: tuple[Mut0_1, Mut1_1, Mut2_1, Mut3_1, int64 | None], new_level: Any=new_level) -> None:
-        _arg_1[3].l0 = US0_2(1) if (new_level.tag == 1) else (US0_2(2) if (new_level.tag == 2) else (US0_2(3) if (new_level.tag == 3) else (US0_2(4) if (new_level.tag == 4) else US0_2(0))))
+    iterate(action, to_array(TraceState_trace_state()))
+    def action_1(_arg_1: tuple[Mut0_1, Mut1_1, Mut2_1, Mut3_1, Mut4_1, int64 | None], new_level: Any=new_level) -> None:
+        _arg_1[4].l0 = US0_2(1) if (new_level.tag == 1) else (US0_2(2) if (new_level.tag == 2) else (US0_2(3) if (new_level.tag == 3) else (US0_2(4) if (new_level.tag == 4) else US0_2(0))))
 
-    iterate(action_1, to_array(State_trace_state_1()))
-    def action_2(_arg_2: tuple[Mut0_2, Mut1_2, Mut2_2, Mut3_2, int64 | None], new_level: Any=new_level) -> None:
-        _arg_2[3].l0 = US0_3(1) if (new_level.tag == 1) else (US0_3(2) if (new_level.tag == 2) else (US0_3(3) if (new_level.tag == 3) else (US0_3(4) if (new_level.tag == 4) else US0_3(0))))
+    iterate(action_1, to_array(TraceState_trace_state_1()))
+    def action_2(_arg_2: tuple[Mut0_2, Mut1_2, Mut2_2, Mut3_2, Mut4_2, int64 | None], new_level: Any=new_level) -> None:
+        _arg_2[4].l0 = US0_3(1) if (new_level.tag == 1) else (US0_3(2) if (new_level.tag == 2) else (US0_3(3) if (new_level.tag == 3) else (US0_3(4) if (new_level.tag == 4) else US0_3(0))))
 
-    iterate(action_2, to_array(State_trace_state_2()))
-    def action_3(_arg_3: tuple[Mut0_3, Mut1_3, Mut2_3, Mut3_3, int64 | None], new_level: Any=new_level) -> None:
-        _arg_3[3].l0 = US0_4(1) if (new_level.tag == 1) else (US0_4(2) if (new_level.tag == 2) else (US0_4(3) if (new_level.tag == 3) else (US0_4(4) if (new_level.tag == 4) else US0_4(0))))
+    iterate(action_2, to_array(TraceState_trace_state_2()))
+    def action_3(_arg_3: tuple[Mut0_3, Mut1_3, Mut2_3, Mut3_3, Mut4_3, int64 | None], new_level: Any=new_level) -> None:
+        _arg_3[4].l0 = US0_4(1) if (new_level.tag == 1) else (US0_4(2) if (new_level.tag == 2) else (US0_4(3) if (new_level.tag == 3) else (US0_4(4) if (new_level.tag == 4) else US0_4(0))))
 
-    iterate(action_3, to_array(State_trace_state_3()))
-    def action_4(_arg_4: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, int64 | None], new_level: Any=new_level) -> None:
-        _arg_4[3].l0 = new_level
+    iterate(action_3, to_array(TraceState_trace_state_3()))
+    def action_4(_arg_4: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, Mut4_4, int64 | None], new_level: Any=new_level) -> None:
+        _arg_4[4].l0 = new_level
 
-    iterate(action_4, to_array(State_trace_state_4()))
+    iterate(action_4, to_array(TraceState_trace_state_4()))
 
 
 def get_trace_level(__unit: None=None) -> US0:
-    def mapping(_arg: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, int64 | None]) -> US0:
-        return _arg[3].l0
+    def mapping(_arg: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, Mut4_4, int64 | None]) -> US0:
+        return _arg[4].l0
 
     def def_thunk(__unit: None=None) -> US0:
         raise Exception("lib.get_trace_level / trace_state=None")
 
-    return default_arg_with(map(mapping, State_trace_state_4()), def_thunk)
+    return default_arg_with(map(mapping, TraceState_trace_state_4()), def_thunk)
 
 

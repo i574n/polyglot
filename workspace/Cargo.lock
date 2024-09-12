@@ -6242,6 +6242,8 @@ dependencies = [
  "fable_library_rust",
  "inline_colorization",
  "near-sandbox-utils 0.10.1",
+ "near-sdk",
+ "near-token 0.3.0",
  "near-workspaces",
  "regex",
  "serde_json",

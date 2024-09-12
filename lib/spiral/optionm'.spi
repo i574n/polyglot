@@ -163,6 +163,10 @@ inl take_ref forall t. (x : rust.ref (option' t)) : option' t =
 inl take_ref_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' t =
     !\\(x, $'"Option::take($0)"')
 
+/// ### cloned
+inl cloned forall t. (x : option' (rust.ref t)) : option' t =
+    !\\(x, $'"$0.cloned()"')
+
 /// ### as_ref
 inl as_ref forall t. (x : rust.ref (option' t)) : option' (rust.ref t) =
     !\\(x, $'"$0.as_ref()"')

@@ -300,7 +300,7 @@ inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
     inl py = join py
     inl code = code |> sm'.as_str
     !\($'"pyo3::types::PyModule::from_code_bound(!py, !code, \\"\\", \\"\\")"')
-    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
+    |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl use_pyanymethods () =
     global "Fable.Core.RustInterop.emitRustExpr () \");\nuse pyo3::prelude::PyAnyMethods;\n//\""
@@ -311,19 +311,19 @@ inl getattr (attr : string) (module : bound pymodule) : _ (bound pyany) _ =
     inl module = join module
     use_pyanymethods ()
     !\($'"!module.getattr(!attr)"')
-    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
+    |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl call forall t. (args : t) (module : bound pyany) : _ (bound pyany) _ =
     inl args = join args
     inl module = join module
     !\($'"pyo3::prelude::PyAnyMethods::call(&!module, ((*!args).0, *(*!args).1), None)"')
-    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
+    |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl extract forall t. (result : bound pyany) : _ t _ =
     inl result = join result
     use_pyanymethods ()
     !\($'"!result.extract()"')
-    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
+    |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) sm'.std_string =
     inl code =
@@ -403,7 +403,7 @@ inl zeta_ log py s =
 
 #!spiral
 
-inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
+inl run_test log (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
     inl fn_ (py : python) : resultm.result' () pyerr =
         inl nan () =
             !\($'"f64::NAN"')
@@ -454,7 +454,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
 #!spiral
 
-inl test_zeta_at_known_values_ log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_zeta_at_known_values_ log = run_test log fun zeta, gamma =>
     ;[
         .^(2, 0), pi ** 2 / 6
         .^(-1, 0), -1 / 12
@@ -479,7 +479,7 @@ test_zeta_at_known_values_ true
 
 #!spiral
 
-inl test_zeta_at_2_minus2 log = run_test log (6u8, 5u8) fun zeta, gamma =>
+inl test_zeta_at_2_minus2 log = run_test log fun zeta, gamma =>
     inl s = .^(2, -2)
     inl result = zeta s
 
@@ -499,7 +499,7 @@ test_zeta_at_2_minus2 true
 
 #!spiral
 
-inl test_trivial_zero_at_negative_even___ log = run_test log (2u8, 1u8) fun zeta, gamma =>
+inl test_trivial_zero_at_negative_even___ log = run_test log fun zeta, gamma =>
     (join listm'.init_series -2f64 -40 -2)
     |> listm.iter fun n =>
         inl s = .^(n, 0)
@@ -521,7 +521,7 @@ test_trivial_zero_at_negative_even___ true
 
 #!spiral
 
-inl test_non_trivial_zero___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_non_trivial_zero___ log = run_test log fun zeta, gamma =>
     ;[
         .^(0.5, 14.134725)
         .^(0.5, 21.022040)
@@ -549,7 +549,7 @@ test_non_trivial_zero___ true
 
 #!spiral
 
-inl test_real_part_greater_than_one___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_real_part_greater_than_one___ log = run_test log fun zeta, gamma =>
     inl points = ;[ 2; 3; 4; 5; 10; 20; 50 ]
     (a points : _ i32 _)
     |> am.iter fun point =>
@@ -571,7 +571,7 @@ test_real_part_greater_than_one___ true
 
 #!spiral
 
-inl test_zeta_at_1___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
+inl test_zeta_at_1___ log = run_test log fun zeta, gamma =>
     inl s = .^(1, 0)
     inl result = zeta s
     result |> re |> _assert_eq limit.max
@@ -590,7 +590,7 @@ test_zeta_at_1___ true
 
 #!spiral
 
-inl test_symmetry_across_real_axis___ log = run_test log (8u8, 7u8) fun zeta, gamma =>
+inl test_symmetry_across_real_axis___ log = run_test log fun zeta, gamma =>
     inl s = .^(2, 10)
     inl result_positive_im = zeta s
     inl result_negative_im = zeta .^(re s, -(im s))
@@ -611,7 +611,7 @@ test_symmetry_across_real_axis___ true
 
 #!spiral
 
-inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
+inl test_behavior_near_origin___ log = run_test log fun zeta, gamma =>
     inl s = .^(0.01, 0.01)
     inl result = zeta s
     result |> re |> _assert_lt limit.max
@@ -630,7 +630,7 @@ test_behavior_near_origin___ true
 
 #!spiral
 
-inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_imaginary_axis log = run_test log fun zeta, gamma =>
     (join [ 10; 20; 30; 40; 50; 60; 70; 80; 90; 100 ])
     |> listm.iter fun s =>
         inl s = .^(0, s)
@@ -651,7 +651,7 @@ test_imaginary_axis true
 
 #!spiral
 
-inl test_critical_strip log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_critical_strip log = run_test log fun zeta, gamma =>
     (join [
         .^(0.5, 14.134725)
         .^(0.75, 20.5)
@@ -677,7 +677,7 @@ test_critical_strip true
 
 #!spiral
 
-inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_reflection_formula_for_specific_value log = run_test log fun zeta, gamma =>
     (join [
         .^(3, 4)
         .^(2.5, -3.5)
@@ -711,7 +711,7 @@ test_reflection_formula_for_specific_value true
 
 #!spiral
 
-inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
+inl test_euler_product_formula log = run_test log fun zeta, gamma =>
     inl s_values = join [ 2; 2.5; 3; 3.5; 4; 4.5; 5 ]
     inl primes = join [ 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71 ]
     s_values

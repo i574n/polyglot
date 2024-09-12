@@ -150,6 +150,14 @@ inl from_vec forall dim el. (vec : vec el) : a dim el =
 inl to_vec forall t. (ab : array_base t) : vec t =
     !\\(ab, $'"$0.to_vec()"')
 
+/// ### to_vec'
+inl to_vec' forall (t : * -> * -> *) u v. (x : t u v) : vec u =
+    !\($'$"!x.to_vec()"')
+
+/// ### to_vec''
+inl to_vec'' forall (t : * -> *) (u : * -> *) v. (x : t (u v)) : vec v =
+    !\($'$"!x.to_vec()"')
+
 /// ### vec_push
 inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     inl el = join el
@@ -327,6 +335,14 @@ inl as_slice forall t. (x : array_base t) : rust.ref (slice t) =
 /// ### slice_to_vec
 inl slice_to_vec forall t. (slice : rust.ref (slice t)) : vec t =
     !\\(slice, $'"$0.iter().map(|x| *x).collect::<Vec<_>>()"')
+
+/// ### to_le_bytes
+inl to_le_bytes forall t. (x : t) : slice' u8 8 =
+    !\($'$"!x.to_le_bytes()"')
+
+/// ### as_bytes
+inl as_bytes forall t. (x : t) : rust.ref (slice u8) =
+    !\($'$"!x.as_bytes()"')
 
 /// ### any
 inl any forall t. (fn : t -> bool) (source : array_base t) : bool =

@@ -16,8 +16,8 @@ type state =
 inl new () : state =
     {
         version = 1
-        alias_map = "l" |> sm'.byte_slice |> near.new_lookup_map
-        account_map = "c" |> sm'.byte_slice |> near.new_lookup_map
+        alias_map = "alias_map" |> sm'.byte_slice |> near.new_lookup_map
+        account_map = "account_map" |> sm'.byte_slice |> near.new_lookup_map
     }
 
 /// ### is_valid_alias
@@ -65,60 +65,65 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
     inl alias_map : rust.ref (rust.mut' (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32)))) =
         !\($'$"&mut !state.1"')
 
-    !\($'"  let account_id = near_sdk::env::signer_account_id(); //"') : ()
-    !\($'"  let timestamp = near_sdk::env::block_timestamp(); //"') : ()
+    inl account_id = near.signer_account_id ()
+    inl block_timestamp = near.block_timestamp ()
 
-    !\($'"  near_sdk::log\!( //"') : ()
-    !\($'"    \\\"{}\\\", //"') : ()
-    !\($'"    format\!( //"') : ()
-    !\($'"      \\\"claim_alias "') : ()
-    !\($'"            alias: {!alias:#?} "') : ()
-    !\($'"            account_id: {account_id:#?} "') : ()
-    !\($'"            timestamp: {timestamp:#?}\\\" //"') : ()
-    !\($'"    ) //"') : ()
-    !\($'"  ); //"') : ()
+    trace Debug
+        fun () => $'$"chat_contract.claim_alias"'
+        fun () => { alias block_timestamp account_id = account_id |> sm'.to_string }
 
-    inl is_valid_alias = join is_valid_alias
-    !\($'"  if \!!is_valid_alias(!alias.clone()) { //"') : ()
-    !\($'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"') : ()
-    !\($'"  } //"') : ()
+    if alias |> is_valid_alias |> not
+    then near.panic_str "chat_contract.claim_alias / invalid alias" . true
+    else false
+    |> ignore
+    
+    inl account_alias =
+        account_map
+        |> near.lookup_get account_id
+        |> optionm'.cloned
 
-    !\($'"  if let Some(previous_alias) = !account_map.get(&account_id) { //"') : ()
-    !\($'"    if *previous_alias == !alias { //"') : ()
-    !\($'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"') : ()
-    !\($'"      return; //"') : ()
-    !\($'"    } //"') : ()
+    match account_alias |> optionm'.unbox with
+    | Some account_alias when account_alias =. alias =>
+        trace Warning
+            fun () => $'$"chat_contract.claim_alias / alias already claimed"'
+            fun () => { account_alias = account_alias |> sm'.format_debug }
+    | account_alias' =>
+        trace Debug
+            fun () => $'$"chat_contract.claim_alias"'
+            fun () => { account_alias = account_alias |> sm'.format_debug }
 
-    !\($'"    !alias_map //"') : ()
-    !\($'"      .get_mut(previous_alias) //"') : ()
-    !\($'"      .unwrap() //"') : ()
-    !\($'"      .remove(&account_id); //"') : ()
-    !\($'"  } //"') : ()
+        match account_alias' with
+        | Some account_alias =>
+            !\($'"    !alias_map //"') : ()
+            !\($'"      .get_mut(&!account_alias) //"') : ()
+            !\($'"      .unwrap() //"') : ()
+            !\\(account_id, $'"      .remove(&$0); //"') : ()
+        | None => ()
 
-    !\($'"  !account_map.insert(account_id.clone(), !alias.clone()); //"') : ()
+        !\\(account_id, $'"  !account_map.insert($0.clone(), !alias.clone()); //"') : ()
 
-    !\($'"  let new_alias_account_map = match !alias_map.get(&!alias) { //"') : ()
-    !\($'"    None => { //"') : ()
-    !\($'"      let mut new_map = std::collections::HashMap::new(); //"') : ()
-    !\($'"      new_map.insert(account_id, (timestamp, 0u32)); //"') : ()
-    !\($'"      new_map //"') : ()
-    !\($'"    } //"') : ()
-    !\($'"    Some(accounts) => { //"') : ()
-    !\($'"      let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //"') : ()
-    !\($'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"') : ()
-    !\($'"      let mut new_map = accounts_vec //"') : ()
-    !\($'"        .iter() //"') : ()
-    !\($'"        .enumerate() //"') : ()
-    !\($'"        .map(|(i, (account_id, (timestamp, _)))| { //"') : ()
-    !\($'"          ((*account_id).clone(), (*timestamp, i as u32)) //"') : ()
-    !\($'"        }) //"') : ()
-    !\($'"        .collect::<std::collections::HashMap<_, _>>(); //"') : ()
-    !\($'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"') : ()
-    !\($'"      new_map //"') : ()
-    !\($'"    } //"') : ()
-    !\($'"  }; //"') : ()
+        !\($'"  let new_alias_account_map = match !alias_map.get(&!alias) { //"') : ()
+        !\($'"    None => { //"') : ()
+        !\($'"      let mut new_map = std::collections::HashMap::new(); //"') : ()
+        !\\((account_id, block_timestamp), $'"      new_map.insert($0, ($1, 0u32)); //"') : ()
+        !\($'"      new_map //"') : ()
+        !\($'"    } //"') : ()
+        !\($'"    Some(accounts) => { //"') : ()
+        !\($'"      let mut accounts_vec = accounts.iter().collect::<Vec<_>>(); //"') : ()
+        !\($'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"') : ()
+        !\($'"      let mut new_map = accounts_vec //"') : ()
+        !\($'"        .iter() //"') : ()
+        !\($'"        .enumerate() //"') : ()
+        !\($'"        .map(|(i, (account_id, (timestamp, _)))| { //"') : ()
+        !\($'"          ((*account_id).clone(), (*timestamp, i as u32)) //"') : ()
+        !\($'"        }) //"') : ()
+        !\($'"        .collect::<std::collections::HashMap<_, _>>(); //"') : ()
+        !\($'"      new_map.insert(!account_id, (!block_timestamp, accounts_vec.len() as u32)); //"') : ()
+        !\($'"      new_map //"') : ()
+        !\($'"    } //"') : ()
+        !\($'"  }; //"') : ()
 
-    !\($'"  !alias_map.insert(!alias, new_alias_account_map); //"') : ()
+        !\($'"  !alias_map.insert(!alias, new_alias_account_map); //"') : ()
 
 /// ### main
 ///! _
@@ -151,6 +156,7 @@ inl main () =
         (!\($'"true; */"') : bool) |> ignore
 
         inl result = new ()
+
         $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x $"Self($0) // x") // 2' : ()
 
         !\($'"} // 2."') : ()
@@ -198,6 +204,7 @@ inl main () =
         inl alias = !\($'$"alias"')
         
         inl result = claim_alias state alias
+        trace Debug (fun () => "") id
 
         !\($'"} //"') : ()
 
@@ -219,16 +226,20 @@ inl main () =
         inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
             !\($'$"&self.0.1"')
 
-        !\($'"  near_sdk::log\!( //"') : ()
-        !\($'"    \\\"{}\\\", //"') : ()
-        !\($'"    format\!(\\\"get_account_info / account_id: {account_id:#?}\\\") //"') : ()
-        !\($'"  ); //"') : ()
+        inl account_id : near.account_id = !\($'$"account_id"')
 
-        !\($'"  !account_map.get(&account_id).and_then(|alias| { //"') : ()
+        trace Debug
+            fun () => $'$"chat_contract.get_account_info"'
+            fun () => { account_id }
+
+        trace Debug (fun () => "") id
+
+        !\\(account_id, $'"  !account_map.get(&$0).and_then(|alias| { //"') : ()
         !\($'"    !alias_map //"') : ()
         !\($'"      .get(alias) //"') : ()
-        !\($'"      .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap())) //"') : ()
+        !\($'"      .map(|accounts| (alias.clone(), *accounts.get(&!account_id).unwrap())) //"') : ()
         !\($'"  }) //"') : ()
+
         !\($'"} //"') : ()
 
         !\($'"} //"') : ()
@@ -244,12 +255,15 @@ inl main () =
         inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
             !\($'$"&self.0.1"')
 
-        !\($'"  near_sdk::log\!( //"') : ()
-        !\($'"    \\\"{}\\\", //"') : ()
-        !\($'"    format\!(\\\"get_alias_map / alias: {alias:#?}\\\") //"') : ()
-        !\($'"  ); //"') : ()
+        inl alias : sm'.std_string = !\($'$"alias"')
 
-        !\($'"  !alias_map.get(&alias).cloned() //"') : ()
+        trace Debug
+            fun () => $'$"chat_contract.get_alias_map"'
+            fun () => { alias }
+
+        trace Debug (fun () => "") id
+
+        !\\(alias, $'"  !alias_map.get(&$0).cloned() //"') : ()
         !\($'"} //"') : ()
 
         !\($'"} //"') : ()

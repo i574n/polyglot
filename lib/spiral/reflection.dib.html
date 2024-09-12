@@ -7950,19 +7950,37 @@ __assert_eq' / actual: UH0_1 ("Some", US0_0, UH0_1 ("None", US0_1, UH0_0)) / exp
         <span class="k">if</span> <span class="n">x</span><span class="s1">' = x</span>
         <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
         <span class="k">else</span>
-            <span class="o">//</span> <span class="n">TODO</span><span class="p">:</span> <span class="n">split</span> <span class="n">only</span> <span class="k">if</span> <span class="n">there</span><span class="s1">'s a non-unit case (union_to_record check)</span>
-            <span class="n">inl</span> <span class="n">separator</span> <span class="o">=</span>
-                <span class="n">backend_switch</span> <span class="p">{</span>
-                    <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                        <span class="n">run_target</span> <span class="n">function</span>
-                            <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"("</span>
-                            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">" "</span>
-                    <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"("</span>
-                <span class="p">}</span>
-            <span class="n">inl</span> <span class="n">x</span><span class="s1">' = x'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">split</span> <span class="n">separator</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index_base 0</span>
-            <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">x</span><span class="s1">'</span>
-            <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
-            <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">inl</span> <span class="n">has_case</span> <span class="o">=</span>
+                <span class="n">real</span>
+                    <span class="n">real_core</span><span class="o">.</span><span class="n">union_to_record</span>
+                        <span class="err">`</span><span class="n">t</span>
+                        <span class="n">forall</span> <span class="n">union_record_type</span><span class="o">.</span> <span class="o">=&gt;</span>
+                            <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
+                                <span class="n">fun</span> <span class="n">_key</span> <span class="o">=&gt;</span>
+                                    <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="n">acc</span> <span class="o">=&gt;</span>
+                                        <span class="k">if</span> <span class="n">acc</span>
+                                        <span class="n">then</span> <span class="n">acc</span>
+                                        <span class="k">else</span>
+                                            <span class="n">typecase</span> <span class="n">value</span> <span class="k">with</span>
+                                            <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">false</span>
+                                            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">true</span>
+                                <span class="err">`</span><span class="n">union_record_type</span>
+                                <span class="n">false</span>
+            <span class="k">if</span> <span class="n">has_case</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+            <span class="n">then</span> <span class="kc">None</span>
+            <span class="k">else</span>
+                <span class="n">inl</span> <span class="n">separator</span> <span class="o">=</span>
+                    <span class="n">backend_switch</span> <span class="p">{</span>
+                        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                            <span class="n">run_target</span> <span class="n">function</span>
+                                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"("</span>
+                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">" "</span>
+                        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"("</span>
+                    <span class="p">}</span>
+                <span class="n">inl</span> <span class="n">x</span><span class="s1">' = x'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">split</span> <span class="n">separator</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index_base 0</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format |&gt; sm'</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">x</span><span class="s1">'</span>
+                <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
+                <span class="k">else</span> <span class="kc">None</span>
     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
