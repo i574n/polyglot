@@ -4,31 +4,36 @@ pub mod Lib {
     use crate::Common::Mut1 as Mut1_3;
     use crate::Common::Mut2 as Mut2_3;
     use crate::Common::Mut3 as Mut3_3;
-    use crate::Common::State::trace_state as trace_state_3;
+    use crate::Common::Mut4 as Mut4_3;
+    use crate::Common::TraceState::trace_state as trace_state_3;
     use crate::Common::US0 as US0_4;
     use crate::File_system::Mut0 as Mut0_1;
     use crate::File_system::Mut1 as Mut1_1;
     use crate::File_system::Mut2 as Mut2_1;
     use crate::File_system::Mut3 as Mut3_1;
-    use crate::File_system::State::trace_state as trace_state_1;
+    use crate::File_system::Mut4 as Mut4_1;
+    use crate::File_system::TraceState::trace_state as trace_state_1;
     use crate::File_system::US0 as US0_2;
     use crate::Networking::Mut0;
     use crate::Networking::Mut1;
     use crate::Networking::Mut2;
     use crate::Networking::Mut3;
-    use crate::Networking::State::trace_state;
+    use crate::Networking::Mut4;
+    use crate::Networking::TraceState::trace_state;
     use crate::Networking::US0 as US0_1;
     use crate::Runtime::Mut0 as Mut0_2;
     use crate::Runtime::Mut1 as Mut1_2;
     use crate::Runtime::Mut2 as Mut2_2;
     use crate::Runtime::Mut3 as Mut3_2;
-    use crate::Runtime::State::trace_state as trace_state_2;
+    use crate::Runtime::Mut4 as Mut4_2;
+    use crate::Runtime::TraceState::trace_state as trace_state_2;
     use crate::Runtime::US0 as US0_3;
     use crate::Trace::Mut0 as Mut0_4;
     use crate::Trace::Mut1 as Mut1_4;
     use crate::Trace::Mut2 as Mut2_4;
     use crate::Trace::Mut3 as Mut3_4;
-    use crate::Trace::State::trace_state as trace_state_4;
+    use crate::Trace::Mut4 as Mut4_4;
+    use crate::Trace::TraceState::trace_state as trace_state_4;
     use crate::Trace::US0;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
@@ -170,9 +175,10 @@ pub mod Lib {
                     LrcPtr<Mut1>,
                     LrcPtr<Mut2>,
                     LrcPtr<Mut3>,
+                    LrcPtr<Mut4>,
                     Option<i64>,
                 )| {
-                    (_arg.3.clone()).l0.set(match &new_level {
+                    (_arg.4.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_1::US0_1,
                         US0::US0_2 => US0_1::US0_2,
                         US0::US0_3 => US0_1::US0_3,
@@ -191,9 +197,10 @@ pub mod Lib {
                     LrcPtr<Mut1_1>,
                     LrcPtr<Mut2_1>,
                     LrcPtr<Mut3_1>,
+                    LrcPtr<Mut4_1>,
                     Option<i64>,
                 )| {
-                    (_arg_1.3.clone()).l0.set(match &new_level {
+                    (_arg_1.4.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_2::US0_1,
                         US0::US0_2 => US0_2::US0_2,
                         US0::US0_3 => US0_2::US0_3,
@@ -212,9 +219,10 @@ pub mod Lib {
                     LrcPtr<Mut1_2>,
                     LrcPtr<Mut2_2>,
                     LrcPtr<Mut3_2>,
+                    LrcPtr<Mut4_2>,
                     Option<i64>,
                 )| {
-                    (_arg_2.3.clone()).l0.set(match &new_level {
+                    (_arg_2.4.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_3::US0_1,
                         US0::US0_2 => US0_3::US0_2,
                         US0::US0_3 => US0_3::US0_3,
@@ -233,9 +241,10 @@ pub mod Lib {
                     LrcPtr<Mut1_3>,
                     LrcPtr<Mut2_3>,
                     LrcPtr<Mut3_3>,
+                    LrcPtr<Mut4_3>,
                     Option<i64>,
                 )| {
-                    (_arg_3.3.clone()).l0.set(match &new_level {
+                    (_arg_3.4.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_4::US0_1,
                         US0::US0_2 => US0_4::US0_2,
                         US0::US0_3 => US0_4::US0_3,
@@ -254,8 +263,9 @@ pub mod Lib {
                     LrcPtr<Mut1_4>,
                     LrcPtr<Mut2_4>,
                     LrcPtr<Mut3_4>,
+                    LrcPtr<Mut4_4>,
                     Option<i64>,
-                )| (_arg_4.3.clone()).l0.set(new_level.clone())
+                )| (_arg_4.4.clone()).l0.set(new_level.clone())
             }),
             trace_state_4().get().clone(),
         )
@@ -270,8 +280,9 @@ pub mod Lib {
                         LrcPtr<Mut1_4>,
                         LrcPtr<Mut2_4>,
                         LrcPtr<Mut3_4>,
+                        LrcPtr<Mut4_4>,
                         Option<i64>,
-                    )| (_arg.3.clone()).l0.get().clone(),
+                    )| (_arg.4.clone()).l0.get().clone(),
                 ),
                 trace_state_4().get().clone(),
             ),

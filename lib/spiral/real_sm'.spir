@@ -14,6 +14,8 @@ nominal std_string =
         $'' : $'std_string_String'
     )
 
+/// ### to_string
+
 /// ### from_std_string
 inl from_std_string (str : std_string) : string =
     open rust
@@ -244,6 +246,8 @@ inl real_format forall t. (x : t) : string =
 
 /// ### as_str
 
+/// ### from_iter
+
 /// ### ref_to_std_string
 
 /// ### cow_to_std_string
@@ -327,6 +331,8 @@ inl real_format forall t. (x : t) : string =
 /// ### slice_contains
 
 /// ### as_bytes
+
+/// ### into_bytes
 
 /// ## python
 

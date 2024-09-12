@@ -7671,6 +7671,7 @@ a.anchor-link {
         <span class="n">count</span> <span class="p">:</span> <span class="n">mut</span> <span class="n">i64</span>
         <span class="n">trace_file</span> <span class="p">:</span> <span class="n">mut</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">())</span>
         <span class="n">enabled</span> <span class="p">:</span> <span class="n">mut</span> <span class="nb">bool</span>
+        <span class="n">acc</span> <span class="p">:</span> <span class="n">mut</span> <span class="n">string</span>
         <span class="n">level</span> <span class="p">:</span> <span class="n">mut</span> <span class="n">trace_level</span>
         <span class="n">repl_start</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">i64</span>
     <span class="p">}</span>
@@ -7701,10 +7702,11 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span><span class="s1">' =</span>
     <span class="n">inl</span> <span class="p">{</span> <span class="n">repl_start</span> <span class="n">trace_level</span> <span class="p">}</span> <span class="o">=</span> <span class="n">read_state</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="n">enabled</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">true</span>
         <span class="n">count</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i64</span>
-        <span class="n">level</span> <span class="o">=</span> <span class="n">trace_level</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value trace_level'</span> <span class="o">|&gt;</span> <span class="n">mut</span>
         <span class="n">trace_file</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">ignore</span>
+        <span class="n">enabled</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">true</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">mut</span> <span class="s2">""</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">trace_level</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value trace_level'</span> <span class="o">|&gt;</span> <span class="n">mut</span>
         <span class="n">repl_start</span> <span class="o">=</span> <span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
     <span class="p">}</span> <span class="p">:</span> <span class="n">trace_state</span>
 </pre></div>
@@ -7737,16 +7739,16 @@ a.anchor-link {
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">backend_switch</span> <span class="p">{</span>
                 <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="k">global</span> <span class="s2">"module State = let mutable trace_state = None"</span>
+                    <span class="k">global</span> <span class="s2">"module TraceState = let mutable trace_state = None"</span>
             <span class="p">}</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="k">if</span> <span class="err">$</span><span class="s1">'State.trace_state.IsNone'</span> <span class="n">then</span>
+                <span class="k">if</span> <span class="err">$</span><span class="s1">'TraceState.trace_state.IsNone'</span> <span class="n">then</span>
                     <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.some'</span>
-                    <span class="err">$</span><span class="s1">'State.trace_state &lt;- !trace_state '</span> <span class="p">:</span> <span class="p">()</span>
+                    <span class="err">$</span><span class="s1">'TraceState.trace_state &lt;- !trace_state '</span> <span class="p">:</span> <span class="p">()</span>
             <span class="o">|&gt;</span> <span class="n">exec_unit</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">global</span> <span class="s2">"class State: trace_state = None"</span>
-            <span class="err">$</span><span class="s1">'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="k">global</span> <span class="s2">"class TraceState: trace_state = None"</span>
+            <span class="err">$</span><span class="s1">'if TraceState.trace_state is None: TraceState.trace_state = !new_trace_state(!trace_level)'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7777,9 +7779,9 @@ a.anchor-link {
     <span class="o">//</span> <span class="err">$</span><span class="s1">'match State.trace_state with Some x -&gt; x | None -&gt; failwith "trace.get_trace_state_or_init / State.trace_state=None"'</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'State.trace_state.Value'</span> <span class="p">:</span> <span class="n">trace_state</span>
+            <span class="err">$</span><span class="s1">'TraceState.trace_state.Value'</span> <span class="p">:</span> <span class="n">trace_state</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'State.trace_state'</span> <span class="p">:</span> <span class="n">trace_state</span>
+            <span class="err">$</span><span class="s1">'TraceState.trace_state'</span> <span class="p">:</span> <span class="n">trace_state</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7920,9 +7922,8 @@ __assert_eq / actual: true / expected: true
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">trace_raw</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
+        <span class="n">inl</span> <span class="p">({</span> <span class="n">count</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">&amp;</span> <span class="n">trace_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">test_trace_level</span> <span class="n">then</span>
-            <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="o">|&gt;</span> <span class="n">exec_unit</span>
 
@@ -7931,7 +7932,31 @@ __assert_eq / actual: true / expected: true
             <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
             <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
-                    <span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"near_sdk::log\!(</span><span class="se">\\\"</span><span class="s1">{{}}</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span>
+                    <span class="n">inl</span> <span class="n">new_acc</span> <span class="o">=</span>
+                        <span class="k">if</span> <span class="o">*</span><span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span>
+                        <span class="n">then</span> <span class="n">text</span>
+                        <span class="k">elif</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
+                        <span class="n">then</span> <span class="o">*</span><span class="n">acc</span>
+                        <span class="k">else</span> <span class="o">*</span><span class="n">acc</span> <span class="o">+.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+.</span> <span class="n">text</span>
+
+                    <span class="n">inl</span> <span class="n">chunks</span> <span class="o">=</span>
+                        <span class="n">new_acc</span>
+                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
+                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars</span>
+                        <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">from_mut</span>
+                        <span class="o">|&gt;</span> <span class="n">iter_collect</span>
+                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_chunks 15000</span>
+                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map fun x =&gt;</span>
+                            <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_iter</span>
+
+                    <span class="n">inl</span> <span class="n">chunks_len</span> <span class="o">=</span> <span class="n">chunks</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_len |&gt; i32</span>
+
+                    <span class="k">if</span> <span class="n">text</span> <span class="o">&lt;&gt;.</span> <span class="s2">""</span> <span class="o">&amp;&amp;</span> <span class="n">chunks_len</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+                    <span class="n">then</span> <span class="n">acc</span> <span class="o">&lt;-</span> <span class="n">new_acc</span>
+                    <span class="k">else</span>
+                        <span class="n">acc</span> <span class="o">&lt;-</span> <span class="s2">""</span>
+                        <span class="n">chunks</span>
+                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_for_each'</span> <span class="n">near</span><span class="o">.</span><span class="n">log</span>
                 <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
                     <span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'\@"println\!(""</span><span class="si">{}</span><span class="s1">"", $0)"'</span><span class="p">)</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">write_line</span> <span class="o">=&gt;</span>
@@ -8035,12 +8060,16 @@ __assert_eq / actual: true / expected: true
                 <span class="n">color</span> <span class="o">+.</span> <span class="n">level_str</span> <span class="o">+.</span> <span class="n">color_reset</span>
         <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
         <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
-        <span class="n">backend_switch</span> <span class="p">{</span>
-            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!time} {!level_str} #{!count} </span><span class="si">%s</span><span class="s1">{!text_fn ()} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
-            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="p">}</span>
-        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
-        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
+        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">text_fn</span> <span class="p">()</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="n">then</span> <span class="s2">""</span>
+        <span class="k">else</span>
+            <span class="n">backend_switch</span> <span class="p">{</span>
+                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!time} {!level_str} #{!count} </span><span class="si">%s</span><span class="s1">{!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!time} {!level_str} #{!count} {!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="p">}</span>
+            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
+            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
     <span class="o">|&gt;</span> <span class="n">trace_raw</span> <span class="n">level</span>
 </pre></div>
 </div>

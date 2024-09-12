@@ -30,7 +30,7 @@ class IHashlibSha256(Protocol):
         ...
 
 
-State_trace_state: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] | None = create_atom(None)
+TraceState_trace_state: tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None] | None = create_atom(None)
 
 class IOsEnviron(Protocol):
     @abstractmethod
@@ -38,7 +38,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr17() -> TypeInfo:
+def _expr82() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -46,9 +46,9 @@ def _expr17() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr17
+Mut0_reflection = _expr82
 
-def _expr22() -> TypeInfo:
+def _expr85() -> TypeInfo:
     return union_type("Crypto.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -64,9 +64,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr22
+US0_reflection = _expr85
 
-def _expr23() -> TypeInfo:
+def _expr86() -> TypeInfo:
     return record_type("Crypto.Mut1", [], Mut1, lambda: [("l0", int64_type)])
 
 
@@ -74,9 +74,9 @@ def _expr23() -> TypeInfo:
 class Mut1(Record):
     l0: int64
 
-Mut1_reflection = _expr23
+Mut1_reflection = _expr86
 
-def _expr26() -> TypeInfo:
+def _expr88() -> TypeInfo:
     return record_type("Crypto.Mut2", [], Mut2, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -84,9 +84,9 @@ def _expr26() -> TypeInfo:
 class Mut2(Record):
     l0: Callable[[str], None]
 
-Mut2_reflection = _expr26
+Mut2_reflection = _expr88
 
-def _expr27() -> TypeInfo:
+def _expr89() -> TypeInfo:
     return record_type("Crypto.Mut3", [], Mut3, lambda: [("l0", bool_type)])
 
 
@@ -94,19 +94,29 @@ def _expr27() -> TypeInfo:
 class Mut3(Record):
     l0: bool
 
-Mut3_reflection = _expr27
+Mut3_reflection = _expr89
 
-def _expr28() -> TypeInfo:
-    return record_type("Crypto.Mut4", [], Mut4, lambda: [("l0", US0_reflection())])
+def _expr90() -> TypeInfo:
+    return record_type("Crypto.Mut4", [], Mut4, lambda: [("l0", string_type)])
 
 
 @dataclass(eq = False, repr = False, slots = True)
 class Mut4(Record):
+    l0: str
+
+Mut4_reflection = _expr90
+
+def _expr91() -> TypeInfo:
+    return record_type("Crypto.Mut5", [], Mut5, lambda: [("l0", US0_reflection())])
+
+
+@dataclass(eq = False, repr = False, slots = True)
+class Mut5(Record):
     l0: US0
 
-Mut4_reflection = _expr28
+Mut5_reflection = _expr91
 
-def _expr29() -> TypeInfo:
+def _expr92() -> TypeInfo:
     return union_type("Crypto.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -122,9 +132,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr29
+US1_reflection = _expr92
 
-def _expr30() -> TypeInfo:
+def _expr93() -> TypeInfo:
     return union_type("Crypto.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -140,9 +150,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr30
+US2_reflection = _expr93
 
-def _expr33() -> TypeInfo:
+def _expr94() -> TypeInfo:
     return union_type("Crypto.US3", [], US3, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -158,17 +168,7 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr33
-
-def _expr34() -> TypeInfo:
-    return record_type("Crypto.Mut5", [], Mut5, lambda: [("l0", string_type)])
-
-
-@dataclass(eq = False, repr = False, slots = True)
-class Mut5(Record):
-    l0: str
-
-Mut5_reflection = _expr34
+US3_reflection = _expr94
 
 def method1(__unit: None=None) -> str:
     return ""
@@ -208,14 +208,14 @@ def closure4(v0_1: FSharpRef[US1 | None], v1_1: US1 | None=None) -> FSharpRef[US
 
 
 def closure5(v0_1: str | None, v1_1: Callable[[US1 | None], FSharpRef[US1 | None]], unit_var: None) -> None:
-    def _arrow49(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US1 | None:
+    def _arrow95(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US1 | None:
         x: str = v0_1
         def x_1(__unit: None=None) -> US1:
             return US1(0, x)
 
         return x_1(None)
 
-    ignore(v1_1(None if (v0_1 is None) else _arrow49()))
+    ignore(v1_1(None if (v0_1 is None) else _arrow95()))
 
 
 def method6(v0_1: str) -> str:
@@ -255,10 +255,10 @@ def closure6(unit_var: None, v0_1: str) -> None:
     pass
 
 
-def method4(v0_1: US0) -> tuple[Mut1, Mut2, Mut3, Mut4, int64 | None]:
+def method4(v0_1: US0) -> tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None]:
     v173: str = method6(method5())
     v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
-    def _arrow55(__unit: None=None, v0_1: Any=v0_1) -> US2:
+    def _arrow96(__unit: None=None, v0_1: Any=v0_1) -> US2:
         v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
         if v185.tag == 0:
             return US2(0, v185.fields[0])
@@ -280,19 +280,19 @@ def method4(v0_1: US0) -> tuple[Mut1, Mut2, Mut3, Mut4, int64 | None]:
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow55(), US3(0, ticks_1(now())) if (method6(method8()) == "True") else US3(1))
+    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow96(), US3(0, ticks_1(now())) if (method6(method8()) == "True") else US3(1))
     v295: US3 = _v1[1]
     v294: US2 = _v1[0]
-    def v365(v: str, v0_1: Any=v0_1) -> None:
+    def v360(v: str, v0_1: Any=v0_1) -> None:
         closure6(None, v)
 
-    return (Mut1(int64(0)), Mut2(v365), Mut3(True), Mut4(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
+    return (Mut1(int64(0)), Mut2(v360), Mut3(True), Mut4(""), Mut5(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
 
 
 def closure3(unit_var: None, unit_var_1: None) -> None:
-    if State_trace_state() is None:
-        pattern_input: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] = method4(US0(0))
-        State_trace_state((pattern_input[0], pattern_input[1], pattern_input[2], pattern_input[3], pattern_input[4]))
+    if TraceState_trace_state() is None:
+        pattern_input: tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None] = method4(US0(0))
+        TraceState_trace_state((pattern_input[0], pattern_input[1], pattern_input[2], pattern_input[3], pattern_input[4], pattern_input[5]))
 
 
 
@@ -307,14 +307,14 @@ def closure8(v0_1: FSharpRef[US3 | None], v1_1: US3 | None=None) -> FSharpRef[US
 
 
 def closure9(v0_1: int64 | None, v1_1: Callable[[US3 | None], FSharpRef[US3 | None]], unit_var: None) -> None:
-    def _arrow58(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US3 | None:
+    def _arrow97(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US3 | None:
         x: int64 = v0_1
         def x_1(__unit: None=None) -> US3:
             return US3(0, x)
 
         return x_1(None)
 
-    ignore(v1_1(None if (v0_1 is None) else _arrow58()))
+    ignore(v1_1(None if (v0_1 is None) else _arrow97()))
 
 
 def method9(__unit: None=None) -> str:
@@ -333,22 +333,18 @@ def method12(__unit: None=None) -> str:
     return ""
 
 
-def closure10(v0_1: Mut5, v1_1: str, unit_var: None) -> None:
+def closure10(v0_1: Mut4, v1_1: str, unit_var: None) -> None:
     v3: str = v0_1.l0 + v1_1
     v0_1.l0 = v3
 
 
-def closure11(unit_var: None, unit_var_1: None) -> str:
-    return "crypto.hash_to_port"
-
-
-def closure13(v0_1: str, unit_var: None) -> None:
+def closure12(v0_1: str, unit_var: None) -> None:
     print(v0_1)
 
 
-def closure12(unit_var: None, v0_1: str) -> None:
+def closure11(unit_var: None, v0_1: str) -> None:
     v3: None
-    closure13(v0_1, None)
+    closure12(v0_1, None)
     v3 = None
 
 
@@ -359,84 +355,83 @@ def closure2(v0_1: int, v1_1: str, v2: uint16, unit_var: None) -> None:
     v5: None
     v4(None)
     v5 = None
-    pattern_input: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] = value_2(State_trace_state())
-    v34: None
+    pattern_input: tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None] = value_2(TraceState_trace_state())
+    v38: None
     v4(None)
-    v34 = None
-    pattern_input_1: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] = value_2(State_trace_state())
-    v62: US0 = pattern_input_1[3].l0
-    class ObjectExpr64:
+    v38 = None
+    pattern_input_1: tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None] = value_2(TraceState_trace_state())
+    v70: US0 = pattern_input_1[4].l0
+    class ObjectExpr98:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[2].l0 == False) else (0 >= find(v62, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr64()))):
-        v70: None
+    if False if (pattern_input_1[2].l0 == False) else (0 >= find(v70, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr98()))):
+        v78: None
         closure7(pattern_input[0], None)
-        v70 = None
-        v74: None
+        v78 = None
+        v82: None
         v4(None)
-        v74 = None
-        pattern_input_2: tuple[Mut1, Mut2, Mut3, Mut4, int64 | None] = value_2(State_trace_state())
-        _v349: FSharpRef[US3 | None] = FSharpRef(None)
-        v354: None
-        def v351(v: US3 | None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2: Any=v2, unit_var: Any=unit_var) -> FSharpRef[US3 | None]:
-            return closure8(_v349, v)
+        v82 = None
+        pattern_input_2: tuple[Mut1, Mut2, Mut3, Mut4, Mut5, int64 | None] = value_2(TraceState_trace_state())
+        _v361: FSharpRef[US3 | None] = FSharpRef(None)
+        v366: None
+        def v363(v: US3 | None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2: Any=v2, unit_var: Any=unit_var) -> FSharpRef[US3 | None]:
+            return closure8(_v361, v)
 
-        closure9(pattern_input_2[4], v351, None)
-        v354 = None
-        v369: US3 = default_arg(_v349.contents, US3(1))
-        def _arrow71(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
-            v383: Any = create(op_subtraction(ticks_1(now()), v369.fields[0]))
-            return create_1(1, 1, 1, hours(v383), minutes(v383), seconds(v383), milliseconds(v383))
+        closure9(pattern_input_2[5], v363, None)
+        v366 = None
+        v381: US3 = default_arg(_v361.contents, US3(1))
+        def _arrow99(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+            v395: Any = create(op_subtraction(ticks_1(now()), v381.fields[0]))
+            return create_1(1, 1, 1, hours(v395), minutes(v395), seconds(v395), milliseconds(v395))
 
-        v414: str = to_string(_arrow71() if (v369.tag == 0) else now(), method10())
-        v615: str = ("\u001b[90m" + pad_left("Verbose".lower(), 7, " ")) + method11()
-        v626: int64 = pattern_input_2[0].l0
-        v628: Mut5 = Mut5(method12())
-        v635: None
-        closure10(v628, ("" + "{ ") + "", None)
-        v635 = None
-        v644: None
-        closure10(v628, ("" + "first_letter_code") + "", None)
-        v644 = None
-        v653: None
-        closure10(v628, ("" + " = ") + "", None)
-        v653 = None
-        v661: None
-        closure10(v628, ("" + str(v0_1)) + "", None)
-        v661 = None
-        v670: None
-        closure10(v628, ("" + "; ") + "", None)
-        v670 = None
-        v679: None
-        closure10(v628, ("" + "hash_part") + "", None)
-        v679 = None
-        v687: None
-        closure10(v628, ("" + " = ") + "", None)
-        v687 = None
-        v695: None
-        closure10(v628, ("" + v1_1) + "", None)
-        v695 = None
-        v703: None
-        closure10(v628, ("" + "; ") + "", None)
-        v703 = None
-        v712: None
-        closure10(v628, ("" + "combined_value") + "", None)
-        v712 = None
-        v720: None
-        closure10(v628, ("" + " = ") + "", None)
-        v720 = None
-        v728: None
-        closure10(v628, ("" + str(v2)) + "", None)
-        v728 = None
-        v737: None
-        closure10(v628, ("" + " }") + "", None)
-        v737 = None
-        v740: str = v628.l0
-        v779: str = trim_end(trim_start(((((((((("" + v414) + " ") + v615) + " #") + str(v626)) + " ") + closure11(None, None)) + " / ") + v740) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-        closure12(None, v779)
-        pattern_input[1].l0(v779)
+        v426: str = to_string(_arrow99() if (v381.tag == 0) else now(), method10())
+        v627: str = ("\u001b[90m" + pad_left("Verbose".lower(), 7, " ")) + method11()
+        v638: int64 = pattern_input_2[0].l0
+        v640: Mut4 = Mut4(method12())
+        v647: None
+        closure10(v640, ("" + "{ ") + "", None)
+        v647 = None
+        v656: None
+        closure10(v640, ("" + "first_letter_code") + "", None)
+        v656 = None
+        v665: None
+        closure10(v640, ("" + " = ") + "", None)
+        v665 = None
+        v673: None
+        closure10(v640, ("" + str(v0_1)) + "", None)
+        v673 = None
+        v682: None
+        closure10(v640, ("" + "; ") + "", None)
+        v682 = None
+        v691: None
+        closure10(v640, ("" + "hash_part") + "", None)
+        v691 = None
+        v699: None
+        closure10(v640, ("" + " = ") + "", None)
+        v699 = None
+        v707: None
+        closure10(v640, ("" + v1_1) + "", None)
+        v707 = None
+        v715: None
+        closure10(v640, ("" + "; ") + "", None)
+        v715 = None
+        v724: None
+        closure10(v640, ("" + "combined_value") + "", None)
+        v724 = None
+        v732: None
+        closure10(v640, ("" + " = ") + "", None)
+        v732 = None
+        v740: None
+        closure10(v640, ("" + str(v2)) + "", None)
+        v740 = None
+        v749: None
+        closure10(v640, ("" + " }") + "", None)
+        v749 = None
+        v791: str = trim_end(trim_start(((((((((("" + v426) + " ") + v627) + " #") + str(v638)) + " ") + "crypto.hash_to_port") + " / ") + v640.l0) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+        closure11(None, v791)
+        pattern_input[1].l0(v791)
 
 
 
@@ -452,21 +447,21 @@ def closure1(unit_var: None, v0_1: str) -> uint16:
     return (v8 % uint16(48128)) + uint16(1024)
 
 
-def _arrow81(v: str) -> str:
+def _arrow100(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow81
+v0: Callable[[str], str] = _arrow100
 
 def hash_text(x: str) -> str:
     return v0(x)
 
 
-def _arrow83(v: str) -> uint16:
+def _arrow101(v: str) -> uint16:
     return closure1(None, v)
 
 
-v1: Callable[[str], uint16] = _arrow83
+v1: Callable[[str], uint16] = _arrow101
 
 def hash_to_port(x: str) -> uint16:
     return v1(x)

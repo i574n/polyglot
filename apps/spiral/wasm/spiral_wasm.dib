@@ -51,375 +51,6 @@ let get_command () =
 
 #!markdown
 
-### gas
-
-#!spiral
-
-nominal gas =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::Gas\")>]\n#endif\ntype near_workspaces_types_Gas = class end"
-        $'' : $'near_workspaces_types_Gas'
-    )
-
-#!markdown
-
-### near_token
-
-#!spiral
-
-nominal near_token =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::types::NearToken\")>]\n#endif\ntype near_token_NearToken = class end"
-        $'' : $'near_token_NearToken'
-    )
-
-#!markdown
-
-### near_workspaces_error
-
-#!spiral
-
-nominal near_workspaces_error =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::error::Error\")>]\n#endif\ntype near_workspaces_error_Error = class end"
-        $'' : $'near_workspaces_error_Error'
-    )
-
-#!markdown
-
-### sandbox
-
-#!spiral
-
-nominal sandbox =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::network::Sandbox\")>]\n#endif\ntype near_workspaces_network_Sandbox = class end"
-        $'' : $'near_workspaces_network_Sandbox'
-    )
-
-#!markdown
-
-### worker
-
-#!spiral
-
-nominal worker t =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Worker<$0>\")>]\n#endif\ntype near_workspaces_Worker<'T> = class end"
-        $'' : $'near_workspaces_Worker<`t>'
-    )
-
-#!markdown
-
-### contract
-
-#!spiral
-
-nominal contract =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::Contract\")>]\n#endif\ntype near_workspaces_Contract = class end"
-        $'' : $'near_workspaces_Contract'
-    )
-
-#!markdown
-
-### call_transaction
-
-#!spiral
-
-nominal call_transaction =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::operations::CallTransaction\")>]\n#endif\ntype near_workspaces_operations_CallTransaction = class end"
-        $'' : $'near_workspaces_operations_CallTransaction'
-    )
-
-#!markdown
-
-### execution_final_result
-
-#!spiral
-
-nominal execution_final_result =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFinalResult\")>]\n#endif\ntype near_workspaces_result_ExecutionFinalResult = class end"
-        $'' : $'near_workspaces_result_ExecutionFinalResult'
-    )
-
-#!markdown
-
-### execution_result
-
-#!spiral
-
-nominal execution_result t =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionResult<$0>\")>]\n#endif\ntype near_workspaces_result_ExecutionResult<'T> = class end"
-        $'' : $'near_workspaces_result_ExecutionResult<`t>'
-    )
-
-#!markdown
-
-### execution_success
-
-#!spiral
-
-nominal execution_success =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionSuccess\")>]\n#endif\ntype near_workspaces_result_ExecutionSuccess = class end"
-        $'' : $'near_workspaces_result_ExecutionSuccess'
-    )
-
-#!markdown
-
-### execution_failure
-
-#!spiral
-
-nominal execution_failure =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionFailure\")>]\n#endif\ntype near_workspaces_result_ExecutionFailure = class end"
-        $'' : $'near_workspaces_result_ExecutionFailure'
-    )
-
-#!markdown
-
-### execution_outcome
-
-#!spiral
-
-nominal execution_outcome =
-    `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_workspaces::result::ExecutionOutcome\")>]\n#endif\ntype near_workspaces_result_ExecutionOutcome = class end"
-        $'' : $'near_workspaces_result_ExecutionOutcome'
-    )
-
-#!markdown
-
-### sandbox_worker
-
-#!spiral
-
-inl sandbox_worker () : resultm.result' (worker sandbox) near_workspaces_error =
-    !\($'"near_workspaces::sandbox().await"')
-
-#!markdown
-
-### dev_deploy
-
-#!spiral
-
-inl dev_deploy
-    (wasm : am'.vec u8)
-    (worker : worker sandbox)
-    : async.future_pin (resultm.result' contract near_workspaces_error)
-    =
-    !\\((worker, wasm), $'"Box::pin($0.dev_deploy(&$1))"')
-
-#!markdown
-
-### call
-
-#!spiral
-
-inl call (fn_name : string) (contract : contract) : call_transaction =
-    !\\((contract, fn_name), $'"$0.call(&*$1)"')
-
-#!markdown
-
-### transact
-
-#!spiral
-
-inl transact
-    (call : call_transaction)
-    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
-    =
-    !\($'"Box::pin(!call.transact())"')
-
-#!markdown
-
-### logs
-
-#!spiral
-
-inl logs (result : execution_final_result) : am'.vec (rust.ref sm'.str) =
-    !\($'"!result.logs()"')
-
-#!markdown
-
-### into_result
-
-#!spiral
-
-inl into_result
-    (result : execution_final_result)
-    : resultm.result' execution_success execution_failure
-    =
-    !\\(result, $'"$0.into_result()"')
-
-#!markdown
-
-### receipt_failures
-
-#!spiral
-
-inl receipt_failures (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
-    inl result = join result
-    !\($'"!result.receipt_failures()"')
-
-#!markdown
-
-### receipt_outcomes
-
-#!spiral
-
-inl receipt_outcomes (result : execution_final_result) : am'.vec execution_outcome =
-    inl result = join result
-    inl result : rust.ref (am'.slice execution_outcome) = !\($'"!result.receipt_outcomes()"')
-    result |> rust.into
-
-#!markdown
-
-### json
-
-#!spiral
-
-inl json (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
-    !\\(result, $'"$0.json()"')
-
-#!markdown
-
-### borsh
-
-#!spiral
-
-inl borsh (result : execution_final_result) : resultm.result' sm'.std_string near_workspaces_error =
-    !\\(result, $'"$0.borsh()"')
-
-#!markdown
-
-### near_price_in_usd
-
-#!spiral
-
-inl near_price_in_usd () =
-    6.68f64
-
-#!markdown
-
-### gas_to_usd
-
-#!spiral
-
-inl gas_to_usd (gas : u64) =
-    (gas |> f64) / 10_000_000_000_000_000 * near_price_in_usd ()
-
-#!markdown
-
-### tokens_to_usd
-
-#!spiral
-
-inl tokens_to_usd (tokens : rust.u128) =
-    (tokens |> rust.f64) / 1_000_000_000_000_000_000_000_000 * near_price_in_usd ()
-
-#!markdown
-
-### total_gas_burnt
-
-#!spiral
-
-inl total_gas_burnt (result : execution_final_result) : gas =
-    !\\(result, $'"$0.total_gas_burnt"')
-
-#!markdown
-
-### as_gas
-
-#!spiral
-
-inl as_gas (gas : gas) : u64 =
-    !\\(gas, $'"$0.as_gas()"')
-
-#!markdown
-
-### as_yoctonear
-
-#!spiral
-
-inl as_yoctonear (gas : near_token) : rust.u128 =
-    !\\(gas, $'"$0.as_yoctonear()"')
-
-#!markdown
-
-### outcomes
-
-#!spiral
-
-inl outcomes (result : execution_final_result) : am'.vec (rust.ref execution_outcome) =
-    inl result = result |> rust.emit
-    !\($'"!result.outcomes()"')
-
-#!markdown
-
-### is_success
-
-#!spiral
-
-inl is_success (outcome : execution_outcome) : bool =
-    !\\(outcome, $'"$0.is_success()"')
-
-#!markdown
-
-### gas_burnt
-
-#!spiral
-
-inl gas_burnt (outcome : execution_outcome) : gas =
-    !\\(outcome, $'"$0.gas_burnt"')
-
-#!markdown
-
-### tokens_burnt
-
-#!spiral
-
-inl tokens_burnt (outcome : execution_outcome) : near_token =
-    !\\(outcome, $'"$0.tokens_burnt"')
-
-#!markdown
-
-### print_usd
-
-#!spiral
-
-inl print_usd retry (result : execution_final_result) =
-    inl total_gas_burnt = result |> total_gas_burnt |> as_gas
-    inl total_gas_burnt_usd = total_gas_burnt |> gas_to_usd
-
-    trace Debug
-        fun () => "spiral_wasm.print_usd"
-        fun () => { retry total_gas_burnt_usd total_gas_burnt }
-
-    result
-    |> outcomes
-    |> iter.into_iter
-    |> iter.cloned
-    |> iter.for_each fun outcome =>
-        inl is_success = outcome |> is_success
-
-        inl gas_burnt = outcome |> gas_burnt |> as_gas
-        inl gas_burnt_usd = gas_burnt |> gas_to_usd
-
-        inl tokens_burnt = outcome |> tokens_burnt |> as_yoctonear
-        inl tokens_burnt_usd = tokens_burnt |> tokens_to_usd
-
-        trace Debug
-            fun () => "spiral_wasm.print_usd / outcome"
-            fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }
-
-#!markdown
-
 ### run
 
 #!spiral
@@ -439,41 +70,53 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 
         let fn (retry : u8) =
             fun () =>
-                inl worker = sandbox_worker () |> resultm.try'
+                inl worker = near_workspaces.sandbox_worker () |> resultm.try'
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { retry worker }
 
-                inl contract = worker |> dev_deploy wasm |> async.await |> resultm.try'
+                inl contract = worker |> near_workspaces.dev_deploy wasm |> async.await |> resultm.try'
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { retry contract }
 
-                inl result = contract |> call "state_main" |> transact |> async.await |> resultm.try'
+                inl result =
+                    contract
+                    |> near_workspaces.call "state_main"
+                    |> near_workspaces.transact
+                    |> async.await
+                    |> resultm.try'
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { retry result }
 
-                result |> logs |> am'.vec_map sm'.ref_to_std_string |> am'.vec_for_each console.write_line
+                result
+                |> near_workspaces.logs
+                |> am'.vec_map sm'.ref_to_std_string
+                |> am'.vec_for_each console.write_line
 
-                result |> print_usd retry
+                result |> near_workspaces.print_usd retry
 
-                inl result2 = result |> into_result
+                inl result2 = result |> near_workspaces.into_result
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { result2 }
 
-                inl receipt_failures = result |> receipt_failures
+                inl receipt_failures = result |> near_workspaces.receipt_failures
                 inl receipt_failures_len = receipt_failures |> am'.vec_len |> i32
 
-                trace Verbose (fun () => "spiral_wasm.run") fun () => { receipt_failures_len receipt_failures }
+                trace Verbose
+                    fun () => "spiral_wasm.run"
+                    fun () => { receipt_failures_len receipt_failures }
 
-                inl receipt_outcomes = result |> receipt_outcomes
+                inl receipt_outcomes = result |> near_workspaces.receipt_outcomes
                 inl receipt_outcomes_len = receipt_outcomes |> am'.vec_len |> i32
 
-                trace Verbose (fun () => "spiral_wasm.run") fun () => { receipt_outcomes_len receipt_outcomes }
+                trace Verbose
+                    fun () => "spiral_wasm.run"
+                    fun () => { receipt_outcomes_len receipt_outcomes }
 
-                inl json = result |> json
+                inl json = result |> near_workspaces.json
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { json }
 
-                inl borsh = result |> borsh
+                inl borsh = result |> near_workspaces.borsh
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { borsh }
 

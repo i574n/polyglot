@@ -178,19 +178,37 @@ inl union_to_string forall t. (x : t) : string =
         if x' = x
         then Some key
         else
-            // TODO: split only if there's a non-unit case (union_to_record check)
-            inl separator =
-                backend_switch {
-                    Fsharp = fun () =>
-                        run_target function
-                            | Rust _ => fun () => join "("
-                            | _ => fun () => join " "
-                    Python = fun () => "("
-                }
-            inl x' = x' |> sm'.format |> sm'.split separator |> am'.index_base 0
-            if x |> sm'.format |> sm'.starts_with x'
-            then Some key
-            else None
+            inl has_case =
+                real
+                    real_core.union_to_record
+                        `t
+                        forall union_record_type. =>
+                            real_core.record_type_fold_back
+                                fun _key =>
+                                    forall value. acc =>
+                                        if acc
+                                        then acc
+                                        else
+                                            typecase value with
+                                            | () => false
+                                            | _ => true
+                                `union_record_type
+                                false
+            if has_case |> not
+            then None
+            else
+                inl separator =
+                    backend_switch {
+                        Fsharp = fun () =>
+                            run_target function
+                                | Rust _ => fun () => join "("
+                                | _ => fun () => join " "
+                        Python = fun () => "("
+                    }
+                inl x' = x' |> sm'.format |> sm'.split separator |> am'.index_base 0
+                if x |> sm'.format |> sm'.starts_with x'
+                then Some key
+                else None
     |> optionm.value
 
 #!spiral

@@ -8407,7 +8407,7 @@ __assert_eq / actual: false / expected: false
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
@@ -8842,7 +8842,7 @@ __assert_eq / actual: false / expected: false
 00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #434 5
 00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #435 6
 __assert_between / actual: 416L / expected: struct (2L, 1500L)
-__assert_between / actual: 167L / expected: struct (80L, 600L)
+__assert_between / actual: 166L / expected: struct (80L, 600L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8917,12 +8917,11 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = true }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = true }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
@@ -8962,15 +8961,16 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #43 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #44 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #45 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #46 _2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #47 _3
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #48 4
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #49 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #50 _4
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #51 _5
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #52 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #53 5
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #54 6
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #46 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #47 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #48 _3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #49 4
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #50 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #51 _4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #52 _5
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #53 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #54 5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #55 6
 __assert_between / actual: 41L / expected: struct (2L, 150L)
 __assert_between / actual: 16L / expected: struct (0L, 60L)
 __assert_eq / actual: true / expected: true
@@ -9082,7 +9082,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
@@ -9173,8 +9173,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3

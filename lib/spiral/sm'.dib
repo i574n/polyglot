@@ -47,6 +47,15 @@ type std_string = real_sm'.std_string
 
 #!markdown
 
+### to_string
+
+#!spiral
+
+inl to_string forall t. (x : t) : std_string =
+    !\($'$"!x.to_string()"')
+
+#!markdown
+
 ### from_std_string
 
 #!spiral
@@ -1020,6 +1029,15 @@ inl as_str (s : string) : rust.ref str =
 
 #!markdown
 
+### from_iter
+
+#!spiral
+
+inl from_iter forall (t : * -> *). (s : t char) : std_string =
+    !\\(s, $'"String::from_iter($0)"')
+
+#!markdown
+
 ### ref_to_std_string
 
 #!spiral
@@ -1540,6 +1558,15 @@ inl slice_contains (text : string) (source : am'.vec u8) : bool =
 inl as_bytes (text : string) : rust.ref (am'.slice u8) =
     inl text = join text
     !\($'"!text.as_bytes()"')
+
+#!markdown
+
+### into_bytes
+
+#!spiral
+
+inl into_bytes (x : std_string) : am'.vec u8 =
+    !\\(x, $'$"$0.into_bytes()"')
 
 #!markdown
 

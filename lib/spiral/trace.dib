@@ -78,6 +78,7 @@ type trace_state =
         count : mut i64
         trace_file : mut (string -> ())
         enabled : mut bool
+        acc : mut string
         level : mut trace_level
         repl_start : optionm'.option' i64
     }
@@ -91,10 +92,11 @@ type trace_state =
 let new_trace_state trace_level' =
     inl { repl_start trace_level } = read_state ()
     {
-        enabled = mut true
         count = mut 0i64
-        level = trace_level |> optionm'.default_value trace_level' |> mut
         trace_file = mut ignore
+        enabled = mut true
+        acc = mut ""
+        level = trace_level |> optionm'.default_value trace_level' |> mut
         repl_start = repl_start |> optionm'.box
     } : trace_state
 
@@ -110,16 +112,16 @@ inl init_trace_state trace_level : () =
         Fsharp = fun () =>
             backend_switch {
                 Fsharp = fun () =>
-                    global "module State = let mutable trace_state = None"
+                    global "module TraceState = let mutable trace_state = None"
             }
             fun () =>
-                if $'State.trace_state.IsNone' then
+                if $'TraceState.trace_state.IsNone' then
                     inl trace_state = new_trace_state trace_level |> optionm'.some'
-                    $'State.trace_state <- !trace_state ' : ()
+                    $'TraceState.trace_state <- !trace_state ' : ()
             |> exec_unit
         Python = fun () =>
-            global "class State: trace_state = None"
-            $'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)' : ()
+            global "class TraceState: trace_state = None"
+            $'if TraceState.trace_state is None: TraceState.trace_state = !new_trace_state(!trace_level)' : ()
     }
 
 #!markdown
@@ -133,9 +135,9 @@ inl get_trace_state_or_init trace_level : trace_state =
     // $'match State.trace_state with Some x -> x | None -> failwith "trace.get_trace_state_or_init / State.trace_state=None"'
     backend_switch {
         Fsharp = fun () =>
-            $'State.trace_state.Value' : trace_state
+            $'TraceState.trace_state.Value' : trace_state
         Python = fun () =>
-            $'State.trace_state' : trace_state
+            $'TraceState.trace_state' : trace_state
     }
 
 #!markdown
@@ -180,9 +182,8 @@ test_trace_level Verbose |> _assert_eq true
 
 inl trace_raw level fn =
     fun () =>
-        inl trace_state = get_trace_state_or_init None
+        inl ({ count acc } & trace_state) = get_trace_state_or_init None
         if level |> test_trace_level then
-            inl count = trace_state.count
             fun () => count <- *count + 1
             |> exec_unit
 
@@ -191,7 +192,31 @@ inl trace_raw level fn =
             open rust.rust_operators
             run_target_args (fun () => text, console.write_line) function
                 | Rust (Contract) => fun text, _ =>
-                    !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
+                    inl new_acc =
+                        if *acc = ""
+                        then text
+                        elif text = ""
+                        then *acc
+                        else *acc +. "\n" +. text
+
+                    inl chunks =
+                        new_acc
+                        |> sm'.as_str
+                        |> sm'.chars
+                        |> rust.from_mut
+                        |> iter_collect
+                        |> am'.vec_chunks 15000
+                        |> am'.vec_map fun x =>
+                            x |> sm'.from_iter
+
+                    inl chunks_len = chunks |> am'.vec_len |> i32
+
+                    if text <>. "" && chunks_len <= 1
+                    then acc <- new_acc
+                    else
+                        acc <- ""
+                        chunks
+                        |> am'.vec_for_each' near.log
                 | Rust _ => fun text, _ =>
                     !\\(text, $'\@"println\!(""{}"", $0)"')
                 | _ => fun text, write_line =>
@@ -278,12 +303,16 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
                 color +. level_str +. color_reset
         inl count = *trace_state.count
         inl locals = locals () |> sm'.format
-        backend_switch {
-            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / {!locals}"' : string
-            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals}"' : string
-        }
-        |> sm'.trim_start []
-        |> sm'.trim_end [ ' '; '/' ]
+        inl text = text_fn ()
+        if text = ""
+        then ""
+        else
+            backend_switch {
+                Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text} / {!locals}"' : string
+                Python = fun () => $'f"{!time} {!level_str} #{!count} {!text} / {!locals}"' : string
+            }
+            |> sm'.trim_start []
+            |> sm'.trim_end [ ' '; '/' ]
     |> trace_raw level
 
 #!spiral

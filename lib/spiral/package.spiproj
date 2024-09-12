@@ -26,18 +26,20 @@ modules:
     sm'_operators
     console
     reflection
-    rust/
-        testing
-        near
     guid
     parsing
     platform
     env
     date_time
+    rust/
+        testing
+        near
     trace-
     common-
     threading
     async
+    rust/
+        near_workspaces
     stream
     runtime
     file_system

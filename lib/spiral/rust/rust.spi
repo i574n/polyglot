@@ -177,7 +177,12 @@ nominal impl t =
 /// ### mut'
 nominal mut' t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
+                ) : () -> ()
+        }
         $'' : $'Mut<`t>'
     )
 
@@ -504,3 +509,7 @@ inl new_clone_wrapper forall t.
     $'let _!struct = true' : ()
 
     !\\(x, $'"CloneWrapper($0)"')
+
+/// ### concat
+inl concat forall (t : * -> *) u. (x : t (t u)) : t u =
+    !\($'$"!x.concat()"')

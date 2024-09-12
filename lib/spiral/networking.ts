@@ -7,10 +7,9 @@ import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { split, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { item } from "../../deps/Fable/src/fable-library-ts/Array.js";
+import { interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 
-export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>>(undefined);
+export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 
 export interface IOsEnviron {
     environ(): any
@@ -101,6 +100,18 @@ export function Mut2_$reflection(): TypeInfo {
 }
 
 export class Mut3 extends Record implements IEquatable<Mut3>, IComparable<Mut3> {
+    l0: string;
+    constructor(l0: string) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut3_$reflection(): TypeInfo {
+    return record_type("Networking.Mut3", [], Mut3, () => [["l0", string_type]]);
+}
+
+export class Mut4 extends Record implements IEquatable<Mut4>, IComparable<Mut4> {
     l0: US0_$union;
     constructor(l0: US0_$union) {
         super();
@@ -108,8 +119,8 @@ export class Mut3 extends Record implements IEquatable<Mut3>, IComparable<Mut3> 
     }
 }
 
-export function Mut3_$reflection(): TypeInfo {
-    return record_type("Networking.Mut3", [], Mut3, () => [["l0", US0_$reflection()]]);
+export function Mut4_$reflection(): TypeInfo {
+    return record_type("Networking.Mut4", [], Mut4, () => [["l0", US0_$reflection()]]);
 }
 
 export type US1_$union = 
@@ -200,18 +211,6 @@ export class US3<Tag extends keyof US3_$cases> extends Union<Tag, US3_$cases[Tag
 
 export function US3_$reflection(): TypeInfo {
     return union_type("Networking.US3", [], US3, () => [[["f0_0", int64_type]], []]);
-}
-
-export class Mut4 extends Record implements IEquatable<Mut4>, IComparable<Mut4> {
-    l0: string;
-    constructor(l0: string) {
-        super();
-        this.l0 = l0;
-    }
-}
-
-export function Mut4_$reflection(): TypeInfo {
-    return record_type("Networking.Mut4", [], Mut4, () => [["l0", string_type]]);
 }
 
 export type US4_$union = 
@@ -363,7 +362,7 @@ export function method4(): string {
 export function closure3(unitVar: void, v0_1: string): void {
 }
 
-export function method0(v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] {
+export function method0(v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] {
     let v124: US2_$union, v131: US2_$union, v138: US2_$union, v145: US2_$union;
     const v112: string = method2(method1());
     const v117: US2_$union = ("Verbose" === v112) ? US2_US2_0(US0_US0_0()) : US2_US2_1();
@@ -372,13 +371,13 @@ export function method0(v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64
     const v294: US2_$union = _v1[0];
     return [new Mut0(0n), new Mut1((v: string): void => {
         closure3(undefined, v);
-    }), new Mut2(true), new Mut3((v294.tag === /* US2_0 */ 0) ? v294.fields[0] : v0_1), (v295.tag === /* US3_0 */ 0) ? v295.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
+    }), new Mut2(true), new Mut3(""), new Mut4((v294.tag === /* US2_0 */ 0) ? v294.fields[0] : v0_1), (v295.tag === /* US3_0 */ 0) ? v295.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>];
 }
 
 export function closure0(unitVar: void, unitVar_1: void): void {
-    if (State_trace_state() == null) {
-        const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = method0(US0_US0_0());
-        State_trace_state([patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4]] as [Mut0, Mut1, Mut2, Mut3, Option<int64>]);
+    if (TraceState_trace_state() == null) {
+        const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = method0(US0_US0_0());
+        TraceState_trace_state([patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5]] as [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]);
     }
 }
 
@@ -413,89 +412,84 @@ export function method8(): string {
     return "";
 }
 
-export function closure10(v0_1: Mut4, v1_1: string, unitVar: void): void {
+export function closure10(v0_1: Mut3, v1_1: string, unitVar: void): void {
     const v3: string = v0_1.l0 + v1_1;
     v0_1.l0 = v3;
 }
 
-export function closure11(unitVar: void, unitVar_1: void): string {
-    return "networking.test_port_open";
-}
-
-export function closure13(v0_1: string, unitVar: void): void {
+export function closure12(v0_1: string, unitVar: void): void {
     console.log(v0_1);
 }
 
-export function closure12(unitVar: void, v0_1: string): void {
+export function closure11(unitVar: void, v0_1: string): void {
     let v3: any;
-    closure13(v0_1, undefined);
+    closure12(v0_1, undefined);
     v3 = undefined;
 }
 
 export function closure6(v0_1: int32, v1_1: string, unitVar: void): void {
-    let v304: int64, v314: number;
+    let v316: int64, v326: number;
     const v3 = (): void => {
         closure0(undefined, undefined);
     };
     let v4: any;
     v3();
     v4 = undefined;
-    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    let v33: any;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    let v37: any;
     v3();
-    v33 = undefined;
-    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    const v61: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v61, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    v37 = undefined;
+    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    const v69: US0_$union = patternInput_1[4].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v69, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v69: any;
+        let v77: any;
         closure7(patternInput[0], undefined);
-        v69 = undefined;
-        let v73: any;
+        v77 = undefined;
+        let v81: any;
         v3();
-        v73 = undefined;
-        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-        const _v280: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v285: any;
-        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v280, v), undefined);
-        v285 = undefined;
-        const v300: US3_$union = defaultArg(_v280.contents, US3_US3_1());
-        const v345: string = toString((v300.tag === /* US3_0 */ 0) ? ((v304 = v300.fields[0], (v314 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v304))), create(1, 1, 1, hours(v314), minutes(v314), seconds(v314), milliseconds(v314))))) : now(), method6());
-        const v610: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
-        const v625: int64 = patternInput_2[0].l0;
-        const v627: Mut4 = new Mut4(method8());
-        let v634: any;
-        closure10(v627, `${"{ "}`, undefined);
-        v634 = undefined;
-        let v643: any;
-        closure10(v627, `${"port"}`, undefined);
-        v643 = undefined;
-        let v652: any;
-        closure10(v627, `${" = "}`, undefined);
-        v652 = undefined;
-        let v660: any;
-        closure10(v627, `${v0_1}`, undefined);
-        v660 = undefined;
-        let v669: any;
-        closure10(v627, `${"; "}`, undefined);
-        v669 = undefined;
-        let v678: any;
-        closure10(v627, `${"ex"}`, undefined);
-        v678 = undefined;
-        let v686: any;
-        closure10(v627, `${" = "}`, undefined);
-        v686 = undefined;
-        let v694: any;
-        closure10(v627, `${v1_1}`, undefined);
-        v694 = undefined;
-        let v703: any;
-        closure10(v627, `${" }"}`, undefined);
-        v703 = undefined;
-        const v706: string = v627.l0;
-        const v745: string = trimEnd(trimStart(`${v345} ${v610} #${v625} ${closure11(undefined, undefined)} / ${v706}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v745);
-        patternInput[1].l0(v745);
+        v81 = undefined;
+        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+        const _v292: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v297: any;
+        closure9(patternInput_2[5], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v292, v), undefined);
+        v297 = undefined;
+        const v312: US3_$union = defaultArg(_v292.contents, US3_US3_1());
+        const v357: string = toString((v312.tag === /* US3_0 */ 0) ? ((v316 = v312.fields[0], (v326 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v316))), create(1, 1, 1, hours(v326), minutes(v326), seconds(v326), milliseconds(v326))))) : now(), method6());
+        const v622: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
+        const v637: int64 = patternInput_2[0].l0;
+        const v639: Mut3 = new Mut3(method8());
+        let v646: any;
+        closure10(v639, `${"{ "}`, undefined);
+        v646 = undefined;
+        let v655: any;
+        closure10(v639, `${"port"}`, undefined);
+        v655 = undefined;
+        let v664: any;
+        closure10(v639, `${" = "}`, undefined);
+        v664 = undefined;
+        let v672: any;
+        closure10(v639, `${v0_1}`, undefined);
+        v672 = undefined;
+        let v681: any;
+        closure10(v639, `${"; "}`, undefined);
+        v681 = undefined;
+        let v690: any;
+        closure10(v639, `${"ex"}`, undefined);
+        v690 = undefined;
+        let v698: any;
+        closure10(v639, `${" = "}`, undefined);
+        v698 = undefined;
+        let v706: any;
+        closure10(v639, `${v1_1}`, undefined);
+        v706 = undefined;
+        let v715: any;
+        closure10(v639, `${" }"}`, undefined);
+        v715 = undefined;
+        const v777: string = trimEnd(trimStart(`${v357} ${v622} #${v637} ${"networking.test_port_open"} / ${v639.l0}`, ...[]), ...[" ", "/"]);
+        closure11(undefined, v777);
+        patternInput[1].l0(v777);
     }
 }
 
@@ -507,376 +501,281 @@ export function closure4(unitVar: void, v0_1: string): ((arg0: int32) => any) {
     return (v: int32): any => closure5(v0_1, v);
 }
 
-export function closure17(unitVar: void, v0_1: boolean): US5_$union {
+export function closure16(unitVar: void, v0_1: boolean): US5_$union {
     return US5_US5_0(v0_1);
 }
 
-export function closure18(unitVar: void, v0_1: Error): US5_$union {
+export function closure17(unitVar: void, v0_1: Error): US5_$union {
     return US5_US5_1(v0_1);
 }
 
-export function closure20(unitVar: void, unitVar_1: void): string {
-    return "async.run_with_timeout_async";
-}
-
-export function closure19(v0_1: int32, unitVar: void): void {
-    let v303: int64, v313: number;
+export function closure18(v0_1: int32, unitVar: void): void {
+    let v315: int64, v325: number;
     const v2_1 = (): void => {
         closure0(undefined, undefined);
     };
     let v3: any;
     v2_1();
     v3 = undefined;
-    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    let v32: any;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    let v36: any;
     v2_1();
-    v32 = undefined;
-    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    const v60: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v60, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    v36 = undefined;
+    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    const v68: US0_$union = patternInput_1[4].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v68, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v68: any;
+        let v76: any;
         closure7(patternInput[0], undefined);
-        v68 = undefined;
-        let v72: any;
+        v76 = undefined;
+        let v80: any;
         v2_1();
-        v72 = undefined;
-        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-        const _v279: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v284: any;
-        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v279, v), undefined);
-        v284 = undefined;
-        const v299: US3_$union = defaultArg(_v279.contents, US3_US3_1());
-        const v344: string = toString((v299.tag === /* US3_0 */ 0) ? ((v303 = v299.fields[0], (v313 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v303))), create(1, 1, 1, hours(v313), minutes(v313), seconds(v313), milliseconds(v313))))) : now(), method6());
-        const v609: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
-        const v624: int64 = patternInput_2[0].l0;
-        const v626: Mut4 = new Mut4(method8());
-        let v633: any;
-        closure10(v626, `${"{ "}`, undefined);
-        v633 = undefined;
-        let v642: any;
-        closure10(v626, `${"timeout"}`, undefined);
-        v642 = undefined;
-        let v651: any;
-        closure10(v626, `${" = "}`, undefined);
-        v651 = undefined;
-        let v659: any;
-        closure10(v626, `${v0_1}`, undefined);
-        v659 = undefined;
-        let v668: any;
-        closure10(v626, `${" }"}`, undefined);
-        v668 = undefined;
-        const v671: string = v626.l0;
-        const v710: string = trimEnd(trimStart(`${v344} ${v609} #${v624} ${closure20(undefined, undefined)} / ${v671}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v710);
-        patternInput[1].l0(v710);
+        v80 = undefined;
+        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+        const _v291: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v296: any;
+        closure9(patternInput_2[5], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v291, v), undefined);
+        v296 = undefined;
+        const v311: US3_$union = defaultArg(_v291.contents, US3_US3_1());
+        const v356: string = toString((v311.tag === /* US3_0 */ 0) ? ((v315 = v311.fields[0], (v325 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v315))), create(1, 1, 1, hours(v325), minutes(v325), seconds(v325), milliseconds(v325))))) : now(), method6());
+        const v621: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
+        const v636: int64 = patternInput_2[0].l0;
+        const v638: Mut3 = new Mut3(method8());
+        let v645: any;
+        closure10(v638, `${"{ "}`, undefined);
+        v645 = undefined;
+        let v654: any;
+        closure10(v638, `${"timeout"}`, undefined);
+        v654 = undefined;
+        let v663: any;
+        closure10(v638, `${" = "}`, undefined);
+        v663 = undefined;
+        let v671: any;
+        closure10(v638, `${v0_1}`, undefined);
+        v671 = undefined;
+        let v680: any;
+        closure10(v638, `${" }"}`, undefined);
+        v680 = undefined;
+        const v742: string = trimEnd(trimStart(`${v356} ${v621} #${v636} ${"async.run_with_timeout_async"} / ${v638.l0}`, ...[]), ...[" ", "/"]);
+        closure11(undefined, v742);
+        patternInput[1].l0(v742);
     }
 }
 
-export function method9(): string {
-    return "(";
-}
-
-export function method10(): string {
-    return " ";
-}
-
-export function closure22(unitVar: void, unitVar_1: void): string {
-    return "async.run_with_timeout_async**";
-}
-
-export function closure21(v0_1: int32, v1_1: Error, unitVar: void): void {
-    let v304: int64, v314: number;
+export function closure19(v0_1: int32, v1_1: Error, unitVar: void): void {
+    let v316: int64, v326: number;
     const v3 = (): void => {
         closure0(undefined, undefined);
     };
     let v4: any;
     v3();
     v4 = undefined;
-    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    let v33: any;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    let v37: any;
     v3();
-    v33 = undefined;
-    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    const v61: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (4 >= find<US0_$union, int32>(v61, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    v37 = undefined;
+    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    const v69: US0_$union = patternInput_1[4].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (4 >= find<US0_$union, int32>(v69, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v69: any;
+        let v77: any;
         closure7(patternInput[0], undefined);
-        v69 = undefined;
-        let v73: any;
+        v77 = undefined;
+        let v81: any;
         v3();
-        v73 = undefined;
-        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-        const _v280: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v285: any;
-        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v280, v), undefined);
-        v285 = undefined;
-        const v300: US3_$union = defaultArg(_v280.contents, US3_US3_1());
-        const v345: string = toString((v300.tag === /* US3_0 */ 0) ? ((v304 = v300.fields[0], (v314 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v304))), create(1, 1, 1, hours(v314), minutes(v314), seconds(v314), milliseconds(v314))))) : now(), method6());
-        const v558: string = method10();
-        const v567: Mut4 = new Mut4(method8());
-        let v578: any;
-        closure10(v567, `${toText(interpolate("%A%P()", [US0_US0_0()]))}`, undefined);
-        v578 = undefined;
-        const v585: string = item(0, split(v567.l0, [v558], undefined, 0));
-        const v589: Mut4 = new Mut4(method8());
-        let v600: any;
-        closure10(v589, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
-        v600 = undefined;
-        const v603: string = v589.l0;
-        const v610: US1_$union = (v603.indexOf(v585) === 0) ? US1_US1_0("Verbose") : US1_US1_1();
-        let v799: US1_$union;
-        if (v610.tag === /* US1_0 */ 0) {
-            v799 = US1_US1_0(v610.fields[0]);
-        }
-        else {
-            const v617: string = method10();
-            const v626: Mut4 = new Mut4(method8());
-            let v637: any;
-            closure10(v626, `${toText(interpolate("%A%P()", [US0_US0_1()]))}`, undefined);
-            v637 = undefined;
-            const v644: string = item(0, split(v626.l0, [v617], undefined, 0));
-            const v648: Mut4 = new Mut4(method8());
-            let v659: any;
-            closure10(v648, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
-            v659 = undefined;
-            const v662: string = v648.l0;
-            const v669: US1_$union = (v662.indexOf(v644) === 0) ? US1_US1_0("Debug") : US1_US1_1();
-            if (v669.tag === /* US1_0 */ 0) {
-                v799 = US1_US1_0(v669.fields[0]);
-            }
-            else {
-                const v676: string = method10();
-                const v685: Mut4 = new Mut4(method8());
-                let v696: any;
-                closure10(v685, `${toText(interpolate("%A%P()", [US0_US0_2()]))}`, undefined);
-                v696 = undefined;
-                const v703: string = item(0, split(v685.l0, [v676], undefined, 0));
-                const v707: Mut4 = new Mut4(method8());
-                let v718: any;
-                closure10(v707, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
-                v718 = undefined;
-                const v721: string = v707.l0;
-                const v728: US1_$union = (v721.indexOf(v703) === 0) ? US1_US1_0("Info") : US1_US1_1();
-                if (v728.tag === /* US1_0 */ 0) {
-                    v799 = US1_US1_0(v728.fields[0]);
-                }
-                else {
-                    const v735: string = method10();
-                    const v744: Mut4 = new Mut4(method8());
-                    let v755: any;
-                    closure10(v744, `${toText(interpolate("%A%P()", [US0_US0_3()]))}`, undefined);
-                    v755 = undefined;
-                    const v762: string = item(0, split(v744.l0, [v735], undefined, 0));
-                    const v766: Mut4 = new Mut4(method8());
-                    let v777: any;
-                    closure10(v766, `${toText(interpolate("%A%P()", [US0_US0_4()]))}`, undefined);
-                    v777 = undefined;
-                    const v780: string = v766.l0;
-                    const v787: US1_$union = (v780.indexOf(v762) === 0) ? US1_US1_0("Warning") : US1_US1_1();
-                    v799 = ((v787.tag === /* US1_0 */ 0) ? US1_US1_0(v787.fields[0]) : US1_US1_0("Critical"));
-                }
-            }
-        }
-        let v803: string;
-        if (v799.tag === /* US1_0 */ 0) {
-            v803 = v799.fields[0];
-        }
-        else {
-            throw new Error("Option does not have a value.");
-        }
-        const v859: string = ("\u001b[91m" + padLeft(v803.toLocaleLowerCase(), 7, " ")) + method7();
-        const v874: int64 = patternInput_2[0].l0;
-        const v885: string = toText(interpolate("%A%P()", [v1_1]));
-        const v898: Mut4 = new Mut4(method8());
-        let v905: any;
-        closure10(v898, `${"{ "}`, undefined);
-        v905 = undefined;
-        let v914: any;
-        closure10(v898, `${"timeout"}`, undefined);
-        v914 = undefined;
-        let v923: any;
-        closure10(v898, `${" = "}`, undefined);
-        v923 = undefined;
-        let v931: any;
-        closure10(v898, `${v0_1}`, undefined);
-        v931 = undefined;
-        let v940: any;
-        closure10(v898, `${"; "}`, undefined);
-        v940 = undefined;
-        let v949: any;
-        closure10(v898, `${"ex"}`, undefined);
-        v949 = undefined;
-        let v957: any;
-        closure10(v898, `${" = "}`, undefined);
-        v957 = undefined;
-        let v965: any;
-        closure10(v898, `${v885}`, undefined);
-        v965 = undefined;
-        let v974: any;
-        closure10(v898, `${" }"}`, undefined);
-        v974 = undefined;
-        const v977: string = v898.l0;
-        const v1016: string = trimEnd(trimStart(`${v345} ${v859} #${v874} ${closure22(undefined, undefined)} / ${v977}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v1016);
-        patternInput[1].l0(v1016);
+        v81 = undefined;
+        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+        const _v292: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v297: any;
+        closure9(patternInput_2[5], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v292, v), undefined);
+        v297 = undefined;
+        const v312: US3_$union = defaultArg(_v292.contents, US3_US3_1());
+        const v357: string = toString((v312.tag === /* US3_0 */ 0) ? ((v316 = v312.fields[0], (v326 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v316))), create(1, 1, 1, hours(v326), minutes(v326), seconds(v326), milliseconds(v326))))) : now(), method6());
+        const v622: string = ("\u001b[91m" + padLeft("Critical".toLocaleLowerCase(), 7, " ")) + method7();
+        const v637: int64 = patternInput_2[0].l0;
+        const v648: string = toText(interpolate("%A%P()", [v1_1]));
+        const v661: Mut3 = new Mut3(method8());
+        let v668: any;
+        closure10(v661, `${"{ "}`, undefined);
+        v668 = undefined;
+        let v677: any;
+        closure10(v661, `${"timeout"}`, undefined);
+        v677 = undefined;
+        let v686: any;
+        closure10(v661, `${" = "}`, undefined);
+        v686 = undefined;
+        let v694: any;
+        closure10(v661, `${v0_1}`, undefined);
+        v694 = undefined;
+        let v703: any;
+        closure10(v661, `${"; "}`, undefined);
+        v703 = undefined;
+        let v712: any;
+        closure10(v661, `${"ex"}`, undefined);
+        v712 = undefined;
+        let v720: any;
+        closure10(v661, `${" = "}`, undefined);
+        v720 = undefined;
+        let v728: any;
+        closure10(v661, `${v648}`, undefined);
+        v728 = undefined;
+        let v737: any;
+        closure10(v661, `${" }"}`, undefined);
+        v737 = undefined;
+        const v799: string = trimEnd(trimStart(`${v357} ${v622} #${v637} ${"async.run_with_timeout_async**"} / ${v661.l0}`, ...[]), ...[" ", "/"]);
+        closure11(undefined, v799);
+        patternInput[1].l0(v799);
     }
 }
 
-export function closure16(v0_1: int32, v1_1: string, v2_1: int32): any {
+export function closure15(v0_1: int32, v1_1: string, v2_1: int32): any {
     return defaultOf();
 }
 
-export function closure15(v0_1: int32, v1_1: string): ((arg0: int32) => any) {
-    return (v: int32): any => closure16(v0_1, v1_1, v);
+export function closure14(v0_1: int32, v1_1: string): ((arg0: int32) => any) {
+    return (v: int32): any => closure15(v0_1, v1_1, v);
 }
 
-export function closure14(unitVar: void, v0_1: int32): ((arg0: string) => ((arg0: int32) => any)) {
-    return (v: string): ((arg0: int32) => any) => closure15(v0_1, v);
+export function closure13(unitVar: void, v0_1: int32): ((arg0: string) => ((arg0: int32) => any)) {
+    return (v: string): ((arg0: int32) => any) => closure14(v0_1, v);
 }
 
-export function closure27(v0_1: FSharpRef<Option<US7_$union>>, v1_1: Option<US7_$union>): FSharpRef<Option<US7_$union>> {
+export function closure24(v0_1: FSharpRef<Option<US7_$union>>, v1_1: Option<US7_$union>): FSharpRef<Option<US7_$union>> {
     v0_1.contents = v1_1;
     return v0_1;
 }
 
-export function closure28(v0_1: Option<int32>, v1_1: ((arg0: Option<US7_$union>) => FSharpRef<Option<US7_$union>>), unitVar: void): void {
+export function closure25(v0_1: Option<int32>, v1_1: ((arg0: Option<US7_$union>) => FSharpRef<Option<US7_$union>>), unitVar: void): void {
     let x: int32;
     v1_1((v0_1 == null) ? undefined : ((x = (value_1(v0_1) | 0), ((): US7_$union => US7_US7_0(x))())));
 }
 
-export function closure30(unitVar: void, unitVar_1: void): string {
-    return "networking.wait_for_port_access";
-}
-
-export function closure29(v0_1: Option<int32>, v1_1: boolean, v2_1: int32, v3: int64, unitVar: void): void {
-    let v306: int64, v316: number;
+export function closure26(v0_1: Option<int32>, v1_1: boolean, v2_1: int32, v3: int64, unitVar: void): void {
+    let v318: int64, v328: number;
     const v5 = (): void => {
         closure0(undefined, undefined);
     };
     let v6: any;
     v5();
     v6 = undefined;
-    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    let v35: any;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    let v39: any;
     v5();
-    v35 = undefined;
-    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-    const v63: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v63, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    v39 = undefined;
+    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    const v71: US0_$union = patternInput_1[4].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v71, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        let v71: any;
+        let v79: any;
         closure7(patternInput[0], undefined);
-        v71 = undefined;
-        let v75: any;
+        v79 = undefined;
+        let v83: any;
         v5();
-        v75 = undefined;
-        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value_1(State_trace_state());
-        const _v282: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
-        let v287: any;
-        closure9(patternInput_2[4], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v282, v), undefined);
-        v287 = undefined;
-        const v302: US3_$union = defaultArg(_v282.contents, US3_US3_1());
-        const v347: string = toString((v302.tag === /* US3_0 */ 0) ? ((v306 = v302.fields[0], (v316 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v306))), create(1, 1, 1, hours(v316), minutes(v316), seconds(v316), milliseconds(v316))))) : now(), method6());
-        const v612: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
-        const v627: int64 = patternInput_2[0].l0;
-        const v629: Mut4 = new Mut4(method8());
-        let v636: any;
-        closure10(v629, `${"{ "}`, undefined);
-        v636 = undefined;
-        let v645: any;
-        closure10(v629, `${"port"}`, undefined);
-        v645 = undefined;
-        let v654: any;
-        closure10(v629, `${" = "}`, undefined);
-        v654 = undefined;
-        let v662: any;
-        closure10(v629, `${v2_1}`, undefined);
-        v662 = undefined;
-        let v671: any;
-        closure10(v629, `${"; "}`, undefined);
-        v671 = undefined;
-        let v680: any;
-        closure10(v629, `${"retry"}`, undefined);
-        v680 = undefined;
-        let v688: any;
-        closure10(v629, `${" = "}`, undefined);
-        v688 = undefined;
-        let v696: any;
-        closure10(v629, `${v3}`, undefined);
-        v696 = undefined;
-        let v704: any;
-        closure10(v629, `${"; "}`, undefined);
-        v704 = undefined;
-        let v713: any;
-        closure10(v629, `${"timeout"}`, undefined);
-        v713 = undefined;
-        let v721: any;
-        closure10(v629, `${" = "}`, undefined);
-        v721 = undefined;
-        let v756: any;
-        closure10(v629, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
-        v756 = undefined;
-        let v764: any;
-        closure10(v629, `${"; "}`, undefined);
-        v764 = undefined;
-        let v773: any;
-        closure10(v629, `${"status"}`, undefined);
-        v773 = undefined;
-        let v781: any;
-        closure10(v629, `${" = "}`, undefined);
-        v781 = undefined;
-        let v792: any;
-        closure10(v629, `${v1_1 ? "true" : "false"}`, undefined);
-        v792 = undefined;
-        let v801: any;
-        closure10(v629, `${" }"}`, undefined);
-        v801 = undefined;
-        const v804: string = v629.l0;
-        const v843: string = trimEnd(trimStart(`${v347} ${v612} #${v627} ${closure30(undefined, undefined)} / ${v804}`, ...[]), ...[" ", "/"]);
-        closure12(undefined, v843);
-        patternInput[1].l0(v843);
+        v83 = undefined;
+        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+        const _v294: FSharpRef<Option<US3_$union>> = new FSharpRef<Option<US3_$union>>(undefined);
+        let v299: any;
+        closure9(patternInput_2[5], (v: Option<US3_$union>): FSharpRef<Option<US3_$union>> => closure8(_v294, v), undefined);
+        v299 = undefined;
+        const v314: US3_$union = defaultArg(_v294.contents, US3_US3_1());
+        const v359: string = toString((v314.tag === /* US3_0 */ 0) ? ((v318 = v314.fields[0], (v328 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v318))), create(1, 1, 1, hours(v328), minutes(v328), seconds(v328), milliseconds(v328))))) : now(), method6());
+        const v624: string = ("\u001b[90m" + padLeft("Verbose".toLocaleLowerCase(), 7, " ")) + method7();
+        const v639: int64 = patternInput_2[0].l0;
+        const v641: Mut3 = new Mut3(method8());
+        let v648: any;
+        closure10(v641, `${"{ "}`, undefined);
+        v648 = undefined;
+        let v657: any;
+        closure10(v641, `${"port"}`, undefined);
+        v657 = undefined;
+        let v666: any;
+        closure10(v641, `${" = "}`, undefined);
+        v666 = undefined;
+        let v674: any;
+        closure10(v641, `${v2_1}`, undefined);
+        v674 = undefined;
+        let v683: any;
+        closure10(v641, `${"; "}`, undefined);
+        v683 = undefined;
+        let v692: any;
+        closure10(v641, `${"retry"}`, undefined);
+        v692 = undefined;
+        let v700: any;
+        closure10(v641, `${" = "}`, undefined);
+        v700 = undefined;
+        let v708: any;
+        closure10(v641, `${v3}`, undefined);
+        v708 = undefined;
+        let v716: any;
+        closure10(v641, `${"; "}`, undefined);
+        v716 = undefined;
+        let v725: any;
+        closure10(v641, `${"timeout"}`, undefined);
+        v725 = undefined;
+        let v733: any;
+        closure10(v641, `${" = "}`, undefined);
+        v733 = undefined;
+        let v768: any;
+        closure10(v641, `${toText(interpolate("%A%P()", [v0_1]))}`, undefined);
+        v768 = undefined;
+        let v776: any;
+        closure10(v641, `${"; "}`, undefined);
+        v776 = undefined;
+        let v785: any;
+        closure10(v641, `${"status"}`, undefined);
+        v785 = undefined;
+        let v793: any;
+        closure10(v641, `${" = "}`, undefined);
+        v793 = undefined;
+        let v804: any;
+        closure10(v641, `${v1_1 ? "true" : "false"}`, undefined);
+        v804 = undefined;
+        let v813: any;
+        closure10(v641, `${" }"}`, undefined);
+        v813 = undefined;
+        const v855: string = trimEnd(trimStart(`${v359} ${v624} #${v639} ${"networking.wait_for_port_access"} / ${v641.l0}`, ...[]), ...[" ", "/"]);
+        closure11(undefined, v855);
+        patternInput[1].l0(v855);
     }
 }
 
-export function method11(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32, v4: int64): any {
+export function method9(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32, v4: int64): any {
     return defaultOf();
 }
 
-export function closure26(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32): any {
-    return method11(v0_1, v1_1, v2_1, v3, 0n);
+export function closure23(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32): any {
+    return method9(v0_1, v1_1, v2_1, v3, 0n);
 }
 
-export function closure25(v0_1: Option<int32>, v1_1: boolean, v2_1: string): ((arg0: int32) => any) {
-    return (v: int32): any => closure26(v0_1, v1_1, v2_1, v);
+export function closure22(v0_1: Option<int32>, v1_1: boolean, v2_1: string): ((arg0: int32) => any) {
+    return (v: int32): any => closure23(v0_1, v1_1, v2_1, v);
 }
 
-export function closure24(v0_1: Option<int32>, v1_1: boolean): ((arg0: string) => ((arg0: int32) => any)) {
-    return (v: string): ((arg0: int32) => any) => closure25(v0_1, v1_1, v);
+export function closure21(v0_1: Option<int32>, v1_1: boolean): ((arg0: string) => ((arg0: int32) => any)) {
+    return (v: string): ((arg0: int32) => any) => closure22(v0_1, v1_1, v);
 }
 
-export function closure23(unitVar: void, v0_1: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) {
-    return (v: boolean): ((arg0: string) => ((arg0: int32) => any)) => closure24(v0_1, v);
+export function closure20(unitVar: void, v0_1: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) {
+    return (v: boolean): ((arg0: string) => ((arg0: int32) => any)) => closure21(v0_1, v);
 }
 
-export function method12(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
+export function method10(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
     return defaultOf();
 }
 
-export function closure33(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
-    return method12(v0_1, v1_1, v2_1);
+export function closure29(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
+    return method10(v0_1, v1_1, v2_1);
 }
 
-export function closure32(v0_1: Option<int32>, v1_1: string): ((arg0: int32) => any) {
-    return (v: int32): any => closure33(v0_1, v1_1, v);
+export function closure28(v0_1: Option<int32>, v1_1: string): ((arg0: int32) => any) {
+    return (v: int32): any => closure29(v0_1, v1_1, v);
 }
 
-export function closure31(unitVar: void, v0_1: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) {
-    return (v: string): ((arg0: int32) => any) => closure32(v0_1, v);
+export function closure27(unitVar: void, v0_1: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) {
+    return (v: string): ((arg0: int32) => any) => closure28(v0_1, v);
 }
 
 export const v0: any = undefined;
@@ -887,28 +786,28 @@ export const v1 = (): void => {
 
 export const v2: any = (v1(), v0);
 
-export const v15 = (v: string): ((arg0: int32) => any) => closure4(undefined, v);
+export const v16 = (v: string): ((arg0: int32) => any) => closure4(undefined, v);
 
 export function test_port_open(x: string): ((arg0: int32) => any) {
-    return v15(x);
-}
-
-export const v16 = (v: int32): ((arg0: string) => ((arg0: int32) => any)) => closure14(undefined, v);
-
-export function test_port_open_timeout(x: int32): ((arg0: string) => ((arg0: int32) => any)) {
     return v16(x);
 }
 
-export const v17 = (v: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) => closure23(undefined, v);
+export const v17 = (v: int32): ((arg0: string) => ((arg0: int32) => any)) => closure13(undefined, v);
 
-export function wait_for_port_access(x: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) {
+export function test_port_open_timeout(x: int32): ((arg0: string) => ((arg0: int32) => any)) {
     return v17(x);
 }
 
-export const v18 = (v: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) => closure31(undefined, v);
+export const v18 = (v: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) => closure20(undefined, v);
+
+export function wait_for_port_access(x: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) {
+    return v18(x);
+}
+
+export const v19 = (v: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) => closure27(undefined, v);
 
 export function get_available_port(x: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) {
-    return v18(x);
+    return v19(x);
 }
 
 

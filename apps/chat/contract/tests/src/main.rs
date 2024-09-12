@@ -66,7 +66,7 @@ async fn main() -> anyhow::Result<()> {
         .view(contract_id, "generate_cid_borsh")
         .args_borsh(vec![] as Vec<u8>)
         .await?;
-    println!("\n\ngenerate_cid_borsh(account1): {result:#?}");
+    println!("\n\ngenerate_cid_borsh(account1): {result:?}");
     let result: String = result.borsh()?;
     assert_eq!(
         result,
