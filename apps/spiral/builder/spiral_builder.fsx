@@ -19801,7 +19801,7 @@ and method97 (v0 : string, v1 : string) : unit =
         let v8 : System.IDisposable = method28(v5)
         ()
     let v9 : bool = method19(v1)
-    let v32 : bool =
+    let v34 : bool =
         if v9 then
             let v10 : unit = ()
             
@@ -19823,105 +19823,84 @@ and method97 (v0 : string, v1 : string) : unit =
             let _v10 = v16 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v17 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
+            let v17 : Result<std_path_PathBuf, std_io_Error> = null |> unbox<Result<std_path_PathBuf, std_io_Error>>
             let _v10 = v17 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v18 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
-            let _v10 = v18 
+            let v20 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
+            let _v10 = v20 
             #endif
 #else
-            let v19 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
-            let _v10 = v19 
+            let v21 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
+            let _v10 = v21 
             #endif
-            let v20 : Result<std_path_PathBuf, std_io_Error> = _v10 
-            let v23 : unit = ()
+            let v22 : Result<std_path_PathBuf, std_io_Error> = _v10 
+            let v25 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v24 : string = "$0.is_err()"
-            let v25 : bool = Fable.Core.RustInterop.emitRustExpr v20 v24 
-            let _v23 = v25 
+            let v26 : string = "$0.is_err()"
+            let v27 : bool = Fable.Core.RustInterop.emitRustExpr v22 v26 
+            let _v25 = v27 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v26 : string = "$0.is_err()"
-            let v27 : bool = Fable.Core.RustInterop.emitRustExpr v20 v26 
-            let _v23 = v27 
+            let v28 : string = "$0.is_err()"
+            let v29 : bool = Fable.Core.RustInterop.emitRustExpr v22 v28 
+            let _v25 = v29 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v28 : string = "$0.is_err()"
-            let v29 : bool = Fable.Core.RustInterop.emitRustExpr v20 v28 
-            let _v23 = v29 
+            let v30 : string = "$0.is_err()"
+            let v31 : bool = Fable.Core.RustInterop.emitRustExpr v22 v30 
+            let _v25 = v31 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let _v23 = true 
+            let _v25 = true 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let _v23 = true 
+            let _v25 = true 
             #endif
 #else
-            let _v23 = true 
+            let _v25 = true 
             #endif
-            let v30 : bool = _v23 
-            v30
+            let v32 : bool = _v25 
+            v32
         else
             false
-    if v32 then
-        let v33 : bool = true
-        method32(v33, v1)
-    let v34 : bool = method19(v1)
-    let v35 : bool = v34 = false
-    if v35 then
-        let v36 : unit = ()
+    if v34 then
+        let v35 : bool = true
+        method32(v35, v1)
+    let v36 : bool = method19(v1)
+    let v37 : bool = v36 = false
+    if v37 then
+        let v38 : unit = ()
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v37 : bool = true
-        let mutable _v37 : unit option = None 
-        
-#if _FREEBSD
-        let v38 : string = "std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
-        Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v38 
-        () 
-        #endif
-#if _LINUX
-        let v39 : string = "std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
-        Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v39 
-        () 
-        #endif
-#if _OSX
-        let v40 : string = "std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
-        Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v40 
-        () 
-        #endif
-#if _WINDOWS
-        let v41 : string = "std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"
-        Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v41 
-        () 
-        #endif
-        |> fun x -> _v37 <- Some x
-        match _v37 with Some x -> x | None -> failwith "runtime.run_platform / _v37=None"
-        let _v36 = () 
+        let v39 : string = "true; #[cfg(windows)] std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"
+        let v40 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v39 
+        let v41 : string = "true; #[cfg(unix)] std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
+        let v42 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v41 
+        let _v38 = () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let _v36 = () 
+        let _v38 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let _v36 = () 
+        let _v38 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let _v36 = () 
+        let _v38 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let _v36 = () 
+        let _v38 = () 
         #endif
 #else
-        let v42 : System.IO.FileSystemInfo = System.IO.Directory.CreateSymbolicLink (v1, v0)
-        let _v36 = () 
+        let v43 : System.IO.FileSystemInfo = System.IO.Directory.CreateSymbolicLink (v1, v0)
+        let _v38 = () 
         #endif
-        _v36 
+        _v38 
         ()
 and method99 () : string =
     let v0 : string = "("

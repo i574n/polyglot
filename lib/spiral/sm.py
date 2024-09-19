@@ -299,10 +299,10 @@ def closure38(v0_1: int, v1_1: str) -> str:
 
 
 def closure37(unit_var: None, v0_1: int) -> Callable[[str], str]:
-    def _arrow38(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow37(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure38(v0_1, v)
 
-    return _arrow38
+    return _arrow37
 
 
 def method4(v0_1: int64, v1_1: str) -> str:
@@ -569,61 +569,61 @@ def ellipsis(x: int) -> Callable[[str], str]:
     return v16(x)
 
 
-def _arrow62(v: int64) -> Callable[[str], str]:
+def _arrow63(v: int64) -> Callable[[str], str]:
     return closure39(None, v)
 
 
-v17: Callable[[int64, str], str] = _arrow62
+v17: Callable[[int64, str], str] = _arrow63
 
 def ellipsis_end(x: int64) -> Callable[[str], str]:
     return v17(x)
 
 
-def _arrow63(v: Exception) -> str:
+def _arrow64(v: Exception) -> str:
     return closure41(None, v)
 
 
-v18: Callable[[Exception], str] = _arrow63
+v18: Callable[[Exception], str] = _arrow64
 
 def format_exception(x: Exception) -> str:
     return v18(x)
 
 
-def _arrow64(v: str) -> Callable[[Array[str]], str]:
+def _arrow65(v: str) -> Callable[[Array[str]], str]:
     return closure42(None, v)
 
 
-v19: Callable[[str, Array[str]], str] = _arrow64
+v19: Callable[[str, Array[str]], str] = _arrow65
 
 def concat_array_trailing(x: str) -> Callable[[Array[str]], str]:
     return v19(x)
 
 
-def _arrow65(v: str) -> Callable[[IEnumerable_1[str]], str]:
+def _arrow67(v: str) -> Callable[[IEnumerable_1[str]], str]:
     return closure44(None, v)
 
 
-v20: Callable[[str, IEnumerable_1[str]], str] = _arrow65
+v20: Callable[[str, IEnumerable_1[str]], str] = _arrow67
 
 def concat(x: str) -> Callable[[IEnumerable_1[str]], str]:
     return v20(x)
 
 
-def _arrow66(v: str) -> Callable[[Array[str]], str]:
+def _arrow68(v: str) -> Callable[[Array[str]], str]:
     return closure46(None, v)
 
 
-v21: Callable[[str, Array[str]], str] = _arrow66
+v21: Callable[[str, Array[str]], str] = _arrow68
 
 def join_0027(x: str) -> Callable[[Array[str]], str]:
     return v21(x)
 
 
-def _arrow67(v: str) -> Array[str]:
+def _arrow69(v: str) -> Array[str]:
     return closure48(None, v)
 
 
-v22: Callable[[str], Array[str]] = _arrow67
+v22: Callable[[str], Array[str]] = _arrow69
 
 def to_char_array(x: str) -> Array[str]:
     return v22(x)

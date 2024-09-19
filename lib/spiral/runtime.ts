@@ -1,19 +1,19 @@
-import { defaultOf, uncurry2, compare, IComparable, IEquatable, createAtom } from "../../../deps/Fable/src/fable-library-ts/Util.js";
-import { some, defaultArg, value as value_12, Option } from "../../../deps/Fable/src/fable-library-ts/Option.js";
-import { equals, compare as compare_1, op_Subtraction, op_Addition, toInt64, int64 } from "../../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { FSharpRef, Record, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
-import { array_type, option_type, tuple_type, int32_type, class_type, char_type, bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { int32 } from "../../../deps/Fable/src/fable-library-ts/Int32.js";
-import { create, toString, now, getTicks } from "../../../deps/Fable/src/fable-library-ts/Date.js";
-import { ofSeq, find } from "../../../deps/Fable/src/fable-library-ts/Map.js";
-import { milliseconds, seconds, minutes, hours, fromTicks } from "../../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { join, replicate, interpolate, toText, trimStart, trimEnd, padLeft } from "../../../deps/Fable/src/fable-library-ts/String.js";
-import { StringBuilder_$ctor_Z721C83C5, StringBuilder__Append_Z721C83C5, StringBuilder__Clear } from "../../../deps/Fable/src/fable-library-ts/System.Text.js";
-import { setItem, fill } from "../../../deps/Fable/src/fable-library-ts/Array.js";
-import { toArray, length, item, empty, cons, foldBack, FSharpList, ofArray } from "../../../deps/Fable/src/fable-library-ts/List.js";
-import { map, delay } from "../../../deps/Fable/src/fable-library-ts/Seq.js";
-import { rangeDouble } from "../../../deps/Fable/src/fable-library-ts/Range.js";
-import { FSharpResult$2_$union, FSharpResult$2_Error, FSharpResult$2_Ok } from "../../../deps/Fable/src/fable-library-ts/Result.js";
+import { defaultOf, uncurry2, compare, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { some, defaultArg, value as value_12, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { equals, compare as compare_1, op_Subtraction, op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { FSharpRef, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { array_type, option_type, tuple_type, int32_type, class_type, char_type, bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
+import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { join, replicate, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { StringBuilder_$ctor_Z721C83C5, StringBuilder__Append_Z721C83C5, StringBuilder__Clear } from "../../deps/Fable/src/fable-library-ts/System.Text.js";
+import { setItem, fill } from "../../deps/Fable/src/fable-library-ts/Array.js";
+import { toArray, length, item, empty, cons, foldBack, FSharpList, ofArray } from "../../deps/Fable/src/fable-library-ts/List.js";
+import { map, delay } from "../../deps/Fable/src/fable-library-ts/Seq.js";
+import { rangeDouble } from "../../deps/Fable/src/fable-library-ts/Range.js";
+import { FSharpResult$2_$union, FSharpResult$2_Error, FSharpResult$2_Ok } from "../../deps/Fable/src/fable-library-ts/Result.js";
 
 export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 

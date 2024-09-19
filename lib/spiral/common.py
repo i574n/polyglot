@@ -264,7 +264,7 @@ def closure3(unit_var: None, v0_1: str) -> None:
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
     v173: str = method2(method1())
     v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
-    def _arrow37(__unit: None=None, v0_1: Any=v0_1) -> US2:
+    def _arrow38(__unit: None=None, v0_1: Any=v0_1) -> US2:
         v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
         if v185.tag == 0:
             return US2(0, v185.fields[0])
@@ -286,7 +286,7 @@ def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow37(), US3(0, ticks_1(now())) if (method2(method4()) == "True") else US3(1))
+    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow38(), US3(0, ticks_1(now())) if (method2(method4()) == "True") else US3(1))
     v295: US3 = _v1[1]
     v294: US2 = _v1[0]
     def v360(v: str, v0_1: Any=v0_1) -> None:
@@ -398,12 +398,12 @@ def closure10(v0_1: int, v1_1: Exception, unit_var: None) -> None:
     v37 = None
     pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
     v69: US0 = pattern_input_1[4].l0
-    class ObjectExpr68:
+    class ObjectExpr62:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[2].l0 == False) else (3 >= find(v69, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr68()))):
+    if False if (pattern_input_1[2].l0 == False) else (3 >= find(v69, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62()))):
         v77: None
         closure11(pattern_input[0], None)
         v77 = None
@@ -419,11 +419,11 @@ def closure10(v0_1: int, v1_1: Exception, unit_var: None) -> None:
         closure13(pattern_input_2[5], v362, None)
         v365 = None
         v380: US3 = default_arg(_v360.contents, US3(1))
-        def _arrow69(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> Any:
+        def _arrow66(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> Any:
             v394: Any = create(op_subtraction(ticks_1(now()), v380.fields[0]))
             return create_1(1, 1, 1, hours(v394), minutes(v394), seconds(v394), milliseconds(v394))
 
-        v425: str = to_string(_arrow69() if (v380.tag == 0) else now(), method9())
+        v425: str = to_string(_arrow66() if (v380.tag == 0) else now(), method9())
         v626: str = ("\u001b[93m" + pad_left("Warning".lower(), 7, " ")) + method10()
         v637: int64 = pattern_input_2[0].l0
         v639: Mut3 = Mut3(method11())

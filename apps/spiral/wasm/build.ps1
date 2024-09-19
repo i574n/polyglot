@@ -26,7 +26,7 @@ $builderArgs = @("$projectName.fsx", "--persist-only", $runtime, "--packages", "
 
 $targetDir = GetTargetDir $projectName
 
-{ BuildFable $targetDir $projectName "rs" "" $true } | Invoke-Block
+{ BuildFable $targetDir $projectName "rs" "" } | Invoke-Block
 (Get-Content "$targetDir/target/rs/$projectName.rs") `
     -replace "../../../../lib", "../../../lib" `
     -replace ".fsx`"]", ".rs`"]" `

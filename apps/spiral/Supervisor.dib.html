@@ -8321,8 +8321,6 @@ a.anchor-link {
 
     <span class="n">let</span> <span class="n">libLinkTargetPath</span> <span class="o">=</span> <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"lib/spiral"</span>
     <span class="n">let</span> <span class="n">libLinkPath</span> <span class="o">=</span> <span class="n">packageDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"spiral"</span>
-
-    <span class="n">libLinkPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">link_directory</span> <span class="n">libLinkTargetPath</span>
     
     <span class="n">let</span> <span class="n">packagesModule</span> <span class="o">=</span>
         <span class="nb">input</span><span class="o">.</span><span class="n">packages</span>
@@ -8335,9 +8333,16 @@ a.anchor-link {
         <span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">    "</span>
 
+    <span class="n">let</span> <span class="n">packageDir</span><span class="s1">' =</span>
+        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">packages</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">isEmpty</span>
+        <span class="n">then</span> <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"lib"</span>
+        <span class="k">else</span>
+            <span class="n">libLinkPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">link_directory</span> <span class="n">libLinkTargetPath</span>
+            <span class="n">packageDir</span>
+
     <span class="n">let</span> <span class="n">spiprojPath</span> <span class="o">=</span> <span class="n">packageDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"package.spiproj"</span>
     <span class="n">let</span> <span class="n">spiprojCode</span> <span class="o">=</span>
-        <span class="err">$</span><span class="s2">"""packageDir: </span><span class="si">{packageDir}</span>
+        <span class="err">$</span><span class="s2">"""packageDir: {packageDir'}</span>
 <span class="s2">packages:</span>
 <span class="s2">    |core-</span>
 <span class="s2">    spiral-</span>
@@ -8480,67 +8485,57 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:18 <span class="ansi-black-intense-fg">verbose</span> #1 async.run_with_timeout_async / { timeout = 180 }
-00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:15 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:15 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:15 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #2 async.run_with_timeout_async / { timeout = 100 }
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #3 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #4 async.run_with_timeout_async / { timeout = 100 }
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #5 async.run_with_timeout_async / { timeout = 100 }
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #6 async.run_with_timeout_async / { timeout = 100 }
-00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #1 runWithTimeoutAsync / timeout: 500
-00:00:15 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #2 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #3 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:16 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; Server bound to: http://localhost:13805
-00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:00:22 <span class="ansi-black-intense-fg">verbose</span> #1 async.run_with_timeout_async / { timeout = 180 }
+00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:00:17 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:17 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:17 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:22 <span class="ansi-black-intense-fg">verbose</span> #2 async.run_with_timeout_async / { timeout = 100 }
+00:00:22 <span class="ansi-black-intense-fg">verbose</span> #3 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:22 <span class="ansi-black-intense-fg">verbose</span> #4 async.run_with_timeout_async / { timeout = 100 }
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:22 <span class="ansi-black-intense-fg">verbose</span> #5 async.run_with_timeout_async / { timeout = 100 }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #1 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #2 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; Server bound to: http://localhost:13805
+00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #3 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #6 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:13 <span class="ansi-black-intense-fg">verbose</span> #7 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main ...et/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"}} / result:
-00:00:13 <span class="ansi-black-intense-fg">verbose</span> #8 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"}} / result:
-00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #9 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #6 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main ...et/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"}} / result:
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #7 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"}} / result:
+00:00:19 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #8 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #10 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #9 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #11 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #10 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #12 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:13 <span class="ansi-blue-intense-fg">  debug</span> #11 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; 00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #13 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #12 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #14 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #13 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #15 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #14 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #16 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #15 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #17 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #16 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #18 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #17 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #19 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #18 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #20 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #19 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #21 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #20 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #22 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #21 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #23 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #24 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #25 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #26 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #27 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #22 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
@@ -8552,7 +8547,7 @@ and closure0 () () : i...t v0 : unit = ()
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #28 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #23 Supervisor.buildFile / takeWhileInclusive / outputContent:
 let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
@@ -8564,10 +8559,10 @@ and closure0 () () : i...t v0 : unit = ()
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:00:17 <span class="ansi-black-intense-fg">verbose</span> #29 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6"]}} / result:
-00:00:25 <span class="ansi-black-intense-fg">verbose</span> #7 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:25 <span class="ansi-black-intense-fg">verbose</span> #8 async.run_with_timeout_async / { timeout = 100 }
-00:00:17 <span class="ansi-blue-intense-fg">  debug</span> #30 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:16 <span class="ansi-black-intense-fg">verbose</span> #24 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6"]}} / result:
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #7 async.run_with_timeout_async / { timeout = 100 }
+00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #25 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some
   (Some
      "let rec closure1 () () : unit =
@@ -8622,57 +8617,59 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:26 <span class="ansi-black-intense-fg">verbose</span> #9 async.run_with_timeout_async / { timeout = 180 }
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:26 <span class="ansi-black-intense-fg">verbose</span> #10 async.run_with_timeout_async / { timeout = 100 }
-00:00:26 <span class="ansi-black-intense-fg">verbose</span> #11 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:26 <span class="ansi-black-intense-fg">verbose</span> #12 async.run_with_timeout_async / { timeout = 100 }
-00:00:26 <span class="ansi-black-intense-fg">verbose</span> #13 async.run_with_timeout_async / { timeout = 100 }
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #14 async.run_with_timeout_async / { timeout = 100 }
-00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #31 runWithTimeoutAsync / timeout: 500
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #32 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #33 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:23 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; Server bound to: http://localhost:13805
-00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #34 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:00:28 <span class="ansi-black-intense-fg">verbose</span> #8 async.run_with_timeout_async / { timeout = 180 }
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #9 async.run_with_timeout_async / { timeout = 100 }
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #10 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #11 async.run_with_timeout_async / { timeout = 100 }
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #12 async.run_with_timeout_async / { timeout = 100 }
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #26 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #27 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:24 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; Server bound to: http://localhost:13805
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #28 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #29 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #30 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #31 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"}} / result:
+00:00:18 <span class="ansi-black-intense-fg">verbose</span> #32 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"}} / result:
+00:00:24 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #33 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #34 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #35 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #36 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #37 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"}} / result:
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #38 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"}} / result:
-00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #39 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #37 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #40 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #38 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:23 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
+00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #39 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #40 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #41 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #42 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #43 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #43 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #44 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #44 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #45 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #46 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
 00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #47 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #48 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #49 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #50 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #51 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot find `main` in file main., FatalError "Cannot find `main` in file main.")) / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #52 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #48 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "Cannot find `main` in file main.",
@@ -8681,10 +8678,10 @@ let v0 : (unit -&gt; int32) = closure0()
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #53 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa"]}} / result:
-00:00:30 <span class="ansi-black-intense-fg">verbose</span> #15 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:30 <span class="ansi-black-intense-fg">verbose</span> #16 async.run_with_timeout_async / { timeout = 100 }
-00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #54 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21 <span class="ansi-black-intense-fg">verbose</span> #49 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa"]}} / result:
+00:00:32 <span class="ansi-black-intense-fg">verbose</span> #13 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:32 <span class="ansi-black-intense-fg">verbose</span> #14 async.run_with_timeout_async / { timeout = 100 }
+00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #50 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["Cannot find `main` in file main."])
 
 </pre>
@@ -8727,34 +8724,42 @@ Some (None, ["Cannot find `main` in file main."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:31 <span class="ansi-black-intense-fg">verbose</span> #17 async.run_with_timeout_async / { timeout = 180 }
-00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #15 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #16 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:31 <span class="ansi-black-intense-fg">verbose</span> #18 async.run_with_timeout_async / { timeout = 100 }
-00:00:31 <span class="ansi-black-intense-fg">verbose</span> #19 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:31 <span class="ansi-black-intense-fg">verbose</span> #20 async.run_with_timeout_async / { timeout = 100 }
-00:00:32 <span class="ansi-black-intense-fg">verbose</span> #21 async.run_with_timeout_async / { timeout = 100 }
-00:00:28 <span class="ansi-black-intense-fg">verbose</span> #19 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:32 <span class="ansi-black-intense-fg">verbose</span> #22 async.run_with_timeout_async / { timeout = 100 }
-00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #55 runWithTimeoutAsync / timeout: 500
-00:00:24 <span class="ansi-black-intense-fg">verbose</span> #56 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:24 <span class="ansi-black-intense-fg">verbose</span> #57 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:28 <span class="ansi-black-intense-fg">verbose</span> #20 &gt; Server bound to: http://localhost:13805
-00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #58 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:00:33 <span class="ansi-black-intense-fg">verbose</span> #15 async.run_with_timeout_async / { timeout = 180 }
+00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #15 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #16 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #16 async.run_with_timeout_async / { timeout = 100 }
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #17 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #18 async.run_with_timeout_async / { timeout = 100 }
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #19 async.run_with_timeout_async / { timeout = 100 }
+00:00:29 <span class="ansi-black-intense-fg">verbose</span> #19 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #20 async.run_with_timeout_async / { timeout = 100 }
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #51 runWithTimeoutAsync / timeout: 500
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #52 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #53 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:29 <span class="ansi-black-intense-fg">verbose</span> #20 &gt; Server bound to: http://localhost:13805
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #54 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #55 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #56 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #57 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"}} / result:
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #58 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"}} / result:
 00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #59 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
 00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #60 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:24 <span class="ansi-black-intense-fg">verbose</span> #61 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"}} / result:
-00:00:24 <span class="ansi-black-intense-fg">verbose</span> #62 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"}} / result:
+00:00:29 <span class="ansi-black-intense-fg">verbose</span> #21 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
+00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #61 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:00:24 <span class="ansi-blue-intense-fg">  debug</span> #62 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
 00:00:25 <span class="ansi-blue-intense-fg">  debug</span> #63 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
 00:00:25 <span class="ansi-blue-intense-fg">  debug</span> #64 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:28 <span class="ansi-black-intense-fg">verbose</span> #21 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
 00:00:25 <span class="ansi-blue-intense-fg">  debug</span> #65 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
 00:00:25 <span class="ansi-blue-intense-fg">  debug</span> #66 Supervisor.buildFile / takeWhileInclusive / outputContent:
@@ -8772,10 +8777,6 @@ Some (None, ["Cannot find `main` in file main."])
 00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #72 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
 00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #73 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #74 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #75 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((An attempt to divide by zero has been detected at compile time., TracedError
   { message = "An attempt to divide by zero has been detected at compile time."
     trace =
@@ -8787,7 +8788,7 @@ inl main () =
     1i32 / 0i32
     ^
 "] })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #76 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #74 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "An attempt to divide by zero has been detected at compile time.",
@@ -8808,10 +8809,10 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:00:28 <span class="ansi-black-intense-fg">verbose</span> #77 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2"]}} / result:
-00:00:35 <span class="ansi-black-intense-fg">verbose</span> #23 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:36 <span class="ansi-black-intense-fg">verbose</span> #24 async.run_with_timeout_async / { timeout = 100 }
-00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #78 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #75 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2"]}} / result:
+00:00:37 <span class="ansi-black-intense-fg">verbose</span> #21 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:37 <span class="ansi-black-intense-fg">verbose</span> #22 async.run_with_timeout_async / { timeout = 100 }
+00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #76 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["An attempt to divide by zero has been detected at compile time."])
 
 </pre>
@@ -8859,59 +8860,53 @@ Some (None, ["An attempt to divide by zero has been detected at compile time."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:36 <span class="ansi-black-intense-fg">verbose</span> #25 async.run_with_timeout_async / { timeout = 180 }
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #22 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #23 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #24 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #25 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #26 async.run_with_timeout_async / { timeout = 100 }
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #27 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #28 async.run_with_timeout_async / { timeout = 100 }
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #29 async.run_with_timeout_async / { timeout = 100 }
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #26 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #30 async.run_with_timeout_async / { timeout = 100 }
-00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #79 runWithTimeoutAsync / timeout: 500
-00:00:29 <span class="ansi-black-intense-fg">verbose</span> #80 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:29 <span class="ansi-black-intense-fg">verbose</span> #81 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #27 &gt; Server bound to: http://localhost:13805
-00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #82 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:00:38 <span class="ansi-black-intense-fg">verbose</span> #23 async.run_with_timeout_async / { timeout = 180 }
+00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #22 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #23 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #24 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #25 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #24 async.run_with_timeout_async / { timeout = 100 }
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #25 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:39 <span class="ansi-black-intense-fg">verbose</span> #26 async.run_with_timeout_async / { timeout = 100 }
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #26 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:39 <span class="ansi-black-intense-fg">verbose</span> #27 async.run_with_timeout_async / { timeout = 100 }
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #77 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #78 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:34 <span class="ansi-black-intense-fg">verbose</span> #27 &gt; Server bound to: http://localhost:13805
+00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #79 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #83 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #80 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #84 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #81 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:29 <span class="ansi-black-intense-fg">verbose</span> #85 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyg...et/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
-00:00:29 <span class="ansi-black-intense-fg">verbose</span> #86 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
-00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #87 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #82 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyg...et/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #83 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
+00:00:35 <span class="ansi-black-intense-fg">verbose</span> #28 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
+00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #84 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #88 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #85 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:34 <span class="ansi-black-intense-fg">verbose</span> #28 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
-00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #89 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #86 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #90 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #87 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #91 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #88 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #92 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #89 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #93 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #90 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #94 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:30 <span class="ansi-blue-intense-fg">  debug</span> #91 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #95 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #92 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #96 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #93 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #97 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #98 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #99 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #94 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((File main has a type error somewhere in its path., FatalError "File main has a type error somewhere in its path.")) / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #100 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #95 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 1 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #101 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #96 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 1 / retry: 0 / error: Some((main.spi:
 Constraint satisfaction error.
 Got: string
@@ -8925,7 +8920,7 @@ Got: string
 Fails to satisfy: number")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #102 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #97 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "main.spi:
@@ -8956,17 +8951,17 @@ Fails to satisfy: number"
     }
   ]
 ] / typeErrorCount: 1 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:41 <span class="ansi-black-intense-fg">verbose</span> #31 async.run_with_timeout_async / { timeout = 180 }
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #103 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:42 <span class="ansi-black-intense-fg">verbose</span> #28 async.run_with_timeout_async / { timeout = 180 }
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #98 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #104 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #99 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 1 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #105 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #100 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #106 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyg...et/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
-00:00:37 <span class="ansi-black-intense-fg">verbose</span> #29 &gt; 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #107 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #108 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:31 <span class="ansi-black-intense-fg">verbose</span> #101 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyg...et/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
+00:00:31 <span class="ansi-black-intense-fg">verbose</span> #102 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"}} / result:
+00:00:37 <span class="ansi-black-intense-fg">verbose</span> #29 &gt; 00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #103 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 1 / error: Some((main.spi:
 Constraint satisfaction error.
 Got: string
@@ -8980,7 +8975,7 @@ Got: string
 Fails to satisfy: number")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #109 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #104 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "main.spi:
@@ -9011,11 +9006,11 @@ Fails to satisfy: number"
     }
   ]
 ] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #110 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0"]}} / result:
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #111 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:41 <span class="ansi-black-intense-fg">verbose</span> #32 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:41 <span class="ansi-black-intense-fg">verbose</span> #33 async.run_with_timeout_async / { timeout = 100 }
-00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #112 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:31 <span class="ansi-black-intense-fg">verbose</span> #105 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0"]}} / result:
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #106 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:42 <span class="ansi-black-intense-fg">verbose</span> #29 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:42 <span class="ansi-black-intense-fg">verbose</span> #30 async.run_with_timeout_async / { timeout = 100 }
+00:00:32 <span class="ansi-blue-intense-fg">  debug</span> #107 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["main.spi:
 Constraint satisfaction error.
 Got: string
@@ -9065,55 +9060,53 @@ Fails to satisfy: number"])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:41 <span class="ansi-black-intense-fg">verbose</span> #34 async.run_with_timeout_async / { timeout = 180 }
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #30 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+<pre>00:00:43 <span class="ansi-black-intense-fg">verbose</span> #31 async.run_with_timeout_async / { timeout = 180 }
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #30 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
 00:00:38 <span class="ansi-black-intense-fg">verbose</span> #31 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
 00:00:38 <span class="ansi-black-intense-fg">verbose</span> #32 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
 00:00:38 <span class="ansi-black-intense-fg">verbose</span> #33 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #35 async.run_with_timeout_async / { timeout = 100 }
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #36 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #37 async.run_with_timeout_async / { timeout = 100 }
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #38 async.run_with_timeout_async / { timeout = 100 }
-00:00:38 <span class="ansi-black-intense-fg">verbose</span> #34 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #39 async.run_with_timeout_async / { timeout = 100 }
-00:00:34 <span class="ansi-blue-intense-fg">  debug</span> #113 runWithTimeoutAsync / timeout: 500
-00:00:34 <span class="ansi-black-intense-fg">verbose</span> #114 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:34 <span class="ansi-black-intense-fg">verbose</span> #115 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:38 <span class="ansi-black-intense-fg">verbose</span> #35 &gt; Server bound to: http://localhost:13805
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #32 async.run_with_timeout_async / { timeout = 100 }
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #33 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #34 async.run_with_timeout_async / { timeout = 100 }
+00:00:39 <span class="ansi-black-intense-fg">verbose</span> #34 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:44 <span class="ansi-black-intense-fg">verbose</span> #35 async.run_with_timeout_async / { timeout = 100 }
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #108 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #109 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:39 <span class="ansi-black-intense-fg">verbose</span> #35 &gt; Server bound to: http://localhost:13805
+00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #110 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #111 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:00:33 <span class="ansi-blue-intense-fg">  debug</span> #112 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #113 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
+00:00:33 <span class="ansi-black-intense-fg">verbose</span> #114 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
+00:00:39 <span class="ansi-black-intense-fg">verbose</span> #36 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:00:34 <span class="ansi-blue-intense-fg">  debug</span> #115 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:34 <span class="ansi-blue-intense-fg">  debug</span> #116 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:34 <span class="ansi-blue-intense-fg">  debug</span> #117 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:34 <span class="ansi-blue-intense-fg">  debug</span> #118 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:34 <span class="ansi-black-intense-fg">verbose</span> #119 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
-00:00:34 <span class="ansi-black-intense-fg">verbose</span> #120 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
-00:00:39 <span class="ansi-black-intense-fg">verbose</span> #36 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #119 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #120 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #121 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #122 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #123 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #123 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #124 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #124 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
 00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #125 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #126 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #127 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #128 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #129 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #130 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #131 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((File main has a type error somewhere in its path., FatalError "File main has a type error somewhere in its path.")) / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #132 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #126 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 1 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #133 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #127 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 1 / retry: 0 / error: Some((main.spi:
 Unbound variable: x.
 Unbound variable: y., TypeErrors
@@ -9126,7 +9119,7 @@ Unbound variable: y., TypeErrors
                         line = 1 }), "Unbound variable: y.")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:37 <span class="ansi-blue-intense-fg">  debug</span> #134 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #128 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "main.spi:
@@ -9167,17 +9160,17 @@ Unbound variable: y.",
     }
   ]
 ] / typeErrorCount: 1 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #40 async.run_with_timeout_async / { timeout = 180 }
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #135 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:47 <span class="ansi-black-intense-fg">verbose</span> #36 async.run_with_timeout_async / { timeout = 180 }
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #129 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #136 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #130 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 1 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #137 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #131 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:38 <span class="ansi-black-intense-fg">verbose</span> #138 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
-00:00:41 <span class="ansi-black-intense-fg">verbose</span> #37 &gt; 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
-00:00:38 <span class="ansi-black-intense-fg">verbose</span> #139 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #140 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:36 <span class="ansi-black-intense-fg">verbose</span> #132 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
+00:00:36 <span class="ansi-black-intense-fg">verbose</span> #134 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"}} / result:
+00:00:42 <span class="ansi-black-intense-fg">verbose</span> #37 &gt; 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #5 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #133 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 1 / error: Some((main.spi:
 Unbound variable: x.
 Unbound variable: y., TypeErrors
@@ -9190,7 +9183,7 @@ Unbound variable: y., TypeErrors
                         line = 1 }), "Unbound variable: y.")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #141 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #135 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "main.spi:
@@ -9231,11 +9224,11 @@ Unbound variable: y.",
     }
   ]
 ] / typeErrorCount: 0 / retry: 1 / path: C:\home\git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:00:38 <span class="ansi-black-intense-fg">verbose</span> #142 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1"]}} / result:
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #143 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #41 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:46 <span class="ansi-black-intense-fg">verbose</span> #42 async.run_with_timeout_async / { timeout = 100 }
-00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #144 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:36 <span class="ansi-black-intense-fg">verbose</span> #136 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1"]}} / result:
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #137 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:47 <span class="ansi-black-intense-fg">verbose</span> #37 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:47 <span class="ansi-black-intense-fg">verbose</span> #38 async.run_with_timeout_async / { timeout = 100 }
+00:00:36 <span class="ansi-blue-intense-fg">  debug</span> #138 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["main.spi:
 Unbound variable: x.
 Unbound variable: y."])
@@ -9286,59 +9279,57 @@ Unbound variable: y."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:46 <span class="ansi-black-intense-fg">verbose</span> #43 async.run_with_timeout_async / { timeout = 180 }
-00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #38 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #39 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #40 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:42 <span class="ansi-black-intense-fg">verbose</span> #41 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:47 <span class="ansi-black-intense-fg">verbose</span> #44 async.run_with_timeout_async / { timeout = 100 }
-00:00:47 <span class="ansi-black-intense-fg">verbose</span> #45 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:47 <span class="ansi-black-intense-fg">verbose</span> #46 async.run_with_timeout_async / { timeout = 100 }
-00:00:47 <span class="ansi-black-intense-fg">verbose</span> #47 async.run_with_timeout_async / { timeout = 100 }
+<pre>00:00:48 <span class="ansi-black-intense-fg">verbose</span> #39 async.run_with_timeout_async / { timeout = 180 }
+00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #38 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #39 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #40 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #41 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #40 async.run_with_timeout_async / { timeout = 100 }
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #41 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #42 async.run_with_timeout_async / { timeout = 100 }
 00:00:43 <span class="ansi-black-intense-fg">verbose</span> #42 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:47 <span class="ansi-black-intense-fg">verbose</span> #48 async.run_with_timeout_async / { timeout = 100 }
-00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #145 runWithTimeoutAsync / timeout: 500
-00:00:39 <span class="ansi-black-intense-fg">verbose</span> #146 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:39 <span class="ansi-black-intense-fg">verbose</span> #147 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:43 <span class="ansi-black-intense-fg">verbose</span> #43 &gt; Server bound to: http://localhost:13805
-00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #148 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #43 async.run_with_timeout_async / { timeout = 100 }
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #139 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #140 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:44 <span class="ansi-black-intense-fg">verbose</span> #43 &gt; Server bound to: http://localhost:13805
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #141 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #149 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #142 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #150 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #143 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:39 <span class="ansi-black-intense-fg">verbose</span> #151 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl unbox_real forall a. (obj : a) : a =\...et/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"}} / result:
-00:00:39 <span class="ansi-black-intense-fg">verbose</span> #152 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"}} / result:
-00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #153 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #144 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl unbox_real forall a. (obj : a) : a =\...et/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"}} / result:
+00:00:38 <span class="ansi-black-intense-fg">verbose</span> #145 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"}} / result:
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #146 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #154 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:38 <span class="ansi-blue-intense-fg">  debug</span> #147 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
 00:00:44 <span class="ansi-black-intense-fg">verbose</span> #44 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #155 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #148 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #156 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #149 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #157 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #150 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #158 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:39 <span class="ansi-blue-intense-fg">  debug</span> #151 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #159 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #152 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #160 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #153 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #161 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #154 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #162 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:40 <span class="ansi-blue-intense-fg">  debug</span> #155 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #163 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #156 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #164 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #157 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #165 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #158 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #166 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #159 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #167 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #160 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
@@ -9354,7 +9345,7 @@ inl main () =
         unbox_real ()
         ^
 "] })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #168 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:41 <span class="ansi-blue-intense-fg">  debug</span> #161 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "Cannot apply a forall with a term.",
@@ -9379,10 +9370,10 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:00:43 <span class="ansi-black-intense-fg">verbose</span> #169 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a"]}} / result:
-00:00:51 <span class="ansi-black-intense-fg">verbose</span> #49 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:51 <span class="ansi-black-intense-fg">verbose</span> #50 async.run_with_timeout_async / { timeout = 100 }
-00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #170 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:41 <span class="ansi-black-intense-fg">verbose</span> #162 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a"]}} / result:
+00:00:52 <span class="ansi-black-intense-fg">verbose</span> #44 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:52 <span class="ansi-black-intense-fg">verbose</span> #45 async.run_with_timeout_async / { timeout = 100 }
+00:00:42 <span class="ansi-blue-intense-fg">  debug</span> #163 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["Cannot apply a forall with a term."])
 
 </pre>
@@ -9430,58 +9421,52 @@ Some (None, ["Cannot apply a forall with a term."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:52 <span class="ansi-black-intense-fg">verbose</span> #51 async.run_with_timeout_async / { timeout = 180 }
+<pre>00:00:53 <span class="ansi-black-intense-fg">verbose</span> #46 async.run_with_timeout_async / { timeout = 180 }
 00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #45 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:48 <span class="ansi-black-intense-fg">verbose</span> #46 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:48 <span class="ansi-black-intense-fg">verbose</span> #47 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:48 <span class="ansi-black-intense-fg">verbose</span> #48 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:52 <span class="ansi-black-intense-fg">verbose</span> #52 async.run_with_timeout_async / { timeout = 100 }
-00:00:52 <span class="ansi-black-intense-fg">verbose</span> #53 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:52 <span class="ansi-black-intense-fg">verbose</span> #54 async.run_with_timeout_async / { timeout = 100 }
-00:00:53 <span class="ansi-black-intense-fg">verbose</span> #55 async.run_with_timeout_async / { timeout = 100 }
+00:00:49 <span class="ansi-black-intense-fg">verbose</span> #46 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:49 <span class="ansi-black-intense-fg">verbose</span> #47 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:49 <span class="ansi-black-intense-fg">verbose</span> #48 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #47 async.run_with_timeout_async / { timeout = 100 }
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #48 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:54 <span class="ansi-black-intense-fg">verbose</span> #49 async.run_with_timeout_async / { timeout = 100 }
 00:00:49 <span class="ansi-black-intense-fg">verbose</span> #49 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:53 <span class="ansi-black-intense-fg">verbose</span> #56 async.run_with_timeout_async / { timeout = 100 }
-00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #171 runWithTimeoutAsync / timeout: 500
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #172 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #173 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:54 <span class="ansi-black-intense-fg">verbose</span> #50 async.run_with_timeout_async / { timeout = 100 }
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #164 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #165 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
 00:00:49 <span class="ansi-black-intense-fg">verbose</span> #50 &gt; Server bound to: http://localhost:13805
-00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #174 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #166 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #167 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:43 <span class="ansi-blue-intense-fg">  debug</span> #168 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #169 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl unbox_real forall a. (obj : a) : a =\...et/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"}} / result:
+00:00:43 <span class="ansi-black-intense-fg">verbose</span> #170 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"}} / result:
+00:00:49 <span class="ansi-black-intense-fg">verbose</span> #51 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
+00:00:44 <span class="ansi-blue-intense-fg">  debug</span> #171 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:44 <span class="ansi-blue-intense-fg">  debug</span> #172 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:44 <span class="ansi-blue-intense-fg">  debug</span> #173 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:44 <span class="ansi-blue-intense-fg">  debug</span> #174 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
 00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #175 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
 00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #176 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #177 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl unbox_real forall a. (obj : a) : a =\...et/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"}} / result:
-00:00:45 <span class="ansi-black-intense-fg">verbose</span> #178 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"}} / result:
-00:00:49 <span class="ansi-black-intense-fg">verbose</span> #51 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
+00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #177 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:00:45 <span class="ansi-blue-intense-fg">  debug</span> #178 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
 00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #179 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
 00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #180 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
 00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #181 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #182 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:47 <span class="ansi-blue-intense-fg">  debug</span> #183 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:47 <span class="ansi-blue-intense-fg">  debug</span> #184 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:47 <span class="ansi-blue-intense-fg">  debug</span> #185 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:47 <span class="ansi-blue-intense-fg">  debug</span> #186 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #187 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #188 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #189 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #190 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #191 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((The main function should not have a forall., TracedError { message = "The main function should not have a forall."
               trace = [] })) / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #192 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #182 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [
   [
     "The main function should not have a forall.",
@@ -9493,10 +9478,10 @@ Some (None, ["Cannot apply a forall with a term."])
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:00:49 <span class="ansi-black-intense-fg">verbose</span> #193 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f"]}} / result:
-00:00:56 <span class="ansi-black-intense-fg">verbose</span> #57 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:00:57 <span class="ansi-black-intense-fg">verbose</span> #58 async.run_with_timeout_async / { timeout = 100 }
-00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #194 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:46 <span class="ansi-black-intense-fg">verbose</span> #183 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f"]}} / result:
+00:00:57 <span class="ansi-black-intense-fg">verbose</span> #51 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:00:57 <span class="ansi-black-intense-fg">verbose</span> #52 async.run_with_timeout_async / { timeout = 100 }
+00:00:46 <span class="ansi-blue-intense-fg">  debug</span> #184 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (None, ["The main function should not have a forall."])
 
 </pre>
@@ -9552,68 +9537,66 @@ Some (None, ["The main function should not have a forall."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:57 <span class="ansi-black-intense-fg">verbose</span> #59 async.run_with_timeout_async / { timeout = 180 }
+<pre>00:00:57 <span class="ansi-black-intense-fg">verbose</span> #53 async.run_with_timeout_async / { timeout = 180 }
 00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #52 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
 00:00:53 <span class="ansi-black-intense-fg">verbose</span> #53 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
 00:00:53 <span class="ansi-black-intense-fg">verbose</span> #54 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
 00:00:53 <span class="ansi-black-intense-fg">verbose</span> #55 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:00:57 <span class="ansi-black-intense-fg">verbose</span> #60 async.run_with_timeout_async / { timeout = 100 }
-00:00:57 <span class="ansi-black-intense-fg">verbose</span> #61 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:00:58 <span class="ansi-black-intense-fg">verbose</span> #62 async.run_with_timeout_async / { timeout = 100 }
-00:00:58 <span class="ansi-black-intense-fg">verbose</span> #63 async.run_with_timeout_async / { timeout = 100 }
-00:00:54 <span class="ansi-black-intense-fg">verbose</span> #56 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:58 <span class="ansi-black-intense-fg">verbose</span> #64 async.run_with_timeout_async / { timeout = 100 }
-00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #195 runWithTimeoutAsync / timeout: 500
-00:00:50 <span class="ansi-black-intense-fg">verbose</span> #196 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:50 <span class="ansi-black-intense-fg">verbose</span> #197 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:00:54 <span class="ansi-black-intense-fg">verbose</span> #57 &gt; Server bound to: http://localhost:13805
-00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #198 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #54 async.run_with_timeout_async / { timeout = 100 }
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #55 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #56 async.run_with_timeout_async / { timeout = 100 }
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #56 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #57 async.run_with_timeout_async / { timeout = 100 }
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #185 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #186 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #57 &gt; Server bound to: http://localhost:13805
+00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #187 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #199 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #188 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #200 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #189 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:50 <span class="ansi-black-intense-fg">verbose</span> #201 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"}} / result:
-00:00:50 <span class="ansi-black-intense-fg">verbose</span> #202 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"}} / result:
-00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #203 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #190 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"}} / result:
+00:00:48 <span class="ansi-black-intense-fg">verbose</span> #191 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"}} / result:
+00:00:54 <span class="ansi-black-intense-fg">verbose</span> #58 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
+00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #192 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #204 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:48 <span class="ansi-blue-intense-fg">  debug</span> #193 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:55 <span class="ansi-black-intense-fg">verbose</span> #58 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
-00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #205 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #194 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #206 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #195 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:52 <span class="ansi-blue-intense-fg">  debug</span> #207 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #196 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:52 <span class="ansi-blue-intense-fg">  debug</span> #208 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #197 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:52 <span class="ansi-blue-intense-fg">  debug</span> #209 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #198 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:52 <span class="ansi-blue-intense-fg">  debug</span> #210 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #199 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #211 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #200 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #212 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:50 <span class="ansi-blue-intense-fg">  debug</span> #201 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #213 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #202 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #214 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #203 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #215 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #204 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #216 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #205 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #217 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #206 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 0.3325000000000001
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #218 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:51 <span class="ansi-blue-intense-fg">  debug</span> #207 Supervisor.buildFile / takeWhileInclusive / outputContent:
 0.3325000000000001
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:00:54 <span class="ansi-black-intense-fg">verbose</span> #219 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db"]}} / result:
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #65 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #66 async.run_with_timeout_async / { timeout = 100 }
-00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #220 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:51 <span class="ansi-black-intense-fg">verbose</span> #208 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db"]}} / result:
+00:01:02 <span class="ansi-black-intense-fg">verbose</span> #58 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:01:02 <span class="ansi-black-intense-fg">verbose</span> #59 async.run_with_timeout_async / { timeout = 100 }
+00:00:52 <span class="ansi-blue-intense-fg">  debug</span> #209 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (Some "0.3325000000000001
 ", [])
 
@@ -9728,73 +9711,71 @@ Some (Some "0.3325000000000001
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:02 <span class="ansi-black-intense-fg">verbose</span> #67 async.run_with_timeout_async / { timeout = 180 }
+<pre>00:01:03 <span class="ansi-black-intense-fg">verbose</span> #60 async.run_with_timeout_async / { timeout = 180 }
 00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #59 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:00:59 <span class="ansi-black-intense-fg">verbose</span> #60 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:00:59 <span class="ansi-black-intense-fg">verbose</span> #61 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:59 <span class="ansi-black-intense-fg">verbose</span> #62 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:01:03 <span class="ansi-black-intense-fg">verbose</span> #68 async.run_with_timeout_async / { timeout = 100 }
-00:01:03 <span class="ansi-black-intense-fg">verbose</span> #69 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:01:03 <span class="ansi-black-intense-fg">verbose</span> #70 async.run_with_timeout_async / { timeout = 100 }
-00:01:03 <span class="ansi-black-intense-fg">verbose</span> #71 async.run_with_timeout_async / { timeout = 100 }
-00:01:03 <span class="ansi-black-intense-fg">verbose</span> #72 async.run_with_timeout_async / { timeout = 100 }
-00:00:59 <span class="ansi-black-intense-fg">verbose</span> #63 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:55 <span class="ansi-blue-intense-fg">  debug</span> #221 runWithTimeoutAsync / timeout: 500
-00:00:56 <span class="ansi-black-intense-fg">verbose</span> #222 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:00:56 <span class="ansi-black-intense-fg">verbose</span> #223 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:01:00 <span class="ansi-black-intense-fg">verbose</span> #64 &gt; Server bound to: http://localhost:13805
-00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #224 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #60 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #61 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #62 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:01:03 <span class="ansi-black-intense-fg">verbose</span> #61 async.run_with_timeout_async / { timeout = 100 }
+00:01:03 <span class="ansi-black-intense-fg">verbose</span> #62 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:01:03 <span class="ansi-black-intense-fg">verbose</span> #63 async.run_with_timeout_async / { timeout = 100 }
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #63 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:03 <span class="ansi-black-intense-fg">verbose</span> #64 async.run_with_timeout_async / { timeout = 100 }
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #210 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #211 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:00:59 <span class="ansi-black-intense-fg">verbose</span> #64 &gt; Server bound to: http://localhost:13805
+00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #212 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #225 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #213 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #226 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #214 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:56 <span class="ansi-black-intense-fg">verbose</span> #227 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"}} / result:
-00:00:56 <span class="ansi-black-intense-fg">verbose</span> #228 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Python \u002B Cuda","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"}} / result:
-00:00:57 <span class="ansi-blue-intense-fg">  debug</span> #229 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #215 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"}} / result:
+00:00:53 <span class="ansi-black-intense-fg">verbose</span> #216 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Python \u002B Cuda","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"}} / result:
+00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #217 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:57 <span class="ansi-blue-intense-fg">  debug</span> #230 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:53 <span class="ansi-blue-intense-fg">  debug</span> #218 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:01 <span class="ansi-black-intense-fg">verbose</span> #65 &gt; 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi
+00:00:59 <span class="ansi-black-intense-fg">verbose</span> #65 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi
+00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #219 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #220 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #221 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:54 <span class="ansi-blue-intense-fg">  debug</span> #222 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:55 <span class="ansi-blue-intense-fg">  debug</span> #223 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:55 <span class="ansi-blue-intense-fg">  debug</span> #224 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:55 <span class="ansi-blue-intense-fg">  debug</span> #225 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:55 <span class="ansi-blue-intense-fg">  debug</span> #226 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #227 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #228 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #229 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:00:56 <span class="ansi-blue-intense-fg">  debug</span> #230 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
 00:00:57 <span class="ansi-blue-intense-fg">  debug</span> #231 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.app...char = string = str
+
+def main():
+    return 0.3325000000000001
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
 00:00:57 <span class="ansi-blue-intense-fg">  debug</span> #232 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #233 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #234 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #235 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #236 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #237 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #238 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #239 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #240 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #241 Supervisor.buildFile / AsyncSeq.scan / outputContent:
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #242 Supervisor.buildFile / takeWhileInclusive / outputContent:
- / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #243 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-kernel = r"""
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.app...char = string = str
-
-def main():
-    return 0.3325000000000001
-
-if __name__ == '__main__': result = main(); None if result is None else print(result)
- / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #244 Supervisor.buildFile / takeWhileInclusive / outputContent:
 kernel = r"""
 """
 class static_array():
@@ -9808,10 +9789,10 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:01:00 <span class="ansi-black-intense-fg">verbose</span> #245 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8"]}} / result:
-00:01:08 <span class="ansi-black-intense-fg">verbose</span> #73 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:01:08 <span class="ansi-black-intense-fg">verbose</span> #74 async.run_with_timeout_async / { timeout = 100 }
-00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #246 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:57 <span class="ansi-black-intense-fg">verbose</span> #233 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8"]}} / result:
+00:01:08 <span class="ansi-black-intense-fg">verbose</span> #65 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:01:08 <span class="ansi-black-intense-fg">verbose</span> #66 async.run_with_timeout_async / { timeout = 100 }
+00:00:57 <span class="ansi-blue-intense-fg">  debug</span> #234 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some
   (Some
      "kernel = r"""
@@ -9930,67 +9911,70 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:09 <span class="ansi-black-intense-fg">verbose</span> #75 async.run_with_timeout_async / { timeout = 180 }
-00:01:05 <span class="ansi-blue-intense-fg">  debug</span> #66 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:01:05 <span class="ansi-black-intense-fg">verbose</span> #67 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:01:05 <span class="ansi-black-intense-fg">verbose</span> #68 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:01:05 <span class="ansi-black-intense-fg">verbose</span> #69 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:01:09 <span class="ansi-black-intense-fg">verbose</span> #76 async.run_with_timeout_async / { timeout = 100 }
-00:01:09 <span class="ansi-black-intense-fg">verbose</span> #77 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:01:09 <span class="ansi-black-intense-fg">verbose</span> #78 async.run_with_timeout_async / { timeout = 100 }
-00:01:09 <span class="ansi-black-intense-fg">verbose</span> #79 async.run_with_timeout_async / { timeout = 100 }
-00:01:05 <span class="ansi-black-intense-fg">verbose</span> #70 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #247 runWithTimeoutAsync / timeout: 500
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #248 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #249 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:01:06 <span class="ansi-black-intense-fg">verbose</span> #71 &gt; Server bound to: http://localhost:13805
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #250 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:01:08 <span class="ansi-black-intense-fg">verbose</span> #67 async.run_with_timeout_async / { timeout = 180 }
+00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #66 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:buildCode@7-93&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:01:04 <span class="ansi-black-intense-fg">verbose</span> #67 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:01:04 <span class="ansi-black-intense-fg">verbose</span> #68 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:01:04 <span class="ansi-black-intense-fg">verbose</span> #69 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:01:09 <span class="ansi-black-intense-fg">verbose</span> #68 async.run_with_timeout_async / { timeout = 100 }
+00:01:09 <span class="ansi-black-intense-fg">verbose</span> #69 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:01:09 <span class="ansi-black-intense-fg">verbose</span> #70 async.run_with_timeout_async / { timeout = 100 }
+00:01:04 <span class="ansi-black-intense-fg">verbose</span> #70 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:09 <span class="ansi-black-intense-fg">verbose</span> #71 async.run_with_timeout_async / { timeout = 100 }
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #235 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #236 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:01:04 <span class="ansi-black-intense-fg">verbose</span> #71 &gt; Server bound to: http://localhost:13805
+00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #237 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #251 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #238 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #252 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:58 <span class="ansi-blue-intense-fg">  debug</span> #239 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #253 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"}} / result:
-00:01:02 <span class="ansi-black-intense-fg">verbose</span> #254 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"}} / result:
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #255 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #240 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start)...et/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"}} / result:
+00:00:58 <span class="ansi-black-intense-fg">verbose</span> #241 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"}} / result:
+00:01:05 <span class="ansi-black-intense-fg">verbose</span> #72 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
+00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #242 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #256 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #243 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:06 <span class="ansi-black-intense-fg">verbose</span> #72 &gt; 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 Supervisor.supervisor_server.BuildFile / file: c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
-00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #257 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #244 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #258 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:00:59 <span class="ansi-blue-intense-fg">  debug</span> #245 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #259 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #246 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #260 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #247 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:04 <span class="ansi-blue-intense-fg">  debug</span> #261 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #248 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:04 <span class="ansi-blue-intense-fg">  debug</span> #262 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:00 <span class="ansi-blue-intense-fg">  debug</span> #249 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:04 <span class="ansi-blue-intense-fg">  debug</span> #263 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:01 <span class="ansi-blue-intense-fg">  debug</span> #250 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:04 <span class="ansi-blue-intense-fg">  debug</span> #264 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:01 <span class="ansi-blue-intense-fg">  debug</span> #251 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:05 <span class="ansi-blue-intense-fg">  debug</span> #265 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:01 <span class="ansi-blue-intense-fg">  debug</span> #252 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:05 <span class="ansi-blue-intense-fg">  debug</span> #266 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:01 <span class="ansi-blue-intense-fg">  debug</span> #253 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:05 <span class="ansi-blue-intense-fg">  debug</span> #267 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #254 Supervisor.buildFile / AsyncSeq.scan / outputContent:
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:05 <span class="ansi-blue-intense-fg">  debug</span> #268 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #255 Supervisor.buildFile / takeWhileInclusive / outputContent:
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:06 <span class="ansi-blue-intense-fg">  debug</span> #269 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #256 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+ / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
+00:01:02 <span class="ansi-blue-intense-fg">  debug</span> #257 Supervisor.buildFile / takeWhileInclusive / outputContent:
+ / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
+00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #258 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 0.33332500000000004
  / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:06 <span class="ansi-blue-intense-fg">  debug</span> #270 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #259 Supervisor.buildFile / takeWhileInclusive / outputContent:
 0.33332500000000004
  / errors: [] / typeErrorCount: 0 / retry: 0 / path: C:\home\git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:01:06 <span class="ansi-black-intense-fg">verbose</span> #271 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4"]}} / result:
-00:01:13 <span class="ansi-black-intense-fg">verbose</span> #80 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:01:14 <span class="ansi-black-intense-fg">verbose</span> #81 async.run_with_timeout_async / { timeout = 100 }
-00:01:06 <span class="ansi-blue-intense-fg">  debug</span> #272 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:01:03 <span class="ansi-black-intense-fg">verbose</span> #260 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4"]}} / result:
+00:01:13 <span class="ansi-black-intense-fg">verbose</span> #72 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:01:13 <span class="ansi-black-intense-fg">verbose</span> #73 async.run_with_timeout_async / { timeout = 100 }
+00:01:03 <span class="ansi-blue-intense-fg">  debug</span> #261 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 Some (Some "0.33332500000000004
 ", [])
 
@@ -10142,22 +10126,21 @@ Some (Some "0.33332500000000004
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:20 <span class="ansi-black-intense-fg">verbose</span> #82 async.run_with_timeout_async / { timeout = 180 }
-00:01:16 <span class="ansi-blue-intense-fg">  debug</span> #73 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:it@4-194&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+<pre>00:01:21 <span class="ansi-black-intense-fg">verbose</span> #74 async.run_with_timeout_async / { timeout = 180 }
+00:01:17 <span class="ansi-blue-intense-fg">  debug</span> #73 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:it@4-194&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
 00:01:17 <span class="ansi-black-intense-fg">verbose</span> #74 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
 00:01:17 <span class="ansi-black-intense-fg">verbose</span> #75 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
 00:01:17 <span class="ansi-black-intense-fg">verbose</span> #76 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:01:21 <span class="ansi-black-intense-fg">verbose</span> #83 async.run_with_timeout_async / { timeout = 100 }
-00:01:21 <span class="ansi-black-intense-fg">verbose</span> #84 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:01:21 <span class="ansi-black-intense-fg">verbose</span> #85 async.run_with_timeout_async / { timeout = 100 }
-00:01:21 <span class="ansi-black-intense-fg">verbose</span> #86 async.run_with_timeout_async / { timeout = 100 }
-00:01:17 <span class="ansi-black-intense-fg">verbose</span> #77 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:01:13 <span class="ansi-blue-intense-fg">  debug</span> #273 runWithTimeoutAsync / timeout: 500
-00:01:13 <span class="ansi-black-intense-fg">verbose</span> #274 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:01:13 <span class="ansi-black-intense-fg">verbose</span> #275 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:01:17 <span class="ansi-black-intense-fg">verbose</span> #78 &gt; Server bound to: http://localhost:13805
-00:01:13 <span class="ansi-black-intense-fg">verbose</span> #276 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e/main.spi"}} / result:
-00:01:14 <span class="ansi-black-intense-fg">verbose</span> #277 Supervisor.sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/ho...et/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e/main.spi"}} / result: Some([
+00:01:22 <span class="ansi-black-intense-fg">verbose</span> #75 async.run_with_timeout_async / { timeout = 100 }
+00:01:22 <span class="ansi-black-intense-fg">verbose</span> #76 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:01:22 <span class="ansi-black-intense-fg">verbose</span> #77 async.run_with_timeout_async / { timeout = 100 }
+00:01:18 <span class="ansi-black-intense-fg">verbose</span> #77 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:22 <span class="ansi-black-intense-fg">verbose</span> #78 async.run_with_timeout_async / { timeout = 100 }
+00:01:12 <span class="ansi-black-intense-fg">verbose</span> #262 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:01:12 <span class="ansi-black-intense-fg">verbose</span> #263 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:01:18 <span class="ansi-black-intense-fg">verbose</span> #78 &gt; Server bound to: http://localhost:13805
+00:01:12 <span class="ansi-black-intense-fg">verbose</span> #264 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e/main.spi"}} / result:
+00:01:13 <span class="ansi-black-intense-fg">verbose</span> #265 Supervisor.sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/ho...et/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e/main.spi"}} / result: Some([
   0,
   0,
   3,
@@ -10192,9 +10175,9 @@ Some (Some "0.33332500000000004
   8,
   0
 ])
-00:01:14 <span class="ansi-black-intense-fg">verbose</span> #278 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e"]}} / result:
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #87 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #88 async.run_with_timeout_async / { timeout = 100 }
+00:01:13 <span class="ansi-black-intense-fg">verbose</span> #266 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/20e725d46cfdc99c0f307f1933a76ec7da4570c1b757721164d86f19feaf821e"]}} / result:
+00:01:24 <span class="ansi-black-intense-fg">verbose</span> #79 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:01:24 <span class="ansi-black-intense-fg">verbose</span> #80 async.run_with_timeout_async / { timeout = 100 }
 Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0; 2; 1; 8; 0; 0; 1; 1; 8; 0|]
 
 </pre>
@@ -10230,23 +10213,23 @@ Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:25 <span class="ansi-black-intense-fg">verbose</span> #89 async.run_with_timeout_async / { timeout = 180 }
-00:01:21 <span class="ansi-blue-intense-fg">  debug</span> #79 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:it@4-425&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #80 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #81 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #82 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
-00:01:26 <span class="ansi-black-intense-fg">verbose</span> #90 async.run_with_timeout_async / { timeout = 100 }
-00:01:26 <span class="ansi-black-intense-fg">verbose</span> #91 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
-00:01:26 <span class="ansi-black-intense-fg">verbose</span> #92 async.run_with_timeout_async / { timeout = 100 }
-00:01:26 <span class="ansi-black-intense-fg">verbose</span> #93 async.run_with_timeout_async / { timeout = 100 }
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #83 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:01:26 <span class="ansi-black-intense-fg">verbose</span> #94 async.run_with_timeout_async / { timeout = 100 }
-00:01:18 <span class="ansi-blue-intense-fg">  debug</span> #279 runWithTimeoutAsync / timeout: 500
-00:01:18 <span class="ansi-black-intense-fg">verbose</span> #280 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
-00:01:18 <span class="ansi-black-intense-fg">verbose</span> #281 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
-00:01:22 <span class="ansi-black-intense-fg">verbose</span> #84 &gt; Server bound to: http://localhost:13805
-00:01:19 <span class="ansi-black-intense-fg">verbose</span> #282 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b/main.spi"}} / result:
-00:01:19 <span class="ansi-black-intense-fg">verbose</span> #283 Supervisor.sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/ho...et/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b/main.spi"}} / result: Some([
+<pre>00:01:27 <span class="ansi-black-intense-fg">verbose</span> #81 async.run_with_timeout_async / { timeout = 180 }
+00:01:22 <span class="ansi-blue-intense-fg">  debug</span> #79 runtime.execute_with_options_async / { options = { command = dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = Some &lt;fun:it@4-425&gt;; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot" } }
+00:01:23 <span class="ansi-black-intense-fg">verbose</span> #80 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 pwd: C:\home\git\polyglot
+00:01:23 <span class="ansi-black-intense-fg">verbose</span> #81 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:01:23 <span class="ansi-black-intense-fg">verbose</span> #82 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 targetDir: C:\home\git\polyglot\target/spiral_Eval
+00:01:28 <span class="ansi-black-intense-fg">verbose</span> #82 async.run_with_timeout_async / { timeout = 100 }
+00:01:28 <span class="ansi-black-intense-fg">verbose</span> #83 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = true }
+00:01:28 <span class="ansi-black-intense-fg">verbose</span> #84 async.run_with_timeout_async / { timeout = 100 }
+00:01:28 <span class="ansi-black-intense-fg">verbose</span> #85 async.run_with_timeout_async / { timeout = 100 }
+00:01:23 <span class="ansi-black-intense-fg">verbose</span> #83 &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:28 <span class="ansi-black-intense-fg">verbose</span> #86 async.run_with_timeout_async / { timeout = 100 }
+00:01:17 <span class="ansi-blue-intense-fg">  debug</span> #267 runWithTimeoutAsync / timeout: 500
+00:01:17 <span class="ansi-black-intense-fg">verbose</span> #268 Supervisor.sendJson / port: 13805 / json: {"Ping":true} / result:
+00:01:17 <span class="ansi-black-intense-fg">verbose</span> #269 awaitCompiler / Ping / result: 'Some(null)' / port: 13805 / retry: 0
+00:01:23 <span class="ansi-black-intense-fg">verbose</span> #84 &gt; Server bound to: http://localhost:13805
+00:01:17 <span class="ansi-black-intense-fg">verbose</span> #270 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/home/git/polyglot/target/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b/main.spi"}} / result:
+00:01:18 <span class="ansi-black-intense-fg">verbose</span> #271 Supervisor.sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/ho...et/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b/main.spi"}} / result: Some([
   0,
   0,
   3,
@@ -10281,9 +10264,9 @@ Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0
   12,
   0
 ])
-00:01:19 <span class="ansi-black-intense-fg">verbose</span> #284 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b"]}} / result:
-00:01:27 <span class="ansi-black-intense-fg">verbose</span> #95 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
-00:01:27 <span class="ansi-black-intense-fg">verbose</span> #96 async.run_with_timeout_async / { timeout = 100 }
+00:01:18 <span class="ansi-black-intense-fg">verbose</span> #272 Supervisor.sendJson / port: 13805 / json: {"FileDelete":{"uris":["file:///c:/home/git/polyglot/target/spiral_Eval/packages/5370829508ddefc7386d6b4d280722b47d97cb925585525bee733a187ff8f18b"]}} / result:
+00:01:29 <span class="ansi-black-intense-fg">verbose</span> #87 networking.wait_for_port_access / { port = 13805; retry = 0; timeout = Some 100; status = false }
+00:01:29 <span class="ansi-black-intense-fg">verbose</span> #88 async.run_with_timeout_async / { timeout = 100 }
 Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0; 2; 1; 3; 0; 0; 1; 3; 12; 0|]
 
 </pre>

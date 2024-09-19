@@ -474,8 +474,6 @@ let inline persistCode (input: {| backend : Backend option; input: SpiralInput; 
 
     let libLinkTargetPath = workspaceRoot </> "lib/spiral"
     let libLinkPath = packageDir </> "spiral"
-
-    libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
     
     let packagesModule =
         input.packages
@@ -488,9 +486,16 @@ let inline persistCode (input: {| backend : Backend option; input: SpiralInput; 
         )
         |> String.concat "\n    "
 
+    let packageDir' =
+        if input.packages |> Array.isEmpty
+        then workspaceRoot </> "lib"
+        else
+            libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
+            packageDir
+
     let spiprojPath = packageDir </> "package.spiproj"
     let spiprojCode =
-        $"""packageDir: {packageDir}
+        $"""packageDir: {packageDir'}
 packages:
     |core-
     spiral-

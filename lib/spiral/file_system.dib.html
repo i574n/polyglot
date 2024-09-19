@@ -8951,7 +8951,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">read_link</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' path_buf stream.io_error =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path,<span class="w"> </span><span class="s1">$'"std::fs::read_link(&amp;*$0)"'</span><span class="o">)</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path,<span class="w"> </span><span class="s1">$'"std::fs::read_link(&amp;*$0)"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;_&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -9199,7 +9202,6 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_directory_name</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path_buf,<span class="w"> </span><span class="s1">$'"$0.parent()"'</span><span class="o">)</span>
@@ -9207,8 +9209,9 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">path_display</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetDirectoryName'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9653,7 +9656,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_567fb5ce8e45dcd003d7c8559e0b7785123cc5cf3a299bac2bd5b728550ae998\20240830-0651-5626-3108-000000b7ab3a" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_567fb5ce8e45dcd003d7c8559e0b7785123cc5cf3a299bac2bd5b728550ae998\20240919-1605-3003-2334-000000943bdb" / expected: '\\'
 
 </pre>
 </div>
@@ -9662,7 +9665,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240830-0651-5657-5796-500400af7ecc" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240919-1605-3068-6819-600400ae95c8" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9984,9 +9987,8 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
             <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Directory.CreateSymbolicLink (!path, !target)'</span> <span class="p">:</span> <span class="n">file_system_info</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">platform</span><span class="o">.</span><span class="n">run_platform</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">Windows</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::os::windows::fs::symlink_dir(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::os::unix::fs::symlink(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span>
+            <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; #[cfg(windows)] std::os::windows::fs::symlink_dir(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+            <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; #[cfg(unix)] std::os::unix::fs::symlink(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10592,7 +10594,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 21L / expected: 21L
+<pre>__assert_eq / actual: 2L / expected: 2L
 </pre>
 </div>
 </div>
@@ -10784,7 +10786,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4628d17e3378015ff3be2ee180cb60479d3fd7133c0ace809698aecfc0c74461\20240830-0652-3782-2186-000000ef3a3a }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_67a0ceef40c717ddd5ccb1cf3fdfb29a8c13b18c15496f3b91ce8641cc690e09\20240919-1606-0277-1121-0000005ffc88 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
 </pre>
@@ -11175,7 +11177,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
@@ -11389,12 +11391,12 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
    at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0114.method37@8100-12.Invoke(Unit unitVar)
+   at FSI_0114.method35@7760-12.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
 00:00:01 <span class="ansi-yellow-intense-fg">warning</span> #8 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
    at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0114.method37@8100-12.Invoke(Unit unitVar)
+   at FSI_0114.method35@7760-12.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
@@ -11529,7 +11531,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
@@ -11538,7 +11540,7 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 6
-__assert_between / actual: 129L / expected: struct (50L, 180L)
+__assert_between / actual: 128L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11584,6 +11586,7 @@ __assert_eq / actual: true / expected: true
     <span class="err">$</span><span class="s1">'let new_file_uri x = !new_file_uri x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let get_workspace_root () = !get_workspace_root ()'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let init_trace_file x = !init_trace_file x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let link_directory x = !link_directory x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">combine</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">x</span>
     <span class="err">$</span><span class="s1">'let (&lt;/&gt;) x = !combine x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>

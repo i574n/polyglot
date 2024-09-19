@@ -1,14 +1,14 @@
-import { FSharpRef, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
-import { union_type, string_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { value as value_1, Option } from "../../../deps/Fable/src/fable-library-ts/Option.js";
-import { parse as parse_1, toString } from "../../../deps/Fable/src/fable-library-ts/Date.js";
-import { int64ToString, defaultOf } from "../../../deps/Fable/src/fable-library-ts/Util.js";
-import { toString as toString_1, hours } from "../../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { uint8 } from "../../../deps/Fable/src/fable-library-ts/Int32.js";
-import { newGuid, parse } from "../../../deps/Fable/src/fable-library-ts/Guid.js";
-import { padLeft, replace } from "../../../deps/Fable/src/fable-library-ts/String.js";
-import { toInt64, int64 } from "../../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { parse as parse_2 } from "../../../deps/Fable/src/fable-library-ts/Long.js";
+import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, string_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { parse as parse_1, toString } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { toString as toString_1, hours } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { uint8 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
+import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { parse as parse_2 } from "../../deps/Fable/src/fable-library-ts/Long.js";
 
 export type US0_$union = 
     | US0<0>

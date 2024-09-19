@@ -572,6 +572,7 @@ inl create_dir_all (path : string) : resultm.result' () stream.io_error =
 inl read_link (path : string) : resultm.result' path_buf stream.io_error =
     run_target function
         | Rust _ => fun () => !\\(path, $'"std::fs::read_link(&*$0)"')
+        | TypeScript _ => fun () => null ()
         | _ => fun () => $'Unchecked.defaultof<_>'
 
 #!markdown
@@ -1052,9 +1053,8 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             ($'System.IO.Directory.CreateSymbolicLink (!path, !target)' : file_system_info)
             |> ignore
         | Rust (Native) => fun () =>
-            platform.run_platform function
-                | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
-                | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
+            (!\\((target, path), $'"true; #[cfg(windows)] std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"') : bool) |> ignore
+            (!\\((target, path), $'"true; #[cfg(unix)] std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"') : bool) |> ignore
         | _ => fun () => ()
 
 #!markdown

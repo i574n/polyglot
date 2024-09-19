@@ -362,8 +362,6 @@ module Supervisor =
         let libLinkTargetPath = workspaceRoot </> "lib/spiral"
         let libLinkPath = packageDir </> "spiral"
 
-        libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
-
         let packagesModule =
             input.packages
             |> Array.map (fun package ->
@@ -375,9 +373,16 @@ module Supervisor =
             )
             |> String.concat "\n    "
 
+        let packageDir' =
+            if input.packages |> Array.isEmpty
+            then workspaceRoot </> "lib"
+            else
+                libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
+                packageDir
+
         let spiprojPath = packageDir </> "package.spiproj"
         let spiprojCode =
-            $"""packageDir: {packageDir}
+            $"""packageDir: {packageDir'}
 packages:
     |core-
     spiral-

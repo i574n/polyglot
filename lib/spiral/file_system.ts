@@ -1,17 +1,17 @@
-import { defaultOf, compare, IComparable, IEquatable, IDisposable, createAtom } from "../../../deps/Fable/src/fable-library-ts/Util.js";
-import { defaultArg, value as value_3, Option } from "../../../deps/Fable/src/fable-library-ts/Option.js";
-import { op_Subtraction, op_Addition, toInt64, int64 } from "../../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, class_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { FSharpRef, Record, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
-import { create, toString, now, getTicks } from "../../../deps/Fable/src/fable-library-ts/Date.js";
+import { defaultOf, compare, IComparable, IEquatable, IDisposable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { defaultArg, value as value_3, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { op_Subtraction, op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { FSharpRef, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import * as fs from "fs";
-import { ofSeq, find } from "../../../deps/Fable/src/fable-library-ts/Map.js";
-import { uint8, int32 } from "../../../deps/Fable/src/fable-library-ts/Int32.js";
-import { toString as toString_1, milliseconds, seconds, minutes, hours, fromTicks } from "../../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { replace, interpolate, toText, trimStart, trimEnd, padLeft } from "../../../deps/Fable/src/fable-library-ts/String.js";
-import { newGuid, parse } from "../../../deps/Fable/src/fable-library-ts/Guid.js";
+import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
+import { uint8, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { toString as toString_1, milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { replace, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
 import * as path from "path";
-import { FSharpResult$2_$union, FSharpResult$2 } from "../../../deps/Fable/src/fable-library-ts/Result.js";
+import { FSharpResult$2_$union } from "../../deps/Fable/src/fable-library-ts/Result.js";
 
 export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 
@@ -1862,7 +1862,7 @@ export function method51(v0_1: string, v1_1: string): void {
     if (method8(v5) === false) {
         const v8: IDisposable = method35(v5);
     }
-    if (method8(v1_1) && ((v17_1 = (new FSharpResult$2<any, any>()), true))) {
+    if (method8(v1_1) && ((v17_1 = defaultOf(), true))) {
         method6(true, v1_1);
     }
     if (method8(v1_1) === false) {

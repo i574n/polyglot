@@ -17,22 +17,6 @@ function FixRust {
     }
 }
 
-function FixRustOs {
-    param (
-        [Parameter(Mandatory, ValueFromPipeline)]
-        $text,
-        $Linux = $false
-    )
-    process {
-        $unix = "std::os::unix::fs::symlink"
-        $windows = "std::os::windows::fs::symlink_dir"
-        $text `
-            -replace `
-                ($IsWindows -and !$Linux ? $unix : $windows), `
-                ($IsWindows -and !$Linux ? $windows : $unix)
-    }
-}
-
 function GetFableVersion {
     $versions = Get-ChildItem -Path "$HOME/.nuget/packages/fable" -Directory
     $latest = $versions | Sort-Object LastWriteTime -Descending | Select-Object -First 1
@@ -47,7 +31,8 @@ function FixTypeScript {
     process {
         $text `
             -replace "\./fable_modules/fable-library-ts\.[\d\.]+/", "./deps/Fable/src/fable-library-ts/" `
-            -replace "from `"\./deps/", "from `"../../polyglot/deps/"
+            -replace "from `"\./deps/", "from `"../../polyglot/deps/" `
+            -replace "from `"\.\./\.\./\.\./deps/", "from `"../../deps/"
     }
 }
 
@@ -57,8 +42,7 @@ function CopyTarget {
         $root,
         [Parameter(Mandatory)]
         [string] $Language,
-        [string] $Runtime,
-        $Linux = $false
+        [string] $Runtime
     )
     $_runtime = $Runtime -ne "" ? "_$Runtime" : ""
 
@@ -88,8 +72,7 @@ function CopyTarget {
         }
         if ($Language -eq "rs") {
             $text = $text `
-                | FixRust `
-                | FixRustOs -Linux $Linux
+                | FixRust
 
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
                 $text = $text `
@@ -166,14 +149,13 @@ function BuildFable {
         [string] $ProjectName,
         [Parameter(Mandatory)]
         [string] $Language,
-        [string] $Runtime,
-        $Linux = $false
+        [string] $Runtime
     )
     $root = "$PSScriptRoot/../.."
 
     { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language --define $($IsWindows ? "_WINDOWS" : "_LINUX") $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
 
-    CopyTarget $TargetDir $root $Language $Runtime.ToLower() $Linux
+    CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }
 
 

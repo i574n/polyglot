@@ -35,7 +35,6 @@ if (!$SkipPreBuild) {
         -replace "../../../../lib", "../../../lib" `
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `
-        | FixRustOs `
         | Set-Content "$projectName.rs"
 
     if ($env:CI) {

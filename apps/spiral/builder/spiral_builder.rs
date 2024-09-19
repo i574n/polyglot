@@ -10989,13 +10989,12 @@ mod module_7e2cd9e0 {
                     Spiral_builder::method32(true, v1_1.clone());
                 }
                 if Spiral_builder::method19(v1_1.clone()) == false {
-                    let _v37: MutCell<Option<()>> = MutCell::new(None::<()>);
-                    std::os::windows::fs::symlink_dir(&*v0_1, &*v1_1).unwrap();
-                    _v37.set(Some(()));
-                    match &_v37.get().clone() {
-                        None => panic!("{}", string("runtime.run_platform / _v37=None"),),
-                        Some(_v37_0_0) => _v37_0_0.clone(),
-                    }
+                    let v40: bool = true;
+                    #[cfg(windows)]
+                    std::os::windows::fs::symlink_dir(&*v0_1.clone(), &*v1_1.clone()).unwrap();
+                    let v42: bool = true;
+                    #[cfg(unix)]
+                    std::os::unix::fs::symlink(&*v0_1, &*v1_1).unwrap();
                     ();
                     ()
                 }
