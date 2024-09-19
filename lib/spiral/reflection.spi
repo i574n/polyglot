@@ -26,7 +26,7 @@ inl get_union_fields forall union_type. () : list (string * union_type) =
                                             ) : () -> value
                                     }
                             inl item = real_core.nominal_create `union_type (key, value)
-                            inl key' = real_sm'.symbol_to_string `(`key)
+                            inl key' = sm'_real.symbol_to_string `(`key)
                             (::) `(string * union_type) (key', item) acc
                     (Nil `(string * union_type))
                     `union_record_type
@@ -44,7 +44,7 @@ inl get_union_fields_untag forall union_type. () : list (string * union_type) =
                                 inl key, item : (string * union_type) =
                                     real_core.union_untag `union_type i
                                         (fun key => forall value. =>
-                                            inl key' = real_sm'.symbol_to_string `(`key)
+                                            inl key' = sm'_real.symbol_to_string `(`key)
                                             inl value =
                                                 typecase value with
                                                 | () => $'' : value
@@ -127,7 +127,7 @@ inl nameof forall t. (x : t) : string =
         real_core.record_type_fold_back
             fun key =>
                 forall value. _ =>
-                    real_sm'.symbol_to_string `(`key)
+                    sm'_real.symbol_to_string `(`key)
             `t
             ""
 
@@ -137,7 +137,7 @@ inl get_record_fields forall t u. (x : t) : list (string * u) =
         real_core.record_type_fold_back
             fun key =>
                 forall u'. acc =>
-                    inl k = real_sm'.symbol_to_string `(`key)
+                    inl k = sm'_real.symbol_to_string `(`key)
                     inl v = x key
                     (::) `(string * u') (k, v) acc
             `t
@@ -151,7 +151,7 @@ inl get_functions_types forall t {record}. (fns : t) =
                 real_core.record_type_fold_back
                     fun key =>
                         forall v. acc =>
-                            inl k = real_sm'.symbol_to_string `(`key)
+                            inl k = sm'_real.symbol_to_string `(`key)
                             inl v = $'"`v"' : string
                             (::) `(string * string) (k, v) acc
                     `t
@@ -163,7 +163,7 @@ inl get_functions_types forall t {record}. (fns : t) =
         real_core.record_type_fold_back
             fun key =>
                 forall v. acc =>
-                    inl k = real_sm'.symbol_to_string `(`key)
+                    inl k = sm'_real.symbol_to_string `(`key)
                     inl args, result = get_function_type `v
                     (::) `(string * (list (string * string) * string)) (k, (args, result)) acc
             `(`fns)

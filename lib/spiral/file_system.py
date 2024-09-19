@@ -12,6 +12,7 @@ from fable_modules.fable_library.long import (op_addition, op_subtraction)
 from fable_modules.fable_library.map import (find, of_seq)
 from fable_modules.fable_library.option import (some, value as value_3, default_arg)
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, int64_type, record_type, string_type, unit_type, lambda_type, bool_type)
+from fable_modules.fable_library.result import FSharpResult_2
 from fable_modules.fable_library.string_ import (pad_left, trim_end, trim_start, to_text, interpolate, replace)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds, to_string as to_string_1)
 from fable_modules.fable_library.types import (int64, Array, Union, Record, FSharpRef, uint8)
@@ -983,9 +984,9 @@ def closure31(unit_var: None, unit_var_1: None) -> None:
     v1_1(None)
     v2_1 = None
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_3(TraceState_trace_state())
-    v35: None
+    v35_1: None
     v1_1(None)
-    v35 = None
+    v35_1 = None
     pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_3(TraceState_trace_state())
     v67: US0 = pattern_input_1[4].l0
     class ObjectExpr295:
@@ -1810,219 +1811,264 @@ def closure53(unit_var: None, v0_1: bool) -> None:
     pattern_input[1].l0 = v37
 
 
-def closure56(v0_1: str, v1_1: str) -> str:
+def method52(v0_1: str) -> str:
+    return None
+
+
+def method51(v0_1: str, v1_1: str) -> None:
+    if method8(v0_1) == False:
+        v4: IDisposable = method35(v0_1)
+
+    v5: str = method52(v1_1)
+    if method8(v5) == False:
+        v8: IDisposable = method35(v5)
+
+    def _arrow321(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> bool:
+        v18_1: FSharpResult_2[std_path_path_buf, std_io_error] = FSharpResult_2()
+        return True
+
+    if _arrow321() if method8(v1_1) else False:
+        method6(True, v1_1)
+
+    if method8(v1_1) == False:
+        pass
+
+
+
+def closure56(v0_1: str, v1_1: str) -> None:
+    method51(v0_1, v1_1)
+
+
+def closure55(unit_var: None, v0_1: str) -> Callable[[str], None]:
+    def _arrow322(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+        closure56(v0_1, v)
+
+    return _arrow322
+
+
+def closure58(v0_1: str, v1_1: str) -> str:
     return method30(v0_1, v1_1)
 
 
-def closure55(unit_var: None, v0_1: str) -> Callable[[str], str]:
-    def _arrow321(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
-        return closure56(v0_1, v)
+def closure57(unit_var: None, v0_1: str) -> Callable[[str], str]:
+    def _arrow323(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+        return closure58(v0_1, v)
 
-    return _arrow321
+    return _arrow323
 
 
 v0: None = None
 
-def _arrow322(__unit: None=None) -> None:
+def _arrow324(__unit: None=None) -> None:
     closure0(None, None)
 
 
-v1: Callable[[], None] = _arrow322
+v1: Callable[[], None] = _arrow324
 
-def _expr323():
+def _expr325():
     v1(None)
     return v0
 
 
-v2: None = _expr323()
+v2: None = _expr325()
 
-def _arrow324(v: str) -> Async[int64]:
+def _arrow326(v: str) -> Async[int64]:
     return closure4(None, v)
 
 
-v16: Callable[[str], Async[int64]] = _arrow324
+v16: Callable[[str], Async[int64]] = _arrow326
 
 def delete_directory_async(x: str) -> Async[int64]:
     return v16(x)
 
 
-def _arrow325(v: US6) -> Callable[[str], Async[int64]]:
+def _arrow327(v: US6) -> Callable[[str], Async[int64]]:
     return closure12(None, v)
 
 
-v17: Callable[[US6, str], Async[int64]] = _arrow325
+v17: Callable[[US6, str], Async[int64]] = _arrow327
 
 def wait_for_file_access(x: US6) -> Callable[[str], Async[int64]]:
     return v17(x)
 
 
-def _arrow326(v: str) -> Async[int64]:
+def _arrow328(v: str) -> Async[int64]:
     return closure15(None, v)
 
 
-v18: Callable[[str], Async[int64]] = _arrow326
+v18: Callable[[str], Async[int64]] = _arrow328
 
 def wait_for_file_access_read(x: str) -> Async[int64]:
     return v18(x)
 
 
-def _arrow327(v: str) -> Async[str]:
+def _arrow329(v: str) -> Async[str]:
     return closure16(None, v)
 
 
-v19: Callable[[str], Async[str]] = _arrow327
+v19: Callable[[str], Async[str]] = _arrow329
 
 def read_all_text_async(x: str) -> Async[str]:
     return v19(x)
 
 
-def _arrow328(v: str) -> Callable[[str], bool]:
+def _arrow330(v: str) -> Callable[[str], bool]:
     return closure17(None, v)
 
 
-v20: Callable[[str, str], bool] = _arrow328
+v20: Callable[[str, str], bool] = _arrow330
 
 def file_exists_content(x: str) -> Callable[[str], bool]:
     return v20(x)
 
 
-def _arrow329(v: str) -> Callable[[str], Async[None]]:
+def _arrow331(v: str) -> Callable[[str], Async[None]]:
     return closure19(None, v)
 
 
-v21: Callable[[str, str], Async[None]] = _arrow329
+v21: Callable[[str, str], Async[None]] = _arrow331
 
 def write_all_text_async(x: str) -> Callable[[str], Async[None]]:
     return v21(x)
 
 
-def _arrow330(v: str) -> Callable[[str], Async[None]]:
+def _arrow332(v: str) -> Callable[[str], Async[None]]:
     return closure21(None, v)
 
 
-v22: Callable[[str, str], Async[None]] = _arrow330
+v22: Callable[[str, str], Async[None]] = _arrow332
 
 def write_all_text_exists(x: str) -> Callable[[str], Async[None]]:
     return v22(x)
 
 
-def _arrow331(v: str) -> Async[int64]:
+def _arrow333(v: str) -> Async[int64]:
     return closure23(None, v)
 
 
-v23: Callable[[str], Async[int64]] = _arrow331
+v23: Callable[[str], Async[int64]] = _arrow333
 
 def delete_file_async(x: str) -> Async[int64]:
     return v23(x)
 
 
-def _arrow332(v: str) -> Callable[[str], Async[int64]]:
+def _arrow334(v: str) -> Callable[[str], Async[int64]]:
     return closure25(None, v)
 
 
-v24: Callable[[str, str], Async[int64]] = _arrow332
+v24: Callable[[str, str], Async[int64]] = _arrow334
 
 def move_file_async(x: str) -> Callable[[str], Async[int64]]:
     return v24(x)
 
 
-def _arrow333(v: str) -> Async[str | None]:
+def _arrow335(v: str) -> Async[str | None]:
     return closure28(None, v)
 
 
-v25: Callable[[str], Async[str | None]] = _arrow333
+v25: Callable[[str], Async[str | None]] = _arrow335
 
 def read_all_text_retry_async(x: str) -> Async[str | None]:
     return v25(x)
 
 
-def _arrow334(__unit: None=None) -> str:
+def _arrow336(__unit: None=None) -> str:
     return closure34(None, None)
 
 
-v26: Callable[[], str] = _arrow334
+v26: Callable[[], str] = _arrow336
 
 def create_temp_path(__unit: None=None) -> str:
     return v26(None)
 
 
-def _arrow335(__unit: None=None) -> tuple[str, IDisposable]:
+def _arrow337(__unit: None=None) -> tuple[str, IDisposable]:
     return closure37(None, None)
 
 
-v27: Callable[[], tuple[str, IDisposable]] = _arrow335
+v27: Callable[[], tuple[str, IDisposable]] = _arrow337
 
 def create_temp_dir(__unit: None=None) -> tuple[str, IDisposable]:
     return v27(None)
 
 
-def _arrow336(v: str) -> tuple[str, IDisposable]:
+def _arrow338(v: str) -> tuple[str, IDisposable]:
     return closure46(None, v)
 
 
-v28: Callable[[str], tuple[str, IDisposable]] = _arrow336
+v28: Callable[[str], tuple[str, IDisposable]] = _arrow338
 
 def create_temp_dir_0027(x: str) -> tuple[str, IDisposable]:
     return v28(x)
 
 
-def _arrow337(__unit: None=None) -> str:
+def _arrow339(__unit: None=None) -> str:
     return closure47(None, None)
 
 
-v29: Callable[[], str] = _arrow337
+v29: Callable[[], str] = _arrow339
 
 def get_source_directory(__unit: None=None) -> str:
     return v29(None)
 
 
-def _arrow338(v: str) -> str:
+def _arrow340(v: str) -> str:
     return closure48(None, v)
 
 
-v30: Callable[[str], str] = _arrow338
+v30: Callable[[str], str] = _arrow340
 
 def normalize_path(x: str) -> str:
     return v30(x)
 
 
-def _arrow339(v: str) -> str:
+def _arrow341(v: str) -> str:
     return closure49(None, v)
 
 
-v31: Callable[[str], str] = _arrow339
+v31: Callable[[str], str] = _arrow341
 
 def new_file_uri(x: str) -> str:
     return v31(x)
 
 
-def _arrow340(__unit: None=None) -> str:
+def _arrow342(__unit: None=None) -> str:
     return closure50(None, None)
 
 
-v32: Callable[[], str] = _arrow340
+v32: Callable[[], str] = _arrow342
 
 def get_workspace_root(__unit: None=None) -> str:
     return v32(None)
 
 
-def _arrow341(v: bool) -> None:
+def _arrow343(v: bool) -> None:
     closure53(None, v)
 
 
-v33: Callable[[bool], None] = _arrow341
+v33: Callable[[bool], None] = _arrow343
 
 def init_trace_file(x: bool) -> None:
     v33(x)
 
 
-def _arrow342(v: str) -> Callable[[str], str]:
+def _arrow344(v: str) -> Callable[[str], None]:
     return closure55(None, v)
 
 
-v34: Callable[[str, str], str] = _arrow342
+v34: Callable[[str, str], None] = _arrow344
+
+def link_directory(x: str) -> Callable[[str], None]:
+    return v34(x)
+
+
+def _arrow345(v: str) -> Callable[[str], str]:
+    return closure57(None, v)
+
+
+v35: Callable[[str, str], str] = _arrow345
 
 def op_less_divide_greater(x: str) -> Callable[[str], str]:
-    return v34(x)
+    return v35(x)
 
 

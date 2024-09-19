@@ -338,44 +338,61 @@ module Supervisor =
         | Spir of string
 
     /// ### persistCode
-    let inline persistCode backend input = async {
+    let inline persistCode (input: {| backend : Backend option; input: SpiralInput; packages: string [] |}) = async {
         let targetDir = workspaceRoot </> "target/spiral_Eval"
 
         let packagesDir = targetDir </> "packages"
 
-        let hashHex = $"%A{backend}%A{input}" |> SpiralCrypto.hash_text
+        let hashHex = $"%A{input.backend}%A{input.input}" |> SpiralCrypto.hash_text
 
-        let codeDir = packagesDir </> hashHex
-        codeDir |> System.IO.Directory.CreateDirectory |> ignore
+        let packageDir = packagesDir </> hashHex
+        packageDir |> System.IO.Directory.CreateDirectory |> ignore
 
         let moduleName = "main"
 
         let spirModule, spiModule =
-            match input with
+            match input.input with
             | Spi (spi, Some spir) -> true, true
             | Spi (spi, None) -> false, true
             | Spir spir -> true, false
             |> fun (spir, spi) ->
-                (if spir then $"real_{moduleName}*-" else ""),
+                (if spir then $"{moduleName}_real*-" else ""),
                 if spi then moduleName else ""
 
-        let spiprojPath = codeDir </> "package.spiproj"
+        let libLinkTargetPath = workspaceRoot </> "lib/spiral"
+        let libLinkPath = packageDir </> "spiral"
+
+        libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
+
+        let packagesModule =
+            input.packages
+            |> Array.map (fun package ->
+                let path = workspaceRoot </> package
+                let packageName = path |> System.IO.Path.GetFileName
+                let libLinkPath = packageDir </> packageName
+                libLinkPath |> SpiralFileSystem.link_directory path
+                $"{packageName}-"
+            )
+            |> String.concat "\n    "
+
+        let spiprojPath = packageDir </> "package.spiproj"
         let spiprojCode =
-            $"""packageDir: {workspaceRoot </> "lib"}
+            $"""packageDir: {packageDir}
 packages:
     |core-
     spiral-
+    {packagesModule}
 modules:
     {spirModule}
     {spiModule}
 """
         do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
-        let spirPath = codeDir </> $"real_{moduleName}.spir"
-        let spiPath = codeDir </> $"{moduleName}.spi"
+        let spirPath = packageDir </> $"{moduleName}_real.spir"
+        let spiPath = packageDir </> $"{moduleName}.spi"
 
         let spirCode, spiCode =
-            match input with
+            match input.input with
             | Spi (spi, Some spir) -> Some spir, Some spi
             | Spi (spi, None) -> None, Some spi
             | Spir spir -> Some spir, None
@@ -388,21 +405,21 @@ modules:
         | None -> ()
 
         let spiralPath =
-            match input with
+            match input.input with
             | Spi _ -> spiPath
             | Spir _ -> spirPath
-        match backend with
+        match input.backend with
         | None -> return spiralPath, None
         | Some backend ->
             let outputFileName =
                 let fileName =
-                    match input with
+                    match input.input with
                     | Spi _ -> moduleName
-                    | Spir _ -> $"real_{moduleName}"
+                    | Spir _ -> $"{moduleName}_real"
                 match backend with
                 | Fsharp -> $"{fileName}.fsx"
                 | Cuda -> $"{fileName}.py"
-            let outputPath = codeDir </> outputFileName
+            let outputPath = packageDir </> outputFileName
             if outputPath |> System.IO.File.Exists |> not
             then return spiralPath, None
             else
@@ -415,8 +432,9 @@ modules:
         }
 
     /// ### buildCode
-    let buildCode backend isCache timeout cancellationToken input = async {
-        let! mainPath, outputCache = input |> persistCode (Some backend)
+    let buildCode backend packages isCache timeout cancellationToken input = async {
+        let! mainPath, outputCache =
+            persistCode {| input = input; backend = Some backend; packages = packages |}
         match outputCache with
         | Some (outputPath, outputCode) when isCache -> return mainPath, (outputPath, Some outputCode), []
         | _ ->
@@ -473,7 +491,8 @@ modules:
 
     /// ## getCodeTokenRange
     let inline getCodeTokenRange cancellationToken code = async {
-        let! mainPath, _ = Spi (code, None) |> persistCode None
+        let! mainPath, _ =
+            persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
 
         let codeDir = mainPath |> System.IO.Path.GetDirectoryName
         let tokensPath = codeDir </> "tokens.json"

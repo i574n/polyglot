@@ -570,7 +570,9 @@ inl create_dir_all (path : string) : resultm.result' () stream.io_error =
 #!spiral
 
 inl read_link (path : string) : resultm.result' path_buf stream.io_error =
-    !\\(path, $'"std::fs::read_link(&*$0)"')
+    run_target function
+        | Rust _ => fun () => !\\(path, $'"std::fs::read_link(&*$0)"')
+        | _ => fun () => $'Unchecked.defaultof<_>'
 
 #!markdown
 
@@ -685,7 +687,6 @@ let get_file_name_without_extension (path : string) : string =
 
 let get_directory_name (path : string) : string =
     run_target function
-        | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.parent()"')
@@ -693,8 +694,9 @@ let get_directory_name (path : string) : string =
             |> path_display
             |> sm'.format'
             |> sm'.from_std_string
-        | _ => fun () =>
+        | Fsharp _ => fun () =>
             path |> $'System.IO.Path.GetDirectoryName'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -1888,5 +1890,6 @@ inl main () =
     $'let new_file_uri x = !new_file_uri x' : ()
     $'let get_workspace_root () = !get_workspace_root ()' : ()
     $'let init_trace_file x = !init_trace_file x' : ()
+    $'let link_directory x = !link_directory x' : ()
     inl combine x = (</>) x
     $'let (</>) x = !combine x' : ()

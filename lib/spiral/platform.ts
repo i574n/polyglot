@@ -1,5 +1,5 @@
-import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
 
 export type US0_$union = 
     | US0<0>

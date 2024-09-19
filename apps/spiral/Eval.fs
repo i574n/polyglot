@@ -97,6 +97,9 @@ module Eval =
     /// ## allCode
     let mutable allCode = ""
 
+    /// ### allPackages
+    let mutable allPackages : string [] = [||]
+
     /// ## allCodeReal
     let mutable allCodeReal = ""
 
@@ -136,7 +139,7 @@ module Eval =
                             let tokensPath = codeDir </> "tokens.json"
                             if tokensPath |> File.Exists |> not then
                                 let spiralCodePath = codeDir </> "main.spi"
-                                let spiralRealCodePath = codeDir </> "real_main.spir"
+                                let spiralRealCodePath = codeDir </> "main_real.spir"
                                 let spiralExists = spiralCodePath |> System.IO.File.Exists
                                 let spiralRealExists = spiralRealCodePath |> System.IO.File.Exists
                                 if spiralExists |> not && spiralRealExists |> not
@@ -164,7 +167,7 @@ module Eval =
                     |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) ->
                         match event with
                         | FileSystem.FileSystemChange.Changed (codePath, _)
-                            when [ "main.spi"; "real_main.spir" ]
+                            when [ "main.spi"; "main_real.spir" ]
                                 |> List.contains (System.IO.Path.GetFileName codePath)
                             ->
                             async {
@@ -622,6 +625,16 @@ module Eval =
                     else None
                 )
 
+            let packages =
+                lines
+                |> Array.choose (fun line ->
+                    if line |> SpiralSm.starts_with "//// package="
+                    then line |> SpiralSm.split "=" |> Array.skip 1 |> SpiralSm.concat "" |> Some
+                    else None
+                )
+
+            allPackages <- packages |> Array.append allPackages |> Array.distinct
+
             let timeout =
                 lines
                 |> Array.tryPick (fun line ->
@@ -698,7 +711,7 @@ module Eval =
                                 else
                                     Supervisor.Spi
                                         (newAllCode, if allCodeReal = "" then None else Some allCodeReal)
-                                |> Supervisor.buildCode backend isCache timeout cancellationToken
+                                |> Supervisor.buildCode backend allPackages isCache timeout cancellationToken
                             return backend, result
                         })
                         |> Async.Parallel

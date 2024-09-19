@@ -1,4 +1,4 @@
-import { defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { defaultOf } from "../../../deps/Fable/src/fable-library-ts/Util.js";
 
 export function closure0(unitVar: void, v0_1: any): any {
     return defaultOf();

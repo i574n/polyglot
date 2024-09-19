@@ -7842,11 +7842,36 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="allCodeReal">allCodeReal<a class="anchor-link" href="#allCodeReal">¶</a></h2>
+<h3 id="allPackages">allPackages<a class="anchor-link" href="#allPackages">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">mutable</span> <span class="n">allPackages</span> <span class="p">:</span> <span class="n">string</span> <span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="allCodeReal">allCodeReal<a class="anchor-link" href="#allCodeReal">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7861,7 +7886,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7871,7 +7896,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7886,7 +7911,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7896,7 +7921,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7922,7 +7947,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7932,7 +7957,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7958,7 +7983,7 @@ a.anchor-link {
                         <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
                         <span class="k">if</span> <span class="n">tokensPath</span> <span class="o">|&gt;</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
                             <span class="n">let</span> <span class="n">spiralCodePath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"main.spi"</span>
-                            <span class="n">let</span> <span class="n">spiralRealCodePath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"real_main.spir"</span>
+                            <span class="n">let</span> <span class="n">spiralRealCodePath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"main_real.spir"</span>
                             <span class="n">let</span> <span class="n">spiralExists</span> <span class="o">=</span> <span class="n">spiralCodePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
                             <span class="n">let</span> <span class="n">spiralRealExists</span> <span class="o">=</span> <span class="n">spiralRealCodePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
                             <span class="k">if</span> <span class="n">spiralExists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">&amp;&amp;</span> <span class="n">spiralRealExists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
@@ -7986,7 +8011,7 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span>
                     <span class="k">match</span> <span class="n">event</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">codePath</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span>
-                        <span class="n">when</span> <span class="p">[</span> <span class="s2">"main.spi"</span><span class="p">;</span> <span class="s2">"real_main.spir"</span> <span class="p">]</span>
+                        <span class="n">when</span> <span class="p">[</span> <span class="s2">"main.spi"</span><span class="p">;</span> <span class="s2">"main_real.spir"</span> <span class="p">]</span>
                             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileName</span> <span class="n">codePath</span><span class="p">)</span>
                         <span class="o">-&gt;</span>
                         <span class="k">async</span> <span class="p">{</span>
@@ -8057,7 +8082,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8067,7 +8092,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8129,7 +8154,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8139,7 +8164,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8217,7 +8242,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8227,7 +8252,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8473,7 +8498,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8483,7 +8508,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8503,7 +8528,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8513,7 +8538,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8553,6 +8578,16 @@ a.anchor-link {
                 <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"///! "</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span>
                 <span class="k">else</span> <span class="kc">None</span>
             <span class="p">)</span>
+
+        <span class="n">let</span> <span class="n">packages</span> <span class="o">=</span>
+            <span class="n">lines</span>
+            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">choose</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
+                <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"//// package="</span>
+                <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skip</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+        
+        <span class="n">allPackages</span> <span class="o">&lt;-</span> <span class="n">packages</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">allPackages</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">distinct</span>
 
         <span class="n">let</span> <span class="n">timeout</span> <span class="o">=</span>
             <span class="n">lines</span>
@@ -8630,7 +8665,7 @@ a.anchor-link {
                             <span class="k">else</span>
                                 <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spi</span>
                                     <span class="p">(</span><span class="n">newAllCode</span><span class="p">,</span> <span class="k">if</span> <span class="n">allCodeReal</span> <span class="o">=</span> <span class="s2">""</span> <span class="n">then</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Some</span> <span class="n">allCodeReal</span><span class="p">)</span>
-                            <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">buildCode</span> <span class="n">backend</span> <span class="n">isCache</span> <span class="n">timeout</span> <span class="n">cancellationToken</span>
+                            <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">buildCode</span> <span class="n">backend</span> <span class="n">allPackages</span> <span class="n">isCache</span> <span class="n">timeout</span> <span class="n">cancellationToken</span>
                         <span class="k">return</span> <span class="n">backend</span><span class="p">,</span> <span class="n">result</span>
                     <span class="p">})</span>
                     <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span>

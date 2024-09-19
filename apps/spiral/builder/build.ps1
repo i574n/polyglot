@@ -35,18 +35,13 @@ if (!$SkipPreBuild) {
         -replace "../../../../lib", "../../../lib" `
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `
+        | FixRustOs `
         | Set-Content "$projectName.rs"
 
     if ($env:CI) {
         Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
     }
 }
-
-(Get-Content "$projectName.rs") `
-    -replace `
-        ($IsWindows ? "std::os::unix::fs::symlink" :"std::os::windows::fs::symlink_dir"), `
-        ($IsWindows ? "std::os::windows::fs::symlink_dir" :"std::os::unix::fs::symlink") `
-    | Set-Content "$projectName.rs"
 
 cargo fmt --
 

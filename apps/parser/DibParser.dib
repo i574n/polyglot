@@ -828,7 +828,7 @@ let inline writeDibCode output path = async {
     let pathDir = path |> System.IO.Path.GetDirectoryName
     let fileNameWithoutExt =
         match output, path |> System.IO.Path.GetFileNameWithoutExtension with
-        | Spir, fileNameWithoutExt -> $"real_{fileNameWithoutExt}"
+        | Spir, fileNameWithoutExt -> $"{fileNameWithoutExt}_real"
         | _, fileNameWithoutExt -> fileNameWithoutExt
     let outputPath = pathDir </> $"{fileNameWithoutExt}.{output |> string |> SpiralSm.to_lower}"
     do! result |> SpiralFileSystem.write_all_text_async outputPath

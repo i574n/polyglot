@@ -13,6 +13,7 @@ if (!$fast) {
         . ../../apps/spiral/dist/Supervisor$(_exe) `
             --exit-on-error `
             $(!$sequential ? @("--parallel") : @()) `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path parsing.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path sm'.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path rust/rust.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path rust/testing.dib --retries 3" `
@@ -41,7 +42,6 @@ if (!$fast) {
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path util.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path platform.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path stream.dib --retries 3" `
-            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path parsing.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path threading.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path benchmark.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path physics.dib --retries 3" `

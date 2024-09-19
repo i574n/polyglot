@@ -995,113 +995,126 @@ mod module_7e2cd9e0 {
             let v309: &str = r#""#;
             let v311: clap::Arg = v307.default_missing_value(v309);
             let v313: clap::Command = clap::Command::arg(v277, v311);
-            let v315: clap::Command = clap::Command::subcommand(v179, v313);
-            let v317: string = string("r#\"typescript\"#");
-            let v318: &'static str = r#"typescript"#;
-            let v320: clap::Command = clap::Command::new(v318);
-            let v321: string = string("r#\"fs-path\"#");
-            let v322: &'static str = r#"fs-path"#;
-            let v324: clap::Arg = clap::Arg::new(v322);
-            let v326: clap::Arg = v324.short('f');
-            let v327: string = string("r#\"fs-path\"#");
-            let v328: &'static str = r#"fs-path"#;
-            let v330: clap::Arg = v326.long(v328);
-            let v332: clap::Arg = v330.required(true);
-            let v334: clap::Command = clap::Command::arg(v320, v332);
-            let v335: string = string("r#\"NAME\"#");
-            let v337: string = string("r#\"VERSION\"#");
-            let v339: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
-            let v340: usize = 1_i32 as usize;
-            let v343: usize = 0_i32 as usize;
-            let v353: clap::builder::ValueRange = if v343 == v343 {
-                clap::builder::ValueRange::new(v340..)
+            let v315: string = string("r#\"cleanup\"#");
+            let v316: &'static str = r#"cleanup"#;
+            let v318: clap::Arg = clap::Arg::new(v316);
+            let v320: clap::Arg = v318.short('l');
+            let v321: string = string("r#\"cleanup\"#");
+            let v322: &'static str = r#"cleanup"#;
+            let v324: clap::Arg = v320.long(v322);
+            let v326: string = string("r#\"true\"#");
+            let v327: &str = r#"true"#;
+            let v329: clap::Arg = v324.default_value(v327);
+            let v331: clap::ArgAction = clap::ArgAction::SetFalse;
+            let v333: clap::Arg = v329.action(v331);
+            let v335: clap::Command = clap::Command::arg(v313, v333);
+            let v337: clap::Command = clap::Command::subcommand(v179, v335);
+            let v339: string = string("r#\"typescript\"#");
+            let v340: &'static str = r#"typescript"#;
+            let v342: clap::Command = clap::Command::new(v340);
+            let v343: string = string("r#\"fs-path\"#");
+            let v344: &'static str = r#"fs-path"#;
+            let v346: clap::Arg = clap::Arg::new(v344);
+            let v348: clap::Arg = v346.short('f');
+            let v349: string = string("r#\"fs-path\"#");
+            let v350: &'static str = r#"fs-path"#;
+            let v352: clap::Arg = v348.long(v350);
+            let v354: clap::Arg = v352.required(true);
+            let v356: clap::Command = clap::Command::arg(v342, v354);
+            let v357: string = string("r#\"NAME\"#");
+            let v359: string = string("r#\"VERSION\"#");
+            let v361: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
+            let v362: usize = 1_i32 as usize;
+            let v365: usize = 0_i32 as usize;
+            let v375: clap::builder::ValueRange = if v365 == v365 {
+                clap::builder::ValueRange::new(v362..)
             } else {
-                let v351: string = string("clap::builder::ValueRange::new($0..$1)");
-                clap::builder::ValueRange::new(v340..v343)
+                let v373: string = string("clap::builder::ValueRange::new($0..$1)");
+                clap::builder::ValueRange::new(v362..v365)
             };
-            let v354: string = string("r#\"deps\"#");
-            let v355: &'static str = r#"deps"#;
-            let v357: clap::Arg = clap::Arg::new(v355);
-            let v359: clap::Arg = v357.short('d');
-            let v360: string = string("r#\"deps\"#");
-            let v361: &'static str = r#"deps"#;
-            let v363: clap::Arg = v359.long(v361);
-            let v365: Vec<&'static str> = v339.to_vec();
-            let v367: clap::Arg = v363.value_names(v365);
-            let v369: clap::Arg = v367.num_args(v353);
-            let v371: clap::ArgAction = clap::ArgAction::Append;
-            let v373: clap::Arg = v369.action(v371);
-            let v375: clap::Command = clap::Command::arg(v334, v373);
-            let v377: clap::Command = clap::Command::subcommand(v315, v375);
-            let v379: string = string("r#\"python\"#");
-            let v380: &'static str = r#"python"#;
-            let v382: clap::Command = clap::Command::new(v380);
-            let v383: string = string("r#\"fs-path\"#");
-            let v384: &'static str = r#"fs-path"#;
-            let v386: clap::Arg = clap::Arg::new(v384);
-            let v388: clap::Arg = v386.short('f');
-            let v389: string = string("r#\"fs-path\"#");
-            let v390: &'static str = r#"fs-path"#;
-            let v392: clap::Arg = v388.long(v390);
-            let v394: clap::Arg = v392.required(true);
-            let v396: clap::Command = clap::Command::arg(v382, v394);
-            let v397: string = string("r#\"NAME\"#");
-            let v399: string = string("r#\"VERSION\"#");
-            let v401: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
-            let v402: usize = 1_i32 as usize;
-            let v405: usize = 0_i32 as usize;
-            let v415: clap::builder::ValueRange = if v405 == v405 {
-                clap::builder::ValueRange::new(v402..)
+            let v376: string = string("r#\"deps\"#");
+            let v377: &'static str = r#"deps"#;
+            let v379: clap::Arg = clap::Arg::new(v377);
+            let v381: clap::Arg = v379.short('d');
+            let v382: string = string("r#\"deps\"#");
+            let v383: &'static str = r#"deps"#;
+            let v385: clap::Arg = v381.long(v383);
+            let v387: Vec<&'static str> = v361.to_vec();
+            let v389: clap::Arg = v385.value_names(v387);
+            let v391: clap::Arg = v389.num_args(v375);
+            let v393: clap::ArgAction = clap::ArgAction::Append;
+            let v395: clap::Arg = v391.action(v393);
+            let v397: clap::Command = clap::Command::arg(v356, v395);
+            let v399: clap::Command = clap::Command::subcommand(v337, v397);
+            let v401: string = string("r#\"python\"#");
+            let v402: &'static str = r#"python"#;
+            let v404: clap::Command = clap::Command::new(v402);
+            let v405: string = string("r#\"fs-path\"#");
+            let v406: &'static str = r#"fs-path"#;
+            let v408: clap::Arg = clap::Arg::new(v406);
+            let v410: clap::Arg = v408.short('f');
+            let v411: string = string("r#\"fs-path\"#");
+            let v412: &'static str = r#"fs-path"#;
+            let v414: clap::Arg = v410.long(v412);
+            let v416: clap::Arg = v414.required(true);
+            let v418: clap::Command = clap::Command::arg(v404, v416);
+            let v419: string = string("r#\"NAME\"#");
+            let v421: string = string("r#\"VERSION\"#");
+            let v423: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
+            let v424: usize = 1_i32 as usize;
+            let v427: usize = 0_i32 as usize;
+            let v437: clap::builder::ValueRange = if v427 == v427 {
+                clap::builder::ValueRange::new(v424..)
             } else {
-                let v413: string = string("clap::builder::ValueRange::new($0..$1)");
-                clap::builder::ValueRange::new(v402..v405)
+                let v435: string = string("clap::builder::ValueRange::new($0..$1)");
+                clap::builder::ValueRange::new(v424..v427)
             };
-            let v416: string = string("r#\"deps\"#");
-            let v417: &'static str = r#"deps"#;
-            let v419: clap::Arg = clap::Arg::new(v417);
-            let v421: clap::Arg = v419.short('d');
-            let v422: string = string("r#\"deps\"#");
-            let v423: &'static str = r#"deps"#;
-            let v425: clap::Arg = v421.long(v423);
-            let v427: Vec<&'static str> = v401.to_vec();
-            let v429: clap::Arg = v425.value_names(v427);
-            let v431: clap::Arg = v429.num_args(v415);
-            let v433: clap::ArgAction = clap::ArgAction::Append;
-            let v435: clap::Arg = v431.action(v433);
-            let v437: clap::Command = clap::Command::arg(v396, v435);
-            let v439: clap::Command = clap::Command::subcommand(v377, v437);
-            let v441: string = string("r#\"dib\"#");
-            let v442: &'static str = r#"dib"#;
-            let v444: clap::Command = clap::Command::new(v442);
-            let v446: string = string("r#\"path\"#");
-            let v447: &'static str = r#"path"#;
-            let v449: clap::Arg = clap::Arg::new(v447);
-            let v451: clap::Arg = v449.short('p');
-            let v452: string = string("r#\"path\"#");
-            let v453: &'static str = r#"path"#;
-            let v455: clap::Arg = v451.long(v453);
-            let v457: clap::Arg = v455.required(true);
-            let v459: clap::Command = clap::Command::arg(v444, v457);
-            let v461: string = string("clap::value_parser!(u8).into()");
-            let v462: clap::builder::ValueParser = clap::value_parser!(u8).into();
-            let v464: string = string("r#\"retries\"#");
-            let v465: &'static str = r#"retries"#;
-            let v467: clap::Arg = clap::Arg::new(v465);
-            let v469: clap::Arg = v467.short('r');
-            let v470: string = string("r#\"retries\"#");
-            let v471: &'static str = r#"retries"#;
-            let v473: clap::Arg = v469.long(v471);
-            let v475: clap::Arg = v473.value_parser(v462);
-            let v477: clap::Command = clap::Command::arg(v459, v475);
-            let v479: string = string("r#\"working-directory\"#");
-            let v480: &'static str = r#"working-directory"#;
-            let v482: clap::Arg = clap::Arg::new(v480);
-            let v484: clap::Arg = v482.short('w');
-            let v485: string = string("r#\"working-directory\"#");
-            let v486: &'static str = r#"working-directory"#;
-            let v488: clap::Arg = v484.long(v486);
-            let v490: clap::Command = clap::Command::arg(v477, v488);
-            clap::Command::subcommand(v439, v490)
+            let v438: string = string("r#\"deps\"#");
+            let v439: &'static str = r#"deps"#;
+            let v441: clap::Arg = clap::Arg::new(v439);
+            let v443: clap::Arg = v441.short('d');
+            let v444: string = string("r#\"deps\"#");
+            let v445: &'static str = r#"deps"#;
+            let v447: clap::Arg = v443.long(v445);
+            let v449: Vec<&'static str> = v423.to_vec();
+            let v451: clap::Arg = v447.value_names(v449);
+            let v453: clap::Arg = v451.num_args(v437);
+            let v455: clap::ArgAction = clap::ArgAction::Append;
+            let v457: clap::Arg = v453.action(v455);
+            let v459: clap::Command = clap::Command::arg(v418, v457);
+            let v461: clap::Command = clap::Command::subcommand(v399, v459);
+            let v463: string = string("r#\"dib\"#");
+            let v464: &'static str = r#"dib"#;
+            let v466: clap::Command = clap::Command::new(v464);
+            let v468: string = string("r#\"path\"#");
+            let v469: &'static str = r#"path"#;
+            let v471: clap::Arg = clap::Arg::new(v469);
+            let v473: clap::Arg = v471.short('p');
+            let v474: string = string("r#\"path\"#");
+            let v475: &'static str = r#"path"#;
+            let v477: clap::Arg = v473.long(v475);
+            let v479: clap::Arg = v477.required(true);
+            let v481: clap::Command = clap::Command::arg(v466, v479);
+            let v483: string = string("clap::value_parser!(u8).into()");
+            let v484: clap::builder::ValueParser = clap::value_parser!(u8).into();
+            let v486: string = string("r#\"retries\"#");
+            let v487: &'static str = r#"retries"#;
+            let v489: clap::Arg = clap::Arg::new(v487);
+            let v491: clap::Arg = v489.short('r');
+            let v492: string = string("r#\"retries\"#");
+            let v493: &'static str = r#"retries"#;
+            let v495: clap::Arg = v491.long(v493);
+            let v497: clap::Arg = v495.value_parser(v484);
+            let v499: clap::Command = clap::Command::arg(v481, v497);
+            let v501: string = string("r#\"working-directory\"#");
+            let v502: &'static str = r#"working-directory"#;
+            let v504: clap::Arg = clap::Arg::new(v502);
+            let v506: clap::Arg = v504.short('w');
+            let v507: string = string("r#\"working-directory\"#");
+            let v508: &'static str = r#"working-directory"#;
+            let v510: clap::Arg = v506.long(v508);
+            let v512: clap::Command = clap::Command::arg(v499, v510);
+            clap::Command::subcommand(v461, v512)
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
             let v1_1: bool = true;
@@ -10732,18 +10745,21 @@ mod module_7e2cd9e0 {
             }
         }
         pub fn method87() -> string {
-            string("wasm")
+            string("cleanup")
         }
         pub fn method88() -> string {
-            string("contract")
+            string("wasm")
         }
-        pub fn method90() -> string {
-            string("")
+        pub fn method89() -> string {
+            string("contract")
         }
         pub fn method91() -> string {
             string("")
         }
-        pub fn method89(v0_1: string) -> string {
+        pub fn method92() -> string {
+            string("")
+        }
+        pub fn method90(v0_1: string) -> string {
             let v5: Array<u8> = {
                 let _arg: LrcPtr<dyn Encoding> = get_UTF8();
                 _arg.getBytes(v0_1)
@@ -10824,7 +10840,7 @@ mod module_7e2cd9e0 {
                                 )
                             }
                         }));
-                        let v91: string = join(Spiral_builder::method90(), toArray_1(v85));
+                        let v91: string = join(Spiral_builder::method91(), toArray_1(v85));
                         Ok::<string, std::io::Error>(v91).unwrap()
                     }
                 }
@@ -10860,16 +10876,16 @@ mod module_7e2cd9e0 {
             }
             ()
         }
-        pub fn method93() -> string {
+        pub fn method94() -> string {
             string("hh:mm")
         }
-        pub fn method94() -> string {
+        pub fn method95() -> string {
             string("yyyyMMdd-HHmm-ssff-ffff-f")
         }
-        pub fn method95() -> string {
+        pub fn method96() -> string {
             string("hhmm")
         }
-        pub fn method92(v0_1: Guid, v1_1: DateTime) -> Guid {
+        pub fn method93(v0_1: Guid, v1_1: DateTime) -> Guid {
             let v7: DateTime = {
                 let _arg: DateTime =
                     DateTime::new_ymdhms_kind(1970_i32, 1_i32, 1_i32, 0_i32, 0_i32, 0_i32, 1_i32);
@@ -10933,7 +10949,7 @@ mod module_7e2cd9e0 {
             };
             let v75: LrcPtr<TimeZoneInfo> = 0i64.into();
             let v150: u8 = if zero.hours() > 0_i32 { 1_u8 } else { 0_u8 };
-            let v151: string = Spiral_builder::method93();
+            let v151: string = Spiral_builder::method94();
             let v159: string = zero.to_string(v151);
             let v162: string = sprintf!(
                 "{}{}{}",
@@ -10952,7 +10968,7 @@ mod module_7e2cd9e0 {
                 )
             ))
         }
-        pub fn method96(v0_1: string, v1_1: string) {
+        pub fn method97(v0_1: string, v1_1: string) {
             if Spiral_builder::method19(v0_1.clone()) == false {
                 let v4: LrcPtr<dyn IDisposable> = Spiral_builder::method28(v0_1.clone());
                 ()
@@ -10964,31 +10980,31 @@ mod module_7e2cd9e0 {
                     ()
                 }
                 if if Spiral_builder::method19(v1_1.clone()) {
-                    let v11: Result<std::path::PathBuf, std::io::Error> =
+                    let v12: Result<std::path::PathBuf, std::io::Error> =
                         std::fs::read_link(&*v1_1.clone());
-                    v11.is_err()
+                    v12.is_err()
                 } else {
                     false
                 } {
                     Spiral_builder::method32(true, v1_1.clone());
                 }
                 if Spiral_builder::method19(v1_1.clone()) == false {
-                    let _v19: MutCell<Option<()>> = MutCell::new(None::<()>);
+                    let _v37: MutCell<Option<()>> = MutCell::new(None::<()>);
                     std::os::windows::fs::symlink_dir(&*v0_1, &*v1_1).unwrap();
-                    _v19.set(Some(()));
-                    match &_v19.get().clone() {
-                        None => panic!("{}", string("runtime.run_platform / _v19=None"),),
-                        Some(_v19_0_0) => _v19_0_0.clone(),
+                    _v37.set(Some(()));
+                    match &_v37.get().clone() {
+                        None => panic!("{}", string("runtime.run_platform / _v37=None"),),
+                        Some(_v37_0_0) => _v37_0_0.clone(),
                     }
                     ();
                     ()
                 }
             }
         }
-        pub fn method98() -> string {
+        pub fn method99() -> string {
             string("(")
         }
-        pub fn method99() -> string {
+        pub fn method100() -> string {
             string(" ")
         }
         pub fn closure81(v0_1: u8, v1_1: u8, v2: i32, v3: string, v4: bool, unitVar: ()) {
@@ -11190,7 +11206,7 @@ mod module_7e2cd9e0 {
                 ((patternInput.1.clone()).l0.get().clone())(v834)
             }
         }
-        pub fn method101(
+        pub fn method102(
             v0_1: u8,
             v1_1: string,
             v2: Option<CancellationToken>,
@@ -11210,8 +11226,8 @@ mod module_7e2cd9e0 {
             let v6: MutCell<bool> = MutCell::new(v6);
             let v7: MutCell<Option<string>> = MutCell::new(v7.clone());
             let v8: MutCell<u8> = MutCell::new(v8);
-            '_method101: loop {
-                break '_method101 ({
+            '_method102: loop {
+                break '_method102 ({
                     let patternInput: (i32, string) = Spiral_builder::method40(
                         v1_1.get().clone(),
                         v2.get().clone(),
@@ -11276,13 +11292,13 @@ mod module_7e2cd9e0 {
                             v6.set(v6_temp);
                             v7.set(v7_temp);
                             v8.set(v8_temp);
-                            continue '_method101;
+                            continue '_method102;
                         }
                     }
                 });
             }
         }
-        pub fn method100(
+        pub fn method101(
             v0_1: u8,
             v1_1: string,
             v2: Option<CancellationToken>,
@@ -11292,9 +11308,9 @@ mod module_7e2cd9e0 {
             v6: bool,
             v7: Option<string>,
         ) -> (i32, string) {
-            Spiral_builder::method101(v0_1, v1_1, v2, v3, v4, v5, v6, v7, 1_u8)
+            Spiral_builder::method102(v0_1, v1_1, v2, v3, v4, v5, v6, v7, 1_u8)
         }
-        pub fn method97(
+        pub fn method98(
             v0_1: Spiral_builder::US33,
             v1_1: string,
             v2: string,
@@ -11333,7 +11349,7 @@ mod module_7e2cd9e0 {
                             } {
                                 Spiral_builder::US1::US1_0(string("Wasm"))
                             } else {
-                                let v51: string = Spiral_builder::method98();
+                                let v51: string = Spiral_builder::method99();
                                 let v63: LrcPtr<Spiral_builder::Mut3> =
                                     LrcPtr::new(Spiral_builder::Mut3 {
                                         l0: MutCell::new(Spiral_builder::method9()),
@@ -11393,7 +11409,7 @@ mod module_7e2cd9e0 {
                                     } {
                                         Spiral_builder::US1::US1_0(string("Contract"))
                                     } else {
-                                        let v114: string = Spiral_builder::method98();
+                                        let v114: string = Spiral_builder::method99();
                                         let v126: LrcPtr<Spiral_builder::Mut3> =
                                             LrcPtr::new(Spiral_builder::Mut3 {
                                                 l0: MutCell::new(Spiral_builder::method9()),
@@ -11462,7 +11478,7 @@ mod module_7e2cd9e0 {
                 Spiral_builder::US12::US12_0(v4_0_0) => Ok::<string, string>(v4_0_0.clone()),
                 Spiral_builder::US12::US12_1(v4_1_0) => Err::<string, string>(v4_1_0.clone()),
             };
-            Spiral_builder::method100(
+            Spiral_builder::method101(
                 3_u8,
                 v186,
                 None::<CancellationToken>,
@@ -11657,16 +11673,16 @@ mod module_7e2cd9e0 {
                 string("near-sdk"),
             )
         }
-        pub fn method102() -> Func1<std::string::String, bool> {
+        pub fn method103() -> Func1<std::string::String, bool> {
             Func1::new(move |v: std::string::String| Spiral_builder::closure83((), v))
-        }
-        pub fn method103(v0_1: Vec<std::string::String>) -> Vec<std::string::String> {
-            v0_1
         }
         pub fn method104(v0_1: Vec<std::string::String>) -> Vec<std::string::String> {
             v0_1
         }
         pub fn method105(v0_1: Vec<std::string::String>) -> Vec<std::string::String> {
+            v0_1
+        }
+        pub fn method106(v0_1: Vec<std::string::String>) -> Vec<std::string::String> {
             v0_1
         }
         pub fn closure84(
@@ -11699,7 +11715,7 @@ mod module_7e2cd9e0 {
             }
             ()
         }
-        pub fn method107() -> string {
+        pub fn method108() -> string {
             string("a")
         }
         pub fn closure86(v0_1: u8, v1_1: i32, v2: string, v3: bool, unitVar: ()) {
@@ -11901,12 +11917,12 @@ mod module_7e2cd9e0 {
                 ((patternInput.1.clone()).l0.get().clone())(v833)
             }
         }
-        pub fn method106(v0_1: Spiral_builder::US12, v1_1: string, v2: u8) -> (i32, string) {
+        pub fn method107(v0_1: Spiral_builder::US12, v1_1: string, v2: u8) -> (i32, string) {
             let v0_1: MutCell<Spiral_builder::US12> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
             let v2: MutCell<u8> = MutCell::new(v2);
-            '_method106: loop {
-                break '_method106 ({
+            '_method107: loop {
+                break '_method107 ({
                     let v8: string =
                         sprintf!("cargo fmt --manifest-path \"{}\" --", v1_1.get().clone());
                     let v14: Result<string, string> = match &v0_1.get().clone() {
@@ -12011,7 +12027,7 @@ mod module_7e2cd9e0 {
                             defaultValue(Spiral_builder::US37::US37_1, _v80.get().clone());
                         let v135: Spiral_builder::US38 = match &v100 {
                             Spiral_builder::US37::US37_0(v100_0_0) => {
-                                let v105: string = Spiral_builder::method107();
+                                let v105: string = Spiral_builder::method108();
                                 let v107: Option<string> = std::collections::HashMap::get(
                                     &match &v100 {
                                         Spiral_builder::US37::US37_0(x) => x.clone(),
@@ -12072,7 +12088,7 @@ mod module_7e2cd9e0 {
                                     );
                                     let v149: DateTime = DateTime::now();
                                     let v158: string =
-                                        toString(Spiral_builder::method92(new_guid(), v149));
+                                        toString(Spiral_builder::method93(new_guid(), v149));
                                     let v183: string =
                                                      append(append(append(append(append(append(append(append(append(append(append(append(append(string("[package]\n"),
                                                                                                                                                 sprintf!("name = \"spiral_builder_{}\"",
@@ -12132,7 +12148,7 @@ mod module_7e2cd9e0 {
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2.set(v2_temp);
-                            continue '_method106;
+                            continue '_method107;
                         }
                     }
                 });
@@ -12488,7 +12504,7 @@ mod module_7e2cd9e0 {
                 let v719: () = {
                     Spiral_builder::closure10(
                         v641.clone(),
-                        sprintf!("{}", string("cargo_result")),
+                        sprintf!("{}", string("new_code_path")),
                         (),
                     );
                     ()
@@ -12498,7 +12514,7 @@ mod module_7e2cd9e0 {
                     ()
                 };
                 let v735: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v1_1), ());
+                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v0_1), ());
                     ()
                 };
                 let v743: () = {
@@ -12508,7 +12524,7 @@ mod module_7e2cd9e0 {
                 let v752: () = {
                     Spiral_builder::closure10(
                         v641.clone(),
-                        sprintf!("{}", string("new_code_path")),
+                        sprintf!("{}", string("external_command")),
                         (),
                     );
                     ()
@@ -12518,7 +12534,7 @@ mod module_7e2cd9e0 {
                     ()
                 };
                 let v768: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v0_1), ());
+                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v2), ());
                     ()
                 };
                 let v776: () = {
@@ -12528,7 +12544,7 @@ mod module_7e2cd9e0 {
                 let v785: () = {
                     Spiral_builder::closure10(
                         v641.clone(),
-                        sprintf!("{}", string("external_command")),
+                        sprintf!("{}", string("cargo_result")),
                         (),
                     );
                     ()
@@ -12538,7 +12554,7 @@ mod module_7e2cd9e0 {
                     ()
                 };
                 let v801: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v2), ());
+                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v1_1), ());
                     ()
                 };
                 let v810: () = {
@@ -12576,12 +12592,12 @@ mod module_7e2cd9e0 {
             };
             Spiral_builder::US1::US1_1
         }
-        pub fn closure92(v0_1: string, v1_1: string, v2: i32, v3: string, unitVar: ()) {
-            fn v5() {
+        pub fn closure92(v0_1: bool, v1_1: string, v2: string, v3: i32, v4: string, unitVar: ()) {
+            fn v6() {
                 Spiral_builder::closure2((), ());
             }
-            let v6: () = {
-                v5();
+            let v7: () = {
+                v6();
                 ()
             };
             let patternInput: (
@@ -12592,8 +12608,8 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::Mut4>,
                 Option<i64>,
             ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-            let v39: () = {
-                v5();
+            let v40: () = {
+                v6();
                 ()
             };
             let patternInput_1: (
@@ -12604,13 +12620,13 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::Mut4>,
                 Option<i64>,
             ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-            let v71: Spiral_builder::US0 = (patternInput_1.4.clone()).l0.get().clone();
+            let v72: Spiral_builder::US0 = (patternInput_1.4.clone()).l0.get().clone();
             if if (patternInput_1.2.clone()).l0.get().clone() == false {
                 false
             } else {
                 4_i32
                     >= find(
-                        v71,
+                        v72,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((Spiral_builder::US0::US0_0, 0_i32)),
                             LrcPtr::new((Spiral_builder::US0::US0_1, 1_i32)),
@@ -12620,12 +12636,12 @@ mod module_7e2cd9e0 {
                         ])))),
                     )
             } {
-                let v79: () = {
+                let v80: () = {
                     Spiral_builder::closure7(patternInput.0.clone(), ());
                     ()
                 };
-                let v83: () = {
-                    v5();
+                let v84: () = {
+                    v6();
                     ()
                 };
                 let patternInput_2: (
@@ -12636,30 +12652,30 @@ mod module_7e2cd9e0 {
                     LrcPtr<Spiral_builder::Mut4>,
                     Option<i64>,
                 ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-                let _v116: LrcPtr<MutCell<Option<Spiral_builder::US3>>> =
+                let _v117: LrcPtr<MutCell<Option<Spiral_builder::US3>>> =
                     refCell(None::<Spiral_builder::US3>);
-                let v121: () = {
+                let v122: () = {
                     Spiral_builder::closure9(
                         patternInput_2.5.clone(),
                         Func1::new({
-                            let _v116 = _v116.clone();
+                            let _v117 = _v117.clone();
                             move |v: Option<Spiral_builder::US3>| {
-                                Spiral_builder::closure8(_v116.clone(), v)
+                                Spiral_builder::closure8(_v117.clone(), v)
                             }
                         }),
                         (),
                     );
                     ()
                 };
-                let v136: Spiral_builder::US3 =
-                    defaultValue(Spiral_builder::US3::US3_1, _v116.get().clone());
-                let v176: DateTime = match &v136 {
-                    Spiral_builder::US3::US3_0(v136_0_0) => {
-                        let v150: TimeSpan = TimeSpan::new_ticks(
+                let v137: Spiral_builder::US3 =
+                    defaultValue(Spiral_builder::US3::US3_1, _v117.get().clone());
+                let v177: DateTime = match &v137 {
+                    Spiral_builder::US3::US3_0(v137_0_0) => {
+                        let v151: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v136 {
+                            } - match &v137 {
                                 Spiral_builder::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -12668,130 +12684,157 @@ mod module_7e2cd9e0 {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v150.hours(),
-                            v150.minutes(),
-                            v150.seconds(),
-                            v150.milliseconds(),
+                            v151.hours(),
+                            v151.minutes(),
+                            v151.seconds(),
+                            v151.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
                 };
-                let v181: string = {
+                let v182: string = {
                     let provider: string = Spiral_builder::method6();
-                    v176.toString(provider)
+                    v177.toString(provider)
                 };
-                let v573: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
-                let v589: &str = inline_colorization::color_bright_red;
-                let v591: &str = &*v573;
-                let v593: &str = inline_colorization::color_reset;
-                let v595: string = string("format!(\"{v589}{v591}{v593}\")");
-                let v596: std::string::String = format!("{v589}{v591}{v593}");
-                let v598: string = fable_library_rust::String_::fromString(v596);
-                let v639: i64 = (patternInput_2.0.clone()).l0.get().clone();
-                let v641: LrcPtr<Spiral_builder::Mut3> = LrcPtr::new(Spiral_builder::Mut3 {
+                let v574: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
+                let v590: &str = inline_colorization::color_bright_red;
+                let v592: &str = &*v574;
+                let v594: &str = inline_colorization::color_reset;
+                let v596: string = string("format!(\"{v590}{v592}{v594}\")");
+                let v597: std::string::String = format!("{v590}{v592}{v594}");
+                let v599: string = fable_library_rust::String_::fromString(v597);
+                let v640: i64 = (patternInput_2.0.clone()).l0.get().clone();
+                let v642: LrcPtr<Spiral_builder::Mut3> = LrcPtr::new(Spiral_builder::Mut3 {
                     l0: MutCell::new(Spiral_builder::method9()),
                 });
-                let v648: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string("{ ")), ());
+                let v649: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("{ ")), ());
                     ()
                 };
-                let v657: () = {
+                let v658: () = {
                     Spiral_builder::closure10(
-                        v641.clone(),
+                        v642.clone(),
                         sprintf!("{}", string("exit_code")),
                         (),
                     );
                     ()
                 };
-                let v666: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string(" = ")), ());
+                let v667: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v674: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v2), ());
+                let v675: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v3), ());
                     ()
                 };
-                let v683: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string("; ")), ());
+                let v684: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v692: () = {
+                let v693: () = {
                     Spiral_builder::closure10(
-                        v641.clone(),
-                        sprintf!("{}", string("cargo_result")),
-                        (),
-                    );
-                    ()
-                };
-                let v700: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string(" = ")), ());
-                    ()
-                };
-                let v708: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v1_1), ());
-                    ()
-                };
-                let v716: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string("; ")), ());
-                    ()
-                };
-                let v725: () = {
-                    Spiral_builder::closure10(
-                        v641.clone(),
+                        v642.clone(),
                         sprintf!("{}", string("new_code_path")),
                         (),
                     );
                     ()
                 };
-                let v733: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string(" = ")), ());
+                let v701: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v741: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v0_1), ());
+                let v709: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v1_1), ());
                     ()
                 };
-                let v749: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string("; ")), ());
+                let v717: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v758: () = {
+                let v726: () = {
                     Spiral_builder::closure10(
-                        v641.clone(),
+                        v642.clone(),
                         sprintf!("{}", string("external_command")),
                         (),
                     );
                     ()
                 };
-                let v766: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string(" = ")), ());
+                let v734: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v774: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v3), ());
+                let v742: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v4), ());
                     ()
                 };
-                let v783: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", string(" }")), ());
+                let v750: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v825: string = trimEndChars(
+                let v759: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("cleanup")), ());
+                    ()
+                };
+                let v767: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                    ()
+                };
+                let v778: () = {
+                    Spiral_builder::closure10(
+                        v642.clone(),
+                        sprintf!(
+                            "{}",
+                            if v0_1 {
+                                string("true")
+                            } else {
+                                string("false")
+                            }
+                        ),
+                        (),
+                    );
+                    ()
+                };
+                let v786: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
+                    ()
+                };
+                let v795: () = {
+                    Spiral_builder::closure10(
+                        v642.clone(),
+                        sprintf!("{}", string("cargo_result")),
+                        (),
+                    );
+                    ()
+                };
+                let v803: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                    ()
+                };
+                let v811: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v2), ());
+                    ()
+                };
+                let v820: () = {
+                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" }")), ());
+                    ()
+                };
+                let v862: string = trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v181,
-                            v598,
-                            v639,
+                            v182,
+                            v599,
+                            v640,
                             string("spiral_builder.process_rust / error"),
-                            v641.l0.get().clone()
+                            v642.l0.get().clone()
                         ),
                         toArray(empty::<char>()),
                     ),
                     toArray(ofArray(new_array(&[' ', '/']))),
                 );
-                println!("{}", v825.clone());
+                println!("{}", v862.clone());
                 ();
-                ((patternInput.1.clone()).l0.get().clone())(v825)
+                ((patternInput.1.clone()).l0.get().clone())(v862)
             }
         }
         pub fn closure93(v0_1: string, v1_1: string, v2: string, v3: i32, unitVar: ()) {
@@ -12956,7 +12999,7 @@ mod module_7e2cd9e0 {
                 let v725: () = {
                     Spiral_builder::closure10(
                         v641.clone(),
-                        sprintf!("{}", string("cargo_result")),
+                        sprintf!("{}", string("new_code_path")),
                         (),
                     );
                     ()
@@ -12966,7 +13009,7 @@ mod module_7e2cd9e0 {
                     ()
                 };
                 let v741: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v1_1), ());
+                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v0_1), ());
                     ()
                 };
                 let v749: () = {
@@ -12976,7 +13019,7 @@ mod module_7e2cd9e0 {
                 let v758: () = {
                     Spiral_builder::closure10(
                         v641.clone(),
-                        sprintf!("{}", string("new_code_path")),
+                        sprintf!("{}", string("cargo_result")),
                         (),
                     );
                     ()
@@ -12986,7 +13029,7 @@ mod module_7e2cd9e0 {
                     ()
                 };
                 let v774: () = {
-                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v0_1), ());
+                    Spiral_builder::closure10(v641.clone(), sprintf!("{}", v1_1), ());
                     ()
                 };
                 let v783: () = {
@@ -13012,12 +13055,20 @@ mod module_7e2cd9e0 {
                 ((patternInput.1.clone()).l0.get().clone())(v825)
             }
         }
-        pub fn closure94(v0_1: string, v1_1: string, v2: i32, v3: string, v4: string, unitVar: ()) {
-            fn v6() {
+        pub fn closure94(
+            v0_1: bool,
+            v1_1: string,
+            v2: string,
+            v3: i32,
+            v4: string,
+            v5: string,
+            unitVar: (),
+        ) {
+            fn v7() {
                 Spiral_builder::closure2((), ());
             }
-            let v7: () = {
-                v6();
+            let v8: () = {
+                v7();
                 ()
             };
             let patternInput: (
@@ -13028,8 +13079,8 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::Mut4>,
                 Option<i64>,
             ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-            let v40: () = {
-                v6();
+            let v41: () = {
+                v7();
                 ()
             };
             let patternInput_1: (
@@ -13040,13 +13091,13 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::Mut4>,
                 Option<i64>,
             ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-            let v72: Spiral_builder::US0 = (patternInput_1.4.clone()).l0.get().clone();
+            let v73: Spiral_builder::US0 = (patternInput_1.4.clone()).l0.get().clone();
             if if (patternInput_1.2.clone()).l0.get().clone() == false {
                 false
             } else {
                 4_i32
                     >= find(
-                        v72,
+                        v73,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((Spiral_builder::US0::US0_0, 0_i32)),
                             LrcPtr::new((Spiral_builder::US0::US0_1, 1_i32)),
@@ -13056,12 +13107,12 @@ mod module_7e2cd9e0 {
                         ])))),
                     )
             } {
-                let v80: () = {
+                let v81: () = {
                     Spiral_builder::closure7(patternInput.0.clone(), ());
                     ()
                 };
-                let v84: () = {
-                    v6();
+                let v85: () = {
+                    v7();
                     ()
                 };
                 let patternInput_2: (
@@ -13072,30 +13123,30 @@ mod module_7e2cd9e0 {
                     LrcPtr<Spiral_builder::Mut4>,
                     Option<i64>,
                 ) = getValue(Spiral_builder::TraceState::trace_state().get().clone());
-                let _v117: LrcPtr<MutCell<Option<Spiral_builder::US3>>> =
+                let _v118: LrcPtr<MutCell<Option<Spiral_builder::US3>>> =
                     refCell(None::<Spiral_builder::US3>);
-                let v122: () = {
+                let v123: () = {
                     Spiral_builder::closure9(
                         patternInput_2.5.clone(),
                         Func1::new({
-                            let _v117 = _v117.clone();
+                            let _v118 = _v118.clone();
                             move |v: Option<Spiral_builder::US3>| {
-                                Spiral_builder::closure8(_v117.clone(), v)
+                                Spiral_builder::closure8(_v118.clone(), v)
                             }
                         }),
                         (),
                     );
                     ()
                 };
-                let v137: Spiral_builder::US3 =
-                    defaultValue(Spiral_builder::US3::US3_1, _v117.get().clone());
-                let v177: DateTime = match &v137 {
-                    Spiral_builder::US3::US3_0(v137_0_0) => {
-                        let v151: TimeSpan = TimeSpan::new_ticks(
+                let v138: Spiral_builder::US3 =
+                    defaultValue(Spiral_builder::US3::US3_1, _v118.get().clone());
+                let v178: DateTime = match &v138 {
+                    Spiral_builder::US3::US3_0(v138_0_0) => {
+                        let v152: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v137 {
+                            } - match &v138 {
                                 Spiral_builder::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -13104,146 +13155,173 @@ mod module_7e2cd9e0 {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v151.hours(),
-                            v151.minutes(),
-                            v151.seconds(),
-                            v151.milliseconds(),
+                            v152.hours(),
+                            v152.minutes(),
+                            v152.seconds(),
+                            v152.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
                 };
-                let v182: string = {
+                let v183: string = {
                     let provider: string = Spiral_builder::method6();
-                    v177.toString(provider)
+                    v178.toString(provider)
                 };
-                let v574: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
-                let v590: &str = inline_colorization::color_bright_red;
-                let v592: &str = &*v574;
-                let v594: &str = inline_colorization::color_reset;
-                let v596: string = string("format!(\"{v590}{v592}{v594}\")");
-                let v597: std::string::String = format!("{v590}{v592}{v594}");
-                let v599: string = fable_library_rust::String_::fromString(v597);
-                let v640: i64 = (patternInput_2.0.clone()).l0.get().clone();
-                let v642: LrcPtr<Spiral_builder::Mut3> = LrcPtr::new(Spiral_builder::Mut3 {
+                let v575: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
+                let v591: &str = inline_colorization::color_bright_red;
+                let v593: &str = &*v575;
+                let v595: &str = inline_colorization::color_reset;
+                let v597: string = string("format!(\"{v591}{v593}{v595}\")");
+                let v598: std::string::String = format!("{v591}{v593}{v595}");
+                let v600: string = fable_library_rust::String_::fromString(v598);
+                let v641: i64 = (patternInput_2.0.clone()).l0.get().clone();
+                let v643: LrcPtr<Spiral_builder::Mut3> = LrcPtr::new(Spiral_builder::Mut3 {
                     l0: MutCell::new(Spiral_builder::method9()),
                 });
-                let v649: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("{ ")), ());
+                let v650: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("{ ")), ());
                     ()
                 };
-                let v658: () = {
+                let v659: () = {
                     Spiral_builder::closure10(
-                        v642.clone(),
+                        v643.clone(),
                         sprintf!("{}", string("exit_code")),
                         (),
                     );
                     ()
                 };
-                let v667: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                let v668: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v675: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v2), ());
+                let v676: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", v3), ());
                     ()
                 };
-                let v684: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
+                let v685: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v693: () = {
+                let v694: () = {
                     Spiral_builder::closure10(
-                        v642.clone(),
-                        sprintf!("{}", string("cargo_result")),
-                        (),
-                    );
-                    ()
-                };
-                let v701: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
-                    ()
-                };
-                let v709: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v1_1), ());
-                    ()
-                };
-                let v717: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
-                    ()
-                };
-                let v726: () = {
-                    Spiral_builder::closure10(
-                        v642.clone(),
+                        v643.clone(),
                         sprintf!("{}", string("new_code_path")),
                         (),
                     );
                     ()
                 };
-                let v734: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                let v702: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v742: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v0_1), ());
+                let v710: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", v1_1), ());
                     ()
                 };
-                let v750: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
+                let v718: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v759: () = {
+                let v727: () = {
                     Spiral_builder::closure10(
-                        v642.clone(),
+                        v643.clone(),
                         sprintf!("{}", string("wasm_path")),
                         (),
                     );
                     ()
                 };
-                let v767: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                let v735: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v775: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v3), ());
+                let v743: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", v4), ());
                     ()
                 };
-                let v783: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("; ")), ());
+                let v751: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v792: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string("command")), ());
+                let v760: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("command")), ());
                     ()
                 };
-                let v800: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" = ")), ());
+                let v768: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
                     ()
                 };
-                let v808: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", v4), ());
+                let v776: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", v5), ());
                     ()
                 };
-                let v817: () = {
-                    Spiral_builder::closure10(v642.clone(), sprintf!("{}", string(" }")), ());
+                let v784: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("; ")), ());
                     ()
                 };
-                let v859: string = trimEndChars(
+                let v793: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("cleanup")), ());
+                    ()
+                };
+                let v801: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
+                    ()
+                };
+                let v812: () = {
+                    Spiral_builder::closure10(
+                        v643.clone(),
+                        sprintf!(
+                            "{}",
+                            if v0_1 {
+                                string("true")
+                            } else {
+                                string("false")
+                            }
+                        ),
+                        (),
+                    );
+                    ()
+                };
+                let v820: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string("; ")), ());
+                    ()
+                };
+                let v829: () = {
+                    Spiral_builder::closure10(
+                        v643.clone(),
+                        sprintf!("{}", string("cargo_result")),
+                        (),
+                    );
+                    ()
+                };
+                let v837: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" = ")), ());
+                    ()
+                };
+                let v845: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", v2), ());
+                    ()
+                };
+                let v854: () = {
+                    Spiral_builder::closure10(v643.clone(), sprintf!("{}", string(" }")), ());
+                    ()
+                };
+                let v896: string = trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v182,
-                            v599,
-                            v640,
-                            string("spiral_builder.process_rust / error"),
-                            v642.l0.get().clone()
+                            v183,
+                            v600,
+                            v641,
+                            string("spiral_builder.process_rust / cargo error"),
+                            v643.l0.get().clone()
                         ),
                         toArray(empty::<char>()),
                     ),
                     toArray(ofArray(new_array(&[' ', '/']))),
                 );
-                println!("{}", v859.clone());
+                println!("{}", v896.clone());
                 ();
-                ((patternInput.1.clone()).l0.get().clone())(v859)
+                ((patternInput.1.clone()).l0.get().clone())(v896)
             }
         }
         pub fn closure95(
@@ -13463,10 +13541,10 @@ mod module_7e2cd9e0 {
                 ((patternInput.1.clone()).l0.get().clone())(v781)
             }
         }
-        pub fn method108(v0_1: LrcPtr<Spiral_builder::UH4>) {
+        pub fn method109(v0_1: LrcPtr<Spiral_builder::UH4>) {
             let v0_1: MutCell<LrcPtr<Spiral_builder::UH4>> = MutCell::new(v0_1.clone());
-            '_method108: loop {
-                break '_method108 (match v0_1.get().clone().as_ref() {
+            '_method109: loop {
+                break '_method109 (match v0_1.get().clone().as_ref() {
                     Spiral_builder::UH4::UH4_0 => (),
                     Spiral_builder::UH4::UH4_1(v0_1_1_0, v0_1_1_1, v0_1_1_2) => {
                         std::fs::remove_file(&*match v0_1.get().clone().as_ref() {
@@ -13482,13 +13560,13 @@ mod module_7e2cd9e0 {
                                     _ => unreachable!(),
                                 };
                             v0_1.set(v0_1_temp);
-                            continue '_method108;
+                            continue '_method109;
                         }
                     }
                 });
             }
         }
-        pub fn method109(v0_1: async_walkdir::DirEntry) -> async_walkdir::DirEntry {
+        pub fn method110(v0_1: async_walkdir::DirEntry) -> async_walkdir::DirEntry {
             v0_1
         }
         pub fn closure97(unitVar: (), v0_1: std::fs::FileType) -> Spiral_builder::US39 {
@@ -13497,13 +13575,13 @@ mod module_7e2cd9e0 {
         pub fn closure98(unitVar: (), v0_1: std::string::String) -> Spiral_builder::US39 {
             Spiral_builder::US39::US39_1(v0_1)
         }
-        pub fn method110(v0_1: std::fs::FileType) -> std::fs::FileType {
+        pub fn method111(v0_1: std::fs::FileType) -> std::fs::FileType {
             v0_1
         }
-        pub fn method111(v0_1: Spiral_builder::US40) -> Spiral_builder::US40 {
+        pub fn method112(v0_1: Spiral_builder::US40) -> Spiral_builder::US40 {
             v0_1
         }
-        pub fn method112(v0_1: async_walkdir::Filtering) -> async_walkdir::Filtering {
+        pub fn method113(v0_1: async_walkdir::Filtering) -> async_walkdir::Filtering {
             v0_1
         }
         pub fn closure96(
@@ -13517,7 +13595,7 @@ mod module_7e2cd9e0 {
                 let v4: bool = true;
                 let __future_init = Box::pin(async move {
                     //;
-                    let v5: async_walkdir::DirEntry = Spiral_builder::method109(v0_1.clone());
+                    let v5: async_walkdir::DirEntry = Spiral_builder::method110(v0_1.clone());
                     let v7: std::pin::Pin<
                         Box<
                             dyn std::future::Future<
@@ -13533,9 +13611,9 @@ mod module_7e2cd9e0 {
                         Err(v12_1_0) => Spiral_builder::closure98((), v12_1_0.clone()),
                         Ok(v12_0_0) => Spiral_builder::closure97((), v12_0_0.clone()),
                     };
-                    let v94: Spiral_builder::US40 = Spiral_builder::method111(
+                    let v94: Spiral_builder::US40 = Spiral_builder::method112(
                         if let Spiral_builder::US39::US39_0(v15_0_0) = &v15 {
-                            let v17: std::fs::FileType = Spiral_builder::method110(match &v15 {
+                            let v17: std::fs::FileType = Spiral_builder::method111(match &v15 {
                                 Spiral_builder::US39::US39_0(x) => x.clone(),
                                 _ => unreachable!(),
                             });
@@ -13584,7 +13662,7 @@ mod module_7e2cd9e0 {
                     Box<dyn std::future::Future<Output = Spiral_builder::US40> + Send>,
                 > = v101;
                 let v105: Spiral_builder::US40 = v103.await;
-                let v115: async_walkdir::Filtering = Spiral_builder::method112(match &v105 {
+                let v115: async_walkdir::Filtering = Spiral_builder::method113(match &v105 {
                     Spiral_builder::US40::US40_0 => async_walkdir::Filtering::Ignore,
                     Spiral_builder::US40::US40_1 => async_walkdir::Filtering::IgnoreDir,
                     _ => async_walkdir::Filtering::Continue,
@@ -13599,7 +13677,7 @@ mod module_7e2cd9e0 {
         pub fn closure100(unitVar: (), v0_1: async_walkdir::Error) -> std::string::String {
             format!("{}", v0_1)
         }
-        pub fn method114() -> Func1<async_walkdir::Error, std::string::String> {
+        pub fn method115() -> Func1<async_walkdir::Error, std::string::String> {
             Func1::new(move |v: async_walkdir::Error| Spiral_builder::closure100((), v))
         }
         pub fn closure101(unitVar: (), v0_1: async_walkdir::DirEntry) -> Spiral_builder::US41 {
@@ -13771,7 +13849,7 @@ mod module_7e2cd9e0 {
             unitVar: (),
             v0_1: Result<async_walkdir::DirEntry, async_walkdir::Error>,
         ) -> Option<(string, string)> {
-            let v1_1 = Spiral_builder::method114();
+            let v1_1 = Spiral_builder::method115();
             let v3: Result<async_walkdir::DirEntry, std::string::String> =
                 v0_1.map_err(|x| v1_1(x));
             let v6: Spiral_builder::US41 = match &v3 {
@@ -13855,7 +13933,7 @@ mod module_7e2cd9e0 {
                         defaultValue(Spiral_builder::US37::US37_1, _v87.get().clone());
                     let v142: Spiral_builder::US38 = match &v107 {
                         Spiral_builder::US37::US37_0(v107_0_0) => {
-                            let v112: string = Spiral_builder::method107();
+                            let v112: string = Spiral_builder::method108();
                             let v114: Option<string> = std::collections::HashMap::get(
                                 &match &v107 {
                                     Spiral_builder::US37::US37_0(x) => x.clone(),
@@ -13937,7 +14015,7 @@ mod module_7e2cd9e0 {
                 _ => None::<(string, string)>,
             }
         }
-        pub fn method113(
+        pub fn method114(
         ) -> Func1<Result<async_walkdir::DirEntry, async_walkdir::Error>, Option<(string, string)>>
         {
             Func1::new(
@@ -14473,7 +14551,7 @@ mod module_7e2cd9e0 {
                 ((patternInput.1.clone()).l0.get().clone())(v742)
             }
         }
-        pub fn method115(
+        pub fn method116(
             v0_1: LrcPtr<Spiral_builder::UH5>,
             v1_1: LrcPtr<Spiral_builder::UH5>,
         ) -> LrcPtr<Spiral_builder::UH5> {
@@ -14489,7 +14567,7 @@ mod module_7e2cd9e0 {
                             Spiral_builder::UH5::UH5_1(_, x, _) => x.clone(),
                             _ => unreachable!(),
                         },
-                        Spiral_builder::method115(
+                        Spiral_builder::method116(
                             match v0_1.as_ref() {
                                 Spiral_builder::UH5::UH5_1(_, _, x) => x.clone(),
                                 _ => unreachable!(),
@@ -14500,7 +14578,7 @@ mod module_7e2cd9e0 {
                 }
             }
         }
-        pub fn method116(
+        pub fn method117(
             v0_1: LrcPtr<Spiral_builder::UH5>,
             v1_1: List<(string, string)>,
         ) -> List<(string, string)> {
@@ -14517,7 +14595,7 @@ mod module_7e2cd9e0 {
                             _ => unreachable!(),
                         },
                     ),
-                    Spiral_builder::method116(
+                    Spiral_builder::method117(
                         match v0_1.as_ref() {
                             Spiral_builder::UH5::UH5_1(_, _, x) => x.clone(),
                             _ => unreachable!(),
@@ -15986,10 +16064,10 @@ mod module_7e2cd9e0 {
             let v3: std::string::String = format!("{}", v0_1);
             fable_library_rust::String_::fromString(v3)
         }
-        pub fn method117() -> Func1<serde_json::Error, string> {
+        pub fn method118() -> Func1<serde_json::Error, string> {
             Func1::new(move |v: serde_json::Error| Spiral_builder::closure122((), v))
         }
-        pub fn method118(v0_1: Result<string, string>) -> Result<string, string> {
+        pub fn method119(v0_1: Result<string, string>) -> Result<string, string> {
             v0_1
         }
         pub fn method10(
@@ -16023,7 +16101,7 @@ mod module_7e2cd9e0 {
                 };
                 let v29: Spiral_builder::US4 =
                     defaultValue(Spiral_builder::US4::US4_1, _v7.get().clone());
-                let v25867: Array<(string, string)> = if let Spiral_builder::US4::US4_0(
+                let v25944: Array<(string, string)> = if let Spiral_builder::US4::US4_0(
                     v29_0_0,
                     v29_0_1,
                 ) = &v29
@@ -16926,32 +17004,35 @@ mod module_7e2cd9e0 {
                                     };
                                     let v6798: string = Spiral_builder::method87();
                                     let v6800: &str = &*v6798;
-                                    let v6802: Option<std::string::String> =
-                                        clap::ArgMatches::get_one(&v34.clone(), v6800).cloned();
-                                    let _v6803: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
+                                    let v6802: bool = clap::ArgMatches::get_flag(&v34, v6800);
+                                    let v6803: string = Spiral_builder::method88();
+                                    let v6805: &str = &*v6803;
+                                    let v6807: Option<std::string::String> =
+                                        clap::ArgMatches::get_one(&v34.clone(), v6805).cloned();
+                                    let _v6808: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
                                         refCell(None::<Spiral_builder::US5>);
-                                    let v6808: () = {
+                                    let v6813: () = {
                                         Spiral_builder::closure17(
-                                            v6802,
+                                            v6807,
                                             Func1::new({
-                                                let _v6803 = _v6803.clone();
+                                                let _v6808 = _v6808.clone();
                                                 move |v_13: Option<Spiral_builder::US5>| {
-                                                    Spiral_builder::closure16(_v6803.clone(), v_13)
+                                                    Spiral_builder::closure16(_v6808.clone(), v_13)
                                                 }
                                             }),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6823: Spiral_builder::US5 = defaultValue(
+                                    let v6828: Spiral_builder::US5 = defaultValue(
                                         Spiral_builder::US5::US5_1,
-                                        _v6803.get().clone(),
+                                        _v6808.get().clone(),
                                     );
-                                    let v6833: Spiral_builder::US1 = match &v6823 {
-                                        Spiral_builder::US5::US5_0(v6823_0_0) => {
+                                    let v6838: Spiral_builder::US1 = match &v6828 {
+                                        Spiral_builder::US5::US5_0(v6828_0_0) => {
                                             Spiral_builder::US1::US1_0(
                                                 fable_library_rust::String_::fromString(
-                                                    match &v6823 {
+                                                    match &v6828 {
                                                         Spiral_builder::US5::US5_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     },
@@ -16960,34 +17041,34 @@ mod module_7e2cd9e0 {
                                         }
                                         _ => Spiral_builder::US1::US1_1,
                                     };
-                                    let v6834: string = Spiral_builder::method88();
-                                    let v6836: &str = &*v6834;
-                                    let v6838: Option<std::string::String> =
-                                        clap::ArgMatches::get_one(&v34.clone(), v6836).cloned();
-                                    let _v6839: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
+                                    let v6839: string = Spiral_builder::method89();
+                                    let v6841: &str = &*v6839;
+                                    let v6843: Option<std::string::String> =
+                                        clap::ArgMatches::get_one(&v34.clone(), v6841).cloned();
+                                    let _v6844: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
                                         refCell(None::<Spiral_builder::US5>);
-                                    let v6844: () = {
+                                    let v6849: () = {
                                         Spiral_builder::closure17(
-                                            v6838,
+                                            v6843,
                                             Func1::new({
-                                                let _v6839 = _v6839.clone();
+                                                let _v6844 = _v6844.clone();
                                                 move |v_14: Option<Spiral_builder::US5>| {
-                                                    Spiral_builder::closure16(_v6839.clone(), v_14)
+                                                    Spiral_builder::closure16(_v6844.clone(), v_14)
                                                 }
                                             }),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6859: Spiral_builder::US5 = defaultValue(
+                                    let v6864: Spiral_builder::US5 = defaultValue(
                                         Spiral_builder::US5::US5_1,
-                                        _v6839.get().clone(),
+                                        _v6844.get().clone(),
                                     );
-                                    let v6869: Spiral_builder::US1 = match &v6859 {
-                                        Spiral_builder::US5::US5_0(v6859_0_0) => {
+                                    let v6874: Spiral_builder::US1 = match &v6864 {
+                                        Spiral_builder::US5::US5_0(v6864_0_0) => {
                                             Spiral_builder::US1::US1_0(
                                                 fable_library_rust::String_::fromString(
-                                                    match &v6859 {
+                                                    match &v6864 {
                                                         Spiral_builder::US5::US5_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     },
@@ -16996,18 +17077,18 @@ mod module_7e2cd9e0 {
                                         }
                                         _ => Spiral_builder::US1::US1_1,
                                     };
-                                    let v6878: Spiral_builder::US33 =
-                                        if let Spiral_builder::US1::US1_0(v6833_0_0) = &v6833 {
+                                    let v6883: Spiral_builder::US33 =
+                                        if let Spiral_builder::US1::US1_0(v6838_0_0) = &v6838 {
                                             Spiral_builder::US33::US33_0(
-                                                Spiral_builder::US34::US34_0(match &v6833 {
+                                                Spiral_builder::US34::US34_0(match &v6838 {
                                                     Spiral_builder::US1::US1_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 }),
                                             )
                                         } else {
-                                            if let Spiral_builder::US1::US1_0(v6869_0_0) = &v6869 {
+                                            if let Spiral_builder::US1::US1_0(v6874_0_0) = &v6874 {
                                                 Spiral_builder::US33::US33_0(
-                                                    Spiral_builder::US34::US34_1(match &v6869 {
+                                                    Spiral_builder::US34::US34_1(match &v6874 {
                                                         Spiral_builder::US1::US1_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     }),
@@ -17016,172 +17097,172 @@ mod module_7e2cd9e0 {
                                                 Spiral_builder::US33::US33_1
                                             }
                                         };
-                                    let v6879: bool = if let Spiral_builder::US0::US0_0 = &v0_1 {
+                                    let v6884: bool = if let Spiral_builder::US0::US0_0 = &v0_1 {
                                         true
                                     } else {
                                         false
                                     };
-                                    let v6883: Result<Vec<u8>, std::io::Error> =
+                                    let v6888: Result<Vec<u8>, std::io::Error> =
                                         std::fs::read(&*v6762);
-                                    let v6906: Vec<u8> = Spiral_builder::method14(v6883.unwrap());
-                                    let v6908: Result<
+                                    let v6911: Vec<u8> = Spiral_builder::method14(v6888.unwrap());
+                                    let v6913: Result<
                                         std::string::String,
                                         std::string::FromUtf8Error,
-                                    > = std::string::String::from_utf8(v6906);
-                                    let v6910: std::string::String = v6908.unwrap();
-                                    let v6926: string =
-                                        fable_library_rust::String_::fromString(v6910);
-                                    let v6932: LrcPtr<Spiral_builder::Mut3> =
+                                    > = std::string::String::from_utf8(v6911);
+                                    let v6915: std::string::String = v6913.unwrap();
+                                    let v6931: string =
+                                        fable_library_rust::String_::fromString(v6915);
+                                    let v6937: LrcPtr<Spiral_builder::Mut3> =
                                         LrcPtr::new(Spiral_builder::Mut3 {
                                             l0: MutCell::new(Spiral_builder::method9()),
                                         });
-                                    let v6939: () = {
+                                    let v6944: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("{ ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6948: () = {
+                                    let v6953: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("extension")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6957: () = {
+                                    let v6962: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string(" = ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6966: () = {
+                                    let v6971: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("rs")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6975: () = {
+                                    let v6980: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("; ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6984: () = {
+                                    let v6989: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("code")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v6992: () = {
+                                    let v6997: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string(" = ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7000: () = {
+                                    let v7005: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
-                                            sprintf!("{}", v6926.clone()),
+                                            v6937.clone(),
+                                            sprintf!("{}", v6931.clone()),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7008: () = {
+                                    let v7013: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("; ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7017: () = {
+                                    let v7022: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string("runtime")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7025: () = {
+                                    let v7030: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string(" = ")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7036: () = {
+                                    let v7041: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
-                                            sprintf!("{}", sprintf!("{:?}", v6878.clone())),
+                                            v6937.clone(),
+                                            sprintf!("{}", sprintf!("{:?}", v6883.clone())),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7045: () = {
+                                    let v7050: () = {
                                         Spiral_builder::closure10(
-                                            v6932.clone(),
+                                            v6937.clone(),
                                             sprintf!("{}", string(" }")),
                                             (),
                                         );
                                         ()
                                     };
-                                    let v7049: string =
-                                        Spiral_builder::method89(v6932.l0.get().clone());
-                                    let v7054: Spiral_builder::US12 =
+                                    let v7054: string =
+                                        Spiral_builder::method90(v6937.l0.get().clone());
+                                    let v7059: Spiral_builder::US12 =
                                             Spiral_builder::method18(Spiral_builder::method15(string("polyglot"),
                                                                                               string(".devcontainer")),
                                                                      string("C:\\home\\git\\polyglot\\target\\Builder\\spiral_builder"));
-                                    let v7853: Spiral_builder::US1 = match &v7054 {
-                                        Spiral_builder::US12::US12_0(v7054_0_0) => {
-                                            Spiral_builder::US1::US1_0(v7054_0_0.clone())
+                                    let v7858: Spiral_builder::US1 = match &v7059 {
+                                        Spiral_builder::US12::US12_0(v7059_0_0) => {
+                                            Spiral_builder::US1::US1_0(v7059_0_0.clone())
                                         }
-                                        Spiral_builder::US12::US12_1(v7054_1_0) => {
-                                            let v7060: () = {
-                                                Spiral_builder::closure21(v7054_1_0.clone(), ());
+                                        Spiral_builder::US12::US12_1(v7059_1_0) => {
+                                            let v7065: () = {
+                                                Spiral_builder::closure21(v7059_1_0.clone(), ());
                                                 ()
                                             };
                                             Spiral_builder::US1::US1_1
                                         }
                                     };
-                                    let v8659: Spiral_builder::US1 = match &v7853 {
-                                        Spiral_builder::US1::US1_0(v7853_0_0) => {
-                                            Spiral_builder::US1::US1_0(match &v7853 {
+                                    let v8664: Spiral_builder::US1 = match &v7858 {
+                                        Spiral_builder::US1::US1_0(v7858_0_0) => {
+                                            Spiral_builder::US1::US1_0(match &v7858 {
                                                 Spiral_builder::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v7856: string = Spiral_builder::method23();
-                                            let v7858: Spiral_builder::US12 =
+                                            let v7861: string = Spiral_builder::method23();
+                                            let v7863: Spiral_builder::US12 =
                                                 Spiral_builder::method18(
                                                     Spiral_builder::method15(
                                                         string("polyglot"),
                                                         string(".devcontainer"),
                                                     ),
-                                                    v7856,
+                                                    v7861,
                                                 );
-                                            match &v7858 {
-                                                Spiral_builder::US12::US12_0(v7858_0_0) => {
-                                                    Spiral_builder::US1::US1_0(v7858_0_0.clone())
+                                            match &v7863 {
+                                                Spiral_builder::US12::US12_0(v7863_0_0) => {
+                                                    Spiral_builder::US1::US1_0(v7863_0_0.clone())
                                                 }
-                                                Spiral_builder::US12::US12_1(v7858_1_0) => {
-                                                    let v7864: () = {
+                                                Spiral_builder::US12::US12_1(v7863_1_0) => {
+                                                    let v7869: () = {
                                                         Spiral_builder::closure21(
-                                                            v7858_1_0.clone(),
+                                                            v7863_1_0.clone(),
                                                             (),
                                                         );
                                                         ()
@@ -17191,9 +17272,9 @@ mod module_7e2cd9e0 {
                                             }
                                         }
                                     };
-                                    let v8664: string = Spiral_builder::method15(
-                                        match &v8659 {
-                                            Spiral_builder::US1::US1_0(v8659_0_0) => match &v8659 {
+                                    let v8669: string = Spiral_builder::method15(
+                                        match &v8664 {
+                                            Spiral_builder::US1::US1_0(v8664_0_0) => match &v8664 {
                                                 Spiral_builder::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             },
@@ -17204,36 +17285,36 @@ mod module_7e2cd9e0 {
                                         },
                                         string("polyglot"),
                                     );
-                                    let v8667: string = toLower(Spiral_builder::method23());
-                                    let v8671: string = toLower(v8664);
-                                    let v8679: Spiral_builder::US12 =
-                                        if startsWith(v8667, v8671.clone(), false) {
-                                            Spiral_builder::US12::US12_1(v8671.clone())
+                                    let v8672: string = toLower(Spiral_builder::method23());
+                                    let v8676: string = toLower(v8669);
+                                    let v8684: Spiral_builder::US12 =
+                                        if startsWith(v8672, v8676.clone(), false) {
+                                            Spiral_builder::US12::US12_1(v8676.clone())
                                         } else {
-                                            Spiral_builder::US12::US12_0(v8671)
+                                            Spiral_builder::US12::US12_0(v8676)
                                         };
-                                    let v8685: Result<string, string> = match &v8679 {
-                                        Spiral_builder::US12::US12_0(v8679_0_0) => {
-                                            Ok::<string, string>(v8679_0_0.clone())
+                                    let v8690: Result<string, string> = match &v8684 {
+                                        Spiral_builder::US12::US12_0(v8684_0_0) => {
+                                            Ok::<string, string>(v8684_0_0.clone())
                                         }
-                                        Spiral_builder::US12::US12_1(v8679_1_0) => {
-                                            Err::<string, string>(v8679_1_0.clone())
+                                        Spiral_builder::US12::US12_1(v8684_1_0) => {
+                                            Err::<string, string>(v8684_1_0.clone())
                                         }
                                     };
-                                    let v8687: bool = true;
-                                    let _result_unwrap_or_else = v8685.unwrap_or_else(|x| {
+                                    let v8692: bool = true;
+                                    let _result_unwrap_or_else = v8690.unwrap_or_else(|x| {
                                         //;
-                                        let v8689: string = x;
-                                        let v8691: bool = true;
-                                        v8689
+                                        let v8694: string = x;
+                                        let v8696: bool = true;
+                                        v8694
                                     });
-                                    let v8693: string = _result_unwrap_or_else;
-                                    let v8702: string = Spiral_builder::method15(
+                                    let v8698: string = _result_unwrap_or_else;
+                                    let v8707: string = Spiral_builder::method15(
                                         Spiral_builder::method15(
                                             Spiral_builder::method15(
                                                 Spiral_builder::method15(
                                                     Spiral_builder::method15(
-                                                        v8693.clone(),
+                                                        v8698.clone(),
                                                         string("target/spiral_builder"),
                                                     ),
                                                     string("spiral_builder"),
@@ -17242,101 +17323,101 @@ mod module_7e2cd9e0 {
                                             ),
                                             string("Rust"),
                                         ),
-                                        v7049.clone(),
+                                        v7054.clone(),
                                     );
-                                    let v8703: LrcPtr<dyn IDisposable> =
-                                        Spiral_builder::method28(v8702.clone());
-                                    let v8706: string =
+                                    let v8708: LrcPtr<dyn IDisposable> =
+                                        Spiral_builder::method28(v8707.clone());
+                                    let v8711: string =
                                         Spiral_builder::method80(Spiral_builder::method15(
-                                            v8702.clone(),
+                                            v8707.clone(),
                                             sprintf!("{}.fs", string("spiral_builder")),
                                         ));
-                                    Spiral_builder::method25(v8706.clone(), v6926);
+                                    Spiral_builder::method25(v8711.clone(), v6931);
                                     {
-                                        let v8707: List<string> = empty::<string>();
-                                        let v8714: string = join(
+                                        let v8712: List<string> = empty::<string>();
+                                        let v8719: string = join(
                                             string("\\n        "),
                                             toArray_1(delay(Func0::new({
-                                                let v8707 = v8707.clone();
+                                                let v8712 = v8712.clone();
                                                 move || {
                                                     map(
                                                         Func1::new({
-                                                            let v8707 = v8707.clone();
-                                                            move |i_1: i32| item(i_1, v8707.clone())
+                                                            let v8712 = v8712.clone();
+                                                            move |i_1: i32| item(i_1, v8712.clone())
                                                         }),
                                                         rangeNumeric(
                                                             0_i32,
                                                             1_i32,
-                                                            length_1(v8707.clone()) - 1_i32,
+                                                            length_1(v8712.clone()) - 1_i32,
                                                         ),
                                                     )
                                                 }
                                             }))),
                                         );
-                                        let v8720: List<string> = singleton(sprintf!(
+                                        let v8725: List<string> = singleton(sprintf!(
                                             "<PackageReference Include=\"{}\" Version=\"*\" />",
                                             string("Fable.Core")
                                         ));
-                                        let v8728: string = join(
+                                        let v8733: string = join(
                                             string("\\n        "),
                                             toArray_1(delay(Func0::new({
-                                                let v8720 = v8720.clone();
+                                                let v8725 = v8725.clone();
                                                 move || {
                                                     map(
                                                         Func1::new({
-                                                            let v8720 = v8720.clone();
-                                                            move |i_2: i32| item(i_2, v8720.clone())
+                                                            let v8725 = v8725.clone();
+                                                            move |i_2: i32| item(i_2, v8725.clone())
                                                         }),
                                                         rangeNumeric(
                                                             0_i32,
                                                             1_i32,
-                                                            length_1(v8720.clone()) - 1_i32,
+                                                            length_1(v8725.clone()) - 1_i32,
                                                         ),
                                                     )
                                                 }
                                             }))),
                                         );
-                                        let v8733: string =
+                                        let v8738: string =
                                             Spiral_builder::method80(Spiral_builder::method15(
-                                                v8702.clone(),
+                                                v8707.clone(),
                                                 sprintf!("{}.fsproj", string("spiral_builder")),
                                             ));
-                                        Spiral_builder::method25(v8733.clone(),
+                                        Spiral_builder::method25(v8738.clone(),
                                                                      append(append(append(append(append(append(append(append(append(append(append(append(append(string("<Project Sdk=\"Microsoft.NET.Sdk\">\n<PropertyGroup>\n    <TargetFramework>net9.0</TargetFramework>\n    <LangVersion>preview</LangVersion>\n    <RollForward>Major</RollForward>\n    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n    <PublishAot>false</PublishAot>\n    <PublishTrimmed>false</PublishTrimmed>\n    <PublishSingleFile>true</PublishSingleFile>\n    <SelfContained>true</SelfContained>\n    <Version>0.0.1-alpha.1</Version>\n    <OutputType>Exe</OutputType>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'FreeBSD\'))\">\n    <DefineConstants>_FREEBSD</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Linux\'))\">\n    <DefineConstants>_LINUX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'OSX\'))\">\n    <DefineConstants>_OSX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Windows\'))\">\n    <DefineConstants>_WINDOWS</DefineConstants>\n</PropertyGroup>\n<ItemGroup>\n"),
                                                                                                                                                                 sprintf!("    {}",
-                                                                                                                                                                         v8714)),
+                                                                                                                                                                         v8719)),
                                                                                                                                                          string("\n")),
                                                                                                                                                   sprintf!("    <Compile Include=\"{}\" />",
-                                                                                                                                                           v8706)),
+                                                                                                                                                           v8711)),
                                                                                                                                            string("\n")),
                                                                                                                                     string("</ItemGroup>")),
                                                                                                                              string("\n")),
                                                                                                                       string("<ItemGroup>")),
                                                                                                                string("\n")),
                                                                                                         sprintf!("    {}",
-                                                                                                                 v8728)),
+                                                                                                                 v8733)),
                                                                                                  string("\n")),
                                                                                           string("</ItemGroup>")),
                                                                                    string("\n")),
                                                                             string("</Project>")));
                                         {
-                                            let v8833: string = Spiral_builder::method15(
-                                                v8702.clone(),
+                                            let v8838: string = Spiral_builder::method15(
+                                                v8707.clone(),
                                                 string("../../.."),
                                             );
-                                            let v8835: string = Spiral_builder::method15(
-                                                v8833.clone(),
+                                            let v8840: string = Spiral_builder::method15(
+                                                v8838.clone(),
                                                 string("Cargo.toml"),
                                             );
-                                            if Spiral_builder::method27(v8835.clone()) == false {
-                                                let v8838: DateTime = DateTime::now();
-                                                let v8847: string = toString(
-                                                    Spiral_builder::method92(new_guid(), v8838),
+                                            if Spiral_builder::method27(v8840.clone()) == false {
+                                                let v8843: DateTime = DateTime::now();
+                                                let v8852: string = toString(
+                                                    Spiral_builder::method93(new_guid(), v8843),
                                                 );
-                                                let v8871: string =
+                                                let v8876: string =
                                                         append(append(append(append(append(append(append(append(append(append(append(append(append(string("[package]\n"),
                                                                                                                                                    sprintf!("name = \"spiral_builder_{}\"",
-                                                                                                                                                            v8847.clone())),
+                                                                                                                                                            v8852.clone())),
                                                                                                                                             string("\n")),
                                                                                                                                      string("version = \"0.0.1\"")),
                                                                                                                               string("\n")),
@@ -17347,28 +17428,28 @@ mod module_7e2cd9e0 {
                                                                                            string("[[bin]]")),
                                                                                     string("\n")),
                                                                              sprintf!("name = \"spiral_builder_{}\"",
-                                                                                      v8847)),
+                                                                                      v8852)),
                                                                       string("\n")),
                                                                string("path = \"spiral_builder.rs\""));
-                                                std::fs::write(&*v8835.clone(), &*v8871).unwrap();
+                                                std::fs::write(&*v8840.clone(), &*v8876).unwrap();
                                                 ();
                                                 ()
                                             }
                                             {
-                                                let v8875: string = Spiral_builder::method15(
-                                                    v8702.clone(),
+                                                let v8880: string = Spiral_builder::method15(
+                                                    v8707.clone(),
                                                     string("Cargo.toml"),
                                                 );
-                                                if Spiral_builder::method27(v8875.clone()) == false
+                                                if Spiral_builder::method27(v8880.clone()) == false
                                                 {
-                                                    let v8878: DateTime = DateTime::now();
-                                                    let v8887: string = toString(
-                                                        Spiral_builder::method92(new_guid(), v8878),
+                                                    let v8883: DateTime = DateTime::now();
+                                                    let v8892: string = toString(
+                                                        Spiral_builder::method93(new_guid(), v8883),
                                                     );
-                                                    let v8911: string =
+                                                    let v8916: string =
                                                             append(append(append(append(append(append(append(append(append(append(append(append(append(string("[package]\n"),
                                                                                                                                                        sprintf!("name = \"spiral_builder_{}\"",
-                                                                                                                                                                v8887.clone())),
+                                                                                                                                                                v8892.clone())),
                                                                                                                                                 string("\n")),
                                                                                                                                          string("version = \"0.0.1\"")),
                                                                                                                                   string("\n")),
@@ -17379,44 +17460,44 @@ mod module_7e2cd9e0 {
                                                                                                string("[[bin]]")),
                                                                                         string("\n")),
                                                                                  sprintf!("name = \"spiral_builder_{}\"",
-                                                                                          v8887)),
+                                                                                          v8892)),
                                                                           string("\n")),
                                                                    string("path = \"spiral_builder.rs\""));
-                                                    std::fs::write(&*v8875.clone(), &*v8911)
+                                                    std::fs::write(&*v8880.clone(), &*v8916)
                                                         .unwrap();
                                                     ();
                                                     ()
                                                 }
                                                 {
-                                                    let v8916: string =
-                                                            Spiral_builder::method15(v8693.clone(),
+                                                    let v8921: string =
+                                                            Spiral_builder::method15(v8698.clone(),
                                                                                      string("lib/rust/fable/fable_modules/fable-library-rust"));
-                                                    let v8918: string = Spiral_builder::method15(
-                                                        v8702.clone(),
+                                                    let v8923: string = Spiral_builder::method15(
+                                                        v8707.clone(),
                                                         string("fable_modules/fable-library-rust"),
                                                     );
-                                                    Spiral_builder::method96(v8916, v8918.clone());
+                                                    Spiral_builder::method97(v8921, v8923.clone());
                                                     {
                                                         let patternInput_9: (i32, string) =
-                                                            Spiral_builder::method97(
-                                                                v6878.clone(),
-                                                                v8702.clone(),
+                                                            Spiral_builder::method98(
+                                                                v6883.clone(),
+                                                                v8707.clone(),
                                                                 string("rs"),
-                                                                v8733,
-                                                                v8679.clone(),
+                                                                v8738,
+                                                                v8684.clone(),
                                                             );
-                                                        let v8920: string =
+                                                        let v8925: string =
                                                             patternInput_9.1.clone();
-                                                        let v8919: i32 = patternInput_9.0.clone();
+                                                        let v8924: i32 = patternInput_9.0.clone();
                                                         let patternInput_18: (
                                                             Spiral_builder::US1,
                                                             Spiral_builder::US1,
                                                             Spiral_builder::US1,
-                                                        ) = if v8919 != 0_i32 {
-                                                            let v8926: () = {
+                                                        ) = if v8924 != 0_i32 {
+                                                            let v8931: () = {
                                                                 Spiral_builder::closure82(
-                                                                    v8920.clone(),
-                                                                    v8919,
+                                                                    v8925.clone(),
+                                                                    v8924,
                                                                     (),
                                                                 );
                                                                 ()
@@ -17426,14 +17507,14 @@ mod module_7e2cd9e0 {
                                                                     "rs",
                                                                 )),
                                                                 Spiral_builder::US1::US1_1,
-                                                                Spiral_builder::US1::US1_0(v8920),
+                                                                Spiral_builder::US1::US1_0(v8925),
                                                             )
                                                         } else {
-                                                            let v9779:
+                                                            let v9784:
                                                                             Vec<std::string::String> =
                                                                         if if let Spiral_builder::US33::US33_1
                                                                                   =
-                                                                                  &v6878
+                                                                                  &v6883
                                                                               {
                                                                                true
                                                                            } else {
@@ -17441,15 +17522,15 @@ mod module_7e2cd9e0 {
                                                                            } {
                                                                             v6797.clone()
                                                                         } else {
-                                                                            let v9753 =
-                                                                                Spiral_builder::method102();
-                                                                            let v9754:
+                                                                            let v9758 =
+                                                                                Spiral_builder::method103();
+                                                                            let v9759:
                                                                                     Vec<std::string::String> =
-                                                                                Spiral_builder::method103(v6797.clone());
-                                                                            let v9756:
+                                                                                Spiral_builder::method104(v6797.clone());
+                                                                            let v9761:
                                                                                     Vec<std::string::String> =
-                                                                                v9754.into_iter().filter(|x| v9753(x.clone().clone())).collect::<Vec<_>>();
-                                                                            if v9756.len()
+                                                                                v9759.into_iter().filter(|x| v9758(x.clone().clone())).collect::<Vec<_>>();
+                                                                            if v9761.len()
                                                                                    as
                                                                                    i32
                                                                                    >
@@ -17457,67 +17538,67 @@ mod module_7e2cd9e0 {
                                                                                {
                                                                                 v6797.clone()
                                                                             } else {
-                                                                                let v9764:
+                                                                                let v9769:
                                                                                         &str =
                                                                                     &*string("near-sdk");
-                                                                                let v9767:
+                                                                                let v9772:
                                                                                         Array<std::string::String> =
-                                                                                    new_array(&[String::from(v9764)]);
-                                                                                let v9770:
-                                                                                        Vec<std::string::String> =
-                                                                                    Spiral_builder::method104(v9767.to_vec());
-                                                                                let v9771:
-                                                                                        Vec<std::string::String> =
-                                                                                    Spiral_builder::method105(v6797);
-                                                                                let v9773:
-                                                                                        bool =
-                                                                                    true; let mut v9771 = v9771;
+                                                                                    new_array(&[String::from(v9769)]);
                                                                                 let v9775:
+                                                                                        Vec<std::string::String> =
+                                                                                    Spiral_builder::method105(v9772.to_vec());
+                                                                                let v9776:
+                                                                                        Vec<std::string::String> =
+                                                                                    Spiral_builder::method106(v6797);
+                                                                                let v9778:
                                                                                         bool =
-                                                                                    true; v9771.extend(v9770);
-                                                                                v9771
+                                                                                    true; let mut v9776 = v9776;
+                                                                                let v9780:
+                                                                                        bool =
+                                                                                    true; v9776.extend(v9775);
+                                                                                v9776
                                                                             }
                                                                         };
-                                                            let v9781: bool = true;
-                                                            let _vec_map : Vec<_> = v9779.into_iter().map(|x| { //;
-                                                                    let v9783:
+                                                            let v9786: bool = true;
+                                                            let _vec_map : Vec<_> = v9784.into_iter().map(|x| { //;
+                                                                    let v9788:
                                                                             std::string::String =
                                                                         x;
-                                                                    let v9785:
+                                                                    let v9790:
                                                                             string =
-                                                                        fable_library_rust::String_::fromString(v9783);
-                                                                    let v9798:
+                                                                        fable_library_rust::String_::fromString(v9788);
+                                                                    let v9803:
                                                                             string =
-                                                                        if contains(v9785.clone(),
+                                                                        if contains(v9790.clone(),
                                                                                     string("="))
                                                                            {
-                                                                            v9785.clone()
+                                                                            v9790.clone()
                                                                         } else {
-                                                                            if endsWith(v9785.clone(),
+                                                                            if endsWith(v9790.clone(),
                                                                                         string("]"),
                                                                                         false)
                                                                                {
                                                                                 sprintf!("{}}}",
-                                                                                         replace(v9785.clone(),
+                                                                                         replace(v9790.clone(),
                                                                                                  string("["),
                                                                                                  string("={version=\'*\',features=[")))
                                                                             } else {
                                                                                 sprintf!("{}=\'*\'",
-                                                                                         v9785)
+                                                                                         v9790)
                                                                             }
                                                                         };
-                                                                    let v9800:
+                                                                    let v9805:
                                                                             bool =
-                                                                        true; v9798 }).collect::<Vec<_>>();
-                                                            let v9802: Vec<string> = _vec_map;
-                                                            let v9804:
+                                                                        true; v9803 }).collect::<Vec<_>>();
+                                                            let v9807: Vec<string> = _vec_map;
+                                                            let v9809:
                                                                             Array<string> =
-                                                                        fable_library_rust::NativeArray_::array_from(v9802);
-                                                            let v9858:
+                                                                        fable_library_rust::NativeArray_::array_from(v9807);
+                                                            let v9863:
                                                                             string =
                                                                         append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(string("[package]\n"),
                                                                                                                                                                                                                            sprintf!("name = \"spiral_builder_{}\"",
-                                                                                                                                                                                                                                    v7049.clone())),
+                                                                                                                                                                                                                                    v7054.clone())),
                                                                                                                                                                                                                     string("\n")),
                                                                                                                                                                                                              string("version = \"0.0.1\"")),
                                                                                                                                                                                                       string("\n")),
@@ -17529,17 +17610,17 @@ mod module_7e2cd9e0 {
                                                                                                                                                             string("\n")),
                                                                                                                                                      (if if let Spiral_builder::US33::US33_1
                                                                                                                                                                 =
-                                                                                                                                                                &v6878
+                                                                                                                                                                &v6883
                                                                                                                                                             {
                                                                                                                                                              true
                                                                                                                                                          } else {
                                                                                                                                                              false
                                                                                                                                                          }
                                                                                                                                                          {
-                                                                                                                                                          let v9830:
+                                                                                                                                                          let v9835:
                                                                                                                                                                   string =
                                                                                                                                                               string("fable_library_rust = { workspace = true, features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"] }");
-                                                                                                                                                          v9830
+                                                                                                                                                          v9835
                                                                                                                                                       } else {
                                                                                                                                                           string("fable_library_rust = { workspace = true }")
                                                                                                                                                       })),
@@ -17549,23 +17630,23 @@ mod module_7e2cd9e0 {
                                                                                                                          sprintf!("{}",
                                                                                                                                   join(string("\n"),
                                                                                                                                        toArray_1(delay(Func0::new({
-                                                                                                                                                                      let v9804
+                                                                                                                                                                      let v9809
                                                                                                                                                                           =
-                                                                                                                                                                          v9804.clone();
+                                                                                                                                                                          v9809.clone();
                                                                                                                                                                       move
                                                                                                                                                                           ||
                                                                                                                                                                           map(Func1::new({
-                                                                                                                                                                                             let v9804
+                                                                                                                                                                                             let v9809
                                                                                                                                                                                                  =
-                                                                                                                                                                                                 v9804.clone();
+                                                                                                                                                                                                 v9809.clone();
                                                                                                                                                                                              move
                                                                                                                                                                                                  |i_3:
                                                                                                                                                                                                       i32|
-                                                                                                                                                                                                 v9804[i_3].clone()
+                                                                                                                                                                                                 v9809[i_3].clone()
                                                                                                                                                                                          }),
                                                                                                                                                                               rangeNumeric(0_i32,
                                                                                                                                                                                            1_i32,
-                                                                                                                                                                                           count_2(v9804.clone())
+                                                                                                                                                                                           count_2(v9809.clone())
                                                                                                                                                                                                -
                                                                                                                                                                                                1_i32))
                                                                                                                                                                   })))))),
@@ -17574,7 +17655,7 @@ mod module_7e2cd9e0 {
                                                                                                     string("\n")),
                                                                                              (if if let Spiral_builder::US33::US33_1
                                                                                                         =
-                                                                                                        &v6878
+                                                                                                        &v6883
                                                                                                     {
                                                                                                      true
                                                                                                  } else {
@@ -17583,17 +17664,17 @@ mod module_7e2cd9e0 {
                                                                                                  {
                                                                                                   append(string("[[bin]]\n"),
                                                                                                          sprintf!("name = \"spiral_builder_{}\"",
-                                                                                                                  v7049.clone()))
+                                                                                                                  v7054.clone()))
                                                                                               } else {
                                                                                                   string("[lib]\ncrate-type = [\"cdylib\"]")
                                                                                               })),
                                                                                       string("\n")),
                                                                                string("path = \"spiral_builder.rs\" "));
-                                                            let v9923:
+                                                            let v9928:
                                                                             string =
                                                                         append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(string("cargo-features = [\"profile-rustflags\"]\n\n[workspace]\nresolver = \"2\"\nmembers = [\"packages/Rust/*\"]\n\n[workspace.dependencies.fable_library_rust]\n"),
                                                                                                                                                                                                                                                                                    sprintf!("path = \"{}/lib/rust/fable/fable_modules/fable-library-rust\"",
-                                                                                                                                                                                                                                                                                            Spiral_builder::method80(v8693.clone()))),
+                                                                                                                                                                                                                                                                                            Spiral_builder::method80(v8698.clone()))),
                                                                                                                                                                                                                                                                             string("\n")),
                                                                                                                                                                                                                                                                      string("default-features = false")),
                                                                                                                                                                                                                                                               string("\n")),
@@ -17623,37 +17704,37 @@ mod module_7e2cd9e0 {
                                                                                       string("\n")),
                                                                                string("rustflags = [\"-C\", \"link-arg=-s\"]"));
                                                             Spiral_builder::method25(
-                                                                v8875.clone(),
-                                                                v9858,
+                                                                v8880.clone(),
+                                                                v9863,
                                                             );
-                                                            Spiral_builder::method25(v8835, v9923);
+                                                            Spiral_builder::method25(v8840, v9928);
                                                             {
-                                                                let v9925: string =
+                                                                let v9930: string =
                                                                     Spiral_builder::method15(
-                                                                        v8918,
+                                                                        v8923,
                                                                         string("src/Range.rs"),
                                                                     );
                                                                 if Spiral_builder::method27(
-                                                                    v9925.clone(),
+                                                                    v9930.clone(),
                                                                 ) {
-                                                                    let v9930: Result<
+                                                                    let v9935: Result<
                                                                         Vec<u8>,
                                                                         std::io::Error,
                                                                     > = std::fs::read(
-                                                                        &*v9925.clone(),
+                                                                        &*v9930.clone(),
                                                                     );
-                                                                    let v9953: Vec<u8> =
+                                                                    let v9958: Vec<u8> =
                                                                         Spiral_builder::method14(
-                                                                            v9930.unwrap(),
+                                                                            v9935.unwrap(),
                                                                         );
-                                                                    let v9955:
+                                                                    let v9960:
                                                                                     Result<std::string::String,
                                                                                            std::string::FromUtf8Error> =
-                                                                                std::string::String::from_utf8(v9953);
-                                                                    let v9957: std::string::String =
-                                                                        v9955.unwrap();
-                                                                    Spiral_builder::method25(v9925,
-                                                                                                     replace(replace(fable_library_rust::String_::fromString(v9957),
+                                                                                std::string::String::from_utf8(v9958);
+                                                                    let v9962: std::string::String =
+                                                                        v9960.unwrap();
+                                                                    Spiral_builder::method25(v9930,
+                                                                                                     replace(replace(fable_library_rust::String_::fromString(v9962),
                                                                                                                      string("use crate::String_::fromCharCode;"),
                                                                                                                      string("use crate::String_::fromChar;")),
                                                                                                              string("fromCharCode(c)"),
@@ -17663,57 +17744,57 @@ mod module_7e2cd9e0 {
                                                                     let patternInput_10: (
                                                                         i32,
                                                                         string,
-                                                                    ) = Spiral_builder::method106(
-                                                                        v8679.clone(),
-                                                                        v8875.clone(),
+                                                                    ) = Spiral_builder::method107(
+                                                                        v8684.clone(),
+                                                                        v8880.clone(),
                                                                         1_u8,
                                                                     );
-                                                                    let v9985: i32 =
+                                                                    let v9990: i32 =
                                                                         patternInput_10.0.clone();
-                                                                    if v9985 != 0_i32 {
-                                                                        let v9992: () = {
+                                                                    if v9990 != 0_i32 {
+                                                                        let v9997: () = {
                                                                             Spiral_builder::closure87(patternInput_10.1.clone(),
-                                                                                                                  v9985,
+                                                                                                                  v9990,
                                                                                                                   ());
                                                                             ()
                                                                         };
                                                                         ()
                                                                     }
                                                                     {
-                                                                        let v10816:
+                                                                        let v10821:
                                                                                         string =
-                                                                                    Spiral_builder::method15(v8702,
+                                                                                    Spiral_builder::method15(v8707,
                                                                                                              sprintf!("{}.{}",
                                                                                                                       string("spiral_builder"),
                                                                                                                       string("rs")));
-                                                                        let v10820: Result<
+                                                                        let v10825: Result<
                                                                             Vec<u8>,
                                                                             std::io::Error,
                                                                         > = std::fs::read(
-                                                                            &*v10816.clone(),
+                                                                            &*v10821.clone(),
                                                                         );
-                                                                        let v10843:
+                                                                        let v10848:
                                                                                         Vec<u8> =
-                                                                                    Spiral_builder::method14(v10820.unwrap());
-                                                                        let v10845:
+                                                                                    Spiral_builder::method14(v10825.unwrap());
+                                                                        let v10850:
                                                                                         Result<std::string::String,
                                                                                                std::string::FromUtf8Error> =
-                                                                                    std::string::String::from_utf8(v10843);
-                                                                        let v10847:
+                                                                                    std::string::String::from_utf8(v10848);
+                                                                        let v10852:
                                                                                         std::string::String =
-                                                                                    v10845.unwrap();
-                                                                        let v10863:
+                                                                                    v10850.unwrap();
+                                                                        let v10868:
                                                                                         string =
-                                                                                    fable_library_rust::String_::fromString(v10847);
-                                                                        let v10871:
+                                                                                    fable_library_rust::String_::fromString(v10852);
+                                                                        let v10876:
                                                                                         string =
                                                                                     append(string("pub fn main() -> Result<(), String> "),
                                                                                            "{".into());
-                                                                        let v10908:
+                                                                        let v10913:
                                                                                         string =
                                                                                     append(append((if if let Spiral_builder::US33::US33_1
                                                                                                              =
-                                                                                                             &v6878
+                                                                                                             &v6883
                                                                                                          {
                                                                                                           true
                                                                                                       } else {
@@ -17726,41 +17807,41 @@ mod module_7e2cd9e0 {
                                                                                                    }),
                                                                                                   string("\n")),
                                                                                            sprintf!("{} Ok(()) }}",
-                                                                                                    v10871.clone()));
-                                                                        let v10909: bool = contains(
-                                                                            v10863.clone(),
-                                                                            v10871,
+                                                                                                    v10876.clone()));
+                                                                        let v10914: bool = contains(
+                                                                            v10868.clone(),
+                                                                            v10876,
                                                                         );
-                                                                        let v11001: string =
-                                                                            if v10909 {
-                                                                                v10863.clone()
+                                                                        let v11006: string =
+                                                                            if v10914 {
+                                                                                v10868.clone()
                                                                             } else {
-                                                                                let v10923:
+                                                                                let v10928:
                                                                                                 string =
-                                                                                            replace(replace(v10863,
+                                                                                            replace(replace(v10868,
                                                                                                             append(string("),)"),
                                                                                                                    ";".into()),
                                                                                                             string("));")),
                                                                                                     append(string("},)"),
                                                                                                            ";".into()),
                                                                                                     string("});"));
-                                                                                let v10928:
+                                                                                let v10933:
                                                                                                 Result<regex::Regex,
                                                                                                        regex::Error> =
                                                                                             regex::Regex::new(&string("\\s\\sdefaultOf\\(\\);"));
-                                                                                let v10930:
-                                                                                                regex::Regex =
-                                                                                            v10928.unwrap();
-                                                                                let v10931:
-                                                                                                string =
-                                                                                            Spiral_builder::method81(v10923);
-                                                                                let v10933:
-                                                                                                std::borrow::Cow<str> =
-                                                                                            v10930.replace_all(&*v10931, &*string(" defaultOf::<()>();"));
                                                                                 let v10935:
+                                                                                                regex::Regex =
+                                                                                            v10933.unwrap();
+                                                                                let v10936:
+                                                                                                string =
+                                                                                            Spiral_builder::method81(v10928);
+                                                                                let v10938:
+                                                                                                std::borrow::Cow<str> =
+                                                                                            v10935.replace_all(&*v10936, &*string(" defaultOf::<()>();"));
+                                                                                let v10940:
                                                                                                 std::string::String =
-                                                                                            String::from(v10933);
-                                                                                replace(replace(replace(replace(replace(replace(replace(replace(fable_library_rust::String_::fromString(v10935),
+                                                                                            String::from(v10938);
+                                                                                replace(replace(replace(replace(replace(replace(replace(replace(fable_library_rust::String_::fromString(v10940),
                                                                                                                                                         string("::Slice\'_"),
                                                                                                                                                         string("::Slice__")),
                                                                                                                                                 append(string("defaultOf()"),
@@ -17785,18 +17866,18 @@ mod module_7e2cd9e0 {
                                                                                                        ";".into()),
                                                                                                 string("type TaskCanceledException = ();"))
                                                                             };
-                                                                        if v10909 == false {
-                                                                            Spiral_builder::method25(v10816.clone(),
+                                                                        if v10914 == false {
+                                                                            Spiral_builder::method25(v10821.clone(),
                                                                                                              sprintf!("{}\n\n{}\n",
-                                                                                                                      v11001.clone(),
-                                                                                                                      v10908));
+                                                                                                                      v11006.clone(),
+                                                                                                                      v10913));
                                                                         }
                                                                         {
-                                                                            let v11008:
+                                                                            let v11013:
                                                                                             string =
                                                                                         if (if let Spiral_builder::US33::US33_1
                                                                                                    =
-                                                                                                   &v6878
+                                                                                                   &v6883
                                                                                                {
                                                                                                 true
                                                                                             } else {
@@ -17806,17 +17887,17 @@ mod module_7e2cd9e0 {
                                                                                                true
                                                                                            {
                                                                                             sprintf!("cargo build --release --target wasm32-unknown-unknown --manifest-path \"{}\"",
-                                                                                                     v8875.clone())
+                                                                                                     v8880.clone())
                                                                                         } else {
                                                                                             sprintf!("cargo run --manifest-path \"{}\"",
-                                                                                                     v8875)
+                                                                                                     v8880)
                                                                                         };
-                                                                            let v11019:
+                                                                            let v11024:
                                                                                             Array<(string,
                                                                                                    string)> =
                                                                                         if (if let Spiral_builder::US33::US33_1
                                                                                                    =
-                                                                                                   &v6878
+                                                                                                   &v6883
                                                                                                {
                                                                                                 true
                                                                                             } else {
@@ -17835,26 +17916,26 @@ mod module_7e2cd9e0 {
                                                                                                         (string("RUSTFLAGS"),
                                                                                                          string("-C prefer-dynamic"))])
                                                                                         };
-                                                                            let v11030:
+                                                                            let v11035:
                                                                                             Result<string,
                                                                                                    string> =
-                                                                                        match &v8679
+                                                                                        match &v8684
                                                                                             {
-                                                                                            Spiral_builder::US12::US12_0(v8679_0_0)
+                                                                                            Spiral_builder::US12::US12_0(v8684_0_0)
                                                                                             =>
                                                                                             Ok::<string,
-                                                                                                 string>(v8679_0_0.clone()),
-                                                                                            Spiral_builder::US12::US12_1(v8679_1_0)
+                                                                                                 string>(v8684_0_0.clone()),
+                                                                                            Spiral_builder::US12::US12_1(v8684_1_0)
                                                                                             =>
                                                                                             Err::<string,
-                                                                                                  string>(v8679_1_0.clone()),
+                                                                                                  string>(v8684_1_0.clone()),
                                                                                         };
                                                                             let patternInput_11:
                                                                                             (i32,
                                                                                              string) =
-                                                                                        Spiral_builder::method40(v11008.clone(),
+                                                                                        Spiral_builder::method40(v11013.clone(),
                                                                                                                  None::<CancellationToken>,
-                                                                                                                 v11019.clone(),
+                                                                                                                 v11024.clone(),
                                                                                                                  None::<Func1<(i32,
                                                                                                                                string,
                                                                                                                                bool),
@@ -17862,12 +17943,12 @@ mod module_7e2cd9e0 {
                                                                                                                  None::<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>,
                                                                                                                               ()>>,
                                                                                                                  true,
-                                                                                                                 v11030.ok());
-                                                                            let v11035: string =
+                                                                                                                 v11035.ok());
+                                                                            let v11040: string =
                                                                                 patternInput_11
                                                                                     .1
                                                                                     .clone();
-                                                                            let v11034: i32 =
+                                                                            let v11039: i32 =
                                                                                 patternInput_11
                                                                                     .0
                                                                                     .clone();
@@ -17877,67 +17958,67 @@ mod module_7e2cd9e0 {
                                                                                              Spiral_builder::US1) =
                                                                                         if if let Spiral_builder::US33::US33_1
                                                                                                   =
-                                                                                                  &v6878
+                                                                                                  &v6883
                                                                                               {
                                                                                                true
                                                                                            } else {
                                                                                                false
                                                                                            }
                                                                                            {
-                                                                                            let v11037:
+                                                                                            let v11042:
                                                                                                     i32 =
-                                                                                                count_2(v11019.clone());
-                                                                                            let v11038:
+                                                                                                count_2(v11024.clone());
+                                                                                            let v11043:
                                                                                                     Array<string> =
                                                                                                 new_init(&string(""),
-                                                                                                         v11037);
-                                                                                            let v11039:
+                                                                                                         v11042);
+                                                                                            let v11044:
                                                                                                     LrcPtr<Spiral_builder::Mut5> =
                                                                                                 LrcPtr::new(Spiral_builder::Mut5{l0:
                                                                                                                                      MutCell::new(0_i32),});
-                                                                                            while Spiral_builder::method43(v11037,
-                                                                                                                           v11039.clone())
+                                                                                            while Spiral_builder::method43(v11042,
+                                                                                                                           v11044.clone())
                                                                                                   {
-                                                                                                let v11041:
+                                                                                                let v11046:
                                                                                                         i32 =
-                                                                                                    v11039.l0.get().clone();
+                                                                                                    v11044.l0.get().clone();
                                                                                                 let patternInput_12:
                                                                                                         (string,
                                                                                                          string) =
-                                                                                                    v11019[v11041].clone();
-                                                                                                let v11044:
+                                                                                                    v11024[v11046].clone();
+                                                                                                let v11049:
                                                                                                         string =
                                                                                                     sprintf!("$env:{}=\'\'{}\'\'",
                                                                                                              patternInput_12.0.clone(),
                                                                                                              patternInput_12.1.clone());
-                                                                                                v11038.get_mut()[v11041
+                                                                                                v11043.get_mut()[v11046
                                                                                                                      as
                                                                                                                      usize]
                                                                                                     =
-                                                                                                    v11044;
+                                                                                                    v11049;
                                                                                                 {
-                                                                                                    let v11045:
+                                                                                                    let v11050:
                                                                                                             i32 =
-                                                                                                        v11041
+                                                                                                        v11046
                                                                                                             +
                                                                                                             1_i32;
-                                                                                                    v11039.l0.set(v11045);
+                                                                                                    v11044.l0.set(v11050);
                                                                                                     ()
                                                                                                 }
                                                                                             }
                                                                                             {
-                                                                                                let v11064:
+                                                                                                let v11069:
                                                                                                         string =
                                                                                                     sprintf!("pwsh -c \'{}\'",
                                                                                                              join(string(";"),
                                                                                                                   toArray_1(ofArray_1(new_array(&[join(string(";"),
-                                                                                                                                                       toArray_1(ofArray_1(v11038.clone()))),
-                                                                                                                                                  v11008])))));
+                                                                                                                                                       toArray_1(ofArray_1(v11043.clone()))),
+                                                                                                                                                  v11013])))));
                                                                                                 let patternInput_13:
                                                                                                         (Spiral_builder::US1,
                                                                                                          Spiral_builder::US1,
                                                                                                          Spiral_builder::US1) =
-                                                                                                    if v11034
+                                                                                                    if v11039
                                                                                                            ==
                                                                                                            0_i32
                                                                                                        {
@@ -17946,25 +18027,25 @@ mod module_7e2cd9e0 {
                                                                                                             refCell(Spiral_builder::US1::US1_1);
                                                                                                         try_catch(||
                                                                                                                       result_1.set(Spiral_builder::closure68((),
-                                                                                                                                                             Spiral_builder::closure88(v11035.clone(),
+                                                                                                                                                             Spiral_builder::closure88(v11040.clone(),
                                                                                                                                                                                        ()))),
                                                                                                                   |ex_1:
                                                                                                                        LrcPtr<Exception>|
-                                                                                                                      result_1.set(Spiral_builder::closure90(v10816.clone(),
-                                                                                                                                                             v11035.clone(),
-                                                                                                                                                             v11064.clone(),
+                                                                                                                      result_1.set(Spiral_builder::closure90(v10821.clone(),
+                                                                                                                                                             v11040.clone(),
+                                                                                                                                                             v11069.clone(),
                                                                                                                                                              ex_1.clone())));
                                                                                                         {
-                                                                                                            let v11070:
+                                                                                                            let v11075:
                                                                                                                     Spiral_builder::US1 =
                                                                                                                 result_1.get().clone();
-                                                                                                            let v11080:
+                                                                                                            let v11085:
                                                                                                                     Option<string> =
-                                                                                                                match &v11070
+                                                                                                                match &v11075
                                                                                                                     {
-                                                                                                                    Spiral_builder::US1::US1_0(v11070_0_0)
+                                                                                                                    Spiral_builder::US1::US1_0(v11075_0_0)
                                                                                                                     =>
-                                                                                                                    Some(match &v11070
+                                                                                                                    Some(match &v11075
                                                                                                                              {
                                                                                                                              Spiral_builder::US1::US1_0(x)
                                                                                                                              =>
@@ -17978,17 +18059,18 @@ mod module_7e2cd9e0 {
                                                                                                                     None::<string>,
                                                                                                                 };
                                                                                                             (Spiral_builder::US1::US1_0(string("rs")),
-                                                                                                             Spiral_builder::US1::US1_0(v11001.clone()),
-                                                                                                             Spiral_builder::US1::US1_0(v11080.unwrap()))
+                                                                                                             Spiral_builder::US1::US1_0(v11006.clone()),
+                                                                                                             Spiral_builder::US1::US1_0(v11085.unwrap()))
                                                                                                         }
                                                                                                     } else {
-                                                                                                        let v11088:
+                                                                                                        let v11093:
                                                                                                                 () =
                                                                                                             {
-                                                                                                                Spiral_builder::closure92(v10816.clone(),
-                                                                                                                                          v11035.clone(),
-                                                                                                                                          v11034,
-                                                                                                                                          v11064,
+                                                                                                                Spiral_builder::closure92(v6802,
+                                                                                                                                          v10821.clone(),
+                                                                                                                                          v11040.clone(),
+                                                                                                                                          v11039,
+                                                                                                                                          v11069,
                                                                                                                                           ());
                                                                                                                 ()
                                                                                                             };
@@ -18001,24 +18083,24 @@ mod module_7e2cd9e0 {
                                                                                                  patternInput_13.2.clone())
                                                                                             }
                                                                                         } else {
-                                                                                            let v11983:
+                                                                                            let v12024:
                                                                                                     string =
                                                                                                 sprintf!("target/spiral_builder/{}/target/wasm32-unknown-unknown/release/spiral_builder_{}.wasm",
                                                                                                          string("spiral_builder"),
-                                                                                                         v7049.clone());
-                                                                                            let v11993:
+                                                                                                         v7054.clone());
+                                                                                            let v12034:
                                                                                                     string =
                                                                                                 sprintf!("pwsh -c \"pwsh {} {} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\"",
                                                                                                          string("scripts/invoke-block.ps1"),
                                                                                                          sprintf!("\'workspace/target/release/spiral_wasm -t Debug -w {} {}\'",
-                                                                                                                  v11983.clone(),
-                                                                                                                  if let Spiral_builder::US33::US33_0(v6878_0_0)
+                                                                                                                  v12024.clone(),
+                                                                                                                  if let Spiral_builder::US33::US33_0(v6883_0_0)
                                                                                                                          =
-                                                                                                                         &v6878
+                                                                                                                         &v6883
                                                                                                                      {
-                                                                                                                      let v11984:
+                                                                                                                      let v12025:
                                                                                                                               Spiral_builder::US34 =
-                                                                                                                          match &v6878
+                                                                                                                          match &v6883
                                                                                                                               {
                                                                                                                               Spiral_builder::US33::US33_0(x)
                                                                                                                               =>
@@ -18027,14 +18109,14 @@ mod module_7e2cd9e0 {
                                                                                                                               =>
                                                                                                                               unreachable!(),
                                                                                                                           };
-                                                                                                                      match &v11984
+                                                                                                                      match &v12025
                                                                                                                           {
-                                                                                                                          Spiral_builder::US34::US34_0(v11984_0_0)
+                                                                                                                          Spiral_builder::US34::US34_0(v12025_0_0)
                                                                                                                           =>
-                                                                                                                          v11984_0_0.clone(),
-                                                                                                                          Spiral_builder::US34::US34_1(v11984_1_0)
+                                                                                                                          v12025_0_0.clone(),
+                                                                                                                          Spiral_builder::US34::US34_1(v12025_1_0)
                                                                                                                           =>
-                                                                                                                          v11984_1_0.clone(),
+                                                                                                                          v12025_1_0.clone(),
                                                                                                                       }
                                                                                                                   } else {
                                                                                                                       string("")
@@ -18043,14 +18125,14 @@ mod module_7e2cd9e0 {
                                                                                                     (Spiral_builder::US1,
                                                                                                      Spiral_builder::US1,
                                                                                                      Spiral_builder::US1) =
-                                                                                                if v11034
+                                                                                                if v11039
                                                                                                        ==
                                                                                                        0_i32
                                                                                                    {
                                                                                                     let patternInput_14:
                                                                                                             (i32,
                                                                                                              string) =
-                                                                                                        Spiral_builder::method40(v11993.clone(),
+                                                                                                        Spiral_builder::method40(v12034.clone(),
                                                                                                                                  None::<CancellationToken>,
                                                                                                                                  new_empty::<(string,
                                                                                                                                               string)>(),
@@ -18061,32 +18143,32 @@ mod module_7e2cd9e0 {
                                                                                                                                  None::<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>,
                                                                                                                                               ()>>,
                                                                                                                                  true,
-                                                                                                                                 Some(v8693));
-                                                                                                    let v12005:
+                                                                                                                                 Some(v8698));
+                                                                                                    let v12046:
                                                                                                             string =
                                                                                                         patternInput_14.1.clone();
-                                                                                                    let v12004:
+                                                                                                    let v12045:
                                                                                                             i32 =
                                                                                                         patternInput_14.0.clone();
                                                                                                     let patternInput_15:
                                                                                                             (Spiral_builder::US1,
                                                                                                              Spiral_builder::US1,
                                                                                                              Spiral_builder::US1) =
-                                                                                                        if v12004
+                                                                                                        if v12045
                                                                                                                ==
                                                                                                                0_i32
                                                                                                            {
                                                                                                             (Spiral_builder::US1::US1_0(string("rs")),
-                                                                                                             Spiral_builder::US1::US1_0(v11001),
-                                                                                                             Spiral_builder::US1::US1_0(v12005.clone()))
+                                                                                                             Spiral_builder::US1::US1_0(v11006),
+                                                                                                             Spiral_builder::US1::US1_0(v12046.clone()))
                                                                                                         } else {
-                                                                                                            let v12012:
+                                                                                                            let v12053:
                                                                                                                     () =
                                                                                                                 {
-                                                                                                                    Spiral_builder::closure93(v10816.clone(),
-                                                                                                                                              v11035.clone(),
-                                                                                                                                              v12005,
-                                                                                                                                              v12004,
+                                                                                                                    Spiral_builder::closure93(v10821.clone(),
+                                                                                                                                              v11040.clone(),
+                                                                                                                                              v12046,
+                                                                                                                                              v12045,
                                                                                                                                               ());
                                                                                                                     ()
                                                                                                                 };
@@ -18098,14 +18180,15 @@ mod module_7e2cd9e0 {
                                                                                                      patternInput_15.1.clone(),
                                                                                                      patternInput_15.2.clone())
                                                                                                 } else {
-                                                                                                    let v12909:
+                                                                                                    let v12950:
                                                                                                             () =
                                                                                                         {
-                                                                                                            Spiral_builder::closure94(v10816.clone(),
-                                                                                                                                      v11035,
-                                                                                                                                      v11034,
-                                                                                                                                      v11983,
-                                                                                                                                      v11993,
+                                                                                                            Spiral_builder::closure94(v6802,
+                                                                                                                                      v10821.clone(),
+                                                                                                                                      v11040,
+                                                                                                                                      v11039,
+                                                                                                                                      v12024,
+                                                                                                                                      v12034,
                                                                                                                                       ());
                                                                                                             ()
                                                                                                         };
@@ -18117,132 +18200,138 @@ mod module_7e2cd9e0 {
                                                                                              patternInput_16.1.clone(),
                                                                                              patternInput_16.2.clone())
                                                                                         };
-                                                                            let v13844:
-                                                                                            string =
-                                                                                        if (if let Spiral_builder::US33::US33_1
-                                                                                                   =
-                                                                                                   &v6878
+                                                                            if v6802 {
+                                                                                let v13921:
+                                                                                                string =
+                                                                                            if (if let Spiral_builder::US33::US33_1
+                                                                                                       =
+                                                                                                       &v6883
+                                                                                                   {
+                                                                                                    true
+                                                                                                } else {
+                                                                                                    false
+                                                                                                })
+                                                                                                   !=
+                                                                                                   true
                                                                                                {
-                                                                                                true
+                                                                                                string("wasm32-unknown-unknown/release")
                                                                                             } else {
-                                                                                                false
-                                                                                            })
-                                                                                               !=
-                                                                                               true
-                                                                                           {
-                                                                                            string("wasm32-unknown-unknown/release")
-                                                                                        } else {
-                                                                                            string("debug")
-                                                                                        };
-                                                                            let v13847:
-                                                                                            string =
-                                                                                        Spiral_builder::method15(v8833.clone(),
-                                                                                                                 sprintf!("target/{}/spiral_builder_{}{}",
-                                                                                                                          v13844.clone(),
-                                                                                                                          v7049.clone(),
-                                                                                                                          string("")));
-                                                                            let v13850:
-                                                                                            string =
-                                                                                        Spiral_builder::method15(v8833.clone(),
-                                                                                                                 sprintf!("target/{}/spiral_builder_{}{}",
-                                                                                                                          v13844.clone(),
-                                                                                                                          v7049.clone(),
-                                                                                                                          string(".wasm")));
-                                                                            let v13853:
-                                                                                            string =
-                                                                                        Spiral_builder::method15(v8833.clone(),
-                                                                                                                 sprintf!("target/{}/spiral_builder_{}{}",
-                                                                                                                          v13844.clone(),
-                                                                                                                          v7049.clone(),
-                                                                                                                          string(".pdb")));
-                                                                            let v13856:
-                                                                                            string =
-                                                                                        Spiral_builder::method15(v8833.clone(),
-                                                                                                                 sprintf!("target/{}/spiral_builder_{}{}",
-                                                                                                                          v13844.clone(),
-                                                                                                                          v7049.clone(),
-                                                                                                                          string(".exe")));
-                                                                            let v13859:
-                                                                                            string =
-                                                                                        Spiral_builder::method15(v8833,
-                                                                                                                 sprintf!("target/{}/spiral_builder_{}{}",
-                                                                                                                          v13844,
-                                                                                                                          v7049,
-                                                                                                                          string(".d")));
-                                                                            let v13860:
-                                                                                            bool =
-                                                                                        Spiral_builder::method27(v13847.clone());
-                                                                            let v13861:
-                                                                                            bool =
-                                                                                        Spiral_builder::method27(v13850.clone());
-                                                                            let v13862:
-                                                                                            bool =
-                                                                                        Spiral_builder::method27(v13853.clone());
-                                                                            let v13863:
-                                                                                            bool =
-                                                                                        Spiral_builder::method27(v13856.clone());
-                                                                            let v13864:
-                                                                                            bool =
-                                                                                        Spiral_builder::method27(v13859.clone());
-                                                                            let v13867: () = {
-                                                                                Spiral_builder::closure95(v10816,
-                                                                                                                      v13859.clone(),
-                                                                                                                      v13864,
-                                                                                                                      v13856.clone(),
-                                                                                                                      v13863,
-                                                                                                                      v13853.clone(),
-                                                                                                                      v13862,
-                                                                                                                      v13850.clone(),
-                                                                                                                      v13861,
-                                                                                                                      v13847.clone(),
-                                                                                                                      v13860,
-                                                                                                                      ());
-                                                                                ()
-                                                                            };
-                                                                            let v14705: LrcPtr<
-                                                                                Spiral_builder::UH4,
-                                                                            > = if v13860 {
-                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13847,
-                                                                                                                                   v13860,
-                                                                                                                                   LrcPtr::new(Spiral_builder::UH4::UH4_0)))
-                                                                            } else {
-                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_0)
-                                                                            };
-                                                                            let v14707: LrcPtr<
-                                                                                Spiral_builder::UH4,
-                                                                            > = if v13861 {
-                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13850,
-                                                                                                                                   v13861,
-                                                                                                                                   v14705.clone()))
-                                                                            } else {
-                                                                                v14705
-                                                                            };
-                                                                            let v14709: LrcPtr<
-                                                                                Spiral_builder::UH4,
-                                                                            > = if v13862 {
-                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13853,
-                                                                                                                                   v13862,
-                                                                                                                                   v14707.clone()))
-                                                                            } else {
-                                                                                v14707
-                                                                            };
-                                                                            let v14711: LrcPtr<
-                                                                                Spiral_builder::UH4,
-                                                                            > = if v13863 {
-                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13856,
-                                                                                                                                   v13863,
-                                                                                                                                   v14709.clone()))
-                                                                            } else {
-                                                                                v14709
-                                                                            };
-                                                                            Spiral_builder::method108(if v13864
-                                                                                                                 {
-                                                                                                                  LrcPtr::new(Spiral_builder::UH4::UH4_1(v13859,
-                                                                                                                                                         v13864,
-                                                                                                                                                         v14711.clone()))
-                                                                                                              } else {
-                                                                                                                  v14711
-                                                                                                              });
+                                                                                                string("debug")
+                                                                                            };
+                                                                                let v13924:
+                                                                                                string =
+                                                                                            Spiral_builder::method15(v8838.clone(),
+                                                                                                                     sprintf!("target/{}/spiral_builder_{}{}",
+                                                                                                                              v13921.clone(),
+                                                                                                                              v7054.clone(),
+                                                                                                                              string("")));
+                                                                                let v13927:
+                                                                                                string =
+                                                                                            Spiral_builder::method15(v8838.clone(),
+                                                                                                                     sprintf!("target/{}/spiral_builder_{}{}",
+                                                                                                                              v13921.clone(),
+                                                                                                                              v7054.clone(),
+                                                                                                                              string(".wasm")));
+                                                                                let v13930:
+                                                                                                string =
+                                                                                            Spiral_builder::method15(v8838.clone(),
+                                                                                                                     sprintf!("target/{}/spiral_builder_{}{}",
+                                                                                                                              v13921.clone(),
+                                                                                                                              v7054.clone(),
+                                                                                                                              string(".pdb")));
+                                                                                let v13933:
+                                                                                                string =
+                                                                                            Spiral_builder::method15(v8838.clone(),
+                                                                                                                     sprintf!("target/{}/spiral_builder_{}{}",
+                                                                                                                              v13921.clone(),
+                                                                                                                              v7054.clone(),
+                                                                                                                              string(".exe")));
+                                                                                let v13936:
+                                                                                                string =
+                                                                                            Spiral_builder::method15(v8838,
+                                                                                                                     sprintf!("target/{}/spiral_builder_{}{}",
+                                                                                                                              v13921,
+                                                                                                                              v7054,
+                                                                                                                              string(".d")));
+                                                                                let v13937:
+                                                                                                bool =
+                                                                                            Spiral_builder::method27(v13924.clone());
+                                                                                let v13938:
+                                                                                                bool =
+                                                                                            Spiral_builder::method27(v13927.clone());
+                                                                                let v13939:
+                                                                                                bool =
+                                                                                            Spiral_builder::method27(v13930.clone());
+                                                                                let v13940:
+                                                                                                bool =
+                                                                                            Spiral_builder::method27(v13933.clone());
+                                                                                let v13941:
+                                                                                                bool =
+                                                                                            Spiral_builder::method27(v13936.clone());
+                                                                                let v13944: () = {
+                                                                                    Spiral_builder::closure95(v10821,
+                                                                                                                          v13936.clone(),
+                                                                                                                          v13941,
+                                                                                                                          v13933.clone(),
+                                                                                                                          v13940,
+                                                                                                                          v13930.clone(),
+                                                                                                                          v13939,
+                                                                                                                          v13927.clone(),
+                                                                                                                          v13938,
+                                                                                                                          v13924.clone(),
+                                                                                                                          v13937,
+                                                                                                                          ());
+                                                                                    ()
+                                                                                };
+                                                                                let v14782:
+                                                                                                LrcPtr<Spiral_builder::UH4> =
+                                                                                            if v13937
+                                                                                               {
+                                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13924,
+                                                                                                                                       v13937,
+                                                                                                                                       LrcPtr::new(Spiral_builder::UH4::UH4_0)))
+                                                                                            } else {
+                                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_0)
+                                                                                            };
+                                                                                let v14784:
+                                                                                                LrcPtr<Spiral_builder::UH4> =
+                                                                                            if v13938
+                                                                                               {
+                                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13927,
+                                                                                                                                       v13938,
+                                                                                                                                       v14782.clone()))
+                                                                                            } else {
+                                                                                                v14782
+                                                                                            };
+                                                                                let v14786:
+                                                                                                LrcPtr<Spiral_builder::UH4> =
+                                                                                            if v13939
+                                                                                               {
+                                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13930,
+                                                                                                                                       v13939,
+                                                                                                                                       v14784.clone()))
+                                                                                            } else {
+                                                                                                v14784
+                                                                                            };
+                                                                                let v14788:
+                                                                                                LrcPtr<Spiral_builder::UH4> =
+                                                                                            if v13940
+                                                                                               {
+                                                                                                LrcPtr::new(Spiral_builder::UH4::UH4_1(v13933,
+                                                                                                                                       v13940,
+                                                                                                                                       v14786.clone()))
+                                                                                            } else {
+                                                                                                v14786
+                                                                                            };
+                                                                                Spiral_builder::method109(if v13941
+                                                                                                                     {
+                                                                                                                      LrcPtr::new(Spiral_builder::UH4::UH4_1(v13936,
+                                                                                                                                                             v13941,
+                                                                                                                                                             v14788.clone()))
+                                                                                                                  } else {
+                                                                                                                      v14788
+                                                                                                                  })
+                                                                            }
                                                                             (
                                                                                 patternInput_17
                                                                                     .0
@@ -18277,21 +18366,21 @@ mod module_7e2cd9e0 {
                                     ) = if fable_library_rust::String_::fromString(v33.clone())
                                         == string("typescript")
                                     {
-                                        let v14720: string = Spiral_builder::method74();
-                                        let v14722: &str = &*v14720;
-                                        let v14724: Option<std::string::String> =
-                                            clap::ArgMatches::get_one(&v34.clone(), v14722)
+                                        let v14797: string = Spiral_builder::method74();
+                                        let v14799: &str = &*v14797;
+                                        let v14801: Option<std::string::String> =
+                                            clap::ArgMatches::get_one(&v34.clone(), v14799)
                                                 .cloned();
-                                        let _v14725: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
+                                        let _v14802: LrcPtr<MutCell<Option<Spiral_builder::US5>>> =
                                             refCell(None::<Spiral_builder::US5>);
-                                        let v14730: () = {
+                                        let v14807: () = {
                                             Spiral_builder::closure17(
-                                                v14724,
+                                                v14801,
                                                 Func1::new({
-                                                    let _v14725 = _v14725.clone();
+                                                    let _v14802 = _v14802.clone();
                                                     move |v_17: Option<Spiral_builder::US5>| {
                                                         Spiral_builder::closure16(
-                                                            _v14725.clone(),
+                                                            _v14802.clone(),
                                                             v_17,
                                                         )
                                                     }
@@ -18300,12 +18389,12 @@ mod module_7e2cd9e0 {
                                             );
                                             ()
                                         };
-                                        let v14745: Spiral_builder::US5 = defaultValue(
+                                        let v14822: Spiral_builder::US5 = defaultValue(
                                             Spiral_builder::US5::US5_1,
-                                            _v14725.get().clone(),
+                                            _v14802.get().clone(),
                                         );
-                                        let v14752: std::string::String = match &v14745 {
-                                            Spiral_builder::US5::US5_0(v14745_0_0) => match &v14745
+                                        let v14829: std::string::String = match &v14822 {
+                                            Spiral_builder::US5::US5_0(v14822_0_0) => match &v14822
                                             {
                                                 Spiral_builder::US5::US5_0(x) => x.clone(),
                                                 _ => unreachable!(),
@@ -18315,23 +18404,23 @@ mod module_7e2cd9e0 {
                                                 string("Option does not have a value."),
                                             ),
                                         };
-                                        let v14754: string =
-                                            fable_library_rust::String_::fromString(v14752);
-                                        let v14755: string = Spiral_builder::method13();
-                                        let v14757: &str = &*v14755;
-                                        let v14759: Option<Vec<std::string::String>> =
-                                            clap::ArgMatches::get_many(&v34.clone(), v14757)
+                                        let v14831: string =
+                                            fable_library_rust::String_::fromString(v14829);
+                                        let v14832: string = Spiral_builder::method13();
+                                        let v14834: &str = &*v14832;
+                                        let v14836: Option<Vec<std::string::String>> =
+                                            clap::ArgMatches::get_many(&v34.clone(), v14834)
                                                 .map(|x| x.cloned().into_iter().collect());
-                                        let _v14760: LrcPtr<MutCell<Option<Spiral_builder::US9>>> =
+                                        let _v14837: LrcPtr<MutCell<Option<Spiral_builder::US9>>> =
                                             refCell(None::<Spiral_builder::US9>);
-                                        let v14765: () = {
+                                        let v14842: () = {
                                             Spiral_builder::closure19(
-                                                v14759,
+                                                v14836,
                                                 Func1::new({
-                                                    let _v14760 = _v14760.clone();
+                                                    let _v14837 = _v14837.clone();
                                                     move |v_18: Option<Spiral_builder::US9>| {
                                                         Spiral_builder::closure18(
-                                                            _v14760.clone(),
+                                                            _v14837.clone(),
                                                             v_18,
                                                         )
                                                     }
@@ -18340,54 +18429,54 @@ mod module_7e2cd9e0 {
                                             );
                                             ()
                                         };
-                                        let v14780: Spiral_builder::US9 = defaultValue(
+                                        let v14857: Spiral_builder::US9 = defaultValue(
                                             Spiral_builder::US9::US9_1,
-                                            _v14760.get().clone(),
+                                            _v14837.get().clone(),
                                         );
-                                        let v14786: Vec<std::string::String> =
+                                        let v14863: Vec<std::string::String> =
                                             new_empty::<std::string::String>().to_vec();
-                                        let v14789: Vec<std::string::String> = match &v14780 {
-                                            Spiral_builder::US9::US9_0(v14780_0_0) => match &v14780
+                                        let v14866: Vec<std::string::String> = match &v14857 {
+                                            Spiral_builder::US9::US9_0(v14857_0_0) => match &v14857
                                             {
                                                 Spiral_builder::US9::US9_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             },
-                                            _ => v14786,
+                                            _ => v14863,
                                         };
-                                        let v14790: bool = if let Spiral_builder::US0::US0_0 = &v0_1
+                                        let v14867: bool = if let Spiral_builder::US0::US0_0 = &v0_1
                                         {
                                             true
                                         } else {
                                             false
                                         };
-                                        let v14794: Result<Vec<u8>, std::io::Error> =
-                                            std::fs::read(&*v14754);
-                                        let v14817: Vec<u8> =
-                                            Spiral_builder::method14(v14794.unwrap());
-                                        let v14819: Result<
+                                        let v14871: Result<Vec<u8>, std::io::Error> =
+                                            std::fs::read(&*v14831);
+                                        let v14894: Vec<u8> =
+                                            Spiral_builder::method14(v14871.unwrap());
+                                        let v14896: Result<
                                             std::string::String,
                                             std::string::FromUtf8Error,
-                                        > = std::string::String::from_utf8(v14817);
-                                        let v14821: std::string::String = v14819.unwrap();
-                                        let v14837: string =
-                                            fable_library_rust::String_::fromString(v14821);
-                                        let v14846: string = Spiral_builder::method89(sprintf!(
+                                        > = std::string::String::from_utf8(v14894);
+                                        let v14898: std::string::String = v14896.unwrap();
+                                        let v14914: string =
+                                            fable_library_rust::String_::fromString(v14898);
+                                        let v14923: string = Spiral_builder::method90(sprintf!(
                                             "{:?}",
-                                            (string("ts"), v14837.clone())
+                                            (string("ts"), v14914.clone())
                                         ));
-                                        let v14851:
+                                        let v14928:
                                                         Spiral_builder::US12 =
                                                     Spiral_builder::method18(Spiral_builder::method15(string("polyglot"),
                                                                                                       string(".devcontainer")),
                                                                              string("C:\\home\\git\\polyglot\\target\\Builder\\spiral_builder"));
-                                        let v15653: Spiral_builder::US1 = match &v14851 {
-                                            Spiral_builder::US12::US12_0(v14851_0_0) => {
-                                                Spiral_builder::US1::US1_0(v14851_0_0.clone())
+                                        let v15730: Spiral_builder::US1 = match &v14928 {
+                                            Spiral_builder::US12::US12_0(v14928_0_0) => {
+                                                Spiral_builder::US1::US1_0(v14928_0_0.clone())
                                             }
-                                            Spiral_builder::US12::US12_1(v14851_1_0) => {
-                                                let v14857: () = {
+                                            Spiral_builder::US12::US12_1(v14928_1_0) => {
+                                                let v14934: () = {
                                                     Spiral_builder::closure21(
-                                                        v14851_1_0.clone(),
+                                                        v14928_1_0.clone(),
                                                         (),
                                                     );
                                                     ()
@@ -18395,33 +18484,33 @@ mod module_7e2cd9e0 {
                                                 Spiral_builder::US1::US1_1
                                             }
                                         };
-                                        let v16462: Spiral_builder::US1 = match &v15653 {
-                                            Spiral_builder::US1::US1_0(v15653_0_0) => {
-                                                Spiral_builder::US1::US1_0(match &v15653 {
+                                        let v16539: Spiral_builder::US1 = match &v15730 {
+                                            Spiral_builder::US1::US1_0(v15730_0_0) => {
+                                                Spiral_builder::US1::US1_0(match &v15730 {
                                                     Spiral_builder::US1::US1_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v15656: string = Spiral_builder::method23();
-                                                let v15658: Spiral_builder::US12 =
+                                                let v15733: string = Spiral_builder::method23();
+                                                let v15735: Spiral_builder::US12 =
                                                     Spiral_builder::method18(
                                                         Spiral_builder::method15(
                                                             string("polyglot"),
                                                             string(".devcontainer"),
                                                         ),
-                                                        v15656,
+                                                        v15733,
                                                     );
-                                                match &v15658 {
-                                                    Spiral_builder::US12::US12_0(v15658_0_0) => {
+                                                match &v15735 {
+                                                    Spiral_builder::US12::US12_0(v15735_0_0) => {
                                                         Spiral_builder::US1::US1_0(
-                                                            v15658_0_0.clone(),
+                                                            v15735_0_0.clone(),
                                                         )
                                                     }
-                                                    Spiral_builder::US12::US12_1(v15658_1_0) => {
-                                                        let v15664: () = {
+                                                    Spiral_builder::US12::US12_1(v15735_1_0) => {
+                                                        let v15741: () = {
                                                             Spiral_builder::closure21(
-                                                                v15658_1_0.clone(),
+                                                                v15735_1_0.clone(),
                                                                 (),
                                                             );
                                                             ()
@@ -18431,10 +18520,10 @@ mod module_7e2cd9e0 {
                                                 }
                                             }
                                         };
-                                        let v16467: string = Spiral_builder::method15(
-                                            match &v16462 {
-                                                Spiral_builder::US1::US1_0(v16462_0_0) => {
-                                                    match &v16462 {
+                                        let v16544: string = Spiral_builder::method15(
+                                            match &v16539 {
+                                                Spiral_builder::US1::US1_0(v16539_0_0) => {
+                                                    match &v16539 {
                                                         Spiral_builder::US1::US1_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     }
@@ -18446,36 +18535,36 @@ mod module_7e2cd9e0 {
                                             },
                                             string("polyglot"),
                                         );
-                                        let v16470: string = toLower(Spiral_builder::method23());
-                                        let v16474: string = toLower(v16467);
-                                        let v16482: Spiral_builder::US12 =
-                                            if startsWith(v16470, v16474.clone(), false) {
-                                                Spiral_builder::US12::US12_1(v16474.clone())
+                                        let v16547: string = toLower(Spiral_builder::method23());
+                                        let v16551: string = toLower(v16544);
+                                        let v16559: Spiral_builder::US12 =
+                                            if startsWith(v16547, v16551.clone(), false) {
+                                                Spiral_builder::US12::US12_1(v16551.clone())
                                             } else {
-                                                Spiral_builder::US12::US12_0(v16474)
+                                                Spiral_builder::US12::US12_0(v16551)
                                             };
-                                        let v16488: Result<string, string> = match &v16482 {
-                                            Spiral_builder::US12::US12_0(v16482_0_0) => {
-                                                Ok::<string, string>(v16482_0_0.clone())
+                                        let v16565: Result<string, string> = match &v16559 {
+                                            Spiral_builder::US12::US12_0(v16559_0_0) => {
+                                                Ok::<string, string>(v16559_0_0.clone())
                                             }
-                                            Spiral_builder::US12::US12_1(v16482_1_0) => {
-                                                Err::<string, string>(v16482_1_0.clone())
+                                            Spiral_builder::US12::US12_1(v16559_1_0) => {
+                                                Err::<string, string>(v16559_1_0.clone())
                                             }
                                         };
-                                        let v16490: bool = true;
-                                        let _result_unwrap_or_else = v16488.unwrap_or_else(|x| {
+                                        let v16567: bool = true;
+                                        let _result_unwrap_or_else = v16565.unwrap_or_else(|x| {
                                             //;
-                                            let v16492: string = x;
-                                            let v16494: bool = true;
-                                            v16492
+                                            let v16569: string = x;
+                                            let v16571: bool = true;
+                                            v16569
                                         });
-                                        let v16496: string = _result_unwrap_or_else;
-                                        let v16505: string = Spiral_builder::method15(
+                                        let v16573: string = _result_unwrap_or_else;
+                                        let v16582: string = Spiral_builder::method15(
                                             Spiral_builder::method15(
                                                 Spiral_builder::method15(
                                                     Spiral_builder::method15(
                                                         Spiral_builder::method15(
-                                                            v16496.clone(),
+                                                            v16573.clone(),
                                                             string("target/spiral_builder"),
                                                         ),
                                                         string("spiral_builder"),
@@ -18484,96 +18573,96 @@ mod module_7e2cd9e0 {
                                                 ),
                                                 string("TypeScript"),
                                             ),
-                                            v14846.clone(),
+                                            v14923.clone(),
                                         );
-                                        let v16506: LrcPtr<dyn IDisposable> =
-                                            Spiral_builder::method28(v16505.clone());
-                                        let v16509: string =
+                                        let v16583: LrcPtr<dyn IDisposable> =
+                                            Spiral_builder::method28(v16582.clone());
+                                        let v16586: string =
                                             Spiral_builder::method80(Spiral_builder::method15(
-                                                v16505.clone(),
+                                                v16582.clone(),
                                                 sprintf!("{}.fs", string("spiral_builder")),
                                             ));
-                                        Spiral_builder::method25(v16509.clone(), v14837);
+                                        Spiral_builder::method25(v16586.clone(), v14914);
                                         {
-                                            let v16510: List<string> = empty::<string>();
-                                            let v16517: string = join(
+                                            let v16587: List<string> = empty::<string>();
+                                            let v16594: string = join(
                                                 string("\\n        "),
                                                 toArray_1(delay(Func0::new({
-                                                    let v16510 = v16510.clone();
+                                                    let v16587 = v16587.clone();
                                                     move || {
                                                         map(
                                                             Func1::new({
-                                                                let v16510 = v16510.clone();
+                                                                let v16587 = v16587.clone();
                                                                 move |i_4: i32| {
-                                                                    item(i_4, v16510.clone())
+                                                                    item(i_4, v16587.clone())
                                                                 }
                                                             }),
                                                             rangeNumeric(
                                                                 0_i32,
                                                                 1_i32,
-                                                                length_1(v16510.clone()) - 1_i32,
+                                                                length_1(v16587.clone()) - 1_i32,
                                                             ),
                                                         )
                                                     }
                                                 }))),
                                             );
-                                            let v16523: List<string> = singleton(sprintf!(
+                                            let v16600: List<string> = singleton(sprintf!(
                                                 "<PackageReference Include=\"{}\" Version=\"*\" />",
                                                 string("Fable.Core")
                                             ));
-                                            let v16531: string = join(
+                                            let v16608: string = join(
                                                 string("\\n        "),
                                                 toArray_1(delay(Func0::new({
-                                                    let v16523 = v16523.clone();
+                                                    let v16600 = v16600.clone();
                                                     move || {
                                                         map(
                                                             Func1::new({
-                                                                let v16523 = v16523.clone();
+                                                                let v16600 = v16600.clone();
                                                                 move |i_5: i32| {
-                                                                    item(i_5, v16523.clone())
+                                                                    item(i_5, v16600.clone())
                                                                 }
                                                             }),
                                                             rangeNumeric(
                                                                 0_i32,
                                                                 1_i32,
-                                                                length_1(v16523.clone()) - 1_i32,
+                                                                length_1(v16600.clone()) - 1_i32,
                                                             ),
                                                         )
                                                     }
                                                 }))),
                                             );
-                                            let v16536: string =
+                                            let v16613: string =
                                                 Spiral_builder::method80(Spiral_builder::method15(
-                                                    v16505.clone(),
+                                                    v16582.clone(),
                                                     sprintf!("{}.fsproj", string("spiral_builder")),
                                                 ));
-                                            Spiral_builder::method25(v16536.clone(),
+                                            Spiral_builder::method25(v16613.clone(),
                                                                              append(append(append(append(append(append(append(append(append(append(append(append(append(string("<Project Sdk=\"Microsoft.NET.Sdk\">\n<PropertyGroup>\n    <TargetFramework>net9.0</TargetFramework>\n    <LangVersion>preview</LangVersion>\n    <RollForward>Major</RollForward>\n    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n    <PublishAot>false</PublishAot>\n    <PublishTrimmed>false</PublishTrimmed>\n    <PublishSingleFile>true</PublishSingleFile>\n    <SelfContained>true</SelfContained>\n    <Version>0.0.1-alpha.1</Version>\n    <OutputType>Exe</OutputType>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'FreeBSD\'))\">\n    <DefineConstants>_FREEBSD</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Linux\'))\">\n    <DefineConstants>_LINUX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'OSX\'))\">\n    <DefineConstants>_OSX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Windows\'))\">\n    <DefineConstants>_WINDOWS</DefineConstants>\n</PropertyGroup>\n<ItemGroup>\n"),
                                                                                                                                                                         sprintf!("    {}",
-                                                                                                                                                                                 v16517)),
+                                                                                                                                                                                 v16594)),
                                                                                                                                                                  string("\n")),
                                                                                                                                                           sprintf!("    <Compile Include=\"{}\" />",
-                                                                                                                                                                   v16509)),
+                                                                                                                                                                   v16586)),
                                                                                                                                                    string("\n")),
                                                                                                                                             string("</ItemGroup>")),
                                                                                                                                      string("\n")),
                                                                                                                               string("<ItemGroup>")),
                                                                                                                        string("\n")),
                                                                                                                 sprintf!("    {}",
-                                                                                                                         v16531)),
+                                                                                                                         v16608)),
                                                                                                          string("\n")),
                                                                                                   string("</ItemGroup>")),
                                                                                            string("\n")),
                                                                                     string("</Project>")));
                                             {
-                                                let v16636: string = Spiral_builder::method15(
-                                                    v16496.clone(),
+                                                let v16713: string = Spiral_builder::method15(
+                                                    v16573.clone(),
                                                     string("lib/typescript/fable/fable_modules"),
                                                 );
-                                                let v16638: async_walkdir::WalkDir =
-                                                    async_walkdir::WalkDir::new(&*v16636.clone());
-                                                let v16641: async_walkdir::WalkDir =
-                                                    async_walkdir::WalkDir::filter(v16638, |x| {
+                                                let v16715: async_walkdir::WalkDir =
+                                                    async_walkdir::WalkDir::new(&*v16713.clone());
+                                                let v16718: async_walkdir::WalkDir =
+                                                    async_walkdir::WalkDir::filter(v16715, |x| {
                                                         Func1::new(
                                                             move |v_19: async_walkdir::DirEntry| {
                                                                 Spiral_builder::closure96((), v_19)
@@ -18582,30 +18671,30 @@ mod module_7e2cd9e0 {
                                                             x
                                                         )
                                                     });
-                                                let v16642 = Spiral_builder::method113();
-                                                let v16644 = tokio_stream::StreamExt::filter_map(
-                                                    v16641,
-                                                    |x| v16642(x),
+                                                let v16719 = Spiral_builder::method114();
+                                                let v16721 = tokio_stream::StreamExt::filter_map(
+                                                    v16718,
+                                                    |x| v16719(x),
                                                 );
-                                                let v16646: std::pin::Pin<
+                                                let v16723: std::pin::Pin<
                                                     Box<
                                                         dyn std::future::Future<
                                                             Output = Vec<(string, string)>,
                                                         >,
                                                     >,
                                                 > = Box::pin(tokio_stream::StreamExt::collect(
-                                                    v16644,
+                                                    v16721,
                                                 ));
-                                                let v16648: Vec<(string, string)> = v16646.await;
-                                                let v16650: rayon::vec::IntoIter<(string, string)> =
+                                                let v16725: Vec<(string, string)> = v16723.await;
+                                                let v16727: rayon::vec::IntoIter<(string, string)> =
                                                     rayon::iter::IntoParallelIterator::into_par_iter(
-                                                        v16648,
+                                                        v16725,
                                                     );
-                                                let v16653: rayon::iter::Map<
+                                                let v16730: rayon::iter::Map<
                                                     rayon::vec::IntoIter<(string, string)>,
                                                     _,
                                                 > = rayon::iter::ParallelIterator::map(
-                                                    v16650,
+                                                    v16727,
                                                     |x| {
                                                         Func1::new(move
                                                                                                                           |arg10_0040_46:
@@ -18615,82 +18704,82 @@ mod module_7e2cd9e0 {
                                                                                                                                                      arg10_0040_46))(x)
                                                     },
                                                 );
-                                                let v16655: Vec<(string, string)> =
-                                                    rayon::iter::ParallelIterator::collect(v16653);
-                                                let v16658: Option<(string, string)> = tryItem(
+                                                let v16732: Vec<(string, string)> =
+                                                    rayon::iter::ParallelIterator::collect(v16730);
+                                                let v16735: Option<(string, string)> = tryItem(
                                                     0_i32,
                                                     fable_library_rust::NativeArray_::array_from(
-                                                        v16655,
+                                                        v16732,
                                                     ),
                                                 );
-                                                let _v16659: LrcPtr<
+                                                let _v16736: LrcPtr<
                                                     MutCell<Option<Spiral_builder::US42>>,
                                                 > = refCell(None::<Spiral_builder::US42>);
-                                                let v16664: () = {
+                                                let v16741: () = {
                                                     Spiral_builder::closure106(
-                                                        v16658,
+                                                        v16735,
                                                         Func1::new({
-                                                            let _v16659 = _v16659.clone();
+                                                            let _v16736 = _v16736.clone();
                                                             move
                                                                                                               |v_20:
                                                                                                                    Option<Spiral_builder::US42>|
-                                                                                                              Spiral_builder::closure105(_v16659.clone(),
+                                                                                                              Spiral_builder::closure105(_v16736.clone(),
                                                                                                                                          v_20)
                                                         }),
                                                         (),
                                                     );
                                                     ()
                                                 };
-                                                let v16681: Spiral_builder::US42 = defaultValue(
+                                                let v16758: Spiral_builder::US42 = defaultValue(
                                                     Spiral_builder::US42::US42_1,
-                                                    _v16659.get().clone(),
+                                                    _v16736.get().clone(),
                                                 );
-                                                let v16687: () = {
-                                                    Spiral_builder::closure107(v16681.clone(), ());
+                                                let v16764: () = {
+                                                    Spiral_builder::closure107(v16758.clone(), ());
                                                     ()
                                                 };
-                                                match &v16681 {
+                                                match &v16758 {
                                                     Spiral_builder::US42::US42_0(
-                                                        v16681_0_0,
-                                                        v16681_0_1,
+                                                        v16758_0_0,
+                                                        v16758_0_1,
                                                     ) => {
-                                                        let v17487: string = match &v16681 {
+                                                        let v17564: string = match &v16758 {
                                                             Spiral_builder::US42::US42_0(_, x) => {
                                                                 x.clone()
                                                             }
                                                             _ => unreachable!(),
                                                         };
-                                                        Spiral_builder::method96(Spiral_builder::method15(v16636,
+                                                        Spiral_builder::method97(Spiral_builder::method15(v16713,
                                                                                                                   sprintf!("fable-library-{}.{}",
                                                                                                                            string("ts"),
-                                                                                                                           v17487.clone())),
-                                                                                         Spiral_builder::method15(v16505.clone(),
+                                                                                                                           v17564.clone())),
+                                                                                         Spiral_builder::method15(v16582.clone(),
                                                                                                                   sprintf!("fable_modules/fable-library-{}.{}",
                                                                                                                            string("ts"),
-                                                                                                                           v17487)))
+                                                                                                                           v17564)))
                                                     }
                                                     _ => (),
                                                 }
                                                 {
                                                     let patternInput_19: (i32, string) =
-                                                        Spiral_builder::method97(
+                                                        Spiral_builder::method98(
                                                             Spiral_builder::US33::US33_1,
-                                                            v16505.clone(),
+                                                            v16582.clone(),
                                                             string("ts"),
-                                                            v16536,
-                                                            v16482.clone(),
+                                                            v16613,
+                                                            v16559.clone(),
                                                         );
-                                                    let v17494: string = patternInput_19.1.clone();
-                                                    let v17493: i32 = patternInput_19.0.clone();
+                                                    let v17571: string = patternInput_19.1.clone();
+                                                    let v17570: i32 = patternInput_19.0.clone();
                                                     let patternInput_23: (
                                                         Spiral_builder::US1,
                                                         Spiral_builder::US1,
                                                         Spiral_builder::US1,
-                                                    ) = if v17493 != 0_i32 {
-                                                        let v17500: () = {
+                                                    ) = if v17570 != 0_i32 {
+                                                        let v17577: () = {
                                                             Spiral_builder::closure108(
-                                                                v17494.clone(),
-                                                                v17493,
+                                                                v17571.clone(),
+                                                                v17570,
                                                                 (),
                                                             );
                                                             ()
@@ -18700,59 +18789,59 @@ mod module_7e2cd9e0 {
                                                                 "ts",
                                                             )),
                                                             Spiral_builder::US1::US1_1,
-                                                            Spiral_builder::US1::US1_0(v17494),
+                                                            Spiral_builder::US1::US1_0(v17571),
                                                         )
                                                     } else {
-                                                        let v18334: bool = true;
-                                                        let _vec_map : Vec<_> = v14789.into_iter().map(|x| { //;
-                                                                    let v18336:
+                                                        let v18411: bool = true;
+                                                        let _vec_map : Vec<_> = v14866.into_iter().map(|x| { //;
+                                                                    let v18413:
                                                                             std::string::String =
                                                                         x;
-                                                                    let v18338:
+                                                                    let v18415:
                                                                             string =
-                                                                        fable_library_rust::String_::fromString(v18336);
-                                                                    let v18344:
+                                                                        fable_library_rust::String_::fromString(v18413);
+                                                                    let v18421:
                                                                             string =
-                                                                        if contains(v18338.clone(),
+                                                                        if contains(v18415.clone(),
                                                                                     string("="))
                                                                            {
-                                                                            v18338.clone()
+                                                                            v18415.clone()
                                                                         } else {
                                                                             sprintf!("\"{}\":\"*\"",
-                                                                                     v18338)
+                                                                                     v18415)
                                                                         };
-                                                                    let v18346:
+                                                                    let v18423:
                                                                             bool =
-                                                                        true; v18344 }).collect::<Vec<_>>();
-                                                        let v18348: Vec<string> = _vec_map;
-                                                        let v18350:
+                                                                        true; v18421 }).collect::<Vec<_>>();
+                                                        let v18425: Vec<string> = _vec_map;
+                                                        let v18427:
                                                                             Array<string> =
-                                                                        fable_library_rust::NativeArray_::array_from(v18348);
-                                                        let v18373:
+                                                                        fable_library_rust::NativeArray_::array_from(v18425);
+                                                        let v18450:
                                                                             string =
                                                                         append(append(append(append(append(append(append(string("{"),
                                                                                                                          sprintf!("  \"name\": \"spiral_builder_{}\",",
-                                                                                                                                  v14846)),
+                                                                                                                                  v14923)),
                                                                                                                   string("  \"dependencies\": {")),
                                                                                                            join(string(",\n"),
                                                                                                                 toArray_1(delay(Func0::new({
-                                                                                                                                               let v18350
+                                                                                                                                               let v18427
                                                                                                                                                    =
-                                                                                                                                                   v18350.clone();
+                                                                                                                                                   v18427.clone();
                                                                                                                                                move
                                                                                                                                                    ||
                                                                                                                                                    map(Func1::new({
-                                                                                                                                                                      let v18350
+                                                                                                                                                                      let v18427
                                                                                                                                                                           =
-                                                                                                                                                                          v18350.clone();
+                                                                                                                                                                          v18427.clone();
                                                                                                                                                                       move
                                                                                                                                                                           |i_6:
                                                                                                                                                                                i32|
-                                                                                                                                                                          v18350[i_6].clone()
+                                                                                                                                                                          v18427[i_6].clone()
                                                                                                                                                                   }),
                                                                                                                                                        rangeNumeric(0_i32,
                                                                                                                                                                     1_i32,
-                                                                                                                                                                    count_2(v18350.clone())
+                                                                                                                                                                    count_2(v18427.clone())
                                                                                                                                                                         -
                                                                                                                                                                         1_i32))
                                                                                                                                            }))))),
@@ -18760,115 +18849,115 @@ mod module_7e2cd9e0 {
                                                                                              string("    \"devDependencies\": {")),
                                                                                       string("  },")),
                                                                                string("}"));
-                                                        let v18375: string =
+                                                        let v18452: string =
                                                             Spiral_builder::method15(
-                                                                v16505.clone(),
+                                                                v16582.clone(),
                                                                 string("package.json"),
                                                             );
-                                                        let v18378: string =
+                                                        let v18455: string =
                                                             Spiral_builder::method15(
                                                                 Spiral_builder::method15(
-                                                                    v16505.clone(),
+                                                                    v16582.clone(),
                                                                     string("../.."),
                                                                 ),
                                                                 string("package.json"),
                                                             );
-                                                        Spiral_builder::method25(v18375, v18373);
+                                                        Spiral_builder::method25(v18452, v18450);
                                                         Spiral_builder::method25(
-                                                            v18378,
+                                                            v18455,
                                                             string(""),
                                                         );
                                                         {
-                                                            let v18381: string =
+                                                            let v18458: string =
                                                                 Spiral_builder::method15(
-                                                                    v16505,
+                                                                    v16582,
                                                                     sprintf!(
                                                                         "{}.{}",
                                                                         string("spiral_builder"),
                                                                         string("ts")
                                                                     ),
                                                                 );
-                                                            let v18384: () = {
+                                                            let v18461: () = {
                                                                 Spiral_builder::closure109(
-                                                                    v18381.clone(),
+                                                                    v18458.clone(),
                                                                     (),
                                                                 );
                                                                 ()
                                                             };
-                                                            let v19179: Result<
+                                                            let v19256: Result<
                                                                 Vec<u8>,
                                                                 std::io::Error,
-                                                            > = std::fs::read(&*v18381.clone());
-                                                            let v19202: Vec<u8> =
+                                                            > = std::fs::read(&*v18458.clone());
+                                                            let v19279: Vec<u8> =
                                                                 Spiral_builder::method14(
-                                                                    v19179.unwrap(),
+                                                                    v19256.unwrap(),
                                                                 );
-                                                            let v19204: Result<
+                                                            let v19281: Result<
                                                                 std::string::String,
                                                                 std::string::FromUtf8Error,
                                                             > = std::string::String::from_utf8(
-                                                                v19202,
+                                                                v19279,
                                                             );
-                                                            let v19206: std::string::String =
-                                                                v19204.unwrap();
-                                                            let v19222:
+                                                            let v19283: std::string::String =
+                                                                v19281.unwrap();
+                                                            let v19299:
                                                                                 string =
-                                                                            fable_library_rust::String_::fromString(v19206);
-                                                            let v19228:
+                                                                            fable_library_rust::String_::fromString(v19283);
+                                                            let v19305:
                                                                                 bool =
-                                                                            contains(v19222.clone(),
+                                                                            contains(v19299.clone(),
                                                                                      string("// spiral_builder.process_typescript"));
-                                                            let v19266: string = if v19228 {
-                                                                v19222.clone()
+                                                            let v19343: string = if v19305 {
+                                                                v19299.clone()
                                                             } else {
-                                                                let v19233:
+                                                                let v19310:
                                                                                         string =
-                                                                                    replace(v19222,
+                                                                                    replace(v19299,
                                                                                             sprintf!("\"./fable_modules/fable-library-ts.{}/",
-                                                                                                     v16681.clone()),
+                                                                                                     v16758.clone()),
                                                                                             sprintf!("\"{}/lib/typescript/fable/fable_modules/fable-library-ts.{}/",
-                                                                                                     v16496,
-                                                                                                     v16681.clone()));
-                                                                let v19238: Result<
+                                                                                                     v16573,
+                                                                                                     v16758.clone()));
+                                                                let v19315: Result<
                                                                     regex::Regex,
                                                                     regex::Error,
                                                                 > = regex::Regex::new(&string(
                                                                     "\\s\\sdefaultOf\\(\\);",
                                                                 ));
-                                                                let v19240: regex::Regex =
-                                                                    v19238.unwrap();
-                                                                let v19241: string =
+                                                                let v19317: regex::Regex =
+                                                                    v19315.unwrap();
+                                                                let v19318: string =
                                                                     Spiral_builder::method81(
-                                                                        v19233,
+                                                                        v19310,
                                                                     );
-                                                                let v19243: std::borrow::Cow<str> =
-                                                                    v19240.replace_all(
-                                                                        &*v19241,
+                                                                let v19320: std::borrow::Cow<str> =
+                                                                    v19317.replace_all(
+                                                                        &*v19318,
                                                                         &*string(
                                                                             " defaultOf::<()>();",
                                                                         ),
                                                                     );
-                                                                let v19245: std::string::String =
-                                                                    String::from(v19243);
-                                                                fable_library_rust::String_::fromString(v19245)
+                                                                let v19322: std::string::String =
+                                                                    String::from(v19320);
+                                                                fable_library_rust::String_::fromString(v19322)
                                                             };
-                                                            if v19228 == false {
-                                                                Spiral_builder::method25(v18381.clone(),
+                                                            if v19305 == false {
+                                                                Spiral_builder::method25(v18458.clone(),
                                                                                                      sprintf!("{}\n\n{}\n",
-                                                                                                              v19266.clone(),
+                                                                                                              v19343.clone(),
                                                                                                               string("// spiral_builder.process_typescript")));
                                                             }
                                                             {
-                                                                let v19269: string = sprintf!(
+                                                                let v19346: string = sprintf!(
                                                                     "bun run \"{}\"",
-                                                                    v18381.clone()
+                                                                    v18458.clone()
                                                                 );
-                                                                let v19271: string =
+                                                                let v19348: string =
                                                                     Spiral_builder::method3(
                                                                         string("PATH"),
                                                                     );
-                                                                let v19304: Spiral_builder::US1 =
-                                                                    if v19271.clone() == string("")
+                                                                let v19381: Spiral_builder::US1 =
+                                                                    if v19348.clone() == string("")
                                                                     {
                                                                         Spiral_builder::US1::US1_1
                                                                     } else {
@@ -18883,19 +18972,19 @@ mod module_7e2cd9e0 {
                                                                                 } else {
                                                                                     string(":")
                                                                                 },
-                                                                                v19271
+                                                                                v19348
                                                                             ),
                                                                         )
                                                                     };
-                                                                let v19319:
+                                                                let v19396:
                                                                                     Array<(string,
                                                                                            string)> =
-                                                                                toArray(Spiral_builder::method116(Spiral_builder::method115(match &v19304
+                                                                                toArray(Spiral_builder::method117(Spiral_builder::method116(match &v19381
                                                                                                                                                 {
-                                                                                                                                                Spiral_builder::US1::US1_0(v19304_0_0)
+                                                                                                                                                Spiral_builder::US1::US1_0(v19381_0_0)
                                                                                                                                                 =>
                                                                                                                                                 LrcPtr::new(Spiral_builder::UH5::UH5_1(string("PATH"),
-                                                                                                                                                                                       match &v19304
+                                                                                                                                                                                       match &v19381
                                                                                                                                                                                            {
                                                                                                                                                                                            Spiral_builder::US1::US1_0(x)
                                                                                                                                                                                            =>
@@ -18914,26 +19003,26 @@ mod module_7e2cd9e0 {
                                                                                                                                                                                    LrcPtr::new(Spiral_builder::UH5::UH5_0)))),
                                                                                                                   empty::<(string,
                                                                                                                            string)>()));
-                                                                let v19332:
+                                                                let v19409:
                                                                                     Result<string,
                                                                                            string> =
-                                                                                match &v16482
+                                                                                match &v16559
                                                                                     {
-                                                                                    Spiral_builder::US12::US12_0(v16482_0_0)
+                                                                                    Spiral_builder::US12::US12_0(v16559_0_0)
                                                                                     =>
                                                                                     Ok::<string,
-                                                                                         string>(v16482_0_0.clone()),
-                                                                                    Spiral_builder::US12::US12_1(v16482_1_0)
+                                                                                         string>(v16559_0_0.clone()),
+                                                                                    Spiral_builder::US12::US12_1(v16559_1_0)
                                                                                     =>
                                                                                     Err::<string,
-                                                                                          string>(v16482_1_0.clone()),
+                                                                                          string>(v16559_1_0.clone()),
                                                                                 };
                                                                 let patternInput_20:
                                                                                     (i32,
                                                                                      string) =
-                                                                                Spiral_builder::method40(v19269.clone(),
+                                                                                Spiral_builder::method40(v19346.clone(),
                                                                                                          None::<CancellationToken>,
-                                                                                                         v19319.clone(),
+                                                                                                         v19396.clone(),
                                                                                                          None::<Func1<(i32,
                                                                                                                        string,
                                                                                                                        bool),
@@ -18941,16 +19030,16 @@ mod module_7e2cd9e0 {
                                                                                                          None::<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>,
                                                                                                                       ()>>,
                                                                                                          true,
-                                                                                                         v19332.ok());
-                                                                let v19337: string =
+                                                                                                         v19409.ok());
+                                                                let v19414: string =
                                                                     patternInput_20.1.clone();
-                                                                let v19336: i32 =
+                                                                let v19413: i32 =
                                                                     patternInput_20.0.clone();
-                                                                let v19338: i32 =
-                                                                    count_2(v19319.clone());
-                                                                let v19339: Array<string> =
-                                                                    new_init(&string(""), v19338);
-                                                                let v19340: LrcPtr<
+                                                                let v19415: i32 =
+                                                                    count_2(v19396.clone());
+                                                                let v19416: Array<string> =
+                                                                    new_init(&string(""), v19415);
+                                                                let v19417: LrcPtr<
                                                                     Spiral_builder::Mut5,
                                                                 > = LrcPtr::new(
                                                                     Spiral_builder::Mut5 {
@@ -18958,69 +19047,69 @@ mod module_7e2cd9e0 {
                                                                     },
                                                                 );
                                                                 while Spiral_builder::method43(
-                                                                    v19338,
-                                                                    v19340.clone(),
+                                                                    v19415,
+                                                                    v19417.clone(),
                                                                 ) {
-                                                                    let v19342: i32 =
-                                                                        v19340.l0.get().clone();
+                                                                    let v19419: i32 =
+                                                                        v19417.l0.get().clone();
                                                                     let patternInput_21: (
                                                                         string,
                                                                         string,
-                                                                    ) = v19319[v19342].clone();
-                                                                    let v19345: string = sprintf!(
+                                                                    ) = v19396[v19419].clone();
+                                                                    let v19422: string = sprintf!(
                                                                         "$env:{}=\'\'{}\'\'",
                                                                         patternInput_21.0.clone(),
                                                                         patternInput_21.1.clone()
                                                                     );
-                                                                    v19339.get_mut()
-                                                                        [v19342 as usize] = v19345;
+                                                                    v19416.get_mut()
+                                                                        [v19419 as usize] = v19422;
                                                                     {
-                                                                        let v19346: i32 =
-                                                                            v19342 + 1_i32;
-                                                                        v19340.l0.set(v19346);
+                                                                        let v19423: i32 =
+                                                                            v19419 + 1_i32;
+                                                                        v19417.l0.set(v19423);
                                                                         ()
                                                                     }
                                                                 }
                                                                 {
-                                                                    let v19356: string = sprintf!(
+                                                                    let v19433: string = sprintf!(
                                                                         "pwsh -c \'{}; {}\'",
                                                                         join(
                                                                             string(";"),
                                                                             toArray_1(ofArray_1(
-                                                                                v19339.clone()
+                                                                                v19416.clone()
                                                                             ))
                                                                         ),
-                                                                        v19269
+                                                                        v19346
                                                                     );
                                                                     let patternInput_22: (
                                                                         Spiral_builder::US1,
                                                                         Spiral_builder::US1,
                                                                         Spiral_builder::US1,
-                                                                    ) = if v19336 == 0_i32 {
+                                                                    ) = if v19413 == 0_i32 {
                                                                         let result_2:
                                                                                                 LrcPtr<MutCell<Spiral_builder::US1>> =
                                                                                             refCell(Spiral_builder::US1::US1_1);
                                                                         try_catch(||
                                                                                                       result_2.set(Spiral_builder::closure68((),
-                                                                                                                                             Spiral_builder::closure110(v19337.clone(),
+                                                                                                                                             Spiral_builder::closure110(v19414.clone(),
                                                                                                                                                                         ()))),
                                                                                                   |ex_2:
                                                                                                        LrcPtr<Exception>|
-                                                                                                      result_2.set(Spiral_builder::closure111(v18381.clone(),
-                                                                                                                                              v19337.clone(),
-                                                                                                                                              v19356.clone(),
+                                                                                                      result_2.set(Spiral_builder::closure111(v18458.clone(),
+                                                                                                                                              v19414.clone(),
+                                                                                                                                              v19433.clone(),
                                                                                                                                               ex_2.clone())));
                                                                         {
-                                                                            let v19362:
+                                                                            let v19439:
                                                                                                     Spiral_builder::US1 =
                                                                                                 result_2.get().clone();
-                                                                            let v19372:
+                                                                            let v19449:
                                                                                                     Option<string> =
-                                                                                                match &v19362
+                                                                                                match &v19439
                                                                                                     {
-                                                                                                    Spiral_builder::US1::US1_0(v19362_0_0)
+                                                                                                    Spiral_builder::US1::US1_0(v19439_0_0)
                                                                                                     =>
-                                                                                                    Some(match &v19362
+                                                                                                    Some(match &v19439
                                                                                                              {
                                                                                                              Spiral_builder::US1::US1_0(x)
                                                                                                              =>
@@ -19034,15 +19123,15 @@ mod module_7e2cd9e0 {
                                                                                                     None::<string>,
                                                                                                 };
                                                                             (Spiral_builder::US1::US1_0(string("ts")),
-                                                                                             Spiral_builder::US1::US1_0(v19266),
-                                                                                             Spiral_builder::US1::US1_0(v19372.unwrap()))
+                                                                                             Spiral_builder::US1::US1_0(v19343),
+                                                                                             Spiral_builder::US1::US1_0(v19449.unwrap()))
                                                                         }
                                                                     } else {
-                                                                        let v19380: () = {
-                                                                            Spiral_builder::closure113(v18381,
-                                                                                                                           v19337,
-                                                                                                                           v19336,
-                                                                                                                           v19356,
+                                                                        let v19457: () = {
+                                                                            Spiral_builder::closure113(v18458,
+                                                                                                                           v19414,
+                                                                                                                           v19413,
+                                                                                                                           v19433,
                                                                                                                            ());
                                                                             ()
                                                                         };
@@ -19075,22 +19164,22 @@ mod module_7e2cd9e0 {
                                         ) = if fable_library_rust::String_::fromString(v33.clone())
                                             == string("python")
                                         {
-                                            let v20282: string = Spiral_builder::method74();
-                                            let v20284: &str = &*v20282;
-                                            let v20286: Option<std::string::String> =
-                                                clap::ArgMatches::get_one(&v34.clone(), v20284)
+                                            let v20359: string = Spiral_builder::method74();
+                                            let v20361: &str = &*v20359;
+                                            let v20363: Option<std::string::String> =
+                                                clap::ArgMatches::get_one(&v34.clone(), v20361)
                                                     .cloned();
-                                            let _v20287: LrcPtr<
+                                            let _v20364: LrcPtr<
                                                 MutCell<Option<Spiral_builder::US5>>,
                                             > = refCell(None::<Spiral_builder::US5>);
-                                            let v20292: () = {
+                                            let v20369: () = {
                                                 Spiral_builder::closure17(
-                                                    v20286,
+                                                    v20363,
                                                     Func1::new({
-                                                        let _v20287 = _v20287.clone();
+                                                        let _v20364 = _v20364.clone();
                                                         move |v_23: Option<Spiral_builder::US5>| {
                                                             Spiral_builder::closure16(
-                                                                _v20287.clone(),
+                                                                _v20364.clone(),
                                                                 v_23,
                                                             )
                                                         }
@@ -19099,13 +19188,13 @@ mod module_7e2cd9e0 {
                                                 );
                                                 ()
                                             };
-                                            let v20307: Spiral_builder::US5 = defaultValue(
+                                            let v20384: Spiral_builder::US5 = defaultValue(
                                                 Spiral_builder::US5::US5_1,
-                                                _v20287.get().clone(),
+                                                _v20364.get().clone(),
                                             );
-                                            let v20314: std::string::String = match &v20307 {
-                                                Spiral_builder::US5::US5_0(v20307_0_0) => {
-                                                    match &v20307 {
+                                            let v20391: std::string::String = match &v20384 {
+                                                Spiral_builder::US5::US5_0(v20384_0_0) => {
+                                                    match &v20384 {
                                                         Spiral_builder::US5::US5_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     }
@@ -19115,24 +19204,24 @@ mod module_7e2cd9e0 {
                                                     string("Option does not have a value."),
                                                 ),
                                             };
-                                            let v20316: string =
-                                                fable_library_rust::String_::fromString(v20314);
-                                            let v20317: string = Spiral_builder::method13();
-                                            let v20319: &str = &*v20317;
-                                            let v20321: Option<Vec<std::string::String>> =
-                                                clap::ArgMatches::get_many(&v34.clone(), v20319)
+                                            let v20393: string =
+                                                fable_library_rust::String_::fromString(v20391);
+                                            let v20394: string = Spiral_builder::method13();
+                                            let v20396: &str = &*v20394;
+                                            let v20398: Option<Vec<std::string::String>> =
+                                                clap::ArgMatches::get_many(&v34.clone(), v20396)
                                                     .map(|x| x.cloned().into_iter().collect());
-                                            let _v20322: LrcPtr<
+                                            let _v20399: LrcPtr<
                                                 MutCell<Option<Spiral_builder::US9>>,
                                             > = refCell(None::<Spiral_builder::US9>);
-                                            let v20327: () = {
+                                            let v20404: () = {
                                                 Spiral_builder::closure19(
-                                                    v20321,
+                                                    v20398,
                                                     Func1::new({
-                                                        let _v20322 = _v20322.clone();
+                                                        let _v20399 = _v20399.clone();
                                                         move |v_24: Option<Spiral_builder::US9>| {
                                                             Spiral_builder::closure18(
-                                                                _v20322.clone(),
+                                                                _v20399.clone(),
                                                                 v_24,
                                                             )
                                                         }
@@ -19141,54 +19230,54 @@ mod module_7e2cd9e0 {
                                                 );
                                                 ()
                                             };
-                                            let v20342: Spiral_builder::US9 = defaultValue(
+                                            let v20419: Spiral_builder::US9 = defaultValue(
                                                 Spiral_builder::US9::US9_1,
-                                                _v20322.get().clone(),
+                                                _v20399.get().clone(),
                                             );
-                                            let v20348: Vec<std::string::String> =
+                                            let v20425: Vec<std::string::String> =
                                                 new_empty::<std::string::String>().to_vec();
-                                            let v20351: Vec<std::string::String> = match &v20342 {
-                                                Spiral_builder::US9::US9_0(v20342_0_0) => {
-                                                    match &v20342 {
+                                            let v20428: Vec<std::string::String> = match &v20419 {
+                                                Spiral_builder::US9::US9_0(v20419_0_0) => {
+                                                    match &v20419 {
                                                         Spiral_builder::US9::US9_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     }
                                                 }
-                                                _ => v20348,
+                                                _ => v20425,
                                             };
-                                            let v20352: bool =
+                                            let v20429: bool =
                                                 if let Spiral_builder::US0::US0_0 = &v0_1 {
                                                     true
                                                 } else {
                                                     false
                                                 };
-                                            let v20356: Result<Vec<u8>, std::io::Error> =
-                                                std::fs::read(&*v20316);
-                                            let v20379: Vec<u8> =
-                                                Spiral_builder::method14(v20356.unwrap());
-                                            let v20381: Result<
+                                            let v20433: Result<Vec<u8>, std::io::Error> =
+                                                std::fs::read(&*v20393);
+                                            let v20456: Vec<u8> =
+                                                Spiral_builder::method14(v20433.unwrap());
+                                            let v20458: Result<
                                                 std::string::String,
                                                 std::string::FromUtf8Error,
-                                            > = std::string::String::from_utf8(v20379);
-                                            let v20383: std::string::String = v20381.unwrap();
-                                            let v20399: string =
-                                                fable_library_rust::String_::fromString(v20383);
-                                            let v20408: string = Spiral_builder::method89(
-                                                sprintf!("{:?}", (string("py"), v20399.clone())),
+                                            > = std::string::String::from_utf8(v20456);
+                                            let v20460: std::string::String = v20458.unwrap();
+                                            let v20476: string =
+                                                fable_library_rust::String_::fromString(v20460);
+                                            let v20485: string = Spiral_builder::method90(
+                                                sprintf!("{:?}", (string("py"), v20476.clone())),
                                             );
-                                            let v20413:
+                                            let v20490:
                                                                 Spiral_builder::US12 =
                                                             Spiral_builder::method18(Spiral_builder::method15(string("polyglot"),
                                                                                                               string(".devcontainer")),
                                                                                      string("C:\\home\\git\\polyglot\\target\\Builder\\spiral_builder"));
-                                            let v21215: Spiral_builder::US1 = match &v20413 {
-                                                Spiral_builder::US12::US12_0(v20413_0_0) => {
-                                                    Spiral_builder::US1::US1_0(v20413_0_0.clone())
+                                            let v21292: Spiral_builder::US1 = match &v20490 {
+                                                Spiral_builder::US12::US12_0(v20490_0_0) => {
+                                                    Spiral_builder::US1::US1_0(v20490_0_0.clone())
                                                 }
-                                                Spiral_builder::US12::US12_1(v20413_1_0) => {
-                                                    let v20419: () = {
+                                                Spiral_builder::US12::US12_1(v20490_1_0) => {
+                                                    let v20496: () = {
                                                         Spiral_builder::closure21(
-                                                            v20413_1_0.clone(),
+                                                            v20490_1_0.clone(),
                                                             (),
                                                         );
                                                         ()
@@ -19196,35 +19285,35 @@ mod module_7e2cd9e0 {
                                                     Spiral_builder::US1::US1_1
                                                 }
                                             };
-                                            let v22024: Spiral_builder::US1 = match &v21215 {
-                                                Spiral_builder::US1::US1_0(v21215_0_0) => {
-                                                    Spiral_builder::US1::US1_0(match &v21215 {
+                                            let v22101: Spiral_builder::US1 = match &v21292 {
+                                                Spiral_builder::US1::US1_0(v21292_0_0) => {
+                                                    Spiral_builder::US1::US1_0(match &v21292 {
                                                         Spiral_builder::US1::US1_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v21218: string = Spiral_builder::method23();
-                                                    let v21220: Spiral_builder::US12 =
+                                                    let v21295: string = Spiral_builder::method23();
+                                                    let v21297: Spiral_builder::US12 =
                                                         Spiral_builder::method18(
                                                             Spiral_builder::method15(
                                                                 string("polyglot"),
                                                                 string(".devcontainer"),
                                                             ),
-                                                            v21218,
+                                                            v21295,
                                                         );
-                                                    match &v21220 {
+                                                    match &v21297 {
                                                         Spiral_builder::US12::US12_0(
-                                                            v21220_0_0,
+                                                            v21297_0_0,
                                                         ) => Spiral_builder::US1::US1_0(
-                                                            v21220_0_0.clone(),
+                                                            v21297_0_0.clone(),
                                                         ),
                                                         Spiral_builder::US12::US12_1(
-                                                            v21220_1_0,
+                                                            v21297_1_0,
                                                         ) => {
-                                                            let v21226: () = {
+                                                            let v21303: () = {
                                                                 Spiral_builder::closure21(
-                                                                    v21220_1_0.clone(),
+                                                                    v21297_1_0.clone(),
                                                                     (),
                                                                 );
                                                                 ()
@@ -19234,10 +19323,10 @@ mod module_7e2cd9e0 {
                                                     }
                                                 }
                                             };
-                                            let v22029: string = Spiral_builder::method15(
-                                                match &v22024 {
-                                                    Spiral_builder::US1::US1_0(v22024_0_0) => {
-                                                        match &v22024 {
+                                            let v22106: string = Spiral_builder::method15(
+                                                match &v22101 {
+                                                    Spiral_builder::US1::US1_0(v22101_0_0) => {
+                                                        match &v22101 {
                                                             Spiral_builder::US1::US1_0(x) => {
                                                                 x.clone()
                                                             }
@@ -19251,38 +19340,38 @@ mod module_7e2cd9e0 {
                                                 },
                                                 string("polyglot"),
                                             );
-                                            let v22032: string =
+                                            let v22109: string =
                                                 toLower(Spiral_builder::method23());
-                                            let v22036: string = toLower(v22029);
-                                            let v22044: Spiral_builder::US12 =
-                                                if startsWith(v22032, v22036.clone(), false) {
-                                                    Spiral_builder::US12::US12_1(v22036.clone())
+                                            let v22113: string = toLower(v22106);
+                                            let v22121: Spiral_builder::US12 =
+                                                if startsWith(v22109, v22113.clone(), false) {
+                                                    Spiral_builder::US12::US12_1(v22113.clone())
                                                 } else {
-                                                    Spiral_builder::US12::US12_0(v22036)
+                                                    Spiral_builder::US12::US12_0(v22113)
                                                 };
-                                            let v22050: Result<string, string> = match &v22044 {
-                                                Spiral_builder::US12::US12_0(v22044_0_0) => {
-                                                    Ok::<string, string>(v22044_0_0.clone())
+                                            let v22127: Result<string, string> = match &v22121 {
+                                                Spiral_builder::US12::US12_0(v22121_0_0) => {
+                                                    Ok::<string, string>(v22121_0_0.clone())
                                                 }
-                                                Spiral_builder::US12::US12_1(v22044_1_0) => {
-                                                    Err::<string, string>(v22044_1_0.clone())
+                                                Spiral_builder::US12::US12_1(v22121_1_0) => {
+                                                    Err::<string, string>(v22121_1_0.clone())
                                                 }
                                             };
-                                            let v22052: bool = true;
+                                            let v22129: bool = true;
                                             let _result_unwrap_or_else =
-                                                v22050.unwrap_or_else(|x| {
+                                                v22127.unwrap_or_else(|x| {
                                                     //;
-                                                    let v22054: string = x;
-                                                    let v22056: bool = true;
-                                                    v22054
+                                                    let v22131: string = x;
+                                                    let v22133: bool = true;
+                                                    v22131
                                                 });
-                                            let v22058: string = _result_unwrap_or_else;
-                                            let v22067: string = Spiral_builder::method15(
+                                            let v22135: string = _result_unwrap_or_else;
+                                            let v22144: string = Spiral_builder::method15(
                                                 Spiral_builder::method15(
                                                     Spiral_builder::method15(
                                                         Spiral_builder::method15(
                                                             Spiral_builder::method15(
-                                                                v22058.clone(),
+                                                                v22135.clone(),
                                                                 string("target/spiral_builder"),
                                                             ),
                                                             string("spiral_builder"),
@@ -19291,97 +19380,97 @@ mod module_7e2cd9e0 {
                                                     ),
                                                     string("Python"),
                                                 ),
-                                                v20408.clone(),
+                                                v20485.clone(),
                                             );
-                                            let v22068: LrcPtr<dyn IDisposable> =
-                                                Spiral_builder::method28(v22067.clone());
-                                            let v22071: string =
+                                            let v22145: LrcPtr<dyn IDisposable> =
+                                                Spiral_builder::method28(v22144.clone());
+                                            let v22148: string =
                                                 Spiral_builder::method80(Spiral_builder::method15(
-                                                    v22067.clone(),
+                                                    v22144.clone(),
                                                     sprintf!("{}.fs", string("spiral_builder")),
                                                 ));
-                                            Spiral_builder::method25(v22071.clone(), v20399);
+                                            Spiral_builder::method25(v22148.clone(), v20476);
                                             {
-                                                let v22072: List<string> = empty::<string>();
-                                                let v22079: string = join(
+                                                let v22149: List<string> = empty::<string>();
+                                                let v22156: string = join(
                                                     string("\\n        "),
                                                     toArray_1(delay(Func0::new({
-                                                        let v22072 = v22072.clone();
+                                                        let v22149 = v22149.clone();
                                                         move || {
                                                             map(
                                                                 Func1::new({
-                                                                    let v22072 = v22072.clone();
+                                                                    let v22149 = v22149.clone();
                                                                     move |i_7: i32| {
-                                                                        item(i_7, v22072.clone())
+                                                                        item(i_7, v22149.clone())
                                                                     }
                                                                 }),
                                                                 rangeNumeric(
                                                                     0_i32,
                                                                     1_i32,
-                                                                    length_1(v22072.clone())
+                                                                    length_1(v22149.clone())
                                                                         - 1_i32,
                                                                 ),
                                                             )
                                                         }
                                                     }))),
                                                 );
-                                                let v22085:
+                                                let v22162:
                                                                     List<string> =
                                                                 singleton(sprintf!("<PackageReference Include=\"{}\" Version=\"*\" />",
                                                                                    string("Fable.Core")));
-                                                let v22093: string = join(
+                                                let v22170: string = join(
                                                     string("\\n        "),
                                                     toArray_1(delay(Func0::new({
-                                                        let v22085 = v22085.clone();
+                                                        let v22162 = v22162.clone();
                                                         move || {
                                                             map(
                                                                 Func1::new({
-                                                                    let v22085 = v22085.clone();
+                                                                    let v22162 = v22162.clone();
                                                                     move |i_8: i32| {
-                                                                        item(i_8, v22085.clone())
+                                                                        item(i_8, v22162.clone())
                                                                     }
                                                                 }),
                                                                 rangeNumeric(
                                                                     0_i32,
                                                                     1_i32,
-                                                                    length_1(v22085.clone())
+                                                                    length_1(v22162.clone())
                                                                         - 1_i32,
                                                                 ),
                                                             )
                                                         }
                                                     }))),
                                                 );
-                                                let v22098: string = Spiral_builder::method80(
+                                                let v22175: string = Spiral_builder::method80(
                                                     Spiral_builder::method15(
-                                                        v22067.clone(),
+                                                        v22144.clone(),
                                                         sprintf!(
                                                             "{}.fsproj",
                                                             string("spiral_builder")
                                                         ),
                                                     ),
                                                 );
-                                                Spiral_builder::method25(v22098.clone(),
+                                                Spiral_builder::method25(v22175.clone(),
                                                                                      append(append(append(append(append(append(append(append(append(append(append(append(append(string("<Project Sdk=\"Microsoft.NET.Sdk\">\n<PropertyGroup>\n    <TargetFramework>net9.0</TargetFramework>\n    <LangVersion>preview</LangVersion>\n    <RollForward>Major</RollForward>\n    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n    <PublishAot>false</PublishAot>\n    <PublishTrimmed>false</PublishTrimmed>\n    <PublishSingleFile>true</PublishSingleFile>\n    <SelfContained>true</SelfContained>\n    <Version>0.0.1-alpha.1</Version>\n    <OutputType>Exe</OutputType>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'FreeBSD\'))\">\n    <DefineConstants>_FREEBSD</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Linux\'))\">\n    <DefineConstants>_LINUX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'OSX\'))\">\n    <DefineConstants>_OSX</DefineConstants>\n</PropertyGroup>\n<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform(\'Windows\'))\">\n    <DefineConstants>_WINDOWS</DefineConstants>\n</PropertyGroup>\n<ItemGroup>\n"),
                                                                                                                                                                                 sprintf!("    {}",
-                                                                                                                                                                                         v22079)),
+                                                                                                                                                                                         v22156)),
                                                                                                                                                                          string("\n")),
                                                                                                                                                                   sprintf!("    <Compile Include=\"{}\" />",
-                                                                                                                                                                           v22071)),
+                                                                                                                                                                           v22148)),
                                                                                                                                                            string("\n")),
                                                                                                                                                     string("</ItemGroup>")),
                                                                                                                                              string("\n")),
                                                                                                                                       string("<ItemGroup>")),
                                                                                                                                string("\n")),
                                                                                                                         sprintf!("    {}",
-                                                                                                                                 v22093)),
+                                                                                                                                 v22170)),
                                                                                                                  string("\n")),
                                                                                                           string("</ItemGroup>")),
                                                                                                    string("\n")),
                                                                                             string("</Project>")));
-                                                Spiral_builder::method96(
+                                                Spiral_builder::method97(
                                                     Spiral_builder::method15(
                                                         Spiral_builder::method15(
-                                                            v22058,
+                                                            v22135,
                                                             string(
                                                                 "lib/python/fable/fable_modules",
                                                             ),
@@ -19389,30 +19478,30 @@ mod module_7e2cd9e0 {
                                                         string("fable_library"),
                                                     ),
                                                     Spiral_builder::method15(
-                                                        v22067.clone(),
+                                                        v22144.clone(),
                                                         string("fable_modules/fable_library"),
                                                     ),
                                                 );
                                                 {
                                                     let patternInput_24: (i32, string) =
-                                                        Spiral_builder::method97(
+                                                        Spiral_builder::method98(
                                                             Spiral_builder::US33::US33_1,
-                                                            v22067.clone(),
+                                                            v22144.clone(),
                                                             string("py"),
-                                                            v22098,
-                                                            v22044.clone(),
+                                                            v22175,
+                                                            v22121.clone(),
                                                         );
-                                                    let v22205: string = patternInput_24.1.clone();
-                                                    let v22204: i32 = patternInput_24.0.clone();
+                                                    let v22282: string = patternInput_24.1.clone();
+                                                    let v22281: i32 = patternInput_24.0.clone();
                                                     let patternInput_28: (
                                                         Spiral_builder::US1,
                                                         Spiral_builder::US1,
                                                         Spiral_builder::US1,
-                                                    ) = if v22204 != 0_i32 {
-                                                        let v22211: () = {
+                                                    ) = if v22281 != 0_i32 {
+                                                        let v22288: () = {
                                                             Spiral_builder::closure114(
-                                                                v22205.clone(),
-                                                                v22204,
+                                                                v22282.clone(),
+                                                                v22281,
                                                                 (),
                                                             );
                                                             ()
@@ -19422,59 +19511,59 @@ mod module_7e2cd9e0 {
                                                                 "py",
                                                             )),
                                                             Spiral_builder::US1::US1_1,
-                                                            Spiral_builder::US1::US1_0(v22205),
+                                                            Spiral_builder::US1::US1_0(v22282),
                                                         )
                                                     } else {
-                                                        let v23045: bool = true;
-                                                        let _vec_map : Vec<_> = v20351.into_iter().map(|x| { //;
-                                                                        let v23047:
+                                                        let v23122: bool = true;
+                                                        let _vec_map : Vec<_> = v20428.into_iter().map(|x| { //;
+                                                                        let v23124:
                                                                                 std::string::String =
                                                                             x;
-                                                                        let v23049:
+                                                                        let v23126:
                                                                                 string =
-                                                                            fable_library_rust::String_::fromString(v23047);
-                                                                        let v23055:
+                                                                            fable_library_rust::String_::fromString(v23124);
+                                                                        let v23132:
                                                                                 string =
-                                                                            if contains(v23049.clone(),
+                                                                            if contains(v23126.clone(),
                                                                                         string("="))
                                                                                {
-                                                                                v23049.clone()
+                                                                                v23126.clone()
                                                                             } else {
                                                                                 sprintf!("\"{}\":\"*\"",
-                                                                                         v23049)
+                                                                                         v23126)
                                                                             };
-                                                                        let v23057:
+                                                                        let v23134:
                                                                                 bool =
-                                                                            true; v23055 }).collect::<Vec<_>>();
-                                                        let v23059: Vec<string> = _vec_map;
-                                                        let v23061:
+                                                                            true; v23132 }).collect::<Vec<_>>();
+                                                        let v23136: Vec<string> = _vec_map;
+                                                        let v23138:
                                                                                 Array<string> =
-                                                                            fable_library_rust::NativeArray_::array_from(v23059);
-                                                        let v23084:
+                                                                            fable_library_rust::NativeArray_::array_from(v23136);
+                                                        let v23161:
                                                                                 string =
                                                                             append(append(append(append(append(append(append(string("{"),
                                                                                                                              sprintf!("  \"name\": \"spiral_builder_{}\",",
-                                                                                                                                      v20408)),
+                                                                                                                                      v20485)),
                                                                                                                       string("  \"dependencies\": {")),
                                                                                                                join(string(",\n"),
                                                                                                                     toArray_1(delay(Func0::new({
-                                                                                                                                                   let v23061
+                                                                                                                                                   let v23138
                                                                                                                                                        =
-                                                                                                                                                       v23061.clone();
+                                                                                                                                                       v23138.clone();
                                                                                                                                                    move
                                                                                                                                                        ||
                                                                                                                                                        map(Func1::new({
-                                                                                                                                                                          let v23061
+                                                                                                                                                                          let v23138
                                                                                                                                                                               =
-                                                                                                                                                                              v23061.clone();
+                                                                                                                                                                              v23138.clone();
                                                                                                                                                                           move
                                                                                                                                                                               |i_9:
                                                                                                                                                                                    i32|
-                                                                                                                                                                              v23061[i_9].clone()
+                                                                                                                                                                              v23138[i_9].clone()
                                                                                                                                                                       }),
                                                                                                                                                            rangeNumeric(0_i32,
                                                                                                                                                                         1_i32,
-                                                                                                                                                                        count_2(v23061.clone())
+                                                                                                                                                                        count_2(v23138.clone())
                                                                                                                                                                             -
                                                                                                                                                                             1_i32))
                                                                                                                                                }))))),
@@ -19482,136 +19571,136 @@ mod module_7e2cd9e0 {
                                                                                                  string("    \"devDependencies\": {")),
                                                                                           string("  },")),
                                                                                    string("}"));
-                                                        let v23086: string =
+                                                        let v23163: string =
                                                             Spiral_builder::method15(
-                                                                v22067.clone(),
+                                                                v22144.clone(),
                                                                 string("package.json"),
                                                             );
-                                                        let v23089: string =
+                                                        let v23166: string =
                                                             Spiral_builder::method15(
                                                                 Spiral_builder::method15(
-                                                                    v22067.clone(),
+                                                                    v22144.clone(),
                                                                     string("../.."),
                                                                 ),
                                                                 string("package.json"),
                                                             );
-                                                        Spiral_builder::method25(v23086, v23084);
+                                                        Spiral_builder::method25(v23163, v23161);
                                                         Spiral_builder::method25(
-                                                            v23089,
+                                                            v23166,
                                                             string(""),
                                                         );
                                                         {
-                                                            let v23092: string =
+                                                            let v23169: string =
                                                                 Spiral_builder::method15(
-                                                                    v22067,
+                                                                    v22144,
                                                                     sprintf!(
                                                                         "{}.{}",
                                                                         string("spiral_builder"),
                                                                         string("py")
                                                                     ),
                                                                 );
-                                                            let v23095: () = {
+                                                            let v23172: () = {
                                                                 Spiral_builder::closure115(
-                                                                    v23092.clone(),
+                                                                    v23169.clone(),
                                                                     (),
                                                                 );
                                                                 ()
                                                             };
-                                                            let v23890: Result<
+                                                            let v23967: Result<
                                                                 Vec<u8>,
                                                                 std::io::Error,
-                                                            > = std::fs::read(&*v23092.clone());
-                                                            let v23913: Vec<u8> =
+                                                            > = std::fs::read(&*v23169.clone());
+                                                            let v23990: Vec<u8> =
                                                                 Spiral_builder::method14(
-                                                                    v23890.unwrap(),
+                                                                    v23967.unwrap(),
                                                                 );
-                                                            let v23915: Result<
+                                                            let v23992: Result<
                                                                 std::string::String,
                                                                 std::string::FromUtf8Error,
                                                             > = std::string::String::from_utf8(
-                                                                v23913,
+                                                                v23990,
                                                             );
-                                                            let v23917: std::string::String =
-                                                                v23915.unwrap();
-                                                            let v23933:
+                                                            let v23994: std::string::String =
+                                                                v23992.unwrap();
+                                                            let v24010:
                                                                                     string =
-                                                                                fable_library_rust::String_::fromString(v23917);
-                                                            let v23939:
+                                                                                fable_library_rust::String_::fromString(v23994);
+                                                            let v24016:
                                                                                     bool =
-                                                                                contains(v23933.clone(),
+                                                                                contains(v24010.clone(),
                                                                                          string("# spiral_builder.process_python"));
-                                                            let v23980: string = if v23939 {
-                                                                v23933.clone()
+                                                            let v24057: string = if v24016 {
+                                                                v24010.clone()
                                                             } else {
-                                                                let v23947: string = replace(
-                                                                    v23933,
+                                                                let v24024: string = replace(
+                                                                    v24010,
                                                                     append(
                                                                         string("),)"),
                                                                         ";".into(),
                                                                     ),
                                                                     string("));"),
                                                                 );
-                                                                let v23952: Result<
+                                                                let v24029: Result<
                                                                     regex::Regex,
                                                                     regex::Error,
                                                                 > = regex::Regex::new(&string(
                                                                     "\\s\\sdefaultOf\\(\\);",
                                                                 ));
-                                                                let v23954: regex::Regex =
-                                                                    v23952.unwrap();
-                                                                let v23955: string =
+                                                                let v24031: regex::Regex =
+                                                                    v24029.unwrap();
+                                                                let v24032: string =
                                                                     Spiral_builder::method81(
-                                                                        v23947,
+                                                                        v24024,
                                                                     );
-                                                                let v23957: std::borrow::Cow<str> =
-                                                                    v23954.replace_all(
-                                                                        &*v23955,
+                                                                let v24034: std::borrow::Cow<str> =
+                                                                    v24031.replace_all(
+                                                                        &*v24032,
                                                                         &*string(
                                                                             " defaultOf::<()>();",
                                                                         ),
                                                                     );
-                                                                let v23959: std::string::String =
-                                                                    String::from(v23957);
-                                                                fable_library_rust::String_::fromString(v23959)
+                                                                let v24036: std::string::String =
+                                                                    String::from(v24034);
+                                                                fable_library_rust::String_::fromString(v24036)
                                                             };
-                                                            if v23939 == false {
-                                                                Spiral_builder::method25(v23092.clone(),
+                                                            if v24016 == false {
+                                                                Spiral_builder::method25(v23169.clone(),
                                                                                                          sprintf!("{}\n\n{}\n",
-                                                                                                                  v23980.clone(),
+                                                                                                                  v24057.clone(),
                                                                                                                   string("# spiral_builder.process_python")));
                                                             }
                                                             {
-                                                                let v23983: string = sprintf!(
+                                                                let v24060: string = sprintf!(
                                                                     "python \"{}\"",
-                                                                    v23092.clone()
+                                                                    v23169.clone()
                                                                 );
-                                                                let v23986: Array<(
+                                                                let v24063: Array<(
                                                                     string,
                                                                     string,
                                                                 )> = new_array(&[(
                                                                     string("TRACE_LEVEL"),
                                                                     string("Verbose"),
                                                                 )]);
-                                                                let v23997:
+                                                                let v24074:
                                                                                         Result<string,
                                                                                                string> =
-                                                                                    match &v22044
+                                                                                    match &v22121
                                                                                         {
-                                                                                        Spiral_builder::US12::US12_0(v22044_0_0)
+                                                                                        Spiral_builder::US12::US12_0(v22121_0_0)
                                                                                         =>
                                                                                         Ok::<string,
-                                                                                             string>(v22044_0_0.clone()),
-                                                                                        Spiral_builder::US12::US12_1(v22044_1_0)
+                                                                                             string>(v22121_0_0.clone()),
+                                                                                        Spiral_builder::US12::US12_1(v22121_1_0)
                                                                                         =>
                                                                                         Err::<string,
-                                                                                              string>(v22044_1_0.clone()),
+                                                                                              string>(v22121_1_0.clone()),
                                                                                     };
                                                                 let patternInput_25:
                                                                                         (i32,
                                                                                          string) =
-                                                                                    Spiral_builder::method40(v23983.clone(),
+                                                                                    Spiral_builder::method40(v24060.clone(),
                                                                                                              None::<CancellationToken>,
-                                                                                                             v23986.clone(),
+                                                                                                             v24063.clone(),
                                                                                                              None::<Func1<(i32,
                                                                                                                            string,
                                                                                                                            bool),
@@ -19619,16 +19708,16 @@ mod module_7e2cd9e0 {
                                                                                                              None::<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>,
                                                                                                                           ()>>,
                                                                                                              true,
-                                                                                                             v23997.ok());
-                                                                let v24002: string =
+                                                                                                             v24074.ok());
+                                                                let v24079: string =
                                                                     patternInput_25.1.clone();
-                                                                let v24001: i32 =
+                                                                let v24078: i32 =
                                                                     patternInput_25.0.clone();
-                                                                let v24003: i32 =
-                                                                    count_2(v23986.clone());
-                                                                let v24004: Array<string> =
-                                                                    new_init(&string(""), v24003);
-                                                                let v24005: LrcPtr<
+                                                                let v24080: i32 =
+                                                                    count_2(v24063.clone());
+                                                                let v24081: Array<string> =
+                                                                    new_init(&string(""), v24080);
+                                                                let v24082: LrcPtr<
                                                                     Spiral_builder::Mut5,
                                                                 > = LrcPtr::new(
                                                                     Spiral_builder::Mut5 {
@@ -19636,69 +19725,69 @@ mod module_7e2cd9e0 {
                                                                     },
                                                                 );
                                                                 while Spiral_builder::method43(
-                                                                    v24003,
-                                                                    v24005.clone(),
+                                                                    v24080,
+                                                                    v24082.clone(),
                                                                 ) {
-                                                                    let v24007: i32 =
-                                                                        v24005.l0.get().clone();
+                                                                    let v24084: i32 =
+                                                                        v24082.l0.get().clone();
                                                                     let patternInput_26: (
                                                                         string,
                                                                         string,
-                                                                    ) = v23986[v24007].clone();
-                                                                    let v24010: string = sprintf!(
+                                                                    ) = v24063[v24084].clone();
+                                                                    let v24087: string = sprintf!(
                                                                         "$env:{}=\'\'{}\'\'",
                                                                         patternInput_26.0.clone(),
                                                                         patternInput_26.1.clone()
                                                                     );
-                                                                    v24004.get_mut()
-                                                                        [v24007 as usize] = v24010;
+                                                                    v24081.get_mut()
+                                                                        [v24084 as usize] = v24087;
                                                                     {
-                                                                        let v24011: i32 =
-                                                                            v24007 + 1_i32;
-                                                                        v24005.l0.set(v24011);
+                                                                        let v24088: i32 =
+                                                                            v24084 + 1_i32;
+                                                                        v24082.l0.set(v24088);
                                                                         ()
                                                                     }
                                                                 }
                                                                 {
-                                                                    let v24021: string = sprintf!(
+                                                                    let v24098: string = sprintf!(
                                                                         "pwsh -c \'{}; {}\'",
                                                                         join(
                                                                             string(";"),
                                                                             toArray_1(ofArray_1(
-                                                                                v24004.clone()
+                                                                                v24081.clone()
                                                                             ))
                                                                         ),
-                                                                        v23983
+                                                                        v24060
                                                                     );
                                                                     let patternInput_27: (
                                                                         Spiral_builder::US1,
                                                                         Spiral_builder::US1,
                                                                         Spiral_builder::US1,
-                                                                    ) = if v24001 == 0_i32 {
+                                                                    ) = if v24078 == 0_i32 {
                                                                         let result_3:
                                                                                                     LrcPtr<MutCell<Spiral_builder::US1>> =
                                                                                                 refCell(Spiral_builder::US1::US1_1);
                                                                         try_catch(||
                                                                                                           result_3.set(Spiral_builder::closure68((),
-                                                                                                                                                 Spiral_builder::closure116(v24002.clone(),
+                                                                                                                                                 Spiral_builder::closure116(v24079.clone(),
                                                                                                                                                                             ()))),
                                                                                                       |ex_3:
                                                                                                            LrcPtr<Exception>|
-                                                                                                          result_3.set(Spiral_builder::closure117(v23092.clone(),
-                                                                                                                                                  v24002.clone(),
-                                                                                                                                                  v24021.clone(),
+                                                                                                          result_3.set(Spiral_builder::closure117(v23169.clone(),
+                                                                                                                                                  v24079.clone(),
+                                                                                                                                                  v24098.clone(),
                                                                                                                                                   ex_3.clone())));
                                                                         {
-                                                                            let v24027:
+                                                                            let v24104:
                                                                                                         Spiral_builder::US1 =
                                                                                                     result_3.get().clone();
-                                                                            let v24037:
+                                                                            let v24114:
                                                                                                         Option<string> =
-                                                                                                    match &v24027
+                                                                                                    match &v24104
                                                                                                         {
-                                                                                                        Spiral_builder::US1::US1_0(v24027_0_0)
+                                                                                                        Spiral_builder::US1::US1_0(v24104_0_0)
                                                                                                         =>
-                                                                                                        Some(match &v24027
+                                                                                                        Some(match &v24104
                                                                                                                  {
                                                                                                                  Spiral_builder::US1::US1_0(x)
                                                                                                                  =>
@@ -19712,15 +19801,15 @@ mod module_7e2cd9e0 {
                                                                                                         None::<string>,
                                                                                                     };
                                                                             (Spiral_builder::US1::US1_0(string("py")),
-                                                                                                 Spiral_builder::US1::US1_0(v23980),
-                                                                                                 Spiral_builder::US1::US1_0(v24037.unwrap()))
+                                                                                                 Spiral_builder::US1::US1_0(v24057),
+                                                                                                 Spiral_builder::US1::US1_0(v24114.unwrap()))
                                                                         }
                                                                     } else {
-                                                                        let v24045: () = {
-                                                                            Spiral_builder::closure119(v23092,
-                                                                                                                               v24002,
-                                                                                                                               v24001,
-                                                                                                                               v24021,
+                                                                        let v24122: () = {
+                                                                            Spiral_builder::closure119(v23169,
+                                                                                                                               v24079,
+                                                                                                                               v24078,
+                                                                                                                               v24098,
                                                                                                                                ());
                                                                             ()
                                                                         };
@@ -19745,7 +19834,7 @@ mod module_7e2cd9e0 {
                                                 }
                                             }
                                         } else {
-                                            let v24946: () = {
+                                            let v25023: () = {
                                                 Spiral_builder::closure120(v34, v33, ());
                                                 ()
                                             };
@@ -19767,14 +19856,14 @@ mod module_7e2cd9e0 {
                                         patternInput_30.2.clone(),
                                     )
                                 };
-                                let v25842: Spiral_builder::US1 = patternInput_31.2.clone();
-                                let v25841: Spiral_builder::US1 = patternInput_31.1.clone();
-                                let v25840: Spiral_builder::US1 = patternInput_31.0.clone();
+                                let v25919: Spiral_builder::US1 = patternInput_31.2.clone();
+                                let v25918: Spiral_builder::US1 = patternInput_31.1.clone();
+                                let v25917: Spiral_builder::US1 = patternInput_31.0.clone();
                                 new_array(&[
                                     (
                                         string("extension"),
-                                        match &v25840 {
-                                            Spiral_builder::US1::US1_0(v25840_0_0) => match &v25840
+                                        match &v25917 {
+                                            Spiral_builder::US1::US1_0(v25917_0_0) => match &v25917
                                             {
                                                 Spiral_builder::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
@@ -19784,8 +19873,8 @@ mod module_7e2cd9e0 {
                                     ),
                                     (
                                         string("code"),
-                                        match &v25841 {
-                                            Spiral_builder::US1::US1_0(v25841_0_0) => match &v25841
+                                        match &v25918 {
+                                            Spiral_builder::US1::US1_0(v25918_0_0) => match &v25918
                                             {
                                                 Spiral_builder::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
@@ -19795,8 +19884,8 @@ mod module_7e2cd9e0 {
                                     ),
                                     (
                                         string("output"),
-                                        match &v25842 {
-                                            Spiral_builder::US1::US1_0(v25842_0_0) => match &v25842
+                                        match &v25919 {
+                                            Spiral_builder::US1::US1_0(v25919_0_0) => match &v25919
                                             {
                                                 Spiral_builder::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
@@ -19815,8 +19904,8 @@ mod module_7e2cd9e0 {
                         (string("output"), string("")),
                     ])
                 };
-                let v25869: Vec<(string, string)> = v25867.to_vec();
-                let v25872: Vec<LrcPtr<(std::string::String, std::string::String)>> = v25869
+                let v25946: Vec<(string, string)> = v25944.to_vec();
+                let v25949: Vec<LrcPtr<(std::string::String, std::string::String)>> = v25946
                     .into_iter()
                     .map(|x| {
                         Func1::new(move |arg10_0040_62: (string, string)| {
@@ -19824,34 +19913,34 @@ mod module_7e2cd9e0 {
                         })(x.clone())
                     })
                     .collect::<Vec<_>>();
-                let v25873: string =
-                string("std::collections::BTreeMap::from_iter(v25872.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))");
-                let v25874: std::collections::BTreeMap<std::string::String, std::string::String> =
+                let v25950: string =
+                string("std::collections::BTreeMap::from_iter(v25949.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))");
+                let v25951: std::collections::BTreeMap<std::string::String, std::string::String> =
                     std::collections::BTreeMap::from_iter(
-                        v25872
+                        v25949
                             .iter()
                             .map(|x| x.as_ref())
                             .map(|&(ref k, ref v)| (k.clone(), v.clone())),
                     );
-                let v25876: Result<std::string::String, serde_json::Error> =
-                    serde_json::to_string(&v25874);
-                let v25877 = Spiral_builder::method117();
-                let v25879: Result<std::string::String, string> = v25876.map_err(|x| v25877(x));
-                let v25881: bool = true;
-                let _result_map_ = v25879.map(|x| {
+                let v25953: Result<std::string::String, serde_json::Error> =
+                    serde_json::to_string(&v25951);
+                let v25954 = Spiral_builder::method118();
+                let v25956: Result<std::string::String, string> = v25953.map_err(|x| v25954(x));
+                let v25958: bool = true;
+                let _result_map_ = v25956.map(|x| {
                     //;
-                    let v25883: std::string::String = x;
-                    let v25885: string = fable_library_rust::String_::fromString(v25883);
-                    let v25887: bool = true;
-                    v25885
+                    let v25960: std::string::String = x;
+                    let v25962: string = fable_library_rust::String_::fromString(v25960);
+                    let v25964: bool = true;
+                    v25962
                 });
-                let v25890: Result<string, string> = Spiral_builder::method118(_result_map_);
-                let v25894: string = string("true; v25890 });  // rust.fix_closure\'");
-                let v25895: bool = true;
-                v25890
+                let v25967: Result<string, string> = Spiral_builder::method119(_result_map_);
+                let v25971: string = string("true; v25967 });  // rust.fix_closure\'");
+                let v25972: bool = true;
+                v25967
             }); // rust.fix_closure';
-            let v25897 = __future_init;
-            v25897
+            let v25974 = __future_init;
+            v25974
         }
         pub fn closure1(unitVar: (), v0_1: Array<string>) -> i32 {
             let v3: () = {

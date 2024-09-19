@@ -1,12 +1,12 @@
-import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { record_type, string_type, int32_type, union_type, char_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { uncurry2, defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
-import { foldBack, ofArray as ofArray_1, empty, toArray, FSharpList, cons } from "../../deps/Fable/src/fable-library-ts/List.js";
-import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { setItem, fill, item } from "../../deps/Fable/src/fable-library-ts/Array.js";
+import { Record, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
+import { record_type, string_type, int32_type, union_type, char_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { float64, int32 } from "../../../deps/Fable/src/fable-library-ts/Int32.js";
+import { uncurry2, defaultOf, IComparable, IEquatable } from "../../../deps/Fable/src/fable-library-ts/Util.js";
+import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../../deps/Fable/src/fable-library-ts/String.js";
+import { ofArray } from "../../../deps/Fable/src/fable-library-ts/Seq.js";
+import { foldBack, ofArray as ofArray_1, empty, toArray, FSharpList, cons } from "../../../deps/Fable/src/fable-library-ts/List.js";
+import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { setItem, fill, item } from "../../../deps/Fable/src/fable-library-ts/Array.js";
 
 export type UH0_$union = 
     | UH0<0>

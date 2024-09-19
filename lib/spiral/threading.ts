@@ -1,7 +1,7 @@
-import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { defaultOf, IDisposable } from "../../../deps/Fable/src/fable-library-ts/Util.js";
+import { union_type, class_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { FSharpRef, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
+import { value as value_1, Option } from "../../../deps/Fable/src/fable-library-ts/Option.js";
 
 export class Disposable implements IDisposable {
     readonly f: (() => void);

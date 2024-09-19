@@ -9114,8 +9114,13 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     terminator: None,
     index: None,
     help_heading: None,
-    value_hint: None,
     default_missing_vals: [],
+    ext: Extensions {
+        extensions: FlatMap {
+            keys: [],
+            values: [],
+        },
+    },
 }"
 </pre>
 </div>
@@ -11407,8 +11412,8 @@ __assert_string_contains / actual: "not find file" / expected: "<span class="ans
 ]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
     "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_a469d1c155f8362edcef34253d95e7248d00fbb8d58d3cc220c92c2cdb8f2cf2\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 __assert_eq / actual: 0 / expected: 0
 __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>

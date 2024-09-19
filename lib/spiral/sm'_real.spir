@@ -65,8 +65,8 @@ inl format_pretty forall t. (x : t) : string =
 /// ### printable
 prototype printable t : t -> ()
 
-/// ### real_format
-inl real_format forall t. (x : t) : string =
+/// ### format_real
+inl format_real forall t. (x : t) : string =
     inl result = mut `string (join "")
     inl rec write x =
         inl p ((a : string), b) =

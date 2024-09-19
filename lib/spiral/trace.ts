@@ -1,13 +1,13 @@
-import { compare, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { defaultArg, value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { op_Subtraction, op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { FSharpRef, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
-import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
-import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { compare, IComparable, IEquatable, createAtom } from "../../../deps/Fable/src/fable-library-ts/Util.js";
+import { defaultArg, value as value_1, Option } from "../../../deps/Fable/src/fable-library-ts/Option.js";
+import { op_Subtraction, op_Addition, toInt64, int64 } from "../../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { FSharpRef, Record, Union } from "../../../deps/Fable/src/fable-library-ts/Types.js";
+import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { create, toString, now, getTicks } from "../../../deps/Fable/src/fable-library-ts/Date.js";
+import { ofSeq, find } from "../../../deps/Fable/src/fable-library-ts/Map.js";
+import { int32 } from "../../../deps/Fable/src/fable-library-ts/Int32.js";
+import { milliseconds, seconds, minutes, hours, fromTicks } from "../../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { trimStart, trimEnd, padLeft } from "../../../deps/Fable/src/fable-library-ts/String.js";
 
 export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 

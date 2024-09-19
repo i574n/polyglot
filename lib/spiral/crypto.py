@@ -38,7 +38,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr82() -> TypeInfo:
+def _expr85() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -46,9 +46,9 @@ def _expr82() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr82
+Mut0_reflection = _expr85
 
-def _expr85() -> TypeInfo:
+def _expr86() -> TypeInfo:
     return union_type("Crypto.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -64,9 +64,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr85
+US0_reflection = _expr86
 
-def _expr86() -> TypeInfo:
+def _expr87() -> TypeInfo:
     return record_type("Crypto.Mut1", [], Mut1, lambda: [("l0", int64_type)])
 
 
@@ -74,7 +74,7 @@ def _expr86() -> TypeInfo:
 class Mut1(Record):
     l0: int64
 
-Mut1_reflection = _expr86
+Mut1_reflection = _expr87
 
 def _expr88() -> TypeInfo:
     return record_type("Crypto.Mut2", [], Mut2, lambda: [("l0", lambda_type(string_type, unit_type))])

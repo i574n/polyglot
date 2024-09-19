@@ -24,6 +24,7 @@ inl get_args () =
             deps = "deps", 'd'
             wasm = "wasm", 'w'
             contract = "contract", 'c'
+            cleanup = "cleanup", 'l'
         }
         typescript = "typescript", {
             fs_path = "fs-path", 'f'
@@ -122,6 +123,10 @@ let get_command () =
             )
             >> runtime.arg_require_equals true
             >> runtime.arg_default_missing_value ""
+        )
+        |> runtime.command_init_arg ((get_args () .rust |> snd).cleanup) (
+            runtime.arg_default_value "true"
+            >> runtime.arg_action runtime.SetFalse
         )
     )
     |> runtime.command_subcommand (
@@ -430,7 +435,7 @@ inl get_empty_cargo_toml_content () =
     +#. $'$"path = \\\"spiral_builder.rs\\\""'
 
 /// ### process_rust
-inl process_rust { fs_path deps trace_level runtime } =
+inl process_rust { fs_path deps trace_level runtime cleanup } =
     open runtime
     inl is_trace = trace_level = Verbose
     inl _trace (fn : () -> string) =
@@ -708,7 +713,7 @@ inl process_rust { fs_path deps trace_level runtime } =
                             fun ex =>
                                 trace Critical
                                     fun () => "spiral_builder.process_rust / Exception"
-                                    fun () => { ex cargo_result new_code_path external_command }
+                                    fun () => { ex new_code_path external_command cargo_result }
                                 None
                         |> optionm'.box
                         |> optionm'.unwrap
@@ -717,7 +722,7 @@ inl process_rust { fs_path deps trace_level runtime } =
                 else
                     trace Critical
                         fun () => "spiral_builder.process_rust / error"
-                        fun () => { exit_code cargo_result new_code_path external_command }
+                        fun () => { exit_code new_code_path external_command cleanup cargo_result }
                     { extension = Some extension; code = None; output = None }
             else
                 inl wasm_path : string =
@@ -749,32 +754,33 @@ inl process_rust { fs_path deps trace_level runtime } =
                     else
                         trace Critical
                             fun () => "spiral_builder.process_rust / wasm error"
-                            fun () => { exit_code spiral_wasm_result cargo_result new_code_path }
+                            fun () => { exit_code spiral_wasm_result new_code_path cargo_result }
                         { extension = Some extension; code = None; output = None }
                 else
                     trace Critical
-                        fun () => "spiral_builder.process_rust / error"
-                        fun () => { exit_code cargo_result new_code_path wasm_path command }
+                        fun () => "spiral_builder.process_rust / cargo error"
+                        fun () => { exit_code new_code_path wasm_path command cleanup cargo_result }
                     { extension = Some extension; code = None; output = None }
 
-        inl cleanup =
-            inl build_target =
-                if runtime <> None
-                then "wasm32-unknown-unknown/release"
-                else "debug"
+        if cleanup then
+            inl cleanup =
+                inl build_target =
+                    if runtime <> None
+                    then "wasm32-unknown-unknown/release"
+                    else "debug"
 
-            [ ".d"; ".exe"; ".pdb"; ".wasm"; "" ]
-            |> listm.map fun ext =>
-                workspace_dir </> $'$"target/{!build_target}/spiral_builder_{!hash_hex}{!ext}"'
-            |> listm.map fun path => path, path |> file_system.file_exists
+                [ ".d"; ".exe"; ".pdb"; ".wasm"; "" ]
+                |> listm.map fun ext =>
+                    workspace_dir </> $'$"target/{!build_target}/spiral_builder_{!hash_hex}{!ext}"'
+                |> listm.map fun path => path, path |> file_system.file_exists
 
-        trace Verbose
-            fun () => "spiral_builder.process_rust / cleanup"
-            fun () => { new_code_path cleanup }
+            trace Verbose
+                fun () => "spiral_builder.process_rust / cleanup"
+                fun () => { new_code_path cleanup }
 
-        cleanup
-        |> listm'.filter snd
-        |> listm.iter (fst >> file_system.file_delete)
+            cleanup
+            |> listm'.filter snd
+            |> listm.iter (fst >> file_system.file_delete)
 
         result
 
@@ -1557,6 +1563,10 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
                     |> optionm'.unbox
                     |> optionm'.default_value (;[] |> am'.to_vec)
 
+                inl cleanup =
+                    arg_matches
+                    |> runtime.matches_get_flag ((get_args () .rust |> snd).cleanup |> fst)
+
                 inl wasm =
                     arg_matches
                     |> runtime.matches_get_one ((get_args () .rust |> snd).wasm |> fst)
@@ -1575,7 +1585,7 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
                     | _, Some contract => Contract contract |> Some
                     | _ => None
 
-                process_rust { fs_path deps trace_level runtime }
+                process_rust { fs_path deps trace_level runtime cleanup }
 
             | Some (subcommand, arg_matches)
                     when (subcommand |> sm'.from_std_string) = (get_args () .typescript |> fst) =>

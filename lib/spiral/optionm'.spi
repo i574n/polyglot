@@ -57,6 +57,13 @@ inl default_value' forall t. (value : t) (x : option' t) : t =
         Python = fun () => $'!x or !value ' : t
     }
 
+/// ### value'
+inl value' forall t. (x : option' t) : t =
+    backend_switch {
+        Fsharp = fun () => $'!x |> Option.value' : t
+        Python = fun () => $'!x ' : t
+    }
+
 /// ### box
 inl box forall t. (x : option t) : option' t =
     // x
