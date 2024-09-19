@@ -16,7 +16,7 @@ open testing
 
 open rust
 open rust_operators
-open real_sm'
+open sm'_real
 
 #!markdown
 
@@ -43,7 +43,7 @@ nominal std_string =
 
 #!spiral
 
-type std_string = real_sm'.std_string
+type std_string = sm'_real.std_string
 
 #!markdown
 
@@ -69,7 +69,7 @@ inl from_std_string (str : std_string) : string =
 #!spiral
 
 inl from_std_string (str : std_string) : string =
-    real real_sm'.from_std_string str
+    real sm'_real.from_std_string str
 
 #!markdown
 
@@ -231,7 +231,7 @@ inl format_pretty forall t. (x : t) : string =
 #!spiral
 
 inl format_pretty forall t. (x : t) : string =
-    real real_sm'.format_pretty `t x
+    real sm'_real.format_pretty `t x
 
 #!markdown
 
@@ -259,13 +259,13 @@ prototype printable t : t -> ()
 
 #!markdown
 
-### real_format
+### format_real
 
 #!spiral
 
 //// real
 
-inl real_format forall t. (x : t) : string =
+inl format_real forall t. (x : t) : string =
     inl result = mut `string (join "")
     inl rec write x =
         inl p ((a : string), b) =
@@ -332,7 +332,7 @@ inl real_format forall t. (x : t) : string =
 #!spiral
 
 inl format forall t. (x : t) : string =
-    real real_format `t x
+    real format_real `t x
 
 #!spiral
 

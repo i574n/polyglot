@@ -44,10 +44,10 @@ if (!$fast) {
     { npm run compile-library } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
 }
 
-{ dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block
+{ dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net9.0/**" $netVersion -Recurse -Force
 
 if ($pack) {
-    { dotnet pack -c Release /p:Version=0.1.1 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive
+    { dotnet pack -c Release /p:Version=0.1.2 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 }

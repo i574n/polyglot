@@ -80,6 +80,10 @@ type Disposable (f : unit -> unit) = interface System.IDisposable with member _.
 #endif
 type regex_Error = class end
 type IPathDirname = abstract dirname: path: string -> string
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::path::Path")>]
+#endif
+type std_path_Path = class end
 type [<Struct>] US0 =
     | US0_0
     | US0_1
@@ -10769,10 +10773,205 @@ and closure53 () (v0 : bool) : unit =
             closure3()
     v18.l0 <- v37
     ()
-and closure56 (v0 : string) (v1 : string) : string =
-    method30(v0, v1)
-and closure55 () (v0 : string) : (string -> string) =
+and method52 (v0 : string) : string =
+    let v1 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v2 : string = "&*$0"
+    let v3 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v0 v2 
+    let v4 : string = "String::from($0)"
+    let v5 : std_string_String = Fable.Core.RustInterop.emitRustExpr v3 v4 
+    let v6 : string = "std::path::PathBuf::from($0)"
+    let v7 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v5 v6 
+    let v8 : string = "$0.parent()"
+    let v9 : Ref<std_path_Path> option = Fable.Core.RustInterop.emitRustExpr v7 v8 
+    let v10 : string = "$0.unwrap()"
+    let v11 : Ref<std_path_Path> = Fable.Core.RustInterop.emitRustExpr v9 v10 
+    let v12 : string = "$0.display()"
+    let v13 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v11 v12 
+    let v14 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v15 : string = "format!(\"{}\", $0)"
+    let v16 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v15 
+    let _v14 = v16 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v17 : string = "format!(\"{}\", $0)"
+    let v18 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v17 
+    let _v14 = v18 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v19 : string = "format!(\"{}\", $0)"
+    let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v19 
+    let _v14 = v20 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v21 : std_string_String = null |> unbox<std_string_String>
+    let _v14 = v21 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v24 : std_string_String = null |> unbox<std_string_String>
+    let _v14 = v24 
+    #endif
+#else
+    let v27 : std_string_String = null |> unbox<std_string_String>
+    let _v14 = v27 
+    #endif
+    let v30 : std_string_String = _v14 
+    let v35 : string = "fable_library_rust::String_::fromString($0)"
+    let v36 : string = Fable.Core.RustInterop.emitRustExpr v30 v35 
+    let _v1 = v36 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v37 : string = null |> unbox<string>
+    let _v1 = v37 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v40 : string = null |> unbox<string>
+    let _v1 = v40 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v43 : string = null |> unbox<string>
+    let _v1 = v43 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v46 : string = null |> unbox<string>
+    let _v1 = v46 
+    #endif
+#else
+    let v49 : (string -> string) = System.IO.Path.GetDirectoryName
+    let v50 : string = v49 v0
+    let _v1 = v50 
+    #endif
+    let v51 : string = _v1 
+    v51
+and method51 (v0 : string, v1 : string) : unit =
+    let v2 : bool = method8(v0)
+    let v3 : bool = v2 = false
+    if v3 then
+        let v4 : System.IDisposable = method35(v0)
+        ()
+    let v5 : string = method52(v1)
+    let v6 : bool = method8(v5)
+    let v7 : bool = v6 = false
+    if v7 then
+        let v8 : System.IDisposable = method35(v5)
+        ()
+    let v9 : bool = method8(v1)
+    let v34 : bool =
+        if v9 then
+            let v10 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v11 : string = "std::fs::read_link(&*$0)"
+            let v12 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v1 v11 
+            let _v10 = v12 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v13 : string = "std::fs::read_link(&*$0)"
+            let v14 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v1 v13 
+            let _v10 = v14 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v15 : string = "std::fs::read_link(&*$0)"
+            let v16 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v1 v15 
+            let _v10 = v16 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v17 : Result<std_path_PathBuf, std_io_Error> = null |> unbox<Result<std_path_PathBuf, std_io_Error>>
+            let _v10 = v17 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v20 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
+            let _v10 = v20 
+            #endif
+#else
+            let v21 : Result<std_path_PathBuf, std_io_Error> = Unchecked.defaultof<_>
+            let _v10 = v21 
+            #endif
+            let v22 : Result<std_path_PathBuf, std_io_Error> = _v10 
+            let v25 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v26 : string = "$0.is_err()"
+            let v27 : bool = Fable.Core.RustInterop.emitRustExpr v22 v26 
+            let _v25 = v27 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v28 : string = "$0.is_err()"
+            let v29 : bool = Fable.Core.RustInterop.emitRustExpr v22 v28 
+            let _v25 = v29 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v30 : string = "$0.is_err()"
+            let v31 : bool = Fable.Core.RustInterop.emitRustExpr v22 v30 
+            let _v25 = v31 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let _v25 = true 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let _v25 = true 
+            #endif
+#else
+            let _v25 = true 
+            #endif
+            let v32 : bool = _v25 
+            v32
+        else
+            false
+    if v34 then
+        let v35 : bool = true
+        method6(v35, v1)
+    let v36 : bool = method8(v1)
+    let v37 : bool = v36 = false
+    if v37 then
+        let v38 : unit = ()
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+        let v39 : string = "true; #[cfg(windows)] std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"
+        let v40 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v39 
+        let v41 : string = "true; #[cfg(unix)] std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
+        let v42 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v41 
+        let _v38 = () 
+        #endif
+#if FABLE_COMPILER_RUST && WASM
+        let _v38 = () 
+        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+        let _v38 = () 
+        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+        let _v38 = () 
+        #endif
+#if FABLE_COMPILER_PYTHON
+        let _v38 = () 
+        #endif
+#else
+        let v43 : System.IO.FileSystemInfo = System.IO.Directory.CreateSymbolicLink (v1, v0)
+        let _v38 = () 
+        #endif
+        _v38 
+        ()
+and closure56 (v0 : string) (v1 : string) : unit =
+    method51(v0, v1)
+and closure55 () (v0 : string) : (string -> unit) =
     closure56(v0)
+and closure58 (v0 : string) (v1 : string) : string =
+    method30(v0, v1)
+and closure57 () (v0 : string) : (string -> string) =
+    closure58(v0)
 let v0 : unit = ()
 let v1 : (unit -> unit) = closure0()
 let v2 : unit = (fun () -> v1 (); v0) ()
@@ -10812,6 +11011,8 @@ let v32 : (unit -> string) = closure50()
 let get_workspace_root () = v32 ()
 let v33 : (bool -> unit) = closure53()
 let init_trace_file x = v33 x
-let v34 : (string -> (string -> string)) = closure55()
-let (</>) x = v34 x
+let v34 : (string -> (string -> unit)) = closure55()
+let link_directory x = v34 x
+let v35 : (string -> (string -> string)) = closure57()
+let (</>) x = v35 x
 ()

@@ -96,7 +96,7 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result);
 
     // get_account_info(account1)
-    let result: Option<(String, (u64, u32))> = account1
+    let result: Option<(String, u64, u32)> = account1
         .view(contract_id, "get_account_info")
         .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
@@ -105,7 +105,7 @@ async fn main() -> anyhow::Result<()> {
         .json()?;
     println!("\n\nget_account_info(account1): {result:#?}");
     match result {
-        Some((alias, (_, index))) => {
+        Some((alias, _, index)) => {
             assert_eq!(alias, "alias1");
             assert_eq!(index, 0);
         }
@@ -154,7 +154,7 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result);
 
     // get_account_info(account2)
-    let result: Option<(String, (u64, u32))> = account2
+    let result: Option<(String, u64, u32)> = account2
         .view(contract_id, "get_account_info")
         .args_json(near_sdk::serde_json::json!({
             "account_id": account2.id(),
@@ -163,7 +163,7 @@ async fn main() -> anyhow::Result<()> {
         .json()?;
     println!("\n\nget_account_info(account2): {result:#?}");
     match result {
-        Some((alias, (_, index))) => {
+        Some((alias, _, index)) => {
             assert_eq!(alias, "alias2");
             assert_eq!(index, 0);
         }
@@ -206,7 +206,7 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result);
 
     // get_account_info(account2)
-    let result: Option<(String, (u64, u32))> = account2
+    let result: Option<(String, u64, u32)> = account2
         .view(contract_id, "get_account_info")
         .args_json(near_sdk::serde_json::json!({
             "account_id": account2.id(),
@@ -215,7 +215,7 @@ async fn main() -> anyhow::Result<()> {
         .json()?;
     println!("\n\nget_account_info(account2): {result:#?}");
     match result {
-        Some((alias, (_, index))) => {
+        Some((alias, _, index)) => {
             assert_eq!(alias, "alias1");
             assert_eq!(index, 1);
         }
@@ -287,7 +287,7 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result);
 
     // get_account_info(account1)
-    let result: Option<(String, (u64, u32))> = account1
+    let result: Option<(String, u64, u32)> = account1
         .view(contract_id, "get_account_info")
         .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
@@ -296,7 +296,7 @@ async fn main() -> anyhow::Result<()> {
         .json()?;
     println!("\n\nget_account_info(account1): {result:#?}");
     match result {
-        Some((alias, (_, index))) => {
+        Some((alias, _, index)) => {
             assert_eq!(alias, "alias2");
             assert_eq!(index, 0);
         }
@@ -365,7 +365,7 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result);
 
     // get_account_info(account1)
-    let result: Option<(String, (u64, u32))> = account1
+    let result: Option<(String, u64, u32)> = account1
         .view(contract_id, "get_account_info")
         .args_json(near_sdk::serde_json::json!({
             "account_id": account1.id(),
@@ -374,7 +374,7 @@ async fn main() -> anyhow::Result<()> {
         .json()?;
     println!("\n\nget_account_info(account1): {result:#?}");
     match result {
-        Some((alias, (_, index))) => {
+        Some((alias, _, index)) => {
             assert_eq!(alias, "alias1");
             assert_eq!(index, 1);
         }

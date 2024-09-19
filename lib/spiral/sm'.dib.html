@@ -7561,7 +7561,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">rust</span>
 <span class="nb">open</span> <span class="n">rust_operators</span>
-<span class="nb">open</span> <span class="n">real_sm</span><span class="s1">'</span>
+<span class="nb">open</span> <span class="n">sm</span><span class="s1">'_real</span>
 </pre></div>
 </div>
 </div>
@@ -7622,7 +7622,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">std_string</span> <span class="o">=</span> <span class="n">real_sm</span><span class="s1">'.std_string</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">std_string</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'_real.std_string</span>
 </pre></div>
 </div>
 </div>
@@ -7692,7 +7692,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">real</span> <span class="n">real_sm</span><span class="s1">'.from_std_string str</span>
+    <span class="n">real</span> <span class="n">sm</span><span class="s1">'_real.from_std_string str</span>
 </pre></div>
 </div>
 </div>
@@ -8159,7 +8159,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_pretty</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">real</span> <span class="n">real_sm</span><span class="s1">'.format_pretty `t x</span>
+    <span class="n">real</span> <span class="n">sm</span><span class="s1">'_real.format_pretty `t x</span>
 </pre></div>
 </div>
 </div>
@@ -8230,7 +8230,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="real_format">real_format<a class="anchor-link" href="#real_format">¶</a></h3>
+<h3 id="format_real">format_real<a class="anchor-link" href="#format_real">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8244,7 +8244,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">real</span>
 
-<span class="n">inl</span> <span class="n">real_format</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+<span class="n">inl</span> <span class="n">format_real</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mut</span> <span class="err">`</span><span class="n">string</span> <span class="p">(</span><span class="n">join</span> <span class="s2">""</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">rec</span> <span class="n">write</span> <span class="n">x</span> <span class="o">=</span>
         <span class="n">inl</span> <span class="n">p</span> <span class="p">((</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
@@ -8328,7 +8328,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">real</span> <span class="n">real_format</span> <span class="err">`</span><span class="n">t</span> <span class="n">x</span>
+    <span class="n">real</span> <span class="n">format_real</span> <span class="err">`</span><span class="n">t</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>

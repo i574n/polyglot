@@ -243,13 +243,35 @@ inl unfold f x0 =
 #!spiral
 
 inl iterate f =
-    unfold (fun x => Some (x, f x))
+    fun x => Some (x, f x)
+    |> unfold
 
 #!spiral
 
 //// test
 
 iterate ((*) 2) 1i32
+|> item 10i32
+|> _assert_eq 1024
+
+#!markdown
+
+### iterate'
+
+#!spiral
+
+inl iterate_map f m =
+    fun x =>
+        m x
+        |> optionm.map fun x =>
+            x, f x
+    |> unfold
+
+#!spiral
+
+//// test
+
+iterate_map ((*) 2) Some 1i32
 |> item 10i32
 |> _assert_eq 1024
 

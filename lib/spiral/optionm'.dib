@@ -172,6 +172,18 @@ inl default_value' forall t. (value : t) (x : option' t) : t =
 
 #!markdown
 
+### value'
+
+#!spiral
+
+inl value' forall t. (x : option' t) : t =
+    backend_switch {
+        Fsharp = fun () => $'!x |> Option.value' : t
+        Python = fun () => $'!x ' : t
+    }
+
+#!markdown
+
 ### box
 
 #!spiral

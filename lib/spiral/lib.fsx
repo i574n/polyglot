@@ -439,6 +439,13 @@ module SpiralFileSystem =
         read_all_text_retry_async x
 #endif
 
+    let link_directory x =
+#if !INTERACTIVE
+        File_system.link_directory x
+#else
+        link_directory x
+#endif
+
 
     module Operators =
         let (</>) x =

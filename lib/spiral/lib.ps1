@@ -31,7 +31,8 @@ function FixTypeScript {
     process {
         $text `
             -replace "\./fable_modules/fable-library-ts\.[\d\.]+/", "./deps/Fable/src/fable-library-ts/" `
-            -replace "from `"\./deps/", "from `"../../polyglot/deps/"
+            -replace "from `"\./deps/", "from `"../../polyglot/deps/" `
+            -replace "from `"\.\./\.\./\.\./deps/", "from `"../../deps/"
     }
 }
 
@@ -53,6 +54,9 @@ function CopyTarget {
         $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
         $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
+        if (!(Test-Path $from)) {
+            $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
+        }
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force
 

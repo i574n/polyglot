@@ -363,7 +363,9 @@ inl expect forall t u. (error : rust.ref string) (x : result' t u) : t =
 #!spiral
 
 inl is_err forall t u. (x : result' t u) : bool =
-    !\($'"!x.is_err()"')
+    run_target function
+        | Rust _ => fun () => !\\(x, $'"$0.is_err()"')
+        | _ => fun () => true
 
 #!markdown
 

@@ -11,6 +11,7 @@ import { toString as toString_1, milliseconds, seconds, minutes, hours, fromTick
 import { replace, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
 import * as path from "path";
+import { FSharpResult$2_$union } from "../../deps/Fable/src/fable-library-ts/Result.js";
 
 export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 
@@ -1105,9 +1106,9 @@ export function closure31(unitVar: void, unitVar_1: void): void {
     v1_1();
     v2_1 = undefined;
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_3(TraceState_trace_state());
-    let v35: any;
+    let v35_1: any;
     v1_1();
-    v35 = undefined;
+    v35_1 = undefined;
     const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_3(TraceState_trace_state());
     const v67: US0_$union = patternInput_1[4].l0;
     if ((patternInput_1[2].l0 === false) ? false : (0 >= find<US0_$union, int32>(v67, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
@@ -1848,12 +1849,42 @@ export function closure53(unitVar: void, v0_1: boolean): void {
     patternInput[1].l0 = v37;
 }
 
-export function closure56(v0_1: string, v1_1: string): string {
+export function method52(v0_1: string): string {
+    return defaultOf();
+}
+
+export function method51(v0_1: string, v1_1: string): void {
+    let v17_1: FSharpResult$2_$union<any, any>;
+    if (method8(v0_1) === false) {
+        const v4: IDisposable = method35(v0_1);
+    }
+    const v5: string = method52(v1_1);
+    if (method8(v5) === false) {
+        const v8: IDisposable = method35(v5);
+    }
+    if (method8(v1_1) && ((v17_1 = defaultOf(), true))) {
+        method6(true, v1_1);
+    }
+    if (method8(v1_1) === false) {
+    }
+}
+
+export function closure56(v0_1: string, v1_1: string): void {
+    method51(v0_1, v1_1);
+}
+
+export function closure55(unitVar: void, v0_1: string): ((arg0: string) => void) {
+    return (v: string): void => {
+        closure56(v0_1, v);
+    };
+}
+
+export function closure58(v0_1: string, v1_1: string): string {
     return method30(v0_1, v1_1);
 }
 
-export function closure55(unitVar: void, v0_1: string): ((arg0: string) => string) {
-    return (v: string): string => closure56(v0_1, v);
+export function closure57(unitVar: void, v0_1: string): ((arg0: string) => string) {
+    return (v: string): string => closure58(v0_1, v);
 }
 
 export const v0: any = undefined;
@@ -1974,10 +2005,16 @@ export function init_trace_file(x: boolean): void {
     v33(x);
 }
 
-export const v34 = (v: string): ((arg0: string) => string) => closure55(undefined, v);
+export const v34 = (v: string): ((arg0: string) => void) => closure55(undefined, v);
+
+export function link_directory(x: string): ((arg0: string) => void) {
+    return v34(x);
+}
+
+export const v35 = (v: string): ((arg0: string) => string) => closure57(undefined, v);
 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
-    return v34(x);
+    return v35(x);
 }
 
 

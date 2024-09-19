@@ -125,6 +125,37 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
 
         !\($'"  !alias_map.insert(!alias, new_alias_account_map); //"') : ()
 
+/// ### get_account_info
+inl get_account_info
+    (state : rust.ref state)
+    (account_id : near.account_id)
+    : optionm'.option' (sm'.std_string * (u64 * u32))
+    =
+    inl account_map : rust.ref (near.lookup_map near.account_id sm'.std_string) =
+        !\($'$"&!state.2"')
+
+    inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
+        !\($'$"&!state.1"')
+
+    !\\(account_id, $'"let result = !account_map.get(&$0).and_then(|alias| { //"') : ()
+    !\($'"    !alias_map //"') : ()
+    !\($'"      .get(alias) //"') : ()
+    !\($'"      .map(|accounts| { //"') : ()
+    !\($'"          let result = (alias.clone(), *accounts.get(&!account_id).unwrap()); //"') : ()
+    !\($'"          (result.0, result.1.0, result.1.1) //"') : ()
+    !\($'"      }) //"') : ()
+    !\($'"}); //"') : ()
+
+    inl result = !\($'"result"')
+
+    trace Debug
+        fun () => $'$"chat_contract.get_account_info"'
+        fun () => { account_id result }
+
+    trace Debug (fun () => "") id
+
+    result
+
 /// ### main
 ///! _
 
@@ -218,31 +249,17 @@ inl main () =
         !\($'"pub fn get_account_info( //"') : ()
         !\($'"  &self, //"') : ()
         !\($'"  account_id: near_sdk::AccountId, //"') : ()
-        !\($'") -> Option<(String, (u64, u32))> { //"') : ()
+        !\($'") -> Option<(String, u64, u32)> { //"') : ()
 
-        inl account_map : rust.ref (near.lookup_map near.account_id sm'.std_string) =
-            !\($'$"&self.0.2"')
-
-        inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
-            !\($'$"&self.0.1"')
-
+        inl state = !\($'$"&self.0"')
         inl account_id : near.account_id = !\($'$"account_id"')
 
-        trace Debug
-            fun () => $'$"chat_contract.get_account_info"'
-            fun () => { account_id }
+        inl result = account_id |> get_account_info state
+        $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x "$0 } // 4") // 3' : ()
 
-        trace Debug (fun () => "") id
+        !\($'"} // 2"') : ()
 
-        !\\(account_id, $'"  !account_map.get(&$0).and_then(|alias| { //"') : ()
-        !\($'"    !alias_map //"') : ()
-        !\($'"      .get(alias) //"') : ()
-        !\($'"      .map(|accounts| (alias.clone(), *accounts.get(&!account_id).unwrap())) //"') : ()
-        !\($'"  }) //"') : ()
-
-        !\($'"} //"') : ()
-
-        !\($'"} //"') : ()
+        !\($'"} // 1"') : ()
 
         2
 
@@ -316,7 +333,7 @@ inl main () =
     // !\($'"} // b"') : ()
 
     !\($'"fn _main() //"') : ()
-    !\($'"{ //"') : ()
+    !\($'"{ { //"') : ()
 
     inl rec loop' i' =
         if i' <= n

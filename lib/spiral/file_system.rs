@@ -1058,8 +1058,8 @@ pub mod File_system {
             let v31_1: Vec<u8> = File_system::method18(v8.unwrap());
             let v33_1: Result<std::string::String, std::string::FromUtf8Error> =
                 std::string::String::from_utf8(v31_1);
-            let v35: std::string::String = v33_1.unwrap();
-            v1_1 == fable_library_rust::String_::fromString(v35)
+            let v35_1: std::string::String = v33_1.unwrap();
+            v1_1 == fable_library_rust::String_::fromString(v35_1)
         }
     }
     pub fn closure18(v0_1: string, v1_1: string) -> bool {
@@ -1488,7 +1488,7 @@ pub mod File_system {
             LrcPtr<File_system::Mut4>,
             Option<i64>,
         ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v35: () = {
+        let v35_1: () = {
             v1_1();
             ()
         };
@@ -3111,13 +3111,64 @@ pub mod File_system {
         (patternInput.1.clone()).l0.set(v37);
         ()
     }
-    pub fn closure56(v0_1: string, v1_1: string) -> string {
-        File_system::method30(v0_1, v1_1)
+    pub fn method52(v0_1: string) -> string {
+        let v3: &str = &*v0_1;
+        let v5: std::string::String = String::from(v3);
+        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
+        let v9: Option<&std::path::Path> = v7.parent();
+        let v11: &std::path::Path = v9.unwrap();
+        let v13: std::path::Display = v11.display();
+        let v16_1: std::string::String = format!("{}", v13);
+        fable_library_rust::String_::fromString(v16_1)
     }
-    pub fn closure55(unitVar: (), v0_1: string) -> Func1<string, string> {
+    pub fn method51(v0_1: string, v1_1: string) {
+        if File_system::method8(v0_1.clone()) == false {
+            let v4: LrcPtr<dyn IDisposable> = File_system::method35(v0_1.clone());
+            ()
+        }
+        {
+            let v5: string = File_system::method52(v1_1.clone());
+            if File_system::method8(v5.clone()) == false {
+                let v8: LrcPtr<dyn IDisposable> = File_system::method35(v5);
+                ()
+            }
+            if if File_system::method8(v1_1.clone()) {
+                let v12: Result<std::path::PathBuf, std::io::Error> =
+                    std::fs::read_link(&*v1_1.clone());
+                v12.is_err()
+            } else {
+                false
+            } {
+                File_system::method6(true, v1_1.clone());
+            }
+            if File_system::method8(v1_1.clone()) == false {
+                let v40: bool = true;
+                #[cfg(windows)]
+                std::os::windows::fs::symlink_dir(&*v0_1.clone(), &*v1_1.clone()).unwrap();
+                let v42: bool = true;
+                #[cfg(unix)]
+                std::os::unix::fs::symlink(&*v0_1, &*v1_1).unwrap();
+                ();
+                ()
+            }
+        }
+    }
+    pub fn closure56(v0_1: string, v1_1: string) {
+        File_system::method51(v0_1, v1_1);
+    }
+    pub fn closure55(unitVar: (), v0_1: string) -> Func1<string, ()> {
         Func1::new({
             let v0_1 = v0_1.clone();
             move |v: string| File_system::closure56(v0_1.clone(), v)
+        })
+    }
+    pub fn closure58(v0_1: string, v1_1: string) -> string {
+        File_system::method30(v0_1, v1_1)
+    }
+    pub fn closure57(unitVar: (), v0_1: string) -> Func1<string, string> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| File_system::closure58(v0_1.clone(), v)
         })
     }
     pub fn v0() -> () {
@@ -3282,13 +3333,21 @@ pub mod File_system {
     pub fn init_trace_file(x: bool) {
         (File_system::v33())(x);
     }
-    pub fn v34() -> Func1<string, Func1<string, string>> {
-        static v34: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
+    pub fn v34() -> Func1<string, Func1<string, ()>> {
+        static v34: OnceInit<Func1<string, Func1<string, ()>>> = OnceInit::new();
         v34.get_or_init(|| Func1::new(move |v: string| File_system::closure55((), v)))
             .clone()
     }
-    pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
+    pub fn link_directory(x: string) -> Func1<string, ()> {
         (File_system::v34())(x)
+    }
+    pub fn v35() -> Func1<string, Func1<string, string>> {
+        static v35: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
+        v35.get_or_init(|| Func1::new(move |v: string| File_system::closure57((), v)))
+            .clone()
+    }
+    pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
+        (File_system::v35())(x)
     }
     on_startup!(());
 }

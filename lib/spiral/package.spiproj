@@ -21,7 +21,7 @@ modules:
     mapm
     iter
     sm'_prototypes-
-    real_sm'*
+    sm'_real*
     sm'
     sm'_operators
     console

@@ -307,7 +307,10 @@ inl create_dir_all (path : string) : resultm.result' () stream.io_error =
 
 /// ### read_link
 inl read_link (path : string) : resultm.result' path_buf stream.io_error =
-    !\\(path, $'"std::fs::read_link(&*$0)"')
+    run_target function
+        | Rust _ => fun () => !\\(path, $'"std::fs::read_link(&*$0)"')
+        | TypeScript _ => fun () => null ()
+        | _ => fun () => $'Unchecked.defaultof<_>'
 
 /// ### read
 inl read (path : string) : resultm.result' (am'.vec u8) stream.io_error =
@@ -383,7 +386,6 @@ let get_file_name_without_extension (path : string) : string =
 /// ### get_directory_name
 let get_directory_name (path : string) : string =
     run_target function
-        | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.parent()"')
@@ -391,8 +393,9 @@ let get_directory_name (path : string) : string =
             |> path_display
             |> sm'.format'
             |> sm'.from_std_string
-        | _ => fun () =>
+        | Fsharp _ => fun () =>
             path |> $'System.IO.Path.GetDirectoryName'
+        | _ => fun () => null ()
 
 /// ### get_extension
 let get_extension (path : string) : string =
@@ -611,9 +614,8 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             ($'System.IO.Directory.CreateSymbolicLink (!path, !target)' : file_system_info)
             |> ignore
         | Rust (Native) => fun () =>
-            platform.run_platform function
-                | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
-                | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
+            (!\\((target, path), $'"true; #[cfg(windows)] std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"') : bool) |> ignore
+            (!\\((target, path), $'"true; #[cfg(unix)] std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"') : bool) |> ignore
         | _ => fun () => ()
 
 /// ### find_parent
@@ -973,5 +975,6 @@ inl main () =
     $'let new_file_uri x = !new_file_uri x' : ()
     $'let get_workspace_root () = !get_workspace_root ()' : ()
     $'let init_trace_file x = !init_trace_file x' : ()
+    $'let link_directory x = !link_directory x' : ()
     inl combine x = (</>) x
     $'let (</>) x = !combine x' : ()

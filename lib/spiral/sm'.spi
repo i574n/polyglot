@@ -1,12 +1,12 @@
 /// # sm'
 open rust
 open rust_operators
-open real_sm'
+open sm'_real
 
 /// ## rust
 
 /// ### std_string
-type std_string = real_sm'.std_string
+type std_string = sm'_real.std_string
 
 /// ### to_string
 inl to_string forall t. (x : t) : std_string =
@@ -14,7 +14,7 @@ inl to_string forall t. (x : t) : std_string =
 
 /// ### from_std_string
 inl from_std_string (str : std_string) : string =
-    real real_sm'.from_std_string str
+    real sm'_real.from_std_string str
 
 /// ## sm'
 
@@ -53,7 +53,7 @@ inl format_debug forall t. (x : t) : string =
 
 /// ### format_pretty
 inl format_pretty forall t. (x : t) : string =
-    real real_sm'.format_pretty `t x
+    real sm'_real.format_pretty `t x
 
 /// ### prim
 inl prim x = real
@@ -66,11 +66,11 @@ inl prim x = real
 
 /// ### printable
 
-/// ### real_format
+/// ### format_real
 
 /// ### format
 inl format forall t. (x : t) : string =
-    real real_format `t x
+    real format_real `t x
 
 /// ### concat_array_trailing
 inl concat_array_trailing (separator : string) (input : a i32 string) =

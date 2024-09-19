@@ -7606,6 +7606,7 @@ a.anchor-link {
             <span class="n">deps</span> <span class="o">=</span> <span class="s2">"deps"</span><span class="p">,</span> <span class="s1">'d'</span>
             <span class="n">wasm</span> <span class="o">=</span> <span class="s2">"wasm"</span><span class="p">,</span> <span class="s1">'w'</span>
             <span class="n">contract</span> <span class="o">=</span> <span class="s2">"contract"</span><span class="p">,</span> <span class="s1">'c'</span>
+            <span class="n">cleanup</span> <span class="o">=</span> <span class="s2">"cleanup"</span><span class="p">,</span> <span class="s1">'l'</span>
         <span class="p">}</span>
         <span class="n">typescript</span> <span class="o">=</span> <span class="s2">"typescript"</span><span class="p">,</span> <span class="p">{</span>
             <span class="n">fs_path</span> <span class="o">=</span> <span class="s2">"fs-path"</span><span class="p">,</span> <span class="s1">'f'</span>
@@ -7748,6 +7749,10 @@ a.anchor-link {
             <span class="p">)</span>
             <span class="o">&gt;&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">arg_require_equals</span> <span class="n">true</span>
             <span class="o">&gt;&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">arg_default_missing_value</span> <span class="s2">""</span>
+        <span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">command_init_arg</span> <span class="p">((</span><span class="n">get_args</span> <span class="p">()</span> <span class="o">.</span><span class="n">rust</span> <span class="o">|&gt;</span> <span class="n">snd</span><span class="p">)</span><span class="o">.</span><span class="n">cleanup</span><span class="p">)</span> <span class="p">(</span>
+            <span class="n">runtime</span><span class="o">.</span><span class="n">arg_default_value</span> <span class="s2">"true"</span>
+            <span class="o">&gt;&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">arg_action</span> <span class="n">runtime</span><span class="o">.</span><span class="n">SetFalse</span>
         <span class="p">)</span>
     <span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">command_subcommand</span> <span class="p">(</span>
@@ -8171,13 +8176,13 @@ a.anchor-link {
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;   Determining projects to restore...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj (in 278 ms).
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj (in 264 ms).
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj]
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj]
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/bin/Release/net9.0/win-x64/test1.dll
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/dist
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 951 }
-00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #12 runtime.execute_with_options / { file_name = dotnet; arguments = [
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/dist
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 951 }
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "publish",
     "/home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj",
     "--configuration",
@@ -8191,7 +8196,7 @@ a.anchor-link {
 ) } }
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;   Determining projects to restore...
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj (in 275 ms).
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj (in 267 ms).
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj]
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/spiral_builder/test1/test1.fsproj]
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #18 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test1/bin/Release/net9.0/linux-x64/test1.dll
@@ -8271,7 +8276,7 @@ __assert_eq / actual: 0 / expected: 0
 ) } }
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Determining projects to restore...
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test2/test2.fsproj (in 272 ms).
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/test2/test2.fsproj (in 264 ms).
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/spiral_builder/test2/test2.fsproj]
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; /home/runner/work/polyglot/polyglot/target/spiral_builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/spiral_builder/test2/test2.fsproj]
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 732 }
@@ -8575,7 +8580,7 @@ __assert_eq / actual: 2 / expected: 2
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_rust</span> <span class="p">{</span> <span class="n">fs_path</span> <span class="n">deps</span> <span class="n">trace_level</span> <span class="n">runtime</span> <span class="p">}</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_rust</span> <span class="p">{</span> <span class="n">fs_path</span> <span class="n">deps</span> <span class="n">trace_level</span> <span class="n">runtime</span> <span class="n">cleanup</span> <span class="p">}</span> <span class="o">=</span>
     <span class="nb">open</span> <span class="n">runtime</span>
     <span class="n">inl</span> <span class="n">is_trace</span> <span class="o">=</span> <span class="n">trace_level</span> <span class="o">=</span> <span class="n">Verbose</span>
     <span class="n">inl</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
@@ -8853,7 +8858,7 @@ __assert_eq / actual: 2 / expected: 2
                             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                                 <span class="n">trace</span> <span class="n">Critical</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / Exception"</span>
-                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">ex</span> <span class="n">cargo_result</span> <span class="n">new_code_path</span> <span class="n">external_command</span> <span class="p">}</span>
+                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">ex</span> <span class="n">new_code_path</span> <span class="n">external_command</span> <span class="n">cargo_result</span> <span class="p">}</span>
                                 <span class="kc">None</span>
                         <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
                         <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
@@ -8862,7 +8867,7 @@ __assert_eq / actual: 2 / expected: 2
                 <span class="k">else</span>
                     <span class="n">trace</span> <span class="n">Critical</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / error"</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">cargo_result</span> <span class="n">new_code_path</span> <span class="n">external_command</span> <span class="p">}</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">new_code_path</span> <span class="n">external_command</span> <span class="n">cleanup</span> <span class="n">cargo_result</span> <span class="p">}</span>
                     <span class="p">{</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">extension</span><span class="p">;</span> <span class="n">code</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="n">output</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">}</span>
             <span class="k">else</span>
                 <span class="n">inl</span> <span class="n">wasm_path</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
@@ -8894,32 +8899,33 @@ __assert_eq / actual: 2 / expected: 2
                     <span class="k">else</span>
                         <span class="n">trace</span> <span class="n">Critical</span>
                             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / wasm error"</span>
-                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">spiral_wasm_result</span> <span class="n">cargo_result</span> <span class="n">new_code_path</span> <span class="p">}</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">spiral_wasm_result</span> <span class="n">new_code_path</span> <span class="n">cargo_result</span> <span class="p">}</span>
                         <span class="p">{</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">extension</span><span class="p">;</span> <span class="n">code</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="n">output</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">}</span>
                 <span class="k">else</span>
                     <span class="n">trace</span> <span class="n">Critical</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / error"</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">cargo_result</span> <span class="n">new_code_path</span> <span class="n">wasm_path</span> <span class="n">command</span> <span class="p">}</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / cargo error"</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">new_code_path</span> <span class="n">wasm_path</span> <span class="n">command</span> <span class="n">cleanup</span> <span class="n">cargo_result</span> <span class="p">}</span>
                     <span class="p">{</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">extension</span><span class="p">;</span> <span class="n">code</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="n">output</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">}</span>
 
-        <span class="n">inl</span> <span class="n">cleanup</span> <span class="o">=</span>
-            <span class="n">inl</span> <span class="n">build_target</span> <span class="o">=</span>
-                <span class="k">if</span> <span class="n">runtime</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
-                <span class="n">then</span> <span class="s2">"wasm32-unknown-unknown/release"</span>
-                <span class="k">else</span> <span class="s2">"debug"</span>
+        <span class="k">if</span> <span class="n">cleanup</span> <span class="n">then</span>
+            <span class="n">inl</span> <span class="n">cleanup</span> <span class="o">=</span>
+                <span class="n">inl</span> <span class="n">build_target</span> <span class="o">=</span>
+                    <span class="k">if</span> <span class="n">runtime</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
+                    <span class="n">then</span> <span class="s2">"wasm32-unknown-unknown/release"</span>
+                    <span class="k">else</span> <span class="s2">"debug"</span>
 
-            <span class="p">[</span> <span class="s2">".d"</span><span class="p">;</span> <span class="s2">".exe"</span><span class="p">;</span> <span class="s2">".pdb"</span><span class="p">;</span> <span class="s2">".wasm"</span><span class="p">;</span> <span class="s2">""</span> <span class="p">]</span>
-            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">ext</span> <span class="o">=&gt;</span>
-                <span class="n">workspace_dir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s1">'$"target/{!build_target}/spiral_builder_{!hash_hex}{!ext}"'</span>
-            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span> <span class="n">path</span><span class="p">,</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_exists</span>
+                <span class="p">[</span> <span class="s2">".d"</span><span class="p">;</span> <span class="s2">".exe"</span><span class="p">;</span> <span class="s2">".pdb"</span><span class="p">;</span> <span class="s2">".wasm"</span><span class="p">;</span> <span class="s2">""</span> <span class="p">]</span>
+                <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">ext</span> <span class="o">=&gt;</span>
+                    <span class="n">workspace_dir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s1">'$"target/{!build_target}/spiral_builder_{!hash_hex}{!ext}"'</span>
+                <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span> <span class="n">path</span><span class="p">,</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_exists</span>
 
-        <span class="n">trace</span> <span class="n">Verbose</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / cleanup"</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">new_code_path</span> <span class="n">cleanup</span> <span class="p">}</span>
+            <span class="n">trace</span> <span class="n">Verbose</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_builder.process_rust / cleanup"</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">new_code_path</span> <span class="n">cleanup</span> <span class="p">}</span>
 
-        <span class="n">cleanup</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.filter snd</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fst</span> <span class="o">&gt;&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_delete</span><span class="p">)</span>
+            <span class="n">cleanup</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.filter snd</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fst</span> <span class="o">&gt;&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_delete</span><span class="p">)</span>
 
         <span class="n">result</span>
 </pre></div>
@@ -9879,6 +9885,10 @@ __assert_eq / actual: 2 / expected: 2
                     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
                     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value (;[] |&gt; am'</span><span class="o">.</span><span class="n">to_vec</span><span class="p">)</span>
 
+                <span class="n">inl</span> <span class="n">cleanup</span> <span class="o">=</span>
+                    <span class="n">arg_matches</span>
+                    <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">matches_get_flag</span> <span class="p">((</span><span class="n">get_args</span> <span class="p">()</span> <span class="o">.</span><span class="n">rust</span> <span class="o">|&gt;</span> <span class="n">snd</span><span class="p">)</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">|&gt;</span> <span class="n">fst</span><span class="p">)</span>
+
                 <span class="n">inl</span> <span class="n">wasm</span> <span class="o">=</span>
                     <span class="n">arg_matches</span>
                     <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">matches_get_one</span> <span class="p">((</span><span class="n">get_args</span> <span class="p">()</span> <span class="o">.</span><span class="n">rust</span> <span class="o">|&gt;</span> <span class="n">snd</span><span class="p">)</span><span class="o">.</span><span class="n">wasm</span> <span class="o">|&gt;</span> <span class="n">fst</span><span class="p">)</span>
@@ -9897,7 +9907,7 @@ __assert_eq / actual: 2 / expected: 2
                     <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">Some</span> <span class="n">contract</span> <span class="o">=&gt;</span> <span class="n">Contract</span> <span class="n">contract</span> <span class="o">|&gt;</span> <span class="n">Some</span>
                     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="kc">None</span>
 
-                <span class="n">process_rust</span> <span class="p">{</span> <span class="n">fs_path</span> <span class="n">deps</span> <span class="n">trace_level</span> <span class="n">runtime</span> <span class="p">}</span>
+                <span class="n">process_rust</span> <span class="p">{</span> <span class="n">fs_path</span> <span class="n">deps</span> <span class="n">trace_level</span> <span class="n">runtime</span> <span class="n">cleanup</span> <span class="p">}</span>
 
             <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">subcommand</span><span class="p">,</span> <span class="n">arg_matches</span><span class="p">)</span>
                     <span class="n">when</span> <span class="p">(</span><span class="n">subcommand</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string) = (get_args () .typescript |&gt; fst) =&gt;</span>
@@ -10021,7 +10031,7 @@ __assert_eq / actual: 2 / expected: 2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_e27d45d91d0ac520a620beb73d2a88e20a3b0942480b81a2515a2ebec3166bb7/c6422374-71e4-07d4-0ba4-c3084b24fbba }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_6386f02926e3c3e3515982b9e7684e4bc8bdcf30bd0d67669c5f7a4d8ca4500e/c6422374-71e4-07d4-0ba4-c3084b24fbba }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 file_system.create_dir / { dir = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/fable_modules }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = dotnet; arguments = [
@@ -10039,25 +10049,25 @@ __assert_eq / actual: 2 / expected: 2
 ]; options = { command = dotnet fable "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fsproj" --optimize --lang rs --extension .rs --outDir "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e" --define _LINUX; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; <span class="ansi-white-fg">Fable 4.19.3: F# to Rust compiler (status: alpha)
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #6 &gt; <span class="ansi-white-fg">
-00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #7 &gt; Thanks to the contributor! @easysoft2k15
+00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #7 &gt; Thanks to the contributor! @kirill-gerasimenko
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; <span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #9 &gt;
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; <span class="ansi-white-fg">Parsing ../../../target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fsproj...
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #11 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e&gt; dotnet restore spiral_builder.fable-temp.csproj -p:FABLE_COMPILER=true -p:FABLE_COMPILER_4=true -p:FABLE_COMPILER_RUST=true -p:_LINUX=true
-00:00:01 </span><span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Determining projects to restore...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fable-temp.csproj (in 297 ms).
+00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Determining projects to restore...
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fable-temp.csproj (in 293 ms).
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e&gt; dotnet restore /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fsproj
 00:00:03 </span><span class="ansi-black-intense-fg">verbose</span> #15 &gt;   Determining projects to restore...
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fsproj (in 349 ms).
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3990ms
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fsproj (in 293 ms).
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3685ms
 00:00:04 </span><span class="ansi-black-intense-fg">verbose</span> #18 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #19 &gt; <span class="ansi-white-fg">Started Fable compilation...
-00:00:06 </span><span class="ansi-black-intense-fg">verbose</span> #20 &gt; <span class="ansi-white-fg">
-00:00:06 </span><span class="ansi-black-intense-fg">verbose</span> #21 &gt; Fable compilation finished in 1074ms
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #22 &gt;
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #23 &gt; <span class="ansi-yellow-fg">./../../../target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fs(1,1): warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
-00:00:06 </span><span class="ansi-black-intense-fg">verbose</span> #24 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1864 }
-00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #25 runtime.execute_with_options / { file_name = cargo; arguments = [
+00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #20 &gt; <span class="ansi-white-fg">
+00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #21 &gt; Fable compilation finished in 1151ms
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #22 &gt;
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #23 &gt; <span class="ansi-yellow-fg">./../../../target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/spiral_builder.fs(1,1): warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
+00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #24 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1870 }
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #25 runtime.execute_with_options / { file_name = cargo; arguments = [
     "fmt",
     "--manifest-path",
     "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/f58a8f60b65e9bacc8229b6e2ae18dba8f9dc103c5ce2ad7e4d7d392fe9ebb1e/Cargo.toml",
@@ -10145,7 +10155,7 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_69ebc250652448a73a3b88b8a4c85b4bf17a7df316199eb1c0f0ff21ad77e038/c6422374-71e4-07d4-0ba4-c3084b24fbba }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_e05067170386487ceffed027d8218ebd92cb15083dcccce0eeb3df3df1722022/c6422374-71e4-07d4-0ba4-c3084b24fbba }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_builder.process_typescript / { version = US42_1 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = dotnet; arguments = [
@@ -10164,28 +10174,28 @@ __assert_eq / actual: "-3" / expected: "-3"
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; <span class="ansi-white-fg">Fable 4.19.3: F# to TypeScript compiler
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #6 &gt; <span class="ansi-white-fg">Minimum @fable-org/fable-library-ts version (when installed from npm): 1.4.2
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #7 &gt; <span class="ansi-white-fg">
-00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #8 &gt; Thanks to the contributor! @zaaack
+00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #8 &gt; Thanks to the contributor! @ptrelford
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; <span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #10 &gt;
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; <span class="ansi-white-fg">Parsing ../../../target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj...
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #12 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8&gt; dotnet restore spiral_builder.fable-temp.csproj -p:FABLE_COMPILER=true -p:FABLE_COMPILER_4=true -p:FABLE_COMPILER_TYPESCRIPT=true -p:_LINUX=true
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Determining projects to restore...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fable-temp.csproj (in 288 ms).
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fable-temp.csproj (in 369 ms).
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8&gt; dotnet restore /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj
 00:00:03 </span><span class="ansi-black-intense-fg">verbose</span> #16 &gt;   Determining projects to restore...
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj (in 301 ms).
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3768ms
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj (in 292 ms).
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3714ms
 00:00:04 </span><span class="ansi-black-intense-fg">verbose</span> #19 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #20 &gt; <span class="ansi-white-fg">Started Fable compilation...
 00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #21 &gt; <span class="ansi-white-fg">
-00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #22 &gt; Fable compilation finished in 992ms
+00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #22 &gt; Fable compilation finished in 1065ms
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #23 &gt;
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #24 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1642 }
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #24 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1646 }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #25 spiral_builder.process_typescript / { new_code_path = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.ts }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #26 runtime.execute_with_options / { file_name = bun; arguments = [
     "run",
     "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.ts",
-]; options = { command = bun run "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.ts"; cancellation_token = None; environment_variables = Array(MutCell([("PATH", "~/.bun/bin:/opt/microsoft/powershell/7:/home/runner/.local/bin:/opt/hostedtoolcache/Python/3.12.5/x64/bin:/opt/hostedtoolcache/Python/3.12.5/x64:/opt/hostedtoolcache/node/21.7.3/x64/bin:/usr/share/dotnet:/home/runner/.cargo/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin"), ("TRACE_LEVEL", "Verbose")])); on_line = None; stdin = None; trace = true; working_directory = None } }
+]; options = { command = bun run "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.ts"; cancellation_token = None; environment_variables = Array(MutCell([("PATH", "~/.bun/bin:/opt/microsoft/powershell/7:/home/runner/.local/bin:/opt/hostedtoolcache/Python/3.12.6/x64/bin:/opt/hostedtoolcache/Python/3.12.6/x64:/opt/hostedtoolcache/node/21.7.3/x64/bin:/usr/share/dotnet:/home/runner/.cargo/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin:/home/runner/.cargo/bin:/home/runner/.bun/bin"), ("TRACE_LEVEL", "Verbose")])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #27 &gt; -3
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #28 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2 }
 __assert_eq / actual: "ts" / expected: "ts"
@@ -10255,7 +10265,7 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_53fec967c93262f3f763938b80789aef641c40944cac8515ca6cdf2d5816f8a9/c6422374-71e4-07d4-0ba4-c3084b24fbba }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ebea3e7bb791cab3d520a979f431a22fb4d41e0d3f21bd5ba788d91e3e875652/c6422374-71e4-07d4-0ba4-c3084b24fbba }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 file_system.create_dir / { dir = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/fable_modules }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = dotnet; arguments = [
@@ -10273,21 +10283,21 @@ __assert_eq / actual: "-3" / expected: "-3"
 ]; options = { command = dotnet fable "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj" --optimize --lang py --extension .py --outDir "/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce" --define _LINUX; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; <span class="ansi-white-fg">Fable 4.19.3: F# to Python compiler (status: beta)
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #6 &gt; <span class="ansi-white-fg">
-00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #7 &gt; Thanks to the contributor! @johannesegger
+00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #7 &gt; Thanks to the contributor! @MangelMaxime
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; <span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #9 &gt;
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; <span class="ansi-white-fg">Parsing ../../../target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj...
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #11 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce&gt; dotnet restore spiral_builder.fable-temp.csproj -p:FABLE_COMPILER=true -p:FABLE_COMPILER_4=true -p:FABLE_COMPILER_PYTHON=true -p:_LINUX=true
 00:00:00 </span><span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Determining projects to restore...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fable-temp.csproj (in 312 ms).
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fable-temp.csproj (in 375 ms).
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; <span class="ansi-white-fg">../../../target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce&gt; dotnet restore /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj
 00:00:03 </span><span class="ansi-black-intense-fg">verbose</span> #15 &gt;   Determining projects to restore...
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj (in 300 ms).
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3739ms
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;   Restored /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj (in 301 ms).
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; <span class="ansi-white-fg">Project and references (1 source files) parsed in 3816ms
 00:00:04 </span><span class="ansi-black-intense-fg">verbose</span> #18 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #19 &gt; <span class="ansi-white-fg">Started Fable compilation...
 00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #20 &gt; <span class="ansi-white-fg">
-00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #21 &gt; Fable compilation finished in 983ms
+00:00:05 </span><span class="ansi-black-intense-fg">verbose</span> #21 &gt; Fable compilation finished in 1027ms
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #22 &gt;
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #23 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1550 }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #24 spiral_builder.process_python / { new_code_path = /home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.py }
@@ -10352,20 +10362,20 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623 }
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "repl",
     "--exit-after-run",
     "--run",
-    "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib",
+    "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib",
     "--output-path",
-    "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
-]; options = { command = dotnet repl --exit-after-run --run "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib" --output-path "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
+    "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
+]; options = { command = dotnet repl --exit-after-run --run "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib" --output-path "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
 &gt; 
 &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
 &gt; 3 - 6
 &gt; 
-&gt; <span class="ansi-green-fg">╭─[ 2.87s - return value ]─────────────────────────────────────────────────────╮</span>
+&gt; <span class="ansi-green-fg">╭─[ 2.96s - return value ]─────────────────────────────────────────────────────╮</span>
 &gt; <span class="ansi-green-fg">│</span> &lt;div class="dni-plaintext"&gt;&lt;pre&gt;-3                                           <span class="ansi-green-fg">│</span>
 &gt; <span class="ansi-green-fg">│</span> &lt;/pre&gt;&lt;/div&gt;&lt;style&gt;                                                          <span class="ansi-green-fg">│</span>
 &gt; <span class="ansi-green-fg">│</span> .dni-code-hint {                                                             <span class="ansi-green-fg">│</span>
@@ -10403,26 +10413,26 @@ __assert_eq / actual: "-3" / expected: "-3"
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 3822 }
 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = [
     "nbconvert",
-    "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
+    "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
     "--to",
     "html",
     "--HTMLExporter.theme=dark",
-]; options = { command = jupyter nbconvert "/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #5 ! [NbConvertApp] Converting notebook /tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb to html
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #6 ! /opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+]; options = { command = jupyter nbconvert "/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #5 ! [NbConvertApp] Converting notebook /tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb to html
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #6 ! /opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #7 !   validate(nb)
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #8 ! /opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #8 ! /opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #9 !   return _pygments_highlight(
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #10 ! [NbConvertApp] Writing 271458 bytes to /tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #10 ! [NbConvertApp] Writing 271458 bytes to /tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html
 00:00:05 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 1080 }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #12 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 1080 }
 00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = [
     "-c",
-    "$counter = 1; $path = '/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path",
-]; options = { command = pwsh -c "$counter = 1; $path = '/tmp/!create_temp_path_/spiral_builder_276b766414abcd0e3b998af6651106f6f4e105e5e6ac2df68f6032476285b722/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_builder.run / dib / { exit_code = 0; result_length = 4961 }
+    "$counter = 1; $path = '/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path",
+]; options = { command = pwsh -c "$counter = 1; $path = '/tmp/!create_temp_path_/spiral_builder_984d70cbc370521ccffeabd7273499075d1ee2cc50d9b32a17e38b084604f368/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_builder.run / dib / { exit_code = 0; result_length = 4961 }
 </pre>
 </div>
 </div>

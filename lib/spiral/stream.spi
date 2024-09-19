@@ -111,7 +111,16 @@ inl unfold f x0 =
 
 /// ### iterate
 inl iterate f =
-    unfold (fun x => Some (x, f x))
+    fun x => Some (x, f x)
+    |> unfold
+
+/// ### iterate'
+inl iterate_map f m =
+    fun x =>
+        m x
+        |> optionm.map fun x =>
+            x, f x
+    |> unfold
 
 /// ### take_while
 inl take_while cond s =

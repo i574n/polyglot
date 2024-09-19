@@ -150,9 +150,10 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
     $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
 
-    if (-Not (Test-Path (Split-Path $Path))) {
-        Write-Output "Parent directory does not exist: $Path"
-        return
+    $Parent = Split-Path $Path
+    if (-Not (Test-Path $Parent)) {
+        Write-Output "Creating parent directory: $Parent"
+        New-Item $Parent -ItemType Directory
     }
 
     if (Test-Path $Path) {

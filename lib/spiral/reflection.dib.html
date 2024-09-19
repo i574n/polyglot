@@ -7604,7 +7604,7 @@ a.anchor-link {
                                             <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">value</span>
                                     <span class="p">}</span>
                             <span class="n">inl</span> <span class="n">item</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-                            <span class="n">inl</span> <span class="n">key</span><span class="s1">' = real_sm'</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
+                            <span class="n">inl</span> <span class="n">key</span><span class="s1">' = sm'</span><span class="n">_real</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
                             <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="s1">', item) acc</span>
                     <span class="p">(</span><span class="n">Nil</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">))</span>
                     <span class="err">`</span><span class="n">union_record_type</span>
@@ -7754,7 +7754,7 @@ __assert_eq' / actual: [|struct ("Some", US0_0 0); struct ("None", US0_1)|] / ex
                                 <span class="n">inl</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="o">=</span>
                                     <span class="n">real_core</span><span class="o">.</span><span class="n">union_untag</span> <span class="err">`</span><span class="n">union_type</span> <span class="n">i</span>
                                         <span class="p">(</span><span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span> <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="o">=&gt;</span>
-                                            <span class="n">inl</span> <span class="n">key</span><span class="s1">' = real_sm'</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
+                                            <span class="n">inl</span> <span class="n">key</span><span class="s1">' = sm'</span><span class="n">_real</span><span class="o">.</span><span class="n">symbol_to_string</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">key</span><span class="p">)</span>
                                             <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span>
                                                 <span class="n">typecase</span> <span class="n">value</span> <span class="k">with</span>
                                                 <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="n">value</span>
@@ -8066,7 +8066,7 @@ __assert_eq' / actual: "Some" / expected: "Some"
         <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
             <span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span>
                 <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="n">_</span> <span class="o">=&gt;</span>
-                    <span class="n">real_sm</span><span class="s1">'.symbol_to_string `(`key)</span>
+                    <span class="n">sm</span><span class="s1">'_real.symbol_to_string `(`key)</span>
             <span class="err">`</span><span class="n">t</span>
             <span class="s2">""</span>
 </pre></div>
@@ -8129,7 +8129,7 @@ __assert_eq' / actual: "Some" / expected: "Some"
         <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
             <span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span>
                 <span class="n">forall</span> <span class="sa">u</span><span class="s1">'. acc =&gt;</span>
-                    <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">real_sm</span><span class="s1">'.symbol_to_string `(`key)</span>
+                    <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'_real.symbol_to_string `(`key)</span>
                     <span class="n">inl</span> <span class="n">v</span> <span class="o">=</span> <span class="n">x</span> <span class="n">key</span>
                     <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="sa">u</span><span class="s1">') (k, v) acc</span>
             <span class="err">`</span><span class="n">t</span>
@@ -8196,7 +8196,7 @@ __assert_eq' / actual: "Some" / expected: "Some"
                 <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
                     <span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span>
                         <span class="n">forall</span> <span class="n">v</span><span class="o">.</span> <span class="n">acc</span> <span class="o">=&gt;</span>
-                            <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">real_sm</span><span class="s1">'.symbol_to_string `(`key)</span>
+                            <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'_real.symbol_to_string `(`key)</span>
                             <span class="n">inl</span> <span class="n">v</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'"`v"'</span> <span class="p">:</span> <span class="n">string</span>
                             <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="n">acc</span>
                     <span class="err">`</span><span class="n">t</span>
@@ -8208,7 +8208,7 @@ __assert_eq' / actual: "Some" / expected: "Some"
         <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
             <span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span>
                 <span class="n">forall</span> <span class="n">v</span><span class="o">.</span> <span class="n">acc</span> <span class="o">=&gt;</span>
-                    <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">real_sm</span><span class="s1">'.symbol_to_string `(`key)</span>
+                    <span class="n">inl</span> <span class="n">k</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'_real.symbol_to_string `(`key)</span>
                     <span class="n">inl</span> <span class="n">args</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">get_function_type</span> <span class="err">`</span><span class="n">v</span>
                     <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="o">*</span> <span class="n">string</span><span class="p">))</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span> <span class="n">acc</span>
             <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">fns</span><span class="p">)</span>

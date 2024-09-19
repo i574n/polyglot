@@ -1,15 +1,15 @@
-import { TraceState_trace_state as TraceState_trace_state_4, Mut4 as Mut4_4, Mut3 as Mut3_4, Mut2 as Mut2_4, Mut1 as Mut1_4, Mut0 as Mut0_4, US0_$union, trace } from "../../../../../../../lib/spiral/trace.fsx";
-import { hash_to_port, hash_text } from "../../../../../../../lib/spiral/crypto.fsx";
+import { TraceState_trace_state as TraceState_trace_state_4, Mut4 as Mut4_4, Mut3 as Mut3_4, Mut2 as Mut2_4, Mut1 as Mut1_4, Mut0 as Mut0_4, US0_$union, trace } from "../../../../../polyglot/lib/spiral/trace.fsx";
+import { hash_to_port, hash_text } from "../../../../../polyglot/lib/spiral/crypto.fsx";
 import { int32, uint16 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace_regex, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../../../../../../lib/spiral/sm.fsx";
+import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace_regex, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../../../../polyglot/lib/spiral/sm.fsx";
 import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { TraceState_trace_state as TraceState_trace_state_1, Mut4 as Mut4_1, Mut3 as Mut3_1, Mut2 as Mut2_1, Mut1 as Mut1_1, Mut0 as Mut0_1, US0_US0_0 as US0_US0_0_1, US0_US0_4 as US0_US0_4_1, US0_US0_3 as US0_US0_3_1, US0_US0_2 as US0_US0_2_1, US0_US0_1 as US0_US0_1_1, create_temp_path, create_temp_dir$0027, create_temp_dir, new_file_uri, normalize_path, get_source_directory, get_workspace_root } from "../../../../../../../lib/spiral/file_system.fsx";
+import { TraceState_trace_state as TraceState_trace_state_1, Mut4 as Mut4_1, Mut3 as Mut3_1, Mut2 as Mut2_1, Mut1 as Mut1_1, Mut0 as Mut0_1, US0_US0_0 as US0_US0_0_1, US0_US0_4 as US0_US0_4_1, US0_US0_3 as US0_US0_3_1, US0_US0_2 as US0_US0_2_1, US0_US0_1 as US0_US0_1_1, create_temp_path, create_temp_dir$0027, create_temp_dir, new_file_uri, normalize_path, get_source_directory, get_workspace_root } from "../../../../../polyglot/lib/spiral/file_system.fsx";
 import { IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { iterate } from "../../deps/Fable/src/fable-library-ts/Seq.js";
-import { TraceState_trace_state, Mut4, Mut3, Mut2, Mut1, Mut0, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../../../../../../lib/spiral/networking.fsx";
+import { TraceState_trace_state, Mut4, Mut3, Mut2, Mut1, Mut0, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../../../../polyglot/lib/spiral/networking.fsx";
 import { map, defaultArgWith, toArray, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { TraceState_trace_state as TraceState_trace_state_2, Mut4 as Mut4_2, Mut3 as Mut3_2, Mut2 as Mut2_2, Mut1 as Mut1_2, Mut0 as Mut0_2, US0_US0_0 as US0_US0_0_2, US0_US0_4 as US0_US0_4_2, US0_US0_3 as US0_US0_3_2, US0_US0_2 as US0_US0_2_2, US0_US0_1 as US0_US0_1_2 } from "../../../../../../../lib/spiral/runtime.fsx";
-import { TraceState_trace_state as TraceState_trace_state_3, Mut4 as Mut4_3, Mut3 as Mut3_3, Mut2 as Mut2_3, Mut1 as Mut1_3, Mut0 as Mut0_3, US0_US0_0 as US0_US0_0_3, US0_US0_4 as US0_US0_4_3, US0_US0_3 as US0_US0_3_3, US0_US0_2 as US0_US0_2_3, US0_US0_1 as US0_US0_1_3 } from "../../../../../../../lib/spiral/common.fsx";
+import { TraceState_trace_state as TraceState_trace_state_2, Mut4 as Mut4_2, Mut3 as Mut3_2, Mut2 as Mut2_2, Mut1 as Mut1_2, Mut0 as Mut0_2, US0_US0_0 as US0_US0_0_2, US0_US0_4 as US0_US0_4_2, US0_US0_3 as US0_US0_3_2, US0_US0_2 as US0_US0_2_2, US0_US0_1 as US0_US0_1_2 } from "../../../../../polyglot/lib/spiral/runtime.fsx";
+import { TraceState_trace_state as TraceState_trace_state_3, Mut4 as Mut4_3, Mut3 as Mut3_3, Mut2 as Mut2_3, Mut1 as Mut1_3, Mut0 as Mut0_3, US0_US0_0 as US0_US0_0_3, US0_US0_4 as US0_US0_4_3, US0_US0_3 as US0_US0_3_3, US0_US0_2 as US0_US0_2_3, US0_US0_1 as US0_US0_1_3 } from "../../../../../polyglot/lib/spiral/common.fsx";
 
 export function SpiralTrace_trace(x: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
     return trace(x);

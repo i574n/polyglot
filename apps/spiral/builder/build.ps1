@@ -42,12 +42,6 @@ if (!$SkipPreBuild) {
     }
 }
 
-(Get-Content "$projectName.rs") `
-    -replace `
-        ($IsWindows ? "std::os::unix::fs::symlink" :"std::os::windows::fs::symlink_dir"), `
-        ($IsWindows ? "std::os::windows::fs::symlink_dir" :"std::os::unix::fs::symlink") `
-    | Set-Content "$projectName.rs"
-
 cargo fmt --
 
 if (!$fast) {
