@@ -82,7 +82,7 @@ inl new_vector prefix =
 #!spiral
 
 inl log text : () =
-    !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
+    (!\\(text, $'$"true; near_sdk::log\!(\\\"{{}}\\\", $0)"') : bool) |> ignore
 
 #!markdown
 

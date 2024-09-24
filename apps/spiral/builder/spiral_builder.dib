@@ -777,6 +777,12 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                     ("use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1" +. !\($'"\\\";\\\".into()"'))
                     "type ConcurrentStack_1<T> = T;"
                 |> sm'.replace
+                    ("use fable_library_rust::System::Collections::Generic" +. !\($'"\\\"::\\\".into()"'))
+                    "use fable_library_rust::Interfaces_::System::Collections::Generic::"
+                |> sm'.replace
+                    ("use fable_library_rust::System::IDisposable" +. !\($'"\\\";\\\".into()"'))
+                    "use fable_library_rust::Interfaces_::System::IDisposable;"
+                |> sm'.replace
                     ("use fable_library_rust::System::Threading::CancellationToken" +. !\($'"\\\";\\\".into()"'))
                     "type CancellationToken = ();"
                 |> sm'.replace
@@ -885,19 +891,23 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                         }
                         |> execute_with_options
 
-                    inl output = spiral_wasm_result
-
                     if exit_code = 0 then
-                        { extension = Some extension; code = Some new_code; output = Some output }
+                        { extension = Some extension; code = Some new_code; output = Some spiral_wasm_result }
                     else
                         trace Critical
                             fun () => "spiral_builder.process_rust / wasm error"
-                            fun () => { exit_code spiral_wasm_result new_code_path cargo_result }
+                            fun () => {
+                                exit_code new_code_path cargo_result cleanup
+                                spiral_wasm_result = $'$"\\n{!spiral_wasm_result}"' : string
+                            }
                         { extension = Some extension; code = None; output = None }
                 else
                     trace Critical
                         fun () => "spiral_builder.process_rust / cargo error"
-                        fun () => { exit_code new_code_path wasm_path command cleanup cargo_result }
+                        fun () => {
+                            exit_code new_code_path wasm_path command cleanup
+                            cargo_result = $'$"\\n{!cargo_result}"' : string
+                        }
                     { extension = Some extension; code = None; output = None }
 
         if cleanup then

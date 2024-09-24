@@ -11,6 +11,8 @@ function FixRust {
             -replace "_self_.", "self." `
             -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
+            -replace "use fable_library_rust::System::Collections::Generic::", "use fable_library_rust::Interfaces_::System::Collections::Generic::" `
+            -replace "use fable_library_rust::System::IDisposable;", "use fable_library_rust::Interfaces_::System::IDisposable;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
             -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
             -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
@@ -53,9 +55,9 @@ function CopyTarget {
         )
         $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
-        $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
+        $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
         if (!(Test-Path $from)) {
-            $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
+            $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         }
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force

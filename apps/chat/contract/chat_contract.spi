@@ -235,7 +235,7 @@ inl main () =
         inl alias = !\($'$"alias"')
         
         inl result = claim_alias state alias
-        trace Debug (fun () => "") id
+        trace Debug (fun () => "") (join id)
 
         !\($'"} //"') : ()
 
@@ -278,7 +278,7 @@ inl main () =
             fun () => $'$"chat_contract.get_alias_map"'
             fun () => { alias }
 
-        trace Debug (fun () => "") id
+        trace Debug (fun () => "") (join id)
 
         !\\(alias, $'"  !alias_map.get(&$0).cloned() //"') : ()
         !\($'"} //"') : ()

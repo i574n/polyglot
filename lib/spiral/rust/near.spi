@@ -35,7 +35,7 @@ inl new_vector prefix =
 
 /// ### log
 inl log text : () =
-    !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
+    (!\\(text, $'$"true; near_sdk::log\!(\\\"{{}}\\\", $0)"') : bool) |> ignore
 
 /// ### panic_str
 inl panic_str (text : string) : () =

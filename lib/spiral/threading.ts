@@ -1,7 +1,7 @@
 import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 
 export class Disposable implements IDisposable {
     readonly f: (() => void);
@@ -52,29 +52,27 @@ export function US0_$reflection(): TypeInfo {
     return union_type("Threading.US0", [], US0, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
 }
 
-export function closure1(v0_1: FSharpRef<Option<US0_$union>>, v1: Option<US0_$union>): FSharpRef<Option<US0_$union>> {
-    v0_1.contents = v1;
-    return v0_1;
+export function closure1(unitVar: void, v0_1: any): US0_$union {
+    return US0_US0_0(v0_1);
 }
 
-export function closure2(v0_1: Option<any>, v1: ((arg0: Option<US0_$union>) => FSharpRef<Option<US0_$union>>), unitVar: void): void {
-    let x: any;
-    v1((v0_1 == null) ? undefined : ((x = value_1(v0_1), ((): US0_$union => US0_US0_0(x))())));
+export function method0(): ((arg0: any) => US0_$union) {
+    return (v: any): US0_$union => closure1(undefined, v);
 }
 
-export function closure3(v0_1: any, unitVar: void): void {
+export function closure2(v0_1: any, unitVar: void): void {
     defaultOf();
-}
-
-export function method0(v0_1: any): (() => void) {
-    return (): void => {
-        closure3(v0_1, undefined);
-    };
 }
 
 export function method1(v0_1: any): (() => void) {
     return (): void => {
-        closure3(v0_1, undefined);
+        closure2(v0_1, undefined);
+    };
+}
+
+export function method2(v0_1: any): (() => void) {
+    return (): void => {
+        closure2(v0_1, undefined);
     };
 }
 

@@ -265,7 +265,7 @@ prototype printable t : t -> ()
 
 //// real
 
-inl format_real forall t. (x : t) : string =
+let format_real forall t. (x : t) : string =
     inl result = mut `string (join "")
     inl rec write x =
         inl p ((a : string), b) =

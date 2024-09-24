@@ -75,14 +75,15 @@ inl box forall t. (x : option t) : option' t =
 
 /// ### map
 inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    backend_switch {
-        Fsharp = fun () =>
-            inl result : option' u = none' ()
-            $'let _!result = ref !result '
-            inl set_result (result : ref (option' u)) (x : option' u) : ref (option' u) =
-                result |> ref_set_value x
-            inl set_result = set_result $'_!result ' |> dyn
-            fun () =>
+    inl x_ () =
+        backend_switch {
+            Fsharp = fun () =>
+                inl result : mut (option' u) = none' () |> mut
+                inl set_result x =
+                    result <- x
+                inl get_result () =
+                    *result
+                $'let _!result = !result '
                 $'match !x with'
                 $'| Some x -> ('
                 $'(fun () ->'
@@ -92,25 +93,31 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
                 $')'
                 $'|> fun x -> x () |> Some'
                 $') () ) | None -> None'
-                $'|> !set_result |> ignore'
-            |> exec_unit
-            $'_!result.Value ' : option' u
+                $'|> fun x -> !set_result x'
+                $'!get_result ()' : option' u
+            Python = fun () =>
+                if x =. none' ()
+                then none' ()
+                else fn $'!x ' |> fun x => $'!x ' : option' u
+        }
+
+    backend_switch {
+        Fsharp = fun () =>
+            inl fn = join fn
+            $'!x |> Option.map !fn ' : option' u
         Python = fun () =>
-            if x =. none' ()
-            then none' ()
-            else fn $'!x ' |> fun x => $'!x ' : option' u
+                if x =. none' ()
+                then none' ()
+                else fn $'!x ' |> fun x => $'!x ' : option' u
     }
 
 /// ### map''
 inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    backend_switch {
-        Fsharp = fun () => $'!x |> Option.map !fn ' : option' u
-        Python = fun () => x |> map fn
-    }
+    x |> map fn
 
 /// ### unbox
 inl unbox forall t. (x : option' t) : option t =
-    x |> map Some |> default_value' None
+    x |> map'' Some |> default_value' None
     // inl some x : option t = Some x
     // inl some = join some
     // inl none : option t = None

@@ -2,23 +2,11 @@ type Disposable (f : unit -> unit) = interface System.IDisposable with member _.
 type [<Struct>] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken
     | US0_1
-let rec closure1 (v0 : US0 option ref) (v1 : US0 option) : US0 option ref =
-    v0.Value <- v1 
-    v0
-and closure2 (v0 : System.Threading.CancellationToken option, v1 : (US0 option -> US0 option ref)) () : unit =
-    match v0 with
-    | Some x -> (
-    (fun () ->
-    (fun () ->
-    let v2 : System.Threading.CancellationToken = x
-    let v3 : US0 = US0_0(v2)
-    v3 
-    )
-    |> fun x -> x () |> Some
-    ) () ) | None -> None
-    |> v1 |> ignore
-    ()
-and closure3 (v0 : System.Threading.CancellationTokenSource) () : unit =
+let rec closure1 () (v0 : System.Threading.CancellationToken) : US0 =
+    US0_0(v0)
+and method0 () : (System.Threading.CancellationToken -> US0) =
+    closure1()
+and closure2 (v0 : System.Threading.CancellationTokenSource) () : unit =
     let v1 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -50,10 +38,10 @@ and closure3 (v0 : System.Threading.CancellationTokenSource) () : unit =
     #endif
     _v1 
     ()
-and method0 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
-    closure3(v0)
 and method1 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
-    closure3(v0)
+    closure2(v0)
+and method2 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
+    closure2(v0)
 and closure0 () (v0 : System.Threading.CancellationToken option) : struct (System.Threading.CancellationToken * System.IDisposable) =
     let v1 : unit = ()
     
@@ -81,65 +69,59 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
     #endif
 #else
     let v32 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
-    let v33 : US0 option = None
-    let _v33 = ref v33 
-    let v34 : US0 option ref = _v33 
-    let v35 : (US0 option -> US0 option ref) = closure1(v34)
-    let v36 : unit = ()
-    let v37 : (unit -> unit) = closure2(v0, v35)
-    let v38 : unit = (fun () -> v37 (); v36) ()
-    let v41 : US0 option = _v33.Value 
-    let v52 : US0 = US0_1
-    let v53 : US0 = v41 |> Option.defaultValue v52 
-    let v63 : System.Threading.CancellationTokenSource =
-        match v53 with
+    let v33 : (System.Threading.CancellationToken -> US0) = method0()
+    let v34 : US0 option = v0 |> Option.map v33 
+    let v45 : US0 = US0_1
+    let v46 : US0 = v34 |> Option.defaultValue v45 
+    let v56 : System.Threading.CancellationTokenSource =
+        match v46 with
         | US0_1 -> (* None *)
             v32
-        | US0_0(v57) -> (* Some *)
-            let v58 : System.Threading.CancellationToken = v32.Token
-            let v59 : (System.Threading.CancellationToken []) = [|v58; v57|]
-            let v60 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            v60 v59
-    let v64 : unit = ()
+        | US0_0(v50) -> (* Some *)
+            let v51 : System.Threading.CancellationToken = v32.Token
+            let v52 : (System.Threading.CancellationToken []) = [|v51; v50|]
+            let v53 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            v53 v52
+    let v57 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v65 : (unit -> unit) = method0(v63)
-    let v66 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v65 "$0()" )
-    let _v64 = v66 
+    let v58 : (unit -> unit) = method1(v56)
+    let v59 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v58 "$0()" )
+    let _v57 = v59 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v67 : (unit -> unit) = method0(v63)
-    let v68 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v67 "$0()" )
-    let _v64 = v68 
+    let v60 : (unit -> unit) = method1(v56)
+    let v61 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v60 "$0()" )
+    let _v57 = v61 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v69 : (unit -> unit) = method0(v63)
-    let v70 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v69 "$0()" )
-    let _v64 = v70 
+    let v62 : (unit -> unit) = method1(v56)
+    let v63 : System.IDisposable = new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr v62 "$0()" )
+    let _v57 = v63 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v71 : (unit -> unit) = method1(v63)
-    let v72 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v71 () }
-    let _v64 = v72 
+    let v64 : (unit -> unit) = method2(v56)
+    let v65 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v64 () }
+    let _v57 = v65 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v73 : (unit -> unit) = method1(v63)
-    let v74 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v73 () }
-    let _v64 = v74 
+    let v66 : (unit -> unit) = method2(v56)
+    let v67 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v66 () }
+    let _v57 = v67 
     #endif
 #else
-    let v75 : (unit -> unit) = method1(v63)
-    let v76 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v75 () }
-    let _v64 = v76 
+    let v68 : (unit -> unit) = method2(v56)
+    let v69 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v68 () }
+    let _v57 = v69 
     #endif
-    let v77 : System.IDisposable = _v64 
-    let v81 : System.Threading.CancellationToken = v63.Token
-    let _v1 = struct (v81, v77) 
+    let v70 : System.IDisposable = _v57 
+    let v74 : System.Threading.CancellationToken = v56.Token
+    let _v1 = struct (v74, v70) 
     #endif
-    let struct (v82 : System.Threading.CancellationToken, v83 : System.IDisposable) = _v1 
-    struct (v82, v83)
+    let struct (v75 : System.Threading.CancellationToken, v76 : System.IDisposable) = _v1 
+    struct (v75, v76)
 let v0 : (System.Threading.CancellationToken option -> struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
 let new_disposable_token x = v0 x
 ()

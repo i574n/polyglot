@@ -6,14 +6,14 @@ import os
 from typing import (Any, Protocol)
 from fable_modules.fable_library.date import (ticks as ticks_1, now, to_string, create as create_1)
 from fable_modules.fable_library.list import (to_array, empty, of_array)
-from fable_modules.fable_library.long import (op_addition, op_subtraction)
+from fable_modules.fable_library.long import (op_subtraction, op_addition)
 from fable_modules.fable_library.map import (find, of_seq)
-from fable_modules.fable_library.option import (some, value as value_1, default_arg)
+from fable_modules.fable_library.option import (some, value as value_1, default_arg, map)
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, int64_type, record_type, string_type, unit_type, lambda_type, bool_type)
 from fable_modules.fable_library.string_ import (pad_left, to_text, interpolate, trim_end, trim_start)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
 from fable_modules.fable_library.types import (int64, Array, Union, Record, FSharpRef)
-from fable_modules.fable_library.util import (create_atom, IDisposable, ignore, to_enumerable, compare, Lazy)
+from fable_modules.fable_library.util import (create_atom, IDisposable, to_enumerable, compare, Lazy)
 
 TraceState_trace_state: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] | None = create_atom(None)
 
@@ -23,7 +23,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr22() -> TypeInfo:
+def _expr23() -> TypeInfo:
     return class_type("Common.Disposable", None, Disposable)
 
 
@@ -36,13 +36,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr22
+Disposable_reflection = _expr23
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr23() -> TypeInfo:
+def _expr24() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -58,9 +58,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr23
+US0_reflection = _expr24
 
-def _expr24() -> TypeInfo:
+def _expr26() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -68,9 +68,9 @@ def _expr24() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr24
+Mut0_reflection = _expr26
 
-def _expr25() -> TypeInfo:
+def _expr28() -> TypeInfo:
     return record_type("Common.Mut1", [], Mut1, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -78,9 +78,9 @@ def _expr25() -> TypeInfo:
 class Mut1(Record):
     l0: Callable[[str], None]
 
-Mut1_reflection = _expr25
+Mut1_reflection = _expr28
 
-def _expr26() -> TypeInfo:
+def _expr31() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", bool_type)])
 
 
@@ -88,9 +88,9 @@ def _expr26() -> TypeInfo:
 class Mut2(Record):
     l0: bool
 
-Mut2_reflection = _expr26
+Mut2_reflection = _expr31
 
-def _expr27() -> TypeInfo:
+def _expr32() -> TypeInfo:
     return record_type("Common.Mut3", [], Mut3, lambda: [("l0", string_type)])
 
 
@@ -98,9 +98,9 @@ def _expr27() -> TypeInfo:
 class Mut3(Record):
     l0: str
 
-Mut3_reflection = _expr27
+Mut3_reflection = _expr32
 
-def _expr28() -> TypeInfo:
+def _expr35() -> TypeInfo:
     return record_type("Common.Mut4", [], Mut4, lambda: [("l0", US0_reflection())])
 
 
@@ -108,9 +108,9 @@ def _expr28() -> TypeInfo:
 class Mut4(Record):
     l0: US0
 
-Mut4_reflection = _expr28
+Mut4_reflection = _expr35
 
-def _expr29() -> TypeInfo:
+def _expr37() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -126,9 +126,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr29
+US1_reflection = _expr37
 
-def _expr30() -> TypeInfo:
+def _expr41() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -144,9 +144,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr30
+US2_reflection = _expr41
 
-def _expr31() -> TypeInfo:
+def _expr44() -> TypeInfo:
     return union_type("Common.US3", [], US3, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -162,9 +162,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr31
+US3_reflection = _expr44
 
-def _expr32() -> TypeInfo:
+def _expr46() -> TypeInfo:
     return union_type("Common.US4", [], US4, lambda: [[], []])
 
 
@@ -180,9 +180,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr32
+US4_reflection = _expr46
 
-def _expr33() -> TypeInfo:
+def _expr48() -> TypeInfo:
     return union_type("Common.US5", [], US5, lambda: [[("f0_0", US4_reflection())], []])
 
 
@@ -198,7 +198,7 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr33
+US5_reflection = _expr48
 
 def method1(__unit: None=None) -> str:
     return "TRACE_LEVEL"
@@ -208,20 +208,15 @@ def method3(__unit: None=None) -> str:
     return ""
 
 
-def closure1(v0_1: FSharpRef[US1 | None], v1_1: US1 | None=None) -> FSharpRef[US1 | None]:
-    v0_1.contents = v1_1
-    return v0_1
+def closure1(unit_var: None, v0_1: str) -> US1:
+    return US1(0, v0_1)
 
 
-def closure2(v0_1: str | None, v1_1: Callable[[US1 | None], FSharpRef[US1 | None]], unit_var: None) -> None:
-    def _arrow34(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US1 | None:
-        x: str = v0_1
-        def x_1(__unit: None=None) -> US1:
-            return US1(0, x)
+def method4(__unit: None=None) -> Callable[[str], US1]:
+    def _arrow50(v: str) -> US1:
+        return closure1(None, v)
 
-        return x_1(None)
-
-    ignore(v1_1(None if (v0_1 is None) else _arrow34()))
+    return _arrow50
 
 
 def method2(v0_1: str) -> str:
@@ -237,34 +232,27 @@ def method2(v0_1: str) -> str:
     else: 
         v61 = value_1(_v56)
 
-    _v64: FSharpRef[US1 | None] = FSharpRef(None)
-    v69: None
-    def v66(v: US1 | None=None, v0_1: Any=v0_1) -> FSharpRef[US1 | None]:
-        return closure1(_v64, v)
-
-    closure2(v61, v66, None)
-    v69 = None
-    v84: US1 = default_arg(_v64.contents, US1(1))
-    if v84.tag == 0:
-        return v84.fields[0]
+    v77: US1 = default_arg(map(method4(), v61), US1(1))
+    if v77.tag == 0:
+        return v77.fields[0]
 
     else: 
         return ""
 
 
 
-def method4(__unit: None=None) -> str:
+def method5(__unit: None=None) -> str:
     return "AUTOMATION"
 
 
-def closure3(unit_var: None, v0_1: str) -> None:
+def closure2(unit_var: None, v0_1: str) -> None:
     pass
 
 
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
     v173: str = method2(method1())
     v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
-    def _arrow38(__unit: None=None, v0_1: Any=v0_1) -> US2:
+    def _arrow55(__unit: None=None, v0_1: Any=v0_1) -> US2:
         v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
         if v185.tag == 0:
             return US2(0, v185.fields[0])
@@ -286,13 +274,13 @@ def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow38(), US3(0, ticks_1(now())) if (method2(method4()) == "True") else US3(1))
+    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow55(), US3(0, ticks_1(now())) if (method2(method5()) == "True") else US3(1))
     v295: US3 = _v1[1]
     v294: US2 = _v1[0]
     def v360(v: str, v0_1: Any=v0_1) -> None:
-        closure3(None, v)
+        closure2(None, v)
 
-    return (Mut0(int64(0)), Mut1(v360), Mut2(True), Mut3(""), Mut4(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
+    return (Mut0(int64(1)), Mut1(v360), Mut2(True), Mut3(""), Mut4(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
 
 
 def closure0(unit_var: None, unit_var_1: None) -> None:
@@ -302,28 +290,28 @@ def closure0(unit_var: None, unit_var_1: None) -> None:
 
 
 
-def method5(v0_1: Callable[[], None]) -> Callable[[], None]:
-    return v0_1
-
-
 def method6(v0_1: Callable[[], None]) -> Callable[[], None]:
     return v0_1
 
 
-def closure4(unit_var: None, v0_1: Callable[[], None]) -> IDisposable:
-    v10: Callable[[], None] = method6(v0_1)
-    class ObjectExpr43(IDisposable):
+def method7(v0_1: Callable[[], None]) -> Callable[[], None]:
+    return v0_1
+
+
+def closure3(unit_var: None, v0_1: Callable[[], None]) -> IDisposable:
+    v10: Callable[[], None] = method7(v0_1)
+    class ObjectExpr62(IDisposable):
         def Dispose(self, __unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
             v10(None)
 
-    return ObjectExpr43()
+    return ObjectExpr62()
 
 
-def closure7(unit_var: None, v0_1: US4) -> US5:
+def closure6(unit_var: None, v0_1: US4) -> US5:
     return US5(0, v0_1)
 
 
-def closure8(v0_1: int, v1_1: Callable[[], None], v2_1: int, unit_var: None) -> US4:
+def closure7(v0_1: int, v1_1: Callable[[], None], v2_1: int, unit_var: None) -> US4:
     if v2_1 < v0_1:
         v1_1(None)
         return US4(0)
@@ -333,59 +321,111 @@ def closure8(v0_1: int, v1_1: Callable[[], None], v2_1: int, unit_var: None) -> 
 
 
 
-def closure11(v0_1: Mut0, unit_var: None) -> None:
-    v2_1: int64 = op_addition(v0_1.l0, int64(1))
-    v0_1.l0 = v2_1
+def closure10(unit_var: None, v0_1: int64) -> US3:
+    return US3(0, v0_1)
 
 
-def closure12(v0_1: FSharpRef[US3 | None], v1_1: US3 | None=None) -> FSharpRef[US3 | None]:
-    v0_1.contents = v1_1
-    return v0_1
+def method10(__unit: None=None) -> Callable[[int64], US3]:
+    def _arrow65(v: int64) -> US3:
+        return closure10(None, v)
 
-
-def closure13(v0_1: int64 | None, v1_1: Callable[[US3 | None], FSharpRef[US3 | None]], unit_var: None) -> None:
-    def _arrow47(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> US3 | None:
-        x: int64 = v0_1
-        def x_1(__unit: None=None) -> US3:
-            return US3(0, x)
-
-        return x_1(None)
-
-    ignore(v1_1(None if (v0_1 is None) else _arrow47()))
-
-
-def method8(__unit: None=None) -> str:
-    return "hh:mm:ss"
-
-
-def method9(__unit: None=None) -> str:
-    return "HH:mm:ss"
-
-
-def method10(__unit: None=None) -> str:
-    return "\u001b[0m"
+    return _arrow65
 
 
 def method11(__unit: None=None) -> str:
+    return "hh:mm:ss"
+
+
+def method12(__unit: None=None) -> str:
+    return "HH:mm:ss"
+
+
+def method9(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
+    v238: US3 = default_arg(map(method10(), v5), US3(1))
+    def _arrow66(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
+        v252: Any = create(op_subtraction(ticks_1(now()), v238.fields[0]))
+        return create_1(1, 1, 1, hours(v252), minutes(v252), seconds(v252), milliseconds(v252))
+
+    return to_string(_arrow66() if (v238.tag == 0) else now(), method12())
+
+
+def method14(__unit: None=None) -> str:
+    return "\u001b[0m"
+
+
+def method13(__unit: None=None) -> str:
+    return ("\u001b[93m" + pad_left("Warning".lower(), 7, " ")) + method14()
+
+
+def method16(__unit: None=None) -> str:
     return ""
 
 
-def closure14(v0_1: Mut3, v1_1: str, unit_var: None) -> None:
+def closure11(v0_1: Mut3, v1_1: str, unit_var: None) -> None:
     v3: str = v0_1.l0 + v1_1
     v0_1.l0 = v3
 
 
-def closure16(v0_1: str, unit_var: None) -> None:
+def method15(v0_1: int, v1_1: Exception) -> str:
+    v3: Mut3 = Mut3(method16())
+    v10: None
+    closure11(v3, ("" + "{ ") + "", None)
+    v10 = None
+    v19: None
+    closure11(v3, ("" + "retry") + "", None)
+    v19 = None
+    v28: None
+    closure11(v3, ("" + " = ") + "", None)
+    v28 = None
+    v36: None
+    closure11(v3, ("" + str(v0_1)) + "", None)
+    v36 = None
+    v45: None
+    closure11(v3, ("" + "; ") + "", None)
+    v45 = None
+    v54: None
+    closure11(v3, ("" + "ex") + "", None)
+    v54 = None
+    v62: None
+    closure11(v3, ("" + " = ") + "", None)
+    v62 = None
+    v97: None
+    closure11(v3, ("" + to_text(interpolate("%A%P()", [v1_1]))) + "", None)
+    v97 = None
+    v106: None
+    closure11(v3, ("" + " }") + "", None)
+    v106 = None
+    return v3.l0
+
+
+def method17(v0_1: str, v1_1: str, v2_1: int64, v3: str) -> str:
+    return trim_end(trim_start(((((((((("" + v0_1) + " ") + v1_1) + " #") + str(v2_1)) + " ") + "common.retry_fn") + " / ") + v3) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+
+
+def closure12(v0_1: Mut0, unit_var: None) -> None:
+    v2_1: int64 = op_addition(v0_1.l0, int64(1))
+    v0_1.l0 = v2_1
+
+
+def closure14(v0_1: str, unit_var: None) -> None:
     print(v0_1)
 
 
-def closure15(unit_var: None, v0_1: str) -> None:
+def closure13(unit_var: None, v0_1: str) -> None:
     v3: None
-    closure16(v0_1, None)
+    closure14(v0_1, None)
     v3 = None
 
 
-def closure10(v0_1: int, v1_1: Exception, unit_var: None) -> None:
+def method18(v0_1: str, v1_1: Mut0, v2_1: Mut1, v3: Mut2, v4: Mut3, v5: Mut4, v6: int64 | None=None) -> None:
+    v9: None
+    closure12(v1_1, None)
+    v9 = None
+    closure13(None, v0_1)
+    v2_1.l0(v0_1)
+
+
+def closure9(v0_1: int, v1_1: Exception, unit_var: None) -> None:
     def v3(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> None:
         closure0(None, None)
 
@@ -393,89 +433,43 @@ def closure10(v0_1: int, v1_1: Exception, unit_var: None) -> None:
     v3(None)
     v4 = None
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-    v37: None
-    v3(None)
-    v37 = None
-    pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-    v69: US0 = pattern_input_1[4].l0
-    class ObjectExpr62:
+    v36: US0 = pattern_input[4].l0
+    class ObjectExpr85:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[2].l0 == False) else (3 >= find(v69, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62()))):
-        v77: None
-        closure11(pattern_input[0], None)
-        v77 = None
+    if False if (pattern_input[2].l0 == False) else (3 >= find(v36, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr85()))):
+        v43: None
+        v3(None)
+        v43 = None
+        pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
+        v57: Mut0 = pattern_input_1[0]
+        v79: str = method17(method9(v57, pattern_input_1[1], pattern_input_1[2], pattern_input_1[3], pattern_input_1[4], pattern_input_1[5]), method13(), v57.l0, method15(v0_1, v1_1))
         v81: None
         v3(None)
         v81 = None
         pattern_input_2: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-        _v360: FSharpRef[US3 | None] = FSharpRef(None)
-        v365: None
-        def v362(v: US3 | None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> FSharpRef[US3 | None]:
-            return closure12(_v360, v)
-
-        closure13(pattern_input_2[5], v362, None)
-        v365 = None
-        v380: US3 = default_arg(_v360.contents, US3(1))
-        def _arrow66(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, unit_var: Any=unit_var) -> Any:
-            v394: Any = create(op_subtraction(ticks_1(now()), v380.fields[0]))
-            return create_1(1, 1, 1, hours(v394), minutes(v394), seconds(v394), milliseconds(v394))
-
-        v425: str = to_string(_arrow66() if (v380.tag == 0) else now(), method9())
-        v626: str = ("\u001b[93m" + pad_left("Warning".lower(), 7, " ")) + method10()
-        v637: int64 = pattern_input_2[0].l0
-        v639: Mut3 = Mut3(method11())
-        v646: None
-        closure14(v639, ("" + "{ ") + "", None)
-        v646 = None
-        v655: None
-        closure14(v639, ("" + "retry") + "", None)
-        v655 = None
-        v664: None
-        closure14(v639, ("" + " = ") + "", None)
-        v664 = None
-        v672: None
-        closure14(v639, ("" + str(v0_1)) + "", None)
-        v672 = None
-        v681: None
-        closure14(v639, ("" + "; ") + "", None)
-        v681 = None
-        v690: None
-        closure14(v639, ("" + "ex") + "", None)
-        v690 = None
-        v698: None
-        closure14(v639, ("" + " = ") + "", None)
-        v698 = None
-        v733: None
-        closure14(v639, ("" + to_text(interpolate("%A%P()", [v1_1]))) + "", None)
-        v733 = None
-        v742: None
-        closure14(v639, ("" + " }") + "", None)
-        v742 = None
-        v784: str = trim_end(trim_start(((((((((("" + v425) + " ") + v626) + " #") + str(v637)) + " ") + "common.retry_fn") + " / ") + v639.l0) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
-        closure15(None, v784)
-        pattern_input[1].l0(v784)
+        method18(v79, pattern_input_2[0], pattern_input_2[1], pattern_input_2[2], pattern_input_2[3], pattern_input_2[4], pattern_input_2[5])
 
 
 
-def closure9(v0_1: int, v1_1: Exception) -> US5:
+def closure8(v0_1: int, v1_1: Exception) -> US5:
     v4: None
-    closure10(v0_1, v1_1, None)
+    closure9(v0_1, v1_1, None)
     v4 = None
     return US5(1)
 
 
-def method7(v0_1_mut: int, v1_1_mut: Callable[[], None], v2_1_mut: int) -> US4:
+def method8(v0_1_mut: int, v1_1_mut: Callable[[], None], v2_1_mut: int) -> US4:
     while True:
         (v0_1, v1_1, v2_1) = (v0_1_mut, v1_1_mut, v2_1_mut)
         result: FSharpRef[US5] = FSharpRef(US5(1))
         try: 
-            result.contents = closure7(None, closure8(v0_1, v1_1, v2_1, None))
+            result.contents = closure6(None, closure7(v0_1, v1_1, v2_1, None))
 
         except Exception as ex:
-            result.contents = closure9(v2_1, ex)
+            result.contents = closure8(v2_1, ex)
 
         v7: US5 = result.contents
         if v7.tag == 0:
@@ -490,8 +484,8 @@ def method7(v0_1_mut: int, v1_1_mut: Callable[[], None], v2_1_mut: int) -> US4:
         break
 
 
-def closure6(v0_1: int, v1_1: Callable[[], None]) -> None | None:
-    v3: US4 = method7(v0_1, v1_1, 0)
+def closure5(v0_1: int, v1_1: Callable[[], None]) -> None | None:
+    v3: US4 = method8(v0_1, v1_1, 0)
     if v3.tag == 0:
         return some(None)
 
@@ -500,73 +494,73 @@ def closure6(v0_1: int, v1_1: Callable[[], None]) -> None | None:
 
 
 
-def closure5(unit_var: None, v0_1: int) -> Callable[[Callable[[], None]], None | None]:
-    def _arrow70(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
-        return closure6(v0_1, v)
+def closure4(unit_var: None, v0_1: int) -> Callable[[Callable[[], None]], None | None]:
+    def _arrow94(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
+        return closure5(v0_1, v)
 
-    return _arrow70
+    return _arrow94
 
 
-def method12(v0_1: Callable[[], None]) -> Callable[[], None]:
+def method19(v0_1: Callable[[], None]) -> Callable[[], None]:
     return v0_1
 
 
-def closure18(v0_1: Any, unit_var: None) -> None:
+def closure16(v0_1: Any, unit_var: None) -> None:
     v0_1.Value
 
 
-def closure17(unit_var: None, v0_1: Callable[[], None]) -> Callable[[], None]:
-    v1_1: Callable[[], None] = method12(v0_1)
-    def _arrow71(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+def closure15(unit_var: None, v0_1: Callable[[], None]) -> Callable[[], None]:
+    v1_1: Callable[[], None] = method19(v0_1)
+    def _arrow95(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         v1_1(None)
 
-    v2_1: Any = Lazy(_arrow71)
-    def _arrow72(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
-        closure18(v2_1, None)
+    v2_1: Any = Lazy(_arrow95)
+    def _arrow96(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+        closure16(v2_1, None)
 
-    return _arrow72
+    return _arrow96
 
 
 v0: None = None
 
-def _arrow73(__unit: None=None) -> None:
+def _arrow97(__unit: None=None) -> None:
     closure0(None, None)
 
 
-v1: Callable[[], None] = _arrow73
+v1: Callable[[], None] = _arrow97
 
-def _expr74():
+def _expr100():
     v1(None)
     return v0
 
 
-v2: None = _expr74()
+v2: None = _expr100()
 
-def _arrow75(v: Callable[[], None]) -> IDisposable:
-    return closure4(None, v)
+def _arrow101(v: Callable[[], None]) -> IDisposable:
+    return closure3(None, v)
 
 
-v16: Callable[[Callable[[], None]], IDisposable] = _arrow75
+v16: Callable[[Callable[[], None]], IDisposable] = _arrow101
 
 def new_disposable(x: Callable[[], None]) -> IDisposable:
     return v16(x)
 
 
-def _arrow76(v: int) -> Callable[[Callable[[], None]], None | None]:
-    return closure5(None, v)
+def _arrow103(v: int) -> Callable[[Callable[[], None]], None | None]:
+    return closure4(None, v)
 
 
-v17: Callable[[int, Callable[[], None]], None | None] = _arrow76
+v17: Callable[[int, Callable[[], None]], None | None] = _arrow103
 
 def retry_fn(x: int) -> Callable[[Callable[[], None]], None | None]:
     return v17(x)
 
 
-def _arrow77(v: Callable[[], None]) -> Callable[[], None]:
-    return closure17(None, v)
+def _arrow104(v: Callable[[], None]) -> Callable[[], None]:
+    return closure15(None, v)
 
 
-v18: Callable[[Callable[[], None], None], None] = _arrow77
+v18: Callable[[Callable[[], None], None], None] = _arrow104
 
 def memoize(x: Callable[[], None]) -> Callable[[], None]:
     return v18(x)

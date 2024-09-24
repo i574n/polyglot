@@ -18,7 +18,7 @@ Write-Output "Tool path: $toolVersionPath"
 
 $projectPath = "../deps/Fable/src/Fable.Cli"
 
-{ dotnet build -c Release "$projectPath/Fable.Cli.fsproj" } | Invoke-Block
+{ dotnet build -c Release "$projectPath/Fable.Cli.fsproj" } | Invoke-Block -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 
 $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
@@ -40,7 +40,7 @@ Write-Output "Lib path: $libVersionPath"
 
 $projectPath = "../deps/Fable/src/Fable.Core"
 
-{ dotnet build -c Release "$projectPath/Fable.Core.fsproj" } | Invoke-Block
+{ dotnet build -c Release "$projectPath/Fable.Core.fsproj" } | Invoke-Block -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 
 $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.core.dll"
