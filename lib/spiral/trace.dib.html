@@ -7702,7 +7702,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">new_trace_state</span> <span class="n">trace_level</span><span class="s1">' =</span>
     <span class="n">inl</span> <span class="p">{</span> <span class="n">repl_start</span> <span class="n">trace_level</span> <span class="p">}</span> <span class="o">=</span> <span class="n">read_state</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i64</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">1</span><span class="n">i64</span>
         <span class="n">trace_file</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">ignore</span>
         <span class="n">enabled</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">true</span>
         <span class="n">acc</span> <span class="o">=</span> <span class="n">mut</span> <span class="s2">""</span>
@@ -7922,46 +7922,47 @@ __assert_eq / actual: true / expected: true
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">trace_raw</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">inl</span> <span class="p">({</span> <span class="n">count</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">&amp;</span> <span class="n">trace_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">test_trace_level</span> <span class="n">then</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="o">|&gt;</span> <span class="n">exec_unit</span>
-
             <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">fn</span> <span class="p">()</span>
-            <span class="nb">open</span> <span class="n">rust</span>
-            <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-            <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
-                    <span class="n">inl</span> <span class="n">new_acc</span> <span class="o">=</span>
-                        <span class="k">if</span> <span class="o">*</span><span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span>
-                        <span class="n">then</span> <span class="n">text</span>
-                        <span class="k">elif</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
-                        <span class="n">then</span> <span class="o">*</span><span class="n">acc</span>
-                        <span class="k">else</span> <span class="o">*</span><span class="n">acc</span> <span class="o">+.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+.</span> <span class="n">text</span>
+            <span class="n">inl</span> <span class="p">({</span> <span class="n">count</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">&amp;</span> <span class="n">trace_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
+            <span class="n">join</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="o">|&gt;</span> <span class="n">exec_unit</span>
+                <span class="nb">open</span> <span class="n">rust</span>
+                <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
+                <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">function</span>
+                    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
+                        <span class="n">inl</span> <span class="n">new_acc</span> <span class="o">=</span>
+                            <span class="k">if</span> <span class="o">*</span><span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span>
+                            <span class="n">then</span> <span class="n">text</span>
+                            <span class="k">elif</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
+                            <span class="n">then</span> <span class="o">*</span><span class="n">acc</span>
+                            <span class="k">else</span> <span class="o">*</span><span class="n">acc</span> <span class="o">+.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+.</span> <span class="n">text</span>
 
-                    <span class="n">inl</span> <span class="n">chunks</span> <span class="o">=</span>
-                        <span class="n">new_acc</span>
-                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars</span>
-                        <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">from_mut</span>
-                        <span class="o">|&gt;</span> <span class="n">iter_collect</span>
-                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_chunks 15000</span>
-                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map fun x =&gt;</span>
-                            <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_iter</span>
+                        <span class="n">inl</span> <span class="n">chunks</span> <span class="o">=</span>
+                            <span class="n">new_acc</span>
+                            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
+                            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.chars</span>
+                            <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">from_mut</span>
+                            <span class="o">|&gt;</span> <span class="n">iter_collect</span>
+                            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_chunks 15000</span>
+                            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map fun x =&gt;</span>
+                                <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_iter</span>
 
-                    <span class="n">inl</span> <span class="n">chunks_len</span> <span class="o">=</span> <span class="n">chunks</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_len |&gt; i32</span>
+                        <span class="n">inl</span> <span class="n">chunks_len</span> <span class="o">=</span> <span class="n">chunks</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_len |&gt; i32</span>
 
-                    <span class="k">if</span> <span class="n">text</span> <span class="o">&lt;&gt;.</span> <span class="s2">""</span> <span class="o">&amp;&amp;</span> <span class="n">chunks_len</span> <span class="o">&lt;=</span> <span class="mi">1</span>
-                    <span class="n">then</span> <span class="n">acc</span> <span class="o">&lt;-</span> <span class="n">new_acc</span>
-                    <span class="k">else</span>
-                        <span class="n">acc</span> <span class="o">&lt;-</span> <span class="s2">""</span>
-                        <span class="n">chunks</span>
-                        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_for_each'</span> <span class="n">near</span><span class="o">.</span><span class="n">log</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
-                    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'\@"println\!(""{}"", $0)"'</span><span class="o">)</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">write_line</span> <span class="o">=&gt;</span>
-                    <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_line</span>
-            <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">trace_file</span> <span class="n">text</span>
+                        <span class="k">if</span> <span class="n">text</span> <span class="o">&lt;&gt;.</span> <span class="s2">""</span> <span class="o">&amp;&amp;</span> <span class="n">chunks_len</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+                        <span class="n">then</span> <span class="n">acc</span> <span class="o">&lt;-</span> <span class="n">new_acc</span>
+                        <span class="k">else</span>
+                            <span class="n">acc</span> <span class="o">&lt;-</span> <span class="s2">""</span>
+                            <span class="n">chunks</span>
+                            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_for_each'''</span> <span class="n">near</span><span class="o">.</span><span class="n">log</span>
+                    <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
+                        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'\@"println\!(""{}"", $0)"'</span><span class="o">)</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">write_line</span> <span class="o">=&gt;</span>
+                        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_line</span>
+                <span class="n">text</span> <span class="o">|&gt;</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">trace_file</span>
     <span class="o">|&gt;</span> <span class="n">exec_unit</span>
 </pre></div>
 </div>
@@ -7991,85 +7992,87 @@ __assert_eq / actual: true / expected: true
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">trace_state</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
         <span class="n">inl</span> <span class="n">time</span> <span class="o">=</span>
-            <span class="n">run_target</span> <span class="n">fun</span> <span class="n">target</span> <span class="o">=&gt;</span>
-                <span class="k">match</span> <span class="n">target</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-                    <span class="nb">open</span> <span class="n">rust</span>
-                    <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
-                    <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span>
+            <span class="n">join</span>
+                <span class="n">run_target</span> <span class="n">fun</span> <span class="n">target</span> <span class="o">=&gt;</span>
+                    <span class="k">match</span> <span class="n">target</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                        <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
+                        <span class="nb">open</span> <span class="n">rust</span>
+                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span>
+                            <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+                            <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span> <span class="n">timestamp</span> <span class="o">-</span> <span class="n">u64</span> <span class="n">repl_start</span>
+                            <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">timestamp</span>
+                        <span class="n">inl</span> <span class="n">timestamp_s</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1_000_000_000</span>
+                        <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">timestamp_s</span> <span class="o">%</span> <span class="mi">60</span>
+                        <span class="n">inl</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span>
+                        <span class="n">inl</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">24</span>
+                        <span class="n">inl</span> <span class="nb">str</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
+                            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>h,<span class="w"> </span>m,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
+                        <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                         <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
-                        <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span> <span class="n">timestamp</span> <span class="o">-</span> <span class="n">u64</span> <span class="n">repl_start</span>
-                        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">timestamp</span>
-                    <span class="n">inl</span> <span class="n">timestamp_s</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1_000_000_000</span>
-                    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">timestamp_s</span> <span class="o">%</span> <span class="mi">60</span>
-                    <span class="n">inl</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span>
-                    <span class="n">inl</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">24</span>
-                    <span class="n">inl</span> <span class="nb">str</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
-                        <span class="o">!</span><span class="se">\\</span><span class="o">((</span>h,<span class="w"> </span>m,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
-                    <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
-                    <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span>
-                        <span class="n">inl</span> <span class="n">t</span> <span class="o">=</span>
-                            <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">)</span>
-                            <span class="o">-</span> <span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">time_span</span>
-                        <span class="n">date_time</span><span class="o">.</span><span class="n">date_time_milliseconds</span>
-                            <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span>
-                            <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">hours</span><span class="p">)</span>
-                            <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
-                            <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
-                            <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">milliseconds</span><span class="p">)</span>
-                    <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span>
-                    <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">format</span> <span class="p">(</span>
-                        <span class="n">backend_switch</span> <span class="p">{</span>
-                            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                                <span class="k">match</span> <span class="n">target</span> <span class="k">with</span>
-                                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"hh:mm:ss"</span>
-                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"HH:mm:ss"</span>
-                            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"%H:%M:%S"</span>
-                        <span class="p">}</span>
-                    <span class="p">)</span>
-        <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_to_string</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; sm'</span><span class="o">.</span><span class="n">pad_left</span> <span class="mi">7</span> <span class="s1">' '</span>
+                        <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span>
+                            <span class="n">inl</span> <span class="n">t</span> <span class="o">=</span>
+                                <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">)</span>
+                                <span class="o">-</span> <span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">time_span</span>
+                            <span class="n">date_time</span><span class="o">.</span><span class="n">date_time_milliseconds</span>
+                                <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span>
+                                <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">hours</span><span class="p">)</span>
+                                <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
+                                <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
+                                <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">milliseconds</span><span class="p">)</span>
+                        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span>
+                        <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">format</span> <span class="p">(</span>
+                            <span class="n">backend_switch</span> <span class="p">{</span>
+                                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                                    <span class="k">match</span> <span class="n">target</span> <span class="k">with</span>
+                                    <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"hh:mm:ss"</span>
+                                    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"HH:mm:ss"</span>
+                                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"%H:%M:%S"</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
         <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span>
-            <span class="n">run_target</span> <span class="n">function</span>
-            <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="nb">open</span> <span class="n">rust</span>
-                <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-                <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str =</span>
-                    <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_black"'</span><span class="o">)</span>
-                    <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_blue"'</span><span class="o">)</span>
-                    <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_green"'</span><span class="o">)</span>
-                    <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_yellow"'</span><span class="o">)</span>
-                    <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_red"'</span><span class="o">)</span>
-                <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level_str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-                <span class="n">inl</span> <span class="n">color_reset</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str = !\($'</span><span class="s2">"inline_colorization::color_reset"</span><span class="s1">')</span>
-                <span class="err">$</span><span class="s1">'"</span><span class="se">\\\"</span><span class="s1">{!color}{!level_str}{!color_reset}</span><span class="se">\\\"</span><span class="s1">"'</span>
-                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format''</span>
-                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">color</span> <span class="o">=</span>
-                    <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[90m"'</span>
-                    <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[94m"'</span>
-                    <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[92m"'</span>
-                    <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[93m"'</span>
-                    <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[91m"'</span>
-                <span class="n">inl</span> <span class="n">color_reset</span> <span class="o">=</span> <span class="n">join</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[0m"'</span>
-                <span class="n">color</span> <span class="o">+.</span> <span class="n">level_str</span> <span class="o">+.</span> <span class="n">color_reset</span>
-        <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
-        <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+            <span class="n">join</span>
+                <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_to_string</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; sm'</span><span class="o">.</span><span class="n">pad_left</span> <span class="mi">7</span> <span class="s1">' '</span>
+                <span class="n">run_target</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="nb">open</span> <span class="n">rust</span>
+                    <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
+                    <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str =</span>
+                        <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
+                        <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_black"'</span><span class="o">)</span>
+                        <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_blue"'</span><span class="o">)</span>
+                        <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_green"'</span><span class="o">)</span>
+                        <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_yellow"'</span><span class="o">)</span>
+                        <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_red"'</span><span class="o">)</span>
+                    <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level_str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
+                    <span class="n">inl</span> <span class="n">color_reset</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str = !\($'</span><span class="s2">"inline_colorization::color_reset"</span><span class="s1">')</span>
+                    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>color,<span class="w"> </span>level_str,<span class="w"> </span>color_reset<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{}}{{}}{{}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="n">inl</span> <span class="n">color</span> <span class="o">=</span>
+                        <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
+                        <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[90m"'</span>
+                        <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[94m"'</span>
+                        <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[92m"'</span>
+                        <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[93m"'</span>
+                        <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[91m"'</span>
+                    <span class="n">inl</span> <span class="n">color_reset</span> <span class="o">=</span> <span class="n">join</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[0m"'</span>
+                    <span class="n">color</span> <span class="o">+.</span> <span class="n">level_str</span> <span class="o">+.</span> <span class="n">color_reset</span>
         <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">text_fn</span> <span class="p">()</span>
         <span class="k">if</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="n">then</span> <span class="s2">""</span>
         <span class="k">else</span>
-            <span class="n">backend_switch</span> <span class="p">{</span>
-                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!time} {!level_str} #{!count} </span><span class="si">%s</span><span class="s1">{!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!time} {!level_str} #{!count} {!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
-            <span class="p">}</span>
-            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
-            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
+            <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
+            <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+            <span class="n">join</span>
+                <span class="n">backend_switch</span> <span class="p">{</span>
+                    <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!time} {!level_str} #{!count} </span><span class="si">%s</span><span class="s1">{!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
+                    <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!time} {!level_str} #{!count} {!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="p">}</span>
+                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
+                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
     <span class="o">|&gt;</span> <span class="n">trace_raw</span> <span class="n">level</span>
 </pre></div>
 </div>
@@ -8095,7 +8098,7 @@ __assert_eq / actual: true / expected: true
 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test2"</span><span class="p">)</span> <span class="nb">id</span>
 <span class="n">get_trace_state_or_init</span> <span class="kc">None</span> <span class="o">.</span><span class="n">count</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="o">*</span><span class="n">x</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -8112,25 +8115,25 @@ __assert_eq / actual: true / expected: true
 .py output (Cuda):
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-__assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 3 / expected: 3
 
 
 .rs output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-__assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 3 / expected: 3
 
 
 .ts output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-__assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 3 / expected: 3
 
 
 .py output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-__assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 3 / expected: 3
 
 
 </pre>
@@ -8142,7 +8145,7 @@ __assert_eq / actual: 2 / expected: 2
 <pre>.fsx output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-__assert_eq / actual: 2L / expected: 2L
+__assert_eq / actual: 3L / expected: 3L
 </pre>
 </div>
 </div>

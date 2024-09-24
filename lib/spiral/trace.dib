@@ -92,7 +92,7 @@ type trace_state =
 let new_trace_state trace_level' =
     inl { repl_start trace_level } = read_state ()
     {
-        count = mut 0i64
+        count = mut 1i64
         trace_file = mut ignore
         enabled = mut true
         acc = mut ""
@@ -182,46 +182,47 @@ test_trace_level Verbose |> _assert_eq true
 
 inl trace_raw level fn =
     fun () =>
-        inl ({ count acc } & trace_state) = get_trace_state_or_init None
         if level |> test_trace_level then
-            fun () => count <- *count + 1
-            |> exec_unit
-
             inl text = fn ()
-            open rust
-            open rust.rust_operators
-            run_target_args (fun () => text, console.write_line) function
-                | Rust (Contract) => fun text, _ =>
-                    inl new_acc =
-                        if *acc = ""
-                        then text
-                        elif text = ""
-                        then *acc
-                        else *acc +. "\n" +. text
+            inl ({ count acc } & trace_state) = get_trace_state_or_init None
+            join
+                fun () =>
+                    count <- *count + 1
+                |> exec_unit
+                open rust
+                open rust.rust_operators
+                run_target_args (fun () => text, console.write_line) function
+                    | Rust (Contract) => fun text, _ =>
+                        inl new_acc =
+                            if *acc = ""
+                            then text
+                            elif text = ""
+                            then *acc
+                            else *acc +. "\n" +. text
 
-                    inl chunks =
-                        new_acc
-                        |> sm'.as_str
-                        |> sm'.chars
-                        |> rust.from_mut
-                        |> iter_collect
-                        |> am'.vec_chunks 15000
-                        |> am'.vec_map fun x =>
-                            x |> sm'.from_iter
+                        inl chunks =
+                            new_acc
+                            |> sm'.as_str
+                            |> sm'.chars
+                            |> rust.from_mut
+                            |> iter_collect
+                            |> am'.vec_chunks 15000
+                            |> am'.vec_map fun x =>
+                                x |> sm'.from_iter
 
-                    inl chunks_len = chunks |> am'.vec_len |> i32
+                        inl chunks_len = chunks |> am'.vec_len |> i32
 
-                    if text <>. "" && chunks_len <= 1
-                    then acc <- new_acc
-                    else
-                        acc <- ""
-                        chunks
-                        |> am'.vec_for_each' near.log
-                | Rust _ => fun text, _ =>
-                    !\\(text, $'\@"println\!(""{}"", $0)"')
-                | _ => fun text, write_line =>
-                    text |> write_line
-            *trace_state.trace_file text
+                        if text <>. "" && chunks_len <= 1
+                        then acc <- new_acc
+                        else
+                            acc <- ""
+                            chunks
+                            |> am'.vec_for_each''' near.log
+                    | Rust _ => fun text, _ =>
+                        !\\(text, $'\@"println\!(""{}"", $0)"')
+                    | _ => fun text, write_line =>
+                        text |> write_line
+                text |> *trace_state.trace_file
     |> exec_unit
 
 #!markdown
@@ -234,85 +235,87 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
     fun () =>
         inl trace_state = get_trace_state_or_init None
         inl time =
-            run_target fun target =>
-                match target with
-                | Rust (Contract) => fun () =>
-                    open rust.rust_operators
-                    open rust
-                    inl timestamp : u64 = !\($'$"near_sdk::env::block_timestamp()"')
-                    inl timestamp =
+            join
+                run_target fun target =>
+                    match target with
+                    | Rust (Contract) => fun () =>
+                        open rust.rust_operators
+                        open rust
+                        inl timestamp : u64 = !\($'$"near_sdk::env::block_timestamp()"')
+                        inl timestamp =
+                            match trace_state.repl_start |> optionm'.unbox with
+                            | Some repl_start => timestamp - u64 repl_start
+                            | None => timestamp
+                        inl timestamp_s = timestamp / 1_000_000_000
+                        inl s = timestamp_s % 60
+                        inl m = (timestamp_s / 60) % 60
+                        inl h = (timestamp_s / 3600) % 24
+                        inl str : sm'.std_string =
+                            !\\((h, m, s), $'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"')
+                        str |> sm'.from_std_string
+                    | _ => fun () =>
                         match trace_state.repl_start |> optionm'.unbox with
-                        | Some repl_start => timestamp - u64 repl_start
-                        | None => timestamp
-                    inl timestamp_s = timestamp / 1_000_000_000
-                    inl s = timestamp_s % 60
-                    inl m = (timestamp_s / 60) % 60
-                    inl h = (timestamp_s / 3600) % 24
-                    inl str : sm'.std_string =
-                        !\\((h, m, s), $'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"')
-                    str |> sm'.from_std_string
-                | _ => fun () =>
-                    match trace_state.repl_start |> optionm'.unbox with
-                    | Some repl_start =>
-                        inl t =
-                            (date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x)
-                            - repl_start |> date_time.time_span
-                        date_time.date_time_milliseconds
-                            1i32 1i32 1i32
-                            (t |> date_time.hours)
-                            (t |> date_time.minutes)
-                            (t |> date_time.seconds)
-                            (t |> date_time.milliseconds)
-                    | None => date_time.now ()
-                    |> date_time.format (
-                        backend_switch {
-                            Fsharp = fun () =>
-                                match target with
-                                | Rust _ => join "hh:mm:ss"
-                                | _ => join "HH:mm:ss"
-                            Python = fun () => "%H:%M:%S"
-                        }
-                    )
-        inl level_str = level |> reflection.union_to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
+                        | Some repl_start =>
+                            inl t =
+                                (date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x)
+                                - repl_start |> date_time.time_span
+                            date_time.date_time_milliseconds
+                                1i32 1i32 1i32
+                                (t |> date_time.hours)
+                                (t |> date_time.minutes)
+                                (t |> date_time.seconds)
+                                (t |> date_time.milliseconds)
+                        | None => date_time.now ()
+                        |> date_time.format (
+                            backend_switch {
+                                Fsharp = fun () =>
+                                    match target with
+                                    | Rust _ => join "hh:mm:ss"
+                                    | _ => join "HH:mm:ss"
+                                Python = fun () => "%H:%M:%S"
+                            }
+                        )
         inl level_str =
-            run_target function
-            | Rust _ => fun () =>
-                open rust
-                open rust.rust_operators
-                inl color : rust.ref sm'.str =
-                    match level with
-                    | Verbose => !\($'"inline_colorization::color_bright_black"')
-                    | Debug => !\($'"inline_colorization::color_bright_blue"')
-                    | Info => !\($'"inline_colorization::color_bright_green"')
-                    | Warning => !\($'"inline_colorization::color_yellow"')
-                    | Critical => !\($'"inline_colorization::color_bright_red"')
-                inl level_str = level_str |> sm'.as_str
-                inl color_reset : rust.ref sm'.str = !\($'"inline_colorization::color_reset"')
-                $'"\\\"{!color}{!level_str}{!color_reset}\\\""'
-                |> sm'.format''
-                |> sm'.from_std_string
-            | _ => fun () =>
-                inl color =
-                    match level with
-                    | Verbose => $'"\\u001b[90m"'
-                    | Debug => $'"\\u001b[94m"'
-                    | Info => $'"\\u001b[92m"'
-                    | Warning => $'"\\u001b[93m"'
-                    | Critical => $'"\\u001b[91m"'
-                inl color_reset = join $'"\\u001b[0m"'
-                color +. level_str +. color_reset
-        inl count = *trace_state.count
-        inl locals = locals () |> sm'.format
+            join
+                inl level_str = level |> reflection.union_to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
+                run_target function
+                | Rust _ => fun () =>
+                    open rust
+                    open rust.rust_operators
+                    inl color : rust.ref sm'.str =
+                        match level with
+                        | Verbose => !\($'"inline_colorization::color_bright_black"')
+                        | Debug => !\($'"inline_colorization::color_bright_blue"')
+                        | Info => !\($'"inline_colorization::color_bright_green"')
+                        | Warning => !\($'"inline_colorization::color_yellow"')
+                        | Critical => !\($'"inline_colorization::color_bright_red"')
+                    inl level_str = level_str |> sm'.as_str
+                    inl color_reset : rust.ref sm'.str = !\($'"inline_colorization::color_reset"')
+                    !\\((color, level_str, color_reset), $'$"format\!(\\\"{{}}{{}}{{}}\\\", $0, $1, $2)"')
+                    |> sm'.from_std_string
+                | _ => fun () =>
+                    inl color =
+                        match level with
+                        | Verbose => $'"\\u001b[90m"'
+                        | Debug => $'"\\u001b[94m"'
+                        | Info => $'"\\u001b[92m"'
+                        | Warning => $'"\\u001b[93m"'
+                        | Critical => $'"\\u001b[91m"'
+                    inl color_reset = join $'"\\u001b[0m"'
+                    color +. level_str +. color_reset
         inl text = text_fn ()
         if text = ""
         then ""
         else
-            backend_switch {
-                Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text} / {!locals}"' : string
-                Python = fun () => $'f"{!time} {!level_str} #{!count} {!text} / {!locals}"' : string
-            }
-            |> sm'.trim_start []
-            |> sm'.trim_end [ ' '; '/' ]
+            inl count = *trace_state.count
+            inl locals = locals () |> sm'.format
+            join
+                backend_switch {
+                    Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text} / {!locals}"' : string
+                    Python = fun () => $'f"{!time} {!level_str} #{!count} {!text} / {!locals}"' : string
+                }
+                |> sm'.trim_start []
+                |> sm'.trim_end [ ' '; '/' ]
     |> trace_raw level
 
 #!spiral
@@ -328,7 +331,7 @@ trace Debug (fun () => "test1") id
 trace Debug (fun () => "test2") id
 get_trace_state_or_init None .count
 |> fun x => *x
-|> _assert_eq 2
+|> _assert_eq 3
 
 #!markdown
 

@@ -313,7 +313,7 @@ inl cow_as_ref forall t. (s : cow t) : ref t =
 
 /// ### from_mut
 inl from_mut forall t. (x : mut' t) : t =
-    !\($'"!x"')
+    !\\(x, $'"$0"')
 
 /// ### box_fn
 inl box_fn forall t. (x : () -> ()) : box t =

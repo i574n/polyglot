@@ -39,7 +39,7 @@ if (!(Search-Command "nix")) {
         }
     }
 
-    pip install -r ../requirements.txt
+    { pip install -r ../requirements.txt } | Invoke-Block
 } else {
     mkdir -p ~/.bun/bin
     ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun

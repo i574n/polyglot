@@ -589,7 +589,7 @@ inl cow_as_ref forall t. (s : cow t) : ref t =
 #!spiral
 
 inl from_mut forall t. (x : mut' t) : t =
-    !\($'"!x"')
+    !\\(x, $'"$0"')
 
 #!markdown
 
