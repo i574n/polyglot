@@ -113,7 +113,13 @@ inl to_try forall t u. (x : result' t u) : rust.try t =
 
 /// ### unwrap'
 inl unwrap' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0.unwrap()"')
+    run_target function
+        | Rust _ => fun () => !\\(x, $'"$0.unwrap()"')
+        | _ => fun () => $'match !x with Ok x -> x | Error e -> failwith $"resultm.unwrap\' / e: {e}"'
+
+/// ### unwrap_err'
+inl unwrap_err' forall t u. (x : result' t u) : u =
+    $'match !x with Ok x -> failwith $"resultm.unwrap_err\' / x: %A{x}" | Error x -> x'
 
 /// ### unbox'
 inl unbox' forall t u. (x : result' t u) : result t u =
@@ -127,12 +133,12 @@ inl unbox' forall t u. (x : result' t u) : result t u =
             (~!\\)
                 `((result' t u -> result t u) * (result' t u -> result t u))
                 `(result t u)
-                ((ok, error), ($'"match !x { Ok(()) => $0(()), Err(e) => $1(e) }"' : string))
+                ((ok, error, x), ($'"match $2 { Ok(()) => $0(()), Err(e) => $1(e) }"' : string))
         | _ =>
             (~!\\)
                 `((result' t u -> result t u) * (result' t u -> result t u))
                 `(result t u)
-                ((ok, error), ($'"match !x { Ok(x) => $0(x), Err(e) => $1(e) }"' : string))
+                ((ok, error, x), ($'"match $2 { Ok(x) => $0(x), Err(e) => $1(e) }"' : string))
 
 /// ### map'
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
@@ -149,7 +155,11 @@ inl map'' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 /// ### map_error'
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn
-    !\\((source, fn), $'"$0.map_err(|x| $1(x))"')
+    run_target_args (fun () => fn) function
+        | Rust _ => fun fn =>
+            !\\((source, fn), $'"$0.map_err(|x| $1(x))"')
+        | _ => fun fn =>
+            $'match !source with Ok x -> Ok x | Error x -> Error (!fn x)' : result' t u
 
 /// ### map_error''
 inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
@@ -198,11 +208,21 @@ inl is_err forall t u. (x : result' t u) : bool =
 
 /// ### ok'
 inl ok' forall t. (x : result' t _) : optionm'.option' t =
-    !\\(x, $'"$0.ok()"')
+    run_target function
+        | Rust _ => fun () => !\\(x, $'"$0.ok()"')
+        | _ => fun () => $'match !x with Ok x -> Some x | Error _ -> None'
 
 /// ### err
 inl err forall t u. (x : u) : result' t u =
-    !\\(x, $'"Err($0)"')
+    run_target function
+        | Rust _ => fun () => !\\(x, $'"Err($0)"')
+        | _ => fun () => $'!x |> Error'
+
+/// ### ok''
+inl ok'' forall t u. (x : t) : result' t u =
+    run_target function
+        | Rust _ => fun () => !\\(x, $'"Ok($0)"')
+        | _ => fun () => $'!x |> Ok'
 
 /// ### transpose
 inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (optionm'.option' t) u =

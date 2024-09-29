@@ -337,12 +337,32 @@ pub mod File_system {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug)]
     pub enum US13 {
-        US13_0(string),
+        US13_0(std::path::PathBuf),
         US13_1(string),
     }
     impl core::fmt::Display for File_system::US13 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub enum US14 {
+        US14_0(std::path::PathBuf),
+        US14_1,
+    }
+    impl core::fmt::Display for File_system::US14 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US15 {
+        US15_0(string),
+        US15_1(string),
+    }
+    impl core::fmt::Display for File_system::US15 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -472,8 +492,8 @@ pub mod File_system {
                 File_system::US3::US3_1
             },
         );
-        let v295: File_system::US3 = _v1.1.clone();
-        let v294: File_system::US2 = _v1.0.clone();
+        let v352: File_system::US3 = _v1.1.clone();
+        let v351: File_system::US2 = _v1.0.clone();
         (
             LrcPtr::new(File_system::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -488,16 +508,16 @@ pub mod File_system {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(File_system::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    File_system::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    File_system::US2::US2_0(v351_0_0) => match &v351 {
                         File_system::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                File_system::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                File_system::US3::US3_0(v352_0_0) => Some(match &v352 {
                     File_system::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -534,17 +554,13 @@ pub mod File_system {
         v0_1
     }
     pub fn method9(v0_1: string) -> bool {
-        let v3: &str = &*v0_1;
-        let v5: std::string::String = String::from(v3);
-        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
-        if v7.clone().exists() {
-            true
+        let v4: &str = &*v0_1;
+        let v25_1: std::string::String = String::from(v4);
+        let v60: std::path::PathBuf = std::path::PathBuf::from(v25_1);
+        if v60.clone().exists() {
+            v60.is_dir()
         } else {
-            if v7.clone().is_dir() {
-                true
-            } else {
-                v7.is_symlink()
-            }
+            false
         }
     }
     pub fn method7(v0_1: bool, v1_1: string) {
@@ -615,22 +631,38 @@ pub mod File_system {
     pub fn method14() -> string {
         let v5: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
         let v21_1: &str = inline_colorization::color_bright_blue;
-        let v23_1: &str = &*v5;
-        let v25_1: &str = inline_colorization::color_reset;
-        let v27_1: std::string::String = format!("{}{}{}", v21_1, v23_1, v25_1);
-        fable_library_rust::String_::fromString(v27_1)
+        let v24_1: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21_1, v24_1, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method16(v0_1: string) -> string {
-        let v3: &str = &*v0_1;
-        let v5: std::string::String = String::from(v3);
-        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
-        let v9: Option<&std::ffi::OsStr> = v7.file_name();
-        let v11: &std::ffi::OsStr = v9.unwrap();
-        let v13: std::ffi::OsString = v11.to_os_string();
-        let v15: Option<&str> = v13.to_str();
-        let v17_1: &str = v15.unwrap();
-        let v19_1: std::string::String = String::from(v17_1);
-        fable_library_rust::String_::fromString(v19_1)
+        let v4: &str = &*v0_1;
+        let v25_1: std::string::String = String::from(v4);
+        let v46: std::path::PathBuf = std::path::PathBuf::from(v25_1);
+        let v66: Option<&std::ffi::OsStr> = v46.file_name();
+        let v68: bool = true;
+        let _optionm_map_ = v66.map(|x| {
+            //;
+            let v70: &std::ffi::OsStr = x;
+            let v72: std::ffi::OsString = v70.to_os_string();
+            let v74: Option<&str> = v72.to_str();
+            let v76: &str = v74.unwrap();
+            let v79: std::string::String = String::from(v76);
+            let v99: string = fable_library_rust::String_::fromString(v79);
+            let v101: bool = true;
+            v99
+        });
+        let v103: Option<string> = _optionm_map_;
+        let v117: File_system::US1 =
+            defaultValue(File_system::US1::US1_1, map(File_system::method4(), v103));
+        match &v117 {
+            File_system::US1::US1_0(v117_0_0) => match &v117 {
+                File_system::US1::US1_0(x) => x.clone(),
+                _ => unreachable!(),
+            },
+            _ => string(""),
+        }
     }
     pub fn method18() -> string {
         string("")
@@ -999,11 +1031,11 @@ pub mod File_system {
         defaultOf()
     }
     pub fn method26(v0_1: string) -> bool {
-        let v3: &str = &*v0_1;
-        let v5: std::string::String = String::from(v3);
-        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
-        if v7.clone().exists() {
-            v7.is_file()
+        let v4: &str = &*v0_1;
+        let v25_1: std::string::String = String::from(v4);
+        let v60: std::path::PathBuf = std::path::PathBuf::from(v25_1);
+        if v60.clone().exists() {
+            v60.is_file()
         } else {
             false
         }
@@ -1016,11 +1048,11 @@ pub mod File_system {
             false
         } else {
             let v8: Result<Vec<u8>, std::io::Error> = std::fs::read(&*v0_1);
-            let v31_1: Vec<u8> = File_system::method27(v8.unwrap());
-            let v33_1: Result<std::string::String, std::string::FromUtf8Error> =
-                std::string::String::from_utf8(v31_1);
-            let v35_1: std::string::String = v33_1.unwrap();
-            v1_1 == fable_library_rust::String_::fromString(v35_1)
+            let v42: Vec<u8> = File_system::method27(v8.unwrap());
+            let v44: Result<std::string::String, std::string::FromUtf8Error> =
+                std::string::String::from_utf8(v42);
+            let v47: std::string::String = v44.unwrap();
+            v1_1 == fable_library_rust::String_::fromString(v47)
         }
     }
     pub fn closure16(v0_1: string, v1_1: string) -> bool {
@@ -1053,10 +1085,10 @@ pub mod File_system {
     pub fn method29() -> string {
         let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
         let v21_1: &str = inline_colorization::color_yellow;
-        let v23_1: &str = &*v5;
-        let v25_1: &str = inline_colorization::color_reset;
-        let v27_1: std::string::String = format!("{}{}{}", v21_1, v23_1, v25_1);
-        fable_library_rust::String_::fromString(v27_1)
+        let v24_1: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21_1, v24_1, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method30(v0_1: string, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
@@ -1388,10 +1420,10 @@ pub mod File_system {
     pub fn method36() -> string {
         let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
         let v21_1: &str = inline_colorization::color_bright_black;
-        let v23_1: &str = &*v5;
-        let v25_1: &str = inline_colorization::color_reset;
-        let v27_1: std::string::String = format!("{}{}{}", v21_1, v23_1, v25_1);
-        fable_library_rust::String_::fromString(v27_1)
+        let v24_1: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21_1, v24_1, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method37(v0_1: i32) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
@@ -1513,10 +1545,10 @@ pub mod File_system {
     pub fn method39() -> string {
         let v5: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
         let v21_1: &str = inline_colorization::color_bright_red;
-        let v23_1: &str = &*v5;
-        let v25_1: &str = inline_colorization::color_reset;
-        let v27_1: std::string::String = format!("{}{}{}", v21_1, v23_1, v25_1);
-        fable_library_rust::String_::fromString(v27_1)
+        let v24_1: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21_1, v24_1, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method40(v0_1: i32, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
@@ -1859,9 +1891,9 @@ pub mod File_system {
     }
     pub fn method49() -> string {
         let v2_1: std::path::PathBuf = std::env::temp_dir();
-        let v4: std::path::Display = v2_1.display();
-        let v7: std::string::String = format!("{}", v4);
-        fable_library_rust::String_::fromString(v7)
+        let v5: std::path::Display = v2_1.display();
+        let v26_1: std::string::String = format!("{}", v5);
+        fable_library_rust::String_::fromString(v26_1)
     }
     pub fn method50() -> string {
         string("!create_temp_path_")
@@ -1873,15 +1905,15 @@ pub mod File_system {
         (v1_1, File_system::method53(v0_1))
     }
     pub fn method51(v0_1: string, v1_1: string) -> string {
-        let v4: &str = &*v0_1;
-        let v6: std::string::String = String::from(v4);
-        let v8: std::path::PathBuf = std::path::PathBuf::from(v6);
-        let v10: &str = &*v1_1;
-        let v12: std::string::String = String::from(v10);
-        let v14: std::path::PathBuf = v8.join(v12);
-        let v16_1: std::path::Display = v14.display();
-        let v19_1: std::string::String = format!("{}", v16_1);
-        fable_library_rust::String_::fromString(v19_1)
+        let v5: &str = &*v0_1;
+        let v26_1: std::string::String = String::from(v5);
+        let v47: std::path::PathBuf = std::path::PathBuf::from(v26_1);
+        let v68: &str = &*v1_1;
+        let v89: std::string::String = String::from(v68);
+        let v109: std::path::PathBuf = v47.join(v89);
+        let v112: std::path::Display = v109.display();
+        let v133: std::string::String = format!("{}", v112);
+        fable_library_rust::String_::fromString(v133)
     }
     pub fn method55() -> string {
         string("CARGO_PKG_NAME")
@@ -2332,24 +2364,24 @@ pub mod File_system {
         let v2_1: string = File_system::method57(v0_1);
         let v4: Result<(), std::io::Error> = std::fs::create_dir_all(&*v2_1.clone());
         let v5 = File_system::method58();
-        let v7: Result<(), std::string::String> = v4.map_err(|x| v5(x));
-        let v10: File_system::US12 = match &v7 {
-            Err(v7_1_0) => File_system::closure37((), v7_1_0.clone()),
+        let v16_1: Result<(), std::string::String> = v4.map_err(|x| v5(x));
+        let v21_1: File_system::US12 = match &v16_1 {
+            Err(v16_1_1_0) => File_system::closure37((), v16_1_1_0.clone()),
             _ => File_system::closure36((), ()),
         };
-        match &v10 {
+        match &v21_1 {
             File_system::US12::US12_0 => {
-                let v13: () = {
+                let v24_1: () = {
                     File_system::closure39(v2_1.clone(), ());
                     ()
                 };
                 ()
             }
-            File_system::US12::US12_1(v10_1_0) => {
-                let v128: () = {
+            File_system::US12::US12_1(v21_1_1_0) => {
+                let v139: () = {
                     File_system::closure38(
                         v2_1.clone(),
-                        match &v10 {
+                        match &v21_1 {
                             File_system::US12::US12_1(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -2361,11 +2393,11 @@ pub mod File_system {
             }
         }
         {
-            let v241 = File_system::method62(v2_1.clone());
+            let v252 = File_system::method62(v2_1.clone());
             interface_cast!(
                 File_system::Disposable::_ctor__3A5B6456(Func0::new({
-                    let v241 = v241.clone();
-                    move || v241.clone()()
+                    let v252 = v252.clone();
+                    move || v252.clone()()
                 })),
                 Lrc<dyn IDisposable>,
             )
@@ -2393,73 +2425,1650 @@ pub mod File_system {
     pub fn closure44(unitVar: (), unitVar_1: ()) -> string {
         string("C:\\home\\git\\polyglot\\lib\\spiral")
     }
-    pub fn method69(v0_1: string) -> string {
-        v0_1
+    pub fn method70(v0_1: std::io::Error) -> string {
+        let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
+            l0: MutCell::new(File_system::method18()),
+        });
+        let v5: std::string::String = format!("{:#?}", v0_1);
+        let v35_1: () = {
+            File_system::closure6(
+                v2_1.clone(),
+                sprintf!("{}", fable_library_rust::String_::fromString(v5)),
+                (),
+            );
+            ()
+        };
+        v2_1.l0.get().clone()
     }
-    pub fn method68(v0_1: string) -> string {
-        if v0_1.clone() == string("") {
-            string("")
-        } else {
-            let v7: Result<regex::Regex, regex::Error> =
-                regex::Regex::new(&string("^\\\\\\\\\\?\\\\"));
-            let v9: regex::Regex = v7.unwrap();
-            let v10: string = File_system::method69(v0_1);
-            let v12: std::borrow::Cow<str> = v9.replace_all(&*v10, &*string(""));
-            let v14: std::string::String = String::from(v12);
-            let v30_1: string = fable_library_rust::String_::fromString(v14);
-            replace(
-                sprintf!(
-                    "{}{}",
-                    toLower(ofChar(getCharAt(v30_1.clone(), 0_i32))),
-                    getSlice(v30_1, Some(1_i32), None::<i32>)
-                ),
-                string("\\"),
-                string("/"),
-            )
-        }
+    pub fn closure46(unitVar: (), v0_1: std::io::Error) -> string {
+        File_system::method70(v0_1)
     }
-    pub fn closure45(unitVar: (), v0_1: string) -> string {
-        File_system::method68(v0_1)
+    pub fn method69() -> Func1<std::io::Error, string> {
+        Func1::new(move |v: std::io::Error| File_system::closure46((), v))
     }
-    pub fn closure46(unitVar: (), v0_1: string) -> string {
-        sprintf!("file:///{}", trimStartChars(v0_1, toArray(singleton('/'))))
+    pub fn closure47(unitVar: (), v0_1: std::path::PathBuf) -> File_system::US13 {
+        File_system::US13::US13_0(v0_1)
     }
-    pub fn method72(v0_1: string) -> Option<string> {
-        let v3: &str = &*v0_1;
-        let v5: std::string::String = String::from(v3);
-        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
-        let v9: Option<std::path::PathBuf> = v7.parent().map(std::path::PathBuf::from);
-        let v11: std::path::PathBuf = v9?;
-        let v13: std::path::Display = v11.display();
-        let v16_1: std::string::String = format!("{}", v13);
-        let v85: File_system::US1 =
-            File_system::US1::US1_0(fable_library_rust::String_::fromString(v16_1));
-        match &v85 {
-            File_system::US1::US1_0(v85_0_0) => Some(match &v85 {
+    pub fn closure48(unitVar: (), v0_1: string) -> File_system::US13 {
+        File_system::US13::US13_1(v0_1)
+    }
+    pub fn method72(v0_1: string) -> string {
+        let v4: &str = &*v0_1;
+        let v25_1: std::string::String = String::from(v4);
+        let v46: std::path::PathBuf = std::path::PathBuf::from(v25_1);
+        let v66: Option<std::path::PathBuf> = v46.parent().map(std::path::PathBuf::from);
+        let v68: bool = true;
+        let _optionm_map_ = v66.map(|x| {
+            //;
+            let v70: std::path::PathBuf = x;
+            let v73: std::path::Display = v70.display();
+            let v94: std::string::String = format!("{}", v73);
+            let v114: string = fable_library_rust::String_::fromString(v94);
+            let v116: bool = true;
+            v114
+        });
+        defaultValue(string(""), _optionm_map_)
+    }
+    pub fn method71(v0_1: string) -> Option<string> {
+        let v51: File_system::US1 = File_system::US1::US1_0(File_system::method72(v0_1));
+        match &v51 {
+            File_system::US1::US1_0(v51_0_0) => Some(match &v51 {
                 File_system::US1::US1_0(x) => x.clone(),
                 _ => unreachable!(),
             }),
             _ => None::<string>,
         }
     }
-    pub fn closure48(unitVar: (), v0_1: string) -> Option<string> {
-        File_system::method72(v0_1)
+    pub fn closure49(unitVar: (), v0_1: std::path::PathBuf) -> File_system::US14 {
+        File_system::US14::US14_0(v0_1)
     }
-    pub fn method71() -> Func1<string, Option<string>> {
-        Func1::new(move |v: string| File_system::closure48((), v))
+    pub fn method73() -> Func1<std::path::PathBuf, File_system::US14> {
+        Func1::new(move |v: std::path::PathBuf| File_system::closure49((), v))
     }
-    pub fn method73(v0_1: string, v1_1: string, v2_1: string) -> File_system::US13 {
+    pub fn method74(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method68(v0_1: string) -> string {
+        if v0_1.clone() == string("") {
+            string("")
+        } else {
+            let v2950: Result<std::path::PathBuf, std::io::Error> = if File_system::method9(
+                v0_1.clone(),
+            ) {
+                std::fs::read_link(&*v0_1.clone())
+            } else {
+                let v8: Result<std::path::PathBuf, std::io::Error> =
+                    std::fs::read_link(&*v0_1.clone());
+                let v9 = File_system::method69();
+                let v20_1: Result<std::path::PathBuf, string> = v8.map_err(|x| v9(x));
+                fn v23_1(v: std::path::PathBuf) -> File_system::US13 {
+                    File_system::closure47((), v)
+                }
+                fn v24_1(v_1: string) -> File_system::US13 {
+                    File_system::closure48((), v_1)
+                }
+                let v25_1: File_system::US13 = match &v20_1 {
+                    Err(v20_1_1_0) => v24_1(v20_1_1_0.clone()),
+                    Ok(v20_1_0_0) => v23_1(v20_1_0_0.clone()),
+                };
+                match &v25_1 {
+                    File_system::US13::US13_0(v25_1_0_0) => Ok(v25_1_0_0.clone()),
+                    File_system::US13::US13_1(v25_1_1_0) => {
+                        let v40: string = v25_1_1_0.clone();
+                        let v41: string = File_system::method16(v0_1.clone());
+                        let v42: Option<string> = File_system::method71(v0_1.clone());
+                        let v56: File_system::US1 =
+                            defaultValue(File_system::US1::US1_1, map(File_system::method4(), v42));
+                        if let File_system::US1::US1_0(v56_0_0) = &v56 {
+                            let v60: string = match &v56 {
+                                File_system::US1::US1_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            };
+                            if v0_1.clone() != string("") {
+                                let v66: Result<std::path::PathBuf, std::io::Error> =
+                                    std::fs::read_link(&*v60.clone());
+                                let v67 = File_system::method69();
+                                let v78: Result<std::path::PathBuf, string> =
+                                    v66.map_err(|x| v67(x));
+                                let v81: File_system::US13 = match &v78 {
+                                    Err(v78_1_0) => v24_1(v78_1_0.clone()),
+                                    Ok(v78_0_0) => v23_1(v78_0_0.clone()),
+                                };
+                                let v2744: Result<std::path::PathBuf, std::io::Error> = match &v81 {
+                                    File_system::US13::US13_0(v81_0_0) => Ok(v81_0_0.clone()),
+                                    File_system::US13::US13_1(v81_1_0) => {
+                                        let v96: string = v81_1_0.clone();
+                                        let v97: string = File_system::method16(v60.clone());
+                                        let v98: Option<string> =
+                                            File_system::method71(v60.clone());
+                                        let v112: File_system::US1 = defaultValue(
+                                            File_system::US1::US1_1,
+                                            map(File_system::method4(), v98),
+                                        );
+                                        if let File_system::US1::US1_0(v112_0_0) = &v112 {
+                                            let v116: string = match &v112 {
+                                                File_system::US1::US1_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
+                                            if v60.clone() != string("") {
+                                                let v121: Result<
+                                                    std::path::PathBuf,
+                                                    std::io::Error,
+                                                > = std::fs::read_link(&*v116.clone());
+                                                let v122 = File_system::method69();
+                                                let v133: Result<std::path::PathBuf, string> =
+                                                    v121.map_err(|x| v122(x));
+                                                let v136: File_system::US13 = match &v133 {
+                                                    Err(v133_1_0) => v24_1(v133_1_0.clone()),
+                                                    Ok(v133_0_0) => v23_1(v133_0_0.clone()),
+                                                };
+                                                let v2539: Result<
+                                                    std::path::PathBuf,
+                                                    std::io::Error,
+                                                > = match &v136 {
+                                                    File_system::US13::US13_0(v136_0_0) => {
+                                                        Ok(v136_0_0.clone())
+                                                    }
+                                                    File_system::US13::US13_1(v136_1_0) => {
+                                                        let v151: string = v136_1_0.clone();
+                                                        let v152: string =
+                                                            File_system::method16(v116.clone());
+                                                        let v153: Option<string> =
+                                                            File_system::method71(v116.clone());
+                                                        let v167: File_system::US1 = defaultValue(
+                                                            File_system::US1::US1_1,
+                                                            map(File_system::method4(), v153),
+                                                        );
+                                                        if let File_system::US1::US1_0(v167_0_0) =
+                                                            &v167
+                                                        {
+                                                            let v171: string = match &v167 {
+                                                                File_system::US1::US1_0(x) => {
+                                                                    x.clone()
+                                                                }
+                                                                _ => unreachable!(),
+                                                            };
+                                                            if v116.clone() != string("") {
+                                                                let v176: Result<
+                                                                    std::path::PathBuf,
+                                                                    std::io::Error,
+                                                                > = std::fs::read_link(
+                                                                    &*v171.clone(),
+                                                                );
+                                                                let v177 = File_system::method69();
+                                                                let v188: Result<
+                                                                    std::path::PathBuf,
+                                                                    string,
+                                                                > = v176.map_err(|x| v177(x));
+                                                                let v191: File_system::US13 =
+                                                                    match &v188 {
+                                                                        Err(v188_1_0) => {
+                                                                            v24_1(v188_1_0.clone())
+                                                                        }
+                                                                        Ok(v188_0_0) => {
+                                                                            v23_1(v188_0_0.clone())
+                                                                        }
+                                                                    };
+                                                                let v2334: Result<
+                                                                    std::path::PathBuf,
+                                                                    std::io::Error,
+                                                                > = match &v191 {
+                                                                    File_system::US13::US13_0(
+                                                                        v191_0_0,
+                                                                    ) => Ok(v191_0_0.clone()),
+                                                                    File_system::US13::US13_1(
+                                                                        v191_1_0,
+                                                                    ) => {
+                                                                        let v206: string =
+                                                                            v191_1_0.clone();
+                                                                        let v207: string =
+                                                                            File_system::method16(
+                                                                                v171.clone(),
+                                                                            );
+                                                                        let v208: Option<string> =
+                                                                            File_system::method71(
+                                                                                v171.clone(),
+                                                                            );
+                                                                        let v222:
+                                                                                                File_system::US1 =
+                                                                                            defaultValue(File_system::US1::US1_1,
+                                                                                                         map(File_system::method4(),
+                                                                                                             v208));
+                                                                        if let File_system::US1::US1_0(v222_0_0)
+                                                                                               =
+                                                                                               &v222
+                                                                                           {
+                                                                                            let v226:
+                                                                                                    string =
+                                                                                                match &v222
+                                                                                                    {
+                                                                                                    File_system::US1::US1_0(x)
+                                                                                                    =>
+                                                                                                    x.clone(),
+                                                                                                    _
+                                                                                                    =>
+                                                                                                    unreachable!(),
+                                                                                                };
+                                                                                            if v171.clone()
+                                                                                                   !=
+                                                                                                   string("")
+                                                                                               {
+                                                                                                let v231:
+                                                                                                        Result<std::path::PathBuf,
+                                                                                                               std::io::Error> =
+                                                                                                    std::fs::read_link(&*v226.clone());
+                                                                                                let v232 =
+                                                                                                    File_system::method69();
+                                                                                                let v243:
+                                                                                                        Result<std::path::PathBuf,
+                                                                                                               string> =
+                                                                                                    v231.map_err(|x| v232(x));
+                                                                                                let v246:
+                                                                                                        File_system::US13 =
+                                                                                                    match &v243
+                                                                                                        {
+                                                                                                        Err(v243_1_0)
+                                                                                                        =>
+                                                                                                        v24_1(v243_1_0.clone()),
+                                                                                                        Ok(v243_0_0)
+                                                                                                        =>
+                                                                                                        v23_1(v243_0_0.clone()),
+                                                                                                    };
+                                                                                                let v2129:
+                                                                                                        Result<std::path::PathBuf,
+                                                                                                               std::io::Error> =
+                                                                                                    match &v246
+                                                                                                        {
+                                                                                                        File_system::US13::US13_0(v246_0_0)
+                                                                                                        =>
+                                                                                                        Ok(v246_0_0.clone()),
+                                                                                                        File_system::US13::US13_1(v246_1_0)
+                                                                                                        =>
+                                                                                                        {
+                                                                                                            let v261:
+                                                                                                                    string =
+                                                                                                                v246_1_0.clone();
+                                                                                                            let v262:
+                                                                                                                    string =
+                                                                                                                File_system::method16(v226.clone());
+                                                                                                            let v263:
+                                                                                                                    Option<string> =
+                                                                                                                File_system::method71(v226.clone());
+                                                                                                            let v277:
+                                                                                                                    File_system::US1 =
+                                                                                                                defaultValue(File_system::US1::US1_1,
+                                                                                                                             map(File_system::method4(),
+                                                                                                                                 v263));
+                                                                                                            if let File_system::US1::US1_0(v277_0_0)
+                                                                                                                   =
+                                                                                                                   &v277
+                                                                                                               {
+                                                                                                                let v281:
+                                                                                                                        string =
+                                                                                                                    match &v277
+                                                                                                                        {
+                                                                                                                        File_system::US1::US1_0(x)
+                                                                                                                        =>
+                                                                                                                        x.clone(),
+                                                                                                                        _
+                                                                                                                        =>
+                                                                                                                        unreachable!(),
+                                                                                                                    };
+                                                                                                                if v226.clone()
+                                                                                                                       !=
+                                                                                                                       string("")
+                                                                                                                   {
+                                                                                                                    let v286:
+                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                   std::io::Error> =
+                                                                                                                        std::fs::read_link(&*v281.clone());
+                                                                                                                    let v287 =
+                                                                                                                        File_system::method69();
+                                                                                                                    let v298:
+                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                   string> =
+                                                                                                                        v286.map_err(|x| v287(x));
+                                                                                                                    let v301:
+                                                                                                                            File_system::US13 =
+                                                                                                                        match &v298
+                                                                                                                            {
+                                                                                                                            Err(v298_1_0)
+                                                                                                                            =>
+                                                                                                                            v24_1(v298_1_0.clone()),
+                                                                                                                            Ok(v298_0_0)
+                                                                                                                            =>
+                                                                                                                            v23_1(v298_0_0.clone()),
+                                                                                                                        };
+                                                                                                                    let v1924:
+                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                   std::io::Error> =
+                                                                                                                        match &v301
+                                                                                                                            {
+                                                                                                                            File_system::US13::US13_0(v301_0_0)
+                                                                                                                            =>
+                                                                                                                            Ok(v301_0_0.clone()),
+                                                                                                                            File_system::US13::US13_1(v301_1_0)
+                                                                                                                            =>
+                                                                                                                            {
+                                                                                                                                let v316:
+                                                                                                                                        string =
+                                                                                                                                    v301_1_0.clone();
+                                                                                                                                let v317:
+                                                                                                                                        string =
+                                                                                                                                    File_system::method16(v281.clone());
+                                                                                                                                let v318:
+                                                                                                                                        Option<string> =
+                                                                                                                                    File_system::method71(v281.clone());
+                                                                                                                                let v332:
+                                                                                                                                        File_system::US1 =
+                                                                                                                                    defaultValue(File_system::US1::US1_1,
+                                                                                                                                                 map(File_system::method4(),
+                                                                                                                                                     v318));
+                                                                                                                                if let File_system::US1::US1_0(v332_0_0)
+                                                                                                                                       =
+                                                                                                                                       &v332
+                                                                                                                                   {
+                                                                                                                                    let v336:
+                                                                                                                                            string =
+                                                                                                                                        match &v332
+                                                                                                                                            {
+                                                                                                                                            File_system::US1::US1_0(x)
+                                                                                                                                            =>
+                                                                                                                                            x.clone(),
+                                                                                                                                            _
+                                                                                                                                            =>
+                                                                                                                                            unreachable!(),
+                                                                                                                                        };
+                                                                                                                                    if v281.clone()
+                                                                                                                                           !=
+                                                                                                                                           string("")
+                                                                                                                                       {
+                                                                                                                                        let v341:
+                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                       std::io::Error> =
+                                                                                                                                            std::fs::read_link(&*v336.clone());
+                                                                                                                                        let v342 =
+                                                                                                                                            File_system::method69();
+                                                                                                                                        let v353:
+                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                       string> =
+                                                                                                                                            v341.map_err(|x| v342(x));
+                                                                                                                                        let v356:
+                                                                                                                                                File_system::US13 =
+                                                                                                                                            match &v353
+                                                                                                                                                {
+                                                                                                                                                Err(v353_1_0)
+                                                                                                                                                =>
+                                                                                                                                                v24_1(v353_1_0.clone()),
+                                                                                                                                                Ok(v353_0_0)
+                                                                                                                                                =>
+                                                                                                                                                v23_1(v353_0_0.clone()),
+                                                                                                                                            };
+                                                                                                                                        let v1719:
+                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                       std::io::Error> =
+                                                                                                                                            match &v356
+                                                                                                                                                {
+                                                                                                                                                File_system::US13::US13_0(v356_0_0)
+                                                                                                                                                =>
+                                                                                                                                                Ok(v356_0_0.clone()),
+                                                                                                                                                File_system::US13::US13_1(v356_1_0)
+                                                                                                                                                =>
+                                                                                                                                                {
+                                                                                                                                                    let v371:
+                                                                                                                                                            string =
+                                                                                                                                                        v356_1_0.clone();
+                                                                                                                                                    let v372:
+                                                                                                                                                            string =
+                                                                                                                                                        File_system::method16(v336.clone());
+                                                                                                                                                    let v373:
+                                                                                                                                                            Option<string> =
+                                                                                                                                                        File_system::method71(v336.clone());
+                                                                                                                                                    let v387:
+                                                                                                                                                            File_system::US1 =
+                                                                                                                                                        defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                     map(File_system::method4(),
+                                                                                                                                                                         v373));
+                                                                                                                                                    if let File_system::US1::US1_0(v387_0_0)
+                                                                                                                                                           =
+                                                                                                                                                           &v387
+                                                                                                                                                       {
+                                                                                                                                                        let v391:
+                                                                                                                                                                string =
+                                                                                                                                                            match &v387
+                                                                                                                                                                {
+                                                                                                                                                                File_system::US1::US1_0(x)
+                                                                                                                                                                =>
+                                                                                                                                                                x.clone(),
+                                                                                                                                                                _
+                                                                                                                                                                =>
+                                                                                                                                                                unreachable!(),
+                                                                                                                                                            };
+                                                                                                                                                        if v336.clone()
+                                                                                                                                                               !=
+                                                                                                                                                               string("")
+                                                                                                                                                           {
+                                                                                                                                                            let v396:
+                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                           std::io::Error> =
+                                                                                                                                                                std::fs::read_link(&*v391.clone());
+                                                                                                                                                            let v397 =
+                                                                                                                                                                File_system::method69();
+                                                                                                                                                            let v408:
+                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                           string> =
+                                                                                                                                                                v396.map_err(|x| v397(x));
+                                                                                                                                                            let v411:
+                                                                                                                                                                    File_system::US13 =
+                                                                                                                                                                match &v408
+                                                                                                                                                                    {
+                                                                                                                                                                    Err(v408_1_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    v24_1(v408_1_0.clone()),
+                                                                                                                                                                    Ok(v408_0_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    v23_1(v408_0_0.clone()),
+                                                                                                                                                                };
+                                                                                                                                                            let v1514:
+                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                           std::io::Error> =
+                                                                                                                                                                match &v411
+                                                                                                                                                                    {
+                                                                                                                                                                    File_system::US13::US13_0(v411_0_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    Ok(v411_0_0.clone()),
+                                                                                                                                                                    File_system::US13::US13_1(v411_1_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    {
+                                                                                                                                                                        let v426:
+                                                                                                                                                                                string =
+                                                                                                                                                                            v411_1_0.clone();
+                                                                                                                                                                        let v427:
+                                                                                                                                                                                string =
+                                                                                                                                                                            File_system::method16(v391.clone());
+                                                                                                                                                                        let v428:
+                                                                                                                                                                                Option<string> =
+                                                                                                                                                                            File_system::method71(v391.clone());
+                                                                                                                                                                        let v442:
+                                                                                                                                                                                File_system::US1 =
+                                                                                                                                                                            defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                         map(File_system::method4(),
+                                                                                                                                                                                             v428));
+                                                                                                                                                                        if let File_system::US1::US1_0(v442_0_0)
+                                                                                                                                                                               =
+                                                                                                                                                                               &v442
+                                                                                                                                                                           {
+                                                                                                                                                                            let v446:
+                                                                                                                                                                                    string =
+                                                                                                                                                                                match &v442
+                                                                                                                                                                                    {
+                                                                                                                                                                                    File_system::US1::US1_0(x)
+                                                                                                                                                                                    =>
+                                                                                                                                                                                    x.clone(),
+                                                                                                                                                                                    _
+                                                                                                                                                                                    =>
+                                                                                                                                                                                    unreachable!(),
+                                                                                                                                                                                };
+                                                                                                                                                                            if v391.clone()
+                                                                                                                                                                                   !=
+                                                                                                                                                                                   string("")
+                                                                                                                                                                               {
+                                                                                                                                                                                let v451:
+                                                                                                                                                                                        Result<std::path::PathBuf,
+                                                                                                                                                                                               std::io::Error> =
+                                                                                                                                                                                    std::fs::read_link(&*v446.clone());
+                                                                                                                                                                                let v452 =
+                                                                                                                                                                                    File_system::method69();
+                                                                                                                                                                                let v463:
+                                                                                                                                                                                        Result<std::path::PathBuf,
+                                                                                                                                                                                               string> =
+                                                                                                                                                                                    v451.map_err(|x| v452(x));
+                                                                                                                                                                                let v466:
+                                                                                                                                                                                        File_system::US13 =
+                                                                                                                                                                                    match &v463
+                                                                                                                                                                                        {
+                                                                                                                                                                                        Err(v463_1_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        v24_1(v463_1_0.clone()),
+                                                                                                                                                                                        Ok(v463_0_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        v23_1(v463_0_0.clone()),
+                                                                                                                                                                                    };
+                                                                                                                                                                                let v1309:
+                                                                                                                                                                                        Result<std::path::PathBuf,
+                                                                                                                                                                                               std::io::Error> =
+                                                                                                                                                                                    match &v466
+                                                                                                                                                                                        {
+                                                                                                                                                                                        File_system::US13::US13_0(v466_0_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        Ok(v466_0_0.clone()),
+                                                                                                                                                                                        File_system::US13::US13_1(v466_1_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        {
+                                                                                                                                                                                            let v481:
+                                                                                                                                                                                                    string =
+                                                                                                                                                                                                v466_1_0.clone();
+                                                                                                                                                                                            let v482:
+                                                                                                                                                                                                    string =
+                                                                                                                                                                                                File_system::method16(v446.clone());
+                                                                                                                                                                                            let v483:
+                                                                                                                                                                                                    Option<string> =
+                                                                                                                                                                                                File_system::method71(v446.clone());
+                                                                                                                                                                                            let v497:
+                                                                                                                                                                                                    File_system::US1 =
+                                                                                                                                                                                                defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                             map(File_system::method4(),
+                                                                                                                                                                                                                 v483));
+                                                                                                                                                                                            if let File_system::US1::US1_0(v497_0_0)
+                                                                                                                                                                                                   =
+                                                                                                                                                                                                   &v497
+                                                                                                                                                                                               {
+                                                                                                                                                                                                let v501:
+                                                                                                                                                                                                        string =
+                                                                                                                                                                                                    match &v497
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                        File_system::US1::US1_0(x)
+                                                                                                                                                                                                        =>
+                                                                                                                                                                                                        x.clone(),
+                                                                                                                                                                                                        _
+                                                                                                                                                                                                        =>
+                                                                                                                                                                                                        unreachable!(),
+                                                                                                                                                                                                    };
+                                                                                                                                                                                                if v446.clone()
+                                                                                                                                                                                                       !=
+                                                                                                                                                                                                       string("")
+                                                                                                                                                                                                   {
+                                                                                                                                                                                                    let v506:
+                                                                                                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                                                                                                   std::io::Error> =
+                                                                                                                                                                                                        std::fs::read_link(&*v501.clone());
+                                                                                                                                                                                                    let v507 =
+                                                                                                                                                                                                        File_system::method69();
+                                                                                                                                                                                                    let v518:
+                                                                                                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                                                                                                   string> =
+                                                                                                                                                                                                        v506.map_err(|x| v507(x));
+                                                                                                                                                                                                    let v521:
+                                                                                                                                                                                                            File_system::US13 =
+                                                                                                                                                                                                        match &v518
+                                                                                                                                                                                                            {
+                                                                                                                                                                                                            Err(v518_1_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            v24_1(v518_1_0.clone()),
+                                                                                                                                                                                                            Ok(v518_0_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            v23_1(v518_0_0.clone()),
+                                                                                                                                                                                                        };
+                                                                                                                                                                                                    let v1104:
+                                                                                                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                                                                                                   std::io::Error> =
+                                                                                                                                                                                                        match &v521
+                                                                                                                                                                                                            {
+                                                                                                                                                                                                            File_system::US13::US13_0(v521_0_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            Ok(v521_0_0.clone()),
+                                                                                                                                                                                                            File_system::US13::US13_1(v521_1_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            {
+                                                                                                                                                                                                                let v536:
+                                                                                                                                                                                                                        string =
+                                                                                                                                                                                                                    v521_1_0.clone();
+                                                                                                                                                                                                                let v537:
+                                                                                                                                                                                                                        string =
+                                                                                                                                                                                                                    File_system::method16(v501.clone());
+                                                                                                                                                                                                                let v538:
+                                                                                                                                                                                                                        Option<string> =
+                                                                                                                                                                                                                    File_system::method71(v501.clone());
+                                                                                                                                                                                                                let v552:
+                                                                                                                                                                                                                        File_system::US1 =
+                                                                                                                                                                                                                    defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                 map(File_system::method4(),
+                                                                                                                                                                                                                                     v538));
+                                                                                                                                                                                                                if let File_system::US1::US1_0(v552_0_0)
+                                                                                                                                                                                                                       =
+                                                                                                                                                                                                                       &v552
+                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                    let v556:
+                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                        match &v552
+                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                            File_system::US1::US1_0(x)
+                                                                                                                                                                                                                            =>
+                                                                                                                                                                                                                            x.clone(),
+                                                                                                                                                                                                                            _
+                                                                                                                                                                                                                            =>
+                                                                                                                                                                                                                            unreachable!(),
+                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                    if v501.clone()
+                                                                                                                                                                                                                           !=
+                                                                                                                                                                                                                           string("")
+                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                        let v561:
+                                                                                                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                                                                                                       std::io::Error> =
+                                                                                                                                                                                                                            std::fs::read_link(&*v556.clone());
+                                                                                                                                                                                                                        let v562 =
+                                                                                                                                                                                                                            File_system::method69();
+                                                                                                                                                                                                                        let v573:
+                                                                                                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                                                                                                       string> =
+                                                                                                                                                                                                                            v561.map_err(|x| v562(x));
+                                                                                                                                                                                                                        let v576:
+                                                                                                                                                                                                                                File_system::US13 =
+                                                                                                                                                                                                                            match &v573
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                Err(v573_1_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                v24_1(v573_1_0.clone()),
+                                                                                                                                                                                                                                Ok(v573_0_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                v23_1(v573_0_0.clone()),
+                                                                                                                                                                                                                            };
+                                                                                                                                                                                                                        let v899:
+                                                                                                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                                                                                                       std::io::Error> =
+                                                                                                                                                                                                                            match &v576
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                File_system::US13::US13_0(v576_0_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                Ok(v576_0_0.clone()),
+                                                                                                                                                                                                                                File_system::US13::US13_1(v576_1_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                    let v591:
+                                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                                        v576_1_0.clone();
+                                                                                                                                                                                                                                    let v592:
+                                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                                        File_system::method16(v556.clone());
+                                                                                                                                                                                                                                    let v593:
+                                                                                                                                                                                                                                            Option<string> =
+                                                                                                                                                                                                                                        File_system::method71(v556.clone());
+                                                                                                                                                                                                                                    let v607:
+                                                                                                                                                                                                                                            File_system::US1 =
+                                                                                                                                                                                                                                        defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                                     map(File_system::method4(),
+                                                                                                                                                                                                                                                         v593));
+                                                                                                                                                                                                                                    if let File_system::US1::US1_0(v607_0_0)
+                                                                                                                                                                                                                                           =
+                                                                                                                                                                                                                                           &v607
+                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                        let v611:
+                                                                                                                                                                                                                                                string =
+                                                                                                                                                                                                                                            match &v607
+                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                File_system::US1::US1_0(x)
+                                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                                x.clone(),
+                                                                                                                                                                                                                                                _
+                                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                                unreachable!(),
+                                                                                                                                                                                                                                            };
+                                                                                                                                                                                                                                        if v556.clone()
+                                                                                                                                                                                                                                               !=
+                                                                                                                                                                                                                                               string("")
+                                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                                            let v616:
+                                                                                                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                           std::io::Error> =
+                                                                                                                                                                                                                                                std::fs::read_link(&*v611.clone());
+                                                                                                                                                                                                                                            let v617 =
+                                                                                                                                                                                                                                                File_system::method69();
+                                                                                                                                                                                                                                            let v628:
+                                                                                                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                           string> =
+                                                                                                                                                                                                                                                v616.map_err(|x| v617(x));
+                                                                                                                                                                                                                                            let v631:
+                                                                                                                                                                                                                                                    File_system::US13 =
+                                                                                                                                                                                                                                                match &v628
+                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                    Err(v628_1_0)
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    v24_1(v628_1_0.clone()),
+                                                                                                                                                                                                                                                    Ok(v628_0_0)
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    v23_1(v628_0_0.clone()),
+                                                                                                                                                                                                                                                };
+                                                                                                                                                                                                                                            let v694:
+                                                                                                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                           std::io::Error> =
+                                                                                                                                                                                                                                                match &v631
+                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                    File_system::US13::US13_0(v631_0_0)
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    Ok(v631_0_0.clone()),
+                                                                                                                                                                                                                                                    _
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                        let v647:
+                                                                                                                                                                                                                                                                string =
+                                                                                                                                                                                                                                                            File_system::method16(v611.clone());
+                                                                                                                                                                                                                                                        let v648:
+                                                                                                                                                                                                                                                                Option<string> =
+                                                                                                                                                                                                                                                            File_system::method71(v611.clone());
+                                                                                                                                                                                                                                                        let v662:
+                                                                                                                                                                                                                                                                File_system::US1 =
+                                                                                                                                                                                                                                                            defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                                                         map(File_system::method4(),
+                                                                                                                                                                                                                                                                             v648));
+                                                                                                                                                                                                                                                        let v666:
+                                                                                                                                                                                                                                                                string =
+                                                                                                                                                                                                                                                            sprintf!("file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                                     v0_1.clone(),
+                                                                                                                                                                                                                                                                     11_u8,
+                                                                                                                                                                                                                                                                     v611.clone(),
+                                                                                                                                                                                                                                                                     v647);
+                                                                                                                                                                                                                                                        let v669:
+                                                                                                                                                                                                                                                                std::io::Error =
+                                                                                                                                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v666);
+                                                                                                                                                                                                                                                        Err(v669)
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                };
+                                                                                                                                                                                                                                            let v695 =
+                                                                                                                                                                                                                                                File_system::method69();
+                                                                                                                                                                                                                                            let v706:
+                                                                                                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                           string> =
+                                                                                                                                                                                                                                                v694.map_err(|x| v695(x));
+                                                                                                                                                                                                                                            let v709:
+                                                                                                                                                                                                                                                    File_system::US13 =
+                                                                                                                                                                                                                                                match &v706
+                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                    Err(v706_1_0)
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    v24_1(v706_1_0.clone()),
+                                                                                                                                                                                                                                                    Ok(v706_0_0)
+                                                                                                                                                                                                                                                    =>
+                                                                                                                                                                                                                                                    v23_1(v706_0_0.clone()),
+                                                                                                                                                                                                                                                };
+                                                                                                                                                                                                                                            match &v709
+                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                File_system::US13::US13_0(v709_0_0)
+                                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                    let v735:
+                                                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                                                        File_system::method51(toString(v709_0_0.clone().display()),
+                                                                                                                                                                                                                                                                              v592.clone());
+                                                                                                                                                                                                                                                    let v738:
+                                                                                                                                                                                                                                                            &str =
+                                                                                                                                                                                                                                                        &*v735;
+                                                                                                                                                                                                                                                    let v759:
+                                                                                                                                                                                                                                                            std::string::String =
+                                                                                                                                                                                                                                                        String::from(v738);
+                                                                                                                                                                                                                                                    let v780:
+                                                                                                                                                                                                                                                            std::path::PathBuf =
+                                                                                                                                                                                                                                                        std::path::PathBuf::from(v759);
+                                                                                                                                                                                                                                                    Ok(v780)
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                File_system::US13::US13_1(v709_1_0)
+                                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                    let v813:
+                                                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                                                        sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                                                                 v709_1_0.clone(),
+                                                                                                                                                                                                                                                                 v591.clone(),
+                                                                                                                                                                                                                                                                 v592.clone());
+                                                                                                                                                                                                                                                    let v816:
+                                                                                                                                                                                                                                                            std::io::Error =
+                                                                                                                                                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v813);
+                                                                                                                                                                                                                                                    Err(v816)
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                            let v842:
+                                                                                                                                                                                                                                                    string =
+                                                                                                                                                                                                                                                sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                         v0_1.clone(),
+                                                                                                                                                                                                                                                         v591.clone(),
+                                                                                                                                                                                                                                                         v556.clone(),
+                                                                                                                                                                                                                                                         v592.clone());
+                                                                                                                                                                                                                                            let v845:
+                                                                                                                                                                                                                                                    std::io::Error =
+                                                                                                                                                                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v842);
+                                                                                                                                                                                                                                            Err(v845)
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                        let v870:
+                                                                                                                                                                                                                                                string =
+                                                                                                                                                                                                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                     v0_1.clone(),
+                                                                                                                                                                                                                                                     v591,
+                                                                                                                                                                                                                                                     v556.clone(),
+                                                                                                                                                                                                                                                     v592.clone());
+                                                                                                                                                                                                                                        let v873:
+                                                                                                                                                                                                                                                std::io::Error =
+                                                                                                                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v870);
+                                                                                                                                                                                                                                        Err(v873)
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                            };
+                                                                                                                                                                                                                        let v900 =
+                                                                                                                                                                                                                            File_system::method69();
+                                                                                                                                                                                                                        let v911:
+                                                                                                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                                                                                                       string> =
+                                                                                                                                                                                                                            v899.map_err(|x| v900(x));
+                                                                                                                                                                                                                        let v914:
+                                                                                                                                                                                                                                File_system::US13 =
+                                                                                                                                                                                                                            match &v911
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                Err(v911_1_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                v24_1(v911_1_0.clone()),
+                                                                                                                                                                                                                                Ok(v911_0_0)
+                                                                                                                                                                                                                                =>
+                                                                                                                                                                                                                                v23_1(v911_0_0.clone()),
+                                                                                                                                                                                                                            };
+                                                                                                                                                                                                                        match &v914
+                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                            File_system::US13::US13_0(v914_0_0)
+                                                                                                                                                                                                                            =>
+                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                let v940:
+                                                                                                                                                                                                                                        string =
+                                                                                                                                                                                                                                    File_system::method51(toString(v914_0_0.clone().display()),
+                                                                                                                                                                                                                                                          v537.clone());
+                                                                                                                                                                                                                                let v943:
+                                                                                                                                                                                                                                        &str =
+                                                                                                                                                                                                                                    &*v940;
+                                                                                                                                                                                                                                let v964:
+                                                                                                                                                                                                                                        std::string::String =
+                                                                                                                                                                                                                                    String::from(v943);
+                                                                                                                                                                                                                                let v985:
+                                                                                                                                                                                                                                        std::path::PathBuf =
+                                                                                                                                                                                                                                    std::path::PathBuf::from(v964);
+                                                                                                                                                                                                                                Ok(v985)
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                            File_system::US13::US13_1(v914_1_0)
+                                                                                                                                                                                                                            =>
+                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                let v1018:
+                                                                                                                                                                                                                                        string =
+                                                                                                                                                                                                                                    sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                                             v914_1_0.clone(),
+                                                                                                                                                                                                                                             v536.clone(),
+                                                                                                                                                                                                                                             v537.clone());
+                                                                                                                                                                                                                                let v1021:
+                                                                                                                                                                                                                                        std::io::Error =
+                                                                                                                                                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v1018);
+                                                                                                                                                                                                                                Err(v1021)
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        let v1047:
+                                                                                                                                                                                                                                string =
+                                                                                                                                                                                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                     v0_1.clone(),
+                                                                                                                                                                                                                                     v536.clone(),
+                                                                                                                                                                                                                                     v501.clone(),
+                                                                                                                                                                                                                                     v537.clone());
+                                                                                                                                                                                                                        let v1050:
+                                                                                                                                                                                                                                std::io::Error =
+                                                                                                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v1047);
+                                                                                                                                                                                                                        Err(v1050)
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                    let v1075:
+                                                                                                                                                                                                                            string =
+                                                                                                                                                                                                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                 v0_1.clone(),
+                                                                                                                                                                                                                                 v536,
+                                                                                                                                                                                                                                 v501.clone(),
+                                                                                                                                                                                                                                 v537.clone());
+                                                                                                                                                                                                                    let v1078:
+                                                                                                                                                                                                                            std::io::Error =
+                                                                                                                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v1075);
+                                                                                                                                                                                                                    Err(v1078)
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        };
+                                                                                                                                                                                                    let v1105 =
+                                                                                                                                                                                                        File_system::method69();
+                                                                                                                                                                                                    let v1116:
+                                                                                                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                                                                                                   string> =
+                                                                                                                                                                                                        v1104.map_err(|x| v1105(x));
+                                                                                                                                                                                                    let v1119:
+                                                                                                                                                                                                            File_system::US13 =
+                                                                                                                                                                                                        match &v1116
+                                                                                                                                                                                                            {
+                                                                                                                                                                                                            Err(v1116_1_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            v24_1(v1116_1_0.clone()),
+                                                                                                                                                                                                            Ok(v1116_0_0)
+                                                                                                                                                                                                            =>
+                                                                                                                                                                                                            v23_1(v1116_0_0.clone()),
+                                                                                                                                                                                                        };
+                                                                                                                                                                                                    match &v1119
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                        File_system::US13::US13_0(v1119_0_0)
+                                                                                                                                                                                                        =>
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                            let v1145:
+                                                                                                                                                                                                                    string =
+                                                                                                                                                                                                                File_system::method51(toString(v1119_0_0.clone().display()),
+                                                                                                                                                                                                                                      v482.clone());
+                                                                                                                                                                                                            let v1148:
+                                                                                                                                                                                                                    &str =
+                                                                                                                                                                                                                &*v1145;
+                                                                                                                                                                                                            let v1169:
+                                                                                                                                                                                                                    std::string::String =
+                                                                                                                                                                                                                String::from(v1148);
+                                                                                                                                                                                                            let v1190:
+                                                                                                                                                                                                                    std::path::PathBuf =
+                                                                                                                                                                                                                std::path::PathBuf::from(v1169);
+                                                                                                                                                                                                            Ok(v1190)
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                        File_system::US13::US13_1(v1119_1_0)
+                                                                                                                                                                                                        =>
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                            let v1223:
+                                                                                                                                                                                                                    string =
+                                                                                                                                                                                                                sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                         v1119_1_0.clone(),
+                                                                                                                                                                                                                         v481.clone(),
+                                                                                                                                                                                                                         v482.clone());
+                                                                                                                                                                                                            let v1226:
+                                                                                                                                                                                                                    std::io::Error =
+                                                                                                                                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v1223);
+                                                                                                                                                                                                            Err(v1226)
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                } else {
+                                                                                                                                                                                                    let v1252:
+                                                                                                                                                                                                            string =
+                                                                                                                                                                                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                 v0_1.clone(),
+                                                                                                                                                                                                                 v481.clone(),
+                                                                                                                                                                                                                 v446.clone(),
+                                                                                                                                                                                                                 v482.clone());
+                                                                                                                                                                                                    let v1255:
+                                                                                                                                                                                                            std::io::Error =
+                                                                                                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v1252);
+                                                                                                                                                                                                    Err(v1255)
+                                                                                                                                                                                                }
+                                                                                                                                                                                            } else {
+                                                                                                                                                                                                let v1280:
+                                                                                                                                                                                                        string =
+                                                                                                                                                                                                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                             v0_1.clone(),
+                                                                                                                                                                                                             v481,
+                                                                                                                                                                                                             v446.clone(),
+                                                                                                                                                                                                             v482.clone());
+                                                                                                                                                                                                let v1283:
+                                                                                                                                                                                                        std::io::Error =
+                                                                                                                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v1280);
+                                                                                                                                                                                                Err(v1283)
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                    };
+                                                                                                                                                                                let v1310 =
+                                                                                                                                                                                    File_system::method69();
+                                                                                                                                                                                let v1321:
+                                                                                                                                                                                        Result<std::path::PathBuf,
+                                                                                                                                                                                               string> =
+                                                                                                                                                                                    v1309.map_err(|x| v1310(x));
+                                                                                                                                                                                let v1324:
+                                                                                                                                                                                        File_system::US13 =
+                                                                                                                                                                                    match &v1321
+                                                                                                                                                                                        {
+                                                                                                                                                                                        Err(v1321_1_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        v24_1(v1321_1_0.clone()),
+                                                                                                                                                                                        Ok(v1321_0_0)
+                                                                                                                                                                                        =>
+                                                                                                                                                                                        v23_1(v1321_0_0.clone()),
+                                                                                                                                                                                    };
+                                                                                                                                                                                match &v1324
+                                                                                                                                                                                    {
+                                                                                                                                                                                    File_system::US13::US13_0(v1324_0_0)
+                                                                                                                                                                                    =>
+                                                                                                                                                                                    {
+                                                                                                                                                                                        let v1350:
+                                                                                                                                                                                                string =
+                                                                                                                                                                                            File_system::method51(toString(v1324_0_0.clone().display()),
+                                                                                                                                                                                                                  v427.clone());
+                                                                                                                                                                                        let v1353:
+                                                                                                                                                                                                &str =
+                                                                                                                                                                                            &*v1350;
+                                                                                                                                                                                        let v1374:
+                                                                                                                                                                                                std::string::String =
+                                                                                                                                                                                            String::from(v1353);
+                                                                                                                                                                                        let v1395:
+                                                                                                                                                                                                std::path::PathBuf =
+                                                                                                                                                                                            std::path::PathBuf::from(v1374);
+                                                                                                                                                                                        Ok(v1395)
+                                                                                                                                                                                    }
+                                                                                                                                                                                    File_system::US13::US13_1(v1324_1_0)
+                                                                                                                                                                                    =>
+                                                                                                                                                                                    {
+                                                                                                                                                                                        let v1428:
+                                                                                                                                                                                                string =
+                                                                                                                                                                                            sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                     v1324_1_0.clone(),
+                                                                                                                                                                                                     v426.clone(),
+                                                                                                                                                                                                     v427.clone());
+                                                                                                                                                                                        let v1431:
+                                                                                                                                                                                                std::io::Error =
+                                                                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v1428);
+                                                                                                                                                                                        Err(v1431)
+                                                                                                                                                                                    }
+                                                                                                                                                                                }
+                                                                                                                                                                            } else {
+                                                                                                                                                                                let v1457:
+                                                                                                                                                                                        string =
+                                                                                                                                                                                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                             v0_1.clone(),
+                                                                                                                                                                                             v426.clone(),
+                                                                                                                                                                                             v391.clone(),
+                                                                                                                                                                                             v427.clone());
+                                                                                                                                                                                let v1460:
+                                                                                                                                                                                        std::io::Error =
+                                                                                                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v1457);
+                                                                                                                                                                                Err(v1460)
+                                                                                                                                                                            }
+                                                                                                                                                                        } else {
+                                                                                                                                                                            let v1485:
+                                                                                                                                                                                    string =
+                                                                                                                                                                                sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                         v0_1.clone(),
+                                                                                                                                                                                         v426,
+                                                                                                                                                                                         v391.clone(),
+                                                                                                                                                                                         v427.clone());
+                                                                                                                                                                            let v1488:
+                                                                                                                                                                                    std::io::Error =
+                                                                                                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v1485);
+                                                                                                                                                                            Err(v1488)
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+                                                                                                                                                                };
+                                                                                                                                                            let v1515 =
+                                                                                                                                                                File_system::method69();
+                                                                                                                                                            let v1526:
+                                                                                                                                                                    Result<std::path::PathBuf,
+                                                                                                                                                                           string> =
+                                                                                                                                                                v1514.map_err(|x| v1515(x));
+                                                                                                                                                            let v1529:
+                                                                                                                                                                    File_system::US13 =
+                                                                                                                                                                match &v1526
+                                                                                                                                                                    {
+                                                                                                                                                                    Err(v1526_1_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    v24_1(v1526_1_0.clone()),
+                                                                                                                                                                    Ok(v1526_0_0)
+                                                                                                                                                                    =>
+                                                                                                                                                                    v23_1(v1526_0_0.clone()),
+                                                                                                                                                                };
+                                                                                                                                                            match &v1529
+                                                                                                                                                                {
+                                                                                                                                                                File_system::US13::US13_0(v1529_0_0)
+                                                                                                                                                                =>
+                                                                                                                                                                {
+                                                                                                                                                                    let v1555:
+                                                                                                                                                                            string =
+                                                                                                                                                                        File_system::method51(toString(v1529_0_0.clone().display()),
+                                                                                                                                                                                              v372.clone());
+                                                                                                                                                                    let v1558:
+                                                                                                                                                                            &str =
+                                                                                                                                                                        &*v1555;
+                                                                                                                                                                    let v1579:
+                                                                                                                                                                            std::string::String =
+                                                                                                                                                                        String::from(v1558);
+                                                                                                                                                                    let v1600:
+                                                                                                                                                                            std::path::PathBuf =
+                                                                                                                                                                        std::path::PathBuf::from(v1579);
+                                                                                                                                                                    Ok(v1600)
+                                                                                                                                                                }
+                                                                                                                                                                File_system::US13::US13_1(v1529_1_0)
+                                                                                                                                                                =>
+                                                                                                                                                                {
+                                                                                                                                                                    let v1633:
+                                                                                                                                                                            string =
+                                                                                                                                                                        sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                 v1529_1_0.clone(),
+                                                                                                                                                                                 v371.clone(),
+                                                                                                                                                                                 v372.clone());
+                                                                                                                                                                    let v1636:
+                                                                                                                                                                            std::io::Error =
+                                                                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v1633);
+                                                                                                                                                                    Err(v1636)
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        } else {
+                                                                                                                                                            let v1662:
+                                                                                                                                                                    string =
+                                                                                                                                                                sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                         v0_1.clone(),
+                                                                                                                                                                         v371.clone(),
+                                                                                                                                                                         v336.clone(),
+                                                                                                                                                                         v372.clone());
+                                                                                                                                                            let v1665:
+                                                                                                                                                                    std::io::Error =
+                                                                                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v1662);
+                                                                                                                                                            Err(v1665)
+                                                                                                                                                        }
+                                                                                                                                                    } else {
+                                                                                                                                                        let v1690:
+                                                                                                                                                                string =
+                                                                                                                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                     v0_1.clone(),
+                                                                                                                                                                     v371,
+                                                                                                                                                                     v336.clone(),
+                                                                                                                                                                     v372.clone());
+                                                                                                                                                        let v1693:
+                                                                                                                                                                std::io::Error =
+                                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v1690);
+                                                                                                                                                        Err(v1693)
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            };
+                                                                                                                                        let v1720 =
+                                                                                                                                            File_system::method69();
+                                                                                                                                        let v1731:
+                                                                                                                                                Result<std::path::PathBuf,
+                                                                                                                                                       string> =
+                                                                                                                                            v1719.map_err(|x| v1720(x));
+                                                                                                                                        let v1734:
+                                                                                                                                                File_system::US13 =
+                                                                                                                                            match &v1731
+                                                                                                                                                {
+                                                                                                                                                Err(v1731_1_0)
+                                                                                                                                                =>
+                                                                                                                                                v24_1(v1731_1_0.clone()),
+                                                                                                                                                Ok(v1731_0_0)
+                                                                                                                                                =>
+                                                                                                                                                v23_1(v1731_0_0.clone()),
+                                                                                                                                            };
+                                                                                                                                        match &v1734
+                                                                                                                                            {
+                                                                                                                                            File_system::US13::US13_0(v1734_0_0)
+                                                                                                                                            =>
+                                                                                                                                            {
+                                                                                                                                                let v1760:
+                                                                                                                                                        string =
+                                                                                                                                                    File_system::method51(toString(v1734_0_0.clone().display()),
+                                                                                                                                                                          v317.clone());
+                                                                                                                                                let v1763:
+                                                                                                                                                        &str =
+                                                                                                                                                    &*v1760;
+                                                                                                                                                let v1784:
+                                                                                                                                                        std::string::String =
+                                                                                                                                                    String::from(v1763);
+                                                                                                                                                let v1805:
+                                                                                                                                                        std::path::PathBuf =
+                                                                                                                                                    std::path::PathBuf::from(v1784);
+                                                                                                                                                Ok(v1805)
+                                                                                                                                            }
+                                                                                                                                            File_system::US13::US13_1(v1734_1_0)
+                                                                                                                                            =>
+                                                                                                                                            {
+                                                                                                                                                let v1838:
+                                                                                                                                                        string =
+                                                                                                                                                    sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                             v1734_1_0.clone(),
+                                                                                                                                                             v316.clone(),
+                                                                                                                                                             v317.clone());
+                                                                                                                                                let v1841:
+                                                                                                                                                        std::io::Error =
+                                                                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v1838);
+                                                                                                                                                Err(v1841)
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    } else {
+                                                                                                                                        let v1867:
+                                                                                                                                                string =
+                                                                                                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                     v0_1.clone(),
+                                                                                                                                                     v316.clone(),
+                                                                                                                                                     v281.clone(),
+                                                                                                                                                     v317.clone());
+                                                                                                                                        let v1870:
+                                                                                                                                                std::io::Error =
+                                                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v1867);
+                                                                                                                                        Err(v1870)
+                                                                                                                                    }
+                                                                                                                                } else {
+                                                                                                                                    let v1895:
+                                                                                                                                            string =
+                                                                                                                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                 v0_1.clone(),
+                                                                                                                                                 v316,
+                                                                                                                                                 v281.clone(),
+                                                                                                                                                 v317.clone());
+                                                                                                                                    let v1898:
+                                                                                                                                            std::io::Error =
+                                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v1895);
+                                                                                                                                    Err(v1898)
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        };
+                                                                                                                    let v1925 =
+                                                                                                                        File_system::method69();
+                                                                                                                    let v1936:
+                                                                                                                            Result<std::path::PathBuf,
+                                                                                                                                   string> =
+                                                                                                                        v1924.map_err(|x| v1925(x));
+                                                                                                                    let v1939:
+                                                                                                                            File_system::US13 =
+                                                                                                                        match &v1936
+                                                                                                                            {
+                                                                                                                            Err(v1936_1_0)
+                                                                                                                            =>
+                                                                                                                            v24_1(v1936_1_0.clone()),
+                                                                                                                            Ok(v1936_0_0)
+                                                                                                                            =>
+                                                                                                                            v23_1(v1936_0_0.clone()),
+                                                                                                                        };
+                                                                                                                    match &v1939
+                                                                                                                        {
+                                                                                                                        File_system::US13::US13_0(v1939_0_0)
+                                                                                                                        =>
+                                                                                                                        {
+                                                                                                                            let v1965:
+                                                                                                                                    string =
+                                                                                                                                File_system::method51(toString(v1939_0_0.clone().display()),
+                                                                                                                                                      v262.clone());
+                                                                                                                            let v1968:
+                                                                                                                                    &str =
+                                                                                                                                &*v1965;
+                                                                                                                            let v1989:
+                                                                                                                                    std::string::String =
+                                                                                                                                String::from(v1968);
+                                                                                                                            let v2010:
+                                                                                                                                    std::path::PathBuf =
+                                                                                                                                std::path::PathBuf::from(v1989);
+                                                                                                                            Ok(v2010)
+                                                                                                                        }
+                                                                                                                        File_system::US13::US13_1(v1939_1_0)
+                                                                                                                        =>
+                                                                                                                        {
+                                                                                                                            let v2043:
+                                                                                                                                    string =
+                                                                                                                                sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                         v1939_1_0.clone(),
+                                                                                                                                         v261.clone(),
+                                                                                                                                         v262.clone());
+                                                                                                                            let v2046:
+                                                                                                                                    std::io::Error =
+                                                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v2043);
+                                                                                                                            Err(v2046)
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    let v2072:
+                                                                                                                            string =
+                                                                                                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                 v0_1.clone(),
+                                                                                                                                 v261.clone(),
+                                                                                                                                 v226.clone(),
+                                                                                                                                 v262.clone());
+                                                                                                                    let v2075:
+                                                                                                                            std::io::Error =
+                                                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v2072);
+                                                                                                                    Err(v2075)
+                                                                                                                }
+                                                                                                            } else {
+                                                                                                                let v2100:
+                                                                                                                        string =
+                                                                                                                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                             v0_1.clone(),
+                                                                                                                             v261,
+                                                                                                                             v226.clone(),
+                                                                                                                             v262.clone());
+                                                                                                                let v2103:
+                                                                                                                        std::io::Error =
+                                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v2100);
+                                                                                                                Err(v2103)
+                                                                                                            }
+                                                                                                        }
+                                                                                                    };
+                                                                                                let v2130 =
+                                                                                                    File_system::method69();
+                                                                                                let v2141:
+                                                                                                        Result<std::path::PathBuf,
+                                                                                                               string> =
+                                                                                                    v2129.map_err(|x| v2130(x));
+                                                                                                let v2144:
+                                                                                                        File_system::US13 =
+                                                                                                    match &v2141
+                                                                                                        {
+                                                                                                        Err(v2141_1_0)
+                                                                                                        =>
+                                                                                                        v24_1(v2141_1_0.clone()),
+                                                                                                        Ok(v2141_0_0)
+                                                                                                        =>
+                                                                                                        v23_1(v2141_0_0.clone()),
+                                                                                                    };
+                                                                                                match &v2144
+                                                                                                    {
+                                                                                                    File_system::US13::US13_0(v2144_0_0)
+                                                                                                    =>
+                                                                                                    {
+                                                                                                        let v2170:
+                                                                                                                string =
+                                                                                                            File_system::method51(toString(v2144_0_0.clone().display()),
+                                                                                                                                  v207.clone());
+                                                                                                        let v2173:
+                                                                                                                &str =
+                                                                                                            &*v2170;
+                                                                                                        let v2194:
+                                                                                                                std::string::String =
+                                                                                                            String::from(v2173);
+                                                                                                        let v2215:
+                                                                                                                std::path::PathBuf =
+                                                                                                            std::path::PathBuf::from(v2194);
+                                                                                                        Ok(v2215)
+                                                                                                    }
+                                                                                                    File_system::US13::US13_1(v2144_1_0)
+                                                                                                    =>
+                                                                                                    {
+                                                                                                        let v2248:
+                                                                                                                string =
+                                                                                                            sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                     v2144_1_0.clone(),
+                                                                                                                     v206.clone(),
+                                                                                                                     v207.clone());
+                                                                                                        let v2251:
+                                                                                                                std::io::Error =
+                                                                                                            std::io::Error::new(std::io::ErrorKind::Other, &*v2248);
+                                                                                                        Err(v2251)
+                                                                                                    }
+                                                                                                }
+                                                                                            } else {
+                                                                                                let v2277:
+                                                                                                        string =
+                                                                                                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                             v0_1.clone(),
+                                                                                                             v206.clone(),
+                                                                                                             v171.clone(),
+                                                                                                             v207.clone());
+                                                                                                let v2280:
+                                                                                                        std::io::Error =
+                                                                                                    std::io::Error::new(std::io::ErrorKind::Other, &*v2277);
+                                                                                                Err(v2280)
+                                                                                            }
+                                                                                        } else {
+                                                                                            let v2305:
+                                                                                                    string =
+                                                                                                sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                         v0_1.clone(),
+                                                                                                         v206,
+                                                                                                         v171.clone(),
+                                                                                                         v207.clone());
+                                                                                            let v2308:
+                                                                                                    std::io::Error =
+                                                                                                std::io::Error::new(std::io::ErrorKind::Other, &*v2305);
+                                                                                            Err(v2308)
+                                                                                        }
+                                                                    }
+                                                                };
+                                                                let v2335 = File_system::method69();
+                                                                let v2346: Result<
+                                                                    std::path::PathBuf,
+                                                                    string,
+                                                                > = v2334.map_err(|x| v2335(x));
+                                                                let v2349: File_system::US13 =
+                                                                    match &v2346 {
+                                                                        Err(v2346_1_0) => {
+                                                                            v24_1(v2346_1_0.clone())
+                                                                        }
+                                                                        Ok(v2346_0_0) => {
+                                                                            v23_1(v2346_0_0.clone())
+                                                                        }
+                                                                    };
+                                                                match &v2349 {
+                                                                    File_system::US13::US13_0(
+                                                                        v2349_0_0,
+                                                                    ) => {
+                                                                        let v2375: string =
+                                                                            File_system::method51(
+                                                                                toString(
+                                                                                    v2349_0_0
+                                                                                        .clone()
+                                                                                        .display(),
+                                                                                ),
+                                                                                v152.clone(),
+                                                                            );
+                                                                        let v2378: &str = &*v2375;
+                                                                        let v2399:
+                                                                                            std::string::String =
+                                                                                        String::from(v2378);
+                                                                        let v2420:
+                                                                                            std::path::PathBuf =
+                                                                                        std::path::PathBuf::from(v2399);
+                                                                        Ok(v2420)
+                                                                    }
+                                                                    File_system::US13::US13_1(
+                                                                        v2349_1_0,
+                                                                    ) => {
+                                                                        let v2453:
+                                                                                            string =
+                                                                                        sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                 v2349_1_0.clone(),
+                                                                                                 v151.clone(),
+                                                                                                 v152.clone());
+                                                                        let v2456:
+                                                                                            std::io::Error =
+                                                                                        std::io::Error::new(std::io::ErrorKind::Other, &*v2453);
+                                                                        Err(v2456)
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                let v2482:
+                                                                                    string =
+                                                                                sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                         v0_1.clone(),
+                                                                                         v151.clone(),
+                                                                                         v116.clone(),
+                                                                                         v152.clone());
+                                                                let v2485: std::io::Error =
+                                                                    std::io::Error::new(
+                                                                        std::io::ErrorKind::Other,
+                                                                        &*v2482,
+                                                                    );
+                                                                Err(v2485)
+                                                            }
+                                                        } else {
+                                                            let v2510:
+                                                                                string =
+                                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                     v0_1.clone(),
+                                                                                     v151,
+                                                                                     v116.clone(),
+                                                                                     v152.clone());
+                                                            let v2513: std::io::Error =
+                                                                std::io::Error::new(
+                                                                    std::io::ErrorKind::Other,
+                                                                    &*v2510,
+                                                                );
+                                                            Err(v2513)
+                                                        }
+                                                    }
+                                                };
+                                                let v2540 = File_system::method69();
+                                                let v2551: Result<std::path::PathBuf, string> =
+                                                    v2539.map_err(|x| v2540(x));
+                                                let v2554: File_system::US13 = match &v2551 {
+                                                    Err(v2551_1_0) => v24_1(v2551_1_0.clone()),
+                                                    Ok(v2551_0_0) => v23_1(v2551_0_0.clone()),
+                                                };
+                                                match &v2554 {
+                                                    File_system::US13::US13_0(v2554_0_0) => {
+                                                        let v2580: string = File_system::method51(
+                                                            toString(v2554_0_0.clone().display()),
+                                                            v97.clone(),
+                                                        );
+                                                        let v2583: &str = &*v2580;
+                                                        let v2604: std::string::String =
+                                                            String::from(v2583);
+                                                        let v2625: std::path::PathBuf =
+                                                            std::path::PathBuf::from(v2604);
+                                                        Ok(v2625)
+                                                    }
+                                                    File_system::US13::US13_1(v2554_1_0) => {
+                                                        let v2658:
+                                                                        string =
+                                                                    sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                             v2554_1_0.clone(),
+                                                                             v96.clone(),
+                                                                             v97.clone());
+                                                        let v2661: std::io::Error =
+                                                            std::io::Error::new(
+                                                                std::io::ErrorKind::Other,
+                                                                &*v2658,
+                                                            );
+                                                        Err(v2661)
+                                                    }
+                                                }
+                                            } else {
+                                                let v2687: string =
+                                                            sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                     v0_1.clone(),
+                                                                     v96.clone(),
+                                                                     v60.clone(),
+                                                                     v97.clone());
+                                                let v2690: std::io::Error = std::io::Error::new(
+                                                    std::io::ErrorKind::Other,
+                                                    &*v2687,
+                                                );
+                                                Err(v2690)
+                                            }
+                                        } else {
+                                            let v2715: string =
+                                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                 v0_1.clone(),
+                                                                 v96,
+                                                                 v60.clone(),
+                                                                 v97.clone());
+                                            let v2718: std::io::Error = std::io::Error::new(
+                                                std::io::ErrorKind::Other,
+                                                &*v2715,
+                                            );
+                                            Err(v2718)
+                                        }
+                                    }
+                                };
+                                let v2745 = File_system::method69();
+                                let v2756: Result<std::path::PathBuf, string> =
+                                    v2744.map_err(|x| v2745(x));
+                                let v2759: File_system::US13 = match &v2756 {
+                                    Err(v2756_1_0) => v24_1(v2756_1_0.clone()),
+                                    Ok(v2756_0_0) => v23_1(v2756_0_0.clone()),
+                                };
+                                match &v2759 {
+                                    File_system::US13::US13_0(v2759_0_0) => {
+                                        let v2785: string = File_system::method51(
+                                            toString(v2759_0_0.clone().display()),
+                                            v41.clone(),
+                                        );
+                                        let v2788: &str = &*v2785;
+                                        let v2809: std::string::String = String::from(v2788);
+                                        let v2830: std::path::PathBuf =
+                                            std::path::PathBuf::from(v2809);
+                                        Ok(v2830)
+                                    }
+                                    File_system::US13::US13_1(v2759_1_0) => {
+                                        let v2863: string =
+                                                sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                         v2759_1_0.clone(),
+                                                         v40.clone(),
+                                                         v41.clone());
+                                        let v2866: std::io::Error =
+                                            std::io::Error::new(std::io::ErrorKind::Other, &*v2863);
+                                        Err(v2866)
+                                    }
+                                }
+                            } else {
+                                let v2892: string =
+                                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                 v0_1.clone(), v40.clone(),
+                                                 v0_1.clone(), v41.clone());
+                                let v2895: std::io::Error =
+                                    std::io::Error::new(std::io::ErrorKind::Other, &*v2892);
+                                Err(v2895)
+                            }
+                        } else {
+                            let v2920: string =
+                                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                             v0_1.clone(), v40, v0_1.clone(),
+                                             v41.clone());
+                            let v2923: std::io::Error =
+                                std::io::Error::new(std::io::ErrorKind::Other, &*v2920);
+                            Err(v2923)
+                        }
+                    }
+                }
+            };
+            let v13137: Option<std::path::PathBuf> = v2950.ok();
+            let v13161: File_system::US14 = defaultValue(
+                File_system::US14::US14_1,
+                map(File_system::method73(), v13137),
+            );
+            let v13193: string = match &v13161 {
+                File_system::US14::US14_0(v13161_0_0) => {
+                    let v13187: string = toString(
+                        match &v13161 {
+                            File_system::US14::US14_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }
+                        .display(),
+                    );
+                    if v13187.clone() == string("") {
+                        v0_1.clone()
+                    } else {
+                        v13187
+                    }
+                }
+                _ => v0_1.clone(),
+            };
+            if v13193.clone() == string("") {
+                string("")
+            } else {
+                let v13200: Result<regex::Regex, regex::Error> =
+                    regex::Regex::new(&string("^\\\\\\\\\\?\\\\"));
+                let v13203: regex::Regex = v13200.unwrap();
+                let v13214: string = File_system::method74(v13193);
+                let v13216: std::borrow::Cow<str> = v13203.replace_all(&*v13214, &*string(""));
+                let v13218: std::string::String = String::from(v13216);
+                let v13234: string = fable_library_rust::String_::fromString(v13218);
+                replace(
+                    sprintf!(
+                        "{}{}",
+                        toLower(ofChar(getCharAt(v13234.clone(), 0_i32))),
+                        getSlice(v13234, Some(1_i32), None::<i32>)
+                    ),
+                    string("\\"),
+                    string("/"),
+                )
+            }
+        }
+    }
+    pub fn closure45(unitVar: (), v0_1: string) -> string {
+        File_system::method68(v0_1)
+    }
+    pub fn closure50(unitVar: (), v0_1: string) -> string {
+        sprintf!("file:///{}", trimStartChars(v0_1, toArray(singleton('/'))))
+    }
+    pub fn closure52(unitVar: (), v0_1: string) -> Option<string> {
+        File_system::method71(v0_1)
+    }
+    pub fn method76() -> Func1<string, Option<string>> {
+        Func1::new(move |v: string| File_system::closure52((), v))
+    }
+    pub fn method77(v0_1: string, v1_1: string, v2_1: string) -> File_system::US15 {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method73: loop {
-            break '_method73 (if File_system::method9(File_system::method51(
+        '_method77: loop {
+            break '_method77 (if File_system::method9(File_system::method51(
                 v2_1.get().clone(),
                 v0_1.get().clone(),
             )) {
-                File_system::US13::US13_0(v2_1.get().clone())
+                File_system::US15::US15_0(v2_1.get().clone())
             } else {
-                let v7: Option<string> = (File_system::method71())(v2_1.get().clone());
+                let v7: Option<string> = (File_system::method76())(v2_1.get().clone());
                 let v21_1: File_system::US1 =
                     defaultValue(File_system::US1::US1_1, map(File_system::method4(), v7));
                 match &v21_1 {
@@ -2473,9 +4082,9 @@ pub mod File_system {
                         v0_1.set(v0_1_temp);
                         v1_1.set(v1_1_temp);
                         v2_1.set(v2_1_temp);
-                        continue '_method73;
+                        continue '_method77;
                     }
-                    _ => File_system::US13::US13_1(sprintf!(
+                    _ => File_system::US15::US15_1(sprintf!(
                         "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                         string("dir"),
                         v0_1.get().clone(),
@@ -2486,15 +4095,15 @@ pub mod File_system {
             });
         }
     }
-    pub fn method70(v0_1: string, v1_1: string) -> File_system::US13 {
+    pub fn method75(v0_1: string, v1_1: string) -> File_system::US15 {
         if File_system::method9(File_system::method51(v1_1.clone(), v0_1.clone())) {
-            File_system::US13::US13_0(v1_1.clone())
+            File_system::US15::US15_0(v1_1.clone())
         } else {
-            let v6: Option<string> = (File_system::method71())(v1_1.clone());
+            let v6: Option<string> = (File_system::method76())(v1_1.clone());
             let v20_1: File_system::US1 =
                 defaultValue(File_system::US1::US1_1, map(File_system::method4(), v6));
             match &v20_1 {
-                File_system::US1::US1_0(v20_1_0_0) => File_system::method73(
+                File_system::US1::US1_0(v20_1_0_0) => File_system::method77(
                     v0_1.clone(),
                     v1_1.clone(),
                     match &v20_1 {
@@ -2502,7 +4111,7 @@ pub mod File_system {
                         _ => unreachable!(),
                     },
                 ),
-                _ => File_system::US13::US13_1(sprintf!(
+                _ => File_system::US15::US15_1(sprintf!(
                     "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                     string("dir"),
                     v0_1.clone(),
@@ -2512,7 +4121,7 @@ pub mod File_system {
             }
         }
     }
-    pub fn method74(v0_1: string) -> string {
+    pub fn method78(v0_1: string) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
             l0: MutCell::new(File_system::method18()),
         });
@@ -2538,7 +4147,7 @@ pub mod File_system {
         };
         v2_1.l0.get().clone()
     }
-    pub fn method75(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
+    pub fn method79(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
         trimEndChars(
             trimStartChars(
                 sprintf!(
@@ -2554,7 +4163,7 @@ pub mod File_system {
             toArray(ofArray(new_array(&[' ', '/']))),
         )
     }
-    pub fn closure49(v0_1: string, unitVar: ()) {
+    pub fn closure53(v0_1: string, unitVar: ()) {
         fn v2_1() {
             File_system::closure0((), ());
         }
@@ -2599,7 +4208,7 @@ pub mod File_system {
                 Option<i64>,
             ) = getValue(File_system::TraceState::trace_state().get().clone());
             let v56: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v78: string = File_system::method75(
+            let v78: string = File_system::method79(
                 File_system::method10(
                     v56.clone(),
                     patternInput_1.1.clone(),
@@ -2610,7 +4219,7 @@ pub mod File_system {
                 ),
                 File_system::method29(),
                 v56.l0.get().clone(),
-                File_system::method74(v0_1),
+                File_system::method78(v0_1),
             );
             let v80: () = {
                 v2_1();
@@ -2635,23 +4244,23 @@ pub mod File_system {
             )
         }
     }
-    pub fn method76() -> string {
+    pub fn method80() -> string {
         let v2_1: Result<std::path::PathBuf, std::io::Error> = std::env::current_dir();
-        let v4: std::path::PathBuf = v2_1.unwrap();
-        let v6: std::path::Display = v4.display();
-        let v9: std::string::String = format!("{}", v6);
-        fable_library_rust::String_::fromString(v9)
+        let v5: std::path::PathBuf = v2_1.unwrap();
+        let v18_1: std::path::Display = v5.display();
+        let v39: std::string::String = format!("{}", v18_1);
+        fable_library_rust::String_::fromString(v39)
     }
-    pub fn closure47(unitVar: (), unitVar_1: ()) -> string {
-        let v4: File_system::US13 = File_system::method70(
+    pub fn closure51(unitVar: (), unitVar_1: ()) -> string {
+        let v4: File_system::US15 = File_system::method75(
             File_system::method51(string("polyglot"), string(".devcontainer")),
             string("C:\\home\\git\\polyglot\\lib\\spiral"),
         );
         let v124: File_system::US1 = match &v4 {
-            File_system::US13::US13_0(v4_0_0) => File_system::US1::US1_0(v4_0_0.clone()),
-            File_system::US13::US13_1(v4_1_0) => {
+            File_system::US15::US15_0(v4_0_0) => File_system::US1::US1_0(v4_0_0.clone()),
+            File_system::US15::US15_1(v4_1_0) => {
                 let v10: () = {
-                    File_system::closure49(v4_1_0.clone(), ());
+                    File_system::closure53(v4_1_0.clone(), ());
                     ()
                 };
                 File_system::US1::US1_1
@@ -2663,18 +4272,18 @@ pub mod File_system {
                 _ => unreachable!(),
             }),
             _ => {
-                let v127: string = File_system::method76();
-                let v129: File_system::US13 = File_system::method70(
+                let v127: string = File_system::method80();
+                let v129: File_system::US15 = File_system::method75(
                     File_system::method51(string("polyglot"), string(".devcontainer")),
                     v127,
                 );
                 match &v129 {
-                    File_system::US13::US13_0(v129_0_0) => {
+                    File_system::US15::US15_0(v129_0_0) => {
                         File_system::US1::US1_0(v129_0_0.clone())
                     }
-                    File_system::US13::US13_1(v129_1_0) => {
+                    File_system::US15::US15_1(v129_1_0) => {
                         let v135: () = {
-                            File_system::closure49(v129_1_0.clone(), ());
+                            File_system::closure53(v129_1_0.clone(), ());
                             ()
                         };
                         File_system::US1::US1_1
@@ -2693,14 +4302,14 @@ pub mod File_system {
             string("polyglot"),
         )
     }
-    pub fn method77(v0_1: string) {
+    pub fn method81(v0_1: string) {
         ();
         ()
     }
-    pub fn closure51(unitVar: (), v0_1: string) {
-        File_system::method77(v0_1);
+    pub fn closure55(unitVar: (), v0_1: string) {
+        File_system::method81(v0_1);
     }
-    pub fn closure50(unitVar: (), v0_1: bool) {
+    pub fn closure54(unitVar: (), v0_1: bool) {
         let v3: () = {
             File_system::closure0((), ());
             ()
@@ -2714,71 +4323,1612 @@ pub mod File_system {
             Option<i64>,
         ) = getValue(File_system::TraceState::trace_state().get().clone());
         let v37 = if v0_1 {
-            Func1::new(move |v: string| File_system::closure51((), v))
+            Func1::new(move |v: string| File_system::closure55((), v))
         } else {
             Func1::new(move |v_1: string| File_system::closure2((), v_1))
         };
         (patternInput.1.clone()).l0.set(v37);
         ()
     }
-    pub fn method79(v0_1: string) -> string {
-        let v3: &str = &*v0_1;
-        let v5: std::string::String = String::from(v3);
-        let v7: std::path::PathBuf = std::path::PathBuf::from(v5);
-        let v9: Option<&std::path::Path> = v7.parent();
-        let v11: &std::path::Path = v9.unwrap();
-        let v13: std::path::Display = v11.display();
-        let v16_1: std::string::String = format!("{}", v13);
-        fable_library_rust::String_::fromString(v16_1)
-    }
-    pub fn method78(v0_1: string, v1_1: string) {
+    pub fn method82(v0_1: string, v1_1: string) {
         if File_system::method9(v0_1.clone()) == false {
             let v4: LrcPtr<dyn IDisposable> = File_system::method56(v0_1.clone());
             ()
         }
         {
-            let v5: string = File_system::method79(v1_1.clone());
+            let v5: string = File_system::method72(v1_1.clone());
             if File_system::method9(v5.clone()) == false {
                 let v8: LrcPtr<dyn IDisposable> = File_system::method56(v5);
                 ()
             }
             if if File_system::method9(v1_1.clone()) {
-                let v12: Result<std::path::PathBuf, std::io::Error> =
-                    std::fs::read_link(&*v1_1.clone());
-                v12.is_err()
+                let v2957: Result<std::path::PathBuf, std::io::Error> = if File_system::method9(
+                    v1_1.clone(),
+                ) {
+                    std::fs::read_link(&*v1_1.clone())
+                } else {
+                    let v15: Result<std::path::PathBuf, std::io::Error> =
+                        std::fs::read_link(&*v1_1.clone());
+                    let v16_1 = File_system::method69();
+                    let v27_1: Result<std::path::PathBuf, string> = v15.map_err(|x| v16_1(x));
+                    fn v30_1(v: std::path::PathBuf) -> File_system::US13 {
+                        File_system::closure47((), v)
+                    }
+                    fn v31_1(v_1: string) -> File_system::US13 {
+                        File_system::closure48((), v_1)
+                    }
+                    let v32_1: File_system::US13 = match &v27_1 {
+                        Err(v27_1_1_0) => v31_1(v27_1_1_0.clone()),
+                        Ok(v27_1_0_0) => v30_1(v27_1_0_0.clone()),
+                    };
+                    match &v32_1 {
+                        File_system::US13::US13_0(v32_1_0_0) => Ok(v32_1_0_0.clone()),
+                        File_system::US13::US13_1(v32_1_1_0) => {
+                            let v47: string = v32_1_1_0.clone();
+                            let v48: string = File_system::method16(v1_1.clone());
+                            let v49: Option<string> = File_system::method71(v1_1.clone());
+                            let v63: File_system::US1 = defaultValue(
+                                File_system::US1::US1_1,
+                                map(File_system::method4(), v49),
+                            );
+                            if let File_system::US1::US1_0(v63_0_0) = &v63 {
+                                let v67: string = match &v63 {
+                                    File_system::US1::US1_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                if v1_1.clone() != string("") {
+                                    let v73: Result<std::path::PathBuf, std::io::Error> =
+                                        std::fs::read_link(&*v67.clone());
+                                    let v74 = File_system::method69();
+                                    let v85: Result<std::path::PathBuf, string> =
+                                        v73.map_err(|x| v74(x));
+                                    let v88: File_system::US13 = match &v85 {
+                                        Err(v85_1_0) => v31_1(v85_1_0.clone()),
+                                        Ok(v85_0_0) => v30_1(v85_0_0.clone()),
+                                    };
+                                    let v2751: Result<std::path::PathBuf, std::io::Error> =
+                                        match &v88 {
+                                            File_system::US13::US13_0(v88_0_0) => {
+                                                Ok(v88_0_0.clone())
+                                            }
+                                            File_system::US13::US13_1(v88_1_0) => {
+                                                let v103: string = v88_1_0.clone();
+                                                let v104: string =
+                                                    File_system::method16(v67.clone());
+                                                let v105: Option<string> =
+                                                    File_system::method71(v67.clone());
+                                                let v119: File_system::US1 = defaultValue(
+                                                    File_system::US1::US1_1,
+                                                    map(File_system::method4(), v105),
+                                                );
+                                                if let File_system::US1::US1_0(v119_0_0) = &v119 {
+                                                    let v123: string = match &v119 {
+                                                        File_system::US1::US1_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    };
+                                                    if v67.clone() != string("") {
+                                                        let v128: Result<
+                                                            std::path::PathBuf,
+                                                            std::io::Error,
+                                                        > = std::fs::read_link(&*v123.clone());
+                                                        let v129 = File_system::method69();
+                                                        let v140: Result<
+                                                            std::path::PathBuf,
+                                                            string,
+                                                        > = v128.map_err(|x| v129(x));
+                                                        let v143: File_system::US13 = match &v140 {
+                                                            Err(v140_1_0) => {
+                                                                v31_1(v140_1_0.clone())
+                                                            }
+                                                            Ok(v140_0_0) => v30_1(v140_0_0.clone()),
+                                                        };
+                                                        let v2546: Result<
+                                                            std::path::PathBuf,
+                                                            std::io::Error,
+                                                        > = match &v143 {
+                                                            File_system::US13::US13_0(v143_0_0) => {
+                                                                Ok(v143_0_0.clone())
+                                                            }
+                                                            File_system::US13::US13_1(v143_1_0) => {
+                                                                let v158: string = v143_1_0.clone();
+                                                                let v159: string =
+                                                                    File_system::method16(
+                                                                        v123.clone(),
+                                                                    );
+                                                                let v160: Option<string> =
+                                                                    File_system::method71(
+                                                                        v123.clone(),
+                                                                    );
+                                                                let v174: File_system::US1 =
+                                                                    defaultValue(
+                                                                        File_system::US1::US1_1,
+                                                                        map(
+                                                                            File_system::method4(),
+                                                                            v160,
+                                                                        ),
+                                                                    );
+                                                                if let File_system::US1::US1_0(
+                                                                    v174_0_0,
+                                                                ) = &v174
+                                                                {
+                                                                    let v178: string = match &v174 {
+                                                                        File_system::US1::US1_0(
+                                                                            x,
+                                                                        ) => x.clone(),
+                                                                        _ => unreachable!(),
+                                                                    };
+                                                                    if v123.clone() != string("") {
+                                                                        let v183: Result<
+                                                                            std::path::PathBuf,
+                                                                            std::io::Error,
+                                                                        > = std::fs::read_link(
+                                                                            &*v178.clone(),
+                                                                        );
+                                                                        let v184 =
+                                                                            File_system::method69();
+                                                                        let v195: Result<
+                                                                            std::path::PathBuf,
+                                                                            string,
+                                                                        > = v183
+                                                                            .map_err(|x| v184(x));
+                                                                        let v198:
+                                                                                           File_system::US13 =
+                                                                                       match &v195
+                                                                                           {
+                                                                                           Err(v195_1_0)
+                                                                                           =>
+                                                                                           v31_1(v195_1_0.clone()),
+                                                                                           Ok(v195_0_0)
+                                                                                           =>
+                                                                                           v30_1(v195_0_0.clone()),
+                                                                                       };
+                                                                        let v2341:
+                                                                                           Result<std::path::PathBuf,
+                                                                                                  std::io::Error> =
+                                                                                       match &v198
+                                                                                           {
+                                                                                           File_system::US13::US13_0(v198_0_0)
+                                                                                           =>
+                                                                                           Ok(v198_0_0.clone()),
+                                                                                           File_system::US13::US13_1(v198_1_0)
+                                                                                           =>
+                                                                                           {
+                                                                                               let v213:
+                                                                                                       string =
+                                                                                                   v198_1_0.clone();
+                                                                                               let v214:
+                                                                                                       string =
+                                                                                                   File_system::method16(v178.clone());
+                                                                                               let v215:
+                                                                                                       Option<string> =
+                                                                                                   File_system::method71(v178.clone());
+                                                                                               let v229:
+                                                                                                       File_system::US1 =
+                                                                                                   defaultValue(File_system::US1::US1_1,
+                                                                                                                map(File_system::method4(),
+                                                                                                                    v215));
+                                                                                               if let File_system::US1::US1_0(v229_0_0)
+                                                                                                      =
+                                                                                                      &v229
+                                                                                                  {
+                                                                                                   let v233:
+                                                                                                           string =
+                                                                                                       match &v229
+                                                                                                           {
+                                                                                                           File_system::US1::US1_0(x)
+                                                                                                           =>
+                                                                                                           x.clone(),
+                                                                                                           _
+                                                                                                           =>
+                                                                                                           unreachable!(),
+                                                                                                       };
+                                                                                                   if v178.clone()
+                                                                                                          !=
+                                                                                                          string("")
+                                                                                                      {
+                                                                                                       let v238:
+                                                                                                               Result<std::path::PathBuf,
+                                                                                                                      std::io::Error> =
+                                                                                                           std::fs::read_link(&*v233.clone());
+                                                                                                       let v239 =
+                                                                                                           File_system::method69();
+                                                                                                       let v250:
+                                                                                                               Result<std::path::PathBuf,
+                                                                                                                      string> =
+                                                                                                           v238.map_err(|x| v239(x));
+                                                                                                       let v253:
+                                                                                                               File_system::US13 =
+                                                                                                           match &v250
+                                                                                                               {
+                                                                                                               Err(v250_1_0)
+                                                                                                               =>
+                                                                                                               v31_1(v250_1_0.clone()),
+                                                                                                               Ok(v250_0_0)
+                                                                                                               =>
+                                                                                                               v30_1(v250_0_0.clone()),
+                                                                                                           };
+                                                                                                       let v2136:
+                                                                                                               Result<std::path::PathBuf,
+                                                                                                                      std::io::Error> =
+                                                                                                           match &v253
+                                                                                                               {
+                                                                                                               File_system::US13::US13_0(v253_0_0)
+                                                                                                               =>
+                                                                                                               Ok(v253_0_0.clone()),
+                                                                                                               File_system::US13::US13_1(v253_1_0)
+                                                                                                               =>
+                                                                                                               {
+                                                                                                                   let v268:
+                                                                                                                           string =
+                                                                                                                       v253_1_0.clone();
+                                                                                                                   let v269:
+                                                                                                                           string =
+                                                                                                                       File_system::method16(v233.clone());
+                                                                                                                   let v270:
+                                                                                                                           Option<string> =
+                                                                                                                       File_system::method71(v233.clone());
+                                                                                                                   let v284:
+                                                                                                                           File_system::US1 =
+                                                                                                                       defaultValue(File_system::US1::US1_1,
+                                                                                                                                    map(File_system::method4(),
+                                                                                                                                        v270));
+                                                                                                                   if let File_system::US1::US1_0(v284_0_0)
+                                                                                                                          =
+                                                                                                                          &v284
+                                                                                                                      {
+                                                                                                                       let v288:
+                                                                                                                               string =
+                                                                                                                           match &v284
+                                                                                                                               {
+                                                                                                                               File_system::US1::US1_0(x)
+                                                                                                                               =>
+                                                                                                                               x.clone(),
+                                                                                                                               _
+                                                                                                                               =>
+                                                                                                                               unreachable!(),
+                                                                                                                           };
+                                                                                                                       if v233.clone()
+                                                                                                                              !=
+                                                                                                                              string("")
+                                                                                                                          {
+                                                                                                                           let v293:
+                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                          std::io::Error> =
+                                                                                                                               std::fs::read_link(&*v288.clone());
+                                                                                                                           let v294 =
+                                                                                                                               File_system::method69();
+                                                                                                                           let v305:
+                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                          string> =
+                                                                                                                               v293.map_err(|x| v294(x));
+                                                                                                                           let v308:
+                                                                                                                                   File_system::US13 =
+                                                                                                                               match &v305
+                                                                                                                                   {
+                                                                                                                                   Err(v305_1_0)
+                                                                                                                                   =>
+                                                                                                                                   v31_1(v305_1_0.clone()),
+                                                                                                                                   Ok(v305_0_0)
+                                                                                                                                   =>
+                                                                                                                                   v30_1(v305_0_0.clone()),
+                                                                                                                               };
+                                                                                                                           let v1931:
+                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                          std::io::Error> =
+                                                                                                                               match &v308
+                                                                                                                                   {
+                                                                                                                                   File_system::US13::US13_0(v308_0_0)
+                                                                                                                                   =>
+                                                                                                                                   Ok(v308_0_0.clone()),
+                                                                                                                                   File_system::US13::US13_1(v308_1_0)
+                                                                                                                                   =>
+                                                                                                                                   {
+                                                                                                                                       let v323:
+                                                                                                                                               string =
+                                                                                                                                           v308_1_0.clone();
+                                                                                                                                       let v324:
+                                                                                                                                               string =
+                                                                                                                                           File_system::method16(v288.clone());
+                                                                                                                                       let v325:
+                                                                                                                                               Option<string> =
+                                                                                                                                           File_system::method71(v288.clone());
+                                                                                                                                       let v339:
+                                                                                                                                               File_system::US1 =
+                                                                                                                                           defaultValue(File_system::US1::US1_1,
+                                                                                                                                                        map(File_system::method4(),
+                                                                                                                                                            v325));
+                                                                                                                                       if let File_system::US1::US1_0(v339_0_0)
+                                                                                                                                              =
+                                                                                                                                              &v339
+                                                                                                                                          {
+                                                                                                                                           let v343:
+                                                                                                                                                   string =
+                                                                                                                                               match &v339
+                                                                                                                                                   {
+                                                                                                                                                   File_system::US1::US1_0(x)
+                                                                                                                                                   =>
+                                                                                                                                                   x.clone(),
+                                                                                                                                                   _
+                                                                                                                                                   =>
+                                                                                                                                                   unreachable!(),
+                                                                                                                                               };
+                                                                                                                                           if v288.clone()
+                                                                                                                                                  !=
+                                                                                                                                                  string("")
+                                                                                                                                              {
+                                                                                                                                               let v348:
+                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                              std::io::Error> =
+                                                                                                                                                   std::fs::read_link(&*v343.clone());
+                                                                                                                                               let v349 =
+                                                                                                                                                   File_system::method69();
+                                                                                                                                               let v360:
+                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                              string> =
+                                                                                                                                                   v348.map_err(|x| v349(x));
+                                                                                                                                               let v363:
+                                                                                                                                                       File_system::US13 =
+                                                                                                                                                   match &v360
+                                                                                                                                                       {
+                                                                                                                                                       Err(v360_1_0)
+                                                                                                                                                       =>
+                                                                                                                                                       v31_1(v360_1_0.clone()),
+                                                                                                                                                       Ok(v360_0_0)
+                                                                                                                                                       =>
+                                                                                                                                                       v30_1(v360_0_0.clone()),
+                                                                                                                                                   };
+                                                                                                                                               let v1726:
+                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                              std::io::Error> =
+                                                                                                                                                   match &v363
+                                                                                                                                                       {
+                                                                                                                                                       File_system::US13::US13_0(v363_0_0)
+                                                                                                                                                       =>
+                                                                                                                                                       Ok(v363_0_0.clone()),
+                                                                                                                                                       File_system::US13::US13_1(v363_1_0)
+                                                                                                                                                       =>
+                                                                                                                                                       {
+                                                                                                                                                           let v378:
+                                                                                                                                                                   string =
+                                                                                                                                                               v363_1_0.clone();
+                                                                                                                                                           let v379:
+                                                                                                                                                                   string =
+                                                                                                                                                               File_system::method16(v343.clone());
+                                                                                                                                                           let v380:
+                                                                                                                                                                   Option<string> =
+                                                                                                                                                               File_system::method71(v343.clone());
+                                                                                                                                                           let v394:
+                                                                                                                                                                   File_system::US1 =
+                                                                                                                                                               defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                            map(File_system::method4(),
+                                                                                                                                                                                v380));
+                                                                                                                                                           if let File_system::US1::US1_0(v394_0_0)
+                                                                                                                                                                  =
+                                                                                                                                                                  &v394
+                                                                                                                                                              {
+                                                                                                                                                               let v398:
+                                                                                                                                                                       string =
+                                                                                                                                                                   match &v394
+                                                                                                                                                                       {
+                                                                                                                                                                       File_system::US1::US1_0(x)
+                                                                                                                                                                       =>
+                                                                                                                                                                       x.clone(),
+                                                                                                                                                                       _
+                                                                                                                                                                       =>
+                                                                                                                                                                       unreachable!(),
+                                                                                                                                                                   };
+                                                                                                                                                               if v343.clone()
+                                                                                                                                                                      !=
+                                                                                                                                                                      string("")
+                                                                                                                                                                  {
+                                                                                                                                                                   let v403:
+                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                  std::io::Error> =
+                                                                                                                                                                       std::fs::read_link(&*v398.clone());
+                                                                                                                                                                   let v404 =
+                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                   let v415:
+                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                  string> =
+                                                                                                                                                                       v403.map_err(|x| v404(x));
+                                                                                                                                                                   let v418:
+                                                                                                                                                                           File_system::US13 =
+                                                                                                                                                                       match &v415
+                                                                                                                                                                           {
+                                                                                                                                                                           Err(v415_1_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           v31_1(v415_1_0.clone()),
+                                                                                                                                                                           Ok(v415_0_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           v30_1(v415_0_0.clone()),
+                                                                                                                                                                       };
+                                                                                                                                                                   let v1521:
+                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                  std::io::Error> =
+                                                                                                                                                                       match &v418
+                                                                                                                                                                           {
+                                                                                                                                                                           File_system::US13::US13_0(v418_0_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           Ok(v418_0_0.clone()),
+                                                                                                                                                                           File_system::US13::US13_1(v418_1_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           {
+                                                                                                                                                                               let v433:
+                                                                                                                                                                                       string =
+                                                                                                                                                                                   v418_1_0.clone();
+                                                                                                                                                                               let v434:
+                                                                                                                                                                                       string =
+                                                                                                                                                                                   File_system::method16(v398.clone());
+                                                                                                                                                                               let v435:
+                                                                                                                                                                                       Option<string> =
+                                                                                                                                                                                   File_system::method71(v398.clone());
+                                                                                                                                                                               let v449:
+                                                                                                                                                                                       File_system::US1 =
+                                                                                                                                                                                   defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                map(File_system::method4(),
+                                                                                                                                                                                                    v435));
+                                                                                                                                                                               if let File_system::US1::US1_0(v449_0_0)
+                                                                                                                                                                                      =
+                                                                                                                                                                                      &v449
+                                                                                                                                                                                  {
+                                                                                                                                                                                   let v453:
+                                                                                                                                                                                           string =
+                                                                                                                                                                                       match &v449
+                                                                                                                                                                                           {
+                                                                                                                                                                                           File_system::US1::US1_0(x)
+                                                                                                                                                                                           =>
+                                                                                                                                                                                           x.clone(),
+                                                                                                                                                                                           _
+                                                                                                                                                                                           =>
+                                                                                                                                                                                           unreachable!(),
+                                                                                                                                                                                       };
+                                                                                                                                                                                   if v398.clone()
+                                                                                                                                                                                          !=
+                                                                                                                                                                                          string("")
+                                                                                                                                                                                      {
+                                                                                                                                                                                       let v458:
+                                                                                                                                                                                               Result<std::path::PathBuf,
+                                                                                                                                                                                                      std::io::Error> =
+                                                                                                                                                                                           std::fs::read_link(&*v453.clone());
+                                                                                                                                                                                       let v459 =
+                                                                                                                                                                                           File_system::method69();
+                                                                                                                                                                                       let v470:
+                                                                                                                                                                                               Result<std::path::PathBuf,
+                                                                                                                                                                                                      string> =
+                                                                                                                                                                                           v458.map_err(|x| v459(x));
+                                                                                                                                                                                       let v473:
+                                                                                                                                                                                               File_system::US13 =
+                                                                                                                                                                                           match &v470
+                                                                                                                                                                                               {
+                                                                                                                                                                                               Err(v470_1_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               v31_1(v470_1_0.clone()),
+                                                                                                                                                                                               Ok(v470_0_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               v30_1(v470_0_0.clone()),
+                                                                                                                                                                                           };
+                                                                                                                                                                                       let v1316:
+                                                                                                                                                                                               Result<std::path::PathBuf,
+                                                                                                                                                                                                      std::io::Error> =
+                                                                                                                                                                                           match &v473
+                                                                                                                                                                                               {
+                                                                                                                                                                                               File_system::US13::US13_0(v473_0_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               Ok(v473_0_0.clone()),
+                                                                                                                                                                                               File_system::US13::US13_1(v473_1_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               {
+                                                                                                                                                                                                   let v488:
+                                                                                                                                                                                                           string =
+                                                                                                                                                                                                       v473_1_0.clone();
+                                                                                                                                                                                                   let v489:
+                                                                                                                                                                                                           string =
+                                                                                                                                                                                                       File_system::method16(v453.clone());
+                                                                                                                                                                                                   let v490:
+                                                                                                                                                                                                           Option<string> =
+                                                                                                                                                                                                       File_system::method71(v453.clone());
+                                                                                                                                                                                                   let v504:
+                                                                                                                                                                                                           File_system::US1 =
+                                                                                                                                                                                                       defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                    map(File_system::method4(),
+                                                                                                                                                                                                                        v490));
+                                                                                                                                                                                                   if let File_system::US1::US1_0(v504_0_0)
+                                                                                                                                                                                                          =
+                                                                                                                                                                                                          &v504
+                                                                                                                                                                                                      {
+                                                                                                                                                                                                       let v508:
+                                                                                                                                                                                                               string =
+                                                                                                                                                                                                           match &v504
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                               File_system::US1::US1_0(x)
+                                                                                                                                                                                                               =>
+                                                                                                                                                                                                               x.clone(),
+                                                                                                                                                                                                               _
+                                                                                                                                                                                                               =>
+                                                                                                                                                                                                               unreachable!(),
+                                                                                                                                                                                                           };
+                                                                                                                                                                                                       if v453.clone()
+                                                                                                                                                                                                              !=
+                                                                                                                                                                                                              string("")
+                                                                                                                                                                                                          {
+                                                                                                                                                                                                           let v513:
+                                                                                                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                                                                                                          std::io::Error> =
+                                                                                                                                                                                                               std::fs::read_link(&*v508.clone());
+                                                                                                                                                                                                           let v514 =
+                                                                                                                                                                                                               File_system::method69();
+                                                                                                                                                                                                           let v525:
+                                                                                                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                                                                                                          string> =
+                                                                                                                                                                                                               v513.map_err(|x| v514(x));
+                                                                                                                                                                                                           let v528:
+                                                                                                                                                                                                                   File_system::US13 =
+                                                                                                                                                                                                               match &v525
+                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                   Err(v525_1_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   v31_1(v525_1_0.clone()),
+                                                                                                                                                                                                                   Ok(v525_0_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   v30_1(v525_0_0.clone()),
+                                                                                                                                                                                                               };
+                                                                                                                                                                                                           let v1111:
+                                                                                                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                                                                                                          std::io::Error> =
+                                                                                                                                                                                                               match &v528
+                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                   File_system::US13::US13_0(v528_0_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   Ok(v528_0_0.clone()),
+                                                                                                                                                                                                                   File_system::US13::US13_1(v528_1_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                       let v543:
+                                                                                                                                                                                                                               string =
+                                                                                                                                                                                                                           v528_1_0.clone();
+                                                                                                                                                                                                                       let v544:
+                                                                                                                                                                                                                               string =
+                                                                                                                                                                                                                           File_system::method16(v508.clone());
+                                                                                                                                                                                                                       let v545:
+                                                                                                                                                                                                                               Option<string> =
+                                                                                                                                                                                                                           File_system::method71(v508.clone());
+                                                                                                                                                                                                                       let v559:
+                                                                                                                                                                                                                               File_system::US1 =
+                                                                                                                                                                                                                           defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                        map(File_system::method4(),
+                                                                                                                                                                                                                                            v545));
+                                                                                                                                                                                                                       if let File_system::US1::US1_0(v559_0_0)
+                                                                                                                                                                                                                              =
+                                                                                                                                                                                                                              &v559
+                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                           let v563:
+                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                               match &v559
+                                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                                   File_system::US1::US1_0(x)
+                                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                                   x.clone(),
+                                                                                                                                                                                                                                   _
+                                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                                   unreachable!(),
+                                                                                                                                                                                                                               };
+                                                                                                                                                                                                                           if v508.clone()
+                                                                                                                                                                                                                                  !=
+                                                                                                                                                                                                                                  string("")
+                                                                                                                                                                                                                              {
+                                                                                                                                                                                                                               let v568:
+                                                                                                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                                                                                                              std::io::Error> =
+                                                                                                                                                                                                                                   std::fs::read_link(&*v563.clone());
+                                                                                                                                                                                                                               let v569 =
+                                                                                                                                                                                                                                   File_system::method69();
+                                                                                                                                                                                                                               let v580:
+                                                                                                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                                                                                                              string> =
+                                                                                                                                                                                                                                   v568.map_err(|x| v569(x));
+                                                                                                                                                                                                                               let v583:
+                                                                                                                                                                                                                                       File_system::US13 =
+                                                                                                                                                                                                                                   match &v580
+                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                       Err(v580_1_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       v31_1(v580_1_0.clone()),
+                                                                                                                                                                                                                                       Ok(v580_0_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       v30_1(v580_0_0.clone()),
+                                                                                                                                                                                                                                   };
+                                                                                                                                                                                                                               let v906:
+                                                                                                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                                                                                                              std::io::Error> =
+                                                                                                                                                                                                                                   match &v583
+                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                       File_system::US13::US13_0(v583_0_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       Ok(v583_0_0.clone()),
+                                                                                                                                                                                                                                       File_system::US13::US13_1(v583_1_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                           let v598:
+                                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                                               v583_1_0.clone();
+                                                                                                                                                                                                                                           let v599:
+                                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                                               File_system::method16(v563.clone());
+                                                                                                                                                                                                                                           let v600:
+                                                                                                                                                                                                                                                   Option<string> =
+                                                                                                                                                                                                                                               File_system::method71(v563.clone());
+                                                                                                                                                                                                                                           let v614:
+                                                                                                                                                                                                                                                   File_system::US1 =
+                                                                                                                                                                                                                                               defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                                            map(File_system::method4(),
+                                                                                                                                                                                                                                                                v600));
+                                                                                                                                                                                                                                           if let File_system::US1::US1_0(v614_0_0)
+                                                                                                                                                                                                                                                  =
+                                                                                                                                                                                                                                                  &v614
+                                                                                                                                                                                                                                              {
+                                                                                                                                                                                                                                               let v618:
+                                                                                                                                                                                                                                                       string =
+                                                                                                                                                                                                                                                   match &v614
+                                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                                       File_system::US1::US1_0(x)
+                                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                                       x.clone(),
+                                                                                                                                                                                                                                                       _
+                                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                                       unreachable!(),
+                                                                                                                                                                                                                                                   };
+                                                                                                                                                                                                                                               if v563.clone()
+                                                                                                                                                                                                                                                      !=
+                                                                                                                                                                                                                                                      string("")
+                                                                                                                                                                                                                                                  {
+                                                                                                                                                                                                                                                   let v623:
+                                                                                                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                                  std::io::Error> =
+                                                                                                                                                                                                                                                       std::fs::read_link(&*v618.clone());
+                                                                                                                                                                                                                                                   let v624 =
+                                                                                                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                                                                                                   let v635:
+                                                                                                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                                  string> =
+                                                                                                                                                                                                                                                       v623.map_err(|x| v624(x));
+                                                                                                                                                                                                                                                   let v638:
+                                                                                                                                                                                                                                                           File_system::US13 =
+                                                                                                                                                                                                                                                       match &v635
+                                                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                                                           Err(v635_1_0)
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           v31_1(v635_1_0.clone()),
+                                                                                                                                                                                                                                                           Ok(v635_0_0)
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           v30_1(v635_0_0.clone()),
+                                                                                                                                                                                                                                                       };
+                                                                                                                                                                                                                                                   let v701:
+                                                                                                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                                  std::io::Error> =
+                                                                                                                                                                                                                                                       match &v638
+                                                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                                                           File_system::US13::US13_0(v638_0_0)
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           Ok(v638_0_0.clone()),
+                                                                                                                                                                                                                                                           _
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                                                               let v654:
+                                                                                                                                                                                                                                                                       string =
+                                                                                                                                                                                                                                                                   File_system::method16(v618.clone());
+                                                                                                                                                                                                                                                               let v655:
+                                                                                                                                                                                                                                                                       Option<string> =
+                                                                                                                                                                                                                                                                   File_system::method71(v618.clone());
+                                                                                                                                                                                                                                                               let v669:
+                                                                                                                                                                                                                                                                       File_system::US1 =
+                                                                                                                                                                                                                                                                   defaultValue(File_system::US1::US1_1,
+                                                                                                                                                                                                                                                                                map(File_system::method4(),
+                                                                                                                                                                                                                                                                                    v655));
+                                                                                                                                                                                                                                                               let v673:
+                                                                                                                                                                                                                                                                       string =
+                                                                                                                                                                                                                                                                   sprintf!("file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                                            v1_1.clone(),
+                                                                                                                                                                                                                                                                            11_u8,
+                                                                                                                                                                                                                                                                            v618.clone(),
+                                                                                                                                                                                                                                                                            v654);
+                                                                                                                                                                                                                                                               let v676:
+                                                                                                                                                                                                                                                                       std::io::Error =
+                                                                                                                                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v673);
+                                                                                                                                                                                                                                                               Err(v676)
+                                                                                                                                                                                                                                                           }
+                                                                                                                                                                                                                                                       };
+                                                                                                                                                                                                                                                   let v702 =
+                                                                                                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                                                                                                   let v713:
+                                                                                                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                                                                                                  string> =
+                                                                                                                                                                                                                                                       v701.map_err(|x| v702(x));
+                                                                                                                                                                                                                                                   let v716:
+                                                                                                                                                                                                                                                           File_system::US13 =
+                                                                                                                                                                                                                                                       match &v713
+                                                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                                                           Err(v713_1_0)
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           v31_1(v713_1_0.clone()),
+                                                                                                                                                                                                                                                           Ok(v713_0_0)
+                                                                                                                                                                                                                                                           =>
+                                                                                                                                                                                                                                                           v30_1(v713_0_0.clone()),
+                                                                                                                                                                                                                                                       };
+                                                                                                                                                                                                                                                   match &v716
+                                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                                       File_system::US13::US13_0(v716_0_0)
+                                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                                           let v742:
+                                                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                                                               File_system::method51(toString(v716_0_0.clone().display()),
+                                                                                                                                                                                                                                                                                     v599.clone());
+                                                                                                                                                                                                                                                           let v745:
+                                                                                                                                                                                                                                                                   &str =
+                                                                                                                                                                                                                                                               &*v742;
+                                                                                                                                                                                                                                                           let v766:
+                                                                                                                                                                                                                                                                   std::string::String =
+                                                                                                                                                                                                                                                               String::from(v745);
+                                                                                                                                                                                                                                                           let v787:
+                                                                                                                                                                                                                                                                   std::path::PathBuf =
+                                                                                                                                                                                                                                                               std::path::PathBuf::from(v766);
+                                                                                                                                                                                                                                                           Ok(v787)
+                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                       File_system::US13::US13_1(v716_1_0)
+                                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                                           let v820:
+                                                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                                                               sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                                                                        v716_1_0.clone(),
+                                                                                                                                                                                                                                                                        v598.clone(),
+                                                                                                                                                                                                                                                                        v599.clone());
+                                                                                                                                                                                                                                                           let v823:
+                                                                                                                                                                                                                                                                   std::io::Error =
+                                                                                                                                                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v820);
+                                                                                                                                                                                                                                                           Err(v823)
+                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                               } else {
+                                                                                                                                                                                                                                                   let v849:
+                                                                                                                                                                                                                                                           string =
+                                                                                                                                                                                                                                                       sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                                v1_1.clone(),
+                                                                                                                                                                                                                                                                v598.clone(),
+                                                                                                                                                                                                                                                                v563.clone(),
+                                                                                                                                                                                                                                                                v599.clone());
+                                                                                                                                                                                                                                                   let v852:
+                                                                                                                                                                                                                                                           std::io::Error =
+                                                                                                                                                                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v849);
+                                                                                                                                                                                                                                                   Err(v852)
+                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                                           } else {
+                                                                                                                                                                                                                                               let v877:
+                                                                                                                                                                                                                                                       string =
+                                                                                                                                                                                                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                                            v1_1.clone(),
+                                                                                                                                                                                                                                                            v598,
+                                                                                                                                                                                                                                                            v563.clone(),
+                                                                                                                                                                                                                                                            v599.clone());
+                                                                                                                                                                                                                                               let v880:
+                                                                                                                                                                                                                                                       std::io::Error =
+                                                                                                                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v877);
+                                                                                                                                                                                                                                               Err(v880)
+                                                                                                                                                                                                                                           }
+                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                   };
+                                                                                                                                                                                                                               let v907 =
+                                                                                                                                                                                                                                   File_system::method69();
+                                                                                                                                                                                                                               let v918:
+                                                                                                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                                                                                                              string> =
+                                                                                                                                                                                                                                   v906.map_err(|x| v907(x));
+                                                                                                                                                                                                                               let v921:
+                                                                                                                                                                                                                                       File_system::US13 =
+                                                                                                                                                                                                                                   match &v918
+                                                                                                                                                                                                                                       {
+                                                                                                                                                                                                                                       Err(v918_1_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       v31_1(v918_1_0.clone()),
+                                                                                                                                                                                                                                       Ok(v918_0_0)
+                                                                                                                                                                                                                                       =>
+                                                                                                                                                                                                                                       v30_1(v918_0_0.clone()),
+                                                                                                                                                                                                                                   };
+                                                                                                                                                                                                                               match &v921
+                                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                                   File_system::US13::US13_0(v921_0_0)
+                                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                                       let v947:
+                                                                                                                                                                                                                                               string =
+                                                                                                                                                                                                                                           File_system::method51(toString(v921_0_0.clone().display()),
+                                                                                                                                                                                                                                                                 v544.clone());
+                                                                                                                                                                                                                                       let v950:
+                                                                                                                                                                                                                                               &str =
+                                                                                                                                                                                                                                           &*v947;
+                                                                                                                                                                                                                                       let v971:
+                                                                                                                                                                                                                                               std::string::String =
+                                                                                                                                                                                                                                           String::from(v950);
+                                                                                                                                                                                                                                       let v992:
+                                                                                                                                                                                                                                               std::path::PathBuf =
+                                                                                                                                                                                                                                           std::path::PathBuf::from(v971);
+                                                                                                                                                                                                                                       Ok(v992)
+                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                   File_system::US13::US13_1(v921_1_0)
+                                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                                       let v1025:
+                                                                                                                                                                                                                                               string =
+                                                                                                                                                                                                                                           sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                                                    v921_1_0.clone(),
+                                                                                                                                                                                                                                                    v543.clone(),
+                                                                                                                                                                                                                                                    v544.clone());
+                                                                                                                                                                                                                                       let v1028:
+                                                                                                                                                                                                                                               std::io::Error =
+                                                                                                                                                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v1025);
+                                                                                                                                                                                                                                       Err(v1028)
+                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                           } else {
+                                                                                                                                                                                                                               let v1054:
+                                                                                                                                                                                                                                       string =
+                                                                                                                                                                                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                            v1_1.clone(),
+                                                                                                                                                                                                                                            v543.clone(),
+                                                                                                                                                                                                                                            v508.clone(),
+                                                                                                                                                                                                                                            v544.clone());
+                                                                                                                                                                                                                               let v1057:
+                                                                                                                                                                                                                                       std::io::Error =
+                                                                                                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v1054);
+                                                                                                                                                                                                                               Err(v1057)
+                                                                                                                                                                                                                           }
+                                                                                                                                                                                                                       } else {
+                                                                                                                                                                                                                           let v1082:
+                                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                                        v1_1.clone(),
+                                                                                                                                                                                                                                        v543,
+                                                                                                                                                                                                                                        v508.clone(),
+                                                                                                                                                                                                                                        v544.clone());
+                                                                                                                                                                                                                           let v1085:
+                                                                                                                                                                                                                                   std::io::Error =
+                                                                                                                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v1082);
+                                                                                                                                                                                                                           Err(v1085)
+                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                   }
+                                                                                                                                                                                                               };
+                                                                                                                                                                                                           let v1112 =
+                                                                                                                                                                                                               File_system::method69();
+                                                                                                                                                                                                           let v1123:
+                                                                                                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                                                                                                          string> =
+                                                                                                                                                                                                               v1111.map_err(|x| v1112(x));
+                                                                                                                                                                                                           let v1126:
+                                                                                                                                                                                                                   File_system::US13 =
+                                                                                                                                                                                                               match &v1123
+                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                   Err(v1123_1_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   v31_1(v1123_1_0.clone()),
+                                                                                                                                                                                                                   Ok(v1123_0_0)
+                                                                                                                                                                                                                   =>
+                                                                                                                                                                                                                   v30_1(v1123_0_0.clone()),
+                                                                                                                                                                                                               };
+                                                                                                                                                                                                           match &v1126
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                               File_system::US13::US13_0(v1126_0_0)
+                                                                                                                                                                                                               =>
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                   let v1152:
+                                                                                                                                                                                                                           string =
+                                                                                                                                                                                                                       File_system::method51(toString(v1126_0_0.clone().display()),
+                                                                                                                                                                                                                                             v489.clone());
+                                                                                                                                                                                                                   let v1155:
+                                                                                                                                                                                                                           &str =
+                                                                                                                                                                                                                       &*v1152;
+                                                                                                                                                                                                                   let v1176:
+                                                                                                                                                                                                                           std::string::String =
+                                                                                                                                                                                                                       String::from(v1155);
+                                                                                                                                                                                                                   let v1197:
+                                                                                                                                                                                                                           std::path::PathBuf =
+                                                                                                                                                                                                                       std::path::PathBuf::from(v1176);
+                                                                                                                                                                                                                   Ok(v1197)
+                                                                                                                                                                                                               }
+                                                                                                                                                                                                               File_system::US13::US13_1(v1126_1_0)
+                                                                                                                                                                                                               =>
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                   let v1230:
+                                                                                                                                                                                                                           string =
+                                                                                                                                                                                                                       sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                                                v1126_1_0.clone(),
+                                                                                                                                                                                                                                v488.clone(),
+                                                                                                                                                                                                                                v489.clone());
+                                                                                                                                                                                                                   let v1233:
+                                                                                                                                                                                                                           std::io::Error =
+                                                                                                                                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v1230);
+                                                                                                                                                                                                                   Err(v1233)
+                                                                                                                                                                                                               }
+                                                                                                                                                                                                           }
+                                                                                                                                                                                                       } else {
+                                                                                                                                                                                                           let v1259:
+                                                                                                                                                                                                                   string =
+                                                                                                                                                                                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                        v1_1.clone(),
+                                                                                                                                                                                                                        v488.clone(),
+                                                                                                                                                                                                                        v453.clone(),
+                                                                                                                                                                                                                        v489.clone());
+                                                                                                                                                                                                           let v1262:
+                                                                                                                                                                                                                   std::io::Error =
+                                                                                                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v1259);
+                                                                                                                                                                                                           Err(v1262)
+                                                                                                                                                                                                       }
+                                                                                                                                                                                                   } else {
+                                                                                                                                                                                                       let v1287:
+                                                                                                                                                                                                               string =
+                                                                                                                                                                                                           sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                                    v1_1.clone(),
+                                                                                                                                                                                                                    v488,
+                                                                                                                                                                                                                    v453.clone(),
+                                                                                                                                                                                                                    v489.clone());
+                                                                                                                                                                                                       let v1290:
+                                                                                                                                                                                                               std::io::Error =
+                                                                                                                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v1287);
+                                                                                                                                                                                                       Err(v1290)
+                                                                                                                                                                                                   }
+                                                                                                                                                                                               }
+                                                                                                                                                                                           };
+                                                                                                                                                                                       let v1317 =
+                                                                                                                                                                                           File_system::method69();
+                                                                                                                                                                                       let v1328:
+                                                                                                                                                                                               Result<std::path::PathBuf,
+                                                                                                                                                                                                      string> =
+                                                                                                                                                                                           v1316.map_err(|x| v1317(x));
+                                                                                                                                                                                       let v1331:
+                                                                                                                                                                                               File_system::US13 =
+                                                                                                                                                                                           match &v1328
+                                                                                                                                                                                               {
+                                                                                                                                                                                               Err(v1328_1_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               v31_1(v1328_1_0.clone()),
+                                                                                                                                                                                               Ok(v1328_0_0)
+                                                                                                                                                                                               =>
+                                                                                                                                                                                               v30_1(v1328_0_0.clone()),
+                                                                                                                                                                                           };
+                                                                                                                                                                                       match &v1331
+                                                                                                                                                                                           {
+                                                                                                                                                                                           File_system::US13::US13_0(v1331_0_0)
+                                                                                                                                                                                           =>
+                                                                                                                                                                                           {
+                                                                                                                                                                                               let v1357:
+                                                                                                                                                                                                       string =
+                                                                                                                                                                                                   File_system::method51(toString(v1331_0_0.clone().display()),
+                                                                                                                                                                                                                         v434.clone());
+                                                                                                                                                                                               let v1360:
+                                                                                                                                                                                                       &str =
+                                                                                                                                                                                                   &*v1357;
+                                                                                                                                                                                               let v1381:
+                                                                                                                                                                                                       std::string::String =
+                                                                                                                                                                                                   String::from(v1360);
+                                                                                                                                                                                               let v1402:
+                                                                                                                                                                                                       std::path::PathBuf =
+                                                                                                                                                                                                   std::path::PathBuf::from(v1381);
+                                                                                                                                                                                               Ok(v1402)
+                                                                                                                                                                                           }
+                                                                                                                                                                                           File_system::US13::US13_1(v1331_1_0)
+                                                                                                                                                                                           =>
+                                                                                                                                                                                           {
+                                                                                                                                                                                               let v1435:
+                                                                                                                                                                                                       string =
+                                                                                                                                                                                                   sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                                            v1331_1_0.clone(),
+                                                                                                                                                                                                            v433.clone(),
+                                                                                                                                                                                                            v434.clone());
+                                                                                                                                                                                               let v1438:
+                                                                                                                                                                                                       std::io::Error =
+                                                                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v1435);
+                                                                                                                                                                                               Err(v1438)
+                                                                                                                                                                                           }
+                                                                                                                                                                                       }
+                                                                                                                                                                                   } else {
+                                                                                                                                                                                       let v1464:
+                                                                                                                                                                                               string =
+                                                                                                                                                                                           sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                    v1_1.clone(),
+                                                                                                                                                                                                    v433.clone(),
+                                                                                                                                                                                                    v398.clone(),
+                                                                                                                                                                                                    v434.clone());
+                                                                                                                                                                                       let v1467:
+                                                                                                                                                                                               std::io::Error =
+                                                                                                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v1464);
+                                                                                                                                                                                       Err(v1467)
+                                                                                                                                                                                   }
+                                                                                                                                                                               } else {
+                                                                                                                                                                                   let v1492:
+                                                                                                                                                                                           string =
+                                                                                                                                                                                       sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                                v1_1.clone(),
+                                                                                                                                                                                                v433,
+                                                                                                                                                                                                v398.clone(),
+                                                                                                                                                                                                v434.clone());
+                                                                                                                                                                                   let v1495:
+                                                                                                                                                                                           std::io::Error =
+                                                                                                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v1492);
+                                                                                                                                                                                   Err(v1495)
+                                                                                                                                                                               }
+                                                                                                                                                                           }
+                                                                                                                                                                       };
+                                                                                                                                                                   let v1522 =
+                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                   let v1533:
+                                                                                                                                                                           Result<std::path::PathBuf,
+                                                                                                                                                                                  string> =
+                                                                                                                                                                       v1521.map_err(|x| v1522(x));
+                                                                                                                                                                   let v1536:
+                                                                                                                                                                           File_system::US13 =
+                                                                                                                                                                       match &v1533
+                                                                                                                                                                           {
+                                                                                                                                                                           Err(v1533_1_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           v31_1(v1533_1_0.clone()),
+                                                                                                                                                                           Ok(v1533_0_0)
+                                                                                                                                                                           =>
+                                                                                                                                                                           v30_1(v1533_0_0.clone()),
+                                                                                                                                                                       };
+                                                                                                                                                                   match &v1536
+                                                                                                                                                                       {
+                                                                                                                                                                       File_system::US13::US13_0(v1536_0_0)
+                                                                                                                                                                       =>
+                                                                                                                                                                       {
+                                                                                                                                                                           let v1562:
+                                                                                                                                                                                   string =
+                                                                                                                                                                               File_system::method51(toString(v1536_0_0.clone().display()),
+                                                                                                                                                                                                     v379.clone());
+                                                                                                                                                                           let v1565:
+                                                                                                                                                                                   &str =
+                                                                                                                                                                               &*v1562;
+                                                                                                                                                                           let v1586:
+                                                                                                                                                                                   std::string::String =
+                                                                                                                                                                               String::from(v1565);
+                                                                                                                                                                           let v1607:
+                                                                                                                                                                                   std::path::PathBuf =
+                                                                                                                                                                               std::path::PathBuf::from(v1586);
+                                                                                                                                                                           Ok(v1607)
+                                                                                                                                                                       }
+                                                                                                                                                                       File_system::US13::US13_1(v1536_1_0)
+                                                                                                                                                                       =>
+                                                                                                                                                                       {
+                                                                                                                                                                           let v1640:
+                                                                                                                                                                                   string =
+                                                                                                                                                                               sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                                        v1536_1_0.clone(),
+                                                                                                                                                                                        v378.clone(),
+                                                                                                                                                                                        v379.clone());
+                                                                                                                                                                           let v1643:
+                                                                                                                                                                                   std::io::Error =
+                                                                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v1640);
+                                                                                                                                                                           Err(v1643)
+                                                                                                                                                                       }
+                                                                                                                                                                   }
+                                                                                                                                                               } else {
+                                                                                                                                                                   let v1669:
+                                                                                                                                                                           string =
+                                                                                                                                                                       sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                                v1_1.clone(),
+                                                                                                                                                                                v378.clone(),
+                                                                                                                                                                                v343.clone(),
+                                                                                                                                                                                v379.clone());
+                                                                                                                                                                   let v1672:
+                                                                                                                                                                           std::io::Error =
+                                                                                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v1669);
+                                                                                                                                                                   Err(v1672)
+                                                                                                                                                               }
+                                                                                                                                                           } else {
+                                                                                                                                                               let v1697:
+                                                                                                                                                                       string =
+                                                                                                                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                                            v1_1.clone(),
+                                                                                                                                                                            v378,
+                                                                                                                                                                            v343.clone(),
+                                                                                                                                                                            v379.clone());
+                                                                                                                                                               let v1700:
+                                                                                                                                                                       std::io::Error =
+                                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v1697);
+                                                                                                                                                               Err(v1700)
+                                                                                                                                                           }
+                                                                                                                                                       }
+                                                                                                                                                   };
+                                                                                                                                               let v1727 =
+                                                                                                                                                   File_system::method69();
+                                                                                                                                               let v1738:
+                                                                                                                                                       Result<std::path::PathBuf,
+                                                                                                                                                              string> =
+                                                                                                                                                   v1726.map_err(|x| v1727(x));
+                                                                                                                                               let v1741:
+                                                                                                                                                       File_system::US13 =
+                                                                                                                                                   match &v1738
+                                                                                                                                                       {
+                                                                                                                                                       Err(v1738_1_0)
+                                                                                                                                                       =>
+                                                                                                                                                       v31_1(v1738_1_0.clone()),
+                                                                                                                                                       Ok(v1738_0_0)
+                                                                                                                                                       =>
+                                                                                                                                                       v30_1(v1738_0_0.clone()),
+                                                                                                                                                   };
+                                                                                                                                               match &v1741
+                                                                                                                                                   {
+                                                                                                                                                   File_system::US13::US13_0(v1741_0_0)
+                                                                                                                                                   =>
+                                                                                                                                                   {
+                                                                                                                                                       let v1767:
+                                                                                                                                                               string =
+                                                                                                                                                           File_system::method51(toString(v1741_0_0.clone().display()),
+                                                                                                                                                                                 v324.clone());
+                                                                                                                                                       let v1770:
+                                                                                                                                                               &str =
+                                                                                                                                                           &*v1767;
+                                                                                                                                                       let v1791:
+                                                                                                                                                               std::string::String =
+                                                                                                                                                           String::from(v1770);
+                                                                                                                                                       let v1812:
+                                                                                                                                                               std::path::PathBuf =
+                                                                                                                                                           std::path::PathBuf::from(v1791);
+                                                                                                                                                       Ok(v1812)
+                                                                                                                                                   }
+                                                                                                                                                   File_system::US13::US13_1(v1741_1_0)
+                                                                                                                                                   =>
+                                                                                                                                                   {
+                                                                                                                                                       let v1845:
+                                                                                                                                                               string =
+                                                                                                                                                           sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                                    v1741_1_0.clone(),
+                                                                                                                                                                    v323.clone(),
+                                                                                                                                                                    v324.clone());
+                                                                                                                                                       let v1848:
+                                                                                                                                                               std::io::Error =
+                                                                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v1845);
+                                                                                                                                                       Err(v1848)
+                                                                                                                                                   }
+                                                                                                                                               }
+                                                                                                                                           } else {
+                                                                                                                                               let v1874:
+                                                                                                                                                       string =
+                                                                                                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                            v1_1.clone(),
+                                                                                                                                                            v323.clone(),
+                                                                                                                                                            v288.clone(),
+                                                                                                                                                            v324.clone());
+                                                                                                                                               let v1877:
+                                                                                                                                                       std::io::Error =
+                                                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v1874);
+                                                                                                                                               Err(v1877)
+                                                                                                                                           }
+                                                                                                                                       } else {
+                                                                                                                                           let v1902:
+                                                                                                                                                   string =
+                                                                                                                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                                        v1_1.clone(),
+                                                                                                                                                        v323,
+                                                                                                                                                        v288.clone(),
+                                                                                                                                                        v324.clone());
+                                                                                                                                           let v1905:
+                                                                                                                                                   std::io::Error =
+                                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v1902);
+                                                                                                                                           Err(v1905)
+                                                                                                                                       }
+                                                                                                                                   }
+                                                                                                                               };
+                                                                                                                           let v1932 =
+                                                                                                                               File_system::method69();
+                                                                                                                           let v1943:
+                                                                                                                                   Result<std::path::PathBuf,
+                                                                                                                                          string> =
+                                                                                                                               v1931.map_err(|x| v1932(x));
+                                                                                                                           let v1946:
+                                                                                                                                   File_system::US13 =
+                                                                                                                               match &v1943
+                                                                                                                                   {
+                                                                                                                                   Err(v1943_1_0)
+                                                                                                                                   =>
+                                                                                                                                   v31_1(v1943_1_0.clone()),
+                                                                                                                                   Ok(v1943_0_0)
+                                                                                                                                   =>
+                                                                                                                                   v30_1(v1943_0_0.clone()),
+                                                                                                                               };
+                                                                                                                           match &v1946
+                                                                                                                               {
+                                                                                                                               File_system::US13::US13_0(v1946_0_0)
+                                                                                                                               =>
+                                                                                                                               {
+                                                                                                                                   let v1972:
+                                                                                                                                           string =
+                                                                                                                                       File_system::method51(toString(v1946_0_0.clone().display()),
+                                                                                                                                                             v269.clone());
+                                                                                                                                   let v1975:
+                                                                                                                                           &str =
+                                                                                                                                       &*v1972;
+                                                                                                                                   let v1996:
+                                                                                                                                           std::string::String =
+                                                                                                                                       String::from(v1975);
+                                                                                                                                   let v2017:
+                                                                                                                                           std::path::PathBuf =
+                                                                                                                                       std::path::PathBuf::from(v1996);
+                                                                                                                                   Ok(v2017)
+                                                                                                                               }
+                                                                                                                               File_system::US13::US13_1(v1946_1_0)
+                                                                                                                               =>
+                                                                                                                               {
+                                                                                                                                   let v2050:
+                                                                                                                                           string =
+                                                                                                                                       sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                                                v1946_1_0.clone(),
+                                                                                                                                                v268.clone(),
+                                                                                                                                                v269.clone());
+                                                                                                                                   let v2053:
+                                                                                                                                           std::io::Error =
+                                                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v2050);
+                                                                                                                                   Err(v2053)
+                                                                                                                               }
+                                                                                                                           }
+                                                                                                                       } else {
+                                                                                                                           let v2079:
+                                                                                                                                   string =
+                                                                                                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                        v1_1.clone(),
+                                                                                                                                        v268.clone(),
+                                                                                                                                        v233.clone(),
+                                                                                                                                        v269.clone());
+                                                                                                                           let v2082:
+                                                                                                                                   std::io::Error =
+                                                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v2079);
+                                                                                                                           Err(v2082)
+                                                                                                                       }
+                                                                                                                   } else {
+                                                                                                                       let v2107:
+                                                                                                                               string =
+                                                                                                                           sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                                    v1_1.clone(),
+                                                                                                                                    v268,
+                                                                                                                                    v233.clone(),
+                                                                                                                                    v269.clone());
+                                                                                                                       let v2110:
+                                                                                                                               std::io::Error =
+                                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v2107);
+                                                                                                                       Err(v2110)
+                                                                                                                   }
+                                                                                                               }
+                                                                                                           };
+                                                                                                       let v2137 =
+                                                                                                           File_system::method69();
+                                                                                                       let v2148:
+                                                                                                               Result<std::path::PathBuf,
+                                                                                                                      string> =
+                                                                                                           v2136.map_err(|x| v2137(x));
+                                                                                                       let v2151:
+                                                                                                               File_system::US13 =
+                                                                                                           match &v2148
+                                                                                                               {
+                                                                                                               Err(v2148_1_0)
+                                                                                                               =>
+                                                                                                               v31_1(v2148_1_0.clone()),
+                                                                                                               Ok(v2148_0_0)
+                                                                                                               =>
+                                                                                                               v30_1(v2148_0_0.clone()),
+                                                                                                           };
+                                                                                                       match &v2151
+                                                                                                           {
+                                                                                                           File_system::US13::US13_0(v2151_0_0)
+                                                                                                           =>
+                                                                                                           {
+                                                                                                               let v2177:
+                                                                                                                       string =
+                                                                                                                   File_system::method51(toString(v2151_0_0.clone().display()),
+                                                                                                                                         v214.clone());
+                                                                                                               let v2180:
+                                                                                                                       &str =
+                                                                                                                   &*v2177;
+                                                                                                               let v2201:
+                                                                                                                       std::string::String =
+                                                                                                                   String::from(v2180);
+                                                                                                               let v2222:
+                                                                                                                       std::path::PathBuf =
+                                                                                                                   std::path::PathBuf::from(v2201);
+                                                                                                               Ok(v2222)
+                                                                                                           }
+                                                                                                           File_system::US13::US13_1(v2151_1_0)
+                                                                                                           =>
+                                                                                                           {
+                                                                                                               let v2255:
+                                                                                                                       string =
+                                                                                                                   sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                                            v2151_1_0.clone(),
+                                                                                                                            v213.clone(),
+                                                                                                                            v214.clone());
+                                                                                                               let v2258:
+                                                                                                                       std::io::Error =
+                                                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v2255);
+                                                                                                               Err(v2258)
+                                                                                                           }
+                                                                                                       }
+                                                                                                   } else {
+                                                                                                       let v2284:
+                                                                                                               string =
+                                                                                                           sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                    v1_1.clone(),
+                                                                                                                    v213.clone(),
+                                                                                                                    v178.clone(),
+                                                                                                                    v214.clone());
+                                                                                                       let v2287:
+                                                                                                               std::io::Error =
+                                                                                                           std::io::Error::new(std::io::ErrorKind::Other, &*v2284);
+                                                                                                       Err(v2287)
+                                                                                                   }
+                                                                                               } else {
+                                                                                                   let v2312:
+                                                                                                           string =
+                                                                                                       sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                                v1_1.clone(),
+                                                                                                                v213,
+                                                                                                                v178.clone(),
+                                                                                                                v214.clone());
+                                                                                                   let v2315:
+                                                                                                           std::io::Error =
+                                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v2312);
+                                                                                                   Err(v2315)
+                                                                                               }
+                                                                                           }
+                                                                                       };
+                                                                        let v2342 =
+                                                                            File_system::method69();
+                                                                        let v2353: Result<
+                                                                            std::path::PathBuf,
+                                                                            string,
+                                                                        > = v2341
+                                                                            .map_err(|x| v2342(x));
+                                                                        let v2356:
+                                                                                           File_system::US13 =
+                                                                                       match &v2353
+                                                                                           {
+                                                                                           Err(v2353_1_0)
+                                                                                           =>
+                                                                                           v31_1(v2353_1_0.clone()),
+                                                                                           Ok(v2353_0_0)
+                                                                                           =>
+                                                                                           v30_1(v2353_0_0.clone()),
+                                                                                       };
+                                                                        match &v2356
+                                                                                       {
+                                                                                       File_system::US13::US13_0(v2356_0_0)
+                                                                                       =>
+                                                                                       {
+                                                                                           let v2382:
+                                                                                                   string =
+                                                                                               File_system::method51(toString(v2356_0_0.clone().display()),
+                                                                                                                     v159.clone());
+                                                                                           let v2385:
+                                                                                                   &str =
+                                                                                               &*v2382;
+                                                                                           let v2406:
+                                                                                                   std::string::String =
+                                                                                               String::from(v2385);
+                                                                                           let v2427:
+                                                                                                   std::path::PathBuf =
+                                                                                               std::path::PathBuf::from(v2406);
+                                                                                           Ok(v2427)
+                                                                                       }
+                                                                                       File_system::US13::US13_1(v2356_1_0)
+                                                                                       =>
+                                                                                       {
+                                                                                           let v2460:
+                                                                                                   string =
+                                                                                               sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                                        v2356_1_0.clone(),
+                                                                                                        v158.clone(),
+                                                                                                        v159.clone());
+                                                                                           let v2463:
+                                                                                                   std::io::Error =
+                                                                                               std::io::Error::new(std::io::ErrorKind::Other, &*v2460);
+                                                                                           Err(v2463)
+                                                                                       }
+                                                                                   }
+                                                                    } else {
+                                                                        let v2489:
+                                                                                           string =
+                                                                                       sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                                v1_1.clone(),
+                                                                                                v158.clone(),
+                                                                                                v123.clone(),
+                                                                                                v159.clone());
+                                                                        let v2492:
+                                                                                           std::io::Error =
+                                                                                       std::io::Error::new(std::io::ErrorKind::Other, &*v2489);
+                                                                        Err(v2492)
+                                                                    }
+                                                                } else {
+                                                                    let v2517:
+                                                                                       string =
+                                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                                            v1_1.clone(),
+                                                                                            v158,
+                                                                                            v123.clone(),
+                                                                                            v159.clone());
+                                                                    let v2520:
+                                                                                       std::io::Error =
+                                                                                   std::io::Error::new(std::io::ErrorKind::Other, &*v2517);
+                                                                    Err(v2520)
+                                                                }
+                                                            }
+                                                        };
+                                                        let v2547 = File_system::method69();
+                                                        let v2558: Result<
+                                                            std::path::PathBuf,
+                                                            string,
+                                                        > = v2546.map_err(|x| v2547(x));
+                                                        let v2561: File_system::US13 = match &v2558
+                                                        {
+                                                            Err(v2558_1_0) => {
+                                                                v31_1(v2558_1_0.clone())
+                                                            }
+                                                            Ok(v2558_0_0) => {
+                                                                v30_1(v2558_0_0.clone())
+                                                            }
+                                                        };
+                                                        match &v2561 {
+                                                            File_system::US13::US13_0(
+                                                                v2561_0_0,
+                                                            ) => {
+                                                                let v2587: string =
+                                                                    File_system::method51(
+                                                                        toString(
+                                                                            v2561_0_0
+                                                                                .clone()
+                                                                                .display(),
+                                                                        ),
+                                                                        v104.clone(),
+                                                                    );
+                                                                let v2590: &str = &*v2587;
+                                                                let v2611: std::string::String =
+                                                                    String::from(v2590);
+                                                                let v2632: std::path::PathBuf =
+                                                                    std::path::PathBuf::from(v2611);
+                                                                Ok(v2632)
+                                                            }
+                                                            File_system::US13::US13_1(
+                                                                v2561_1_0,
+                                                            ) => {
+                                                                let v2665:
+                                                                               string =
+                                                                           sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                                    v2561_1_0.clone(),
+                                                                                    v103.clone(),
+                                                                                    v104.clone());
+                                                                let v2668: std::io::Error =
+                                                                    std::io::Error::new(
+                                                                        std::io::ErrorKind::Other,
+                                                                        &*v2665,
+                                                                    );
+                                                                Err(v2668)
+                                                            }
+                                                        }
+                                                    } else {
+                                                        let v2694:
+                                                                       string =
+                                                                   sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                            v1_1.clone(),
+                                                                            v103.clone(),
+                                                                            v67.clone(),
+                                                                            v104.clone());
+                                                        let v2697: std::io::Error =
+                                                            std::io::Error::new(
+                                                                std::io::ErrorKind::Other,
+                                                                &*v2694,
+                                                            );
+                                                        Err(v2697)
+                                                    }
+                                                } else {
+                                                    let v2722: string =
+                                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                                        v1_1.clone(),
+                                                                        v103,
+                                                                        v67.clone(),
+                                                                        v104.clone());
+                                                    let v2725: std::io::Error = std::io::Error::new(
+                                                        std::io::ErrorKind::Other,
+                                                        &*v2722,
+                                                    );
+                                                    Err(v2725)
+                                                }
+                                            }
+                                        };
+                                    let v2752 = File_system::method69();
+                                    let v2763: Result<std::path::PathBuf, string> =
+                                        v2751.map_err(|x| v2752(x));
+                                    let v2766: File_system::US13 = match &v2763 {
+                                        Err(v2763_1_0) => v31_1(v2763_1_0.clone()),
+                                        Ok(v2763_0_0) => v30_1(v2763_0_0.clone()),
+                                    };
+                                    match &v2766 {
+                                        File_system::US13::US13_0(v2766_0_0) => {
+                                            let v2792: string = File_system::method51(
+                                                toString(v2766_0_0.clone().display()),
+                                                v48.clone(),
+                                            );
+                                            let v2795: &str = &*v2792;
+                                            let v2816: std::string::String = String::from(v2795);
+                                            let v2837: std::path::PathBuf =
+                                                std::path::PathBuf::from(v2816);
+                                            Ok(v2837)
+                                        }
+                                        File_system::US13::US13_1(v2766_1_0) => {
+                                            let v2870: string =
+                                                       sprintf!("file_system.read_link / error\': {} / error: {} / name: {}",
+                                                                v2766_1_0.clone(),
+                                                                v47.clone(),
+                                                                v48.clone());
+                                            let v2873: std::io::Error = std::io::Error::new(
+                                                std::io::ErrorKind::Other,
+                                                &*v2870,
+                                            );
+                                            Err(v2873)
+                                        }
+                                    }
+                                } else {
+                                    let v2899: string =
+                                               sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                        v1_1.clone(),
+                                                        v47.clone(),
+                                                        v1_1.clone(),
+                                                        v48.clone());
+                                    let v2902: std::io::Error =
+                                        std::io::Error::new(std::io::ErrorKind::Other, &*v2899);
+                                    Err(v2902)
+                                }
+                            } else {
+                                let v2927: string =
+                                           sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
+                                                    v1_1.clone(), v47,
+                                                    v1_1.clone(),
+                                                    v48.clone());
+                                let v2930: std::io::Error =
+                                    std::io::Error::new(std::io::ErrorKind::Other, &*v2927);
+                                Err(v2930)
+                            }
+                        }
+                    }
+                };
+                v2957.is_err()
             } else {
                 false
             } {
                 File_system::method7(true, v1_1.clone());
             }
             if File_system::method9(v1_1.clone()) == false {
-                let v40: bool = true;
+                let v13157: bool = true;
                 #[cfg(windows)]
                 std::os::windows::fs::symlink_dir(&*v0_1.clone(), &*v1_1.clone()).unwrap();
-                let v42: bool = true;
+                let v13159: bool = true;
                 #[cfg(unix)]
-                std::os::unix::fs::symlink(&*v0_1, &*v1_1).unwrap();
+                std::os::unix::fs::symlink(&*v0_1, &*v1_1.clone()).unwrap();
                 ();
                 ()
             }
         }
     }
-    pub fn closure53(v0_1: string, v1_1: string) {
-        File_system::method78(v0_1, v1_1);
+    pub fn closure57(v0_1: string, v1_1: string) {
+        File_system::method82(v0_1, v1_1);
     }
-    pub fn closure52(unitVar: (), v0_1: string) -> Func1<string, ()> {
+    pub fn closure56(unitVar: (), v0_1: string) -> Func1<string, ()> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure53(v0_1.clone(), v)
+            move |v: string| File_system::closure57(v0_1.clone(), v)
         })
     }
-    pub fn closure55(v0_1: string, v1_1: string) -> string {
+    pub fn closure59(v0_1: string, v1_1: string) -> string {
         File_system::method51(v0_1, v1_1)
     }
-    pub fn closure54(unitVar: (), v0_1: string) -> Func1<string, string> {
+    pub fn closure58(unitVar: (), v0_1: string) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure55(v0_1.clone(), v)
+            move |v: string| File_system::closure59(v0_1.clone(), v)
         })
     }
     pub fn v0() -> () {
@@ -2921,7 +6071,7 @@ pub mod File_system {
     }
     pub fn v31() -> Func1<string, string> {
         static v31: OnceInit<Func1<string, string>> = OnceInit::new();
-        v31.get_or_init(|| Func1::new(move |v: string| File_system::closure46((), v)))
+        v31.get_or_init(|| Func1::new(move |v: string| File_system::closure50((), v)))
             .clone()
     }
     pub fn new_file_uri(x: string) -> string {
@@ -2929,7 +6079,7 @@ pub mod File_system {
     }
     pub fn v32() -> Func0<string> {
         static v32: OnceInit<Func0<string>> = OnceInit::new();
-        v32.get_or_init(|| Func0::new(move || File_system::closure47((), ())))
+        v32.get_or_init(|| Func0::new(move || File_system::closure51((), ())))
             .clone()
     }
     pub fn get_workspace_root() -> string {
@@ -2937,7 +6087,7 @@ pub mod File_system {
     }
     pub fn v33() -> Func1<bool, ()> {
         static v33: OnceInit<Func1<bool, ()>> = OnceInit::new();
-        v33.get_or_init(|| Func1::new(move |v: bool| File_system::closure50((), v)))
+        v33.get_or_init(|| Func1::new(move |v: bool| File_system::closure54((), v)))
             .clone()
     }
     pub fn init_trace_file(x: bool) {
@@ -2945,7 +6095,7 @@ pub mod File_system {
     }
     pub fn v34() -> Func1<string, Func1<string, ()>> {
         static v34: OnceInit<Func1<string, Func1<string, ()>>> = OnceInit::new();
-        v34.get_or_init(|| Func1::new(move |v: string| File_system::closure52((), v)))
+        v34.get_or_init(|| Func1::new(move |v: string| File_system::closure56((), v)))
             .clone()
     }
     pub fn link_directory(x: string) -> Func1<string, ()> {
@@ -2953,7 +6103,7 @@ pub mod File_system {
     }
     pub fn v35() -> Func1<string, Func1<string, string>> {
         static v35: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
-        v35.get_or_init(|| Func1::new(move |v: string| File_system::closure54((), v)))
+        v35.get_or_init(|| Func1::new(move |v: string| File_system::closure58((), v)))
             .clone()
     }
     pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {

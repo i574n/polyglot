@@ -8,12 +8,18 @@ type chrono_DateTime<'T> = class end
 type chrono_NaiveDateTime = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
-#endif
 type Ref<'T> = class end
+#else
+type Ref<'T> = 'T
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
 type std_string_String = class end
+#else
+type std_string_String = string
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")>]
 #endif
@@ -24,8 +30,11 @@ type chrono_Utc = class end
 type chrono_Local = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
 type Str = class end
+#else
+type Str = string
+#endif
+
 type [<Struct>] US0 =
     | US0_0 of f0_0 : chrono_DateTime<chrono_Utc>
     | US0_1

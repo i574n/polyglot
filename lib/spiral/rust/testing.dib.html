@@ -7625,7 +7625,7 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execute_with_options</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=&gt;</span>
             <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i32</span>
-            <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"test result: ok. 1 passed; 0 failed; 0 ignored;"</span>
+            <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert</span> <span class="n">sm</span><span class="s1">'.contains "test result: ok. 1 passed; 0 failed; 0 ignored;"</span>
 
     <span class="err">$</span><span class="s1">'let tests () = !test ()'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
@@ -7666,43 +7666,43 @@ a.anchor-link {
     "--",
     "--show-output",
 ]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9",
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0",
 ) } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9)
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 4.17s
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9-fc1a8d89ee767593.exe)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0)
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 4.05s
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0-cd2a23b4c1c7d454.exe)
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_c4f079c0::Spiral_builder::a ... ok
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_56522788::Spiral_builder::a ... ok
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_c4f079c0::Spiral_builder::a stdout ----
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_56522788::Spiral_builder::a stdout ----
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_c4f079c0::Spiral_builder::a
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_56522788::Spiral_builder::a
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
 __assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.17s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9-fc1a8d89ee767593.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.05s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0-cd2a23b4c1c7d454.exe)</span>
 
 running 1 test
-test module_c4f079c0::Spiral_builder::a ... ok
+test module_56522788::Spiral_builder::a ... ok
 
 successes:
 
----- module_c4f079c0::Spiral_builder::a stdout ----
+---- module_56522788::Spiral_builder::a stdout ----
 __assert_eq / actual: "a" / expected: "a"
 
 
 successes:
-    module_c4f079c0::Spiral_builder::a
+    module_56522788::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "
@@ -7776,43 +7776,43 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
     "--",
     "--show-output",
 ]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9",
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0",
 ) } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9)
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 3.20s
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9-fc1a8d89ee767593.exe)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0)
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 3.04s
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0-cd2a23b4c1c7d454.exe)
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_c4f079c0::Spiral_builder::a ... ok
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_56522788::Spiral_builder::a ... ok
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_c4f079c0::Spiral_builder::a stdout ----
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_56522788::Spiral_builder::a stdout ----
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_c4f079c0::Spiral_builder::a
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_56522788::Spiral_builder::a
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
 __assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.20s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_a71c203cac5d239d1d8ecbc513d83f562f3fe65e453c18aa2d0a4358177228f9-fc1a8d89ee767593.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.04s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_4eccc1786074220707f0458005706cb99abe3f56ece24acbac5e3f03e2475ae0-cd2a23b4c1c7d454.exe)</span>
 
 running 1 test
-test module_c4f079c0::Spiral_builder::a ... ok
+test module_56522788::Spiral_builder::a ... ok
 
 successes:
 
----- module_c4f079c0::Spiral_builder::a stdout ----
+---- module_56522788::Spiral_builder::a stdout ----
 __assert_eq / actual: "a" / expected: "a"
 
 
 successes:
-    module_c4f079c0::Spiral_builder::a
+    module_56522788::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "
@@ -7886,43 +7886,43 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
     "--",
     "--show-output",
 ]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca",
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71",
 ) } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca)
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 4.18s
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca-19f4df8b942d0a94.exe)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 !    Compiling spiral_builder_5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71)
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 4.21s
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71-c9b08a6a4a3d6ae2.exe)
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_b29eb59c::Spiral_builder::a ... ok
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_c294edd7::Spiral_builder::a ... ok
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_b29eb59c::Spiral_builder::a stdout ----
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_c294edd7::Spiral_builder::a stdout ----
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; __assert_eq / actual: false / expected: false
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_b29eb59c::Spiral_builder::a
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_c294edd7::Spiral_builder::a
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
 00:00:04 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 883 }
 __assert_eq / actual: 0 / expected: 0
-__assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.18s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_b23fea0cdec17ad6106c72d7e52b287e2f01feef0b72fdb75a93e16c3a4dbdca-19f4df8b942d0a94.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.21s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_5a0997c5c2eae40f0ba6eb6307eabe3997f4e029f7dea650bd53279cad8ecd71-c9b08a6a4a3d6ae2.exe)</span>
 
 running 1 test
-test module_b29eb59c::Spiral_builder::a ... ok
+test module_c294edd7::Spiral_builder::a ... ok
 
 successes:
 
----- module_b29eb59c::Spiral_builder::a stdout ----
+---- module_c294edd7::Spiral_builder::a stdout ----
 __assert_eq / actual: false / expected: false
 
 
 successes:
-    module_b29eb59c::Spiral_builder::a
+    module_c294edd7::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "

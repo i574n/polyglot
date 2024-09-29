@@ -77,7 +77,7 @@ inl set_data forall t (u : * -> *). (id : string) (data : t) (database : u wasm.
         inl data_js_value : wasm.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
         inl id = join id
         inl id = id |> sm'.as_str
-        (!\($'"true; !store.put(&!data_js_value, Some(&!id.into())).await?"') : bool) |> ignore
+        (!\\(id, $'"true; !store.put(&!data_js_value, Some(&$0.into())).await?"') : bool) |> ignore
         (!\($'"true; !transaction.done().await?"') : bool) |> ignore
 
         Ok () |> resultm.box

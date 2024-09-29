@@ -8,16 +8,22 @@ type regex_Regex = class end
 type std_borrow_Cow<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
 type std_string_String = class end
+#else
+type std_string_String = string
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
 #endif
 type regex_Error = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
 type Str = class end
+#else
+type Str = string
+#endif
+
 type UH0 =
     | UH0_0
     | UH0_1 of char * UH0
@@ -64,39 +70,69 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : string = $"regex::Regex::new(&$0)"
     let v5 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v0 v4 
-    let v6 : string = "$0.unwrap()"
-    let v7 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v6 
-    let v8 : string = method0(v2)
-    let v9 : string = $"$0.replace_all(&*$1, &*$2)"
-    let v10 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v7, v8, v1) v9 
-    let v11 : string = "String::from($0)"
-    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr v10 v11 
-    let v13 : string = "fable_library_rust::String_::fromString($0)"
-    let v14 : string = Fable.Core.RustInterop.emitRustExpr v12 v13 
-    let _v3 = v14 
+    let v6 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v7 : string = "$0.unwrap()"
+    let v8 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v7 
+    let _v6 = v8 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v15 : string = null |> unbox<string>
-    let _v3 = v15 
+    let v9 : string = "$0.unwrap()"
+    let v10 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v9 
+    let _v6 = v10 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v18 : string = null |> unbox<string>
-    let _v3 = v18 
+    let v11 : string = "$0.unwrap()"
+    let v12 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v11 
+    let _v6 = v12 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v21 : string = null |> unbox<string>
-    let _v3 = v21 
+    let v13 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v6 = v13 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v24 : string = null |> unbox<string>
-    let _v3 = v24 
+    let v14 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v6 = v14 
     #endif
 #else
-    let v27 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
-    let _v3 = v27 
+    let v15 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v6 = v15 
     #endif
-    let v28 : string = _v3 
-    v28
+    let v16 : regex_Regex = _v6 
+    let v19 : string = method0(v2)
+    let v20 : string = $"$0.replace_all(&*$1, &*$2)"
+    let v21 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v16, v19, v1) v20 
+    let v22 : string = "String::from($0)"
+    let v23 : std_string_String = Fable.Core.RustInterop.emitRustExpr v21 v22 
+    let v24 : string = "fable_library_rust::String_::fromString($0)"
+    let v25 : string = Fable.Core.RustInterop.emitRustExpr v23 v24 
+    let _v3 = v25 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v26 : string = null |> unbox<string>
+    let _v3 = v26 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v29 : string = null |> unbox<string>
+    let _v3 = v29 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v32 : string = null |> unbox<string>
+    let _v3 = v32 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v35 : string = null |> unbox<string>
+    let _v3 = v35 
+    #endif
+#else
+    let v38 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
+    let _v3 = v38 
+    #endif
+    let v39 : string = _v3 
+    v39
 and closure14 (v0 : string) (v1 : string) : (string -> string) =
     closure15(v0, v1)
 and closure13 () (v0 : string) : (string -> (string -> string)) =

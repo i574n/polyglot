@@ -101,7 +101,7 @@ inl set_inner_html (html : string) (el : html_element) =
     inl html = join html
     inl html = html |> sm'.as_str
     inl el = join el
-    !\($'"!el.set_inner_html(!html)"')
+    !\\(html, $'"!el.set_inner_html($0)"')
 
 /// ### from_js_value
 inl from_js_value (value : js_value) : resultm.result' (optionm'.option' sm'.json_value) sm'.std_string =

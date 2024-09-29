@@ -147,10 +147,15 @@ function Update-Json {
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Location = Get-Location
-    $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
-    $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
+    if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
+        $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
+    }
+    if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
+        $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
+    }
 
     $Parent = Split-Path $Path
+
     if (-Not (Test-Path $Parent)) {
         Write-Output "Creating parent directory: $Parent"
         New-Item $Parent -ItemType Directory

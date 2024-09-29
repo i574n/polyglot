@@ -31,7 +31,13 @@ if (!$SkipPreBuild) {
     $targetDir = GetTargetDir $projectName
 
     { BuildFable $targetDir $projectName "rs" } | Invoke-Block
-    (Get-Content "$targetDir/target/rs/$projectName.rs") `
+
+    $path = "$targetDir/target/polyglot/rs/$projectName.rs"
+    if (!(Test-Path $path)) {
+        { ls } | Invoke-Block -Location $targetDir/target
+        $path = "$targetDir/target/rs/$projectName.rs"
+    }
+    (Get-Content $path) `
         -replace "../../../../lib", "../../../lib" `
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `

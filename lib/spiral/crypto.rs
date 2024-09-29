@@ -240,65 +240,65 @@ pub mod Crypto {
                 let v27: bool = true;
                 let mut v23 = v23;
                 let v29: Result<usize, std::io::Error> = std::io::Read::read(&mut v11, &mut v23);
-                let v31: usize = v29.unwrap();
-                if v31 == v19 {
-                    let v36: bool = true;
+                let v40: usize = v29.unwrap();
+                if v40 == v19 {
+                    let v47: bool = true;
                     break;
                     ()
                 }
                 {
-                    let v38: usize = v23.len();
-                    let v39: u8 = v38 as u8;
-                    let v42: usize = v31;
-                    let v55: &_ = if v42 == v38 {
+                    let v49: usize = v23.len();
+                    let v50: u8 = v49 as u8;
+                    let v53: usize = v40;
+                    let v66: &_ = if v53 == v49 {
                         &v23[v19..]
                     } else {
-                        &v23[v19..v42]
+                        &v23[v19..v53]
                     };
-                    sha2::Digest::update(&mut v16, v55);
+                    sha2::Digest::update(&mut v16, v66);
                     {
-                        let v58: bool = true;
+                        let v69: bool = true;
                     } // rust.loop;
-                    let v60: bool = true;
+                    let v71: bool = true;
                 } // rust.loop;
-                let v62: bool = true;
+                let v73: bool = true;
             } // rust.loop;
-            let v64: bool = true;
+            let v75: bool = true;
             {
                 // rust.loop;
-                let v66: bool = true;
+                let v77: bool = true;
                 {
                     // rust.loop;
-                    let v68: &[u8] = &sha2::Digest::finalize(v16);
-                    let v70: Vec<u8> = v68.iter().map(|x| *x).collect::<Vec<_>>();
-                    let v72: bool = true;
-                    let _vec_map: Vec<_> = v70
+                    let v79: &[u8] = &sha2::Digest::finalize(v16);
+                    let v81: Vec<u8> = v79.iter().map(|x| *x).collect::<Vec<_>>();
+                    let v83: bool = true;
+                    let _vec_map: Vec<_> = v81
                         .into_iter()
                         .map(|x| {
                             //;
-                            let v74: u8 = x;
-                            let v76: std::string::String = format!("{:02x}", v74);
-                            let v78: string = fable_library_rust::String_::fromString(v76);
-                            let v80: bool = true;
-                            v78
+                            let v85: u8 = x;
+                            let v87: std::string::String = format!("{:02x}", v85);
+                            let v89: string = fable_library_rust::String_::fromString(v87);
+                            let v91: bool = true;
+                            v89
                         })
                         .collect::<Vec<_>>();
-                    let v82: Vec<string> = _vec_map;
-                    let v84: Array<string> = fable_library_rust::NativeArray_::array_from(v82);
-                    let v85: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
-                        let v84 = v84.clone();
+                    let v93: Vec<string> = _vec_map;
+                    let v95: Array<string> = fable_library_rust::NativeArray_::array_from(v93);
+                    let v96: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
+                        let v95 = v95.clone();
                         move || {
                             map(
                                 Func1::new({
-                                    let v84 = v84.clone();
-                                    move |i: i32| v84[i].clone()
+                                    let v95 = v95.clone();
+                                    move |i: i32| v95[i].clone()
                                 }),
-                                rangeNumeric(0_i32, 1_i32, count(v84.clone()) - 1_i32),
+                                rangeNumeric(0_i32, 1_i32, count(v95.clone()) - 1_i32),
                             )
                         }
                     }));
-                    let v91: string = join(Crypto::method1(), toArray(v85));
-                    Ok::<string, std::io::Error>(v91).unwrap()
+                    let v102: string = join(Crypto::method1(), toArray(v96));
+                    Ok::<string, std::io::Error>(v102).unwrap()
                 }
             }
         }
@@ -428,8 +428,8 @@ pub mod Crypto {
                 Crypto::US3::US3_1
             },
         );
-        let v295: Crypto::US3 = _v1.1.clone();
-        let v294: Crypto::US2 = _v1.0.clone();
+        let v352: Crypto::US3 = _v1.1.clone();
+        let v351: Crypto::US2 = _v1.0.clone();
         (
             LrcPtr::new(Crypto::Mut1 {
                 l0: MutCell::new(1_i64),
@@ -444,16 +444,16 @@ pub mod Crypto {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Crypto::Mut5 {
-                l0: MutCell::new(match &v294 {
-                    Crypto::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Crypto::US2::US2_0(v351_0_0) => match &v351 {
                         Crypto::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Crypto::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Crypto::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Crypto::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -535,10 +535,10 @@ pub mod Crypto {
     pub fn method14() -> string {
         let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_bright_black;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method17() -> string {
         string("")

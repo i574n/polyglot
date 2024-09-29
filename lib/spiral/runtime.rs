@@ -522,8 +522,8 @@ pub mod Runtime {
                 Runtime::US3::US3_1
             },
         );
-        let v295: Runtime::US3 = _v1.1.clone();
-        let v294: Runtime::US2 = _v1.0.clone();
+        let v352: Runtime::US3 = _v1.1.clone();
+        let v351: Runtime::US2 = _v1.0.clone();
         (
             LrcPtr::new(Runtime::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -538,16 +538,16 @@ pub mod Runtime {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Runtime::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Runtime::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Runtime::US2::US2_0(v351_0_0) => match &v351 {
                         Runtime::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Runtime::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Runtime::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Runtime::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -629,10 +629,10 @@ pub mod Runtime {
     pub fn method10() -> string {
         let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_yellow;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method13() -> string {
         string("")
@@ -2236,10 +2236,10 @@ pub mod Runtime {
     pub fn method31() -> string {
         let v5: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_bright_blue;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn closure18(v0_1: LrcPtr<Runtime::Mut3>, v1_1: string, unitVar: ()) {
         let v3: string = append(v0_1.l0.get().clone(), v1_1);
@@ -2532,10 +2532,10 @@ pub mod Runtime {
     pub fn method35() -> string {
         let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_bright_black;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn closure21(v0_1: string, unitVar: ()) {
         fn v2_1() {

@@ -61,14 +61,14 @@ inl request_send (request : request_builder) : async.future_pin (resultm.result'
 /// ### request_body
 inl request_body (body : string) (request : request_builder) : request_builder =
     inl body = body |> sm'.to_std_string
-    !\($'"reqwest_wasm::RequestBuilder::body(!request, !body)"')
+    !\\(body, $'"reqwest_wasm::RequestBuilder::body(!request, $0)"')
 
 /// ### request_header
 inl request_header (key : string) (value : string) (request : request_builder) : request_builder =
     inl request = join request
     inl key = key |> sm'.to_std_string
     inl value = value |> sm'.to_std_string
-    !\($'"reqwest_wasm::RequestBuilder::header(!request, !key, !value)"')
+    !\\((key, value), $'"reqwest_wasm::RequestBuilder::header(!request, $0, $1)"')
 
 /// ### request_json
 inl request_json forall t. (obj : t) (request : request_builder) : request_builder =

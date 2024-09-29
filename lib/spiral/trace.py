@@ -195,37 +195,37 @@ def closure2(unit_var: None, v0_1: str) -> None:
 
 
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
-    v173: str = method2(method1())
-    v178: US2 = US2(0, US0(0)) if ("Verbose" == v173) else US2(1)
+    v230: str = method2(method1())
+    v235: US2 = US2(0, US0(0)) if ("Verbose" == v230) else US2(1)
     def _arrow170(__unit: None=None, v0_1: Any=v0_1) -> US2:
-        v185: US2 = US2(0, US0(1)) if ("Debug" == v173) else US2(1)
-        if v185.tag == 0:
-            return US2(0, v185.fields[0])
+        v242: US2 = US2(0, US0(1)) if ("Debug" == v230) else US2(1)
+        if v242.tag == 0:
+            return US2(0, v242.fields[0])
 
         else: 
-            v192: US2 = US2(0, US0(2)) if ("Info" == v173) else US2(1)
-            if v192.tag == 0:
-                return US2(0, v192.fields[0])
+            v249: US2 = US2(0, US0(2)) if ("Info" == v230) else US2(1)
+            if v249.tag == 0:
+                return US2(0, v249.fields[0])
 
             else: 
-                v199: US2 = US2(0, US0(3)) if ("Warning" == v173) else US2(1)
-                if v199.tag == 0:
-                    return US2(0, v199.fields[0])
+                v256: US2 = US2(0, US0(3)) if ("Warning" == v230) else US2(1)
+                if v256.tag == 0:
+                    return US2(0, v256.fields[0])
 
                 else: 
-                    v206: US2 = US2(0, US0(4)) if ("Critical" == v173) else US2(1)
-                    return US2(0, v206.fields[0]) if (v206.tag == 0) else US2(1)
+                    v263: US2 = US2(0, US0(4)) if ("Critical" == v230) else US2(1)
+                    return US2(0, v263.fields[0]) if (v263.tag == 0) else US2(1)
 
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v178.fields[0]) if (v178.tag == 0) else _arrow170(), US3(0, ticks_1(now())) if (method2(method5()) == "True") else US3(1))
-    v295: US3 = _v1[1]
-    v294: US2 = _v1[0]
-    def v360(v: str, v0_1: Any=v0_1) -> None:
+    _v1: tuple[US2, US3] = (US2(0, v235.fields[0]) if (v235.tag == 0) else _arrow170(), US3(0, ticks_1(now())) if (method2(method5()) == "True") else US3(1))
+    v352: US3 = _v1[1]
+    v351: US2 = _v1[0]
+    def v417(v: str, v0_1: Any=v0_1) -> None:
         closure2(None, v)
 
-    return (Mut0(int64(1)), Mut1(v360), Mut2(True), Mut3(""), Mut4(v294.fields[0] if (v294.tag == 0) else v0_1), v295.fields[0] if (v295.tag == 0) else None)
+    return (Mut0(int64(1)), Mut1(v417), Mut2(True), Mut3(""), Mut4(v351.fields[0] if (v351.tag == 0) else v0_1), v352.fields[0] if (v352.tag == 0) else None)
 
 
 def closure0(unit_var: None, unit_var_1: None) -> None:

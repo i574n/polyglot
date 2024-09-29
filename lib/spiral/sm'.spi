@@ -280,7 +280,7 @@ inl byte_to_string (format : string) (x : u8) : string =
 /// ### str
 nominal str =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\ntype Str = class end\n#else\ntype Str = string\n#endif\n"
         $'' : $'Str'
     )
 
@@ -396,7 +396,9 @@ inl include_str (path : string) : rust.ref str =
 /// ### as_str
 inl as_str (s : string) : rust.ref str =
     // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
-    !\\(s, $'"&*$0"')
+    run_target_args (fun () => s) function
+        | Rust _ => fun s => !\\(s, $'"&*$0"')
+        | _ => fun s => s |> unbox
 
 /// ### from_iter
 inl from_iter forall (t : * -> *). (s : t char) : std_string =
@@ -404,7 +406,9 @@ inl from_iter forall (t : * -> *). (s : t char) : std_string =
 
 /// ### ref_to_std_string
 inl ref_to_std_string (str : rust.ref str) : std_string =
-    !\\(str, $'"String::from($0)"')
+    run_target_args (fun () => str) function
+        | Rust _ => fun str => !\\(str, $'"String::from($0)"')
+        | _ => fun str => str |> unbox
 
 /// ### cow_to_std_string
 inl cow_to_std_string (str : rust.cow str) : std_string =
@@ -523,7 +527,8 @@ nominal match' =
 
 /// ### regex_captures_iter
 inl regex_captures_iter (s : rust.static_ref (rust.mut' std_string)) (regex : regex) : regex_capture_matches =
-    !\($'$"!regex.captures_iter(!s)"')
+    inl regex = regex |> rust.emit
+    !\\(regex, $'$"$0.captures_iter(!s)"')
 
 /// ### regex_captures
 inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string string) =
@@ -582,7 +587,7 @@ inl serialize forall t. (x : t) : resultm.result' std_string json_error =
 inl deserialize forall t. (json : string) : resultm.result' t std_string =
     inl json = join json
     inl json = json |> as_str
-    !\($'"serde_json::from_str(&!json)"')
+    !\\(json, $'"serde_json::from_str(&$0)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
 
 /// ### borsh_deserialize

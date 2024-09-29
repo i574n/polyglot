@@ -7828,7 +7828,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">request_body</span> <span class="p">(</span><span class="n">body</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">request</span> <span class="p">:</span> <span class="n">request_builder</span><span class="p">)</span> <span class="p">:</span> <span class="n">request_builder</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">body</span> <span class="o">=</span> <span class="n">body</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"reqwest_wasm::RequestBuilder::body(!request, !body)"'</span><span class="o">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>body,<span class="w"> </span><span class="s1">$'"reqwest_wasm::RequestBuilder::body(!request, $0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -7857,7 +7857,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">request</span> <span class="o">=</span> <span class="n">join</span> <span class="n">request</span>
     <span class="n">inl</span> <span class="n">key</span> <span class="o">=</span> <span class="n">key</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"reqwest_wasm::RequestBuilder::header(!request, !key, !value)"'</span><span class="o">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>key,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"reqwest_wasm::RequestBuilder::header(!request, $0, $1)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8408,7 +8408,7 @@ __assert_eq / actual: false / expected: false
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #5 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = None; status = true }
@@ -8424,7 +8424,7 @@ __assert_eq / actual: false / expected: false
 00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #16 5
 00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #17 6
 __assert_between / actual: 2L / expected: struct (2L, 5L)
-__assert_between / actual: 122L / expected: struct (80L, 200L)
+__assert_between / actual: 120L / expected: struct (80L, 200L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8500,7 +8500,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = true }
@@ -8630,7 +8630,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3
@@ -8638,13 +8638,13 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 4
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = None; status = false }
 00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 networking.wait_for_port_access / { port = 5555; retry = 100; timeout = None; status = false }
-00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #11 _4
+00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #11 _4
 00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #12 _5
 00:00:06 <span class="ansi-black-intense-fg">verbose</span> #13 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
 00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #14 5
 00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #15 6
 __assert_eq / actual: 5557 / expected: 5557
-__assert_between / actual: 108L / expected: struct (50L, 150L)
+__assert_between / actual: 110L / expected: struct (50L, 150L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8719,7 +8719,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3

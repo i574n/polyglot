@@ -1,7 +1,10 @@
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
-#endif
 type Ref<'T> = class end
+#else
+type Ref<'T> = 'T
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Command")>]
 #endif
@@ -20,8 +23,11 @@ type clap_ArgAction = class end
 type Vec<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
 type std_string_String = class end
+#else
+type std_string_String = string
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
 #endif
@@ -92,8 +98,11 @@ type Lifetime<'T, 'U> = class end
 type StaticLifetime = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
 type Str = class end
+#else
+type Str = string
+#endif
+
 module TraceState = let mutable trace_state = None
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
@@ -110,8 +119,11 @@ type Dyn<'T> = class end
 type std_future_Future<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
-#endif
 type std_io_Error = class end
+#else
+type std_io_Error = string
+#endif
+
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("near_workspaces::network::Sandbox")>]
 #endif
@@ -227,42 +239,102 @@ let rec method0 () : clap_Command =
     let v63 : bool = Fable.Core.RustInterop.emitRustExpr v61 v62 
     let v64 : string = "x"
     let v65 : string = Fable.Core.RustInterop.emitRustExpr () v64 
-    let v66 : string = "&*$0"
-    let v67 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v65 v66 
-    let v68 : string = "String::from($0)"
-    let v69 : std_string_String = Fable.Core.RustInterop.emitRustExpr v67 v68 
-    let v70 : string = "Box::new($0)"
-    let v71 : Box<std_string_String> = Fable.Core.RustInterop.emitRustExpr v69 v70 
-    let v72 : string = "Box::leak($0)"
-    let v73 : Ref<Lifetime<StaticLifetime, Mut<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v71 v72 
-    let v74 : string = "clap::builder::PossibleValue::new(&**$0)"
-    let v75 : clap_builder_PossibleValue = Fable.Core.RustInterop.emitRustExpr v73 v74 
-    let v76 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v77 : bool = Fable.Core.RustInterop.emitRustExpr v75 v76 
-    let v78 : string = "_vec_map"
-    let v79 : Vec<clap_builder_PossibleValue> = Fable.Core.RustInterop.emitRustExpr () v78 
-    let v80 : string = "Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"
-    let v81 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr v79 v80 
-    let v82 : string = "$0.value_parser($1)"
-    let v83 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v34, v81) v82 
-    let v84 : string = "clap::Command::arg($0, $1)"
-    let v85 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v23, v83) v84 
-    let v86 : string = "wasm"
-    let v87 : string = "r#\"" + v86 + "\"#"
-    let v88 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v87 
-    let v89 : string = "clap::Arg::new($0)"
-    let v90 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v88 v89 
-    let v91 : string = "$0.short($1)"
-    let v92 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v90, 'w') v91 
-    let v93 : string = "r#\"" + v86 + "\"#"
-    let v94 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v93 
-    let v95 : string = "$0.long($1)"
-    let v96 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v92, v94) v95 
-    let v97 : string = "$0.required($1)"
-    let v98 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v96, true) v97 
-    let v99 : string = "clap::Command::arg($0, $1)"
-    let v100 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v85, v98) v99 
-    v100
+    let v66 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v67 : string = "&*$0"
+    let v68 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v65 v67 
+    let _v66 = v68 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v69 : string = "&*$0"
+    let v70 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v65 v69 
+    let _v66 = v70 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v71 : string = "&*$0"
+    let v72 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v65 v71 
+    let _v66 = v72 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v73 : Ref<Str> = v65 |> unbox<Ref<Str>>
+    let _v66 = v73 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v76 : Ref<Str> = v65 |> unbox<Ref<Str>>
+    let _v66 = v76 
+    #endif
+#else
+    let v79 : Ref<Str> = v65 |> unbox<Ref<Str>>
+    let _v66 = v79 
+    #endif
+    let v82 : Ref<Str> = _v66 
+    let v87 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v88 : string = "String::from($0)"
+    let v89 : std_string_String = Fable.Core.RustInterop.emitRustExpr v82 v88 
+    let _v87 = v89 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v90 : string = "String::from($0)"
+    let v91 : std_string_String = Fable.Core.RustInterop.emitRustExpr v82 v90 
+    let _v87 = v91 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v92 : string = "String::from($0)"
+    let v93 : std_string_String = Fable.Core.RustInterop.emitRustExpr v82 v92 
+    let _v87 = v93 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v94 : std_string_String = v82 |> unbox<std_string_String>
+    let _v87 = v94 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v97 : std_string_String = v82 |> unbox<std_string_String>
+    let _v87 = v97 
+    #endif
+#else
+    let v100 : std_string_String = v82 |> unbox<std_string_String>
+    let _v87 = v100 
+    #endif
+    let v103 : std_string_String = _v87 
+    let v108 : string = "Box::new($0)"
+    let v109 : Box<std_string_String> = Fable.Core.RustInterop.emitRustExpr v103 v108 
+    let v110 : string = "Box::leak($0)"
+    let v111 : Ref<Lifetime<StaticLifetime, Mut<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v109 v110 
+    let v112 : string = "clap::builder::PossibleValue::new(&**$0)"
+    let v113 : clap_builder_PossibleValue = Fable.Core.RustInterop.emitRustExpr v111 v112 
+    let v114 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v115 : bool = Fable.Core.RustInterop.emitRustExpr v113 v114 
+    let v116 : string = "_vec_map"
+    let v117 : Vec<clap_builder_PossibleValue> = Fable.Core.RustInterop.emitRustExpr () v116 
+    let v118 : string = "Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"
+    let v119 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr v117 v118 
+    let v120 : string = "$0.value_parser($1)"
+    let v121 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v34, v119) v120 
+    let v122 : string = "clap::Command::arg($0, $1)"
+    let v123 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v23, v121) v122 
+    let v124 : string = "wasm"
+    let v125 : string = "r#\"" + v124 + "\"#"
+    let v126 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v125 
+    let v127 : string = "clap::Arg::new($0)"
+    let v128 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v126 v127 
+    let v129 : string = "$0.short($1)"
+    let v130 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v128, 'w') v129 
+    let v131 : string = "r#\"" + v124 + "\"#"
+    let v132 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v131 
+    let v133 : string = "$0.long($1)"
+    let v134 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v130, v132) v133 
+    let v135 : string = "$0.required($1)"
+    let v136 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v134, true) v135 
+    let v137 : string = "clap::Command::arg($0, $1)"
+    let v138 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v123, v136) v137 
+    v138
 and method1 () : string =
     let v0 : string = "trace_level"
     v0
@@ -504,314 +576,404 @@ and method3 (v0 : US3) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v67 : string = "env!(\"" + v65 + "\")"
     let v68 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v67 
-    let v69 : string = "String::from($0)"
-    let v70 : std_string_String = Fable.Core.RustInterop.emitRustExpr v68 v69 
-    let v71 : string = "fable_library_rust::String_::fromString($0)"
-    let v72 : string = Fable.Core.RustInterop.emitRustExpr v70 v71 
-    let _v66 = v72 
+    let v69 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v70 : string = "String::from($0)"
+    let v71 : std_string_String = Fable.Core.RustInterop.emitRustExpr v68 v70 
+    let _v69 = v71 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v73 : string = "env!(\"" + v65 + "\")"
-    let v74 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v73 
-    let v75 : string = "String::from($0)"
-    let v76 : std_string_String = Fable.Core.RustInterop.emitRustExpr v74 v75 
-    let v77 : string = "fable_library_rust::String_::fromString($0)"
-    let v78 : string = Fable.Core.RustInterop.emitRustExpr v76 v77 
-    let _v66 = v78 
+    let v72 : string = "String::from($0)"
+    let v73 : std_string_String = Fable.Core.RustInterop.emitRustExpr v68 v72 
+    let _v69 = v73 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v79 : string = "env!(\"" + v65 + "\")"
-    let v80 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v79 
-    let v81 : string = "String::from($0)"
-    let v82 : std_string_String = Fable.Core.RustInterop.emitRustExpr v80 v81 
-    let v83 : string = "fable_library_rust::String_::fromString($0)"
-    let v84 : string = Fable.Core.RustInterop.emitRustExpr v82 v83 
-    let _v66 = v84 
+    let v74 : string = "String::from($0)"
+    let v75 : std_string_String = Fable.Core.RustInterop.emitRustExpr v68 v74 
+    let _v69 = v75 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v85 : string = null |> unbox<string>
-    let _v66 = v85 
+    let v76 : std_string_String = v68 |> unbox<std_string_String>
+    let _v69 = v76 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v88 : string = null |> unbox<string>
-    let _v66 = v88 
+    let v79 : std_string_String = v68 |> unbox<std_string_String>
+    let _v69 = v79 
     #endif
 #else
-    let v91 : string = null |> unbox<string>
+    let v82 : std_string_String = v68 |> unbox<std_string_String>
+    let _v69 = v82 
+    #endif
+    let v85 : std_string_String = _v69 
+    let v90 : string = "fable_library_rust::String_::fromString($0)"
+    let v91 : string = Fable.Core.RustInterop.emitRustExpr v85 v90 
     let _v66 = v91 
     #endif
-    let v94 : string = _v66 
-    let v99 : string = "True"
-    let v100 : bool = v94 <> v99 
-    let v109 : US5 =
-        if v100 then
-            US5_1
-        else
-            let v104 : string = $"near_sdk::env::block_timestamp()"
-            let v105 : uint64 = Fable.Core.RustInterop.emitRustExpr () v104 
-            let v106 : (uint64 -> int64) = int64
-            let v107 : int64 = v106 v105
-            US5_0(v107)
-    let v110 : US2 = US2_1
-    let _v1 = struct (v110, v109) 
+#if FABLE_COMPILER_RUST && WASM
+    let v92 : string = "env!(\"" + v65 + "\")"
+    let v93 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v92 
+    let v94 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v95 : string = "String::from($0)"
+    let v96 : std_string_String = Fable.Core.RustInterop.emitRustExpr v93 v95 
+    let _v94 = v96 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v97 : string = "String::from($0)"
+    let v98 : std_string_String = Fable.Core.RustInterop.emitRustExpr v93 v97 
+    let _v94 = v98 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v99 : string = "String::from($0)"
+    let v100 : std_string_String = Fable.Core.RustInterop.emitRustExpr v93 v99 
+    let _v94 = v100 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v111 : string = method4()
-    let v112 : string = method5(v111)
-    
-    
-    
-    
-    
-    let v113 : bool = "Verbose" = v112
-    let v117 : US2 =
-        if v113 then
-            let v114 : US3 = US3_0
-            US2_0(v114)
-        else
-            US2_1
-    let v158 : US2 =
-        match v117 with
-        | US2_1 -> (* None *)
-            let v120 : bool = "Debug" = v112
-            let v124 : US2 =
-                if v120 then
-                    let v121 : US3 = US3_1
-                    US2_0(v121)
-                else
-                    US2_1
-            match v124 with
-            | US2_1 -> (* None *)
-                let v127 : bool = "Info" = v112
-                let v131 : US2 =
-                    if v127 then
-                        let v128 : US3 = US3_2
-                        US2_0(v128)
-                    else
-                        US2_1
-                match v131 with
-                | US2_1 -> (* None *)
-                    let v134 : bool = "Warning" = v112
-                    let v138 : US2 =
-                        if v134 then
-                            let v135 : US3 = US3_3
-                            US2_0(v135)
-                        else
-                            US2_1
-                    match v138 with
-                    | US2_1 -> (* None *)
-                        let v141 : bool = "Critical" = v112
-                        let v145 : US2 =
-                            if v141 then
-                                let v142 : US3 = US3_4
-                                US2_0(v142)
-                            else
-                                US2_1
-                        match v145 with
-                        | US2_1 -> (* None *)
-                            US2_1
-                        | US2_0(v146) -> (* Some *)
-                            US2_0(v146)
-                    | US2_0(v139) -> (* Some *)
-                        US2_0(v139)
-                | US2_0(v132) -> (* Some *)
-                    US2_0(v132)
-            | US2_0(v125) -> (* Some *)
-                US2_0(v125)
-        | US2_0(v118) -> (* Some *)
-            US2_0(v118)
-    let v159 : string = method8()
-    let v160 : string = method5(v159)
-    let v161 : bool = v160 = "True"
-    let v171 : US5 =
-        if v161 then
-            let v162 : System.DateTime = System.DateTime.Now
-            let v165 : (System.DateTime -> int64) = _.Ticks
-            let v166 : int64 = v165 v162
-            US5_0(v166)
-        else
-            US5_1
-    let _v1 = struct (v158, v171) 
+    let v101 : std_string_String = v93 |> unbox<std_string_String>
+    let _v94 = v101 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v172 : string = method4()
-    let v173 : string = method5(v172)
-    
-    
-    
-    
-    
-    let v174 : bool = "Verbose" = v173
-    let v178 : US2 =
-        if v174 then
-            let v175 : US3 = US3_0
-            US2_0(v175)
-        else
-            US2_1
-    let v219 : US2 =
-        match v178 with
-        | US2_1 -> (* None *)
-            let v181 : bool = "Debug" = v173
-            let v185 : US2 =
-                if v181 then
-                    let v182 : US3 = US3_1
-                    US2_0(v182)
-                else
-                    US2_1
-            match v185 with
-            | US2_1 -> (* None *)
-                let v188 : bool = "Info" = v173
-                let v192 : US2 =
-                    if v188 then
-                        let v189 : US3 = US3_2
-                        US2_0(v189)
-                    else
-                        US2_1
-                match v192 with
-                | US2_1 -> (* None *)
-                    let v195 : bool = "Warning" = v173
-                    let v199 : US2 =
-                        if v195 then
-                            let v196 : US3 = US3_3
-                            US2_0(v196)
-                        else
-                            US2_1
-                    match v199 with
-                    | US2_1 -> (* None *)
-                        let v202 : bool = "Critical" = v173
-                        let v206 : US2 =
-                            if v202 then
-                                let v203 : US3 = US3_4
-                                US2_0(v203)
-                            else
-                                US2_1
-                        match v206 with
-                        | US2_1 -> (* None *)
-                            US2_1
-                        | US2_0(v207) -> (* Some *)
-                            US2_0(v207)
-                    | US2_0(v200) -> (* Some *)
-                        US2_0(v200)
-                | US2_0(v193) -> (* Some *)
-                    US2_0(v193)
-            | US2_0(v186) -> (* Some *)
-                US2_0(v186)
-        | US2_0(v179) -> (* Some *)
-            US2_0(v179)
-    let v220 : string = method8()
-    let v221 : string = method5(v220)
-    let v222 : bool = v221 = "True"
-    let v232 : US5 =
-        if v222 then
-            let v223 : System.DateTime = System.DateTime.Now
-            let v226 : (System.DateTime -> int64) = _.Ticks
-            let v227 : int64 = v226 v223
-            US5_0(v227)
-        else
-            US5_1
-    let _v1 = struct (v219, v232) 
+    let v104 : std_string_String = v93 |> unbox<std_string_String>
+    let _v94 = v104 
     #endif
 #else
-    let v233 : string = method4()
-    let v234 : string = method5(v233)
+    let v107 : std_string_String = v93 |> unbox<std_string_String>
+    let _v94 = v107 
+    #endif
+    let v110 : std_string_String = _v94 
+    let v115 : string = "fable_library_rust::String_::fromString($0)"
+    let v116 : string = Fable.Core.RustInterop.emitRustExpr v110 v115 
+    let _v66 = v116 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v117 : string = "env!(\"" + v65 + "\")"
+    let v118 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v117 
+    let v119 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v120 : string = "String::from($0)"
+    let v121 : std_string_String = Fable.Core.RustInterop.emitRustExpr v118 v120 
+    let _v119 = v121 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v122 : string = "String::from($0)"
+    let v123 : std_string_String = Fable.Core.RustInterop.emitRustExpr v118 v122 
+    let _v119 = v123 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v124 : string = "String::from($0)"
+    let v125 : std_string_String = Fable.Core.RustInterop.emitRustExpr v118 v124 
+    let _v119 = v125 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v126 : std_string_String = v118 |> unbox<std_string_String>
+    let _v119 = v126 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v129 : std_string_String = v118 |> unbox<std_string_String>
+    let _v119 = v129 
+    #endif
+#else
+    let v132 : std_string_String = v118 |> unbox<std_string_String>
+    let _v119 = v132 
+    #endif
+    let v135 : std_string_String = _v119 
+    let v140 : string = "fable_library_rust::String_::fromString($0)"
+    let v141 : string = Fable.Core.RustInterop.emitRustExpr v135 v140 
+    let _v66 = v141 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v142 : string = null |> unbox<string>
+    let _v66 = v142 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v145 : string = null |> unbox<string>
+    let _v66 = v145 
+    #endif
+#else
+    let v148 : string = null |> unbox<string>
+    let _v66 = v148 
+    #endif
+    let v151 : string = _v66 
+    let v156 : string = "True"
+    let v157 : bool = v151 <> v156 
+    let v166 : US5 =
+        if v157 then
+            US5_1
+        else
+            let v161 : string = $"near_sdk::env::block_timestamp()"
+            let v162 : uint64 = Fable.Core.RustInterop.emitRustExpr () v161 
+            let v163 : (uint64 -> int64) = int64
+            let v164 : int64 = v163 v162
+            US5_0(v164)
+    let v167 : US2 = US2_1
+    let _v1 = struct (v167, v166) 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v168 : string = method4()
+    let v169 : string = method5(v168)
     
     
     
     
     
-    let v235 : bool = "Verbose" = v234
-    let v239 : US2 =
-        if v235 then
-            let v236 : US3 = US3_0
-            US2_0(v236)
+    let v170 : bool = "Verbose" = v169
+    let v174 : US2 =
+        if v170 then
+            let v171 : US3 = US3_0
+            US2_0(v171)
         else
             US2_1
-    let v280 : US2 =
-        match v239 with
+    let v215 : US2 =
+        match v174 with
         | US2_1 -> (* None *)
-            let v242 : bool = "Debug" = v234
-            let v246 : US2 =
-                if v242 then
-                    let v243 : US3 = US3_1
-                    US2_0(v243)
+            let v177 : bool = "Debug" = v169
+            let v181 : US2 =
+                if v177 then
+                    let v178 : US3 = US3_1
+                    US2_0(v178)
                 else
                     US2_1
-            match v246 with
+            match v181 with
             | US2_1 -> (* None *)
-                let v249 : bool = "Info" = v234
-                let v253 : US2 =
-                    if v249 then
-                        let v250 : US3 = US3_2
-                        US2_0(v250)
+                let v184 : bool = "Info" = v169
+                let v188 : US2 =
+                    if v184 then
+                        let v185 : US3 = US3_2
+                        US2_0(v185)
                     else
                         US2_1
-                match v253 with
+                match v188 with
                 | US2_1 -> (* None *)
-                    let v256 : bool = "Warning" = v234
-                    let v260 : US2 =
-                        if v256 then
-                            let v257 : US3 = US3_3
-                            US2_0(v257)
+                    let v191 : bool = "Warning" = v169
+                    let v195 : US2 =
+                        if v191 then
+                            let v192 : US3 = US3_3
+                            US2_0(v192)
                         else
                             US2_1
-                    match v260 with
+                    match v195 with
                     | US2_1 -> (* None *)
-                        let v263 : bool = "Critical" = v234
-                        let v267 : US2 =
-                            if v263 then
-                                let v264 : US3 = US3_4
-                                US2_0(v264)
+                        let v198 : bool = "Critical" = v169
+                        let v202 : US2 =
+                            if v198 then
+                                let v199 : US3 = US3_4
+                                US2_0(v199)
                             else
                                 US2_1
-                        match v267 with
+                        match v202 with
                         | US2_1 -> (* None *)
                             US2_1
-                        | US2_0(v268) -> (* Some *)
-                            US2_0(v268)
-                    | US2_0(v261) -> (* Some *)
-                        US2_0(v261)
-                | US2_0(v254) -> (* Some *)
-                    US2_0(v254)
-            | US2_0(v247) -> (* Some *)
-                US2_0(v247)
-        | US2_0(v240) -> (* Some *)
-            US2_0(v240)
-    let v281 : string = method8()
-    let v282 : string = method5(v281)
-    let v283 : bool = v282 = "True"
-    let v293 : US5 =
-        if v283 then
-            let v284 : System.DateTime = System.DateTime.Now
-            let v287 : (System.DateTime -> int64) = _.Ticks
-            let v288 : int64 = v287 v284
-            US5_0(v288)
+                        | US2_0(v203) -> (* Some *)
+                            US2_0(v203)
+                    | US2_0(v196) -> (* Some *)
+                        US2_0(v196)
+                | US2_0(v189) -> (* Some *)
+                    US2_0(v189)
+            | US2_0(v182) -> (* Some *)
+                US2_0(v182)
+        | US2_0(v175) -> (* Some *)
+            US2_0(v175)
+    let v216 : string = method8()
+    let v217 : string = method5(v216)
+    let v218 : bool = v217 = "True"
+    let v228 : US5 =
+        if v218 then
+            let v219 : System.DateTime = System.DateTime.Now
+            let v222 : (System.DateTime -> int64) = _.Ticks
+            let v223 : int64 = v222 v219
+            US5_0(v223)
         else
             US5_1
-    let _v1 = struct (v280, v293) 
+    let _v1 = struct (v215, v228) 
     #endif
-    let struct (v294 : US2, v295 : US5) = _v1 
-    let v359 : Mut0 = {l0 = 1L} : Mut0
-    let v360 : (string -> unit) = closure4()
-    let v361 : Mut1 = {l0 = v360} : Mut1
-    let v362 : Mut2 = {l0 = true} : Mut2
-    let v363 : string = ""
-    let v364 : Mut3 = {l0 = v363} : Mut3
-    let v367 : US3 =
-        match v294 with
+#if FABLE_COMPILER_PYTHON
+    let v229 : string = method4()
+    let v230 : string = method5(v229)
+    
+    
+    
+    
+    
+    let v231 : bool = "Verbose" = v230
+    let v235 : US2 =
+        if v231 then
+            let v232 : US3 = US3_0
+            US2_0(v232)
+        else
+            US2_1
+    let v276 : US2 =
+        match v235 with
+        | US2_1 -> (* None *)
+            let v238 : bool = "Debug" = v230
+            let v242 : US2 =
+                if v238 then
+                    let v239 : US3 = US3_1
+                    US2_0(v239)
+                else
+                    US2_1
+            match v242 with
+            | US2_1 -> (* None *)
+                let v245 : bool = "Info" = v230
+                let v249 : US2 =
+                    if v245 then
+                        let v246 : US3 = US3_2
+                        US2_0(v246)
+                    else
+                        US2_1
+                match v249 with
+                | US2_1 -> (* None *)
+                    let v252 : bool = "Warning" = v230
+                    let v256 : US2 =
+                        if v252 then
+                            let v253 : US3 = US3_3
+                            US2_0(v253)
+                        else
+                            US2_1
+                    match v256 with
+                    | US2_1 -> (* None *)
+                        let v259 : bool = "Critical" = v230
+                        let v263 : US2 =
+                            if v259 then
+                                let v260 : US3 = US3_4
+                                US2_0(v260)
+                            else
+                                US2_1
+                        match v263 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v264) -> (* Some *)
+                            US2_0(v264)
+                    | US2_0(v257) -> (* Some *)
+                        US2_0(v257)
+                | US2_0(v250) -> (* Some *)
+                    US2_0(v250)
+            | US2_0(v243) -> (* Some *)
+                US2_0(v243)
+        | US2_0(v236) -> (* Some *)
+            US2_0(v236)
+    let v277 : string = method8()
+    let v278 : string = method5(v277)
+    let v279 : bool = v278 = "True"
+    let v289 : US5 =
+        if v279 then
+            let v280 : System.DateTime = System.DateTime.Now
+            let v283 : (System.DateTime -> int64) = _.Ticks
+            let v284 : int64 = v283 v280
+            US5_0(v284)
+        else
+            US5_1
+    let _v1 = struct (v276, v289) 
+    #endif
+#else
+    let v290 : string = method4()
+    let v291 : string = method5(v290)
+    
+    
+    
+    
+    
+    let v292 : bool = "Verbose" = v291
+    let v296 : US2 =
+        if v292 then
+            let v293 : US3 = US3_0
+            US2_0(v293)
+        else
+            US2_1
+    let v337 : US2 =
+        match v296 with
+        | US2_1 -> (* None *)
+            let v299 : bool = "Debug" = v291
+            let v303 : US2 =
+                if v299 then
+                    let v300 : US3 = US3_1
+                    US2_0(v300)
+                else
+                    US2_1
+            match v303 with
+            | US2_1 -> (* None *)
+                let v306 : bool = "Info" = v291
+                let v310 : US2 =
+                    if v306 then
+                        let v307 : US3 = US3_2
+                        US2_0(v307)
+                    else
+                        US2_1
+                match v310 with
+                | US2_1 -> (* None *)
+                    let v313 : bool = "Warning" = v291
+                    let v317 : US2 =
+                        if v313 then
+                            let v314 : US3 = US3_3
+                            US2_0(v314)
+                        else
+                            US2_1
+                    match v317 with
+                    | US2_1 -> (* None *)
+                        let v320 : bool = "Critical" = v291
+                        let v324 : US2 =
+                            if v320 then
+                                let v321 : US3 = US3_4
+                                US2_0(v321)
+                            else
+                                US2_1
+                        match v324 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v325) -> (* Some *)
+                            US2_0(v325)
+                    | US2_0(v318) -> (* Some *)
+                        US2_0(v318)
+                | US2_0(v311) -> (* Some *)
+                    US2_0(v311)
+            | US2_0(v304) -> (* Some *)
+                US2_0(v304)
+        | US2_0(v297) -> (* Some *)
+            US2_0(v297)
+    let v338 : string = method8()
+    let v339 : string = method5(v338)
+    let v340 : bool = v339 = "True"
+    let v350 : US5 =
+        if v340 then
+            let v341 : System.DateTime = System.DateTime.Now
+            let v344 : (System.DateTime -> int64) = _.Ticks
+            let v345 : int64 = v344 v341
+            US5_0(v345)
+        else
+            US5_1
+    let _v1 = struct (v337, v350) 
+    #endif
+    let struct (v351 : US2, v352 : US5) = _v1 
+    let v416 : Mut0 = {l0 = 1L} : Mut0
+    let v417 : (string -> unit) = closure4()
+    let v418 : Mut1 = {l0 = v417} : Mut1
+    let v419 : Mut2 = {l0 = true} : Mut2
+    let v420 : string = ""
+    let v421 : Mut3 = {l0 = v420} : Mut3
+    let v424 : US3 =
+        match v351 with
         | US2_1 -> (* None *)
             v0
-        | US2_0(v365) -> (* Some *)
-            v365
-    let v368 : Mut4 = {l0 = v367} : Mut4
-    let v375 : int64 option =
-        match v295 with
+        | US2_0(v422) -> (* Some *)
+            v422
+    let v425 : Mut4 = {l0 = v424} : Mut4
+    let v432 : int64 option =
+        match v352 with
         | US5_1 -> (* None *)
-            let v373 : int64 option = None
-            v373
-        | US5_0(v369) -> (* Some *)
-            let v370 : int64 option = Some v369 
-            v370
-    struct (v359, v361, v362, v364, v368, v375)
+            let v430 : int64 option = None
+            v430
+        | US5_0(v426) -> (* Some *)
+            let v427 : int64 option = Some v426 
+            v427
+    struct (v416, v418, v419, v421, v425, v432)
 and closure2 (v0 : US3) () : unit =
     let v1 : bool = TraceState.trace_state.IsNone
     if v1 then
@@ -1052,65 +1214,155 @@ and method13 () : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v20 : string = "inline_colorization::color_bright_black"
     let v21 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v20 
-    let v22 : string = "&*$0"
-    let v23 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v22 
-    let v24 : string = "inline_colorization::color_reset"
-    let v25 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v24 
-    let v26 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v27 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v23, v25) v26 
-    let v28 : string = "fable_library_rust::String_::fromString($0)"
-    let v29 : string = Fable.Core.RustInterop.emitRustExpr v27 v28 
-    let _v19 = v29 
+    let v22 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v23 : string = "&*$0"
+    let v24 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v23 
+    let _v22 = v24 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v30 : string = "inline_colorization::color_bright_black"
-    let v31 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v30 
-    let v32 : string = "&*$0"
-    let v33 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v32 
-    let v34 : string = "inline_colorization::color_reset"
-    let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34 
-    let v36 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v31, v33, v35) v36 
-    let v38 : string = "fable_library_rust::String_::fromString($0)"
-    let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
-    let _v19 = v39 
+    let v25 : string = "&*$0"
+    let v26 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v25 
+    let _v22 = v26 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v40 : string = "inline_colorization::color_bright_black"
-    let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
-    let v42 : string = "&*$0"
-    let v43 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v42 
-    let v44 : string = "inline_colorization::color_reset"
-    let v45 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v44 
-    let v46 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v47 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v41, v43, v45) v46 
-    let v48 : string = "fable_library_rust::String_::fromString($0)"
-    let v49 : string = Fable.Core.RustInterop.emitRustExpr v47 v48 
-    let _v19 = v49 
+    let v27 : string = "&*$0"
+    let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v27 
+    let _v22 = v28 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v50 : string = "\u001b[90m"
-    let v51 : string = method14()
-    let v52 : string = v50 + v5 
-    let v53 : string = v52 + v51 
-    let _v19 = v53 
+    let v29 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v29 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v54 : string = "\u001b[90m"
-    let v55 : string = method14()
-    let v56 : string = v54 + v5 
-    let v57 : string = v56 + v55 
-    let _v19 = v57 
+    let v32 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v32 
     #endif
 #else
-    let v58 : string = "\u001b[90m"
-    let v59 : string = method14()
-    let v60 : string = v58 + v5 
-    let v61 : string = v60 + v59 
-    let _v19 = v61 
+    let v35 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v35 
     #endif
-    let v62 : string = _v19 
-    v62
+    let v38 : Ref<Str> = _v22 
+    let v43 : string = "inline_colorization::color_reset"
+    let v44 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v43 
+    let v45 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v38, v44) v45 
+    let v47 : string = "fable_library_rust::String_::fromString($0)"
+    let v48 : string = Fable.Core.RustInterop.emitRustExpr v46 v47 
+    let _v19 = v48 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v49 : string = "inline_colorization::color_bright_black"
+    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49 
+    let v51 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v52 : string = "&*$0"
+    let v53 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v52 
+    let _v51 = v53 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v54 : string = "&*$0"
+    let v55 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v54 
+    let _v51 = v55 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v56 : string = "&*$0"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v56 
+    let _v51 = v57 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v58 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v58 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v61 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v61 
+    #endif
+#else
+    let v64 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v64 
+    #endif
+    let v67 : Ref<Str> = _v51 
+    let v72 : string = "inline_colorization::color_reset"
+    let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    let v74 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v75 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v50, v67, v73) v74 
+    let v76 : string = "fable_library_rust::String_::fromString($0)"
+    let v77 : string = Fable.Core.RustInterop.emitRustExpr v75 v76 
+    let _v19 = v77 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v78 : string = "inline_colorization::color_bright_black"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78 
+    let v80 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v81 : string = "&*$0"
+    let v82 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v81 
+    let _v80 = v82 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v83 : string = "&*$0"
+    let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v83 
+    let _v80 = v84 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v85 : string = "&*$0"
+    let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v85 
+    let _v80 = v86 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v87 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v87 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v90 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v90 
+    #endif
+#else
+    let v93 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v93 
+    #endif
+    let v96 : Ref<Str> = _v80 
+    let v101 : string = "inline_colorization::color_reset"
+    let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101 
+    let v103 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v79, v96, v102) v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    let _v19 = v106 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v107 : string = "\u001b[90m"
+    let v108 : string = method14()
+    let v109 : string = v107 + v5 
+    let v110 : string = v109 + v108 
+    let _v19 = v110 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v111 : string = "\u001b[90m"
+    let v112 : string = method14()
+    let v113 : string = v111 + v5 
+    let v114 : string = v113 + v112 
+    let _v19 = v114 
+    #endif
+#else
+    let v115 : string = "\u001b[90m"
+    let v116 : string = method14()
+    let v117 : string = v115 + v5 
+    let v118 : string = v117 + v116 
+    let _v19 = v118 
+    #endif
+    let v119 : string = _v19 
+    v119
 and method16 () : string =
     let v0 : string = ""
     v0
@@ -1211,53 +1463,83 @@ and method18 (v0 : string, v1 : Mut0, v2 : Mut1, v3 : Mut2, v4 : Mut3, v5 : Mut4
                 let v22 : string = v20 + v21 
                 let v23 : string = v22 + v0 
                 v23
-    let v26 : string = "&*$0"
-    let v27 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v25 v26 
-    let v28 : string = $"$0.chars()"
-    let v29 : Mut<_> = Fable.Core.RustInterop.emitRustExpr v27 v28 
-    let v30 : string = "$0"
-    let v31 : _ = Fable.Core.RustInterop.emitRustExpr v29 v30 
-    let v32 : string = "$0.collect::<Vec<_>>()"
-    let v33 : Vec<char> = Fable.Core.RustInterop.emitRustExpr v31 v32 
-    let v34 : string = "$0.chunks(15000).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"
-    let v35 : Vec<Vec<char>> = Fable.Core.RustInterop.emitRustExpr v33 v34 
-    let v36 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
-    let v37 : bool = Fable.Core.RustInterop.emitRustExpr v35 v36 
-    let v38 : string = "x"
-    let v39 : Vec<char> = Fable.Core.RustInterop.emitRustExpr () v38 
-    let v40 : string = "String::from_iter($0)"
-    let v41 : std_string_String = Fable.Core.RustInterop.emitRustExpr v39 v40 
-    let v42 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v43 : bool = Fable.Core.RustInterop.emitRustExpr v41 v42 
-    let v44 : string = "_vec_map"
-    let v45 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v44 
-    let v46 : string = "$0.len()"
-    let v47 : unativeint = Fable.Core.RustInterop.emitRustExpr v45 v46 
-    let v48 : (unativeint -> int32) = int32
-    let v49 : int32 = v48 v47
-    let v50 : string = ""
-    let v51 : bool = v0 <> v50 
-    let v55 : bool =
-        if v51 then
-            let v54 : bool = v49 <= 1
-            v54
+    let v26 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v27 : string = "&*$0"
+    let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v25 v27 
+    let _v26 = v28 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v29 : string = "&*$0"
+    let v30 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v25 v29 
+    let _v26 = v30 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v31 : string = "&*$0"
+    let v32 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v25 v31 
+    let _v26 = v32 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v33 : Ref<Str> = v25 |> unbox<Ref<Str>>
+    let _v26 = v33 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v36 : Ref<Str> = v25 |> unbox<Ref<Str>>
+    let _v26 = v36 
+    #endif
+#else
+    let v39 : Ref<Str> = v25 |> unbox<Ref<Str>>
+    let _v26 = v39 
+    #endif
+    let v42 : Ref<Str> = _v26 
+    let v47 : string = $"$0.chars()"
+    let v48 : Mut<_> = Fable.Core.RustInterop.emitRustExpr v42 v47 
+    let v49 : string = "$0"
+    let v50 : _ = Fable.Core.RustInterop.emitRustExpr v48 v49 
+    let v51 : string = "$0.collect::<Vec<_>>()"
+    let v52 : Vec<char> = Fable.Core.RustInterop.emitRustExpr v50 v51 
+    let v53 : string = "$0.chunks(15000).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"
+    let v54 : Vec<Vec<char>> = Fable.Core.RustInterop.emitRustExpr v52 v53 
+    let v55 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
+    let v56 : bool = Fable.Core.RustInterop.emitRustExpr v54 v55 
+    let v57 : string = "x"
+    let v58 : Vec<char> = Fable.Core.RustInterop.emitRustExpr () v57 
+    let v59 : string = "String::from_iter($0)"
+    let v60 : std_string_String = Fable.Core.RustInterop.emitRustExpr v58 v59 
+    let v61 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v62 : bool = Fable.Core.RustInterop.emitRustExpr v60 v61 
+    let v63 : string = "_vec_map"
+    let v64 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v63 
+    let v65 : string = "$0.len()"
+    let v66 : unativeint = Fable.Core.RustInterop.emitRustExpr v64 v65 
+    let v67 : (unativeint -> int32) = int32
+    let v68 : int32 = v67 v66
+    let v69 : string = ""
+    let v70 : bool = v0 <> v69 
+    let v74 : bool =
+        if v70 then
+            let v73 : bool = v68 <= 1
+            v73
         else
             false
-    if v55 then
+    if v74 then
         v4.l0 <- v25
         ()
     else
-        v4.l0 <- v50
-        let v56 : string = "true; $0.into_iter().for_each(|x| { //"
-        let v57 : bool = Fable.Core.RustInterop.emitRustExpr v45 v56 
-        let v58 : string = "x"
-        let v59 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v58 
-        let v60 : string = $"true; near_sdk::log!(\"{{}}\", $0)"
-        let v61 : bool = Fable.Core.RustInterop.emitRustExpr v59 v60 
-        let v62 : string = $"true"
-        let v63 : bool = Fable.Core.RustInterop.emitRustExpr () v62 
-        let v64 : string = "true; }); //"
-        let v65 : bool = Fable.Core.RustInterop.emitRustExpr () v64 
+        v4.l0 <- v69
+        let v75 : string = "true; $0.into_iter().for_each(|x| { //"
+        let v76 : bool = Fable.Core.RustInterop.emitRustExpr v64 v75 
+        let v77 : string = "x"
+        let v78 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v77 
+        let v79 : string = $"true; near_sdk::log!(\"{{}}\", $0)"
+        let v80 : bool = Fable.Core.RustInterop.emitRustExpr v78 v79 
+        let v81 : string = $"true"
+        let v82 : bool = Fable.Core.RustInterop.emitRustExpr () v81 
+        let v83 : string = "true; }); //"
+        let v84 : bool = Fable.Core.RustInterop.emitRustExpr () v83 
         ()
     let _v13 = () 
     #endif
@@ -1274,8 +1556,8 @@ and method18 (v0 : string, v1 : Mut0, v2 : Mut1, v3 : Mut2, v4 : Mut3, v5 : Mut4
     let _v13 = () 
     #endif
     _v13 
-    let v66 : (string -> unit) = v2.l0
-    v66 v0
+    let v85 : (string -> unit) = v2.l0
+    v85 v0
 and closure5 (v0 : (string [])) () : unit =
     let v1 : unit = ()
     let v2 : (unit -> unit) = closure6()
@@ -1752,65 +2034,155 @@ and method28 () : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v20 : string = "inline_colorization::color_bright_blue"
     let v21 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v20 
-    let v22 : string = "&*$0"
-    let v23 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v22 
-    let v24 : string = "inline_colorization::color_reset"
-    let v25 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v24 
-    let v26 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v27 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v23, v25) v26 
-    let v28 : string = "fable_library_rust::String_::fromString($0)"
-    let v29 : string = Fable.Core.RustInterop.emitRustExpr v27 v28 
-    let _v19 = v29 
+    let v22 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v23 : string = "&*$0"
+    let v24 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v23 
+    let _v22 = v24 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v30 : string = "inline_colorization::color_bright_blue"
-    let v31 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v30 
-    let v32 : string = "&*$0"
-    let v33 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v32 
-    let v34 : string = "inline_colorization::color_reset"
-    let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34 
-    let v36 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v31, v33, v35) v36 
-    let v38 : string = "fable_library_rust::String_::fromString($0)"
-    let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
-    let _v19 = v39 
+    let v25 : string = "&*$0"
+    let v26 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v25 
+    let _v22 = v26 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v40 : string = "inline_colorization::color_bright_blue"
-    let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
-    let v42 : string = "&*$0"
-    let v43 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v42 
-    let v44 : string = "inline_colorization::color_reset"
-    let v45 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v44 
-    let v46 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v47 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v41, v43, v45) v46 
-    let v48 : string = "fable_library_rust::String_::fromString($0)"
-    let v49 : string = Fable.Core.RustInterop.emitRustExpr v47 v48 
-    let _v19 = v49 
+    let v27 : string = "&*$0"
+    let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v27 
+    let _v22 = v28 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v50 : string = "\u001b[94m"
-    let v51 : string = method14()
-    let v52 : string = v50 + v5 
-    let v53 : string = v52 + v51 
-    let _v19 = v53 
+    let v29 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v29 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v54 : string = "\u001b[94m"
-    let v55 : string = method14()
-    let v56 : string = v54 + v5 
-    let v57 : string = v56 + v55 
-    let _v19 = v57 
+    let v32 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v32 
     #endif
 #else
-    let v58 : string = "\u001b[94m"
-    let v59 : string = method14()
-    let v60 : string = v58 + v5 
-    let v61 : string = v60 + v59 
-    let _v19 = v61 
+    let v35 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v35 
     #endif
-    let v62 : string = _v19 
-    v62
+    let v38 : Ref<Str> = _v22 
+    let v43 : string = "inline_colorization::color_reset"
+    let v44 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v43 
+    let v45 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v38, v44) v45 
+    let v47 : string = "fable_library_rust::String_::fromString($0)"
+    let v48 : string = Fable.Core.RustInterop.emitRustExpr v46 v47 
+    let _v19 = v48 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v49 : string = "inline_colorization::color_bright_blue"
+    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49 
+    let v51 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v52 : string = "&*$0"
+    let v53 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v52 
+    let _v51 = v53 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v54 : string = "&*$0"
+    let v55 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v54 
+    let _v51 = v55 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v56 : string = "&*$0"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v56 
+    let _v51 = v57 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v58 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v58 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v61 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v61 
+    #endif
+#else
+    let v64 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v64 
+    #endif
+    let v67 : Ref<Str> = _v51 
+    let v72 : string = "inline_colorization::color_reset"
+    let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    let v74 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v75 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v50, v67, v73) v74 
+    let v76 : string = "fable_library_rust::String_::fromString($0)"
+    let v77 : string = Fable.Core.RustInterop.emitRustExpr v75 v76 
+    let _v19 = v77 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v78 : string = "inline_colorization::color_bright_blue"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78 
+    let v80 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v81 : string = "&*$0"
+    let v82 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v81 
+    let _v80 = v82 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v83 : string = "&*$0"
+    let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v83 
+    let _v80 = v84 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v85 : string = "&*$0"
+    let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v85 
+    let _v80 = v86 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v87 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v87 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v90 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v90 
+    #endif
+#else
+    let v93 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v93 
+    #endif
+    let v96 : Ref<Str> = _v80 
+    let v101 : string = "inline_colorization::color_reset"
+    let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101 
+    let v103 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v79, v96, v102) v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    let _v19 = v106 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v107 : string = "\u001b[94m"
+    let v108 : string = method14()
+    let v109 : string = v107 + v5 
+    let v110 : string = v109 + v108 
+    let _v19 = v110 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v111 : string = "\u001b[94m"
+    let v112 : string = method14()
+    let v113 : string = v111 + v5 
+    let v114 : string = v113 + v112 
+    let _v19 = v114 
+    #endif
+#else
+    let v115 : string = "\u001b[94m"
+    let v116 : string = method14()
+    let v117 : string = v115 + v5 
+    let v118 : string = v117 + v116 
+    let _v19 = v118 
+    #endif
+    let v119 : string = _v19 
+    v119
 and method29 (v0 : uint8, v1 : float, v2 : uint64) : string =
     let v3 : string = method16()
     let v4 : Mut3 = {l0 = v3} : Mut3
@@ -2781,104 +3153,164 @@ and method24 (v0 : Vec<uint8>, v1 : uint8) : std_pin_Pin<Box<Dyn<std_future_Futu
     let v368 : bool = Fable.Core.RustInterop.emitRustExpr v366 v367 
     let v369 : string = "x"
     let v370 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v369 
-    let v371 : string = "String::from($0)"
-    let v372 : std_string_String = Fable.Core.RustInterop.emitRustExpr v370 v371 
-    let v373 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v374 : bool = Fable.Core.RustInterop.emitRustExpr v372 v373 
-    let v375 : string = "_vec_map"
-    let v376 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v375 
-    let v377 : string = "true; $0.iter().for_each(|x| { $1(x.clone()); }); //"
-    let v378 : (std_string_String -> unit) = closure16()
-    let v379 : bool = Fable.Core.RustInterop.emitRustExpr struct (v376, v378) v377 
-    let v380 : string = "$0.total_gas_burnt"
-    let v381 : near_workspaces_types_Gas = Fable.Core.RustInterop.emitRustExpr v250 v380 
-    let v382 : string = "$0.as_gas()"
-    let v383 : uint64 = Fable.Core.RustInterop.emitRustExpr v381 v382 
-    let v384 : (uint64 -> float) = float
-    let v385 : float = v384 v383
-    let v386 : float = v385 / 10000000000000000.0
-    let v387 : float = v386 * 6.68
-    let v388 : unit = ()
-    let v389 : (unit -> unit) = closure18(v1, v383, v387)
-    let v390 : unit = (fun () -> v389 (); v388) ()
-    let v502 : string = "$0"
-    let v503 : near_workspaces_result_ExecutionFinalResult = Fable.Core.RustInterop.emitRustExpr v250 v502 
-    let v504 : string = "v503.outcomes()"
-    let v505 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v504 
-    let v506 : string = "v505.into_iter()"
-    let v507 : _ = Fable.Core.RustInterop.emitRustExpr () v506 
-    let v508 : string = "v507.cloned()"
-    let v509 : _ = Fable.Core.RustInterop.emitRustExpr () v508 
-    let v510 : string = "true; v509.for_each(|x| $0(x))"
-    let v511 : (near_workspaces_result_ExecutionOutcome -> unit) = closure19()
-    let v512 : bool = Fable.Core.RustInterop.emitRustExpr v511 v510 
-    let v513 : string = "$0.into_result()"
-    let v514 : Result<near_workspaces_result_ExecutionSuccess, near_workspaces_result_ExecutionFailure> = Fable.Core.RustInterop.emitRustExpr v250 v513 
-    let v515 : unit = ()
-    let v516 : (unit -> unit) = closure21(v514)
-    let v517 : unit = (fun () -> v516 (); v515) ()
-    let v629 : near_workspaces_result_ExecutionFinalResult = method34(v250)
-    let v630 : string = "v629.receipt_failures()"
-    let v631 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v630 
-    let v632 : string = "$0.len()"
-    let v633 : unativeint = Fable.Core.RustInterop.emitRustExpr v631 v632 
-    let v634 : (unativeint -> int32) = int32
-    let v635 : int32 = v634 v633
-    let v636 : unit = ()
-    let v637 : (unit -> unit) = closure22(v631, v635)
-    let v638 : unit = (fun () -> v637 (); v636) ()
-    let v750 : near_workspaces_result_ExecutionFinalResult = method36(v250)
-    let v751 : string = "v750.receipt_outcomes()"
-    let v752 : Ref<Slice<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v751 
-    let v753 : string = "v752.into()"
-    let v754 : Vec<near_workspaces_result_ExecutionOutcome> = Fable.Core.RustInterop.emitRustExpr () v753 
-    let v755 : string = "$0.len()"
-    let v756 : unativeint = Fable.Core.RustInterop.emitRustExpr v754 v755 
-    let v757 : (unativeint -> int32) = int32
-    let v758 : int32 = v757 v756
-    let v759 : unit = ()
-    let v760 : (unit -> unit) = closure23(v754, v758)
-    let v761 : unit = (fun () -> v760 (); v759) ()
-    let v873 : string = "$0.json()"
-    let v874 : Result<std_string_String, near_workspaces_error_Error> = Fable.Core.RustInterop.emitRustExpr v250 v873 
-    let v875 : unit = ()
-    let v876 : (unit -> unit) = closure24(v874)
-    let v877 : unit = (fun () -> v876 (); v875) ()
-    let v989 : string = "$0.borsh()"
-    let v990 : Result<std_string_String, near_workspaces_error_Error> = Fable.Core.RustInterop.emitRustExpr v250 v989 
-    let v991 : unit = ()
-    let v992 : (unit -> unit) = closure25(v990)
-    let v993 : unit = (fun () -> v992 (); v991) ()
-    let v1105 : string = method40(v631, v758, v1)
-    let v1106 : bool = v635 > 0
-    let v1117 : Result<US4, anyhow_Error> =
-        if v1106 then
-            let v1107 : US4 = US4_0(v1105)
-            let v1108 : Result<US4, anyhow_Error> = Ok v1107 
-            v1108
+    let v371 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v372 : string = "String::from($0)"
+    let v373 : std_string_String = Fable.Core.RustInterop.emitRustExpr v370 v372 
+    let _v371 = v373 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v374 : string = "String::from($0)"
+    let v375 : std_string_String = Fable.Core.RustInterop.emitRustExpr v370 v374 
+    let _v371 = v375 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v376 : string = "String::from($0)"
+    let v377 : std_string_String = Fable.Core.RustInterop.emitRustExpr v370 v376 
+    let _v371 = v377 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v378 : std_string_String = v370 |> unbox<std_string_String>
+    let _v371 = v378 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v381 : std_string_String = v370 |> unbox<std_string_String>
+    let _v371 = v381 
+    #endif
+#else
+    let v384 : std_string_String = v370 |> unbox<std_string_String>
+    let _v371 = v384 
+    #endif
+    let v387 : std_string_String = _v371 
+    let v392 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v393 : bool = Fable.Core.RustInterop.emitRustExpr v387 v392 
+    let v394 : string = "_vec_map"
+    let v395 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v394 
+    let v396 : string = "true; $0.iter().for_each(|x| { $1(x.clone()); }); //"
+    let v397 : (std_string_String -> unit) = closure16()
+    let v398 : bool = Fable.Core.RustInterop.emitRustExpr struct (v395, v397) v396 
+    let v399 : string = "$0.total_gas_burnt"
+    let v400 : near_workspaces_types_Gas = Fable.Core.RustInterop.emitRustExpr v250 v399 
+    let v401 : string = "$0.as_gas()"
+    let v402 : uint64 = Fable.Core.RustInterop.emitRustExpr v400 v401 
+    let v403 : (uint64 -> float) = float
+    let v404 : float = v403 v402
+    let v405 : float = v404 / 10000000000000000.0
+    let v406 : float = v405 * 6.68
+    let v407 : unit = ()
+    let v408 : (unit -> unit) = closure18(v1, v402, v406)
+    let v409 : unit = (fun () -> v408 (); v407) ()
+    let v521 : string = "$0"
+    let v522 : near_workspaces_result_ExecutionFinalResult = Fable.Core.RustInterop.emitRustExpr v250 v521 
+    let v523 : string = "v522.outcomes()"
+    let v524 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v523 
+    let v525 : string = "v524.into_iter()"
+    let v526 : _ = Fable.Core.RustInterop.emitRustExpr () v525 
+    let v527 : string = "v526.cloned()"
+    let v528 : _ = Fable.Core.RustInterop.emitRustExpr () v527 
+    let v529 : string = "true; v528.for_each(|x| $0(x))"
+    let v530 : (near_workspaces_result_ExecutionOutcome -> unit) = closure19()
+    let v531 : bool = Fable.Core.RustInterop.emitRustExpr v530 v529 
+    let v532 : string = "$0.into_result()"
+    let v533 : Result<near_workspaces_result_ExecutionSuccess, near_workspaces_result_ExecutionFailure> = Fable.Core.RustInterop.emitRustExpr v250 v532 
+    let v534 : unit = ()
+    let v535 : (unit -> unit) = closure21(v533)
+    let v536 : unit = (fun () -> v535 (); v534) ()
+    let v648 : near_workspaces_result_ExecutionFinalResult = method34(v250)
+    let v649 : string = "v648.receipt_failures()"
+    let v650 : Vec<Ref<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v649 
+    let v651 : string = "$0.len()"
+    let v652 : unativeint = Fable.Core.RustInterop.emitRustExpr v650 v651 
+    let v653 : (unativeint -> int32) = int32
+    let v654 : int32 = v653 v652
+    let v655 : unit = ()
+    let v656 : (unit -> unit) = closure22(v650, v654)
+    let v657 : unit = (fun () -> v656 (); v655) ()
+    let v769 : near_workspaces_result_ExecutionFinalResult = method36(v250)
+    let v770 : string = "v769.receipt_outcomes()"
+    let v771 : Ref<Slice<near_workspaces_result_ExecutionOutcome>> = Fable.Core.RustInterop.emitRustExpr () v770 
+    let v772 : string = "v771.into()"
+    let v773 : Vec<near_workspaces_result_ExecutionOutcome> = Fable.Core.RustInterop.emitRustExpr () v772 
+    let v774 : string = "$0.len()"
+    let v775 : unativeint = Fable.Core.RustInterop.emitRustExpr v773 v774 
+    let v776 : (unativeint -> int32) = int32
+    let v777 : int32 = v776 v775
+    let v778 : unit = ()
+    let v779 : (unit -> unit) = closure23(v773, v777)
+    let v780 : unit = (fun () -> v779 (); v778) ()
+    let v892 : string = "$0.json()"
+    let v893 : Result<std_string_String, near_workspaces_error_Error> = Fable.Core.RustInterop.emitRustExpr v250 v892 
+    let v894 : unit = ()
+    let v895 : (unit -> unit) = closure24(v893)
+    let v896 : unit = (fun () -> v895 (); v894) ()
+    let v1008 : string = "$0.borsh()"
+    let v1009 : Result<std_string_String, near_workspaces_error_Error> = Fable.Core.RustInterop.emitRustExpr v250 v1008 
+    let v1010 : unit = ()
+    let v1011 : (unit -> unit) = closure25(v1009)
+    let v1012 : unit = (fun () -> v1011 (); v1010) ()
+    let v1124 : string = method40(v650, v777, v1)
+    let v1125 : bool = v654 > 0
+    let v1147 : Result<US4, anyhow_Error> =
+        if v1125 then
+            let v1126 : US4 = US4_0(v1124)
+            let v1127 : Result<US4, anyhow_Error> = Ok v1126 
+            v1127
         else
-            let v1109 : bool = v758 > 1
-            if v1109 then
-                let v1110 : US4 = US4_1
-                let v1111 : Result<US4, anyhow_Error> = Ok v1110 
-                v1111
+            let v1128 : bool = v777 > 1
+            if v1128 then
+                let v1129 : US4 = US4_1
+                let v1130 : Result<US4, anyhow_Error> = Ok v1129 
+                v1130
             else
-                let v1112 : string = "anyhow::anyhow!($0)"
-                let v1113 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v1105 v1112 
-                let v1114 : string = "Err($0)"
-                let v1115 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v1113 v1114 
-                v1115
-    let v1118 : Result<US4, anyhow_Error> = method41(v1117)
-    let v1119 : string = ""
-    let v1120 : string = "}"
-    let v1121 : string = v1119 + v1120 
-    let v1122 : string = "true; v1118 " + v1121 + "); " + v1119 + " // rust.fix_closure'"
-    let v1123 : bool = Fable.Core.RustInterop.emitRustExpr () v1122 
-    let v1124 : string = "__future_init"
-    let v1125 : _ = Fable.Core.RustInterop.emitRustExpr () v1124 
-    let v1126 : string = "v1125"
-    let v1127 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v1126 
-    v1127
+                let v1131 : string = "anyhow::anyhow!($0)"
+                let v1132 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v1124 v1131 
+                let v1133 : unit = ()
+                
+#if FABLE_COMPILER || WASM || CONTRACT
+                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                let v1134 : string = "Err($0)"
+                let v1135 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v1132 v1134 
+                let _v1133 = v1135 
+                #endif
+#if FABLE_COMPILER_RUST && WASM
+                let v1136 : string = "Err($0)"
+                let v1137 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v1132 v1136 
+                let _v1133 = v1137 
+                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                let v1138 : string = "Err($0)"
+                let v1139 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v1132 v1138 
+                let _v1133 = v1139 
+                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                let v1140 : Result<US4, anyhow_Error> = v1132 |> Error
+                let _v1133 = v1140 
+                #endif
+#if FABLE_COMPILER_PYTHON
+                let v1141 : Result<US4, anyhow_Error> = v1132 |> Error
+                let _v1133 = v1141 
+                #endif
+#else
+                let v1142 : Result<US4, anyhow_Error> = v1132 |> Error
+                let _v1133 = v1142 
+                #endif
+                let v1143 : Result<US4, anyhow_Error> = _v1133 
+                v1143
+    let v1148 : Result<US4, anyhow_Error> = method41(v1147)
+    let v1149 : string = ""
+    let v1150 : string = "}"
+    let v1151 : string = v1149 + v1150 
+    let v1152 : string = "true; v1148 " + v1151 + "); " + v1149 + " // rust.fix_closure'"
+    let v1153 : bool = Fable.Core.RustInterop.emitRustExpr () v1152 
+    let v1154 : string = "__future_init"
+    let v1155 : _ = Fable.Core.RustInterop.emitRustExpr () v1154 
+    let v1156 : string = "v1155"
+    let v1157 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v1156 
+    v1157
 and closure26 () (v0 : anyhow_Error) : std_string_String =
     let v1 : unit = ()
     
@@ -2936,65 +3368,155 @@ and method43 () : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v20 : string = "inline_colorization::color_yellow"
     let v21 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v20 
-    let v22 : string = "&*$0"
-    let v23 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v22 
-    let v24 : string = "inline_colorization::color_reset"
-    let v25 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v24 
-    let v26 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v27 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v23, v25) v26 
-    let v28 : string = "fable_library_rust::String_::fromString($0)"
-    let v29 : string = Fable.Core.RustInterop.emitRustExpr v27 v28 
-    let _v19 = v29 
+    let v22 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v23 : string = "&*$0"
+    let v24 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v23 
+    let _v22 = v24 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v30 : string = "inline_colorization::color_yellow"
-    let v31 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v30 
-    let v32 : string = "&*$0"
-    let v33 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v32 
-    let v34 : string = "inline_colorization::color_reset"
-    let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34 
-    let v36 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v31, v33, v35) v36 
-    let v38 : string = "fable_library_rust::String_::fromString($0)"
-    let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
-    let _v19 = v39 
+    let v25 : string = "&*$0"
+    let v26 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v25 
+    let _v22 = v26 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v40 : string = "inline_colorization::color_yellow"
-    let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
-    let v42 : string = "&*$0"
-    let v43 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v42 
-    let v44 : string = "inline_colorization::color_reset"
-    let v45 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v44 
-    let v46 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v47 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v41, v43, v45) v46 
-    let v48 : string = "fable_library_rust::String_::fromString($0)"
-    let v49 : string = Fable.Core.RustInterop.emitRustExpr v47 v48 
-    let _v19 = v49 
+    let v27 : string = "&*$0"
+    let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v27 
+    let _v22 = v28 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v50 : string = "\u001b[93m"
-    let v51 : string = method14()
-    let v52 : string = v50 + v5 
-    let v53 : string = v52 + v51 
-    let _v19 = v53 
+    let v29 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v29 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v54 : string = "\u001b[93m"
-    let v55 : string = method14()
-    let v56 : string = v54 + v5 
-    let v57 : string = v56 + v55 
-    let _v19 = v57 
+    let v32 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v32 
     #endif
 #else
-    let v58 : string = "\u001b[93m"
-    let v59 : string = method14()
-    let v60 : string = v58 + v5 
-    let v61 : string = v60 + v59 
-    let _v19 = v61 
+    let v35 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v35 
     #endif
-    let v62 : string = _v19 
-    v62
+    let v38 : Ref<Str> = _v22 
+    let v43 : string = "inline_colorization::color_reset"
+    let v44 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v43 
+    let v45 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v38, v44) v45 
+    let v47 : string = "fable_library_rust::String_::fromString($0)"
+    let v48 : string = Fable.Core.RustInterop.emitRustExpr v46 v47 
+    let _v19 = v48 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v49 : string = "inline_colorization::color_yellow"
+    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49 
+    let v51 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v52 : string = "&*$0"
+    let v53 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v52 
+    let _v51 = v53 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v54 : string = "&*$0"
+    let v55 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v54 
+    let _v51 = v55 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v56 : string = "&*$0"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v56 
+    let _v51 = v57 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v58 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v58 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v61 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v61 
+    #endif
+#else
+    let v64 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v64 
+    #endif
+    let v67 : Ref<Str> = _v51 
+    let v72 : string = "inline_colorization::color_reset"
+    let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    let v74 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v75 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v50, v67, v73) v74 
+    let v76 : string = "fable_library_rust::String_::fromString($0)"
+    let v77 : string = Fable.Core.RustInterop.emitRustExpr v75 v76 
+    let _v19 = v77 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v78 : string = "inline_colorization::color_yellow"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78 
+    let v80 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v81 : string = "&*$0"
+    let v82 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v81 
+    let _v80 = v82 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v83 : string = "&*$0"
+    let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v83 
+    let _v80 = v84 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v85 : string = "&*$0"
+    let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v85 
+    let _v80 = v86 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v87 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v87 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v90 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v90 
+    #endif
+#else
+    let v93 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v93 
+    #endif
+    let v96 : Ref<Str> = _v80 
+    let v101 : string = "inline_colorization::color_reset"
+    let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101 
+    let v103 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v79, v96, v102) v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    let _v19 = v106 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v107 : string = "\u001b[93m"
+    let v108 : string = method14()
+    let v109 : string = v107 + v5 
+    let v110 : string = v109 + v108 
+    let _v19 = v110 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v111 : string = "\u001b[93m"
+    let v112 : string = method14()
+    let v113 : string = v111 + v5 
+    let v114 : string = v113 + v112 
+    let _v19 = v114 
+    #endif
+#else
+    let v115 : string = "\u001b[93m"
+    let v116 : string = method14()
+    let v117 : string = v115 + v5 
+    let v118 : string = v117 + v116 
+    let _v19 = v118 
+    #endif
+    let v119 : string = _v19 
+    v119
 and method44 (v0 : uint8, v1 : std_string_String) : string =
     let v2 : string = method16()
     let v3 : Mut3 = {l0 = v2} : Mut3
@@ -3960,65 +4482,155 @@ and method50 () : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v20 : string = "inline_colorization::color_bright_red"
     let v21 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v20 
-    let v22 : string = "&*$0"
-    let v23 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v22 
-    let v24 : string = "inline_colorization::color_reset"
-    let v25 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v24 
-    let v26 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v27 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v23, v25) v26 
-    let v28 : string = "fable_library_rust::String_::fromString($0)"
-    let v29 : string = Fable.Core.RustInterop.emitRustExpr v27 v28 
-    let _v19 = v29 
+    let v22 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v23 : string = "&*$0"
+    let v24 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v23 
+    let _v22 = v24 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v30 : string = "inline_colorization::color_bright_red"
-    let v31 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v30 
-    let v32 : string = "&*$0"
-    let v33 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v32 
-    let v34 : string = "inline_colorization::color_reset"
-    let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34 
-    let v36 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v31, v33, v35) v36 
-    let v38 : string = "fable_library_rust::String_::fromString($0)"
-    let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
-    let _v19 = v39 
+    let v25 : string = "&*$0"
+    let v26 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v25 
+    let _v22 = v26 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v40 : string = "inline_colorization::color_bright_red"
-    let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
-    let v42 : string = "&*$0"
-    let v43 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v42 
-    let v44 : string = "inline_colorization::color_reset"
-    let v45 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v44 
-    let v46 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
-    let v47 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v41, v43, v45) v46 
-    let v48 : string = "fable_library_rust::String_::fromString($0)"
-    let v49 : string = Fable.Core.RustInterop.emitRustExpr v47 v48 
-    let _v19 = v49 
+    let v27 : string = "&*$0"
+    let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v27 
+    let _v22 = v28 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v50 : string = "\u001b[91m"
-    let v51 : string = method14()
-    let v52 : string = v50 + v5 
-    let v53 : string = v52 + v51 
-    let _v19 = v53 
+    let v29 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v29 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v54 : string = "\u001b[91m"
-    let v55 : string = method14()
-    let v56 : string = v54 + v5 
-    let v57 : string = v56 + v55 
-    let _v19 = v57 
+    let v32 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v32 
     #endif
 #else
-    let v58 : string = "\u001b[91m"
-    let v59 : string = method14()
-    let v60 : string = v58 + v5 
-    let v61 : string = v60 + v59 
-    let _v19 = v61 
+    let v35 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v22 = v35 
     #endif
-    let v62 : string = _v19 
-    v62
+    let v38 : Ref<Str> = _v22 
+    let v43 : string = "inline_colorization::color_reset"
+    let v44 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v43 
+    let v45 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v21, v38, v44) v45 
+    let v47 : string = "fable_library_rust::String_::fromString($0)"
+    let v48 : string = Fable.Core.RustInterop.emitRustExpr v46 v47 
+    let _v19 = v48 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v49 : string = "inline_colorization::color_bright_red"
+    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49 
+    let v51 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v52 : string = "&*$0"
+    let v53 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v52 
+    let _v51 = v53 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v54 : string = "&*$0"
+    let v55 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v54 
+    let _v51 = v55 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v56 : string = "&*$0"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v56 
+    let _v51 = v57 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v58 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v58 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v61 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v61 
+    #endif
+#else
+    let v64 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v51 = v64 
+    #endif
+    let v67 : Ref<Str> = _v51 
+    let v72 : string = "inline_colorization::color_reset"
+    let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    let v74 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v75 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v50, v67, v73) v74 
+    let v76 : string = "fable_library_rust::String_::fromString($0)"
+    let v77 : string = Fable.Core.RustInterop.emitRustExpr v75 v76 
+    let _v19 = v77 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v78 : string = "inline_colorization::color_bright_red"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78 
+    let v80 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v81 : string = "&*$0"
+    let v82 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v81 
+    let _v80 = v82 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v83 : string = "&*$0"
+    let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v83 
+    let _v80 = v84 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v85 : string = "&*$0"
+    let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v85 
+    let _v80 = v86 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v87 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v87 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v90 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v90 
+    #endif
+#else
+    let v93 : Ref<Str> = v5 |> unbox<Ref<Str>>
+    let _v80 = v93 
+    #endif
+    let v96 : Ref<Str> = _v80 
+    let v101 : string = "inline_colorization::color_reset"
+    let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101 
+    let v103 : string = $"format!(\"{{}}{{}}{{}}\", $0, $1, $2)"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v79, v96, v102) v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    let _v19 = v106 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v107 : string = "\u001b[91m"
+    let v108 : string = method14()
+    let v109 : string = v107 + v5 
+    let v110 : string = v109 + v108 
+    let _v19 = v110 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v111 : string = "\u001b[91m"
+    let v112 : string = method14()
+    let v113 : string = v111 + v5 
+    let v114 : string = v113 + v112 
+    let _v19 = v114 
+    #endif
+#else
+    let v115 : string = "\u001b[91m"
+    let v116 : string = method14()
+    let v117 : string = v115 + v5 
+    let v118 : string = v117 + v116 
+    let _v19 = v118 
+    #endif
+    let v119 : string = _v19 
+    v119
 and method51 (v0 : uint8, v1 : string) : string =
     let v2 : string = method16()
     let v3 : Mut3 = {l0 = v2} : Mut3
@@ -5070,1492 +5682,2363 @@ and method20 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
     let v1 : string = "true; let __future_init = Box::pin(async move { //"
     let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
     let v3 : string = method21()
-    let v4 : string = "&*$0"
-    let v5 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v4 
-    let v6 : string = "clap::ArgMatches::get_one(&$0, v5).cloned()"
-    let v7 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v0 v6 
-    let v8 : (std_string_String -> US0) = method2()
-    let v9 : US0 option = v7 |> Option.map v8 
-    let v20 : US0 = US0_1
-    let v21 : US0 = v9 |> Option.defaultValue v20 
-    let v28 : std_string_String =
-        match v21 with
+    let v4 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v5 : string = "&*$0"
+    let v6 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v5 
+    let _v4 = v6 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v7 : string = "&*$0"
+    let v8 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v7 
+    let _v4 = v8 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v9 : string = "&*$0"
+    let v10 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v9 
+    let _v4 = v10 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v11 : Ref<Str> = v3 |> unbox<Ref<Str>>
+    let _v4 = v11 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v14 : Ref<Str> = v3 |> unbox<Ref<Str>>
+    let _v4 = v14 
+    #endif
+#else
+    let v17 : Ref<Str> = v3 |> unbox<Ref<Str>>
+    let _v4 = v17 
+    #endif
+    let v20 : Ref<Str> = _v4 
+    let v25 : string = "clap::ArgMatches::get_one(&$0, $1).cloned()"
+    let v26 : std_string_String option = Fable.Core.RustInterop.emitRustExpr struct (v0, v20) v25 
+    let v27 : (std_string_String -> US0) = method2()
+    let v28 : US0 option = v26 |> Option.map v27 
+    let v39 : US0 = US0_1
+    let v40 : US0 = v28 |> Option.defaultValue v39 
+    let v47 : std_string_String =
+        match v40 with
         | US0_1 -> (* None *)
             failwith<std_string_String> "Option does not have a value."
-        | US0_0(v25) -> (* Some *)
-            v25
-    let v29 : string = "fable_library_rust::String_::fromString($0)"
-    let v30 : string = Fable.Core.RustInterop.emitRustExpr v28 v29 
-    let v31 : unit = ()
-    let v32 : (unit -> unit) = closure12(v30)
-    let v33 : unit = (fun () -> v32 (); v31) ()
-    let v145 : string = "std::fs::read(&*$0)"
-    let v146 : Result<Vec<uint8>, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v30 v145 
-    let v147 : string = "$0?"
-    let v148 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v146 v147 
-    let v149 : uint8 = 1uy
-    let v150 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v149)
-    let v151 : string = "v150.await"
-    let v152 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v151 
-    let v153 : (anyhow_Error -> std_string_String) = method42()
-    let v154 : string = "$0.map_err(|x| $1(x))"
-    let v155 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v152, v153) v154 
-    let v156 : (US4 -> US6) = closure27()
-    let v157 : (std_string_String -> US6) = closure28()
-    let v158 : US6 = match v155 with Ok x -> v156 x | Error x -> v157 x
-    let v8671 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> =
-        match v158 with
-        | US6_1(v326) -> (* Error *)
-            let v327 : unit = ()
-            let v328 : (unit -> unit) = closure29(v326)
-            let v329 : unit = (fun () -> v328 (); v327) ()
-            let v442 : uint8 = 2uy
-            let v443 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v442)
-            let v444 : string = "v443.await"
-            let v445 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v444 
-            let v446 : (anyhow_Error -> std_string_String) = method42()
-            let v447 : string = "$0.map_err(|x| $1(x))"
-            let v448 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v445, v446) v447 
-            let v449 : US6 = match v448 with Ok x -> v156 x | Error x -> v157 x
-            match v449 with
-            | US6_1(v617) -> (* Error *)
-                let v618 : unit = ()
-                let v619 : (unit -> unit) = closure30(v617)
-                let v620 : unit = (fun () -> v619 (); v618) ()
-                let v733 : uint8 = 3uy
-                let v734 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v733)
-                let v735 : string = "v734.await"
-                let v736 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v735 
-                let v737 : (anyhow_Error -> std_string_String) = method42()
-                let v738 : string = "$0.map_err(|x| $1(x))"
-                let v739 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v736, v737) v738 
-                let v740 : US6 = match v739 with Ok x -> v156 x | Error x -> v157 x
-                match v740 with
-                | US6_1(v908) -> (* Error *)
-                    let v909 : unit = ()
-                    let v910 : (unit -> unit) = closure31(v908)
-                    let v911 : unit = (fun () -> v910 (); v909) ()
-                    let v1024 : uint8 = 4uy
-                    let v1025 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v1024)
-                    let v1026 : string = "v1025.await"
-                    let v1027 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1026 
-                    let v1028 : (anyhow_Error -> std_string_String) = method42()
-                    let v1029 : string = "$0.map_err(|x| $1(x))"
-                    let v1030 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1027, v1028) v1029 
-                    let v1031 : US6 = match v1030 with Ok x -> v156 x | Error x -> v157 x
-                    match v1031 with
-                    | US6_1(v1199) -> (* Error *)
-                        let v1200 : unit = ()
-                        let v1201 : (unit -> unit) = closure32(v1199)
-                        let v1202 : unit = (fun () -> v1201 (); v1200) ()
-                        let v1315 : uint8 = 5uy
-                        let v1316 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v1315)
-                        let v1317 : string = "v1316.await"
-                        let v1318 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1317 
-                        let v1319 : (anyhow_Error -> std_string_String) = method42()
-                        let v1320 : string = "$0.map_err(|x| $1(x))"
-                        let v1321 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1318, v1319) v1320 
-                        let v1322 : US6 = match v1321 with Ok x -> v156 x | Error x -> v157 x
-                        match v1322 with
-                        | US6_1(v1490) -> (* Error *)
-                            let v1491 : unit = ()
-                            let v1492 : (unit -> unit) = closure33(v1490)
-                            let v1493 : unit = (fun () -> v1492 (); v1491) ()
-                            let v1606 : uint8 = 6uy
-                            let v1607 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v1606)
-                            let v1608 : string = "v1607.await"
-                            let v1609 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1608 
-                            let v1610 : (anyhow_Error -> std_string_String) = method42()
-                            let v1611 : string = "$0.map_err(|x| $1(x))"
-                            let v1612 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1609, v1610) v1611 
-                            let v1613 : US6 = match v1612 with Ok x -> v156 x | Error x -> v157 x
-                            match v1613 with
-                            | US6_1(v1781) -> (* Error *)
-                                let v1782 : unit = ()
-                                let v1783 : (unit -> unit) = closure34(v1781)
-                                let v1784 : unit = (fun () -> v1783 (); v1782) ()
-                                let v1897 : uint8 = 7uy
-                                let v1898 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v1897)
-                                let v1899 : string = "v1898.await"
-                                let v1900 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1899 
-                                let v1901 : (anyhow_Error -> std_string_String) = method42()
-                                let v1902 : string = "$0.map_err(|x| $1(x))"
-                                let v1903 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1900, v1901) v1902 
-                                let v1904 : US6 = match v1903 with Ok x -> v156 x | Error x -> v157 x
-                                match v1904 with
-                                | US6_1(v2072) -> (* Error *)
-                                    let v2073 : unit = ()
-                                    let v2074 : (unit -> unit) = closure35(v2072)
-                                    let v2075 : unit = (fun () -> v2074 (); v2073) ()
-                                    let v2188 : uint8 = 8uy
-                                    let v2189 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v2188)
-                                    let v2190 : string = "v2189.await"
-                                    let v2191 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2190 
-                                    let v2192 : (anyhow_Error -> std_string_String) = method42()
-                                    let v2193 : string = "$0.map_err(|x| $1(x))"
-                                    let v2194 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2191, v2192) v2193 
-                                    let v2195 : US6 = match v2194 with Ok x -> v156 x | Error x -> v157 x
-                                    match v2195 with
-                                    | US6_1(v2363) -> (* Error *)
-                                        let v2364 : unit = ()
-                                        let v2365 : (unit -> unit) = closure36(v2363)
-                                        let v2366 : unit = (fun () -> v2365 (); v2364) ()
-                                        let v2479 : uint8 = 9uy
-                                        let v2480 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v2479)
-                                        let v2481 : string = "v2480.await"
-                                        let v2482 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2481 
-                                        let v2483 : (anyhow_Error -> std_string_String) = method42()
-                                        let v2484 : string = "$0.map_err(|x| $1(x))"
-                                        let v2485 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2482, v2483) v2484 
-                                        let v2486 : US6 = match v2485 with Ok x -> v156 x | Error x -> v157 x
-                                        match v2486 with
-                                        | US6_1(v2654) -> (* Error *)
-                                            let v2655 : unit = ()
-                                            let v2656 : (unit -> unit) = closure37(v2654)
-                                            let v2657 : unit = (fun () -> v2656 (); v2655) ()
-                                            let v2770 : uint8 = 10uy
-                                            let v2771 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v2770)
-                                            let v2772 : string = "v2771.await"
-                                            let v2773 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2772 
-                                            let v2774 : (anyhow_Error -> std_string_String) = method42()
-                                            let v2775 : string = "$0.map_err(|x| $1(x))"
-                                            let v2776 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2773, v2774) v2775 
-                                            let v2777 : US6 = match v2776 with Ok x -> v156 x | Error x -> v157 x
-                                            match v2777 with
-                                            | US6_1(v2945) -> (* Error *)
-                                                let v2946 : unit = ()
-                                                let v2947 : (unit -> unit) = closure38(v2945)
-                                                let v2948 : unit = (fun () -> v2947 (); v2946) ()
-                                                let v3061 : uint8 = 11uy
-                                                let v3062 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v3061)
-                                                let v3063 : string = "v3062.await"
-                                                let v3064 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3063 
-                                                let v3065 : (anyhow_Error -> std_string_String) = method42()
-                                                let v3066 : string = "$0.map_err(|x| $1(x))"
-                                                let v3067 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3064, v3065) v3066 
-                                                let v3068 : US6 = match v3067 with Ok x -> v156 x | Error x -> v157 x
-                                                match v3068 with
-                                                | US6_1(v3236) -> (* Error *)
-                                                    let v3237 : unit = ()
-                                                    let v3238 : (unit -> unit) = closure39(v3236)
-                                                    let v3239 : unit = (fun () -> v3238 (); v3237) ()
-                                                    let v3352 : uint8 = 12uy
-                                                    let v3353 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v3352)
-                                                    let v3354 : string = "v3353.await"
-                                                    let v3355 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3354 
-                                                    let v3356 : (anyhow_Error -> std_string_String) = method42()
-                                                    let v3357 : string = "$0.map_err(|x| $1(x))"
-                                                    let v3358 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3355, v3356) v3357 
-                                                    let v3359 : US6 = match v3358 with Ok x -> v156 x | Error x -> v157 x
-                                                    match v3359 with
-                                                    | US6_1(v3527) -> (* Error *)
-                                                        let v3528 : unit = ()
-                                                        let v3529 : (unit -> unit) = closure40(v3527)
-                                                        let v3530 : unit = (fun () -> v3529 (); v3528) ()
-                                                        let v3643 : uint8 = 13uy
-                                                        let v3644 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v3643)
-                                                        let v3645 : string = "v3644.await"
-                                                        let v3646 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3645 
-                                                        let v3647 : (anyhow_Error -> std_string_String) = method42()
-                                                        let v3648 : string = "$0.map_err(|x| $1(x))"
-                                                        let v3649 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3646, v3647) v3648 
-                                                        let v3650 : US6 = match v3649 with Ok x -> v156 x | Error x -> v157 x
-                                                        match v3650 with
-                                                        | US6_1(v3818) -> (* Error *)
-                                                            let v3819 : unit = ()
-                                                            let v3820 : (unit -> unit) = closure41(v3818)
-                                                            let v3821 : unit = (fun () -> v3820 (); v3819) ()
-                                                            let v3934 : uint8 = 14uy
-                                                            let v3935 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v3934)
-                                                            let v3936 : string = "v3935.await"
-                                                            let v3937 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3936 
-                                                            let v3938 : (anyhow_Error -> std_string_String) = method42()
-                                                            let v3939 : string = "$0.map_err(|x| $1(x))"
-                                                            let v3940 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3937, v3938) v3939 
-                                                            let v3941 : US6 = match v3940 with Ok x -> v156 x | Error x -> v157 x
-                                                            match v3941 with
-                                                            | US6_1(v4109) -> (* Error *)
-                                                                let v4110 : unit = ()
-                                                                let v4111 : (unit -> unit) = closure42(v4109)
-                                                                let v4112 : unit = (fun () -> v4111 (); v4110) ()
-                                                                let v4225 : uint8 = 15uy
-                                                                let v4226 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v4225)
-                                                                let v4227 : string = "v4226.await"
-                                                                let v4228 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4227 
-                                                                let v4229 : (anyhow_Error -> std_string_String) = method42()
-                                                                let v4230 : string = "$0.map_err(|x| $1(x))"
-                                                                let v4231 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4228, v4229) v4230 
-                                                                let v4232 : US6 = match v4231 with Ok x -> v156 x | Error x -> v157 x
-                                                                match v4232 with
-                                                                | US6_1(v4400) -> (* Error *)
-                                                                    let v4401 : unit = ()
-                                                                    let v4402 : (unit -> unit) = closure43(v4400)
-                                                                    let v4403 : unit = (fun () -> v4402 (); v4401) ()
-                                                                    let v4516 : uint8 = 16uy
-                                                                    let v4517 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v4516)
-                                                                    let v4518 : string = "v4517.await"
-                                                                    let v4519 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4518 
-                                                                    let v4520 : (anyhow_Error -> std_string_String) = method42()
-                                                                    let v4521 : string = "$0.map_err(|x| $1(x))"
-                                                                    let v4522 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4519, v4520) v4521 
-                                                                    let v4523 : US6 = match v4522 with Ok x -> v156 x | Error x -> v157 x
-                                                                    match v4523 with
-                                                                    | US6_1(v4691) -> (* Error *)
-                                                                        let v4692 : unit = ()
-                                                                        let v4693 : (unit -> unit) = closure44(v4691)
-                                                                        let v4694 : unit = (fun () -> v4693 (); v4692) ()
-                                                                        let v4807 : uint8 = 17uy
-                                                                        let v4808 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v4807)
-                                                                        let v4809 : string = "v4808.await"
-                                                                        let v4810 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4809 
-                                                                        let v4811 : (anyhow_Error -> std_string_String) = method42()
-                                                                        let v4812 : string = "$0.map_err(|x| $1(x))"
-                                                                        let v4813 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4810, v4811) v4812 
-                                                                        let v4814 : US6 = match v4813 with Ok x -> v156 x | Error x -> v157 x
-                                                                        match v4814 with
-                                                                        | US6_1(v4982) -> (* Error *)
-                                                                            let v4983 : unit = ()
-                                                                            let v4984 : (unit -> unit) = closure45(v4982)
-                                                                            let v4985 : unit = (fun () -> v4984 (); v4983) ()
-                                                                            let v5098 : uint8 = 18uy
-                                                                            let v5099 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v5098)
-                                                                            let v5100 : string = "v5099.await"
-                                                                            let v5101 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5100 
-                                                                            let v5102 : (anyhow_Error -> std_string_String) = method42()
-                                                                            let v5103 : string = "$0.map_err(|x| $1(x))"
-                                                                            let v5104 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5101, v5102) v5103 
-                                                                            let v5105 : US6 = match v5104 with Ok x -> v156 x | Error x -> v157 x
-                                                                            match v5105 with
-                                                                            | US6_1(v5273) -> (* Error *)
-                                                                                let v5274 : unit = ()
-                                                                                let v5275 : (unit -> unit) = closure46(v5273)
-                                                                                let v5276 : unit = (fun () -> v5275 (); v5274) ()
-                                                                                let v5389 : uint8 = 19uy
-                                                                                let v5390 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v5389)
-                                                                                let v5391 : string = "v5390.await"
-                                                                                let v5392 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5391 
-                                                                                let v5393 : (anyhow_Error -> std_string_String) = method42()
-                                                                                let v5394 : string = "$0.map_err(|x| $1(x))"
-                                                                                let v5395 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5392, v5393) v5394 
-                                                                                let v5396 : US6 = match v5395 with Ok x -> v156 x | Error x -> v157 x
-                                                                                match v5396 with
-                                                                                | US6_1(v5564) -> (* Error *)
-                                                                                    let v5565 : unit = ()
-                                                                                    let v5566 : (unit -> unit) = closure47(v5564)
-                                                                                    let v5567 : unit = (fun () -> v5566 (); v5565) ()
-                                                                                    let v5680 : uint8 = 20uy
-                                                                                    let v5681 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v5680)
-                                                                                    let v5682 : string = "v5681.await"
-                                                                                    let v5683 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5682 
-                                                                                    let v5684 : (anyhow_Error -> std_string_String) = method42()
-                                                                                    let v5685 : string = "$0.map_err(|x| $1(x))"
-                                                                                    let v5686 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5683, v5684) v5685 
-                                                                                    let v5687 : US6 = match v5686 with Ok x -> v156 x | Error x -> v157 x
-                                                                                    match v5687 with
-                                                                                    | US6_1(v5855) -> (* Error *)
-                                                                                        let v5856 : unit = ()
-                                                                                        let v5857 : (unit -> unit) = closure48(v5855)
-                                                                                        let v5858 : unit = (fun () -> v5857 (); v5856) ()
-                                                                                        let v5971 : uint8 = 21uy
-                                                                                        let v5972 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v5971)
-                                                                                        let v5973 : string = "v5972.await"
-                                                                                        let v5974 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5973 
-                                                                                        let v5975 : (anyhow_Error -> std_string_String) = method42()
-                                                                                        let v5976 : string = "$0.map_err(|x| $1(x))"
-                                                                                        let v5977 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5974, v5975) v5976 
-                                                                                        let v5978 : US6 = match v5977 with Ok x -> v156 x | Error x -> v157 x
-                                                                                        match v5978 with
-                                                                                        | US6_1(v6146) -> (* Error *)
-                                                                                            let v6147 : unit = ()
-                                                                                            let v6148 : (unit -> unit) = closure49(v6146)
-                                                                                            let v6149 : unit = (fun () -> v6148 (); v6147) ()
-                                                                                            let v6262 : uint8 = 22uy
-                                                                                            let v6263 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v6262)
-                                                                                            let v6264 : string = "v6263.await"
-                                                                                            let v6265 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6264 
-                                                                                            let v6266 : (anyhow_Error -> std_string_String) = method42()
-                                                                                            let v6267 : string = "$0.map_err(|x| $1(x))"
-                                                                                            let v6268 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6265, v6266) v6267 
-                                                                                            let v6269 : US6 = match v6268 with Ok x -> v156 x | Error x -> v157 x
-                                                                                            match v6269 with
-                                                                                            | US6_1(v6437) -> (* Error *)
-                                                                                                let v6438 : unit = ()
-                                                                                                let v6439 : (unit -> unit) = closure50(v6437)
-                                                                                                let v6440 : unit = (fun () -> v6439 (); v6438) ()
-                                                                                                let v6553 : uint8 = 23uy
-                                                                                                let v6554 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v6553)
-                                                                                                let v6555 : string = "v6554.await"
-                                                                                                let v6556 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6555 
-                                                                                                let v6557 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                let v6558 : string = "$0.map_err(|x| $1(x))"
-                                                                                                let v6559 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6556, v6557) v6558 
-                                                                                                let v6560 : US6 = match v6559 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                match v6560 with
-                                                                                                | US6_1(v6728) -> (* Error *)
-                                                                                                    let v6729 : unit = ()
-                                                                                                    let v6730 : (unit -> unit) = closure51(v6728)
-                                                                                                    let v6731 : unit = (fun () -> v6730 (); v6729) ()
-                                                                                                    let v6844 : uint8 = 24uy
-                                                                                                    let v6845 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v6844)
-                                                                                                    let v6846 : string = "v6845.await"
-                                                                                                    let v6847 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6846 
-                                                                                                    let v6848 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                    let v6849 : string = "$0.map_err(|x| $1(x))"
-                                                                                                    let v6850 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6847, v6848) v6849 
-                                                                                                    let v6851 : US6 = match v6850 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                    match v6851 with
-                                                                                                    | US6_1(v7019) -> (* Error *)
-                                                                                                        let v7020 : unit = ()
-                                                                                                        let v7021 : (unit -> unit) = closure52(v7019)
-                                                                                                        let v7022 : unit = (fun () -> v7021 (); v7020) ()
-                                                                                                        let v7135 : uint8 = 25uy
-                                                                                                        let v7136 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v7135)
-                                                                                                        let v7137 : string = "v7136.await"
-                                                                                                        let v7138 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7137 
-                                                                                                        let v7139 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                        let v7140 : string = "$0.map_err(|x| $1(x))"
-                                                                                                        let v7141 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7138, v7139) v7140 
-                                                                                                        let v7142 : US6 = match v7141 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                        match v7142 with
-                                                                                                        | US6_1(v7310) -> (* Error *)
-                                                                                                            let v7311 : unit = ()
-                                                                                                            let v7312 : (unit -> unit) = closure53(v7310)
-                                                                                                            let v7313 : unit = (fun () -> v7312 (); v7311) ()
-                                                                                                            let v7426 : uint8 = 26uy
-                                                                                                            let v7427 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v7426)
-                                                                                                            let v7428 : string = "v7427.await"
-                                                                                                            let v7429 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7428 
-                                                                                                            let v7430 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                            let v7431 : string = "$0.map_err(|x| $1(x))"
-                                                                                                            let v7432 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7429, v7430) v7431 
-                                                                                                            let v7433 : US6 = match v7432 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                            match v7433 with
-                                                                                                            | US6_1(v7601) -> (* Error *)
-                                                                                                                let v7602 : unit = ()
-                                                                                                                let v7603 : (unit -> unit) = closure54(v7601)
-                                                                                                                let v7604 : unit = (fun () -> v7603 (); v7602) ()
-                                                                                                                let v7717 : uint8 = 27uy
-                                                                                                                let v7718 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v7717)
-                                                                                                                let v7719 : string = "v7718.await"
-                                                                                                                let v7720 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7719 
-                                                                                                                let v7721 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                                let v7722 : string = "$0.map_err(|x| $1(x))"
-                                                                                                                let v7723 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7720, v7721) v7722 
-                                                                                                                let v7724 : US6 = match v7723 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                                match v7724 with
-                                                                                                                | US6_1(v7892) -> (* Error *)
-                                                                                                                    let v7893 : unit = ()
-                                                                                                                    let v7894 : (unit -> unit) = closure55(v7892)
-                                                                                                                    let v7895 : unit = (fun () -> v7894 (); v7893) ()
-                                                                                                                    let v8008 : uint8 = 28uy
-                                                                                                                    let v8009 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v8008)
-                                                                                                                    let v8010 : string = "v8009.await"
-                                                                                                                    let v8011 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v8010 
-                                                                                                                    let v8012 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                                    let v8013 : string = "$0.map_err(|x| $1(x))"
-                                                                                                                    let v8014 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8011, v8012) v8013 
-                                                                                                                    let v8015 : US6 = match v8014 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                                    match v8015 with
-                                                                                                                    | US6_1(v8183) -> (* Error *)
-                                                                                                                        let v8184 : unit = ()
-                                                                                                                        let v8185 : (unit -> unit) = closure56(v8183)
-                                                                                                                        let v8186 : unit = (fun () -> v8185 (); v8184) ()
-                                                                                                                        let v8299 : uint8 = 29uy
-                                                                                                                        let v8300 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v148, v8299)
-                                                                                                                        let v8301 : string = "v8300.await"
-                                                                                                                        let v8302 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v8301 
-                                                                                                                        let v8303 : (anyhow_Error -> std_string_String) = method42()
-                                                                                                                        let v8304 : string = "$0.map_err(|x| $1(x))"
-                                                                                                                        let v8305 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8302, v8303) v8304 
-                                                                                                                        let v8306 : US6 = match v8305 with Ok x -> v156 x | Error x -> v157 x
-                                                                                                                        match v8306 with
-                                                                                                                        | US6_1(v8474) -> (* Error *)
-                                                                                                                            let v8475 : unit = ()
-                                                                                                                            let v8476 : (unit -> unit) = closure57(v8474)
-                                                                                                                            let v8477 : unit = (fun () -> v8476 (); v8475) ()
-                                                                                                                            let v8590 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8591 : bool = Fable.Core.RustInterop.emitRustExpr () v8590 
-                                                                                                                            let v8592 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8593 : bool = Fable.Core.RustInterop.emitRustExpr () v8592 
-                                                                                                                            let v8594 : uint8 = method46()
-                                                                                                                            let v8595 : string = ""
-                                                                                                                            let v8596 : string = "}"
-                                                                                                                            let v8597 : string = v8595 + v8596 
-                                                                                                                            let v8598 : string = "true; v8594 " + v8597 + "); " + v8595 + " // rust.fix_closure'"
-                                                                                                                            let v8599 : bool = Fable.Core.RustInterop.emitRustExpr () v8598 
-                                                                                                                            let v8600 : string = "__future_init"
-                                                                                                                            let v8601 : _ = Fable.Core.RustInterop.emitRustExpr () v8600 
-                                                                                                                            let v8602 : string = "v8601"
-                                                                                                                            let v8603 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8602 
-                                                                                                                            let v8604 : string = "v8603.await"
-                                                                                                                            let v8605 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8604 
-                                                                                                                            let v8606 : US7 = method47(v8605)
-                                                                                                                            let v8607 : string = v8595 + v8596 
-                                                                                                                            let v8608 : string = "true; v8606 " + v8607 + "); " + v8595 + " // rust.fix_closure'"
-                                                                                                                            let v8609 : bool = Fable.Core.RustInterop.emitRustExpr () v8608 
-                                                                                                                            let v8610 : string = "__future_init"
-                                                                                                                            let v8611 : _ = Fable.Core.RustInterop.emitRustExpr () v8610 
-                                                                                                                            let v8612 : string = "v8611"
-                                                                                                                            let v8613 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8612 
-                                                                                                                            v8613
-                                                                                                                        | US6_0(v8307) -> (* Ok *)
-                                                                                                                            match v8307 with
+        | US0_0(v44) -> (* Some *)
+            v44
+    let v48 : string = "fable_library_rust::String_::fromString($0)"
+    let v49 : string = Fable.Core.RustInterop.emitRustExpr v47 v48 
+    let v50 : unit = ()
+    let v51 : (unit -> unit) = closure12(v49)
+    let v52 : unit = (fun () -> v51 (); v50) ()
+    let v164 : string = "std::fs::read(&*$0)"
+    let v165 : Result<Vec<uint8>, std_io_Error> = Fable.Core.RustInterop.emitRustExpr v49 v164 
+    let v166 : string = "$0?"
+    let v167 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v165 v166 
+    let v168 : uint8 = 1uy
+    let v169 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v168)
+    let v170 : string = "v169.await"
+    let v171 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v170 
+    let v172 : (anyhow_Error -> std_string_String) = method42()
+    let v173 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v174 : string = "$0.map_err(|x| $1(x))"
+    let v175 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v171, v172) v174 
+    let _v173 = v175 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v176 : string = "$0.map_err(|x| $1(x))"
+    let v177 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v171, v172) v176 
+    let _v173 = v177 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v178 : string = "$0.map_err(|x| $1(x))"
+    let v179 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v171, v172) v178 
+    let _v173 = v179 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v180 : Result<US4, std_string_String> = match v171 with Ok x -> Ok x | Error x -> Error (v172 x)
+    let _v173 = v180 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v181 : Result<US4, std_string_String> = match v171 with Ok x -> Ok x | Error x -> Error (v172 x)
+    let _v173 = v181 
+    #endif
+#else
+    let v182 : Result<US4, std_string_String> = match v171 with Ok x -> Ok x | Error x -> Error (v172 x)
+    let _v173 = v182 
+    #endif
+    let v183 : Result<US4, std_string_String> = _v173 
+    let v186 : (US4 -> US6) = closure27()
+    let v187 : (std_string_String -> US6) = closure28()
+    let v188 : US6 = match v183 with Ok x -> v186 x | Error x -> v187 x
+    let v9009 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> =
+        match v188 with
+        | US6_1(v356) -> (* Error *)
+            let v357 : unit = ()
+            let v358 : (unit -> unit) = closure29(v356)
+            let v359 : unit = (fun () -> v358 (); v357) ()
+            let v472 : uint8 = 2uy
+            let v473 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v472)
+            let v474 : string = "v473.await"
+            let v475 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v474 
+            let v476 : (anyhow_Error -> std_string_String) = method42()
+            let v477 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v478 : string = "$0.map_err(|x| $1(x))"
+            let v479 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v475, v476) v478 
+            let _v477 = v479 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v480 : string = "$0.map_err(|x| $1(x))"
+            let v481 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v475, v476) v480 
+            let _v477 = v481 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v482 : string = "$0.map_err(|x| $1(x))"
+            let v483 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v475, v476) v482 
+            let _v477 = v483 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v484 : Result<US4, std_string_String> = match v475 with Ok x -> Ok x | Error x -> Error (v476 x)
+            let _v477 = v484 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v485 : Result<US4, std_string_String> = match v475 with Ok x -> Ok x | Error x -> Error (v476 x)
+            let _v477 = v485 
+            #endif
+#else
+            let v486 : Result<US4, std_string_String> = match v475 with Ok x -> Ok x | Error x -> Error (v476 x)
+            let _v477 = v486 
+            #endif
+            let v487 : Result<US4, std_string_String> = _v477 
+            let v490 : US6 = match v487 with Ok x -> v186 x | Error x -> v187 x
+            match v490 with
+            | US6_1(v658) -> (* Error *)
+                let v659 : unit = ()
+                let v660 : (unit -> unit) = closure30(v658)
+                let v661 : unit = (fun () -> v660 (); v659) ()
+                let v774 : uint8 = 3uy
+                let v775 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v774)
+                let v776 : string = "v775.await"
+                let v777 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v776 
+                let v778 : (anyhow_Error -> std_string_String) = method42()
+                let v779 : unit = ()
+                
+#if FABLE_COMPILER || WASM || CONTRACT
+                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                let v780 : string = "$0.map_err(|x| $1(x))"
+                let v781 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v777, v778) v780 
+                let _v779 = v781 
+                #endif
+#if FABLE_COMPILER_RUST && WASM
+                let v782 : string = "$0.map_err(|x| $1(x))"
+                let v783 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v777, v778) v782 
+                let _v779 = v783 
+                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                let v784 : string = "$0.map_err(|x| $1(x))"
+                let v785 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v777, v778) v784 
+                let _v779 = v785 
+                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                let v786 : Result<US4, std_string_String> = match v777 with Ok x -> Ok x | Error x -> Error (v778 x)
+                let _v779 = v786 
+                #endif
+#if FABLE_COMPILER_PYTHON
+                let v787 : Result<US4, std_string_String> = match v777 with Ok x -> Ok x | Error x -> Error (v778 x)
+                let _v779 = v787 
+                #endif
+#else
+                let v788 : Result<US4, std_string_String> = match v777 with Ok x -> Ok x | Error x -> Error (v778 x)
+                let _v779 = v788 
+                #endif
+                let v789 : Result<US4, std_string_String> = _v779 
+                let v792 : US6 = match v789 with Ok x -> v186 x | Error x -> v187 x
+                match v792 with
+                | US6_1(v960) -> (* Error *)
+                    let v961 : unit = ()
+                    let v962 : (unit -> unit) = closure31(v960)
+                    let v963 : unit = (fun () -> v962 (); v961) ()
+                    let v1076 : uint8 = 4uy
+                    let v1077 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v1076)
+                    let v1078 : string = "v1077.await"
+                    let v1079 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1078 
+                    let v1080 : (anyhow_Error -> std_string_String) = method42()
+                    let v1081 : unit = ()
+                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                    let v1082 : string = "$0.map_err(|x| $1(x))"
+                    let v1083 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1079, v1080) v1082 
+                    let _v1081 = v1083 
+                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                    let v1084 : string = "$0.map_err(|x| $1(x))"
+                    let v1085 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1079, v1080) v1084 
+                    let _v1081 = v1085 
+                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                    let v1086 : string = "$0.map_err(|x| $1(x))"
+                    let v1087 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1079, v1080) v1086 
+                    let _v1081 = v1087 
+                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                    let v1088 : Result<US4, std_string_String> = match v1079 with Ok x -> Ok x | Error x -> Error (v1080 x)
+                    let _v1081 = v1088 
+                    #endif
+#if FABLE_COMPILER_PYTHON
+                    let v1089 : Result<US4, std_string_String> = match v1079 with Ok x -> Ok x | Error x -> Error (v1080 x)
+                    let _v1081 = v1089 
+                    #endif
+#else
+                    let v1090 : Result<US4, std_string_String> = match v1079 with Ok x -> Ok x | Error x -> Error (v1080 x)
+                    let _v1081 = v1090 
+                    #endif
+                    let v1091 : Result<US4, std_string_String> = _v1081 
+                    let v1094 : US6 = match v1091 with Ok x -> v186 x | Error x -> v187 x
+                    match v1094 with
+                    | US6_1(v1262) -> (* Error *)
+                        let v1263 : unit = ()
+                        let v1264 : (unit -> unit) = closure32(v1262)
+                        let v1265 : unit = (fun () -> v1264 (); v1263) ()
+                        let v1378 : uint8 = 5uy
+                        let v1379 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v1378)
+                        let v1380 : string = "v1379.await"
+                        let v1381 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1380 
+                        let v1382 : (anyhow_Error -> std_string_String) = method42()
+                        let v1383 : unit = ()
+                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                        let v1384 : string = "$0.map_err(|x| $1(x))"
+                        let v1385 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1381, v1382) v1384 
+                        let _v1383 = v1385 
+                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                        let v1386 : string = "$0.map_err(|x| $1(x))"
+                        let v1387 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1381, v1382) v1386 
+                        let _v1383 = v1387 
+                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                        let v1388 : string = "$0.map_err(|x| $1(x))"
+                        let v1389 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1381, v1382) v1388 
+                        let _v1383 = v1389 
+                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                        let v1390 : Result<US4, std_string_String> = match v1381 with Ok x -> Ok x | Error x -> Error (v1382 x)
+                        let _v1383 = v1390 
+                        #endif
+#if FABLE_COMPILER_PYTHON
+                        let v1391 : Result<US4, std_string_String> = match v1381 with Ok x -> Ok x | Error x -> Error (v1382 x)
+                        let _v1383 = v1391 
+                        #endif
+#else
+                        let v1392 : Result<US4, std_string_String> = match v1381 with Ok x -> Ok x | Error x -> Error (v1382 x)
+                        let _v1383 = v1392 
+                        #endif
+                        let v1393 : Result<US4, std_string_String> = _v1383 
+                        let v1396 : US6 = match v1393 with Ok x -> v186 x | Error x -> v187 x
+                        match v1396 with
+                        | US6_1(v1564) -> (* Error *)
+                            let v1565 : unit = ()
+                            let v1566 : (unit -> unit) = closure33(v1564)
+                            let v1567 : unit = (fun () -> v1566 (); v1565) ()
+                            let v1680 : uint8 = 6uy
+                            let v1681 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v1680)
+                            let v1682 : string = "v1681.await"
+                            let v1683 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1682 
+                            let v1684 : (anyhow_Error -> std_string_String) = method42()
+                            let v1685 : unit = ()
+                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                            let v1686 : string = "$0.map_err(|x| $1(x))"
+                            let v1687 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1683, v1684) v1686 
+                            let _v1685 = v1687 
+                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                            let v1688 : string = "$0.map_err(|x| $1(x))"
+                            let v1689 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1683, v1684) v1688 
+                            let _v1685 = v1689 
+                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                            let v1690 : string = "$0.map_err(|x| $1(x))"
+                            let v1691 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1683, v1684) v1690 
+                            let _v1685 = v1691 
+                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                            let v1692 : Result<US4, std_string_String> = match v1683 with Ok x -> Ok x | Error x -> Error (v1684 x)
+                            let _v1685 = v1692 
+                            #endif
+#if FABLE_COMPILER_PYTHON
+                            let v1693 : Result<US4, std_string_String> = match v1683 with Ok x -> Ok x | Error x -> Error (v1684 x)
+                            let _v1685 = v1693 
+                            #endif
+#else
+                            let v1694 : Result<US4, std_string_String> = match v1683 with Ok x -> Ok x | Error x -> Error (v1684 x)
+                            let _v1685 = v1694 
+                            #endif
+                            let v1695 : Result<US4, std_string_String> = _v1685 
+                            let v1698 : US6 = match v1695 with Ok x -> v186 x | Error x -> v187 x
+                            match v1698 with
+                            | US6_1(v1866) -> (* Error *)
+                                let v1867 : unit = ()
+                                let v1868 : (unit -> unit) = closure34(v1866)
+                                let v1869 : unit = (fun () -> v1868 (); v1867) ()
+                                let v1982 : uint8 = 7uy
+                                let v1983 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v1982)
+                                let v1984 : string = "v1983.await"
+                                let v1985 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v1984 
+                                let v1986 : (anyhow_Error -> std_string_String) = method42()
+                                let v1987 : unit = ()
+                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                let v1988 : string = "$0.map_err(|x| $1(x))"
+                                let v1989 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1985, v1986) v1988 
+                                let _v1987 = v1989 
+                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                let v1990 : string = "$0.map_err(|x| $1(x))"
+                                let v1991 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1985, v1986) v1990 
+                                let _v1987 = v1991 
+                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                let v1992 : string = "$0.map_err(|x| $1(x))"
+                                let v1993 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v1985, v1986) v1992 
+                                let _v1987 = v1993 
+                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                let v1994 : Result<US4, std_string_String> = match v1985 with Ok x -> Ok x | Error x -> Error (v1986 x)
+                                let _v1987 = v1994 
+                                #endif
+#if FABLE_COMPILER_PYTHON
+                                let v1995 : Result<US4, std_string_String> = match v1985 with Ok x -> Ok x | Error x -> Error (v1986 x)
+                                let _v1987 = v1995 
+                                #endif
+#else
+                                let v1996 : Result<US4, std_string_String> = match v1985 with Ok x -> Ok x | Error x -> Error (v1986 x)
+                                let _v1987 = v1996 
+                                #endif
+                                let v1997 : Result<US4, std_string_String> = _v1987 
+                                let v2000 : US6 = match v1997 with Ok x -> v186 x | Error x -> v187 x
+                                match v2000 with
+                                | US6_1(v2168) -> (* Error *)
+                                    let v2169 : unit = ()
+                                    let v2170 : (unit -> unit) = closure35(v2168)
+                                    let v2171 : unit = (fun () -> v2170 (); v2169) ()
+                                    let v2284 : uint8 = 8uy
+                                    let v2285 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v2284)
+                                    let v2286 : string = "v2285.await"
+                                    let v2287 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2286 
+                                    let v2288 : (anyhow_Error -> std_string_String) = method42()
+                                    let v2289 : unit = ()
+                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                    let v2290 : string = "$0.map_err(|x| $1(x))"
+                                    let v2291 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2287, v2288) v2290 
+                                    let _v2289 = v2291 
+                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                    let v2292 : string = "$0.map_err(|x| $1(x))"
+                                    let v2293 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2287, v2288) v2292 
+                                    let _v2289 = v2293 
+                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                    let v2294 : string = "$0.map_err(|x| $1(x))"
+                                    let v2295 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2287, v2288) v2294 
+                                    let _v2289 = v2295 
+                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                    let v2296 : Result<US4, std_string_String> = match v2287 with Ok x -> Ok x | Error x -> Error (v2288 x)
+                                    let _v2289 = v2296 
+                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                    let v2297 : Result<US4, std_string_String> = match v2287 with Ok x -> Ok x | Error x -> Error (v2288 x)
+                                    let _v2289 = v2297 
+                                    #endif
+#else
+                                    let v2298 : Result<US4, std_string_String> = match v2287 with Ok x -> Ok x | Error x -> Error (v2288 x)
+                                    let _v2289 = v2298 
+                                    #endif
+                                    let v2299 : Result<US4, std_string_String> = _v2289 
+                                    let v2302 : US6 = match v2299 with Ok x -> v186 x | Error x -> v187 x
+                                    match v2302 with
+                                    | US6_1(v2470) -> (* Error *)
+                                        let v2471 : unit = ()
+                                        let v2472 : (unit -> unit) = closure36(v2470)
+                                        let v2473 : unit = (fun () -> v2472 (); v2471) ()
+                                        let v2586 : uint8 = 9uy
+                                        let v2587 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v2586)
+                                        let v2588 : string = "v2587.await"
+                                        let v2589 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2588 
+                                        let v2590 : (anyhow_Error -> std_string_String) = method42()
+                                        let v2591 : unit = ()
+                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                        let v2592 : string = "$0.map_err(|x| $1(x))"
+                                        let v2593 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2589, v2590) v2592 
+                                        let _v2591 = v2593 
+                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                        let v2594 : string = "$0.map_err(|x| $1(x))"
+                                        let v2595 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2589, v2590) v2594 
+                                        let _v2591 = v2595 
+                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                        let v2596 : string = "$0.map_err(|x| $1(x))"
+                                        let v2597 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2589, v2590) v2596 
+                                        let _v2591 = v2597 
+                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                        let v2598 : Result<US4, std_string_String> = match v2589 with Ok x -> Ok x | Error x -> Error (v2590 x)
+                                        let _v2591 = v2598 
+                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                        let v2599 : Result<US4, std_string_String> = match v2589 with Ok x -> Ok x | Error x -> Error (v2590 x)
+                                        let _v2591 = v2599 
+                                        #endif
+#else
+                                        let v2600 : Result<US4, std_string_String> = match v2589 with Ok x -> Ok x | Error x -> Error (v2590 x)
+                                        let _v2591 = v2600 
+                                        #endif
+                                        let v2601 : Result<US4, std_string_String> = _v2591 
+                                        let v2604 : US6 = match v2601 with Ok x -> v186 x | Error x -> v187 x
+                                        match v2604 with
+                                        | US6_1(v2772) -> (* Error *)
+                                            let v2773 : unit = ()
+                                            let v2774 : (unit -> unit) = closure37(v2772)
+                                            let v2775 : unit = (fun () -> v2774 (); v2773) ()
+                                            let v2888 : uint8 = 10uy
+                                            let v2889 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v2888)
+                                            let v2890 : string = "v2889.await"
+                                            let v2891 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v2890 
+                                            let v2892 : (anyhow_Error -> std_string_String) = method42()
+                                            let v2893 : unit = ()
+                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                            let v2894 : string = "$0.map_err(|x| $1(x))"
+                                            let v2895 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2891, v2892) v2894 
+                                            let _v2893 = v2895 
+                                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                                            let v2896 : string = "$0.map_err(|x| $1(x))"
+                                            let v2897 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2891, v2892) v2896 
+                                            let _v2893 = v2897 
+                                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                            let v2898 : string = "$0.map_err(|x| $1(x))"
+                                            let v2899 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v2891, v2892) v2898 
+                                            let _v2893 = v2899 
+                                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                            let v2900 : Result<US4, std_string_String> = match v2891 with Ok x -> Ok x | Error x -> Error (v2892 x)
+                                            let _v2893 = v2900 
+                                            #endif
+#if FABLE_COMPILER_PYTHON
+                                            let v2901 : Result<US4, std_string_String> = match v2891 with Ok x -> Ok x | Error x -> Error (v2892 x)
+                                            let _v2893 = v2901 
+                                            #endif
+#else
+                                            let v2902 : Result<US4, std_string_String> = match v2891 with Ok x -> Ok x | Error x -> Error (v2892 x)
+                                            let _v2893 = v2902 
+                                            #endif
+                                            let v2903 : Result<US4, std_string_String> = _v2893 
+                                            let v2906 : US6 = match v2903 with Ok x -> v186 x | Error x -> v187 x
+                                            match v2906 with
+                                            | US6_1(v3074) -> (* Error *)
+                                                let v3075 : unit = ()
+                                                let v3076 : (unit -> unit) = closure38(v3074)
+                                                let v3077 : unit = (fun () -> v3076 (); v3075) ()
+                                                let v3190 : uint8 = 11uy
+                                                let v3191 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v3190)
+                                                let v3192 : string = "v3191.await"
+                                                let v3193 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3192 
+                                                let v3194 : (anyhow_Error -> std_string_String) = method42()
+                                                let v3195 : unit = ()
+                                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                let v3196 : string = "$0.map_err(|x| $1(x))"
+                                                let v3197 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3193, v3194) v3196 
+                                                let _v3195 = v3197 
+                                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                let v3198 : string = "$0.map_err(|x| $1(x))"
+                                                let v3199 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3193, v3194) v3198 
+                                                let _v3195 = v3199 
+                                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                let v3200 : string = "$0.map_err(|x| $1(x))"
+                                                let v3201 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3193, v3194) v3200 
+                                                let _v3195 = v3201 
+                                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                let v3202 : Result<US4, std_string_String> = match v3193 with Ok x -> Ok x | Error x -> Error (v3194 x)
+                                                let _v3195 = v3202 
+                                                #endif
+#if FABLE_COMPILER_PYTHON
+                                                let v3203 : Result<US4, std_string_String> = match v3193 with Ok x -> Ok x | Error x -> Error (v3194 x)
+                                                let _v3195 = v3203 
+                                                #endif
+#else
+                                                let v3204 : Result<US4, std_string_String> = match v3193 with Ok x -> Ok x | Error x -> Error (v3194 x)
+                                                let _v3195 = v3204 
+                                                #endif
+                                                let v3205 : Result<US4, std_string_String> = _v3195 
+                                                let v3208 : US6 = match v3205 with Ok x -> v186 x | Error x -> v187 x
+                                                match v3208 with
+                                                | US6_1(v3376) -> (* Error *)
+                                                    let v3377 : unit = ()
+                                                    let v3378 : (unit -> unit) = closure39(v3376)
+                                                    let v3379 : unit = (fun () -> v3378 (); v3377) ()
+                                                    let v3492 : uint8 = 12uy
+                                                    let v3493 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v3492)
+                                                    let v3494 : string = "v3493.await"
+                                                    let v3495 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3494 
+                                                    let v3496 : (anyhow_Error -> std_string_String) = method42()
+                                                    let v3497 : unit = ()
+                                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                    let v3498 : string = "$0.map_err(|x| $1(x))"
+                                                    let v3499 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3495, v3496) v3498 
+                                                    let _v3497 = v3499 
+                                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                    let v3500 : string = "$0.map_err(|x| $1(x))"
+                                                    let v3501 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3495, v3496) v3500 
+                                                    let _v3497 = v3501 
+                                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                    let v3502 : string = "$0.map_err(|x| $1(x))"
+                                                    let v3503 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3495, v3496) v3502 
+                                                    let _v3497 = v3503 
+                                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                    let v3504 : Result<US4, std_string_String> = match v3495 with Ok x -> Ok x | Error x -> Error (v3496 x)
+                                                    let _v3497 = v3504 
+                                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                                    let v3505 : Result<US4, std_string_String> = match v3495 with Ok x -> Ok x | Error x -> Error (v3496 x)
+                                                    let _v3497 = v3505 
+                                                    #endif
+#else
+                                                    let v3506 : Result<US4, std_string_String> = match v3495 with Ok x -> Ok x | Error x -> Error (v3496 x)
+                                                    let _v3497 = v3506 
+                                                    #endif
+                                                    let v3507 : Result<US4, std_string_String> = _v3497 
+                                                    let v3510 : US6 = match v3507 with Ok x -> v186 x | Error x -> v187 x
+                                                    match v3510 with
+                                                    | US6_1(v3678) -> (* Error *)
+                                                        let v3679 : unit = ()
+                                                        let v3680 : (unit -> unit) = closure40(v3678)
+                                                        let v3681 : unit = (fun () -> v3680 (); v3679) ()
+                                                        let v3794 : uint8 = 13uy
+                                                        let v3795 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v3794)
+                                                        let v3796 : string = "v3795.await"
+                                                        let v3797 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v3796 
+                                                        let v3798 : (anyhow_Error -> std_string_String) = method42()
+                                                        let v3799 : unit = ()
+                                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                        let v3800 : string = "$0.map_err(|x| $1(x))"
+                                                        let v3801 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3797, v3798) v3800 
+                                                        let _v3799 = v3801 
+                                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                        let v3802 : string = "$0.map_err(|x| $1(x))"
+                                                        let v3803 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3797, v3798) v3802 
+                                                        let _v3799 = v3803 
+                                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                        let v3804 : string = "$0.map_err(|x| $1(x))"
+                                                        let v3805 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v3797, v3798) v3804 
+                                                        let _v3799 = v3805 
+                                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                        let v3806 : Result<US4, std_string_String> = match v3797 with Ok x -> Ok x | Error x -> Error (v3798 x)
+                                                        let _v3799 = v3806 
+                                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                                        let v3807 : Result<US4, std_string_String> = match v3797 with Ok x -> Ok x | Error x -> Error (v3798 x)
+                                                        let _v3799 = v3807 
+                                                        #endif
+#else
+                                                        let v3808 : Result<US4, std_string_String> = match v3797 with Ok x -> Ok x | Error x -> Error (v3798 x)
+                                                        let _v3799 = v3808 
+                                                        #endif
+                                                        let v3809 : Result<US4, std_string_String> = _v3799 
+                                                        let v3812 : US6 = match v3809 with Ok x -> v186 x | Error x -> v187 x
+                                                        match v3812 with
+                                                        | US6_1(v3980) -> (* Error *)
+                                                            let v3981 : unit = ()
+                                                            let v3982 : (unit -> unit) = closure41(v3980)
+                                                            let v3983 : unit = (fun () -> v3982 (); v3981) ()
+                                                            let v4096 : uint8 = 14uy
+                                                            let v4097 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v4096)
+                                                            let v4098 : string = "v4097.await"
+                                                            let v4099 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4098 
+                                                            let v4100 : (anyhow_Error -> std_string_String) = method42()
+                                                            let v4101 : unit = ()
+                                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                            let v4102 : string = "$0.map_err(|x| $1(x))"
+                                                            let v4103 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4099, v4100) v4102 
+                                                            let _v4101 = v4103 
+                                                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                            let v4104 : string = "$0.map_err(|x| $1(x))"
+                                                            let v4105 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4099, v4100) v4104 
+                                                            let _v4101 = v4105 
+                                                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                            let v4106 : string = "$0.map_err(|x| $1(x))"
+                                                            let v4107 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4099, v4100) v4106 
+                                                            let _v4101 = v4107 
+                                                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                            let v4108 : Result<US4, std_string_String> = match v4099 with Ok x -> Ok x | Error x -> Error (v4100 x)
+                                                            let _v4101 = v4108 
+                                                            #endif
+#if FABLE_COMPILER_PYTHON
+                                                            let v4109 : Result<US4, std_string_String> = match v4099 with Ok x -> Ok x | Error x -> Error (v4100 x)
+                                                            let _v4101 = v4109 
+                                                            #endif
+#else
+                                                            let v4110 : Result<US4, std_string_String> = match v4099 with Ok x -> Ok x | Error x -> Error (v4100 x)
+                                                            let _v4101 = v4110 
+                                                            #endif
+                                                            let v4111 : Result<US4, std_string_String> = _v4101 
+                                                            let v4114 : US6 = match v4111 with Ok x -> v186 x | Error x -> v187 x
+                                                            match v4114 with
+                                                            | US6_1(v4282) -> (* Error *)
+                                                                let v4283 : unit = ()
+                                                                let v4284 : (unit -> unit) = closure42(v4282)
+                                                                let v4285 : unit = (fun () -> v4284 (); v4283) ()
+                                                                let v4398 : uint8 = 15uy
+                                                                let v4399 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v4398)
+                                                                let v4400 : string = "v4399.await"
+                                                                let v4401 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4400 
+                                                                let v4402 : (anyhow_Error -> std_string_String) = method42()
+                                                                let v4403 : unit = ()
+                                                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                let v4404 : string = "$0.map_err(|x| $1(x))"
+                                                                let v4405 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4401, v4402) v4404 
+                                                                let _v4403 = v4405 
+                                                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                let v4406 : string = "$0.map_err(|x| $1(x))"
+                                                                let v4407 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4401, v4402) v4406 
+                                                                let _v4403 = v4407 
+                                                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                let v4408 : string = "$0.map_err(|x| $1(x))"
+                                                                let v4409 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4401, v4402) v4408 
+                                                                let _v4403 = v4409 
+                                                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                let v4410 : Result<US4, std_string_String> = match v4401 with Ok x -> Ok x | Error x -> Error (v4402 x)
+                                                                let _v4403 = v4410 
+                                                                #endif
+#if FABLE_COMPILER_PYTHON
+                                                                let v4411 : Result<US4, std_string_String> = match v4401 with Ok x -> Ok x | Error x -> Error (v4402 x)
+                                                                let _v4403 = v4411 
+                                                                #endif
+#else
+                                                                let v4412 : Result<US4, std_string_String> = match v4401 with Ok x -> Ok x | Error x -> Error (v4402 x)
+                                                                let _v4403 = v4412 
+                                                                #endif
+                                                                let v4413 : Result<US4, std_string_String> = _v4403 
+                                                                let v4416 : US6 = match v4413 with Ok x -> v186 x | Error x -> v187 x
+                                                                match v4416 with
+                                                                | US6_1(v4584) -> (* Error *)
+                                                                    let v4585 : unit = ()
+                                                                    let v4586 : (unit -> unit) = closure43(v4584)
+                                                                    let v4587 : unit = (fun () -> v4586 (); v4585) ()
+                                                                    let v4700 : uint8 = 16uy
+                                                                    let v4701 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v4700)
+                                                                    let v4702 : string = "v4701.await"
+                                                                    let v4703 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v4702 
+                                                                    let v4704 : (anyhow_Error -> std_string_String) = method42()
+                                                                    let v4705 : unit = ()
+                                                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                    let v4706 : string = "$0.map_err(|x| $1(x))"
+                                                                    let v4707 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4703, v4704) v4706 
+                                                                    let _v4705 = v4707 
+                                                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                    let v4708 : string = "$0.map_err(|x| $1(x))"
+                                                                    let v4709 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4703, v4704) v4708 
+                                                                    let _v4705 = v4709 
+                                                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                    let v4710 : string = "$0.map_err(|x| $1(x))"
+                                                                    let v4711 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v4703, v4704) v4710 
+                                                                    let _v4705 = v4711 
+                                                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                    let v4712 : Result<US4, std_string_String> = match v4703 with Ok x -> Ok x | Error x -> Error (v4704 x)
+                                                                    let _v4705 = v4712 
+                                                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                                                    let v4713 : Result<US4, std_string_String> = match v4703 with Ok x -> Ok x | Error x -> Error (v4704 x)
+                                                                    let _v4705 = v4713 
+                                                                    #endif
+#else
+                                                                    let v4714 : Result<US4, std_string_String> = match v4703 with Ok x -> Ok x | Error x -> Error (v4704 x)
+                                                                    let _v4705 = v4714 
+                                                                    #endif
+                                                                    let v4715 : Result<US4, std_string_String> = _v4705 
+                                                                    let v4718 : US6 = match v4715 with Ok x -> v186 x | Error x -> v187 x
+                                                                    match v4718 with
+                                                                    | US6_1(v4886) -> (* Error *)
+                                                                        let v4887 : unit = ()
+                                                                        let v4888 : (unit -> unit) = closure44(v4886)
+                                                                        let v4889 : unit = (fun () -> v4888 (); v4887) ()
+                                                                        let v5002 : uint8 = 17uy
+                                                                        let v5003 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v5002)
+                                                                        let v5004 : string = "v5003.await"
+                                                                        let v5005 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5004 
+                                                                        let v5006 : (anyhow_Error -> std_string_String) = method42()
+                                                                        let v5007 : unit = ()
+                                                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                        let v5008 : string = "$0.map_err(|x| $1(x))"
+                                                                        let v5009 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5005, v5006) v5008 
+                                                                        let _v5007 = v5009 
+                                                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                        let v5010 : string = "$0.map_err(|x| $1(x))"
+                                                                        let v5011 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5005, v5006) v5010 
+                                                                        let _v5007 = v5011 
+                                                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                        let v5012 : string = "$0.map_err(|x| $1(x))"
+                                                                        let v5013 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5005, v5006) v5012 
+                                                                        let _v5007 = v5013 
+                                                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                        let v5014 : Result<US4, std_string_String> = match v5005 with Ok x -> Ok x | Error x -> Error (v5006 x)
+                                                                        let _v5007 = v5014 
+                                                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                                                        let v5015 : Result<US4, std_string_String> = match v5005 with Ok x -> Ok x | Error x -> Error (v5006 x)
+                                                                        let _v5007 = v5015 
+                                                                        #endif
+#else
+                                                                        let v5016 : Result<US4, std_string_String> = match v5005 with Ok x -> Ok x | Error x -> Error (v5006 x)
+                                                                        let _v5007 = v5016 
+                                                                        #endif
+                                                                        let v5017 : Result<US4, std_string_String> = _v5007 
+                                                                        let v5020 : US6 = match v5017 with Ok x -> v186 x | Error x -> v187 x
+                                                                        match v5020 with
+                                                                        | US6_1(v5188) -> (* Error *)
+                                                                            let v5189 : unit = ()
+                                                                            let v5190 : (unit -> unit) = closure45(v5188)
+                                                                            let v5191 : unit = (fun () -> v5190 (); v5189) ()
+                                                                            let v5304 : uint8 = 18uy
+                                                                            let v5305 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v5304)
+                                                                            let v5306 : string = "v5305.await"
+                                                                            let v5307 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5306 
+                                                                            let v5308 : (anyhow_Error -> std_string_String) = method42()
+                                                                            let v5309 : unit = ()
+                                                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                            let v5310 : string = "$0.map_err(|x| $1(x))"
+                                                                            let v5311 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5307, v5308) v5310 
+                                                                            let _v5309 = v5311 
+                                                                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                            let v5312 : string = "$0.map_err(|x| $1(x))"
+                                                                            let v5313 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5307, v5308) v5312 
+                                                                            let _v5309 = v5313 
+                                                                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                            let v5314 : string = "$0.map_err(|x| $1(x))"
+                                                                            let v5315 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5307, v5308) v5314 
+                                                                            let _v5309 = v5315 
+                                                                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                            let v5316 : Result<US4, std_string_String> = match v5307 with Ok x -> Ok x | Error x -> Error (v5308 x)
+                                                                            let _v5309 = v5316 
+                                                                            #endif
+#if FABLE_COMPILER_PYTHON
+                                                                            let v5317 : Result<US4, std_string_String> = match v5307 with Ok x -> Ok x | Error x -> Error (v5308 x)
+                                                                            let _v5309 = v5317 
+                                                                            #endif
+#else
+                                                                            let v5318 : Result<US4, std_string_String> = match v5307 with Ok x -> Ok x | Error x -> Error (v5308 x)
+                                                                            let _v5309 = v5318 
+                                                                            #endif
+                                                                            let v5319 : Result<US4, std_string_String> = _v5309 
+                                                                            let v5322 : US6 = match v5319 with Ok x -> v186 x | Error x -> v187 x
+                                                                            match v5322 with
+                                                                            | US6_1(v5490) -> (* Error *)
+                                                                                let v5491 : unit = ()
+                                                                                let v5492 : (unit -> unit) = closure46(v5490)
+                                                                                let v5493 : unit = (fun () -> v5492 (); v5491) ()
+                                                                                let v5606 : uint8 = 19uy
+                                                                                let v5607 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v5606)
+                                                                                let v5608 : string = "v5607.await"
+                                                                                let v5609 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5608 
+                                                                                let v5610 : (anyhow_Error -> std_string_String) = method42()
+                                                                                let v5611 : unit = ()
+                                                                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                let v5612 : string = "$0.map_err(|x| $1(x))"
+                                                                                let v5613 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5609, v5610) v5612 
+                                                                                let _v5611 = v5613 
+                                                                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                let v5614 : string = "$0.map_err(|x| $1(x))"
+                                                                                let v5615 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5609, v5610) v5614 
+                                                                                let _v5611 = v5615 
+                                                                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                let v5616 : string = "$0.map_err(|x| $1(x))"
+                                                                                let v5617 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5609, v5610) v5616 
+                                                                                let _v5611 = v5617 
+                                                                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                let v5618 : Result<US4, std_string_String> = match v5609 with Ok x -> Ok x | Error x -> Error (v5610 x)
+                                                                                let _v5611 = v5618 
+                                                                                #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                let v5619 : Result<US4, std_string_String> = match v5609 with Ok x -> Ok x | Error x -> Error (v5610 x)
+                                                                                let _v5611 = v5619 
+                                                                                #endif
+#else
+                                                                                let v5620 : Result<US4, std_string_String> = match v5609 with Ok x -> Ok x | Error x -> Error (v5610 x)
+                                                                                let _v5611 = v5620 
+                                                                                #endif
+                                                                                let v5621 : Result<US4, std_string_String> = _v5611 
+                                                                                let v5624 : US6 = match v5621 with Ok x -> v186 x | Error x -> v187 x
+                                                                                match v5624 with
+                                                                                | US6_1(v5792) -> (* Error *)
+                                                                                    let v5793 : unit = ()
+                                                                                    let v5794 : (unit -> unit) = closure47(v5792)
+                                                                                    let v5795 : unit = (fun () -> v5794 (); v5793) ()
+                                                                                    let v5908 : uint8 = 20uy
+                                                                                    let v5909 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v5908)
+                                                                                    let v5910 : string = "v5909.await"
+                                                                                    let v5911 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v5910 
+                                                                                    let v5912 : (anyhow_Error -> std_string_String) = method42()
+                                                                                    let v5913 : unit = ()
+                                                                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                    let v5914 : string = "$0.map_err(|x| $1(x))"
+                                                                                    let v5915 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5911, v5912) v5914 
+                                                                                    let _v5913 = v5915 
+                                                                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                    let v5916 : string = "$0.map_err(|x| $1(x))"
+                                                                                    let v5917 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5911, v5912) v5916 
+                                                                                    let _v5913 = v5917 
+                                                                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                    let v5918 : string = "$0.map_err(|x| $1(x))"
+                                                                                    let v5919 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v5911, v5912) v5918 
+                                                                                    let _v5913 = v5919 
+                                                                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                    let v5920 : Result<US4, std_string_String> = match v5911 with Ok x -> Ok x | Error x -> Error (v5912 x)
+                                                                                    let _v5913 = v5920 
+                                                                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                    let v5921 : Result<US4, std_string_String> = match v5911 with Ok x -> Ok x | Error x -> Error (v5912 x)
+                                                                                    let _v5913 = v5921 
+                                                                                    #endif
+#else
+                                                                                    let v5922 : Result<US4, std_string_String> = match v5911 with Ok x -> Ok x | Error x -> Error (v5912 x)
+                                                                                    let _v5913 = v5922 
+                                                                                    #endif
+                                                                                    let v5923 : Result<US4, std_string_String> = _v5913 
+                                                                                    let v5926 : US6 = match v5923 with Ok x -> v186 x | Error x -> v187 x
+                                                                                    match v5926 with
+                                                                                    | US6_1(v6094) -> (* Error *)
+                                                                                        let v6095 : unit = ()
+                                                                                        let v6096 : (unit -> unit) = closure48(v6094)
+                                                                                        let v6097 : unit = (fun () -> v6096 (); v6095) ()
+                                                                                        let v6210 : uint8 = 21uy
+                                                                                        let v6211 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v6210)
+                                                                                        let v6212 : string = "v6211.await"
+                                                                                        let v6213 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6212 
+                                                                                        let v6214 : (anyhow_Error -> std_string_String) = method42()
+                                                                                        let v6215 : unit = ()
+                                                                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                        let v6216 : string = "$0.map_err(|x| $1(x))"
+                                                                                        let v6217 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6213, v6214) v6216 
+                                                                                        let _v6215 = v6217 
+                                                                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                        let v6218 : string = "$0.map_err(|x| $1(x))"
+                                                                                        let v6219 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6213, v6214) v6218 
+                                                                                        let _v6215 = v6219 
+                                                                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                        let v6220 : string = "$0.map_err(|x| $1(x))"
+                                                                                        let v6221 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6213, v6214) v6220 
+                                                                                        let _v6215 = v6221 
+                                                                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                        let v6222 : Result<US4, std_string_String> = match v6213 with Ok x -> Ok x | Error x -> Error (v6214 x)
+                                                                                        let _v6215 = v6222 
+                                                                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                        let v6223 : Result<US4, std_string_String> = match v6213 with Ok x -> Ok x | Error x -> Error (v6214 x)
+                                                                                        let _v6215 = v6223 
+                                                                                        #endif
+#else
+                                                                                        let v6224 : Result<US4, std_string_String> = match v6213 with Ok x -> Ok x | Error x -> Error (v6214 x)
+                                                                                        let _v6215 = v6224 
+                                                                                        #endif
+                                                                                        let v6225 : Result<US4, std_string_String> = _v6215 
+                                                                                        let v6228 : US6 = match v6225 with Ok x -> v186 x | Error x -> v187 x
+                                                                                        match v6228 with
+                                                                                        | US6_1(v6396) -> (* Error *)
+                                                                                            let v6397 : unit = ()
+                                                                                            let v6398 : (unit -> unit) = closure49(v6396)
+                                                                                            let v6399 : unit = (fun () -> v6398 (); v6397) ()
+                                                                                            let v6512 : uint8 = 22uy
+                                                                                            let v6513 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v6512)
+                                                                                            let v6514 : string = "v6513.await"
+                                                                                            let v6515 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6514 
+                                                                                            let v6516 : (anyhow_Error -> std_string_String) = method42()
+                                                                                            let v6517 : unit = ()
+                                                                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                            let v6518 : string = "$0.map_err(|x| $1(x))"
+                                                                                            let v6519 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6515, v6516) v6518 
+                                                                                            let _v6517 = v6519 
+                                                                                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                            let v6520 : string = "$0.map_err(|x| $1(x))"
+                                                                                            let v6521 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6515, v6516) v6520 
+                                                                                            let _v6517 = v6521 
+                                                                                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                            let v6522 : string = "$0.map_err(|x| $1(x))"
+                                                                                            let v6523 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6515, v6516) v6522 
+                                                                                            let _v6517 = v6523 
+                                                                                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                            let v6524 : Result<US4, std_string_String> = match v6515 with Ok x -> Ok x | Error x -> Error (v6516 x)
+                                                                                            let _v6517 = v6524 
+                                                                                            #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                            let v6525 : Result<US4, std_string_String> = match v6515 with Ok x -> Ok x | Error x -> Error (v6516 x)
+                                                                                            let _v6517 = v6525 
+                                                                                            #endif
+#else
+                                                                                            let v6526 : Result<US4, std_string_String> = match v6515 with Ok x -> Ok x | Error x -> Error (v6516 x)
+                                                                                            let _v6517 = v6526 
+                                                                                            #endif
+                                                                                            let v6527 : Result<US4, std_string_String> = _v6517 
+                                                                                            let v6530 : US6 = match v6527 with Ok x -> v186 x | Error x -> v187 x
+                                                                                            match v6530 with
+                                                                                            | US6_1(v6698) -> (* Error *)
+                                                                                                let v6699 : unit = ()
+                                                                                                let v6700 : (unit -> unit) = closure50(v6698)
+                                                                                                let v6701 : unit = (fun () -> v6700 (); v6699) ()
+                                                                                                let v6814 : uint8 = 23uy
+                                                                                                let v6815 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v6814)
+                                                                                                let v6816 : string = "v6815.await"
+                                                                                                let v6817 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v6816 
+                                                                                                let v6818 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                let v6819 : unit = ()
+                                                                                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                let v6820 : string = "$0.map_err(|x| $1(x))"
+                                                                                                let v6821 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6817, v6818) v6820 
+                                                                                                let _v6819 = v6821 
+                                                                                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                let v6822 : string = "$0.map_err(|x| $1(x))"
+                                                                                                let v6823 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6817, v6818) v6822 
+                                                                                                let _v6819 = v6823 
+                                                                                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                let v6824 : string = "$0.map_err(|x| $1(x))"
+                                                                                                let v6825 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v6817, v6818) v6824 
+                                                                                                let _v6819 = v6825 
+                                                                                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                let v6826 : Result<US4, std_string_String> = match v6817 with Ok x -> Ok x | Error x -> Error (v6818 x)
+                                                                                                let _v6819 = v6826 
+                                                                                                #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                let v6827 : Result<US4, std_string_String> = match v6817 with Ok x -> Ok x | Error x -> Error (v6818 x)
+                                                                                                let _v6819 = v6827 
+                                                                                                #endif
+#else
+                                                                                                let v6828 : Result<US4, std_string_String> = match v6817 with Ok x -> Ok x | Error x -> Error (v6818 x)
+                                                                                                let _v6819 = v6828 
+                                                                                                #endif
+                                                                                                let v6829 : Result<US4, std_string_String> = _v6819 
+                                                                                                let v6832 : US6 = match v6829 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                match v6832 with
+                                                                                                | US6_1(v7000) -> (* Error *)
+                                                                                                    let v7001 : unit = ()
+                                                                                                    let v7002 : (unit -> unit) = closure51(v7000)
+                                                                                                    let v7003 : unit = (fun () -> v7002 (); v7001) ()
+                                                                                                    let v7116 : uint8 = 24uy
+                                                                                                    let v7117 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v7116)
+                                                                                                    let v7118 : string = "v7117.await"
+                                                                                                    let v7119 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7118 
+                                                                                                    let v7120 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                    let v7121 : unit = ()
+                                                                                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                    let v7122 : string = "$0.map_err(|x| $1(x))"
+                                                                                                    let v7123 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7119, v7120) v7122 
+                                                                                                    let _v7121 = v7123 
+                                                                                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                    let v7124 : string = "$0.map_err(|x| $1(x))"
+                                                                                                    let v7125 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7119, v7120) v7124 
+                                                                                                    let _v7121 = v7125 
+                                                                                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                    let v7126 : string = "$0.map_err(|x| $1(x))"
+                                                                                                    let v7127 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7119, v7120) v7126 
+                                                                                                    let _v7121 = v7127 
+                                                                                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                    let v7128 : Result<US4, std_string_String> = match v7119 with Ok x -> Ok x | Error x -> Error (v7120 x)
+                                                                                                    let _v7121 = v7128 
+                                                                                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                    let v7129 : Result<US4, std_string_String> = match v7119 with Ok x -> Ok x | Error x -> Error (v7120 x)
+                                                                                                    let _v7121 = v7129 
+                                                                                                    #endif
+#else
+                                                                                                    let v7130 : Result<US4, std_string_String> = match v7119 with Ok x -> Ok x | Error x -> Error (v7120 x)
+                                                                                                    let _v7121 = v7130 
+                                                                                                    #endif
+                                                                                                    let v7131 : Result<US4, std_string_String> = _v7121 
+                                                                                                    let v7134 : US6 = match v7131 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                    match v7134 with
+                                                                                                    | US6_1(v7302) -> (* Error *)
+                                                                                                        let v7303 : unit = ()
+                                                                                                        let v7304 : (unit -> unit) = closure52(v7302)
+                                                                                                        let v7305 : unit = (fun () -> v7304 (); v7303) ()
+                                                                                                        let v7418 : uint8 = 25uy
+                                                                                                        let v7419 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v7418)
+                                                                                                        let v7420 : string = "v7419.await"
+                                                                                                        let v7421 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7420 
+                                                                                                        let v7422 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                        let v7423 : unit = ()
+                                                                                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                        let v7424 : string = "$0.map_err(|x| $1(x))"
+                                                                                                        let v7425 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7421, v7422) v7424 
+                                                                                                        let _v7423 = v7425 
+                                                                                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                        let v7426 : string = "$0.map_err(|x| $1(x))"
+                                                                                                        let v7427 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7421, v7422) v7426 
+                                                                                                        let _v7423 = v7427 
+                                                                                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                        let v7428 : string = "$0.map_err(|x| $1(x))"
+                                                                                                        let v7429 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7421, v7422) v7428 
+                                                                                                        let _v7423 = v7429 
+                                                                                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                        let v7430 : Result<US4, std_string_String> = match v7421 with Ok x -> Ok x | Error x -> Error (v7422 x)
+                                                                                                        let _v7423 = v7430 
+                                                                                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                        let v7431 : Result<US4, std_string_String> = match v7421 with Ok x -> Ok x | Error x -> Error (v7422 x)
+                                                                                                        let _v7423 = v7431 
+                                                                                                        #endif
+#else
+                                                                                                        let v7432 : Result<US4, std_string_String> = match v7421 with Ok x -> Ok x | Error x -> Error (v7422 x)
+                                                                                                        let _v7423 = v7432 
+                                                                                                        #endif
+                                                                                                        let v7433 : Result<US4, std_string_String> = _v7423 
+                                                                                                        let v7436 : US6 = match v7433 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                        match v7436 with
+                                                                                                        | US6_1(v7604) -> (* Error *)
+                                                                                                            let v7605 : unit = ()
+                                                                                                            let v7606 : (unit -> unit) = closure53(v7604)
+                                                                                                            let v7607 : unit = (fun () -> v7606 (); v7605) ()
+                                                                                                            let v7720 : uint8 = 26uy
+                                                                                                            let v7721 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v7720)
+                                                                                                            let v7722 : string = "v7721.await"
+                                                                                                            let v7723 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v7722 
+                                                                                                            let v7724 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                            let v7725 : unit = ()
+                                                                                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                            let v7726 : string = "$0.map_err(|x| $1(x))"
+                                                                                                            let v7727 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7723, v7724) v7726 
+                                                                                                            let _v7725 = v7727 
+                                                                                                            #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                            let v7728 : string = "$0.map_err(|x| $1(x))"
+                                                                                                            let v7729 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7723, v7724) v7728 
+                                                                                                            let _v7725 = v7729 
+                                                                                                            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                            let v7730 : string = "$0.map_err(|x| $1(x))"
+                                                                                                            let v7731 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v7723, v7724) v7730 
+                                                                                                            let _v7725 = v7731 
+                                                                                                            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                            let v7732 : Result<US4, std_string_String> = match v7723 with Ok x -> Ok x | Error x -> Error (v7724 x)
+                                                                                                            let _v7725 = v7732 
+                                                                                                            #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                            let v7733 : Result<US4, std_string_String> = match v7723 with Ok x -> Ok x | Error x -> Error (v7724 x)
+                                                                                                            let _v7725 = v7733 
+                                                                                                            #endif
+#else
+                                                                                                            let v7734 : Result<US4, std_string_String> = match v7723 with Ok x -> Ok x | Error x -> Error (v7724 x)
+                                                                                                            let _v7725 = v7734 
+                                                                                                            #endif
+                                                                                                            let v7735 : Result<US4, std_string_String> = _v7725 
+                                                                                                            let v7738 : US6 = match v7735 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                            match v7738 with
+                                                                                                            | US6_1(v7906) -> (* Error *)
+                                                                                                                let v7907 : unit = ()
+                                                                                                                let v7908 : (unit -> unit) = closure54(v7906)
+                                                                                                                let v7909 : unit = (fun () -> v7908 (); v7907) ()
+                                                                                                                let v8022 : uint8 = 27uy
+                                                                                                                let v8023 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v8022)
+                                                                                                                let v8024 : string = "v8023.await"
+                                                                                                                let v8025 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v8024 
+                                                                                                                let v8026 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                                let v8027 : unit = ()
+                                                                                                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                                let v8028 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                let v8029 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8025, v8026) v8028 
+                                                                                                                let _v8027 = v8029 
+                                                                                                                #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                                let v8030 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                let v8031 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8025, v8026) v8030 
+                                                                                                                let _v8027 = v8031 
+                                                                                                                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                                let v8032 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                let v8033 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8025, v8026) v8032 
+                                                                                                                let _v8027 = v8033 
+                                                                                                                #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                                let v8034 : Result<US4, std_string_String> = match v8025 with Ok x -> Ok x | Error x -> Error (v8026 x)
+                                                                                                                let _v8027 = v8034 
+                                                                                                                #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                                let v8035 : Result<US4, std_string_String> = match v8025 with Ok x -> Ok x | Error x -> Error (v8026 x)
+                                                                                                                let _v8027 = v8035 
+                                                                                                                #endif
+#else
+                                                                                                                let v8036 : Result<US4, std_string_String> = match v8025 with Ok x -> Ok x | Error x -> Error (v8026 x)
+                                                                                                                let _v8027 = v8036 
+                                                                                                                #endif
+                                                                                                                let v8037 : Result<US4, std_string_String> = _v8027 
+                                                                                                                let v8040 : US6 = match v8037 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                                match v8040 with
+                                                                                                                | US6_1(v8208) -> (* Error *)
+                                                                                                                    let v8209 : unit = ()
+                                                                                                                    let v8210 : (unit -> unit) = closure55(v8208)
+                                                                                                                    let v8211 : unit = (fun () -> v8210 (); v8209) ()
+                                                                                                                    let v8324 : uint8 = 28uy
+                                                                                                                    let v8325 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v8324)
+                                                                                                                    let v8326 : string = "v8325.await"
+                                                                                                                    let v8327 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v8326 
+                                                                                                                    let v8328 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                                    let v8329 : unit = ()
+                                                                                                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                                    let v8330 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                    let v8331 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8327, v8328) v8330 
+                                                                                                                    let _v8329 = v8331 
+                                                                                                                    #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                                    let v8332 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                    let v8333 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8327, v8328) v8332 
+                                                                                                                    let _v8329 = v8333 
+                                                                                                                    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                                    let v8334 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                    let v8335 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8327, v8328) v8334 
+                                                                                                                    let _v8329 = v8335 
+                                                                                                                    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                                    let v8336 : Result<US4, std_string_String> = match v8327 with Ok x -> Ok x | Error x -> Error (v8328 x)
+                                                                                                                    let _v8329 = v8336 
+                                                                                                                    #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                                    let v8337 : Result<US4, std_string_String> = match v8327 with Ok x -> Ok x | Error x -> Error (v8328 x)
+                                                                                                                    let _v8329 = v8337 
+                                                                                                                    #endif
+#else
+                                                                                                                    let v8338 : Result<US4, std_string_String> = match v8327 with Ok x -> Ok x | Error x -> Error (v8328 x)
+                                                                                                                    let _v8329 = v8338 
+                                                                                                                    #endif
+                                                                                                                    let v8339 : Result<US4, std_string_String> = _v8329 
+                                                                                                                    let v8342 : US6 = match v8339 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                                    match v8342 with
+                                                                                                                    | US6_1(v8510) -> (* Error *)
+                                                                                                                        let v8511 : unit = ()
+                                                                                                                        let v8512 : (unit -> unit) = closure56(v8510)
+                                                                                                                        let v8513 : unit = (fun () -> v8512 (); v8511) ()
+                                                                                                                        let v8626 : uint8 = 29uy
+                                                                                                                        let v8627 : std_pin_Pin<Box<Dyn<std_future_Future<Result<US4, anyhow_Error>>>>> = method24(v167, v8626)
+                                                                                                                        let v8628 : string = "v8627.await"
+                                                                                                                        let v8629 : Result<US4, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr () v8628 
+                                                                                                                        let v8630 : (anyhow_Error -> std_string_String) = method42()
+                                                                                                                        let v8631 : unit = ()
+                                                                                                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                                                                                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                                                                                        let v8632 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                        let v8633 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8629, v8630) v8632 
+                                                                                                                        let _v8631 = v8633 
+                                                                                                                        #endif
+#if FABLE_COMPILER_RUST && WASM
+                                                                                                                        let v8634 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                        let v8635 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8629, v8630) v8634 
+                                                                                                                        let _v8631 = v8635 
+                                                                                                                        #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                                                                                                                        let v8636 : string = "$0.map_err(|x| $1(x))"
+                                                                                                                        let v8637 : Result<US4, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v8629, v8630) v8636 
+                                                                                                                        let _v8631 = v8637 
+                                                                                                                        #endif
+#if FABLE_COMPILER_TYPESCRIPT
+                                                                                                                        let v8638 : Result<US4, std_string_String> = match v8629 with Ok x -> Ok x | Error x -> Error (v8630 x)
+                                                                                                                        let _v8631 = v8638 
+                                                                                                                        #endif
+#if FABLE_COMPILER_PYTHON
+                                                                                                                        let v8639 : Result<US4, std_string_String> = match v8629 with Ok x -> Ok x | Error x -> Error (v8630 x)
+                                                                                                                        let _v8631 = v8639 
+                                                                                                                        #endif
+#else
+                                                                                                                        let v8640 : Result<US4, std_string_String> = match v8629 with Ok x -> Ok x | Error x -> Error (v8630 x)
+                                                                                                                        let _v8631 = v8640 
+                                                                                                                        #endif
+                                                                                                                        let v8641 : Result<US4, std_string_String> = _v8631 
+                                                                                                                        let v8644 : US6 = match v8641 with Ok x -> v186 x | Error x -> v187 x
+                                                                                                                        match v8644 with
+                                                                                                                        | US6_1(v8812) -> (* Error *)
+                                                                                                                            let v8813 : unit = ()
+                                                                                                                            let v8814 : (unit -> unit) = closure57(v8812)
+                                                                                                                            let v8815 : unit = (fun () -> v8814 (); v8813) ()
+                                                                                                                            let v8928 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8929 : bool = Fable.Core.RustInterop.emitRustExpr () v8928 
+                                                                                                                            let v8930 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8931 : bool = Fable.Core.RustInterop.emitRustExpr () v8930 
+                                                                                                                            let v8932 : uint8 = method46()
+                                                                                                                            let v8933 : string = ""
+                                                                                                                            let v8934 : string = "}"
+                                                                                                                            let v8935 : string = v8933 + v8934 
+                                                                                                                            let v8936 : string = "true; v8932 " + v8935 + "); " + v8933 + " // rust.fix_closure'"
+                                                                                                                            let v8937 : bool = Fable.Core.RustInterop.emitRustExpr () v8936 
+                                                                                                                            let v8938 : string = "__future_init"
+                                                                                                                            let v8939 : _ = Fable.Core.RustInterop.emitRustExpr () v8938 
+                                                                                                                            let v8940 : string = "v8939"
+                                                                                                                            let v8941 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8940 
+                                                                                                                            let v8942 : string = "v8941.await"
+                                                                                                                            let v8943 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8942 
+                                                                                                                            let v8944 : US7 = method47(v8943)
+                                                                                                                            let v8945 : string = v8933 + v8934 
+                                                                                                                            let v8946 : string = "true; v8944 " + v8945 + "); " + v8933 + " // rust.fix_closure'"
+                                                                                                                            let v8947 : bool = Fable.Core.RustInterop.emitRustExpr () v8946 
+                                                                                                                            let v8948 : string = "__future_init"
+                                                                                                                            let v8949 : _ = Fable.Core.RustInterop.emitRustExpr () v8948 
+                                                                                                                            let v8950 : string = "v8949"
+                                                                                                                            let v8951 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8950 
+                                                                                                                            v8951
+                                                                                                                        | US6_0(v8645) -> (* Ok *)
+                                                                                                                            match v8645 with
                                                                                                                             | US4_1 -> (* None *)
-                                                                                                                                let v8308 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                                let v8309 : bool = Fable.Core.RustInterop.emitRustExpr () v8308 
-                                                                                                                                let v8310 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                                let v8311 : bool = Fable.Core.RustInterop.emitRustExpr () v8310 
-                                                                                                                                let v8312 : uint8 = method48()
-                                                                                                                                let v8313 : string = ""
-                                                                                                                                let v8314 : string = "}"
-                                                                                                                                let v8315 : string = v8313 + v8314 
-                                                                                                                                let v8316 : string = "true; v8312 " + v8315 + "); " + v8313 + " // rust.fix_closure'"
-                                                                                                                                let v8317 : bool = Fable.Core.RustInterop.emitRustExpr () v8316 
-                                                                                                                                let v8318 : string = "__future_init"
-                                                                                                                                let v8319 : _ = Fable.Core.RustInterop.emitRustExpr () v8318 
-                                                                                                                                let v8320 : string = "v8319"
-                                                                                                                                let v8321 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8320 
-                                                                                                                                let v8322 : string = "v8321.await"
-                                                                                                                                let v8323 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8322 
-                                                                                                                                let v8324 : US7 = method49(v8323)
-                                                                                                                                let v8325 : string = v8313 + v8314 
-                                                                                                                                let v8326 : string = "true; v8324 " + v8325 + "); " + v8313 + " // rust.fix_closure'"
-                                                                                                                                let v8327 : bool = Fable.Core.RustInterop.emitRustExpr () v8326 
-                                                                                                                                let v8328 : string = "__future_init"
-                                                                                                                                let v8329 : _ = Fable.Core.RustInterop.emitRustExpr () v8328 
-                                                                                                                                let v8330 : string = "v8329"
-                                                                                                                                let v8331 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8330 
-                                                                                                                                v8331
-                                                                                                                            | US4_0(v8332) -> (* Some *)
-                                                                                                                                let v8333 : unit = ()
-                                                                                                                                let v8334 : (unit -> unit) = closure58(v8332)
-                                                                                                                                let v8335 : unit = (fun () -> v8334 (); v8333) ()
-                                                                                                                                let v8448 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                                let v8449 : bool = Fable.Core.RustInterop.emitRustExpr () v8448 
-                                                                                                                                let v8450 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                                let v8451 : bool = Fable.Core.RustInterop.emitRustExpr () v8450 
-                                                                                                                                let v8452 : uint8 = method48()
-                                                                                                                                let v8453 : string = ""
-                                                                                                                                let v8454 : string = "}"
-                                                                                                                                let v8455 : string = v8453 + v8454 
-                                                                                                                                let v8456 : string = "true; v8452 " + v8455 + "); " + v8453 + " // rust.fix_closure'"
-                                                                                                                                let v8457 : bool = Fable.Core.RustInterop.emitRustExpr () v8456 
-                                                                                                                                let v8458 : string = "__future_init"
-                                                                                                                                let v8459 : _ = Fable.Core.RustInterop.emitRustExpr () v8458 
-                                                                                                                                let v8460 : string = "v8459"
-                                                                                                                                let v8461 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8460 
-                                                                                                                                let v8462 : string = "v8461.await"
-                                                                                                                                let v8463 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8462 
-                                                                                                                                let v8464 : US7 = method47(v8463)
-                                                                                                                                let v8465 : string = v8453 + v8454 
-                                                                                                                                let v8466 : string = "true; v8464 " + v8465 + "); " + v8453 + " // rust.fix_closure'"
-                                                                                                                                let v8467 : bool = Fable.Core.RustInterop.emitRustExpr () v8466 
-                                                                                                                                let v8468 : string = "__future_init"
-                                                                                                                                let v8469 : _ = Fable.Core.RustInterop.emitRustExpr () v8468 
-                                                                                                                                let v8470 : string = "v8469"
-                                                                                                                                let v8471 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8470 
-                                                                                                                                v8471
-                                                                                                                    | US6_0(v8016) -> (* Ok *)
-                                                                                                                        match v8016 with
+                                                                                                                                let v8646 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                                let v8647 : bool = Fable.Core.RustInterop.emitRustExpr () v8646 
+                                                                                                                                let v8648 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                                let v8649 : bool = Fable.Core.RustInterop.emitRustExpr () v8648 
+                                                                                                                                let v8650 : uint8 = method48()
+                                                                                                                                let v8651 : string = ""
+                                                                                                                                let v8652 : string = "}"
+                                                                                                                                let v8653 : string = v8651 + v8652 
+                                                                                                                                let v8654 : string = "true; v8650 " + v8653 + "); " + v8651 + " // rust.fix_closure'"
+                                                                                                                                let v8655 : bool = Fable.Core.RustInterop.emitRustExpr () v8654 
+                                                                                                                                let v8656 : string = "__future_init"
+                                                                                                                                let v8657 : _ = Fable.Core.RustInterop.emitRustExpr () v8656 
+                                                                                                                                let v8658 : string = "v8657"
+                                                                                                                                let v8659 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8658 
+                                                                                                                                let v8660 : string = "v8659.await"
+                                                                                                                                let v8661 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8660 
+                                                                                                                                let v8662 : US7 = method49(v8661)
+                                                                                                                                let v8663 : string = v8651 + v8652 
+                                                                                                                                let v8664 : string = "true; v8662 " + v8663 + "); " + v8651 + " // rust.fix_closure'"
+                                                                                                                                let v8665 : bool = Fable.Core.RustInterop.emitRustExpr () v8664 
+                                                                                                                                let v8666 : string = "__future_init"
+                                                                                                                                let v8667 : _ = Fable.Core.RustInterop.emitRustExpr () v8666 
+                                                                                                                                let v8668 : string = "v8667"
+                                                                                                                                let v8669 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8668 
+                                                                                                                                v8669
+                                                                                                                            | US4_0(v8670) -> (* Some *)
+                                                                                                                                let v8671 : unit = ()
+                                                                                                                                let v8672 : (unit -> unit) = closure58(v8670)
+                                                                                                                                let v8673 : unit = (fun () -> v8672 (); v8671) ()
+                                                                                                                                let v8786 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                                let v8787 : bool = Fable.Core.RustInterop.emitRustExpr () v8786 
+                                                                                                                                let v8788 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                                let v8789 : bool = Fable.Core.RustInterop.emitRustExpr () v8788 
+                                                                                                                                let v8790 : uint8 = method48()
+                                                                                                                                let v8791 : string = ""
+                                                                                                                                let v8792 : string = "}"
+                                                                                                                                let v8793 : string = v8791 + v8792 
+                                                                                                                                let v8794 : string = "true; v8790 " + v8793 + "); " + v8791 + " // rust.fix_closure'"
+                                                                                                                                let v8795 : bool = Fable.Core.RustInterop.emitRustExpr () v8794 
+                                                                                                                                let v8796 : string = "__future_init"
+                                                                                                                                let v8797 : _ = Fable.Core.RustInterop.emitRustExpr () v8796 
+                                                                                                                                let v8798 : string = "v8797"
+                                                                                                                                let v8799 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8798 
+                                                                                                                                let v8800 : string = "v8799.await"
+                                                                                                                                let v8801 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8800 
+                                                                                                                                let v8802 : US7 = method47(v8801)
+                                                                                                                                let v8803 : string = v8791 + v8792 
+                                                                                                                                let v8804 : string = "true; v8802 " + v8803 + "); " + v8791 + " // rust.fix_closure'"
+                                                                                                                                let v8805 : bool = Fable.Core.RustInterop.emitRustExpr () v8804 
+                                                                                                                                let v8806 : string = "__future_init"
+                                                                                                                                let v8807 : _ = Fable.Core.RustInterop.emitRustExpr () v8806 
+                                                                                                                                let v8808 : string = "v8807"
+                                                                                                                                let v8809 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8808 
+                                                                                                                                v8809
+                                                                                                                    | US6_0(v8343) -> (* Ok *)
+                                                                                                                        match v8343 with
                                                                                                                         | US4_1 -> (* None *)
-                                                                                                                            let v8017 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8018 : bool = Fable.Core.RustInterop.emitRustExpr () v8017 
-                                                                                                                            let v8019 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8020 : bool = Fable.Core.RustInterop.emitRustExpr () v8019 
-                                                                                                                            let v8021 : uint8 = method53()
-                                                                                                                            let v8022 : string = ""
-                                                                                                                            let v8023 : string = "}"
-                                                                                                                            let v8024 : string = v8022 + v8023 
-                                                                                                                            let v8025 : string = "true; v8021 " + v8024 + "); " + v8022 + " // rust.fix_closure'"
-                                                                                                                            let v8026 : bool = Fable.Core.RustInterop.emitRustExpr () v8025 
-                                                                                                                            let v8027 : string = "__future_init"
-                                                                                                                            let v8028 : _ = Fable.Core.RustInterop.emitRustExpr () v8027 
-                                                                                                                            let v8029 : string = "v8028"
-                                                                                                                            let v8030 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8029 
-                                                                                                                            let v8031 : string = "v8030.await"
-                                                                                                                            let v8032 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8031 
-                                                                                                                            let v8033 : US7 = method49(v8032)
-                                                                                                                            let v8034 : string = v8022 + v8023 
-                                                                                                                            let v8035 : string = "true; v8033 " + v8034 + "); " + v8022 + " // rust.fix_closure'"
-                                                                                                                            let v8036 : bool = Fable.Core.RustInterop.emitRustExpr () v8035 
-                                                                                                                            let v8037 : string = "__future_init"
-                                                                                                                            let v8038 : _ = Fable.Core.RustInterop.emitRustExpr () v8037 
-                                                                                                                            let v8039 : string = "v8038"
-                                                                                                                            let v8040 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8039 
-                                                                                                                            v8040
-                                                                                                                        | US4_0(v8041) -> (* Some *)
-                                                                                                                            let v8042 : unit = ()
-                                                                                                                            let v8043 : (unit -> unit) = closure59(v8041)
-                                                                                                                            let v8044 : unit = (fun () -> v8043 (); v8042) ()
-                                                                                                                            let v8157 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8158 : bool = Fable.Core.RustInterop.emitRustExpr () v8157 
-                                                                                                                            let v8159 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                            let v8160 : bool = Fable.Core.RustInterop.emitRustExpr () v8159 
-                                                                                                                            let v8161 : uint8 = method53()
-                                                                                                                            let v8162 : string = ""
-                                                                                                                            let v8163 : string = "}"
-                                                                                                                            let v8164 : string = v8162 + v8163 
-                                                                                                                            let v8165 : string = "true; v8161 " + v8164 + "); " + v8162 + " // rust.fix_closure'"
-                                                                                                                            let v8166 : bool = Fable.Core.RustInterop.emitRustExpr () v8165 
-                                                                                                                            let v8167 : string = "__future_init"
-                                                                                                                            let v8168 : _ = Fable.Core.RustInterop.emitRustExpr () v8167 
-                                                                                                                            let v8169 : string = "v8168"
-                                                                                                                            let v8170 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8169 
-                                                                                                                            let v8171 : string = "v8170.await"
-                                                                                                                            let v8172 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8171 
-                                                                                                                            let v8173 : US7 = method47(v8172)
-                                                                                                                            let v8174 : string = v8162 + v8163 
-                                                                                                                            let v8175 : string = "true; v8173 " + v8174 + "); " + v8162 + " // rust.fix_closure'"
-                                                                                                                            let v8176 : bool = Fable.Core.RustInterop.emitRustExpr () v8175 
-                                                                                                                            let v8177 : string = "__future_init"
-                                                                                                                            let v8178 : _ = Fable.Core.RustInterop.emitRustExpr () v8177 
-                                                                                                                            let v8179 : string = "v8178"
-                                                                                                                            let v8180 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8179 
-                                                                                                                            v8180
-                                                                                                                | US6_0(v7725) -> (* Ok *)
-                                                                                                                    match v7725 with
+                                                                                                                            let v8344 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8345 : bool = Fable.Core.RustInterop.emitRustExpr () v8344 
+                                                                                                                            let v8346 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8347 : bool = Fable.Core.RustInterop.emitRustExpr () v8346 
+                                                                                                                            let v8348 : uint8 = method53()
+                                                                                                                            let v8349 : string = ""
+                                                                                                                            let v8350 : string = "}"
+                                                                                                                            let v8351 : string = v8349 + v8350 
+                                                                                                                            let v8352 : string = "true; v8348 " + v8351 + "); " + v8349 + " // rust.fix_closure'"
+                                                                                                                            let v8353 : bool = Fable.Core.RustInterop.emitRustExpr () v8352 
+                                                                                                                            let v8354 : string = "__future_init"
+                                                                                                                            let v8355 : _ = Fable.Core.RustInterop.emitRustExpr () v8354 
+                                                                                                                            let v8356 : string = "v8355"
+                                                                                                                            let v8357 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8356 
+                                                                                                                            let v8358 : string = "v8357.await"
+                                                                                                                            let v8359 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8358 
+                                                                                                                            let v8360 : US7 = method49(v8359)
+                                                                                                                            let v8361 : string = v8349 + v8350 
+                                                                                                                            let v8362 : string = "true; v8360 " + v8361 + "); " + v8349 + " // rust.fix_closure'"
+                                                                                                                            let v8363 : bool = Fable.Core.RustInterop.emitRustExpr () v8362 
+                                                                                                                            let v8364 : string = "__future_init"
+                                                                                                                            let v8365 : _ = Fable.Core.RustInterop.emitRustExpr () v8364 
+                                                                                                                            let v8366 : string = "v8365"
+                                                                                                                            let v8367 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8366 
+                                                                                                                            v8367
+                                                                                                                        | US4_0(v8368) -> (* Some *)
+                                                                                                                            let v8369 : unit = ()
+                                                                                                                            let v8370 : (unit -> unit) = closure59(v8368)
+                                                                                                                            let v8371 : unit = (fun () -> v8370 (); v8369) ()
+                                                                                                                            let v8484 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8485 : bool = Fable.Core.RustInterop.emitRustExpr () v8484 
+                                                                                                                            let v8486 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                            let v8487 : bool = Fable.Core.RustInterop.emitRustExpr () v8486 
+                                                                                                                            let v8488 : uint8 = method53()
+                                                                                                                            let v8489 : string = ""
+                                                                                                                            let v8490 : string = "}"
+                                                                                                                            let v8491 : string = v8489 + v8490 
+                                                                                                                            let v8492 : string = "true; v8488 " + v8491 + "); " + v8489 + " // rust.fix_closure'"
+                                                                                                                            let v8493 : bool = Fable.Core.RustInterop.emitRustExpr () v8492 
+                                                                                                                            let v8494 : string = "__future_init"
+                                                                                                                            let v8495 : _ = Fable.Core.RustInterop.emitRustExpr () v8494 
+                                                                                                                            let v8496 : string = "v8495"
+                                                                                                                            let v8497 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8496 
+                                                                                                                            let v8498 : string = "v8497.await"
+                                                                                                                            let v8499 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8498 
+                                                                                                                            let v8500 : US7 = method47(v8499)
+                                                                                                                            let v8501 : string = v8489 + v8490 
+                                                                                                                            let v8502 : string = "true; v8500 " + v8501 + "); " + v8489 + " // rust.fix_closure'"
+                                                                                                                            let v8503 : bool = Fable.Core.RustInterop.emitRustExpr () v8502 
+                                                                                                                            let v8504 : string = "__future_init"
+                                                                                                                            let v8505 : _ = Fable.Core.RustInterop.emitRustExpr () v8504 
+                                                                                                                            let v8506 : string = "v8505"
+                                                                                                                            let v8507 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8506 
+                                                                                                                            v8507
+                                                                                                                | US6_0(v8041) -> (* Ok *)
+                                                                                                                    match v8041 with
                                                                                                                     | US4_1 -> (* None *)
-                                                                                                                        let v7726 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                        let v7727 : bool = Fable.Core.RustInterop.emitRustExpr () v7726 
-                                                                                                                        let v7728 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                        let v7729 : bool = Fable.Core.RustInterop.emitRustExpr () v7728 
-                                                                                                                        let v7730 : uint8 = method54()
-                                                                                                                        let v7731 : string = ""
-                                                                                                                        let v7732 : string = "}"
-                                                                                                                        let v7733 : string = v7731 + v7732 
-                                                                                                                        let v7734 : string = "true; v7730 " + v7733 + "); " + v7731 + " // rust.fix_closure'"
-                                                                                                                        let v7735 : bool = Fable.Core.RustInterop.emitRustExpr () v7734 
-                                                                                                                        let v7736 : string = "__future_init"
-                                                                                                                        let v7737 : _ = Fable.Core.RustInterop.emitRustExpr () v7736 
-                                                                                                                        let v7738 : string = "v7737"
-                                                                                                                        let v7739 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7738 
-                                                                                                                        let v7740 : string = "v7739.await"
-                                                                                                                        let v7741 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7740 
-                                                                                                                        let v7742 : US7 = method49(v7741)
-                                                                                                                        let v7743 : string = v7731 + v7732 
-                                                                                                                        let v7744 : string = "true; v7742 " + v7743 + "); " + v7731 + " // rust.fix_closure'"
-                                                                                                                        let v7745 : bool = Fable.Core.RustInterop.emitRustExpr () v7744 
-                                                                                                                        let v7746 : string = "__future_init"
-                                                                                                                        let v7747 : _ = Fable.Core.RustInterop.emitRustExpr () v7746 
-                                                                                                                        let v7748 : string = "v7747"
-                                                                                                                        let v7749 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7748 
-                                                                                                                        v7749
-                                                                                                                    | US4_0(v7750) -> (* Some *)
-                                                                                                                        let v7751 : unit = ()
-                                                                                                                        let v7752 : (unit -> unit) = closure60(v7750)
-                                                                                                                        let v7753 : unit = (fun () -> v7752 (); v7751) ()
-                                                                                                                        let v7866 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                        let v7867 : bool = Fable.Core.RustInterop.emitRustExpr () v7866 
-                                                                                                                        let v7868 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                        let v7869 : bool = Fable.Core.RustInterop.emitRustExpr () v7868 
-                                                                                                                        let v7870 : uint8 = method54()
-                                                                                                                        let v7871 : string = ""
-                                                                                                                        let v7872 : string = "}"
-                                                                                                                        let v7873 : string = v7871 + v7872 
-                                                                                                                        let v7874 : string = "true; v7870 " + v7873 + "); " + v7871 + " // rust.fix_closure'"
-                                                                                                                        let v7875 : bool = Fable.Core.RustInterop.emitRustExpr () v7874 
-                                                                                                                        let v7876 : string = "__future_init"
-                                                                                                                        let v7877 : _ = Fable.Core.RustInterop.emitRustExpr () v7876 
-                                                                                                                        let v7878 : string = "v7877"
-                                                                                                                        let v7879 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7878 
-                                                                                                                        let v7880 : string = "v7879.await"
-                                                                                                                        let v7881 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7880 
-                                                                                                                        let v7882 : US7 = method47(v7881)
-                                                                                                                        let v7883 : string = v7871 + v7872 
-                                                                                                                        let v7884 : string = "true; v7882 " + v7883 + "); " + v7871 + " // rust.fix_closure'"
-                                                                                                                        let v7885 : bool = Fable.Core.RustInterop.emitRustExpr () v7884 
-                                                                                                                        let v7886 : string = "__future_init"
-                                                                                                                        let v7887 : _ = Fable.Core.RustInterop.emitRustExpr () v7886 
-                                                                                                                        let v7888 : string = "v7887"
-                                                                                                                        let v7889 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7888 
-                                                                                                                        v7889
-                                                                                                            | US6_0(v7434) -> (* Ok *)
-                                                                                                                match v7434 with
+                                                                                                                        let v8042 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                        let v8043 : bool = Fable.Core.RustInterop.emitRustExpr () v8042 
+                                                                                                                        let v8044 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                        let v8045 : bool = Fable.Core.RustInterop.emitRustExpr () v8044 
+                                                                                                                        let v8046 : uint8 = method54()
+                                                                                                                        let v8047 : string = ""
+                                                                                                                        let v8048 : string = "}"
+                                                                                                                        let v8049 : string = v8047 + v8048 
+                                                                                                                        let v8050 : string = "true; v8046 " + v8049 + "); " + v8047 + " // rust.fix_closure'"
+                                                                                                                        let v8051 : bool = Fable.Core.RustInterop.emitRustExpr () v8050 
+                                                                                                                        let v8052 : string = "__future_init"
+                                                                                                                        let v8053 : _ = Fable.Core.RustInterop.emitRustExpr () v8052 
+                                                                                                                        let v8054 : string = "v8053"
+                                                                                                                        let v8055 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8054 
+                                                                                                                        let v8056 : string = "v8055.await"
+                                                                                                                        let v8057 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8056 
+                                                                                                                        let v8058 : US7 = method49(v8057)
+                                                                                                                        let v8059 : string = v8047 + v8048 
+                                                                                                                        let v8060 : string = "true; v8058 " + v8059 + "); " + v8047 + " // rust.fix_closure'"
+                                                                                                                        let v8061 : bool = Fable.Core.RustInterop.emitRustExpr () v8060 
+                                                                                                                        let v8062 : string = "__future_init"
+                                                                                                                        let v8063 : _ = Fable.Core.RustInterop.emitRustExpr () v8062 
+                                                                                                                        let v8064 : string = "v8063"
+                                                                                                                        let v8065 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8064 
+                                                                                                                        v8065
+                                                                                                                    | US4_0(v8066) -> (* Some *)
+                                                                                                                        let v8067 : unit = ()
+                                                                                                                        let v8068 : (unit -> unit) = closure60(v8066)
+                                                                                                                        let v8069 : unit = (fun () -> v8068 (); v8067) ()
+                                                                                                                        let v8182 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                        let v8183 : bool = Fable.Core.RustInterop.emitRustExpr () v8182 
+                                                                                                                        let v8184 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                        let v8185 : bool = Fable.Core.RustInterop.emitRustExpr () v8184 
+                                                                                                                        let v8186 : uint8 = method54()
+                                                                                                                        let v8187 : string = ""
+                                                                                                                        let v8188 : string = "}"
+                                                                                                                        let v8189 : string = v8187 + v8188 
+                                                                                                                        let v8190 : string = "true; v8186 " + v8189 + "); " + v8187 + " // rust.fix_closure'"
+                                                                                                                        let v8191 : bool = Fable.Core.RustInterop.emitRustExpr () v8190 
+                                                                                                                        let v8192 : string = "__future_init"
+                                                                                                                        let v8193 : _ = Fable.Core.RustInterop.emitRustExpr () v8192 
+                                                                                                                        let v8194 : string = "v8193"
+                                                                                                                        let v8195 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v8194 
+                                                                                                                        let v8196 : string = "v8195.await"
+                                                                                                                        let v8197 : uint8 = Fable.Core.RustInterop.emitRustExpr () v8196 
+                                                                                                                        let v8198 : US7 = method47(v8197)
+                                                                                                                        let v8199 : string = v8187 + v8188 
+                                                                                                                        let v8200 : string = "true; v8198 " + v8199 + "); " + v8187 + " // rust.fix_closure'"
+                                                                                                                        let v8201 : bool = Fable.Core.RustInterop.emitRustExpr () v8200 
+                                                                                                                        let v8202 : string = "__future_init"
+                                                                                                                        let v8203 : _ = Fable.Core.RustInterop.emitRustExpr () v8202 
+                                                                                                                        let v8204 : string = "v8203"
+                                                                                                                        let v8205 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v8204 
+                                                                                                                        v8205
+                                                                                                            | US6_0(v7739) -> (* Ok *)
+                                                                                                                match v7739 with
                                                                                                                 | US4_1 -> (* None *)
-                                                                                                                    let v7435 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                    let v7436 : bool = Fable.Core.RustInterop.emitRustExpr () v7435 
-                                                                                                                    let v7437 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                    let v7438 : bool = Fable.Core.RustInterop.emitRustExpr () v7437 
-                                                                                                                    let v7439 : uint8 = method55()
-                                                                                                                    let v7440 : string = ""
-                                                                                                                    let v7441 : string = "}"
-                                                                                                                    let v7442 : string = v7440 + v7441 
-                                                                                                                    let v7443 : string = "true; v7439 " + v7442 + "); " + v7440 + " // rust.fix_closure'"
-                                                                                                                    let v7444 : bool = Fable.Core.RustInterop.emitRustExpr () v7443 
-                                                                                                                    let v7445 : string = "__future_init"
-                                                                                                                    let v7446 : _ = Fable.Core.RustInterop.emitRustExpr () v7445 
-                                                                                                                    let v7447 : string = "v7446"
-                                                                                                                    let v7448 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7447 
-                                                                                                                    let v7449 : string = "v7448.await"
-                                                                                                                    let v7450 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7449 
-                                                                                                                    let v7451 : US7 = method49(v7450)
-                                                                                                                    let v7452 : string = v7440 + v7441 
-                                                                                                                    let v7453 : string = "true; v7451 " + v7452 + "); " + v7440 + " // rust.fix_closure'"
-                                                                                                                    let v7454 : bool = Fable.Core.RustInterop.emitRustExpr () v7453 
-                                                                                                                    let v7455 : string = "__future_init"
-                                                                                                                    let v7456 : _ = Fable.Core.RustInterop.emitRustExpr () v7455 
-                                                                                                                    let v7457 : string = "v7456"
-                                                                                                                    let v7458 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7457 
-                                                                                                                    v7458
-                                                                                                                | US4_0(v7459) -> (* Some *)
-                                                                                                                    let v7460 : unit = ()
-                                                                                                                    let v7461 : (unit -> unit) = closure61(v7459)
-                                                                                                                    let v7462 : unit = (fun () -> v7461 (); v7460) ()
-                                                                                                                    let v7575 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                    let v7576 : bool = Fable.Core.RustInterop.emitRustExpr () v7575 
-                                                                                                                    let v7577 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                    let v7578 : bool = Fable.Core.RustInterop.emitRustExpr () v7577 
-                                                                                                                    let v7579 : uint8 = method55()
-                                                                                                                    let v7580 : string = ""
-                                                                                                                    let v7581 : string = "}"
-                                                                                                                    let v7582 : string = v7580 + v7581 
-                                                                                                                    let v7583 : string = "true; v7579 " + v7582 + "); " + v7580 + " // rust.fix_closure'"
-                                                                                                                    let v7584 : bool = Fable.Core.RustInterop.emitRustExpr () v7583 
-                                                                                                                    let v7585 : string = "__future_init"
-                                                                                                                    let v7586 : _ = Fable.Core.RustInterop.emitRustExpr () v7585 
-                                                                                                                    let v7587 : string = "v7586"
-                                                                                                                    let v7588 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7587 
-                                                                                                                    let v7589 : string = "v7588.await"
-                                                                                                                    let v7590 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7589 
-                                                                                                                    let v7591 : US7 = method47(v7590)
-                                                                                                                    let v7592 : string = v7580 + v7581 
-                                                                                                                    let v7593 : string = "true; v7591 " + v7592 + "); " + v7580 + " // rust.fix_closure'"
-                                                                                                                    let v7594 : bool = Fable.Core.RustInterop.emitRustExpr () v7593 
-                                                                                                                    let v7595 : string = "__future_init"
-                                                                                                                    let v7596 : _ = Fable.Core.RustInterop.emitRustExpr () v7595 
-                                                                                                                    let v7597 : string = "v7596"
-                                                                                                                    let v7598 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7597 
-                                                                                                                    v7598
-                                                                                                        | US6_0(v7143) -> (* Ok *)
-                                                                                                            match v7143 with
+                                                                                                                    let v7740 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                    let v7741 : bool = Fable.Core.RustInterop.emitRustExpr () v7740 
+                                                                                                                    let v7742 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                    let v7743 : bool = Fable.Core.RustInterop.emitRustExpr () v7742 
+                                                                                                                    let v7744 : uint8 = method55()
+                                                                                                                    let v7745 : string = ""
+                                                                                                                    let v7746 : string = "}"
+                                                                                                                    let v7747 : string = v7745 + v7746 
+                                                                                                                    let v7748 : string = "true; v7744 " + v7747 + "); " + v7745 + " // rust.fix_closure'"
+                                                                                                                    let v7749 : bool = Fable.Core.RustInterop.emitRustExpr () v7748 
+                                                                                                                    let v7750 : string = "__future_init"
+                                                                                                                    let v7751 : _ = Fable.Core.RustInterop.emitRustExpr () v7750 
+                                                                                                                    let v7752 : string = "v7751"
+                                                                                                                    let v7753 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7752 
+                                                                                                                    let v7754 : string = "v7753.await"
+                                                                                                                    let v7755 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7754 
+                                                                                                                    let v7756 : US7 = method49(v7755)
+                                                                                                                    let v7757 : string = v7745 + v7746 
+                                                                                                                    let v7758 : string = "true; v7756 " + v7757 + "); " + v7745 + " // rust.fix_closure'"
+                                                                                                                    let v7759 : bool = Fable.Core.RustInterop.emitRustExpr () v7758 
+                                                                                                                    let v7760 : string = "__future_init"
+                                                                                                                    let v7761 : _ = Fable.Core.RustInterop.emitRustExpr () v7760 
+                                                                                                                    let v7762 : string = "v7761"
+                                                                                                                    let v7763 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7762 
+                                                                                                                    v7763
+                                                                                                                | US4_0(v7764) -> (* Some *)
+                                                                                                                    let v7765 : unit = ()
+                                                                                                                    let v7766 : (unit -> unit) = closure61(v7764)
+                                                                                                                    let v7767 : unit = (fun () -> v7766 (); v7765) ()
+                                                                                                                    let v7880 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                    let v7881 : bool = Fable.Core.RustInterop.emitRustExpr () v7880 
+                                                                                                                    let v7882 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                    let v7883 : bool = Fable.Core.RustInterop.emitRustExpr () v7882 
+                                                                                                                    let v7884 : uint8 = method55()
+                                                                                                                    let v7885 : string = ""
+                                                                                                                    let v7886 : string = "}"
+                                                                                                                    let v7887 : string = v7885 + v7886 
+                                                                                                                    let v7888 : string = "true; v7884 " + v7887 + "); " + v7885 + " // rust.fix_closure'"
+                                                                                                                    let v7889 : bool = Fable.Core.RustInterop.emitRustExpr () v7888 
+                                                                                                                    let v7890 : string = "__future_init"
+                                                                                                                    let v7891 : _ = Fable.Core.RustInterop.emitRustExpr () v7890 
+                                                                                                                    let v7892 : string = "v7891"
+                                                                                                                    let v7893 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7892 
+                                                                                                                    let v7894 : string = "v7893.await"
+                                                                                                                    let v7895 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7894 
+                                                                                                                    let v7896 : US7 = method47(v7895)
+                                                                                                                    let v7897 : string = v7885 + v7886 
+                                                                                                                    let v7898 : string = "true; v7896 " + v7897 + "); " + v7885 + " // rust.fix_closure'"
+                                                                                                                    let v7899 : bool = Fable.Core.RustInterop.emitRustExpr () v7898 
+                                                                                                                    let v7900 : string = "__future_init"
+                                                                                                                    let v7901 : _ = Fable.Core.RustInterop.emitRustExpr () v7900 
+                                                                                                                    let v7902 : string = "v7901"
+                                                                                                                    let v7903 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7902 
+                                                                                                                    v7903
+                                                                                                        | US6_0(v7437) -> (* Ok *)
+                                                                                                            match v7437 with
                                                                                                             | US4_1 -> (* None *)
-                                                                                                                let v7144 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                let v7145 : bool = Fable.Core.RustInterop.emitRustExpr () v7144 
-                                                                                                                let v7146 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                let v7147 : bool = Fable.Core.RustInterop.emitRustExpr () v7146 
-                                                                                                                let v7148 : uint8 = method56()
-                                                                                                                let v7149 : string = ""
-                                                                                                                let v7150 : string = "}"
-                                                                                                                let v7151 : string = v7149 + v7150 
-                                                                                                                let v7152 : string = "true; v7148 " + v7151 + "); " + v7149 + " // rust.fix_closure'"
-                                                                                                                let v7153 : bool = Fable.Core.RustInterop.emitRustExpr () v7152 
-                                                                                                                let v7154 : string = "__future_init"
-                                                                                                                let v7155 : _ = Fable.Core.RustInterop.emitRustExpr () v7154 
-                                                                                                                let v7156 : string = "v7155"
-                                                                                                                let v7157 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7156 
-                                                                                                                let v7158 : string = "v7157.await"
-                                                                                                                let v7159 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7158 
-                                                                                                                let v7160 : US7 = method49(v7159)
-                                                                                                                let v7161 : string = v7149 + v7150 
-                                                                                                                let v7162 : string = "true; v7160 " + v7161 + "); " + v7149 + " // rust.fix_closure'"
-                                                                                                                let v7163 : bool = Fable.Core.RustInterop.emitRustExpr () v7162 
-                                                                                                                let v7164 : string = "__future_init"
-                                                                                                                let v7165 : _ = Fable.Core.RustInterop.emitRustExpr () v7164 
-                                                                                                                let v7166 : string = "v7165"
-                                                                                                                let v7167 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7166 
-                                                                                                                v7167
-                                                                                                            | US4_0(v7168) -> (* Some *)
-                                                                                                                let v7169 : unit = ()
-                                                                                                                let v7170 : (unit -> unit) = closure62(v7168)
-                                                                                                                let v7171 : unit = (fun () -> v7170 (); v7169) ()
-                                                                                                                let v7284 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                let v7285 : bool = Fable.Core.RustInterop.emitRustExpr () v7284 
-                                                                                                                let v7286 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                                let v7287 : bool = Fable.Core.RustInterop.emitRustExpr () v7286 
-                                                                                                                let v7288 : uint8 = method56()
-                                                                                                                let v7289 : string = ""
-                                                                                                                let v7290 : string = "}"
-                                                                                                                let v7291 : string = v7289 + v7290 
-                                                                                                                let v7292 : string = "true; v7288 " + v7291 + "); " + v7289 + " // rust.fix_closure'"
-                                                                                                                let v7293 : bool = Fable.Core.RustInterop.emitRustExpr () v7292 
-                                                                                                                let v7294 : string = "__future_init"
-                                                                                                                let v7295 : _ = Fable.Core.RustInterop.emitRustExpr () v7294 
-                                                                                                                let v7296 : string = "v7295"
-                                                                                                                let v7297 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7296 
-                                                                                                                let v7298 : string = "v7297.await"
-                                                                                                                let v7299 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7298 
-                                                                                                                let v7300 : US7 = method47(v7299)
-                                                                                                                let v7301 : string = v7289 + v7290 
-                                                                                                                let v7302 : string = "true; v7300 " + v7301 + "); " + v7289 + " // rust.fix_closure'"
-                                                                                                                let v7303 : bool = Fable.Core.RustInterop.emitRustExpr () v7302 
-                                                                                                                let v7304 : string = "__future_init"
-                                                                                                                let v7305 : _ = Fable.Core.RustInterop.emitRustExpr () v7304 
-                                                                                                                let v7306 : string = "v7305"
-                                                                                                                let v7307 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7306 
-                                                                                                                v7307
-                                                                                                    | US6_0(v6852) -> (* Ok *)
-                                                                                                        match v6852 with
+                                                                                                                let v7438 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                let v7439 : bool = Fable.Core.RustInterop.emitRustExpr () v7438 
+                                                                                                                let v7440 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                let v7441 : bool = Fable.Core.RustInterop.emitRustExpr () v7440 
+                                                                                                                let v7442 : uint8 = method56()
+                                                                                                                let v7443 : string = ""
+                                                                                                                let v7444 : string = "}"
+                                                                                                                let v7445 : string = v7443 + v7444 
+                                                                                                                let v7446 : string = "true; v7442 " + v7445 + "); " + v7443 + " // rust.fix_closure'"
+                                                                                                                let v7447 : bool = Fable.Core.RustInterop.emitRustExpr () v7446 
+                                                                                                                let v7448 : string = "__future_init"
+                                                                                                                let v7449 : _ = Fable.Core.RustInterop.emitRustExpr () v7448 
+                                                                                                                let v7450 : string = "v7449"
+                                                                                                                let v7451 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7450 
+                                                                                                                let v7452 : string = "v7451.await"
+                                                                                                                let v7453 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7452 
+                                                                                                                let v7454 : US7 = method49(v7453)
+                                                                                                                let v7455 : string = v7443 + v7444 
+                                                                                                                let v7456 : string = "true; v7454 " + v7455 + "); " + v7443 + " // rust.fix_closure'"
+                                                                                                                let v7457 : bool = Fable.Core.RustInterop.emitRustExpr () v7456 
+                                                                                                                let v7458 : string = "__future_init"
+                                                                                                                let v7459 : _ = Fable.Core.RustInterop.emitRustExpr () v7458 
+                                                                                                                let v7460 : string = "v7459"
+                                                                                                                let v7461 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7460 
+                                                                                                                v7461
+                                                                                                            | US4_0(v7462) -> (* Some *)
+                                                                                                                let v7463 : unit = ()
+                                                                                                                let v7464 : (unit -> unit) = closure62(v7462)
+                                                                                                                let v7465 : unit = (fun () -> v7464 (); v7463) ()
+                                                                                                                let v7578 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                let v7579 : bool = Fable.Core.RustInterop.emitRustExpr () v7578 
+                                                                                                                let v7580 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                                let v7581 : bool = Fable.Core.RustInterop.emitRustExpr () v7580 
+                                                                                                                let v7582 : uint8 = method56()
+                                                                                                                let v7583 : string = ""
+                                                                                                                let v7584 : string = "}"
+                                                                                                                let v7585 : string = v7583 + v7584 
+                                                                                                                let v7586 : string = "true; v7582 " + v7585 + "); " + v7583 + " // rust.fix_closure'"
+                                                                                                                let v7587 : bool = Fable.Core.RustInterop.emitRustExpr () v7586 
+                                                                                                                let v7588 : string = "__future_init"
+                                                                                                                let v7589 : _ = Fable.Core.RustInterop.emitRustExpr () v7588 
+                                                                                                                let v7590 : string = "v7589"
+                                                                                                                let v7591 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7590 
+                                                                                                                let v7592 : string = "v7591.await"
+                                                                                                                let v7593 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7592 
+                                                                                                                let v7594 : US7 = method47(v7593)
+                                                                                                                let v7595 : string = v7583 + v7584 
+                                                                                                                let v7596 : string = "true; v7594 " + v7595 + "); " + v7583 + " // rust.fix_closure'"
+                                                                                                                let v7597 : bool = Fable.Core.RustInterop.emitRustExpr () v7596 
+                                                                                                                let v7598 : string = "__future_init"
+                                                                                                                let v7599 : _ = Fable.Core.RustInterop.emitRustExpr () v7598 
+                                                                                                                let v7600 : string = "v7599"
+                                                                                                                let v7601 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7600 
+                                                                                                                v7601
+                                                                                                    | US6_0(v7135) -> (* Ok *)
+                                                                                                        match v7135 with
                                                                                                         | US4_1 -> (* None *)
-                                                                                                            let v6853 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                            let v6854 : bool = Fable.Core.RustInterop.emitRustExpr () v6853 
-                                                                                                            let v6855 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                            let v6856 : bool = Fable.Core.RustInterop.emitRustExpr () v6855 
-                                                                                                            let v6857 : uint8 = method57()
-                                                                                                            let v6858 : string = ""
-                                                                                                            let v6859 : string = "}"
-                                                                                                            let v6860 : string = v6858 + v6859 
-                                                                                                            let v6861 : string = "true; v6857 " + v6860 + "); " + v6858 + " // rust.fix_closure'"
-                                                                                                            let v6862 : bool = Fable.Core.RustInterop.emitRustExpr () v6861 
-                                                                                                            let v6863 : string = "__future_init"
-                                                                                                            let v6864 : _ = Fable.Core.RustInterop.emitRustExpr () v6863 
-                                                                                                            let v6865 : string = "v6864"
-                                                                                                            let v6866 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6865 
-                                                                                                            let v6867 : string = "v6866.await"
-                                                                                                            let v6868 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6867 
-                                                                                                            let v6869 : US7 = method49(v6868)
-                                                                                                            let v6870 : string = v6858 + v6859 
-                                                                                                            let v6871 : string = "true; v6869 " + v6870 + "); " + v6858 + " // rust.fix_closure'"
-                                                                                                            let v6872 : bool = Fable.Core.RustInterop.emitRustExpr () v6871 
-                                                                                                            let v6873 : string = "__future_init"
-                                                                                                            let v6874 : _ = Fable.Core.RustInterop.emitRustExpr () v6873 
-                                                                                                            let v6875 : string = "v6874"
-                                                                                                            let v6876 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6875 
-                                                                                                            v6876
-                                                                                                        | US4_0(v6877) -> (* Some *)
-                                                                                                            let v6878 : unit = ()
-                                                                                                            let v6879 : (unit -> unit) = closure63(v6877)
-                                                                                                            let v6880 : unit = (fun () -> v6879 (); v6878) ()
-                                                                                                            let v6993 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                            let v6994 : bool = Fable.Core.RustInterop.emitRustExpr () v6993 
-                                                                                                            let v6995 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                            let v6996 : bool = Fable.Core.RustInterop.emitRustExpr () v6995 
-                                                                                                            let v6997 : uint8 = method57()
-                                                                                                            let v6998 : string = ""
-                                                                                                            let v6999 : string = "}"
-                                                                                                            let v7000 : string = v6998 + v6999 
-                                                                                                            let v7001 : string = "true; v6997 " + v7000 + "); " + v6998 + " // rust.fix_closure'"
-                                                                                                            let v7002 : bool = Fable.Core.RustInterop.emitRustExpr () v7001 
-                                                                                                            let v7003 : string = "__future_init"
-                                                                                                            let v7004 : _ = Fable.Core.RustInterop.emitRustExpr () v7003 
-                                                                                                            let v7005 : string = "v7004"
-                                                                                                            let v7006 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7005 
-                                                                                                            let v7007 : string = "v7006.await"
-                                                                                                            let v7008 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7007 
-                                                                                                            let v7009 : US7 = method47(v7008)
-                                                                                                            let v7010 : string = v6998 + v6999 
-                                                                                                            let v7011 : string = "true; v7009 " + v7010 + "); " + v6998 + " // rust.fix_closure'"
-                                                                                                            let v7012 : bool = Fable.Core.RustInterop.emitRustExpr () v7011 
-                                                                                                            let v7013 : string = "__future_init"
-                                                                                                            let v7014 : _ = Fable.Core.RustInterop.emitRustExpr () v7013 
-                                                                                                            let v7015 : string = "v7014"
-                                                                                                            let v7016 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7015 
-                                                                                                            v7016
-                                                                                                | US6_0(v6561) -> (* Ok *)
-                                                                                                    match v6561 with
+                                                                                                            let v7136 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                            let v7137 : bool = Fable.Core.RustInterop.emitRustExpr () v7136 
+                                                                                                            let v7138 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                            let v7139 : bool = Fable.Core.RustInterop.emitRustExpr () v7138 
+                                                                                                            let v7140 : uint8 = method57()
+                                                                                                            let v7141 : string = ""
+                                                                                                            let v7142 : string = "}"
+                                                                                                            let v7143 : string = v7141 + v7142 
+                                                                                                            let v7144 : string = "true; v7140 " + v7143 + "); " + v7141 + " // rust.fix_closure'"
+                                                                                                            let v7145 : bool = Fable.Core.RustInterop.emitRustExpr () v7144 
+                                                                                                            let v7146 : string = "__future_init"
+                                                                                                            let v7147 : _ = Fable.Core.RustInterop.emitRustExpr () v7146 
+                                                                                                            let v7148 : string = "v7147"
+                                                                                                            let v7149 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7148 
+                                                                                                            let v7150 : string = "v7149.await"
+                                                                                                            let v7151 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7150 
+                                                                                                            let v7152 : US7 = method49(v7151)
+                                                                                                            let v7153 : string = v7141 + v7142 
+                                                                                                            let v7154 : string = "true; v7152 " + v7153 + "); " + v7141 + " // rust.fix_closure'"
+                                                                                                            let v7155 : bool = Fable.Core.RustInterop.emitRustExpr () v7154 
+                                                                                                            let v7156 : string = "__future_init"
+                                                                                                            let v7157 : _ = Fable.Core.RustInterop.emitRustExpr () v7156 
+                                                                                                            let v7158 : string = "v7157"
+                                                                                                            let v7159 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7158 
+                                                                                                            v7159
+                                                                                                        | US4_0(v7160) -> (* Some *)
+                                                                                                            let v7161 : unit = ()
+                                                                                                            let v7162 : (unit -> unit) = closure63(v7160)
+                                                                                                            let v7163 : unit = (fun () -> v7162 (); v7161) ()
+                                                                                                            let v7276 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                            let v7277 : bool = Fable.Core.RustInterop.emitRustExpr () v7276 
+                                                                                                            let v7278 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                            let v7279 : bool = Fable.Core.RustInterop.emitRustExpr () v7278 
+                                                                                                            let v7280 : uint8 = method57()
+                                                                                                            let v7281 : string = ""
+                                                                                                            let v7282 : string = "}"
+                                                                                                            let v7283 : string = v7281 + v7282 
+                                                                                                            let v7284 : string = "true; v7280 " + v7283 + "); " + v7281 + " // rust.fix_closure'"
+                                                                                                            let v7285 : bool = Fable.Core.RustInterop.emitRustExpr () v7284 
+                                                                                                            let v7286 : string = "__future_init"
+                                                                                                            let v7287 : _ = Fable.Core.RustInterop.emitRustExpr () v7286 
+                                                                                                            let v7288 : string = "v7287"
+                                                                                                            let v7289 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v7288 
+                                                                                                            let v7290 : string = "v7289.await"
+                                                                                                            let v7291 : uint8 = Fable.Core.RustInterop.emitRustExpr () v7290 
+                                                                                                            let v7292 : US7 = method47(v7291)
+                                                                                                            let v7293 : string = v7281 + v7282 
+                                                                                                            let v7294 : string = "true; v7292 " + v7293 + "); " + v7281 + " // rust.fix_closure'"
+                                                                                                            let v7295 : bool = Fable.Core.RustInterop.emitRustExpr () v7294 
+                                                                                                            let v7296 : string = "__future_init"
+                                                                                                            let v7297 : _ = Fable.Core.RustInterop.emitRustExpr () v7296 
+                                                                                                            let v7298 : string = "v7297"
+                                                                                                            let v7299 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v7298 
+                                                                                                            v7299
+                                                                                                | US6_0(v6833) -> (* Ok *)
+                                                                                                    match v6833 with
                                                                                                     | US4_1 -> (* None *)
-                                                                                                        let v6562 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                        let v6563 : bool = Fable.Core.RustInterop.emitRustExpr () v6562 
-                                                                                                        let v6564 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                        let v6565 : bool = Fable.Core.RustInterop.emitRustExpr () v6564 
-                                                                                                        let v6566 : uint8 = method58()
-                                                                                                        let v6567 : string = ""
-                                                                                                        let v6568 : string = "}"
-                                                                                                        let v6569 : string = v6567 + v6568 
-                                                                                                        let v6570 : string = "true; v6566 " + v6569 + "); " + v6567 + " // rust.fix_closure'"
-                                                                                                        let v6571 : bool = Fable.Core.RustInterop.emitRustExpr () v6570 
-                                                                                                        let v6572 : string = "__future_init"
-                                                                                                        let v6573 : _ = Fable.Core.RustInterop.emitRustExpr () v6572 
-                                                                                                        let v6574 : string = "v6573"
-                                                                                                        let v6575 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6574 
-                                                                                                        let v6576 : string = "v6575.await"
-                                                                                                        let v6577 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6576 
-                                                                                                        let v6578 : US7 = method49(v6577)
-                                                                                                        let v6579 : string = v6567 + v6568 
-                                                                                                        let v6580 : string = "true; v6578 " + v6579 + "); " + v6567 + " // rust.fix_closure'"
-                                                                                                        let v6581 : bool = Fable.Core.RustInterop.emitRustExpr () v6580 
-                                                                                                        let v6582 : string = "__future_init"
-                                                                                                        let v6583 : _ = Fable.Core.RustInterop.emitRustExpr () v6582 
-                                                                                                        let v6584 : string = "v6583"
-                                                                                                        let v6585 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6584 
-                                                                                                        v6585
-                                                                                                    | US4_0(v6586) -> (* Some *)
-                                                                                                        let v6587 : unit = ()
-                                                                                                        let v6588 : (unit -> unit) = closure64(v6586)
-                                                                                                        let v6589 : unit = (fun () -> v6588 (); v6587) ()
-                                                                                                        let v6702 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                        let v6703 : bool = Fable.Core.RustInterop.emitRustExpr () v6702 
-                                                                                                        let v6704 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                        let v6705 : bool = Fable.Core.RustInterop.emitRustExpr () v6704 
-                                                                                                        let v6706 : uint8 = method58()
-                                                                                                        let v6707 : string = ""
-                                                                                                        let v6708 : string = "}"
-                                                                                                        let v6709 : string = v6707 + v6708 
-                                                                                                        let v6710 : string = "true; v6706 " + v6709 + "); " + v6707 + " // rust.fix_closure'"
-                                                                                                        let v6711 : bool = Fable.Core.RustInterop.emitRustExpr () v6710 
-                                                                                                        let v6712 : string = "__future_init"
-                                                                                                        let v6713 : _ = Fable.Core.RustInterop.emitRustExpr () v6712 
-                                                                                                        let v6714 : string = "v6713"
-                                                                                                        let v6715 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6714 
-                                                                                                        let v6716 : string = "v6715.await"
-                                                                                                        let v6717 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6716 
-                                                                                                        let v6718 : US7 = method47(v6717)
-                                                                                                        let v6719 : string = v6707 + v6708 
-                                                                                                        let v6720 : string = "true; v6718 " + v6719 + "); " + v6707 + " // rust.fix_closure'"
-                                                                                                        let v6721 : bool = Fable.Core.RustInterop.emitRustExpr () v6720 
-                                                                                                        let v6722 : string = "__future_init"
-                                                                                                        let v6723 : _ = Fable.Core.RustInterop.emitRustExpr () v6722 
-                                                                                                        let v6724 : string = "v6723"
-                                                                                                        let v6725 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6724 
-                                                                                                        v6725
-                                                                                            | US6_0(v6270) -> (* Ok *)
-                                                                                                match v6270 with
+                                                                                                        let v6834 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                        let v6835 : bool = Fable.Core.RustInterop.emitRustExpr () v6834 
+                                                                                                        let v6836 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                        let v6837 : bool = Fable.Core.RustInterop.emitRustExpr () v6836 
+                                                                                                        let v6838 : uint8 = method58()
+                                                                                                        let v6839 : string = ""
+                                                                                                        let v6840 : string = "}"
+                                                                                                        let v6841 : string = v6839 + v6840 
+                                                                                                        let v6842 : string = "true; v6838 " + v6841 + "); " + v6839 + " // rust.fix_closure'"
+                                                                                                        let v6843 : bool = Fable.Core.RustInterop.emitRustExpr () v6842 
+                                                                                                        let v6844 : string = "__future_init"
+                                                                                                        let v6845 : _ = Fable.Core.RustInterop.emitRustExpr () v6844 
+                                                                                                        let v6846 : string = "v6845"
+                                                                                                        let v6847 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6846 
+                                                                                                        let v6848 : string = "v6847.await"
+                                                                                                        let v6849 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6848 
+                                                                                                        let v6850 : US7 = method49(v6849)
+                                                                                                        let v6851 : string = v6839 + v6840 
+                                                                                                        let v6852 : string = "true; v6850 " + v6851 + "); " + v6839 + " // rust.fix_closure'"
+                                                                                                        let v6853 : bool = Fable.Core.RustInterop.emitRustExpr () v6852 
+                                                                                                        let v6854 : string = "__future_init"
+                                                                                                        let v6855 : _ = Fable.Core.RustInterop.emitRustExpr () v6854 
+                                                                                                        let v6856 : string = "v6855"
+                                                                                                        let v6857 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6856 
+                                                                                                        v6857
+                                                                                                    | US4_0(v6858) -> (* Some *)
+                                                                                                        let v6859 : unit = ()
+                                                                                                        let v6860 : (unit -> unit) = closure64(v6858)
+                                                                                                        let v6861 : unit = (fun () -> v6860 (); v6859) ()
+                                                                                                        let v6974 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                        let v6975 : bool = Fable.Core.RustInterop.emitRustExpr () v6974 
+                                                                                                        let v6976 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                        let v6977 : bool = Fable.Core.RustInterop.emitRustExpr () v6976 
+                                                                                                        let v6978 : uint8 = method58()
+                                                                                                        let v6979 : string = ""
+                                                                                                        let v6980 : string = "}"
+                                                                                                        let v6981 : string = v6979 + v6980 
+                                                                                                        let v6982 : string = "true; v6978 " + v6981 + "); " + v6979 + " // rust.fix_closure'"
+                                                                                                        let v6983 : bool = Fable.Core.RustInterop.emitRustExpr () v6982 
+                                                                                                        let v6984 : string = "__future_init"
+                                                                                                        let v6985 : _ = Fable.Core.RustInterop.emitRustExpr () v6984 
+                                                                                                        let v6986 : string = "v6985"
+                                                                                                        let v6987 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6986 
+                                                                                                        let v6988 : string = "v6987.await"
+                                                                                                        let v6989 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6988 
+                                                                                                        let v6990 : US7 = method47(v6989)
+                                                                                                        let v6991 : string = v6979 + v6980 
+                                                                                                        let v6992 : string = "true; v6990 " + v6991 + "); " + v6979 + " // rust.fix_closure'"
+                                                                                                        let v6993 : bool = Fable.Core.RustInterop.emitRustExpr () v6992 
+                                                                                                        let v6994 : string = "__future_init"
+                                                                                                        let v6995 : _ = Fable.Core.RustInterop.emitRustExpr () v6994 
+                                                                                                        let v6996 : string = "v6995"
+                                                                                                        let v6997 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6996 
+                                                                                                        v6997
+                                                                                            | US6_0(v6531) -> (* Ok *)
+                                                                                                match v6531 with
                                                                                                 | US4_1 -> (* None *)
-                                                                                                    let v6271 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                    let v6272 : bool = Fable.Core.RustInterop.emitRustExpr () v6271 
-                                                                                                    let v6273 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                    let v6274 : bool = Fable.Core.RustInterop.emitRustExpr () v6273 
-                                                                                                    let v6275 : uint8 = method59()
-                                                                                                    let v6276 : string = ""
-                                                                                                    let v6277 : string = "}"
-                                                                                                    let v6278 : string = v6276 + v6277 
-                                                                                                    let v6279 : string = "true; v6275 " + v6278 + "); " + v6276 + " // rust.fix_closure'"
-                                                                                                    let v6280 : bool = Fable.Core.RustInterop.emitRustExpr () v6279 
-                                                                                                    let v6281 : string = "__future_init"
-                                                                                                    let v6282 : _ = Fable.Core.RustInterop.emitRustExpr () v6281 
-                                                                                                    let v6283 : string = "v6282"
-                                                                                                    let v6284 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6283 
-                                                                                                    let v6285 : string = "v6284.await"
-                                                                                                    let v6286 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6285 
-                                                                                                    let v6287 : US7 = method49(v6286)
-                                                                                                    let v6288 : string = v6276 + v6277 
-                                                                                                    let v6289 : string = "true; v6287 " + v6288 + "); " + v6276 + " // rust.fix_closure'"
-                                                                                                    let v6290 : bool = Fable.Core.RustInterop.emitRustExpr () v6289 
-                                                                                                    let v6291 : string = "__future_init"
-                                                                                                    let v6292 : _ = Fable.Core.RustInterop.emitRustExpr () v6291 
-                                                                                                    let v6293 : string = "v6292"
-                                                                                                    let v6294 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6293 
-                                                                                                    v6294
-                                                                                                | US4_0(v6295) -> (* Some *)
-                                                                                                    let v6296 : unit = ()
-                                                                                                    let v6297 : (unit -> unit) = closure65(v6295)
-                                                                                                    let v6298 : unit = (fun () -> v6297 (); v6296) ()
-                                                                                                    let v6411 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                    let v6412 : bool = Fable.Core.RustInterop.emitRustExpr () v6411 
-                                                                                                    let v6413 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                    let v6414 : bool = Fable.Core.RustInterop.emitRustExpr () v6413 
-                                                                                                    let v6415 : uint8 = method59()
-                                                                                                    let v6416 : string = ""
-                                                                                                    let v6417 : string = "}"
-                                                                                                    let v6418 : string = v6416 + v6417 
-                                                                                                    let v6419 : string = "true; v6415 " + v6418 + "); " + v6416 + " // rust.fix_closure'"
-                                                                                                    let v6420 : bool = Fable.Core.RustInterop.emitRustExpr () v6419 
-                                                                                                    let v6421 : string = "__future_init"
-                                                                                                    let v6422 : _ = Fable.Core.RustInterop.emitRustExpr () v6421 
-                                                                                                    let v6423 : string = "v6422"
-                                                                                                    let v6424 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6423 
-                                                                                                    let v6425 : string = "v6424.await"
-                                                                                                    let v6426 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6425 
-                                                                                                    let v6427 : US7 = method47(v6426)
-                                                                                                    let v6428 : string = v6416 + v6417 
-                                                                                                    let v6429 : string = "true; v6427 " + v6428 + "); " + v6416 + " // rust.fix_closure'"
-                                                                                                    let v6430 : bool = Fable.Core.RustInterop.emitRustExpr () v6429 
-                                                                                                    let v6431 : string = "__future_init"
-                                                                                                    let v6432 : _ = Fable.Core.RustInterop.emitRustExpr () v6431 
-                                                                                                    let v6433 : string = "v6432"
-                                                                                                    let v6434 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6433 
-                                                                                                    v6434
-                                                                                        | US6_0(v5979) -> (* Ok *)
-                                                                                            match v5979 with
+                                                                                                    let v6532 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                    let v6533 : bool = Fable.Core.RustInterop.emitRustExpr () v6532 
+                                                                                                    let v6534 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                    let v6535 : bool = Fable.Core.RustInterop.emitRustExpr () v6534 
+                                                                                                    let v6536 : uint8 = method59()
+                                                                                                    let v6537 : string = ""
+                                                                                                    let v6538 : string = "}"
+                                                                                                    let v6539 : string = v6537 + v6538 
+                                                                                                    let v6540 : string = "true; v6536 " + v6539 + "); " + v6537 + " // rust.fix_closure'"
+                                                                                                    let v6541 : bool = Fable.Core.RustInterop.emitRustExpr () v6540 
+                                                                                                    let v6542 : string = "__future_init"
+                                                                                                    let v6543 : _ = Fable.Core.RustInterop.emitRustExpr () v6542 
+                                                                                                    let v6544 : string = "v6543"
+                                                                                                    let v6545 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6544 
+                                                                                                    let v6546 : string = "v6545.await"
+                                                                                                    let v6547 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6546 
+                                                                                                    let v6548 : US7 = method49(v6547)
+                                                                                                    let v6549 : string = v6537 + v6538 
+                                                                                                    let v6550 : string = "true; v6548 " + v6549 + "); " + v6537 + " // rust.fix_closure'"
+                                                                                                    let v6551 : bool = Fable.Core.RustInterop.emitRustExpr () v6550 
+                                                                                                    let v6552 : string = "__future_init"
+                                                                                                    let v6553 : _ = Fable.Core.RustInterop.emitRustExpr () v6552 
+                                                                                                    let v6554 : string = "v6553"
+                                                                                                    let v6555 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6554 
+                                                                                                    v6555
+                                                                                                | US4_0(v6556) -> (* Some *)
+                                                                                                    let v6557 : unit = ()
+                                                                                                    let v6558 : (unit -> unit) = closure65(v6556)
+                                                                                                    let v6559 : unit = (fun () -> v6558 (); v6557) ()
+                                                                                                    let v6672 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                    let v6673 : bool = Fable.Core.RustInterop.emitRustExpr () v6672 
+                                                                                                    let v6674 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                    let v6675 : bool = Fable.Core.RustInterop.emitRustExpr () v6674 
+                                                                                                    let v6676 : uint8 = method59()
+                                                                                                    let v6677 : string = ""
+                                                                                                    let v6678 : string = "}"
+                                                                                                    let v6679 : string = v6677 + v6678 
+                                                                                                    let v6680 : string = "true; v6676 " + v6679 + "); " + v6677 + " // rust.fix_closure'"
+                                                                                                    let v6681 : bool = Fable.Core.RustInterop.emitRustExpr () v6680 
+                                                                                                    let v6682 : string = "__future_init"
+                                                                                                    let v6683 : _ = Fable.Core.RustInterop.emitRustExpr () v6682 
+                                                                                                    let v6684 : string = "v6683"
+                                                                                                    let v6685 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6684 
+                                                                                                    let v6686 : string = "v6685.await"
+                                                                                                    let v6687 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6686 
+                                                                                                    let v6688 : US7 = method47(v6687)
+                                                                                                    let v6689 : string = v6677 + v6678 
+                                                                                                    let v6690 : string = "true; v6688 " + v6689 + "); " + v6677 + " // rust.fix_closure'"
+                                                                                                    let v6691 : bool = Fable.Core.RustInterop.emitRustExpr () v6690 
+                                                                                                    let v6692 : string = "__future_init"
+                                                                                                    let v6693 : _ = Fable.Core.RustInterop.emitRustExpr () v6692 
+                                                                                                    let v6694 : string = "v6693"
+                                                                                                    let v6695 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6694 
+                                                                                                    v6695
+                                                                                        | US6_0(v6229) -> (* Ok *)
+                                                                                            match v6229 with
                                                                                             | US4_1 -> (* None *)
-                                                                                                let v5980 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                let v5981 : bool = Fable.Core.RustInterop.emitRustExpr () v5980 
-                                                                                                let v5982 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                let v5983 : bool = Fable.Core.RustInterop.emitRustExpr () v5982 
-                                                                                                let v5984 : uint8 = method60()
-                                                                                                let v5985 : string = ""
-                                                                                                let v5986 : string = "}"
-                                                                                                let v5987 : string = v5985 + v5986 
-                                                                                                let v5988 : string = "true; v5984 " + v5987 + "); " + v5985 + " // rust.fix_closure'"
-                                                                                                let v5989 : bool = Fable.Core.RustInterop.emitRustExpr () v5988 
-                                                                                                let v5990 : string = "__future_init"
-                                                                                                let v5991 : _ = Fable.Core.RustInterop.emitRustExpr () v5990 
-                                                                                                let v5992 : string = "v5991"
-                                                                                                let v5993 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5992 
-                                                                                                let v5994 : string = "v5993.await"
-                                                                                                let v5995 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5994 
-                                                                                                let v5996 : US7 = method49(v5995)
-                                                                                                let v5997 : string = v5985 + v5986 
-                                                                                                let v5998 : string = "true; v5996 " + v5997 + "); " + v5985 + " // rust.fix_closure'"
-                                                                                                let v5999 : bool = Fable.Core.RustInterop.emitRustExpr () v5998 
-                                                                                                let v6000 : string = "__future_init"
-                                                                                                let v6001 : _ = Fable.Core.RustInterop.emitRustExpr () v6000 
-                                                                                                let v6002 : string = "v6001"
-                                                                                                let v6003 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6002 
-                                                                                                v6003
-                                                                                            | US4_0(v6004) -> (* Some *)
-                                                                                                let v6005 : unit = ()
-                                                                                                let v6006 : (unit -> unit) = closure66(v6004)
-                                                                                                let v6007 : unit = (fun () -> v6006 (); v6005) ()
-                                                                                                let v6120 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                let v6121 : bool = Fable.Core.RustInterop.emitRustExpr () v6120 
-                                                                                                let v6122 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                                let v6123 : bool = Fable.Core.RustInterop.emitRustExpr () v6122 
-                                                                                                let v6124 : uint8 = method60()
-                                                                                                let v6125 : string = ""
-                                                                                                let v6126 : string = "}"
-                                                                                                let v6127 : string = v6125 + v6126 
-                                                                                                let v6128 : string = "true; v6124 " + v6127 + "); " + v6125 + " // rust.fix_closure'"
-                                                                                                let v6129 : bool = Fable.Core.RustInterop.emitRustExpr () v6128 
-                                                                                                let v6130 : string = "__future_init"
-                                                                                                let v6131 : _ = Fable.Core.RustInterop.emitRustExpr () v6130 
-                                                                                                let v6132 : string = "v6131"
-                                                                                                let v6133 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6132 
-                                                                                                let v6134 : string = "v6133.await"
-                                                                                                let v6135 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6134 
-                                                                                                let v6136 : US7 = method47(v6135)
-                                                                                                let v6137 : string = v6125 + v6126 
-                                                                                                let v6138 : string = "true; v6136 " + v6137 + "); " + v6125 + " // rust.fix_closure'"
-                                                                                                let v6139 : bool = Fable.Core.RustInterop.emitRustExpr () v6138 
-                                                                                                let v6140 : string = "__future_init"
-                                                                                                let v6141 : _ = Fable.Core.RustInterop.emitRustExpr () v6140 
-                                                                                                let v6142 : string = "v6141"
-                                                                                                let v6143 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6142 
-                                                                                                v6143
-                                                                                    | US6_0(v5688) -> (* Ok *)
-                                                                                        match v5688 with
+                                                                                                let v6230 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                let v6231 : bool = Fable.Core.RustInterop.emitRustExpr () v6230 
+                                                                                                let v6232 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                let v6233 : bool = Fable.Core.RustInterop.emitRustExpr () v6232 
+                                                                                                let v6234 : uint8 = method60()
+                                                                                                let v6235 : string = ""
+                                                                                                let v6236 : string = "}"
+                                                                                                let v6237 : string = v6235 + v6236 
+                                                                                                let v6238 : string = "true; v6234 " + v6237 + "); " + v6235 + " // rust.fix_closure'"
+                                                                                                let v6239 : bool = Fable.Core.RustInterop.emitRustExpr () v6238 
+                                                                                                let v6240 : string = "__future_init"
+                                                                                                let v6241 : _ = Fable.Core.RustInterop.emitRustExpr () v6240 
+                                                                                                let v6242 : string = "v6241"
+                                                                                                let v6243 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6242 
+                                                                                                let v6244 : string = "v6243.await"
+                                                                                                let v6245 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6244 
+                                                                                                let v6246 : US7 = method49(v6245)
+                                                                                                let v6247 : string = v6235 + v6236 
+                                                                                                let v6248 : string = "true; v6246 " + v6247 + "); " + v6235 + " // rust.fix_closure'"
+                                                                                                let v6249 : bool = Fable.Core.RustInterop.emitRustExpr () v6248 
+                                                                                                let v6250 : string = "__future_init"
+                                                                                                let v6251 : _ = Fable.Core.RustInterop.emitRustExpr () v6250 
+                                                                                                let v6252 : string = "v6251"
+                                                                                                let v6253 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6252 
+                                                                                                v6253
+                                                                                            | US4_0(v6254) -> (* Some *)
+                                                                                                let v6255 : unit = ()
+                                                                                                let v6256 : (unit -> unit) = closure66(v6254)
+                                                                                                let v6257 : unit = (fun () -> v6256 (); v6255) ()
+                                                                                                let v6370 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                let v6371 : bool = Fable.Core.RustInterop.emitRustExpr () v6370 
+                                                                                                let v6372 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                                let v6373 : bool = Fable.Core.RustInterop.emitRustExpr () v6372 
+                                                                                                let v6374 : uint8 = method60()
+                                                                                                let v6375 : string = ""
+                                                                                                let v6376 : string = "}"
+                                                                                                let v6377 : string = v6375 + v6376 
+                                                                                                let v6378 : string = "true; v6374 " + v6377 + "); " + v6375 + " // rust.fix_closure'"
+                                                                                                let v6379 : bool = Fable.Core.RustInterop.emitRustExpr () v6378 
+                                                                                                let v6380 : string = "__future_init"
+                                                                                                let v6381 : _ = Fable.Core.RustInterop.emitRustExpr () v6380 
+                                                                                                let v6382 : string = "v6381"
+                                                                                                let v6383 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6382 
+                                                                                                let v6384 : string = "v6383.await"
+                                                                                                let v6385 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6384 
+                                                                                                let v6386 : US7 = method47(v6385)
+                                                                                                let v6387 : string = v6375 + v6376 
+                                                                                                let v6388 : string = "true; v6386 " + v6387 + "); " + v6375 + " // rust.fix_closure'"
+                                                                                                let v6389 : bool = Fable.Core.RustInterop.emitRustExpr () v6388 
+                                                                                                let v6390 : string = "__future_init"
+                                                                                                let v6391 : _ = Fable.Core.RustInterop.emitRustExpr () v6390 
+                                                                                                let v6392 : string = "v6391"
+                                                                                                let v6393 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6392 
+                                                                                                v6393
+                                                                                    | US6_0(v5927) -> (* Ok *)
+                                                                                        match v5927 with
                                                                                         | US4_1 -> (* None *)
-                                                                                            let v5689 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                            let v5690 : bool = Fable.Core.RustInterop.emitRustExpr () v5689 
-                                                                                            let v5691 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                            let v5692 : bool = Fable.Core.RustInterop.emitRustExpr () v5691 
-                                                                                            let v5693 : uint8 = method61()
-                                                                                            let v5694 : string = ""
-                                                                                            let v5695 : string = "}"
-                                                                                            let v5696 : string = v5694 + v5695 
-                                                                                            let v5697 : string = "true; v5693 " + v5696 + "); " + v5694 + " // rust.fix_closure'"
-                                                                                            let v5698 : bool = Fable.Core.RustInterop.emitRustExpr () v5697 
-                                                                                            let v5699 : string = "__future_init"
-                                                                                            let v5700 : _ = Fable.Core.RustInterop.emitRustExpr () v5699 
-                                                                                            let v5701 : string = "v5700"
-                                                                                            let v5702 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5701 
-                                                                                            let v5703 : string = "v5702.await"
-                                                                                            let v5704 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5703 
-                                                                                            let v5705 : US7 = method49(v5704)
-                                                                                            let v5706 : string = v5694 + v5695 
-                                                                                            let v5707 : string = "true; v5705 " + v5706 + "); " + v5694 + " // rust.fix_closure'"
-                                                                                            let v5708 : bool = Fable.Core.RustInterop.emitRustExpr () v5707 
-                                                                                            let v5709 : string = "__future_init"
-                                                                                            let v5710 : _ = Fable.Core.RustInterop.emitRustExpr () v5709 
-                                                                                            let v5711 : string = "v5710"
-                                                                                            let v5712 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5711 
-                                                                                            v5712
-                                                                                        | US4_0(v5713) -> (* Some *)
-                                                                                            let v5714 : unit = ()
-                                                                                            let v5715 : (unit -> unit) = closure67(v5713)
-                                                                                            let v5716 : unit = (fun () -> v5715 (); v5714) ()
-                                                                                            let v5829 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                            let v5830 : bool = Fable.Core.RustInterop.emitRustExpr () v5829 
-                                                                                            let v5831 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                            let v5832 : bool = Fable.Core.RustInterop.emitRustExpr () v5831 
-                                                                                            let v5833 : uint8 = method61()
-                                                                                            let v5834 : string = ""
-                                                                                            let v5835 : string = "}"
-                                                                                            let v5836 : string = v5834 + v5835 
-                                                                                            let v5837 : string = "true; v5833 " + v5836 + "); " + v5834 + " // rust.fix_closure'"
-                                                                                            let v5838 : bool = Fable.Core.RustInterop.emitRustExpr () v5837 
-                                                                                            let v5839 : string = "__future_init"
-                                                                                            let v5840 : _ = Fable.Core.RustInterop.emitRustExpr () v5839 
-                                                                                            let v5841 : string = "v5840"
-                                                                                            let v5842 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5841 
-                                                                                            let v5843 : string = "v5842.await"
-                                                                                            let v5844 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5843 
-                                                                                            let v5845 : US7 = method47(v5844)
-                                                                                            let v5846 : string = v5834 + v5835 
-                                                                                            let v5847 : string = "true; v5845 " + v5846 + "); " + v5834 + " // rust.fix_closure'"
-                                                                                            let v5848 : bool = Fable.Core.RustInterop.emitRustExpr () v5847 
-                                                                                            let v5849 : string = "__future_init"
-                                                                                            let v5850 : _ = Fable.Core.RustInterop.emitRustExpr () v5849 
-                                                                                            let v5851 : string = "v5850"
-                                                                                            let v5852 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5851 
-                                                                                            v5852
-                                                                                | US6_0(v5397) -> (* Ok *)
-                                                                                    match v5397 with
+                                                                                            let v5928 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                            let v5929 : bool = Fable.Core.RustInterop.emitRustExpr () v5928 
+                                                                                            let v5930 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                            let v5931 : bool = Fable.Core.RustInterop.emitRustExpr () v5930 
+                                                                                            let v5932 : uint8 = method61()
+                                                                                            let v5933 : string = ""
+                                                                                            let v5934 : string = "}"
+                                                                                            let v5935 : string = v5933 + v5934 
+                                                                                            let v5936 : string = "true; v5932 " + v5935 + "); " + v5933 + " // rust.fix_closure'"
+                                                                                            let v5937 : bool = Fable.Core.RustInterop.emitRustExpr () v5936 
+                                                                                            let v5938 : string = "__future_init"
+                                                                                            let v5939 : _ = Fable.Core.RustInterop.emitRustExpr () v5938 
+                                                                                            let v5940 : string = "v5939"
+                                                                                            let v5941 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5940 
+                                                                                            let v5942 : string = "v5941.await"
+                                                                                            let v5943 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5942 
+                                                                                            let v5944 : US7 = method49(v5943)
+                                                                                            let v5945 : string = v5933 + v5934 
+                                                                                            let v5946 : string = "true; v5944 " + v5945 + "); " + v5933 + " // rust.fix_closure'"
+                                                                                            let v5947 : bool = Fable.Core.RustInterop.emitRustExpr () v5946 
+                                                                                            let v5948 : string = "__future_init"
+                                                                                            let v5949 : _ = Fable.Core.RustInterop.emitRustExpr () v5948 
+                                                                                            let v5950 : string = "v5949"
+                                                                                            let v5951 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5950 
+                                                                                            v5951
+                                                                                        | US4_0(v5952) -> (* Some *)
+                                                                                            let v5953 : unit = ()
+                                                                                            let v5954 : (unit -> unit) = closure67(v5952)
+                                                                                            let v5955 : unit = (fun () -> v5954 (); v5953) ()
+                                                                                            let v6068 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                            let v6069 : bool = Fable.Core.RustInterop.emitRustExpr () v6068 
+                                                                                            let v6070 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                            let v6071 : bool = Fable.Core.RustInterop.emitRustExpr () v6070 
+                                                                                            let v6072 : uint8 = method61()
+                                                                                            let v6073 : string = ""
+                                                                                            let v6074 : string = "}"
+                                                                                            let v6075 : string = v6073 + v6074 
+                                                                                            let v6076 : string = "true; v6072 " + v6075 + "); " + v6073 + " // rust.fix_closure'"
+                                                                                            let v6077 : bool = Fable.Core.RustInterop.emitRustExpr () v6076 
+                                                                                            let v6078 : string = "__future_init"
+                                                                                            let v6079 : _ = Fable.Core.RustInterop.emitRustExpr () v6078 
+                                                                                            let v6080 : string = "v6079"
+                                                                                            let v6081 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v6080 
+                                                                                            let v6082 : string = "v6081.await"
+                                                                                            let v6083 : uint8 = Fable.Core.RustInterop.emitRustExpr () v6082 
+                                                                                            let v6084 : US7 = method47(v6083)
+                                                                                            let v6085 : string = v6073 + v6074 
+                                                                                            let v6086 : string = "true; v6084 " + v6085 + "); " + v6073 + " // rust.fix_closure'"
+                                                                                            let v6087 : bool = Fable.Core.RustInterop.emitRustExpr () v6086 
+                                                                                            let v6088 : string = "__future_init"
+                                                                                            let v6089 : _ = Fable.Core.RustInterop.emitRustExpr () v6088 
+                                                                                            let v6090 : string = "v6089"
+                                                                                            let v6091 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v6090 
+                                                                                            v6091
+                                                                                | US6_0(v5625) -> (* Ok *)
+                                                                                    match v5625 with
                                                                                     | US4_1 -> (* None *)
-                                                                                        let v5398 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                        let v5399 : bool = Fable.Core.RustInterop.emitRustExpr () v5398 
-                                                                                        let v5400 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                        let v5401 : bool = Fable.Core.RustInterop.emitRustExpr () v5400 
-                                                                                        let v5402 : uint8 = method62()
-                                                                                        let v5403 : string = ""
-                                                                                        let v5404 : string = "}"
-                                                                                        let v5405 : string = v5403 + v5404 
-                                                                                        let v5406 : string = "true; v5402 " + v5405 + "); " + v5403 + " // rust.fix_closure'"
-                                                                                        let v5407 : bool = Fable.Core.RustInterop.emitRustExpr () v5406 
-                                                                                        let v5408 : string = "__future_init"
-                                                                                        let v5409 : _ = Fable.Core.RustInterop.emitRustExpr () v5408 
-                                                                                        let v5410 : string = "v5409"
-                                                                                        let v5411 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5410 
-                                                                                        let v5412 : string = "v5411.await"
-                                                                                        let v5413 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5412 
-                                                                                        let v5414 : US7 = method49(v5413)
-                                                                                        let v5415 : string = v5403 + v5404 
-                                                                                        let v5416 : string = "true; v5414 " + v5415 + "); " + v5403 + " // rust.fix_closure'"
-                                                                                        let v5417 : bool = Fable.Core.RustInterop.emitRustExpr () v5416 
-                                                                                        let v5418 : string = "__future_init"
-                                                                                        let v5419 : _ = Fable.Core.RustInterop.emitRustExpr () v5418 
-                                                                                        let v5420 : string = "v5419"
-                                                                                        let v5421 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5420 
-                                                                                        v5421
-                                                                                    | US4_0(v5422) -> (* Some *)
-                                                                                        let v5423 : unit = ()
-                                                                                        let v5424 : (unit -> unit) = closure68(v5422)
-                                                                                        let v5425 : unit = (fun () -> v5424 (); v5423) ()
-                                                                                        let v5538 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                        let v5539 : bool = Fable.Core.RustInterop.emitRustExpr () v5538 
-                                                                                        let v5540 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                        let v5541 : bool = Fable.Core.RustInterop.emitRustExpr () v5540 
-                                                                                        let v5542 : uint8 = method62()
-                                                                                        let v5543 : string = ""
-                                                                                        let v5544 : string = "}"
-                                                                                        let v5545 : string = v5543 + v5544 
-                                                                                        let v5546 : string = "true; v5542 " + v5545 + "); " + v5543 + " // rust.fix_closure'"
-                                                                                        let v5547 : bool = Fable.Core.RustInterop.emitRustExpr () v5546 
-                                                                                        let v5548 : string = "__future_init"
-                                                                                        let v5549 : _ = Fable.Core.RustInterop.emitRustExpr () v5548 
-                                                                                        let v5550 : string = "v5549"
-                                                                                        let v5551 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5550 
-                                                                                        let v5552 : string = "v5551.await"
-                                                                                        let v5553 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5552 
-                                                                                        let v5554 : US7 = method47(v5553)
-                                                                                        let v5555 : string = v5543 + v5544 
-                                                                                        let v5556 : string = "true; v5554 " + v5555 + "); " + v5543 + " // rust.fix_closure'"
-                                                                                        let v5557 : bool = Fable.Core.RustInterop.emitRustExpr () v5556 
-                                                                                        let v5558 : string = "__future_init"
-                                                                                        let v5559 : _ = Fable.Core.RustInterop.emitRustExpr () v5558 
-                                                                                        let v5560 : string = "v5559"
-                                                                                        let v5561 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5560 
-                                                                                        v5561
-                                                                            | US6_0(v5106) -> (* Ok *)
-                                                                                match v5106 with
+                                                                                        let v5626 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                        let v5627 : bool = Fable.Core.RustInterop.emitRustExpr () v5626 
+                                                                                        let v5628 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                        let v5629 : bool = Fable.Core.RustInterop.emitRustExpr () v5628 
+                                                                                        let v5630 : uint8 = method62()
+                                                                                        let v5631 : string = ""
+                                                                                        let v5632 : string = "}"
+                                                                                        let v5633 : string = v5631 + v5632 
+                                                                                        let v5634 : string = "true; v5630 " + v5633 + "); " + v5631 + " // rust.fix_closure'"
+                                                                                        let v5635 : bool = Fable.Core.RustInterop.emitRustExpr () v5634 
+                                                                                        let v5636 : string = "__future_init"
+                                                                                        let v5637 : _ = Fable.Core.RustInterop.emitRustExpr () v5636 
+                                                                                        let v5638 : string = "v5637"
+                                                                                        let v5639 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5638 
+                                                                                        let v5640 : string = "v5639.await"
+                                                                                        let v5641 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5640 
+                                                                                        let v5642 : US7 = method49(v5641)
+                                                                                        let v5643 : string = v5631 + v5632 
+                                                                                        let v5644 : string = "true; v5642 " + v5643 + "); " + v5631 + " // rust.fix_closure'"
+                                                                                        let v5645 : bool = Fable.Core.RustInterop.emitRustExpr () v5644 
+                                                                                        let v5646 : string = "__future_init"
+                                                                                        let v5647 : _ = Fable.Core.RustInterop.emitRustExpr () v5646 
+                                                                                        let v5648 : string = "v5647"
+                                                                                        let v5649 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5648 
+                                                                                        v5649
+                                                                                    | US4_0(v5650) -> (* Some *)
+                                                                                        let v5651 : unit = ()
+                                                                                        let v5652 : (unit -> unit) = closure68(v5650)
+                                                                                        let v5653 : unit = (fun () -> v5652 (); v5651) ()
+                                                                                        let v5766 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                        let v5767 : bool = Fable.Core.RustInterop.emitRustExpr () v5766 
+                                                                                        let v5768 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                        let v5769 : bool = Fable.Core.RustInterop.emitRustExpr () v5768 
+                                                                                        let v5770 : uint8 = method62()
+                                                                                        let v5771 : string = ""
+                                                                                        let v5772 : string = "}"
+                                                                                        let v5773 : string = v5771 + v5772 
+                                                                                        let v5774 : string = "true; v5770 " + v5773 + "); " + v5771 + " // rust.fix_closure'"
+                                                                                        let v5775 : bool = Fable.Core.RustInterop.emitRustExpr () v5774 
+                                                                                        let v5776 : string = "__future_init"
+                                                                                        let v5777 : _ = Fable.Core.RustInterop.emitRustExpr () v5776 
+                                                                                        let v5778 : string = "v5777"
+                                                                                        let v5779 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5778 
+                                                                                        let v5780 : string = "v5779.await"
+                                                                                        let v5781 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5780 
+                                                                                        let v5782 : US7 = method47(v5781)
+                                                                                        let v5783 : string = v5771 + v5772 
+                                                                                        let v5784 : string = "true; v5782 " + v5783 + "); " + v5771 + " // rust.fix_closure'"
+                                                                                        let v5785 : bool = Fable.Core.RustInterop.emitRustExpr () v5784 
+                                                                                        let v5786 : string = "__future_init"
+                                                                                        let v5787 : _ = Fable.Core.RustInterop.emitRustExpr () v5786 
+                                                                                        let v5788 : string = "v5787"
+                                                                                        let v5789 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5788 
+                                                                                        v5789
+                                                                            | US6_0(v5323) -> (* Ok *)
+                                                                                match v5323 with
                                                                                 | US4_1 -> (* None *)
-                                                                                    let v5107 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                    let v5108 : bool = Fable.Core.RustInterop.emitRustExpr () v5107 
-                                                                                    let v5109 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                    let v5110 : bool = Fable.Core.RustInterop.emitRustExpr () v5109 
-                                                                                    let v5111 : uint8 = method63()
-                                                                                    let v5112 : string = ""
-                                                                                    let v5113 : string = "}"
-                                                                                    let v5114 : string = v5112 + v5113 
-                                                                                    let v5115 : string = "true; v5111 " + v5114 + "); " + v5112 + " // rust.fix_closure'"
-                                                                                    let v5116 : bool = Fable.Core.RustInterop.emitRustExpr () v5115 
-                                                                                    let v5117 : string = "__future_init"
-                                                                                    let v5118 : _ = Fable.Core.RustInterop.emitRustExpr () v5117 
-                                                                                    let v5119 : string = "v5118"
-                                                                                    let v5120 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5119 
-                                                                                    let v5121 : string = "v5120.await"
-                                                                                    let v5122 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5121 
-                                                                                    let v5123 : US7 = method49(v5122)
-                                                                                    let v5124 : string = v5112 + v5113 
-                                                                                    let v5125 : string = "true; v5123 " + v5124 + "); " + v5112 + " // rust.fix_closure'"
-                                                                                    let v5126 : bool = Fable.Core.RustInterop.emitRustExpr () v5125 
-                                                                                    let v5127 : string = "__future_init"
-                                                                                    let v5128 : _ = Fable.Core.RustInterop.emitRustExpr () v5127 
-                                                                                    let v5129 : string = "v5128"
-                                                                                    let v5130 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5129 
-                                                                                    v5130
-                                                                                | US4_0(v5131) -> (* Some *)
-                                                                                    let v5132 : unit = ()
-                                                                                    let v5133 : (unit -> unit) = closure69(v5131)
-                                                                                    let v5134 : unit = (fun () -> v5133 (); v5132) ()
-                                                                                    let v5247 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                    let v5248 : bool = Fable.Core.RustInterop.emitRustExpr () v5247 
-                                                                                    let v5249 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                    let v5250 : bool = Fable.Core.RustInterop.emitRustExpr () v5249 
-                                                                                    let v5251 : uint8 = method63()
-                                                                                    let v5252 : string = ""
-                                                                                    let v5253 : string = "}"
-                                                                                    let v5254 : string = v5252 + v5253 
-                                                                                    let v5255 : string = "true; v5251 " + v5254 + "); " + v5252 + " // rust.fix_closure'"
-                                                                                    let v5256 : bool = Fable.Core.RustInterop.emitRustExpr () v5255 
-                                                                                    let v5257 : string = "__future_init"
-                                                                                    let v5258 : _ = Fable.Core.RustInterop.emitRustExpr () v5257 
-                                                                                    let v5259 : string = "v5258"
-                                                                                    let v5260 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5259 
-                                                                                    let v5261 : string = "v5260.await"
-                                                                                    let v5262 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5261 
-                                                                                    let v5263 : US7 = method47(v5262)
-                                                                                    let v5264 : string = v5252 + v5253 
-                                                                                    let v5265 : string = "true; v5263 " + v5264 + "); " + v5252 + " // rust.fix_closure'"
-                                                                                    let v5266 : bool = Fable.Core.RustInterop.emitRustExpr () v5265 
-                                                                                    let v5267 : string = "__future_init"
-                                                                                    let v5268 : _ = Fable.Core.RustInterop.emitRustExpr () v5267 
-                                                                                    let v5269 : string = "v5268"
-                                                                                    let v5270 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5269 
-                                                                                    v5270
-                                                                        | US6_0(v4815) -> (* Ok *)
-                                                                            match v4815 with
+                                                                                    let v5324 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                    let v5325 : bool = Fable.Core.RustInterop.emitRustExpr () v5324 
+                                                                                    let v5326 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                    let v5327 : bool = Fable.Core.RustInterop.emitRustExpr () v5326 
+                                                                                    let v5328 : uint8 = method63()
+                                                                                    let v5329 : string = ""
+                                                                                    let v5330 : string = "}"
+                                                                                    let v5331 : string = v5329 + v5330 
+                                                                                    let v5332 : string = "true; v5328 " + v5331 + "); " + v5329 + " // rust.fix_closure'"
+                                                                                    let v5333 : bool = Fable.Core.RustInterop.emitRustExpr () v5332 
+                                                                                    let v5334 : string = "__future_init"
+                                                                                    let v5335 : _ = Fable.Core.RustInterop.emitRustExpr () v5334 
+                                                                                    let v5336 : string = "v5335"
+                                                                                    let v5337 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5336 
+                                                                                    let v5338 : string = "v5337.await"
+                                                                                    let v5339 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5338 
+                                                                                    let v5340 : US7 = method49(v5339)
+                                                                                    let v5341 : string = v5329 + v5330 
+                                                                                    let v5342 : string = "true; v5340 " + v5341 + "); " + v5329 + " // rust.fix_closure'"
+                                                                                    let v5343 : bool = Fable.Core.RustInterop.emitRustExpr () v5342 
+                                                                                    let v5344 : string = "__future_init"
+                                                                                    let v5345 : _ = Fable.Core.RustInterop.emitRustExpr () v5344 
+                                                                                    let v5346 : string = "v5345"
+                                                                                    let v5347 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5346 
+                                                                                    v5347
+                                                                                | US4_0(v5348) -> (* Some *)
+                                                                                    let v5349 : unit = ()
+                                                                                    let v5350 : (unit -> unit) = closure69(v5348)
+                                                                                    let v5351 : unit = (fun () -> v5350 (); v5349) ()
+                                                                                    let v5464 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                    let v5465 : bool = Fable.Core.RustInterop.emitRustExpr () v5464 
+                                                                                    let v5466 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                    let v5467 : bool = Fable.Core.RustInterop.emitRustExpr () v5466 
+                                                                                    let v5468 : uint8 = method63()
+                                                                                    let v5469 : string = ""
+                                                                                    let v5470 : string = "}"
+                                                                                    let v5471 : string = v5469 + v5470 
+                                                                                    let v5472 : string = "true; v5468 " + v5471 + "); " + v5469 + " // rust.fix_closure'"
+                                                                                    let v5473 : bool = Fable.Core.RustInterop.emitRustExpr () v5472 
+                                                                                    let v5474 : string = "__future_init"
+                                                                                    let v5475 : _ = Fable.Core.RustInterop.emitRustExpr () v5474 
+                                                                                    let v5476 : string = "v5475"
+                                                                                    let v5477 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5476 
+                                                                                    let v5478 : string = "v5477.await"
+                                                                                    let v5479 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5478 
+                                                                                    let v5480 : US7 = method47(v5479)
+                                                                                    let v5481 : string = v5469 + v5470 
+                                                                                    let v5482 : string = "true; v5480 " + v5481 + "); " + v5469 + " // rust.fix_closure'"
+                                                                                    let v5483 : bool = Fable.Core.RustInterop.emitRustExpr () v5482 
+                                                                                    let v5484 : string = "__future_init"
+                                                                                    let v5485 : _ = Fable.Core.RustInterop.emitRustExpr () v5484 
+                                                                                    let v5486 : string = "v5485"
+                                                                                    let v5487 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5486 
+                                                                                    v5487
+                                                                        | US6_0(v5021) -> (* Ok *)
+                                                                            match v5021 with
                                                                             | US4_1 -> (* None *)
-                                                                                let v4816 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                let v4817 : bool = Fable.Core.RustInterop.emitRustExpr () v4816 
-                                                                                let v4818 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                let v4819 : bool = Fable.Core.RustInterop.emitRustExpr () v4818 
-                                                                                let v4820 : uint8 = method64()
-                                                                                let v4821 : string = ""
-                                                                                let v4822 : string = "}"
-                                                                                let v4823 : string = v4821 + v4822 
-                                                                                let v4824 : string = "true; v4820 " + v4823 + "); " + v4821 + " // rust.fix_closure'"
-                                                                                let v4825 : bool = Fable.Core.RustInterop.emitRustExpr () v4824 
-                                                                                let v4826 : string = "__future_init"
-                                                                                let v4827 : _ = Fable.Core.RustInterop.emitRustExpr () v4826 
-                                                                                let v4828 : string = "v4827"
-                                                                                let v4829 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4828 
-                                                                                let v4830 : string = "v4829.await"
-                                                                                let v4831 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4830 
-                                                                                let v4832 : US7 = method49(v4831)
-                                                                                let v4833 : string = v4821 + v4822 
-                                                                                let v4834 : string = "true; v4832 " + v4833 + "); " + v4821 + " // rust.fix_closure'"
-                                                                                let v4835 : bool = Fable.Core.RustInterop.emitRustExpr () v4834 
-                                                                                let v4836 : string = "__future_init"
-                                                                                let v4837 : _ = Fable.Core.RustInterop.emitRustExpr () v4836 
-                                                                                let v4838 : string = "v4837"
-                                                                                let v4839 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4838 
-                                                                                v4839
-                                                                            | US4_0(v4840) -> (* Some *)
-                                                                                let v4841 : unit = ()
-                                                                                let v4842 : (unit -> unit) = closure70(v4840)
-                                                                                let v4843 : unit = (fun () -> v4842 (); v4841) ()
-                                                                                let v4956 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                let v4957 : bool = Fable.Core.RustInterop.emitRustExpr () v4956 
-                                                                                let v4958 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                                let v4959 : bool = Fable.Core.RustInterop.emitRustExpr () v4958 
-                                                                                let v4960 : uint8 = method64()
-                                                                                let v4961 : string = ""
-                                                                                let v4962 : string = "}"
-                                                                                let v4963 : string = v4961 + v4962 
-                                                                                let v4964 : string = "true; v4960 " + v4963 + "); " + v4961 + " // rust.fix_closure'"
-                                                                                let v4965 : bool = Fable.Core.RustInterop.emitRustExpr () v4964 
-                                                                                let v4966 : string = "__future_init"
-                                                                                let v4967 : _ = Fable.Core.RustInterop.emitRustExpr () v4966 
-                                                                                let v4968 : string = "v4967"
-                                                                                let v4969 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4968 
-                                                                                let v4970 : string = "v4969.await"
-                                                                                let v4971 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4970 
-                                                                                let v4972 : US7 = method47(v4971)
-                                                                                let v4973 : string = v4961 + v4962 
-                                                                                let v4974 : string = "true; v4972 " + v4973 + "); " + v4961 + " // rust.fix_closure'"
-                                                                                let v4975 : bool = Fable.Core.RustInterop.emitRustExpr () v4974 
-                                                                                let v4976 : string = "__future_init"
-                                                                                let v4977 : _ = Fable.Core.RustInterop.emitRustExpr () v4976 
-                                                                                let v4978 : string = "v4977"
-                                                                                let v4979 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4978 
-                                                                                v4979
-                                                                    | US6_0(v4524) -> (* Ok *)
-                                                                        match v4524 with
+                                                                                let v5022 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                let v5023 : bool = Fable.Core.RustInterop.emitRustExpr () v5022 
+                                                                                let v5024 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                let v5025 : bool = Fable.Core.RustInterop.emitRustExpr () v5024 
+                                                                                let v5026 : uint8 = method64()
+                                                                                let v5027 : string = ""
+                                                                                let v5028 : string = "}"
+                                                                                let v5029 : string = v5027 + v5028 
+                                                                                let v5030 : string = "true; v5026 " + v5029 + "); " + v5027 + " // rust.fix_closure'"
+                                                                                let v5031 : bool = Fable.Core.RustInterop.emitRustExpr () v5030 
+                                                                                let v5032 : string = "__future_init"
+                                                                                let v5033 : _ = Fable.Core.RustInterop.emitRustExpr () v5032 
+                                                                                let v5034 : string = "v5033"
+                                                                                let v5035 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5034 
+                                                                                let v5036 : string = "v5035.await"
+                                                                                let v5037 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5036 
+                                                                                let v5038 : US7 = method49(v5037)
+                                                                                let v5039 : string = v5027 + v5028 
+                                                                                let v5040 : string = "true; v5038 " + v5039 + "); " + v5027 + " // rust.fix_closure'"
+                                                                                let v5041 : bool = Fable.Core.RustInterop.emitRustExpr () v5040 
+                                                                                let v5042 : string = "__future_init"
+                                                                                let v5043 : _ = Fable.Core.RustInterop.emitRustExpr () v5042 
+                                                                                let v5044 : string = "v5043"
+                                                                                let v5045 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5044 
+                                                                                v5045
+                                                                            | US4_0(v5046) -> (* Some *)
+                                                                                let v5047 : unit = ()
+                                                                                let v5048 : (unit -> unit) = closure70(v5046)
+                                                                                let v5049 : unit = (fun () -> v5048 (); v5047) ()
+                                                                                let v5162 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                let v5163 : bool = Fable.Core.RustInterop.emitRustExpr () v5162 
+                                                                                let v5164 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                                let v5165 : bool = Fable.Core.RustInterop.emitRustExpr () v5164 
+                                                                                let v5166 : uint8 = method64()
+                                                                                let v5167 : string = ""
+                                                                                let v5168 : string = "}"
+                                                                                let v5169 : string = v5167 + v5168 
+                                                                                let v5170 : string = "true; v5166 " + v5169 + "); " + v5167 + " // rust.fix_closure'"
+                                                                                let v5171 : bool = Fable.Core.RustInterop.emitRustExpr () v5170 
+                                                                                let v5172 : string = "__future_init"
+                                                                                let v5173 : _ = Fable.Core.RustInterop.emitRustExpr () v5172 
+                                                                                let v5174 : string = "v5173"
+                                                                                let v5175 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v5174 
+                                                                                let v5176 : string = "v5175.await"
+                                                                                let v5177 : uint8 = Fable.Core.RustInterop.emitRustExpr () v5176 
+                                                                                let v5178 : US7 = method47(v5177)
+                                                                                let v5179 : string = v5167 + v5168 
+                                                                                let v5180 : string = "true; v5178 " + v5179 + "); " + v5167 + " // rust.fix_closure'"
+                                                                                let v5181 : bool = Fable.Core.RustInterop.emitRustExpr () v5180 
+                                                                                let v5182 : string = "__future_init"
+                                                                                let v5183 : _ = Fable.Core.RustInterop.emitRustExpr () v5182 
+                                                                                let v5184 : string = "v5183"
+                                                                                let v5185 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v5184 
+                                                                                v5185
+                                                                    | US6_0(v4719) -> (* Ok *)
+                                                                        match v4719 with
                                                                         | US4_1 -> (* None *)
-                                                                            let v4525 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                            let v4526 : bool = Fable.Core.RustInterop.emitRustExpr () v4525 
-                                                                            let v4527 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                            let v4528 : bool = Fable.Core.RustInterop.emitRustExpr () v4527 
-                                                                            let v4529 : uint8 = method65()
-                                                                            let v4530 : string = ""
-                                                                            let v4531 : string = "}"
-                                                                            let v4532 : string = v4530 + v4531 
-                                                                            let v4533 : string = "true; v4529 " + v4532 + "); " + v4530 + " // rust.fix_closure'"
-                                                                            let v4534 : bool = Fable.Core.RustInterop.emitRustExpr () v4533 
-                                                                            let v4535 : string = "__future_init"
-                                                                            let v4536 : _ = Fable.Core.RustInterop.emitRustExpr () v4535 
-                                                                            let v4537 : string = "v4536"
-                                                                            let v4538 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4537 
-                                                                            let v4539 : string = "v4538.await"
-                                                                            let v4540 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4539 
-                                                                            let v4541 : US7 = method49(v4540)
-                                                                            let v4542 : string = v4530 + v4531 
-                                                                            let v4543 : string = "true; v4541 " + v4542 + "); " + v4530 + " // rust.fix_closure'"
-                                                                            let v4544 : bool = Fable.Core.RustInterop.emitRustExpr () v4543 
-                                                                            let v4545 : string = "__future_init"
-                                                                            let v4546 : _ = Fable.Core.RustInterop.emitRustExpr () v4545 
-                                                                            let v4547 : string = "v4546"
-                                                                            let v4548 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4547 
-                                                                            v4548
-                                                                        | US4_0(v4549) -> (* Some *)
-                                                                            let v4550 : unit = ()
-                                                                            let v4551 : (unit -> unit) = closure71(v4549)
-                                                                            let v4552 : unit = (fun () -> v4551 (); v4550) ()
-                                                                            let v4665 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                            let v4666 : bool = Fable.Core.RustInterop.emitRustExpr () v4665 
-                                                                            let v4667 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                            let v4668 : bool = Fable.Core.RustInterop.emitRustExpr () v4667 
-                                                                            let v4669 : uint8 = method65()
-                                                                            let v4670 : string = ""
-                                                                            let v4671 : string = "}"
-                                                                            let v4672 : string = v4670 + v4671 
-                                                                            let v4673 : string = "true; v4669 " + v4672 + "); " + v4670 + " // rust.fix_closure'"
-                                                                            let v4674 : bool = Fable.Core.RustInterop.emitRustExpr () v4673 
-                                                                            let v4675 : string = "__future_init"
-                                                                            let v4676 : _ = Fable.Core.RustInterop.emitRustExpr () v4675 
-                                                                            let v4677 : string = "v4676"
-                                                                            let v4678 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4677 
-                                                                            let v4679 : string = "v4678.await"
-                                                                            let v4680 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4679 
-                                                                            let v4681 : US7 = method47(v4680)
-                                                                            let v4682 : string = v4670 + v4671 
-                                                                            let v4683 : string = "true; v4681 " + v4682 + "); " + v4670 + " // rust.fix_closure'"
-                                                                            let v4684 : bool = Fable.Core.RustInterop.emitRustExpr () v4683 
-                                                                            let v4685 : string = "__future_init"
-                                                                            let v4686 : _ = Fable.Core.RustInterop.emitRustExpr () v4685 
-                                                                            let v4687 : string = "v4686"
-                                                                            let v4688 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4687 
-                                                                            v4688
-                                                                | US6_0(v4233) -> (* Ok *)
-                                                                    match v4233 with
+                                                                            let v4720 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                            let v4721 : bool = Fable.Core.RustInterop.emitRustExpr () v4720 
+                                                                            let v4722 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                            let v4723 : bool = Fable.Core.RustInterop.emitRustExpr () v4722 
+                                                                            let v4724 : uint8 = method65()
+                                                                            let v4725 : string = ""
+                                                                            let v4726 : string = "}"
+                                                                            let v4727 : string = v4725 + v4726 
+                                                                            let v4728 : string = "true; v4724 " + v4727 + "); " + v4725 + " // rust.fix_closure'"
+                                                                            let v4729 : bool = Fable.Core.RustInterop.emitRustExpr () v4728 
+                                                                            let v4730 : string = "__future_init"
+                                                                            let v4731 : _ = Fable.Core.RustInterop.emitRustExpr () v4730 
+                                                                            let v4732 : string = "v4731"
+                                                                            let v4733 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4732 
+                                                                            let v4734 : string = "v4733.await"
+                                                                            let v4735 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4734 
+                                                                            let v4736 : US7 = method49(v4735)
+                                                                            let v4737 : string = v4725 + v4726 
+                                                                            let v4738 : string = "true; v4736 " + v4737 + "); " + v4725 + " // rust.fix_closure'"
+                                                                            let v4739 : bool = Fable.Core.RustInterop.emitRustExpr () v4738 
+                                                                            let v4740 : string = "__future_init"
+                                                                            let v4741 : _ = Fable.Core.RustInterop.emitRustExpr () v4740 
+                                                                            let v4742 : string = "v4741"
+                                                                            let v4743 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4742 
+                                                                            v4743
+                                                                        | US4_0(v4744) -> (* Some *)
+                                                                            let v4745 : unit = ()
+                                                                            let v4746 : (unit -> unit) = closure71(v4744)
+                                                                            let v4747 : unit = (fun () -> v4746 (); v4745) ()
+                                                                            let v4860 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                            let v4861 : bool = Fable.Core.RustInterop.emitRustExpr () v4860 
+                                                                            let v4862 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                            let v4863 : bool = Fable.Core.RustInterop.emitRustExpr () v4862 
+                                                                            let v4864 : uint8 = method65()
+                                                                            let v4865 : string = ""
+                                                                            let v4866 : string = "}"
+                                                                            let v4867 : string = v4865 + v4866 
+                                                                            let v4868 : string = "true; v4864 " + v4867 + "); " + v4865 + " // rust.fix_closure'"
+                                                                            let v4869 : bool = Fable.Core.RustInterop.emitRustExpr () v4868 
+                                                                            let v4870 : string = "__future_init"
+                                                                            let v4871 : _ = Fable.Core.RustInterop.emitRustExpr () v4870 
+                                                                            let v4872 : string = "v4871"
+                                                                            let v4873 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4872 
+                                                                            let v4874 : string = "v4873.await"
+                                                                            let v4875 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4874 
+                                                                            let v4876 : US7 = method47(v4875)
+                                                                            let v4877 : string = v4865 + v4866 
+                                                                            let v4878 : string = "true; v4876 " + v4877 + "); " + v4865 + " // rust.fix_closure'"
+                                                                            let v4879 : bool = Fable.Core.RustInterop.emitRustExpr () v4878 
+                                                                            let v4880 : string = "__future_init"
+                                                                            let v4881 : _ = Fable.Core.RustInterop.emitRustExpr () v4880 
+                                                                            let v4882 : string = "v4881"
+                                                                            let v4883 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4882 
+                                                                            v4883
+                                                                | US6_0(v4417) -> (* Ok *)
+                                                                    match v4417 with
                                                                     | US4_1 -> (* None *)
-                                                                        let v4234 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                        let v4235 : bool = Fable.Core.RustInterop.emitRustExpr () v4234 
-                                                                        let v4236 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                        let v4237 : bool = Fable.Core.RustInterop.emitRustExpr () v4236 
-                                                                        let v4238 : uint8 = method66()
-                                                                        let v4239 : string = ""
-                                                                        let v4240 : string = "}"
-                                                                        let v4241 : string = v4239 + v4240 
-                                                                        let v4242 : string = "true; v4238 " + v4241 + "); " + v4239 + " // rust.fix_closure'"
-                                                                        let v4243 : bool = Fable.Core.RustInterop.emitRustExpr () v4242 
-                                                                        let v4244 : string = "__future_init"
-                                                                        let v4245 : _ = Fable.Core.RustInterop.emitRustExpr () v4244 
-                                                                        let v4246 : string = "v4245"
-                                                                        let v4247 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4246 
-                                                                        let v4248 : string = "v4247.await"
-                                                                        let v4249 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4248 
-                                                                        let v4250 : US7 = method49(v4249)
-                                                                        let v4251 : string = v4239 + v4240 
-                                                                        let v4252 : string = "true; v4250 " + v4251 + "); " + v4239 + " // rust.fix_closure'"
-                                                                        let v4253 : bool = Fable.Core.RustInterop.emitRustExpr () v4252 
-                                                                        let v4254 : string = "__future_init"
-                                                                        let v4255 : _ = Fable.Core.RustInterop.emitRustExpr () v4254 
-                                                                        let v4256 : string = "v4255"
-                                                                        let v4257 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4256 
-                                                                        v4257
-                                                                    | US4_0(v4258) -> (* Some *)
-                                                                        let v4259 : unit = ()
-                                                                        let v4260 : (unit -> unit) = closure72(v4258)
-                                                                        let v4261 : unit = (fun () -> v4260 (); v4259) ()
-                                                                        let v4374 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                        let v4375 : bool = Fable.Core.RustInterop.emitRustExpr () v4374 
-                                                                        let v4376 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                        let v4377 : bool = Fable.Core.RustInterop.emitRustExpr () v4376 
-                                                                        let v4378 : uint8 = method66()
-                                                                        let v4379 : string = ""
-                                                                        let v4380 : string = "}"
-                                                                        let v4381 : string = v4379 + v4380 
-                                                                        let v4382 : string = "true; v4378 " + v4381 + "); " + v4379 + " // rust.fix_closure'"
-                                                                        let v4383 : bool = Fable.Core.RustInterop.emitRustExpr () v4382 
-                                                                        let v4384 : string = "__future_init"
-                                                                        let v4385 : _ = Fable.Core.RustInterop.emitRustExpr () v4384 
-                                                                        let v4386 : string = "v4385"
-                                                                        let v4387 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4386 
-                                                                        let v4388 : string = "v4387.await"
-                                                                        let v4389 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4388 
-                                                                        let v4390 : US7 = method47(v4389)
-                                                                        let v4391 : string = v4379 + v4380 
-                                                                        let v4392 : string = "true; v4390 " + v4391 + "); " + v4379 + " // rust.fix_closure'"
-                                                                        let v4393 : bool = Fable.Core.RustInterop.emitRustExpr () v4392 
-                                                                        let v4394 : string = "__future_init"
-                                                                        let v4395 : _ = Fable.Core.RustInterop.emitRustExpr () v4394 
-                                                                        let v4396 : string = "v4395"
-                                                                        let v4397 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4396 
-                                                                        v4397
-                                                            | US6_0(v3942) -> (* Ok *)
-                                                                match v3942 with
+                                                                        let v4418 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                        let v4419 : bool = Fable.Core.RustInterop.emitRustExpr () v4418 
+                                                                        let v4420 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                        let v4421 : bool = Fable.Core.RustInterop.emitRustExpr () v4420 
+                                                                        let v4422 : uint8 = method66()
+                                                                        let v4423 : string = ""
+                                                                        let v4424 : string = "}"
+                                                                        let v4425 : string = v4423 + v4424 
+                                                                        let v4426 : string = "true; v4422 " + v4425 + "); " + v4423 + " // rust.fix_closure'"
+                                                                        let v4427 : bool = Fable.Core.RustInterop.emitRustExpr () v4426 
+                                                                        let v4428 : string = "__future_init"
+                                                                        let v4429 : _ = Fable.Core.RustInterop.emitRustExpr () v4428 
+                                                                        let v4430 : string = "v4429"
+                                                                        let v4431 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4430 
+                                                                        let v4432 : string = "v4431.await"
+                                                                        let v4433 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4432 
+                                                                        let v4434 : US7 = method49(v4433)
+                                                                        let v4435 : string = v4423 + v4424 
+                                                                        let v4436 : string = "true; v4434 " + v4435 + "); " + v4423 + " // rust.fix_closure'"
+                                                                        let v4437 : bool = Fable.Core.RustInterop.emitRustExpr () v4436 
+                                                                        let v4438 : string = "__future_init"
+                                                                        let v4439 : _ = Fable.Core.RustInterop.emitRustExpr () v4438 
+                                                                        let v4440 : string = "v4439"
+                                                                        let v4441 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4440 
+                                                                        v4441
+                                                                    | US4_0(v4442) -> (* Some *)
+                                                                        let v4443 : unit = ()
+                                                                        let v4444 : (unit -> unit) = closure72(v4442)
+                                                                        let v4445 : unit = (fun () -> v4444 (); v4443) ()
+                                                                        let v4558 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                        let v4559 : bool = Fable.Core.RustInterop.emitRustExpr () v4558 
+                                                                        let v4560 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                        let v4561 : bool = Fable.Core.RustInterop.emitRustExpr () v4560 
+                                                                        let v4562 : uint8 = method66()
+                                                                        let v4563 : string = ""
+                                                                        let v4564 : string = "}"
+                                                                        let v4565 : string = v4563 + v4564 
+                                                                        let v4566 : string = "true; v4562 " + v4565 + "); " + v4563 + " // rust.fix_closure'"
+                                                                        let v4567 : bool = Fable.Core.RustInterop.emitRustExpr () v4566 
+                                                                        let v4568 : string = "__future_init"
+                                                                        let v4569 : _ = Fable.Core.RustInterop.emitRustExpr () v4568 
+                                                                        let v4570 : string = "v4569"
+                                                                        let v4571 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4570 
+                                                                        let v4572 : string = "v4571.await"
+                                                                        let v4573 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4572 
+                                                                        let v4574 : US7 = method47(v4573)
+                                                                        let v4575 : string = v4563 + v4564 
+                                                                        let v4576 : string = "true; v4574 " + v4575 + "); " + v4563 + " // rust.fix_closure'"
+                                                                        let v4577 : bool = Fable.Core.RustInterop.emitRustExpr () v4576 
+                                                                        let v4578 : string = "__future_init"
+                                                                        let v4579 : _ = Fable.Core.RustInterop.emitRustExpr () v4578 
+                                                                        let v4580 : string = "v4579"
+                                                                        let v4581 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4580 
+                                                                        v4581
+                                                            | US6_0(v4115) -> (* Ok *)
+                                                                match v4115 with
                                                                 | US4_1 -> (* None *)
-                                                                    let v3943 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                    let v3944 : bool = Fable.Core.RustInterop.emitRustExpr () v3943 
-                                                                    let v3945 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                    let v3946 : bool = Fable.Core.RustInterop.emitRustExpr () v3945 
-                                                                    let v3947 : uint8 = method67()
-                                                                    let v3948 : string = ""
-                                                                    let v3949 : string = "}"
-                                                                    let v3950 : string = v3948 + v3949 
-                                                                    let v3951 : string = "true; v3947 " + v3950 + "); " + v3948 + " // rust.fix_closure'"
-                                                                    let v3952 : bool = Fable.Core.RustInterop.emitRustExpr () v3951 
-                                                                    let v3953 : string = "__future_init"
-                                                                    let v3954 : _ = Fable.Core.RustInterop.emitRustExpr () v3953 
-                                                                    let v3955 : string = "v3954"
-                                                                    let v3956 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3955 
-                                                                    let v3957 : string = "v3956.await"
-                                                                    let v3958 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3957 
-                                                                    let v3959 : US7 = method49(v3958)
-                                                                    let v3960 : string = v3948 + v3949 
-                                                                    let v3961 : string = "true; v3959 " + v3960 + "); " + v3948 + " // rust.fix_closure'"
-                                                                    let v3962 : bool = Fable.Core.RustInterop.emitRustExpr () v3961 
-                                                                    let v3963 : string = "__future_init"
-                                                                    let v3964 : _ = Fable.Core.RustInterop.emitRustExpr () v3963 
-                                                                    let v3965 : string = "v3964"
-                                                                    let v3966 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3965 
-                                                                    v3966
-                                                                | US4_0(v3967) -> (* Some *)
-                                                                    let v3968 : unit = ()
-                                                                    let v3969 : (unit -> unit) = closure73(v3967)
-                                                                    let v3970 : unit = (fun () -> v3969 (); v3968) ()
-                                                                    let v4083 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                    let v4084 : bool = Fable.Core.RustInterop.emitRustExpr () v4083 
-                                                                    let v4085 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                    let v4086 : bool = Fable.Core.RustInterop.emitRustExpr () v4085 
-                                                                    let v4087 : uint8 = method67()
-                                                                    let v4088 : string = ""
-                                                                    let v4089 : string = "}"
-                                                                    let v4090 : string = v4088 + v4089 
-                                                                    let v4091 : string = "true; v4087 " + v4090 + "); " + v4088 + " // rust.fix_closure'"
-                                                                    let v4092 : bool = Fable.Core.RustInterop.emitRustExpr () v4091 
-                                                                    let v4093 : string = "__future_init"
-                                                                    let v4094 : _ = Fable.Core.RustInterop.emitRustExpr () v4093 
-                                                                    let v4095 : string = "v4094"
-                                                                    let v4096 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4095 
-                                                                    let v4097 : string = "v4096.await"
-                                                                    let v4098 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4097 
-                                                                    let v4099 : US7 = method47(v4098)
-                                                                    let v4100 : string = v4088 + v4089 
-                                                                    let v4101 : string = "true; v4099 " + v4100 + "); " + v4088 + " // rust.fix_closure'"
-                                                                    let v4102 : bool = Fable.Core.RustInterop.emitRustExpr () v4101 
-                                                                    let v4103 : string = "__future_init"
-                                                                    let v4104 : _ = Fable.Core.RustInterop.emitRustExpr () v4103 
-                                                                    let v4105 : string = "v4104"
-                                                                    let v4106 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4105 
-                                                                    v4106
-                                                        | US6_0(v3651) -> (* Ok *)
-                                                            match v3651 with
+                                                                    let v4116 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                    let v4117 : bool = Fable.Core.RustInterop.emitRustExpr () v4116 
+                                                                    let v4118 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                    let v4119 : bool = Fable.Core.RustInterop.emitRustExpr () v4118 
+                                                                    let v4120 : uint8 = method67()
+                                                                    let v4121 : string = ""
+                                                                    let v4122 : string = "}"
+                                                                    let v4123 : string = v4121 + v4122 
+                                                                    let v4124 : string = "true; v4120 " + v4123 + "); " + v4121 + " // rust.fix_closure'"
+                                                                    let v4125 : bool = Fable.Core.RustInterop.emitRustExpr () v4124 
+                                                                    let v4126 : string = "__future_init"
+                                                                    let v4127 : _ = Fable.Core.RustInterop.emitRustExpr () v4126 
+                                                                    let v4128 : string = "v4127"
+                                                                    let v4129 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4128 
+                                                                    let v4130 : string = "v4129.await"
+                                                                    let v4131 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4130 
+                                                                    let v4132 : US7 = method49(v4131)
+                                                                    let v4133 : string = v4121 + v4122 
+                                                                    let v4134 : string = "true; v4132 " + v4133 + "); " + v4121 + " // rust.fix_closure'"
+                                                                    let v4135 : bool = Fable.Core.RustInterop.emitRustExpr () v4134 
+                                                                    let v4136 : string = "__future_init"
+                                                                    let v4137 : _ = Fable.Core.RustInterop.emitRustExpr () v4136 
+                                                                    let v4138 : string = "v4137"
+                                                                    let v4139 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4138 
+                                                                    v4139
+                                                                | US4_0(v4140) -> (* Some *)
+                                                                    let v4141 : unit = ()
+                                                                    let v4142 : (unit -> unit) = closure73(v4140)
+                                                                    let v4143 : unit = (fun () -> v4142 (); v4141) ()
+                                                                    let v4256 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                    let v4257 : bool = Fable.Core.RustInterop.emitRustExpr () v4256 
+                                                                    let v4258 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                    let v4259 : bool = Fable.Core.RustInterop.emitRustExpr () v4258 
+                                                                    let v4260 : uint8 = method67()
+                                                                    let v4261 : string = ""
+                                                                    let v4262 : string = "}"
+                                                                    let v4263 : string = v4261 + v4262 
+                                                                    let v4264 : string = "true; v4260 " + v4263 + "); " + v4261 + " // rust.fix_closure'"
+                                                                    let v4265 : bool = Fable.Core.RustInterop.emitRustExpr () v4264 
+                                                                    let v4266 : string = "__future_init"
+                                                                    let v4267 : _ = Fable.Core.RustInterop.emitRustExpr () v4266 
+                                                                    let v4268 : string = "v4267"
+                                                                    let v4269 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v4268 
+                                                                    let v4270 : string = "v4269.await"
+                                                                    let v4271 : uint8 = Fable.Core.RustInterop.emitRustExpr () v4270 
+                                                                    let v4272 : US7 = method47(v4271)
+                                                                    let v4273 : string = v4261 + v4262 
+                                                                    let v4274 : string = "true; v4272 " + v4273 + "); " + v4261 + " // rust.fix_closure'"
+                                                                    let v4275 : bool = Fable.Core.RustInterop.emitRustExpr () v4274 
+                                                                    let v4276 : string = "__future_init"
+                                                                    let v4277 : _ = Fable.Core.RustInterop.emitRustExpr () v4276 
+                                                                    let v4278 : string = "v4277"
+                                                                    let v4279 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v4278 
+                                                                    v4279
+                                                        | US6_0(v3813) -> (* Ok *)
+                                                            match v3813 with
                                                             | US4_1 -> (* None *)
-                                                                let v3652 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                let v3653 : bool = Fable.Core.RustInterop.emitRustExpr () v3652 
-                                                                let v3654 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                let v3655 : bool = Fable.Core.RustInterop.emitRustExpr () v3654 
-                                                                let v3656 : uint8 = method68()
-                                                                let v3657 : string = ""
-                                                                let v3658 : string = "}"
-                                                                let v3659 : string = v3657 + v3658 
-                                                                let v3660 : string = "true; v3656 " + v3659 + "); " + v3657 + " // rust.fix_closure'"
-                                                                let v3661 : bool = Fable.Core.RustInterop.emitRustExpr () v3660 
-                                                                let v3662 : string = "__future_init"
-                                                                let v3663 : _ = Fable.Core.RustInterop.emitRustExpr () v3662 
-                                                                let v3664 : string = "v3663"
-                                                                let v3665 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3664 
-                                                                let v3666 : string = "v3665.await"
-                                                                let v3667 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3666 
-                                                                let v3668 : US7 = method49(v3667)
-                                                                let v3669 : string = v3657 + v3658 
-                                                                let v3670 : string = "true; v3668 " + v3669 + "); " + v3657 + " // rust.fix_closure'"
-                                                                let v3671 : bool = Fable.Core.RustInterop.emitRustExpr () v3670 
-                                                                let v3672 : string = "__future_init"
-                                                                let v3673 : _ = Fable.Core.RustInterop.emitRustExpr () v3672 
-                                                                let v3674 : string = "v3673"
-                                                                let v3675 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3674 
-                                                                v3675
-                                                            | US4_0(v3676) -> (* Some *)
-                                                                let v3677 : unit = ()
-                                                                let v3678 : (unit -> unit) = closure74(v3676)
-                                                                let v3679 : unit = (fun () -> v3678 (); v3677) ()
-                                                                let v3792 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                let v3793 : bool = Fable.Core.RustInterop.emitRustExpr () v3792 
-                                                                let v3794 : string = "true; let __future_init = Box::pin(async move { //"
-                                                                let v3795 : bool = Fable.Core.RustInterop.emitRustExpr () v3794 
-                                                                let v3796 : uint8 = method68()
-                                                                let v3797 : string = ""
-                                                                let v3798 : string = "}"
-                                                                let v3799 : string = v3797 + v3798 
-                                                                let v3800 : string = "true; v3796 " + v3799 + "); " + v3797 + " // rust.fix_closure'"
-                                                                let v3801 : bool = Fable.Core.RustInterop.emitRustExpr () v3800 
-                                                                let v3802 : string = "__future_init"
-                                                                let v3803 : _ = Fable.Core.RustInterop.emitRustExpr () v3802 
-                                                                let v3804 : string = "v3803"
-                                                                let v3805 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3804 
-                                                                let v3806 : string = "v3805.await"
-                                                                let v3807 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3806 
-                                                                let v3808 : US7 = method47(v3807)
-                                                                let v3809 : string = v3797 + v3798 
-                                                                let v3810 : string = "true; v3808 " + v3809 + "); " + v3797 + " // rust.fix_closure'"
-                                                                let v3811 : bool = Fable.Core.RustInterop.emitRustExpr () v3810 
-                                                                let v3812 : string = "__future_init"
-                                                                let v3813 : _ = Fable.Core.RustInterop.emitRustExpr () v3812 
-                                                                let v3814 : string = "v3813"
-                                                                let v3815 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3814 
-                                                                v3815
-                                                    | US6_0(v3360) -> (* Ok *)
-                                                        match v3360 with
+                                                                let v3814 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                let v3815 : bool = Fable.Core.RustInterop.emitRustExpr () v3814 
+                                                                let v3816 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                let v3817 : bool = Fable.Core.RustInterop.emitRustExpr () v3816 
+                                                                let v3818 : uint8 = method68()
+                                                                let v3819 : string = ""
+                                                                let v3820 : string = "}"
+                                                                let v3821 : string = v3819 + v3820 
+                                                                let v3822 : string = "true; v3818 " + v3821 + "); " + v3819 + " // rust.fix_closure'"
+                                                                let v3823 : bool = Fable.Core.RustInterop.emitRustExpr () v3822 
+                                                                let v3824 : string = "__future_init"
+                                                                let v3825 : _ = Fable.Core.RustInterop.emitRustExpr () v3824 
+                                                                let v3826 : string = "v3825"
+                                                                let v3827 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3826 
+                                                                let v3828 : string = "v3827.await"
+                                                                let v3829 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3828 
+                                                                let v3830 : US7 = method49(v3829)
+                                                                let v3831 : string = v3819 + v3820 
+                                                                let v3832 : string = "true; v3830 " + v3831 + "); " + v3819 + " // rust.fix_closure'"
+                                                                let v3833 : bool = Fable.Core.RustInterop.emitRustExpr () v3832 
+                                                                let v3834 : string = "__future_init"
+                                                                let v3835 : _ = Fable.Core.RustInterop.emitRustExpr () v3834 
+                                                                let v3836 : string = "v3835"
+                                                                let v3837 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3836 
+                                                                v3837
+                                                            | US4_0(v3838) -> (* Some *)
+                                                                let v3839 : unit = ()
+                                                                let v3840 : (unit -> unit) = closure74(v3838)
+                                                                let v3841 : unit = (fun () -> v3840 (); v3839) ()
+                                                                let v3954 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                let v3955 : bool = Fable.Core.RustInterop.emitRustExpr () v3954 
+                                                                let v3956 : string = "true; let __future_init = Box::pin(async move { //"
+                                                                let v3957 : bool = Fable.Core.RustInterop.emitRustExpr () v3956 
+                                                                let v3958 : uint8 = method68()
+                                                                let v3959 : string = ""
+                                                                let v3960 : string = "}"
+                                                                let v3961 : string = v3959 + v3960 
+                                                                let v3962 : string = "true; v3958 " + v3961 + "); " + v3959 + " // rust.fix_closure'"
+                                                                let v3963 : bool = Fable.Core.RustInterop.emitRustExpr () v3962 
+                                                                let v3964 : string = "__future_init"
+                                                                let v3965 : _ = Fable.Core.RustInterop.emitRustExpr () v3964 
+                                                                let v3966 : string = "v3965"
+                                                                let v3967 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3966 
+                                                                let v3968 : string = "v3967.await"
+                                                                let v3969 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3968 
+                                                                let v3970 : US7 = method47(v3969)
+                                                                let v3971 : string = v3959 + v3960 
+                                                                let v3972 : string = "true; v3970 " + v3971 + "); " + v3959 + " // rust.fix_closure'"
+                                                                let v3973 : bool = Fable.Core.RustInterop.emitRustExpr () v3972 
+                                                                let v3974 : string = "__future_init"
+                                                                let v3975 : _ = Fable.Core.RustInterop.emitRustExpr () v3974 
+                                                                let v3976 : string = "v3975"
+                                                                let v3977 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3976 
+                                                                v3977
+                                                    | US6_0(v3511) -> (* Ok *)
+                                                        match v3511 with
                                                         | US4_1 -> (* None *)
-                                                            let v3361 : string = "true; let __future_init = Box::pin(async move { //"
-                                                            let v3362 : bool = Fable.Core.RustInterop.emitRustExpr () v3361 
-                                                            let v3363 : string = "true; let __future_init = Box::pin(async move { //"
-                                                            let v3364 : bool = Fable.Core.RustInterop.emitRustExpr () v3363 
-                                                            let v3365 : uint8 = method69()
-                                                            let v3366 : string = ""
-                                                            let v3367 : string = "}"
-                                                            let v3368 : string = v3366 + v3367 
-                                                            let v3369 : string = "true; v3365 " + v3368 + "); " + v3366 + " // rust.fix_closure'"
-                                                            let v3370 : bool = Fable.Core.RustInterop.emitRustExpr () v3369 
-                                                            let v3371 : string = "__future_init"
-                                                            let v3372 : _ = Fable.Core.RustInterop.emitRustExpr () v3371 
-                                                            let v3373 : string = "v3372"
-                                                            let v3374 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3373 
-                                                            let v3375 : string = "v3374.await"
-                                                            let v3376 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3375 
-                                                            let v3377 : US7 = method49(v3376)
-                                                            let v3378 : string = v3366 + v3367 
-                                                            let v3379 : string = "true; v3377 " + v3378 + "); " + v3366 + " // rust.fix_closure'"
-                                                            let v3380 : bool = Fable.Core.RustInterop.emitRustExpr () v3379 
-                                                            let v3381 : string = "__future_init"
-                                                            let v3382 : _ = Fable.Core.RustInterop.emitRustExpr () v3381 
-                                                            let v3383 : string = "v3382"
-                                                            let v3384 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3383 
-                                                            v3384
-                                                        | US4_0(v3385) -> (* Some *)
-                                                            let v3386 : unit = ()
-                                                            let v3387 : (unit -> unit) = closure75(v3385)
-                                                            let v3388 : unit = (fun () -> v3387 (); v3386) ()
-                                                            let v3501 : string = "true; let __future_init = Box::pin(async move { //"
-                                                            let v3502 : bool = Fable.Core.RustInterop.emitRustExpr () v3501 
-                                                            let v3503 : string = "true; let __future_init = Box::pin(async move { //"
-                                                            let v3504 : bool = Fable.Core.RustInterop.emitRustExpr () v3503 
-                                                            let v3505 : uint8 = method69()
-                                                            let v3506 : string = ""
-                                                            let v3507 : string = "}"
-                                                            let v3508 : string = v3506 + v3507 
-                                                            let v3509 : string = "true; v3505 " + v3508 + "); " + v3506 + " // rust.fix_closure'"
-                                                            let v3510 : bool = Fable.Core.RustInterop.emitRustExpr () v3509 
-                                                            let v3511 : string = "__future_init"
-                                                            let v3512 : _ = Fable.Core.RustInterop.emitRustExpr () v3511 
-                                                            let v3513 : string = "v3512"
-                                                            let v3514 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3513 
-                                                            let v3515 : string = "v3514.await"
-                                                            let v3516 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3515 
-                                                            let v3517 : US7 = method47(v3516)
-                                                            let v3518 : string = v3506 + v3507 
-                                                            let v3519 : string = "true; v3517 " + v3518 + "); " + v3506 + " // rust.fix_closure'"
-                                                            let v3520 : bool = Fable.Core.RustInterop.emitRustExpr () v3519 
-                                                            let v3521 : string = "__future_init"
-                                                            let v3522 : _ = Fable.Core.RustInterop.emitRustExpr () v3521 
-                                                            let v3523 : string = "v3522"
-                                                            let v3524 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3523 
-                                                            v3524
-                                                | US6_0(v3069) -> (* Ok *)
-                                                    match v3069 with
+                                                            let v3512 : string = "true; let __future_init = Box::pin(async move { //"
+                                                            let v3513 : bool = Fable.Core.RustInterop.emitRustExpr () v3512 
+                                                            let v3514 : string = "true; let __future_init = Box::pin(async move { //"
+                                                            let v3515 : bool = Fable.Core.RustInterop.emitRustExpr () v3514 
+                                                            let v3516 : uint8 = method69()
+                                                            let v3517 : string = ""
+                                                            let v3518 : string = "}"
+                                                            let v3519 : string = v3517 + v3518 
+                                                            let v3520 : string = "true; v3516 " + v3519 + "); " + v3517 + " // rust.fix_closure'"
+                                                            let v3521 : bool = Fable.Core.RustInterop.emitRustExpr () v3520 
+                                                            let v3522 : string = "__future_init"
+                                                            let v3523 : _ = Fable.Core.RustInterop.emitRustExpr () v3522 
+                                                            let v3524 : string = "v3523"
+                                                            let v3525 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3524 
+                                                            let v3526 : string = "v3525.await"
+                                                            let v3527 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3526 
+                                                            let v3528 : US7 = method49(v3527)
+                                                            let v3529 : string = v3517 + v3518 
+                                                            let v3530 : string = "true; v3528 " + v3529 + "); " + v3517 + " // rust.fix_closure'"
+                                                            let v3531 : bool = Fable.Core.RustInterop.emitRustExpr () v3530 
+                                                            let v3532 : string = "__future_init"
+                                                            let v3533 : _ = Fable.Core.RustInterop.emitRustExpr () v3532 
+                                                            let v3534 : string = "v3533"
+                                                            let v3535 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3534 
+                                                            v3535
+                                                        | US4_0(v3536) -> (* Some *)
+                                                            let v3537 : unit = ()
+                                                            let v3538 : (unit -> unit) = closure75(v3536)
+                                                            let v3539 : unit = (fun () -> v3538 (); v3537) ()
+                                                            let v3652 : string = "true; let __future_init = Box::pin(async move { //"
+                                                            let v3653 : bool = Fable.Core.RustInterop.emitRustExpr () v3652 
+                                                            let v3654 : string = "true; let __future_init = Box::pin(async move { //"
+                                                            let v3655 : bool = Fable.Core.RustInterop.emitRustExpr () v3654 
+                                                            let v3656 : uint8 = method69()
+                                                            let v3657 : string = ""
+                                                            let v3658 : string = "}"
+                                                            let v3659 : string = v3657 + v3658 
+                                                            let v3660 : string = "true; v3656 " + v3659 + "); " + v3657 + " // rust.fix_closure'"
+                                                            let v3661 : bool = Fable.Core.RustInterop.emitRustExpr () v3660 
+                                                            let v3662 : string = "__future_init"
+                                                            let v3663 : _ = Fable.Core.RustInterop.emitRustExpr () v3662 
+                                                            let v3664 : string = "v3663"
+                                                            let v3665 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3664 
+                                                            let v3666 : string = "v3665.await"
+                                                            let v3667 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3666 
+                                                            let v3668 : US7 = method47(v3667)
+                                                            let v3669 : string = v3657 + v3658 
+                                                            let v3670 : string = "true; v3668 " + v3669 + "); " + v3657 + " // rust.fix_closure'"
+                                                            let v3671 : bool = Fable.Core.RustInterop.emitRustExpr () v3670 
+                                                            let v3672 : string = "__future_init"
+                                                            let v3673 : _ = Fable.Core.RustInterop.emitRustExpr () v3672 
+                                                            let v3674 : string = "v3673"
+                                                            let v3675 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3674 
+                                                            v3675
+                                                | US6_0(v3209) -> (* Ok *)
+                                                    match v3209 with
                                                     | US4_1 -> (* None *)
-                                                        let v3070 : string = "true; let __future_init = Box::pin(async move { //"
-                                                        let v3071 : bool = Fable.Core.RustInterop.emitRustExpr () v3070 
-                                                        let v3072 : string = "true; let __future_init = Box::pin(async move { //"
-                                                        let v3073 : bool = Fable.Core.RustInterop.emitRustExpr () v3072 
-                                                        let v3074 : uint8 = method70()
-                                                        let v3075 : string = ""
-                                                        let v3076 : string = "}"
-                                                        let v3077 : string = v3075 + v3076 
-                                                        let v3078 : string = "true; v3074 " + v3077 + "); " + v3075 + " // rust.fix_closure'"
-                                                        let v3079 : bool = Fable.Core.RustInterop.emitRustExpr () v3078 
-                                                        let v3080 : string = "__future_init"
-                                                        let v3081 : _ = Fable.Core.RustInterop.emitRustExpr () v3080 
-                                                        let v3082 : string = "v3081"
-                                                        let v3083 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3082 
-                                                        let v3084 : string = "v3083.await"
-                                                        let v3085 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3084 
-                                                        let v3086 : US7 = method49(v3085)
-                                                        let v3087 : string = v3075 + v3076 
-                                                        let v3088 : string = "true; v3086 " + v3087 + "); " + v3075 + " // rust.fix_closure'"
-                                                        let v3089 : bool = Fable.Core.RustInterop.emitRustExpr () v3088 
-                                                        let v3090 : string = "__future_init"
-                                                        let v3091 : _ = Fable.Core.RustInterop.emitRustExpr () v3090 
-                                                        let v3092 : string = "v3091"
-                                                        let v3093 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3092 
-                                                        v3093
-                                                    | US4_0(v3094) -> (* Some *)
-                                                        let v3095 : unit = ()
-                                                        let v3096 : (unit -> unit) = closure76(v3094)
-                                                        let v3097 : unit = (fun () -> v3096 (); v3095) ()
                                                         let v3210 : string = "true; let __future_init = Box::pin(async move { //"
                                                         let v3211 : bool = Fable.Core.RustInterop.emitRustExpr () v3210 
                                                         let v3212 : string = "true; let __future_init = Box::pin(async move { //"
@@ -6572,7 +8055,7 @@ and method20 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v3223 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3222 
                                                         let v3224 : string = "v3223.await"
                                                         let v3225 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3224 
-                                                        let v3226 : US7 = method47(v3225)
+                                                        let v3226 : US7 = method49(v3225)
                                                         let v3227 : string = v3215 + v3216 
                                                         let v3228 : string = "true; v3226 " + v3227 + "); " + v3215 + " // rust.fix_closure'"
                                                         let v3229 : bool = Fable.Core.RustInterop.emitRustExpr () v3228 
@@ -6581,604 +8064,663 @@ and method20 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Resu
                                                         let v3232 : string = "v3231"
                                                         let v3233 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3232 
                                                         v3233
-                                            | US6_0(v2778) -> (* Ok *)
-                                                match v2778 with
+                                                    | US4_0(v3234) -> (* Some *)
+                                                        let v3235 : unit = ()
+                                                        let v3236 : (unit -> unit) = closure76(v3234)
+                                                        let v3237 : unit = (fun () -> v3236 (); v3235) ()
+                                                        let v3350 : string = "true; let __future_init = Box::pin(async move { //"
+                                                        let v3351 : bool = Fable.Core.RustInterop.emitRustExpr () v3350 
+                                                        let v3352 : string = "true; let __future_init = Box::pin(async move { //"
+                                                        let v3353 : bool = Fable.Core.RustInterop.emitRustExpr () v3352 
+                                                        let v3354 : uint8 = method70()
+                                                        let v3355 : string = ""
+                                                        let v3356 : string = "}"
+                                                        let v3357 : string = v3355 + v3356 
+                                                        let v3358 : string = "true; v3354 " + v3357 + "); " + v3355 + " // rust.fix_closure'"
+                                                        let v3359 : bool = Fable.Core.RustInterop.emitRustExpr () v3358 
+                                                        let v3360 : string = "__future_init"
+                                                        let v3361 : _ = Fable.Core.RustInterop.emitRustExpr () v3360 
+                                                        let v3362 : string = "v3361"
+                                                        let v3363 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3362 
+                                                        let v3364 : string = "v3363.await"
+                                                        let v3365 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3364 
+                                                        let v3366 : US7 = method47(v3365)
+                                                        let v3367 : string = v3355 + v3356 
+                                                        let v3368 : string = "true; v3366 " + v3367 + "); " + v3355 + " // rust.fix_closure'"
+                                                        let v3369 : bool = Fable.Core.RustInterop.emitRustExpr () v3368 
+                                                        let v3370 : string = "__future_init"
+                                                        let v3371 : _ = Fable.Core.RustInterop.emitRustExpr () v3370 
+                                                        let v3372 : string = "v3371"
+                                                        let v3373 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3372 
+                                                        v3373
+                                            | US6_0(v2907) -> (* Ok *)
+                                                match v2907 with
                                                 | US4_1 -> (* None *)
-                                                    let v2779 : string = "true; let __future_init = Box::pin(async move { //"
-                                                    let v2780 : bool = Fable.Core.RustInterop.emitRustExpr () v2779 
-                                                    let v2781 : string = "true; let __future_init = Box::pin(async move { //"
-                                                    let v2782 : bool = Fable.Core.RustInterop.emitRustExpr () v2781 
-                                                    let v2783 : uint8 = method71()
-                                                    let v2784 : string = ""
-                                                    let v2785 : string = "}"
-                                                    let v2786 : string = v2784 + v2785 
-                                                    let v2787 : string = "true; v2783 " + v2786 + "); " + v2784 + " // rust.fix_closure'"
-                                                    let v2788 : bool = Fable.Core.RustInterop.emitRustExpr () v2787 
-                                                    let v2789 : string = "__future_init"
-                                                    let v2790 : _ = Fable.Core.RustInterop.emitRustExpr () v2789 
-                                                    let v2791 : string = "v2790"
-                                                    let v2792 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2791 
-                                                    let v2793 : string = "v2792.await"
-                                                    let v2794 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2793 
-                                                    let v2795 : US7 = method49(v2794)
-                                                    let v2796 : string = v2784 + v2785 
-                                                    let v2797 : string = "true; v2795 " + v2796 + "); " + v2784 + " // rust.fix_closure'"
-                                                    let v2798 : bool = Fable.Core.RustInterop.emitRustExpr () v2797 
-                                                    let v2799 : string = "__future_init"
-                                                    let v2800 : _ = Fable.Core.RustInterop.emitRustExpr () v2799 
-                                                    let v2801 : string = "v2800"
-                                                    let v2802 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2801 
-                                                    v2802
-                                                | US4_0(v2803) -> (* Some *)
-                                                    let v2804 : unit = ()
-                                                    let v2805 : (unit -> unit) = closure77(v2803)
-                                                    let v2806 : unit = (fun () -> v2805 (); v2804) ()
-                                                    let v2919 : string = "true; let __future_init = Box::pin(async move { //"
-                                                    let v2920 : bool = Fable.Core.RustInterop.emitRustExpr () v2919 
-                                                    let v2921 : string = "true; let __future_init = Box::pin(async move { //"
-                                                    let v2922 : bool = Fable.Core.RustInterop.emitRustExpr () v2921 
-                                                    let v2923 : uint8 = method71()
-                                                    let v2924 : string = ""
-                                                    let v2925 : string = "}"
-                                                    let v2926 : string = v2924 + v2925 
-                                                    let v2927 : string = "true; v2923 " + v2926 + "); " + v2924 + " // rust.fix_closure'"
-                                                    let v2928 : bool = Fable.Core.RustInterop.emitRustExpr () v2927 
-                                                    let v2929 : string = "__future_init"
-                                                    let v2930 : _ = Fable.Core.RustInterop.emitRustExpr () v2929 
-                                                    let v2931 : string = "v2930"
-                                                    let v2932 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2931 
-                                                    let v2933 : string = "v2932.await"
-                                                    let v2934 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2933 
-                                                    let v2935 : US7 = method47(v2934)
-                                                    let v2936 : string = v2924 + v2925 
-                                                    let v2937 : string = "true; v2935 " + v2936 + "); " + v2924 + " // rust.fix_closure'"
-                                                    let v2938 : bool = Fable.Core.RustInterop.emitRustExpr () v2937 
-                                                    let v2939 : string = "__future_init"
-                                                    let v2940 : _ = Fable.Core.RustInterop.emitRustExpr () v2939 
-                                                    let v2941 : string = "v2940"
-                                                    let v2942 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2941 
-                                                    v2942
-                                        | US6_0(v2487) -> (* Ok *)
-                                            match v2487 with
+                                                    let v2908 : string = "true; let __future_init = Box::pin(async move { //"
+                                                    let v2909 : bool = Fable.Core.RustInterop.emitRustExpr () v2908 
+                                                    let v2910 : string = "true; let __future_init = Box::pin(async move { //"
+                                                    let v2911 : bool = Fable.Core.RustInterop.emitRustExpr () v2910 
+                                                    let v2912 : uint8 = method71()
+                                                    let v2913 : string = ""
+                                                    let v2914 : string = "}"
+                                                    let v2915 : string = v2913 + v2914 
+                                                    let v2916 : string = "true; v2912 " + v2915 + "); " + v2913 + " // rust.fix_closure'"
+                                                    let v2917 : bool = Fable.Core.RustInterop.emitRustExpr () v2916 
+                                                    let v2918 : string = "__future_init"
+                                                    let v2919 : _ = Fable.Core.RustInterop.emitRustExpr () v2918 
+                                                    let v2920 : string = "v2919"
+                                                    let v2921 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2920 
+                                                    let v2922 : string = "v2921.await"
+                                                    let v2923 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2922 
+                                                    let v2924 : US7 = method49(v2923)
+                                                    let v2925 : string = v2913 + v2914 
+                                                    let v2926 : string = "true; v2924 " + v2925 + "); " + v2913 + " // rust.fix_closure'"
+                                                    let v2927 : bool = Fable.Core.RustInterop.emitRustExpr () v2926 
+                                                    let v2928 : string = "__future_init"
+                                                    let v2929 : _ = Fable.Core.RustInterop.emitRustExpr () v2928 
+                                                    let v2930 : string = "v2929"
+                                                    let v2931 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2930 
+                                                    v2931
+                                                | US4_0(v2932) -> (* Some *)
+                                                    let v2933 : unit = ()
+                                                    let v2934 : (unit -> unit) = closure77(v2932)
+                                                    let v2935 : unit = (fun () -> v2934 (); v2933) ()
+                                                    let v3048 : string = "true; let __future_init = Box::pin(async move { //"
+                                                    let v3049 : bool = Fable.Core.RustInterop.emitRustExpr () v3048 
+                                                    let v3050 : string = "true; let __future_init = Box::pin(async move { //"
+                                                    let v3051 : bool = Fable.Core.RustInterop.emitRustExpr () v3050 
+                                                    let v3052 : uint8 = method71()
+                                                    let v3053 : string = ""
+                                                    let v3054 : string = "}"
+                                                    let v3055 : string = v3053 + v3054 
+                                                    let v3056 : string = "true; v3052 " + v3055 + "); " + v3053 + " // rust.fix_closure'"
+                                                    let v3057 : bool = Fable.Core.RustInterop.emitRustExpr () v3056 
+                                                    let v3058 : string = "__future_init"
+                                                    let v3059 : _ = Fable.Core.RustInterop.emitRustExpr () v3058 
+                                                    let v3060 : string = "v3059"
+                                                    let v3061 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v3060 
+                                                    let v3062 : string = "v3061.await"
+                                                    let v3063 : uint8 = Fable.Core.RustInterop.emitRustExpr () v3062 
+                                                    let v3064 : US7 = method47(v3063)
+                                                    let v3065 : string = v3053 + v3054 
+                                                    let v3066 : string = "true; v3064 " + v3065 + "); " + v3053 + " // rust.fix_closure'"
+                                                    let v3067 : bool = Fable.Core.RustInterop.emitRustExpr () v3066 
+                                                    let v3068 : string = "__future_init"
+                                                    let v3069 : _ = Fable.Core.RustInterop.emitRustExpr () v3068 
+                                                    let v3070 : string = "v3069"
+                                                    let v3071 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v3070 
+                                                    v3071
+                                        | US6_0(v2605) -> (* Ok *)
+                                            match v2605 with
                                             | US4_1 -> (* None *)
-                                                let v2488 : string = "true; let __future_init = Box::pin(async move { //"
-                                                let v2489 : bool = Fable.Core.RustInterop.emitRustExpr () v2488 
-                                                let v2490 : string = "true; let __future_init = Box::pin(async move { //"
-                                                let v2491 : bool = Fable.Core.RustInterop.emitRustExpr () v2490 
-                                                let v2492 : uint8 = method72()
-                                                let v2493 : string = ""
-                                                let v2494 : string = "}"
-                                                let v2495 : string = v2493 + v2494 
-                                                let v2496 : string = "true; v2492 " + v2495 + "); " + v2493 + " // rust.fix_closure'"
-                                                let v2497 : bool = Fable.Core.RustInterop.emitRustExpr () v2496 
-                                                let v2498 : string = "__future_init"
-                                                let v2499 : _ = Fable.Core.RustInterop.emitRustExpr () v2498 
-                                                let v2500 : string = "v2499"
-                                                let v2501 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2500 
-                                                let v2502 : string = "v2501.await"
-                                                let v2503 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2502 
-                                                let v2504 : US7 = method49(v2503)
-                                                let v2505 : string = v2493 + v2494 
-                                                let v2506 : string = "true; v2504 " + v2505 + "); " + v2493 + " // rust.fix_closure'"
-                                                let v2507 : bool = Fable.Core.RustInterop.emitRustExpr () v2506 
-                                                let v2508 : string = "__future_init"
-                                                let v2509 : _ = Fable.Core.RustInterop.emitRustExpr () v2508 
-                                                let v2510 : string = "v2509"
-                                                let v2511 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2510 
-                                                v2511
-                                            | US4_0(v2512) -> (* Some *)
-                                                let v2513 : unit = ()
-                                                let v2514 : (unit -> unit) = closure78(v2512)
-                                                let v2515 : unit = (fun () -> v2514 (); v2513) ()
-                                                let v2628 : string = "true; let __future_init = Box::pin(async move { //"
-                                                let v2629 : bool = Fable.Core.RustInterop.emitRustExpr () v2628 
-                                                let v2630 : string = "true; let __future_init = Box::pin(async move { //"
-                                                let v2631 : bool = Fable.Core.RustInterop.emitRustExpr () v2630 
-                                                let v2632 : uint8 = method72()
-                                                let v2633 : string = ""
-                                                let v2634 : string = "}"
-                                                let v2635 : string = v2633 + v2634 
-                                                let v2636 : string = "true; v2632 " + v2635 + "); " + v2633 + " // rust.fix_closure'"
-                                                let v2637 : bool = Fable.Core.RustInterop.emitRustExpr () v2636 
-                                                let v2638 : string = "__future_init"
-                                                let v2639 : _ = Fable.Core.RustInterop.emitRustExpr () v2638 
-                                                let v2640 : string = "v2639"
-                                                let v2641 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2640 
-                                                let v2642 : string = "v2641.await"
-                                                let v2643 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2642 
-                                                let v2644 : US7 = method47(v2643)
-                                                let v2645 : string = v2633 + v2634 
-                                                let v2646 : string = "true; v2644 " + v2645 + "); " + v2633 + " // rust.fix_closure'"
-                                                let v2647 : bool = Fable.Core.RustInterop.emitRustExpr () v2646 
-                                                let v2648 : string = "__future_init"
-                                                let v2649 : _ = Fable.Core.RustInterop.emitRustExpr () v2648 
-                                                let v2650 : string = "v2649"
-                                                let v2651 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2650 
-                                                v2651
-                                    | US6_0(v2196) -> (* Ok *)
-                                        match v2196 with
+                                                let v2606 : string = "true; let __future_init = Box::pin(async move { //"
+                                                let v2607 : bool = Fable.Core.RustInterop.emitRustExpr () v2606 
+                                                let v2608 : string = "true; let __future_init = Box::pin(async move { //"
+                                                let v2609 : bool = Fable.Core.RustInterop.emitRustExpr () v2608 
+                                                let v2610 : uint8 = method72()
+                                                let v2611 : string = ""
+                                                let v2612 : string = "}"
+                                                let v2613 : string = v2611 + v2612 
+                                                let v2614 : string = "true; v2610 " + v2613 + "); " + v2611 + " // rust.fix_closure'"
+                                                let v2615 : bool = Fable.Core.RustInterop.emitRustExpr () v2614 
+                                                let v2616 : string = "__future_init"
+                                                let v2617 : _ = Fable.Core.RustInterop.emitRustExpr () v2616 
+                                                let v2618 : string = "v2617"
+                                                let v2619 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2618 
+                                                let v2620 : string = "v2619.await"
+                                                let v2621 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2620 
+                                                let v2622 : US7 = method49(v2621)
+                                                let v2623 : string = v2611 + v2612 
+                                                let v2624 : string = "true; v2622 " + v2623 + "); " + v2611 + " // rust.fix_closure'"
+                                                let v2625 : bool = Fable.Core.RustInterop.emitRustExpr () v2624 
+                                                let v2626 : string = "__future_init"
+                                                let v2627 : _ = Fable.Core.RustInterop.emitRustExpr () v2626 
+                                                let v2628 : string = "v2627"
+                                                let v2629 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2628 
+                                                v2629
+                                            | US4_0(v2630) -> (* Some *)
+                                                let v2631 : unit = ()
+                                                let v2632 : (unit -> unit) = closure78(v2630)
+                                                let v2633 : unit = (fun () -> v2632 (); v2631) ()
+                                                let v2746 : string = "true; let __future_init = Box::pin(async move { //"
+                                                let v2747 : bool = Fable.Core.RustInterop.emitRustExpr () v2746 
+                                                let v2748 : string = "true; let __future_init = Box::pin(async move { //"
+                                                let v2749 : bool = Fable.Core.RustInterop.emitRustExpr () v2748 
+                                                let v2750 : uint8 = method72()
+                                                let v2751 : string = ""
+                                                let v2752 : string = "}"
+                                                let v2753 : string = v2751 + v2752 
+                                                let v2754 : string = "true; v2750 " + v2753 + "); " + v2751 + " // rust.fix_closure'"
+                                                let v2755 : bool = Fable.Core.RustInterop.emitRustExpr () v2754 
+                                                let v2756 : string = "__future_init"
+                                                let v2757 : _ = Fable.Core.RustInterop.emitRustExpr () v2756 
+                                                let v2758 : string = "v2757"
+                                                let v2759 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2758 
+                                                let v2760 : string = "v2759.await"
+                                                let v2761 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2760 
+                                                let v2762 : US7 = method47(v2761)
+                                                let v2763 : string = v2751 + v2752 
+                                                let v2764 : string = "true; v2762 " + v2763 + "); " + v2751 + " // rust.fix_closure'"
+                                                let v2765 : bool = Fable.Core.RustInterop.emitRustExpr () v2764 
+                                                let v2766 : string = "__future_init"
+                                                let v2767 : _ = Fable.Core.RustInterop.emitRustExpr () v2766 
+                                                let v2768 : string = "v2767"
+                                                let v2769 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2768 
+                                                v2769
+                                    | US6_0(v2303) -> (* Ok *)
+                                        match v2303 with
                                         | US4_1 -> (* None *)
-                                            let v2197 : string = "true; let __future_init = Box::pin(async move { //"
-                                            let v2198 : bool = Fable.Core.RustInterop.emitRustExpr () v2197 
-                                            let v2199 : string = "true; let __future_init = Box::pin(async move { //"
-                                            let v2200 : bool = Fable.Core.RustInterop.emitRustExpr () v2199 
-                                            let v2201 : uint8 = method73()
-                                            let v2202 : string = ""
-                                            let v2203 : string = "}"
-                                            let v2204 : string = v2202 + v2203 
-                                            let v2205 : string = "true; v2201 " + v2204 + "); " + v2202 + " // rust.fix_closure'"
-                                            let v2206 : bool = Fable.Core.RustInterop.emitRustExpr () v2205 
-                                            let v2207 : string = "__future_init"
-                                            let v2208 : _ = Fable.Core.RustInterop.emitRustExpr () v2207 
-                                            let v2209 : string = "v2208"
-                                            let v2210 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2209 
-                                            let v2211 : string = "v2210.await"
-                                            let v2212 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2211 
-                                            let v2213 : US7 = method49(v2212)
-                                            let v2214 : string = v2202 + v2203 
-                                            let v2215 : string = "true; v2213 " + v2214 + "); " + v2202 + " // rust.fix_closure'"
-                                            let v2216 : bool = Fable.Core.RustInterop.emitRustExpr () v2215 
-                                            let v2217 : string = "__future_init"
-                                            let v2218 : _ = Fable.Core.RustInterop.emitRustExpr () v2217 
-                                            let v2219 : string = "v2218"
-                                            let v2220 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2219 
-                                            v2220
-                                        | US4_0(v2221) -> (* Some *)
-                                            let v2222 : unit = ()
-                                            let v2223 : (unit -> unit) = closure79(v2221)
-                                            let v2224 : unit = (fun () -> v2223 (); v2222) ()
-                                            let v2337 : string = "true; let __future_init = Box::pin(async move { //"
-                                            let v2338 : bool = Fable.Core.RustInterop.emitRustExpr () v2337 
-                                            let v2339 : string = "true; let __future_init = Box::pin(async move { //"
-                                            let v2340 : bool = Fable.Core.RustInterop.emitRustExpr () v2339 
-                                            let v2341 : uint8 = method73()
-                                            let v2342 : string = ""
-                                            let v2343 : string = "}"
-                                            let v2344 : string = v2342 + v2343 
-                                            let v2345 : string = "true; v2341 " + v2344 + "); " + v2342 + " // rust.fix_closure'"
-                                            let v2346 : bool = Fable.Core.RustInterop.emitRustExpr () v2345 
-                                            let v2347 : string = "__future_init"
-                                            let v2348 : _ = Fable.Core.RustInterop.emitRustExpr () v2347 
-                                            let v2349 : string = "v2348"
-                                            let v2350 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2349 
-                                            let v2351 : string = "v2350.await"
-                                            let v2352 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2351 
-                                            let v2353 : US7 = method47(v2352)
-                                            let v2354 : string = v2342 + v2343 
-                                            let v2355 : string = "true; v2353 " + v2354 + "); " + v2342 + " // rust.fix_closure'"
-                                            let v2356 : bool = Fable.Core.RustInterop.emitRustExpr () v2355 
-                                            let v2357 : string = "__future_init"
-                                            let v2358 : _ = Fable.Core.RustInterop.emitRustExpr () v2357 
-                                            let v2359 : string = "v2358"
-                                            let v2360 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2359 
-                                            v2360
-                                | US6_0(v1905) -> (* Ok *)
-                                    match v1905 with
+                                            let v2304 : string = "true; let __future_init = Box::pin(async move { //"
+                                            let v2305 : bool = Fable.Core.RustInterop.emitRustExpr () v2304 
+                                            let v2306 : string = "true; let __future_init = Box::pin(async move { //"
+                                            let v2307 : bool = Fable.Core.RustInterop.emitRustExpr () v2306 
+                                            let v2308 : uint8 = method73()
+                                            let v2309 : string = ""
+                                            let v2310 : string = "}"
+                                            let v2311 : string = v2309 + v2310 
+                                            let v2312 : string = "true; v2308 " + v2311 + "); " + v2309 + " // rust.fix_closure'"
+                                            let v2313 : bool = Fable.Core.RustInterop.emitRustExpr () v2312 
+                                            let v2314 : string = "__future_init"
+                                            let v2315 : _ = Fable.Core.RustInterop.emitRustExpr () v2314 
+                                            let v2316 : string = "v2315"
+                                            let v2317 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2316 
+                                            let v2318 : string = "v2317.await"
+                                            let v2319 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2318 
+                                            let v2320 : US7 = method49(v2319)
+                                            let v2321 : string = v2309 + v2310 
+                                            let v2322 : string = "true; v2320 " + v2321 + "); " + v2309 + " // rust.fix_closure'"
+                                            let v2323 : bool = Fable.Core.RustInterop.emitRustExpr () v2322 
+                                            let v2324 : string = "__future_init"
+                                            let v2325 : _ = Fable.Core.RustInterop.emitRustExpr () v2324 
+                                            let v2326 : string = "v2325"
+                                            let v2327 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2326 
+                                            v2327
+                                        | US4_0(v2328) -> (* Some *)
+                                            let v2329 : unit = ()
+                                            let v2330 : (unit -> unit) = closure79(v2328)
+                                            let v2331 : unit = (fun () -> v2330 (); v2329) ()
+                                            let v2444 : string = "true; let __future_init = Box::pin(async move { //"
+                                            let v2445 : bool = Fable.Core.RustInterop.emitRustExpr () v2444 
+                                            let v2446 : string = "true; let __future_init = Box::pin(async move { //"
+                                            let v2447 : bool = Fable.Core.RustInterop.emitRustExpr () v2446 
+                                            let v2448 : uint8 = method73()
+                                            let v2449 : string = ""
+                                            let v2450 : string = "}"
+                                            let v2451 : string = v2449 + v2450 
+                                            let v2452 : string = "true; v2448 " + v2451 + "); " + v2449 + " // rust.fix_closure'"
+                                            let v2453 : bool = Fable.Core.RustInterop.emitRustExpr () v2452 
+                                            let v2454 : string = "__future_init"
+                                            let v2455 : _ = Fable.Core.RustInterop.emitRustExpr () v2454 
+                                            let v2456 : string = "v2455"
+                                            let v2457 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2456 
+                                            let v2458 : string = "v2457.await"
+                                            let v2459 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2458 
+                                            let v2460 : US7 = method47(v2459)
+                                            let v2461 : string = v2449 + v2450 
+                                            let v2462 : string = "true; v2460 " + v2461 + "); " + v2449 + " // rust.fix_closure'"
+                                            let v2463 : bool = Fable.Core.RustInterop.emitRustExpr () v2462 
+                                            let v2464 : string = "__future_init"
+                                            let v2465 : _ = Fable.Core.RustInterop.emitRustExpr () v2464 
+                                            let v2466 : string = "v2465"
+                                            let v2467 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2466 
+                                            v2467
+                                | US6_0(v2001) -> (* Ok *)
+                                    match v2001 with
                                     | US4_1 -> (* None *)
-                                        let v1906 : string = "true; let __future_init = Box::pin(async move { //"
-                                        let v1907 : bool = Fable.Core.RustInterop.emitRustExpr () v1906 
-                                        let v1908 : string = "true; let __future_init = Box::pin(async move { //"
-                                        let v1909 : bool = Fable.Core.RustInterop.emitRustExpr () v1908 
-                                        let v1910 : uint8 = method74()
-                                        let v1911 : string = ""
-                                        let v1912 : string = "}"
-                                        let v1913 : string = v1911 + v1912 
-                                        let v1914 : string = "true; v1910 " + v1913 + "); " + v1911 + " // rust.fix_closure'"
-                                        let v1915 : bool = Fable.Core.RustInterop.emitRustExpr () v1914 
-                                        let v1916 : string = "__future_init"
-                                        let v1917 : _ = Fable.Core.RustInterop.emitRustExpr () v1916 
-                                        let v1918 : string = "v1917"
-                                        let v1919 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1918 
-                                        let v1920 : string = "v1919.await"
-                                        let v1921 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1920 
-                                        let v1922 : US7 = method49(v1921)
-                                        let v1923 : string = v1911 + v1912 
-                                        let v1924 : string = "true; v1922 " + v1923 + "); " + v1911 + " // rust.fix_closure'"
-                                        let v1925 : bool = Fable.Core.RustInterop.emitRustExpr () v1924 
-                                        let v1926 : string = "__future_init"
-                                        let v1927 : _ = Fable.Core.RustInterop.emitRustExpr () v1926 
-                                        let v1928 : string = "v1927"
-                                        let v1929 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1928 
-                                        v1929
-                                    | US4_0(v1930) -> (* Some *)
-                                        let v1931 : unit = ()
-                                        let v1932 : (unit -> unit) = closure80(v1930)
-                                        let v1933 : unit = (fun () -> v1932 (); v1931) ()
-                                        let v2046 : string = "true; let __future_init = Box::pin(async move { //"
-                                        let v2047 : bool = Fable.Core.RustInterop.emitRustExpr () v2046 
-                                        let v2048 : string = "true; let __future_init = Box::pin(async move { //"
-                                        let v2049 : bool = Fable.Core.RustInterop.emitRustExpr () v2048 
-                                        let v2050 : uint8 = method74()
-                                        let v2051 : string = ""
-                                        let v2052 : string = "}"
-                                        let v2053 : string = v2051 + v2052 
-                                        let v2054 : string = "true; v2050 " + v2053 + "); " + v2051 + " // rust.fix_closure'"
-                                        let v2055 : bool = Fable.Core.RustInterop.emitRustExpr () v2054 
-                                        let v2056 : string = "__future_init"
-                                        let v2057 : _ = Fable.Core.RustInterop.emitRustExpr () v2056 
-                                        let v2058 : string = "v2057"
-                                        let v2059 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2058 
-                                        let v2060 : string = "v2059.await"
-                                        let v2061 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2060 
-                                        let v2062 : US7 = method47(v2061)
-                                        let v2063 : string = v2051 + v2052 
-                                        let v2064 : string = "true; v2062 " + v2063 + "); " + v2051 + " // rust.fix_closure'"
-                                        let v2065 : bool = Fable.Core.RustInterop.emitRustExpr () v2064 
-                                        let v2066 : string = "__future_init"
-                                        let v2067 : _ = Fable.Core.RustInterop.emitRustExpr () v2066 
-                                        let v2068 : string = "v2067"
-                                        let v2069 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2068 
-                                        v2069
-                            | US6_0(v1614) -> (* Ok *)
-                                match v1614 with
+                                        let v2002 : string = "true; let __future_init = Box::pin(async move { //"
+                                        let v2003 : bool = Fable.Core.RustInterop.emitRustExpr () v2002 
+                                        let v2004 : string = "true; let __future_init = Box::pin(async move { //"
+                                        let v2005 : bool = Fable.Core.RustInterop.emitRustExpr () v2004 
+                                        let v2006 : uint8 = method74()
+                                        let v2007 : string = ""
+                                        let v2008 : string = "}"
+                                        let v2009 : string = v2007 + v2008 
+                                        let v2010 : string = "true; v2006 " + v2009 + "); " + v2007 + " // rust.fix_closure'"
+                                        let v2011 : bool = Fable.Core.RustInterop.emitRustExpr () v2010 
+                                        let v2012 : string = "__future_init"
+                                        let v2013 : _ = Fable.Core.RustInterop.emitRustExpr () v2012 
+                                        let v2014 : string = "v2013"
+                                        let v2015 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2014 
+                                        let v2016 : string = "v2015.await"
+                                        let v2017 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2016 
+                                        let v2018 : US7 = method49(v2017)
+                                        let v2019 : string = v2007 + v2008 
+                                        let v2020 : string = "true; v2018 " + v2019 + "); " + v2007 + " // rust.fix_closure'"
+                                        let v2021 : bool = Fable.Core.RustInterop.emitRustExpr () v2020 
+                                        let v2022 : string = "__future_init"
+                                        let v2023 : _ = Fable.Core.RustInterop.emitRustExpr () v2022 
+                                        let v2024 : string = "v2023"
+                                        let v2025 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2024 
+                                        v2025
+                                    | US4_0(v2026) -> (* Some *)
+                                        let v2027 : unit = ()
+                                        let v2028 : (unit -> unit) = closure80(v2026)
+                                        let v2029 : unit = (fun () -> v2028 (); v2027) ()
+                                        let v2142 : string = "true; let __future_init = Box::pin(async move { //"
+                                        let v2143 : bool = Fable.Core.RustInterop.emitRustExpr () v2142 
+                                        let v2144 : string = "true; let __future_init = Box::pin(async move { //"
+                                        let v2145 : bool = Fable.Core.RustInterop.emitRustExpr () v2144 
+                                        let v2146 : uint8 = method74()
+                                        let v2147 : string = ""
+                                        let v2148 : string = "}"
+                                        let v2149 : string = v2147 + v2148 
+                                        let v2150 : string = "true; v2146 " + v2149 + "); " + v2147 + " // rust.fix_closure'"
+                                        let v2151 : bool = Fable.Core.RustInterop.emitRustExpr () v2150 
+                                        let v2152 : string = "__future_init"
+                                        let v2153 : _ = Fable.Core.RustInterop.emitRustExpr () v2152 
+                                        let v2154 : string = "v2153"
+                                        let v2155 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v2154 
+                                        let v2156 : string = "v2155.await"
+                                        let v2157 : uint8 = Fable.Core.RustInterop.emitRustExpr () v2156 
+                                        let v2158 : US7 = method47(v2157)
+                                        let v2159 : string = v2147 + v2148 
+                                        let v2160 : string = "true; v2158 " + v2159 + "); " + v2147 + " // rust.fix_closure'"
+                                        let v2161 : bool = Fable.Core.RustInterop.emitRustExpr () v2160 
+                                        let v2162 : string = "__future_init"
+                                        let v2163 : _ = Fable.Core.RustInterop.emitRustExpr () v2162 
+                                        let v2164 : string = "v2163"
+                                        let v2165 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v2164 
+                                        v2165
+                            | US6_0(v1699) -> (* Ok *)
+                                match v1699 with
                                 | US4_1 -> (* None *)
-                                    let v1615 : string = "true; let __future_init = Box::pin(async move { //"
-                                    let v1616 : bool = Fable.Core.RustInterop.emitRustExpr () v1615 
-                                    let v1617 : string = "true; let __future_init = Box::pin(async move { //"
-                                    let v1618 : bool = Fable.Core.RustInterop.emitRustExpr () v1617 
-                                    let v1619 : uint8 = method75()
-                                    let v1620 : string = ""
-                                    let v1621 : string = "}"
-                                    let v1622 : string = v1620 + v1621 
-                                    let v1623 : string = "true; v1619 " + v1622 + "); " + v1620 + " // rust.fix_closure'"
-                                    let v1624 : bool = Fable.Core.RustInterop.emitRustExpr () v1623 
-                                    let v1625 : string = "__future_init"
-                                    let v1626 : _ = Fable.Core.RustInterop.emitRustExpr () v1625 
-                                    let v1627 : string = "v1626"
-                                    let v1628 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1627 
-                                    let v1629 : string = "v1628.await"
-                                    let v1630 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1629 
-                                    let v1631 : US7 = method49(v1630)
-                                    let v1632 : string = v1620 + v1621 
-                                    let v1633 : string = "true; v1631 " + v1632 + "); " + v1620 + " // rust.fix_closure'"
-                                    let v1634 : bool = Fable.Core.RustInterop.emitRustExpr () v1633 
-                                    let v1635 : string = "__future_init"
-                                    let v1636 : _ = Fable.Core.RustInterop.emitRustExpr () v1635 
-                                    let v1637 : string = "v1636"
-                                    let v1638 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1637 
-                                    v1638
-                                | US4_0(v1639) -> (* Some *)
-                                    let v1640 : unit = ()
-                                    let v1641 : (unit -> unit) = closure81(v1639)
-                                    let v1642 : unit = (fun () -> v1641 (); v1640) ()
-                                    let v1755 : string = "true; let __future_init = Box::pin(async move { //"
-                                    let v1756 : bool = Fable.Core.RustInterop.emitRustExpr () v1755 
-                                    let v1757 : string = "true; let __future_init = Box::pin(async move { //"
-                                    let v1758 : bool = Fable.Core.RustInterop.emitRustExpr () v1757 
-                                    let v1759 : uint8 = method75()
-                                    let v1760 : string = ""
-                                    let v1761 : string = "}"
-                                    let v1762 : string = v1760 + v1761 
-                                    let v1763 : string = "true; v1759 " + v1762 + "); " + v1760 + " // rust.fix_closure'"
-                                    let v1764 : bool = Fable.Core.RustInterop.emitRustExpr () v1763 
-                                    let v1765 : string = "__future_init"
-                                    let v1766 : _ = Fable.Core.RustInterop.emitRustExpr () v1765 
-                                    let v1767 : string = "v1766"
-                                    let v1768 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1767 
-                                    let v1769 : string = "v1768.await"
-                                    let v1770 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1769 
-                                    let v1771 : US7 = method47(v1770)
-                                    let v1772 : string = v1760 + v1761 
-                                    let v1773 : string = "true; v1771 " + v1772 + "); " + v1760 + " // rust.fix_closure'"
-                                    let v1774 : bool = Fable.Core.RustInterop.emitRustExpr () v1773 
-                                    let v1775 : string = "__future_init"
-                                    let v1776 : _ = Fable.Core.RustInterop.emitRustExpr () v1775 
-                                    let v1777 : string = "v1776"
-                                    let v1778 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1777 
-                                    v1778
-                        | US6_0(v1323) -> (* Ok *)
-                            match v1323 with
+                                    let v1700 : string = "true; let __future_init = Box::pin(async move { //"
+                                    let v1701 : bool = Fable.Core.RustInterop.emitRustExpr () v1700 
+                                    let v1702 : string = "true; let __future_init = Box::pin(async move { //"
+                                    let v1703 : bool = Fable.Core.RustInterop.emitRustExpr () v1702 
+                                    let v1704 : uint8 = method75()
+                                    let v1705 : string = ""
+                                    let v1706 : string = "}"
+                                    let v1707 : string = v1705 + v1706 
+                                    let v1708 : string = "true; v1704 " + v1707 + "); " + v1705 + " // rust.fix_closure'"
+                                    let v1709 : bool = Fable.Core.RustInterop.emitRustExpr () v1708 
+                                    let v1710 : string = "__future_init"
+                                    let v1711 : _ = Fable.Core.RustInterop.emitRustExpr () v1710 
+                                    let v1712 : string = "v1711"
+                                    let v1713 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1712 
+                                    let v1714 : string = "v1713.await"
+                                    let v1715 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1714 
+                                    let v1716 : US7 = method49(v1715)
+                                    let v1717 : string = v1705 + v1706 
+                                    let v1718 : string = "true; v1716 " + v1717 + "); " + v1705 + " // rust.fix_closure'"
+                                    let v1719 : bool = Fable.Core.RustInterop.emitRustExpr () v1718 
+                                    let v1720 : string = "__future_init"
+                                    let v1721 : _ = Fable.Core.RustInterop.emitRustExpr () v1720 
+                                    let v1722 : string = "v1721"
+                                    let v1723 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1722 
+                                    v1723
+                                | US4_0(v1724) -> (* Some *)
+                                    let v1725 : unit = ()
+                                    let v1726 : (unit -> unit) = closure81(v1724)
+                                    let v1727 : unit = (fun () -> v1726 (); v1725) ()
+                                    let v1840 : string = "true; let __future_init = Box::pin(async move { //"
+                                    let v1841 : bool = Fable.Core.RustInterop.emitRustExpr () v1840 
+                                    let v1842 : string = "true; let __future_init = Box::pin(async move { //"
+                                    let v1843 : bool = Fable.Core.RustInterop.emitRustExpr () v1842 
+                                    let v1844 : uint8 = method75()
+                                    let v1845 : string = ""
+                                    let v1846 : string = "}"
+                                    let v1847 : string = v1845 + v1846 
+                                    let v1848 : string = "true; v1844 " + v1847 + "); " + v1845 + " // rust.fix_closure'"
+                                    let v1849 : bool = Fable.Core.RustInterop.emitRustExpr () v1848 
+                                    let v1850 : string = "__future_init"
+                                    let v1851 : _ = Fable.Core.RustInterop.emitRustExpr () v1850 
+                                    let v1852 : string = "v1851"
+                                    let v1853 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1852 
+                                    let v1854 : string = "v1853.await"
+                                    let v1855 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1854 
+                                    let v1856 : US7 = method47(v1855)
+                                    let v1857 : string = v1845 + v1846 
+                                    let v1858 : string = "true; v1856 " + v1857 + "); " + v1845 + " // rust.fix_closure'"
+                                    let v1859 : bool = Fable.Core.RustInterop.emitRustExpr () v1858 
+                                    let v1860 : string = "__future_init"
+                                    let v1861 : _ = Fable.Core.RustInterop.emitRustExpr () v1860 
+                                    let v1862 : string = "v1861"
+                                    let v1863 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1862 
+                                    v1863
+                        | US6_0(v1397) -> (* Ok *)
+                            match v1397 with
                             | US4_1 -> (* None *)
-                                let v1324 : string = "true; let __future_init = Box::pin(async move { //"
-                                let v1325 : bool = Fable.Core.RustInterop.emitRustExpr () v1324 
-                                let v1326 : string = "true; let __future_init = Box::pin(async move { //"
-                                let v1327 : bool = Fable.Core.RustInterop.emitRustExpr () v1326 
-                                let v1328 : uint8 = method76()
-                                let v1329 : string = ""
-                                let v1330 : string = "}"
-                                let v1331 : string = v1329 + v1330 
-                                let v1332 : string = "true; v1328 " + v1331 + "); " + v1329 + " // rust.fix_closure'"
-                                let v1333 : bool = Fable.Core.RustInterop.emitRustExpr () v1332 
-                                let v1334 : string = "__future_init"
-                                let v1335 : _ = Fable.Core.RustInterop.emitRustExpr () v1334 
-                                let v1336 : string = "v1335"
-                                let v1337 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1336 
-                                let v1338 : string = "v1337.await"
-                                let v1339 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1338 
-                                let v1340 : US7 = method49(v1339)
-                                let v1341 : string = v1329 + v1330 
-                                let v1342 : string = "true; v1340 " + v1341 + "); " + v1329 + " // rust.fix_closure'"
-                                let v1343 : bool = Fable.Core.RustInterop.emitRustExpr () v1342 
-                                let v1344 : string = "__future_init"
-                                let v1345 : _ = Fable.Core.RustInterop.emitRustExpr () v1344 
-                                let v1346 : string = "v1345"
-                                let v1347 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1346 
-                                v1347
-                            | US4_0(v1348) -> (* Some *)
-                                let v1349 : unit = ()
-                                let v1350 : (unit -> unit) = closure82(v1348)
-                                let v1351 : unit = (fun () -> v1350 (); v1349) ()
-                                let v1464 : string = "true; let __future_init = Box::pin(async move { //"
-                                let v1465 : bool = Fable.Core.RustInterop.emitRustExpr () v1464 
-                                let v1466 : string = "true; let __future_init = Box::pin(async move { //"
-                                let v1467 : bool = Fable.Core.RustInterop.emitRustExpr () v1466 
-                                let v1468 : uint8 = method76()
-                                let v1469 : string = ""
-                                let v1470 : string = "}"
-                                let v1471 : string = v1469 + v1470 
-                                let v1472 : string = "true; v1468 " + v1471 + "); " + v1469 + " // rust.fix_closure'"
-                                let v1473 : bool = Fable.Core.RustInterop.emitRustExpr () v1472 
-                                let v1474 : string = "__future_init"
-                                let v1475 : _ = Fable.Core.RustInterop.emitRustExpr () v1474 
-                                let v1476 : string = "v1475"
-                                let v1477 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1476 
-                                let v1478 : string = "v1477.await"
-                                let v1479 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1478 
-                                let v1480 : US7 = method47(v1479)
-                                let v1481 : string = v1469 + v1470 
-                                let v1482 : string = "true; v1480 " + v1481 + "); " + v1469 + " // rust.fix_closure'"
-                                let v1483 : bool = Fable.Core.RustInterop.emitRustExpr () v1482 
-                                let v1484 : string = "__future_init"
-                                let v1485 : _ = Fable.Core.RustInterop.emitRustExpr () v1484 
-                                let v1486 : string = "v1485"
-                                let v1487 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1486 
-                                v1487
-                    | US6_0(v1032) -> (* Ok *)
-                        match v1032 with
+                                let v1398 : string = "true; let __future_init = Box::pin(async move { //"
+                                let v1399 : bool = Fable.Core.RustInterop.emitRustExpr () v1398 
+                                let v1400 : string = "true; let __future_init = Box::pin(async move { //"
+                                let v1401 : bool = Fable.Core.RustInterop.emitRustExpr () v1400 
+                                let v1402 : uint8 = method76()
+                                let v1403 : string = ""
+                                let v1404 : string = "}"
+                                let v1405 : string = v1403 + v1404 
+                                let v1406 : string = "true; v1402 " + v1405 + "); " + v1403 + " // rust.fix_closure'"
+                                let v1407 : bool = Fable.Core.RustInterop.emitRustExpr () v1406 
+                                let v1408 : string = "__future_init"
+                                let v1409 : _ = Fable.Core.RustInterop.emitRustExpr () v1408 
+                                let v1410 : string = "v1409"
+                                let v1411 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1410 
+                                let v1412 : string = "v1411.await"
+                                let v1413 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1412 
+                                let v1414 : US7 = method49(v1413)
+                                let v1415 : string = v1403 + v1404 
+                                let v1416 : string = "true; v1414 " + v1415 + "); " + v1403 + " // rust.fix_closure'"
+                                let v1417 : bool = Fable.Core.RustInterop.emitRustExpr () v1416 
+                                let v1418 : string = "__future_init"
+                                let v1419 : _ = Fable.Core.RustInterop.emitRustExpr () v1418 
+                                let v1420 : string = "v1419"
+                                let v1421 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1420 
+                                v1421
+                            | US4_0(v1422) -> (* Some *)
+                                let v1423 : unit = ()
+                                let v1424 : (unit -> unit) = closure82(v1422)
+                                let v1425 : unit = (fun () -> v1424 (); v1423) ()
+                                let v1538 : string = "true; let __future_init = Box::pin(async move { //"
+                                let v1539 : bool = Fable.Core.RustInterop.emitRustExpr () v1538 
+                                let v1540 : string = "true; let __future_init = Box::pin(async move { //"
+                                let v1541 : bool = Fable.Core.RustInterop.emitRustExpr () v1540 
+                                let v1542 : uint8 = method76()
+                                let v1543 : string = ""
+                                let v1544 : string = "}"
+                                let v1545 : string = v1543 + v1544 
+                                let v1546 : string = "true; v1542 " + v1545 + "); " + v1543 + " // rust.fix_closure'"
+                                let v1547 : bool = Fable.Core.RustInterop.emitRustExpr () v1546 
+                                let v1548 : string = "__future_init"
+                                let v1549 : _ = Fable.Core.RustInterop.emitRustExpr () v1548 
+                                let v1550 : string = "v1549"
+                                let v1551 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1550 
+                                let v1552 : string = "v1551.await"
+                                let v1553 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1552 
+                                let v1554 : US7 = method47(v1553)
+                                let v1555 : string = v1543 + v1544 
+                                let v1556 : string = "true; v1554 " + v1555 + "); " + v1543 + " // rust.fix_closure'"
+                                let v1557 : bool = Fable.Core.RustInterop.emitRustExpr () v1556 
+                                let v1558 : string = "__future_init"
+                                let v1559 : _ = Fable.Core.RustInterop.emitRustExpr () v1558 
+                                let v1560 : string = "v1559"
+                                let v1561 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1560 
+                                v1561
+                    | US6_0(v1095) -> (* Ok *)
+                        match v1095 with
                         | US4_1 -> (* None *)
-                            let v1033 : string = "true; let __future_init = Box::pin(async move { //"
-                            let v1034 : bool = Fable.Core.RustInterop.emitRustExpr () v1033 
-                            let v1035 : string = "true; let __future_init = Box::pin(async move { //"
-                            let v1036 : bool = Fable.Core.RustInterop.emitRustExpr () v1035 
-                            let v1037 : uint8 = method77()
-                            let v1038 : string = ""
-                            let v1039 : string = "}"
-                            let v1040 : string = v1038 + v1039 
-                            let v1041 : string = "true; v1037 " + v1040 + "); " + v1038 + " // rust.fix_closure'"
-                            let v1042 : bool = Fable.Core.RustInterop.emitRustExpr () v1041 
-                            let v1043 : string = "__future_init"
-                            let v1044 : _ = Fable.Core.RustInterop.emitRustExpr () v1043 
-                            let v1045 : string = "v1044"
-                            let v1046 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1045 
-                            let v1047 : string = "v1046.await"
-                            let v1048 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1047 
-                            let v1049 : US7 = method49(v1048)
-                            let v1050 : string = v1038 + v1039 
-                            let v1051 : string = "true; v1049 " + v1050 + "); " + v1038 + " // rust.fix_closure'"
-                            let v1052 : bool = Fable.Core.RustInterop.emitRustExpr () v1051 
-                            let v1053 : string = "__future_init"
-                            let v1054 : _ = Fable.Core.RustInterop.emitRustExpr () v1053 
-                            let v1055 : string = "v1054"
-                            let v1056 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1055 
-                            v1056
-                        | US4_0(v1057) -> (* Some *)
-                            let v1058 : unit = ()
-                            let v1059 : (unit -> unit) = closure83(v1057)
-                            let v1060 : unit = (fun () -> v1059 (); v1058) ()
-                            let v1173 : string = "true; let __future_init = Box::pin(async move { //"
-                            let v1174 : bool = Fable.Core.RustInterop.emitRustExpr () v1173 
-                            let v1175 : string = "true; let __future_init = Box::pin(async move { //"
-                            let v1176 : bool = Fable.Core.RustInterop.emitRustExpr () v1175 
-                            let v1177 : uint8 = method77()
-                            let v1178 : string = ""
-                            let v1179 : string = "}"
-                            let v1180 : string = v1178 + v1179 
-                            let v1181 : string = "true; v1177 " + v1180 + "); " + v1178 + " // rust.fix_closure'"
-                            let v1182 : bool = Fable.Core.RustInterop.emitRustExpr () v1181 
-                            let v1183 : string = "__future_init"
-                            let v1184 : _ = Fable.Core.RustInterop.emitRustExpr () v1183 
-                            let v1185 : string = "v1184"
-                            let v1186 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1185 
-                            let v1187 : string = "v1186.await"
-                            let v1188 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1187 
-                            let v1189 : US7 = method47(v1188)
-                            let v1190 : string = v1178 + v1179 
-                            let v1191 : string = "true; v1189 " + v1190 + "); " + v1178 + " // rust.fix_closure'"
-                            let v1192 : bool = Fable.Core.RustInterop.emitRustExpr () v1191 
-                            let v1193 : string = "__future_init"
-                            let v1194 : _ = Fable.Core.RustInterop.emitRustExpr () v1193 
-                            let v1195 : string = "v1194"
-                            let v1196 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1195 
-                            v1196
-                | US6_0(v741) -> (* Ok *)
-                    match v741 with
+                            let v1096 : string = "true; let __future_init = Box::pin(async move { //"
+                            let v1097 : bool = Fable.Core.RustInterop.emitRustExpr () v1096 
+                            let v1098 : string = "true; let __future_init = Box::pin(async move { //"
+                            let v1099 : bool = Fable.Core.RustInterop.emitRustExpr () v1098 
+                            let v1100 : uint8 = method77()
+                            let v1101 : string = ""
+                            let v1102 : string = "}"
+                            let v1103 : string = v1101 + v1102 
+                            let v1104 : string = "true; v1100 " + v1103 + "); " + v1101 + " // rust.fix_closure'"
+                            let v1105 : bool = Fable.Core.RustInterop.emitRustExpr () v1104 
+                            let v1106 : string = "__future_init"
+                            let v1107 : _ = Fable.Core.RustInterop.emitRustExpr () v1106 
+                            let v1108 : string = "v1107"
+                            let v1109 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1108 
+                            let v1110 : string = "v1109.await"
+                            let v1111 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1110 
+                            let v1112 : US7 = method49(v1111)
+                            let v1113 : string = v1101 + v1102 
+                            let v1114 : string = "true; v1112 " + v1113 + "); " + v1101 + " // rust.fix_closure'"
+                            let v1115 : bool = Fable.Core.RustInterop.emitRustExpr () v1114 
+                            let v1116 : string = "__future_init"
+                            let v1117 : _ = Fable.Core.RustInterop.emitRustExpr () v1116 
+                            let v1118 : string = "v1117"
+                            let v1119 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1118 
+                            v1119
+                        | US4_0(v1120) -> (* Some *)
+                            let v1121 : unit = ()
+                            let v1122 : (unit -> unit) = closure83(v1120)
+                            let v1123 : unit = (fun () -> v1122 (); v1121) ()
+                            let v1236 : string = "true; let __future_init = Box::pin(async move { //"
+                            let v1237 : bool = Fable.Core.RustInterop.emitRustExpr () v1236 
+                            let v1238 : string = "true; let __future_init = Box::pin(async move { //"
+                            let v1239 : bool = Fable.Core.RustInterop.emitRustExpr () v1238 
+                            let v1240 : uint8 = method77()
+                            let v1241 : string = ""
+                            let v1242 : string = "}"
+                            let v1243 : string = v1241 + v1242 
+                            let v1244 : string = "true; v1240 " + v1243 + "); " + v1241 + " // rust.fix_closure'"
+                            let v1245 : bool = Fable.Core.RustInterop.emitRustExpr () v1244 
+                            let v1246 : string = "__future_init"
+                            let v1247 : _ = Fable.Core.RustInterop.emitRustExpr () v1246 
+                            let v1248 : string = "v1247"
+                            let v1249 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v1248 
+                            let v1250 : string = "v1249.await"
+                            let v1251 : uint8 = Fable.Core.RustInterop.emitRustExpr () v1250 
+                            let v1252 : US7 = method47(v1251)
+                            let v1253 : string = v1241 + v1242 
+                            let v1254 : string = "true; v1252 " + v1253 + "); " + v1241 + " // rust.fix_closure'"
+                            let v1255 : bool = Fable.Core.RustInterop.emitRustExpr () v1254 
+                            let v1256 : string = "__future_init"
+                            let v1257 : _ = Fable.Core.RustInterop.emitRustExpr () v1256 
+                            let v1258 : string = "v1257"
+                            let v1259 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v1258 
+                            v1259
+                | US6_0(v793) -> (* Ok *)
+                    match v793 with
                     | US4_1 -> (* None *)
-                        let v742 : string = "true; let __future_init = Box::pin(async move { //"
-                        let v743 : bool = Fable.Core.RustInterop.emitRustExpr () v742 
-                        let v744 : string = "true; let __future_init = Box::pin(async move { //"
-                        let v745 : bool = Fable.Core.RustInterop.emitRustExpr () v744 
-                        let v746 : uint8 = method78()
-                        let v747 : string = ""
-                        let v748 : string = "}"
-                        let v749 : string = v747 + v748 
-                        let v750 : string = "true; v746 " + v749 + "); " + v747 + " // rust.fix_closure'"
-                        let v751 : bool = Fable.Core.RustInterop.emitRustExpr () v750 
-                        let v752 : string = "__future_init"
-                        let v753 : _ = Fable.Core.RustInterop.emitRustExpr () v752 
-                        let v754 : string = "v753"
-                        let v755 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v754 
-                        let v756 : string = "v755.await"
-                        let v757 : uint8 = Fable.Core.RustInterop.emitRustExpr () v756 
-                        let v758 : US7 = method49(v757)
-                        let v759 : string = v747 + v748 
-                        let v760 : string = "true; v758 " + v759 + "); " + v747 + " // rust.fix_closure'"
-                        let v761 : bool = Fable.Core.RustInterop.emitRustExpr () v760 
-                        let v762 : string = "__future_init"
-                        let v763 : _ = Fable.Core.RustInterop.emitRustExpr () v762 
-                        let v764 : string = "v763"
-                        let v765 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v764 
-                        v765
-                    | US4_0(v766) -> (* Some *)
-                        let v767 : unit = ()
-                        let v768 : (unit -> unit) = closure84(v766)
-                        let v769 : unit = (fun () -> v768 (); v767) ()
-                        let v882 : string = "true; let __future_init = Box::pin(async move { //"
-                        let v883 : bool = Fable.Core.RustInterop.emitRustExpr () v882 
-                        let v884 : string = "true; let __future_init = Box::pin(async move { //"
-                        let v885 : bool = Fable.Core.RustInterop.emitRustExpr () v884 
-                        let v886 : uint8 = method78()
-                        let v887 : string = ""
-                        let v888 : string = "}"
-                        let v889 : string = v887 + v888 
-                        let v890 : string = "true; v886 " + v889 + "); " + v887 + " // rust.fix_closure'"
-                        let v891 : bool = Fable.Core.RustInterop.emitRustExpr () v890 
-                        let v892 : string = "__future_init"
-                        let v893 : _ = Fable.Core.RustInterop.emitRustExpr () v892 
-                        let v894 : string = "v893"
-                        let v895 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v894 
-                        let v896 : string = "v895.await"
-                        let v897 : uint8 = Fable.Core.RustInterop.emitRustExpr () v896 
-                        let v898 : US7 = method47(v897)
-                        let v899 : string = v887 + v888 
-                        let v900 : string = "true; v898 " + v899 + "); " + v887 + " // rust.fix_closure'"
-                        let v901 : bool = Fable.Core.RustInterop.emitRustExpr () v900 
-                        let v902 : string = "__future_init"
-                        let v903 : _ = Fable.Core.RustInterop.emitRustExpr () v902 
-                        let v904 : string = "v903"
-                        let v905 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v904 
-                        v905
-            | US6_0(v450) -> (* Ok *)
-                match v450 with
+                        let v794 : string = "true; let __future_init = Box::pin(async move { //"
+                        let v795 : bool = Fable.Core.RustInterop.emitRustExpr () v794 
+                        let v796 : string = "true; let __future_init = Box::pin(async move { //"
+                        let v797 : bool = Fable.Core.RustInterop.emitRustExpr () v796 
+                        let v798 : uint8 = method78()
+                        let v799 : string = ""
+                        let v800 : string = "}"
+                        let v801 : string = v799 + v800 
+                        let v802 : string = "true; v798 " + v801 + "); " + v799 + " // rust.fix_closure'"
+                        let v803 : bool = Fable.Core.RustInterop.emitRustExpr () v802 
+                        let v804 : string = "__future_init"
+                        let v805 : _ = Fable.Core.RustInterop.emitRustExpr () v804 
+                        let v806 : string = "v805"
+                        let v807 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v806 
+                        let v808 : string = "v807.await"
+                        let v809 : uint8 = Fable.Core.RustInterop.emitRustExpr () v808 
+                        let v810 : US7 = method49(v809)
+                        let v811 : string = v799 + v800 
+                        let v812 : string = "true; v810 " + v811 + "); " + v799 + " // rust.fix_closure'"
+                        let v813 : bool = Fable.Core.RustInterop.emitRustExpr () v812 
+                        let v814 : string = "__future_init"
+                        let v815 : _ = Fable.Core.RustInterop.emitRustExpr () v814 
+                        let v816 : string = "v815"
+                        let v817 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v816 
+                        v817
+                    | US4_0(v818) -> (* Some *)
+                        let v819 : unit = ()
+                        let v820 : (unit -> unit) = closure84(v818)
+                        let v821 : unit = (fun () -> v820 (); v819) ()
+                        let v934 : string = "true; let __future_init = Box::pin(async move { //"
+                        let v935 : bool = Fable.Core.RustInterop.emitRustExpr () v934 
+                        let v936 : string = "true; let __future_init = Box::pin(async move { //"
+                        let v937 : bool = Fable.Core.RustInterop.emitRustExpr () v936 
+                        let v938 : uint8 = method78()
+                        let v939 : string = ""
+                        let v940 : string = "}"
+                        let v941 : string = v939 + v940 
+                        let v942 : string = "true; v938 " + v941 + "); " + v939 + " // rust.fix_closure'"
+                        let v943 : bool = Fable.Core.RustInterop.emitRustExpr () v942 
+                        let v944 : string = "__future_init"
+                        let v945 : _ = Fable.Core.RustInterop.emitRustExpr () v944 
+                        let v946 : string = "v945"
+                        let v947 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v946 
+                        let v948 : string = "v947.await"
+                        let v949 : uint8 = Fable.Core.RustInterop.emitRustExpr () v948 
+                        let v950 : US7 = method47(v949)
+                        let v951 : string = v939 + v940 
+                        let v952 : string = "true; v950 " + v951 + "); " + v939 + " // rust.fix_closure'"
+                        let v953 : bool = Fable.Core.RustInterop.emitRustExpr () v952 
+                        let v954 : string = "__future_init"
+                        let v955 : _ = Fable.Core.RustInterop.emitRustExpr () v954 
+                        let v956 : string = "v955"
+                        let v957 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v956 
+                        v957
+            | US6_0(v491) -> (* Ok *)
+                match v491 with
                 | US4_1 -> (* None *)
-                    let v451 : string = "true; let __future_init = Box::pin(async move { //"
-                    let v452 : bool = Fable.Core.RustInterop.emitRustExpr () v451 
-                    let v453 : string = "true; let __future_init = Box::pin(async move { //"
-                    let v454 : bool = Fable.Core.RustInterop.emitRustExpr () v453 
-                    let v455 : uint8 = method79()
-                    let v456 : string = ""
-                    let v457 : string = "}"
-                    let v458 : string = v456 + v457 
-                    let v459 : string = "true; v455 " + v458 + "); " + v456 + " // rust.fix_closure'"
-                    let v460 : bool = Fable.Core.RustInterop.emitRustExpr () v459 
-                    let v461 : string = "__future_init"
-                    let v462 : _ = Fable.Core.RustInterop.emitRustExpr () v461 
-                    let v463 : string = "v462"
-                    let v464 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v463 
-                    let v465 : string = "v464.await"
-                    let v466 : uint8 = Fable.Core.RustInterop.emitRustExpr () v465 
-                    let v467 : US7 = method49(v466)
-                    let v468 : string = v456 + v457 
-                    let v469 : string = "true; v467 " + v468 + "); " + v456 + " // rust.fix_closure'"
-                    let v470 : bool = Fable.Core.RustInterop.emitRustExpr () v469 
-                    let v471 : string = "__future_init"
-                    let v472 : _ = Fable.Core.RustInterop.emitRustExpr () v471 
-                    let v473 : string = "v472"
-                    let v474 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v473 
-                    v474
-                | US4_0(v475) -> (* Some *)
-                    let v476 : unit = ()
-                    let v477 : (unit -> unit) = closure85(v475)
-                    let v478 : unit = (fun () -> v477 (); v476) ()
-                    let v591 : string = "true; let __future_init = Box::pin(async move { //"
-                    let v592 : bool = Fable.Core.RustInterop.emitRustExpr () v591 
-                    let v593 : string = "true; let __future_init = Box::pin(async move { //"
-                    let v594 : bool = Fable.Core.RustInterop.emitRustExpr () v593 
-                    let v595 : uint8 = method79()
-                    let v596 : string = ""
-                    let v597 : string = "}"
-                    let v598 : string = v596 + v597 
-                    let v599 : string = "true; v595 " + v598 + "); " + v596 + " // rust.fix_closure'"
-                    let v600 : bool = Fable.Core.RustInterop.emitRustExpr () v599 
-                    let v601 : string = "__future_init"
-                    let v602 : _ = Fable.Core.RustInterop.emitRustExpr () v601 
-                    let v603 : string = "v602"
-                    let v604 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v603 
-                    let v605 : string = "v604.await"
-                    let v606 : uint8 = Fable.Core.RustInterop.emitRustExpr () v605 
-                    let v607 : US7 = method47(v606)
-                    let v608 : string = v596 + v597 
-                    let v609 : string = "true; v607 " + v608 + "); " + v596 + " // rust.fix_closure'"
-                    let v610 : bool = Fable.Core.RustInterop.emitRustExpr () v609 
-                    let v611 : string = "__future_init"
-                    let v612 : _ = Fable.Core.RustInterop.emitRustExpr () v611 
-                    let v613 : string = "v612"
-                    let v614 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v613 
-                    v614
-        | US6_0(v159) -> (* Ok *)
-            match v159 with
+                    let v492 : string = "true; let __future_init = Box::pin(async move { //"
+                    let v493 : bool = Fable.Core.RustInterop.emitRustExpr () v492 
+                    let v494 : string = "true; let __future_init = Box::pin(async move { //"
+                    let v495 : bool = Fable.Core.RustInterop.emitRustExpr () v494 
+                    let v496 : uint8 = method79()
+                    let v497 : string = ""
+                    let v498 : string = "}"
+                    let v499 : string = v497 + v498 
+                    let v500 : string = "true; v496 " + v499 + "); " + v497 + " // rust.fix_closure'"
+                    let v501 : bool = Fable.Core.RustInterop.emitRustExpr () v500 
+                    let v502 : string = "__future_init"
+                    let v503 : _ = Fable.Core.RustInterop.emitRustExpr () v502 
+                    let v504 : string = "v503"
+                    let v505 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v504 
+                    let v506 : string = "v505.await"
+                    let v507 : uint8 = Fable.Core.RustInterop.emitRustExpr () v506 
+                    let v508 : US7 = method49(v507)
+                    let v509 : string = v497 + v498 
+                    let v510 : string = "true; v508 " + v509 + "); " + v497 + " // rust.fix_closure'"
+                    let v511 : bool = Fable.Core.RustInterop.emitRustExpr () v510 
+                    let v512 : string = "__future_init"
+                    let v513 : _ = Fable.Core.RustInterop.emitRustExpr () v512 
+                    let v514 : string = "v513"
+                    let v515 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v514 
+                    v515
+                | US4_0(v516) -> (* Some *)
+                    let v517 : unit = ()
+                    let v518 : (unit -> unit) = closure85(v516)
+                    let v519 : unit = (fun () -> v518 (); v517) ()
+                    let v632 : string = "true; let __future_init = Box::pin(async move { //"
+                    let v633 : bool = Fable.Core.RustInterop.emitRustExpr () v632 
+                    let v634 : string = "true; let __future_init = Box::pin(async move { //"
+                    let v635 : bool = Fable.Core.RustInterop.emitRustExpr () v634 
+                    let v636 : uint8 = method79()
+                    let v637 : string = ""
+                    let v638 : string = "}"
+                    let v639 : string = v637 + v638 
+                    let v640 : string = "true; v636 " + v639 + "); " + v637 + " // rust.fix_closure'"
+                    let v641 : bool = Fable.Core.RustInterop.emitRustExpr () v640 
+                    let v642 : string = "__future_init"
+                    let v643 : _ = Fable.Core.RustInterop.emitRustExpr () v642 
+                    let v644 : string = "v643"
+                    let v645 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v644 
+                    let v646 : string = "v645.await"
+                    let v647 : uint8 = Fable.Core.RustInterop.emitRustExpr () v646 
+                    let v648 : US7 = method47(v647)
+                    let v649 : string = v637 + v638 
+                    let v650 : string = "true; v648 " + v649 + "); " + v637 + " // rust.fix_closure'"
+                    let v651 : bool = Fable.Core.RustInterop.emitRustExpr () v650 
+                    let v652 : string = "__future_init"
+                    let v653 : _ = Fable.Core.RustInterop.emitRustExpr () v652 
+                    let v654 : string = "v653"
+                    let v655 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v654 
+                    v655
+        | US6_0(v189) -> (* Ok *)
+            match v189 with
             | US4_1 -> (* None *)
-                let v160 : string = "true; let __future_init = Box::pin(async move { //"
-                let v161 : bool = Fable.Core.RustInterop.emitRustExpr () v160 
-                let v162 : string = "true; let __future_init = Box::pin(async move { //"
-                let v163 : bool = Fable.Core.RustInterop.emitRustExpr () v162 
-                let v164 : uint8 = method80()
-                let v165 : string = ""
-                let v166 : string = "}"
-                let v167 : string = v165 + v166 
-                let v168 : string = "true; v164 " + v167 + "); " + v165 + " // rust.fix_closure'"
-                let v169 : bool = Fable.Core.RustInterop.emitRustExpr () v168 
-                let v170 : string = "__future_init"
-                let v171 : _ = Fable.Core.RustInterop.emitRustExpr () v170 
-                let v172 : string = "v171"
-                let v173 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v172 
-                let v174 : string = "v173.await"
-                let v175 : uint8 = Fable.Core.RustInterop.emitRustExpr () v174 
-                let v176 : US7 = method49(v175)
-                let v177 : string = v165 + v166 
-                let v178 : string = "true; v176 " + v177 + "); " + v165 + " // rust.fix_closure'"
-                let v179 : bool = Fable.Core.RustInterop.emitRustExpr () v178 
-                let v180 : string = "__future_init"
-                let v181 : _ = Fable.Core.RustInterop.emitRustExpr () v180 
-                let v182 : string = "v181"
-                let v183 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v182 
-                v183
-            | US4_0(v184) -> (* Some *)
-                let v185 : unit = ()
-                let v186 : (unit -> unit) = closure86(v184)
-                let v187 : unit = (fun () -> v186 (); v185) ()
-                let v300 : string = "true; let __future_init = Box::pin(async move { //"
-                let v301 : bool = Fable.Core.RustInterop.emitRustExpr () v300 
-                let v302 : string = "true; let __future_init = Box::pin(async move { //"
-                let v303 : bool = Fable.Core.RustInterop.emitRustExpr () v302 
-                let v304 : uint8 = method80()
-                let v305 : string = ""
-                let v306 : string = "}"
-                let v307 : string = v305 + v306 
-                let v308 : string = "true; v304 " + v307 + "); " + v305 + " // rust.fix_closure'"
-                let v309 : bool = Fable.Core.RustInterop.emitRustExpr () v308 
-                let v310 : string = "__future_init"
-                let v311 : _ = Fable.Core.RustInterop.emitRustExpr () v310 
-                let v312 : string = "v311"
-                let v313 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v312 
-                let v314 : string = "v313.await"
-                let v315 : uint8 = Fable.Core.RustInterop.emitRustExpr () v314 
-                let v316 : US7 = method47(v315)
-                let v317 : string = v305 + v306 
-                let v318 : string = "true; v316 " + v317 + "); " + v305 + " // rust.fix_closure'"
-                let v319 : bool = Fable.Core.RustInterop.emitRustExpr () v318 
-                let v320 : string = "__future_init"
-                let v321 : _ = Fable.Core.RustInterop.emitRustExpr () v320 
-                let v322 : string = "v321"
-                let v323 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v322 
-                v323
-    let v8672 : string = "v8671.await"
-    let v8673 : US7 = Fable.Core.RustInterop.emitRustExpr () v8672 
-    let v8674 : unit = ()
-    let v8675 : (unit -> unit) = closure87(v8673)
-    let v8676 : unit = (fun () -> v8675 (); v8674) ()
-    let v8797 : Result<uint8, anyhow_Error> =
-        match v8673 with
-        | US7_1(v8790) -> (* Error *)
-            let v8791 : string = method82(v8790)
-            let v8792 : string = "anyhow::anyhow!($0)"
-            let v8793 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v8791 v8792 
-            let v8794 : string = "Err($0)"
-            let v8795 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v8793 v8794 
-            v8795
-        | US7_0(v8788) -> (* Ok *)
-            let v8789 : Result<uint8, anyhow_Error> = Ok v8788 
-            v8789
-    let v8798 : Result<uint8, anyhow_Error> = method83(v8797)
-    let v8799 : string = ""
-    let v8800 : string = "}"
-    let v8801 : string = v8799 + v8800 
-    let v8802 : string = "true; v8798 " + v8801 + "); " + v8799 + " // rust.fix_closure'"
-    let v8803 : bool = Fable.Core.RustInterop.emitRustExpr () v8802 
-    let v8804 : string = "__future_init"
-    let v8805 : _ = Fable.Core.RustInterop.emitRustExpr () v8804 
-    let v8806 : string = "v8805"
-    let v8807 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v8806 
-    v8807
+                let v190 : string = "true; let __future_init = Box::pin(async move { //"
+                let v191 : bool = Fable.Core.RustInterop.emitRustExpr () v190 
+                let v192 : string = "true; let __future_init = Box::pin(async move { //"
+                let v193 : bool = Fable.Core.RustInterop.emitRustExpr () v192 
+                let v194 : uint8 = method80()
+                let v195 : string = ""
+                let v196 : string = "}"
+                let v197 : string = v195 + v196 
+                let v198 : string = "true; v194 " + v197 + "); " + v195 + " // rust.fix_closure'"
+                let v199 : bool = Fable.Core.RustInterop.emitRustExpr () v198 
+                let v200 : string = "__future_init"
+                let v201 : _ = Fable.Core.RustInterop.emitRustExpr () v200 
+                let v202 : string = "v201"
+                let v203 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v202 
+                let v204 : string = "v203.await"
+                let v205 : uint8 = Fable.Core.RustInterop.emitRustExpr () v204 
+                let v206 : US7 = method49(v205)
+                let v207 : string = v195 + v196 
+                let v208 : string = "true; v206 " + v207 + "); " + v195 + " // rust.fix_closure'"
+                let v209 : bool = Fable.Core.RustInterop.emitRustExpr () v208 
+                let v210 : string = "__future_init"
+                let v211 : _ = Fable.Core.RustInterop.emitRustExpr () v210 
+                let v212 : string = "v211"
+                let v213 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v212 
+                v213
+            | US4_0(v214) -> (* Some *)
+                let v215 : unit = ()
+                let v216 : (unit -> unit) = closure86(v214)
+                let v217 : unit = (fun () -> v216 (); v215) ()
+                let v330 : string = "true; let __future_init = Box::pin(async move { //"
+                let v331 : bool = Fable.Core.RustInterop.emitRustExpr () v330 
+                let v332 : string = "true; let __future_init = Box::pin(async move { //"
+                let v333 : bool = Fable.Core.RustInterop.emitRustExpr () v332 
+                let v334 : uint8 = method80()
+                let v335 : string = ""
+                let v336 : string = "}"
+                let v337 : string = v335 + v336 
+                let v338 : string = "true; v334 " + v337 + "); " + v335 + " // rust.fix_closure'"
+                let v339 : bool = Fable.Core.RustInterop.emitRustExpr () v338 
+                let v340 : string = "__future_init"
+                let v341 : _ = Fable.Core.RustInterop.emitRustExpr () v340 
+                let v342 : string = "v341"
+                let v343 : std_pin_Pin<Box<Dyn<std_future_Future<uint8>>>> = Fable.Core.RustInterop.emitRustExpr () v342 
+                let v344 : string = "v343.await"
+                let v345 : uint8 = Fable.Core.RustInterop.emitRustExpr () v344 
+                let v346 : US7 = method47(v345)
+                let v347 : string = v335 + v336 
+                let v348 : string = "true; v346 " + v347 + "); " + v335 + " // rust.fix_closure'"
+                let v349 : bool = Fable.Core.RustInterop.emitRustExpr () v348 
+                let v350 : string = "__future_init"
+                let v351 : _ = Fable.Core.RustInterop.emitRustExpr () v350 
+                let v352 : string = "v351"
+                let v353 : std_pin_Pin<Box<Dyn<std_future_Future<US7>>>> = Fable.Core.RustInterop.emitRustExpr () v352 
+                v353
+    let v9010 : string = "v9009.await"
+    let v9011 : US7 = Fable.Core.RustInterop.emitRustExpr () v9010 
+    let v9012 : unit = ()
+    let v9013 : (unit -> unit) = closure87(v9011)
+    let v9014 : unit = (fun () -> v9013 (); v9012) ()
+    let v9146 : Result<uint8, anyhow_Error> =
+        match v9011 with
+        | US7_1(v9128) -> (* Error *)
+            let v9129 : string = method82(v9128)
+            let v9130 : string = "anyhow::anyhow!($0)"
+            let v9131 : anyhow_Error = Fable.Core.RustInterop.emitRustExpr v9129 v9130 
+            let v9132 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v9133 : string = "Err($0)"
+            let v9134 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v9131 v9133 
+            let _v9132 = v9134 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v9135 : string = "Err($0)"
+            let v9136 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v9131 v9135 
+            let _v9132 = v9136 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v9137 : string = "Err($0)"
+            let v9138 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v9131 v9137 
+            let _v9132 = v9138 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v9139 : Result<uint8, anyhow_Error> = v9131 |> Error
+            let _v9132 = v9139 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v9140 : Result<uint8, anyhow_Error> = v9131 |> Error
+            let _v9132 = v9140 
+            #endif
+#else
+            let v9141 : Result<uint8, anyhow_Error> = v9131 |> Error
+            let _v9132 = v9141 
+            #endif
+            let v9142 : Result<uint8, anyhow_Error> = _v9132 
+            v9142
+        | US7_0(v9126) -> (* Ok *)
+            let v9127 : Result<uint8, anyhow_Error> = Ok v9126 
+            v9127
+    let v9147 : Result<uint8, anyhow_Error> = method83(v9146)
+    let v9148 : string = ""
+    let v9149 : string = "}"
+    let v9150 : string = v9148 + v9149 
+    let v9151 : string = "true; v9147 " + v9150 + "); " + v9148 + " // rust.fix_closure'"
+    let v9152 : bool = Fable.Core.RustInterop.emitRustExpr () v9151 
+    let v9153 : string = "__future_init"
+    let v9154 : _ = Fable.Core.RustInterop.emitRustExpr () v9153 
+    let v9155 : string = "v9154"
+    let v9156 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v9155 
+    v9156
 and closure88 () (v0 : uint8) : US8 =
     US8_0(v0)
 and method84 () : (uint8 -> US8) =
@@ -7188,141 +8730,351 @@ and closure0 () (v0 : (string [])) : int32 =
     let v2 : string = "clap::Command::get_matches($0)"
     let v3 : clap_ArgMatches = Fable.Core.RustInterop.emitRustExpr v1 v2 
     let v4 : string = method1()
-    let v5 : string = "&*$0"
-    let v6 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v5 
-    let v7 : string = "clap::ArgMatches::get_one(&$0, v6).cloned()"
-    let v8 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v3 v7 
-    let v9 : (std_string_String -> US0) = method2()
-    let v10 : US0 option = v8 |> Option.map v9 
-    let v21 : US0 = US0_1
-    let v22 : US0 = v10 |> Option.defaultValue v21 
-    let v78 : US1 =
-        match v22 with
+    let v5 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v6 : string = "&*$0"
+    let v7 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v6 
+    let _v5 = v7 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v8 : string = "&*$0"
+    let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v8 
+    let _v5 = v9 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v10 : string = "&*$0"
+    let v11 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v10 
+    let _v5 = v11 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v12 : Ref<Str> = v4 |> unbox<Ref<Str>>
+    let _v5 = v12 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : Ref<Str> = v4 |> unbox<Ref<Str>>
+    let _v5 = v15 
+    #endif
+#else
+    let v18 : Ref<Str> = v4 |> unbox<Ref<Str>>
+    let _v5 = v18 
+    #endif
+    let v21 : Ref<Str> = _v5 
+    let v26 : string = "clap::ArgMatches::get_one(&$0, $1).cloned()"
+    let v27 : std_string_String option = Fable.Core.RustInterop.emitRustExpr struct (v3, v21) v26 
+    let v28 : (std_string_String -> US0) = method2()
+    let v29 : US0 option = v27 |> Option.map v28 
+    let v40 : US0 = US0_1
+    let v41 : US0 = v29 |> Option.defaultValue v40 
+    let v97 : US1 =
+        match v41 with
         | US0_1 -> (* None *)
             US1_1
-        | US0_0(v26) -> (* Some *)
-            let v27 : string = "fable_library_rust::String_::fromString($0)"
-            let v28 : string = Fable.Core.RustInterop.emitRustExpr v26 v27 
+        | US0_0(v45) -> (* Some *)
+            let v46 : string = "fable_library_rust::String_::fromString($0)"
+            let v47 : string = Fable.Core.RustInterop.emitRustExpr v45 v46 
             
             
             
             
             
-            let v29 : bool = "Verbose" = v28
-            let v33 : US2 =
-                if v29 then
-                    let v30 : US3 = US3_0
-                    US2_0(v30)
+            let v48 : bool = "Verbose" = v47
+            let v52 : US2 =
+                if v48 then
+                    let v49 : US3 = US3_0
+                    US2_0(v49)
                 else
                     US2_1
-            let v74 : US2 =
-                match v33 with
+            let v93 : US2 =
+                match v52 with
                 | US2_1 -> (* None *)
-                    let v36 : bool = "Debug" = v28
-                    let v40 : US2 =
-                        if v36 then
-                            let v37 : US3 = US3_1
-                            US2_0(v37)
+                    let v55 : bool = "Debug" = v47
+                    let v59 : US2 =
+                        if v55 then
+                            let v56 : US3 = US3_1
+                            US2_0(v56)
                         else
                             US2_1
-                    match v40 with
+                    match v59 with
                     | US2_1 -> (* None *)
-                        let v43 : bool = "Info" = v28
-                        let v47 : US2 =
-                            if v43 then
-                                let v44 : US3 = US3_2
-                                US2_0(v44)
+                        let v62 : bool = "Info" = v47
+                        let v66 : US2 =
+                            if v62 then
+                                let v63 : US3 = US3_2
+                                US2_0(v63)
                             else
                                 US2_1
-                        match v47 with
+                        match v66 with
                         | US2_1 -> (* None *)
-                            let v50 : bool = "Warning" = v28
-                            let v54 : US2 =
-                                if v50 then
-                                    let v51 : US3 = US3_3
-                                    US2_0(v51)
+                            let v69 : bool = "Warning" = v47
+                            let v73 : US2 =
+                                if v69 then
+                                    let v70 : US3 = US3_3
+                                    US2_0(v70)
                                 else
                                     US2_1
-                            match v54 with
+                            match v73 with
                             | US2_1 -> (* None *)
-                                let v57 : bool = "Critical" = v28
-                                let v61 : US2 =
-                                    if v57 then
-                                        let v58 : US3 = US3_4
-                                        US2_0(v58)
+                                let v76 : bool = "Critical" = v47
+                                let v80 : US2 =
+                                    if v76 then
+                                        let v77 : US3 = US3_4
+                                        US2_0(v77)
                                     else
                                         US2_1
-                                match v61 with
+                                match v80 with
                                 | US2_1 -> (* None *)
                                     US2_1
-                                | US2_0(v62) -> (* Some *)
-                                    US2_0(v62)
-                            | US2_0(v55) -> (* Some *)
-                                US2_0(v55)
-                        | US2_0(v48) -> (* Some *)
-                            US2_0(v48)
-                    | US2_0(v41) -> (* Some *)
-                        US2_0(v41)
-                | US2_0(v34) -> (* Some *)
-                    US2_0(v34)
-            US1_0(v74)
-    let v85 : US2 =
-        match v78 with
-        | US1_0(v79) -> (* Some *)
-            match v79 with
-            | US2_0(v80) -> (* Some *)
-                US2_0(v80)
+                                | US2_0(v81) -> (* Some *)
+                                    US2_0(v81)
+                            | US2_0(v74) -> (* Some *)
+                                US2_0(v74)
+                        | US2_0(v67) -> (* Some *)
+                            US2_0(v67)
+                    | US2_0(v60) -> (* Some *)
+                        US2_0(v60)
+                | US2_0(v53) -> (* Some *)
+                    US2_0(v53)
+            US1_0(v93)
+    let v104 : US2 =
+        match v97 with
+        | US1_0(v98) -> (* Some *)
+            match v98 with
+            | US2_0(v99) -> (* Some *)
+                US2_0(v99)
             | _ ->
                 US2_1
         | _ ->
             US2_1
-    let v89 : US3 =
-        match v85 with
+    let v108 : US3 =
+        match v104 with
         | US2_1 -> (* None *)
             US3_0
-        | US2_0(v86) -> (* Some *)
-            v86
-    let v90 : unit = ()
-    let v91 : (unit -> unit) = closure2(v89)
-    let v92 : unit = (fun () -> v91 (); v90) ()
-    let struct (v104 : Mut0, v105 : Mut1, v106 : Mut2, v107 : Mut3, v108 : Mut4, v109 : int64 option) = TraceState.trace_state.Value
-    let v122 : unit = ()
-    let v123 : (unit -> unit) = closure5(v0)
-    let v124 : unit = (fun () -> v123 (); v122) ()
-    let v240 : string = method19()
-    let v241 : string = "&*$0"
-    let v242 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v240 v241 
-    let v243 : string = "clap::ArgMatches::get_flag(&v3, v242)"
-    let v244 : bool = Fable.Core.RustInterop.emitRustExpr () v243 
-    let v245 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = method20(v3)
-    let v246 : string = $"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"
-    let v247 : _ = Fable.Core.RustInterop.emitRustExpr () v246 
-    let v248 : string = "v247.handle().block_on($0)"
-    let v249 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v245 v248 
-    let v250 : (anyhow_Error -> std_string_String) = method42()
-    let v251 : string = "$0.map_err(|x| $1(x))"
-    let v252 : Result<uint8, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v249, v250) v251 
-    let v253 : string = "$0.ok()"
-    let v254 : uint8 option = Fable.Core.RustInterop.emitRustExpr v252 v253 
-    let v255 : (uint8 -> US8) = method84()
-    let v256 : US8 option = v254 |> Option.map v255 
-    let v267 : US8 = US8_1
-    let v268 : US8 = v256 |> Option.defaultValue v267 
-    match v268 with
+        | US2_0(v105) -> (* Some *)
+            v105
+    let v109 : unit = ()
+    let v110 : (unit -> unit) = closure2(v108)
+    let v111 : unit = (fun () -> v110 (); v109) ()
+    let struct (v123 : Mut0, v124 : Mut1, v125 : Mut2, v126 : Mut3, v127 : Mut4, v128 : int64 option) = TraceState.trace_state.Value
+    let v141 : unit = ()
+    let v142 : (unit -> unit) = closure5(v0)
+    let v143 : unit = (fun () -> v142 (); v141) ()
+    let v259 : string = method19()
+    let v260 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v261 : string = "&*$0"
+    let v262 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v259 v261 
+    let _v260 = v262 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v263 : string = "&*$0"
+    let v264 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v259 v263 
+    let _v260 = v264 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v265 : string = "&*$0"
+    let v266 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v259 v265 
+    let _v260 = v266 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v267 : Ref<Str> = v259 |> unbox<Ref<Str>>
+    let _v260 = v267 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v270 : Ref<Str> = v259 |> unbox<Ref<Str>>
+    let _v260 = v270 
+    #endif
+#else
+    let v273 : Ref<Str> = v259 |> unbox<Ref<Str>>
+    let _v260 = v273 
+    #endif
+    let v276 : Ref<Str> = _v260 
+    let v281 : string = "clap::ArgMatches::get_flag(&$0, $1)"
+    let v282 : bool = Fable.Core.RustInterop.emitRustExpr struct (v3, v276) v281 
+    let v283 : std_pin_Pin<Box<Dyn<std_future_Future<Result<uint8, anyhow_Error>>>>> = method20(v3)
+    let v284 : string = $"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"
+    let v285 : _ = Fable.Core.RustInterop.emitRustExpr () v284 
+    let v286 : string = "v285.handle().block_on($0)"
+    let v287 : Result<uint8, anyhow_Error> = Fable.Core.RustInterop.emitRustExpr v283 v286 
+    let v288 : (anyhow_Error -> std_string_String) = method42()
+    let v289 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v290 : string = "$0.map_err(|x| $1(x))"
+    let v291 : Result<uint8, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v287, v288) v290 
+    let _v289 = v291 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v292 : string = "$0.map_err(|x| $1(x))"
+    let v293 : Result<uint8, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v287, v288) v292 
+    let _v289 = v293 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v294 : string = "$0.map_err(|x| $1(x))"
+    let v295 : Result<uint8, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v287, v288) v294 
+    let _v289 = v295 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v296 : Result<uint8, std_string_String> = match v287 with Ok x -> Ok x | Error x -> Error (v288 x)
+    let _v289 = v296 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v297 : Result<uint8, std_string_String> = match v287 with Ok x -> Ok x | Error x -> Error (v288 x)
+    let _v289 = v297 
+    #endif
+#else
+    let v298 : Result<uint8, std_string_String> = match v287 with Ok x -> Ok x | Error x -> Error (v288 x)
+    let _v289 = v298 
+    #endif
+    let v299 : Result<uint8, std_string_String> = _v289 
+    let v302 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v303 : string = "$0.ok()"
+    let v304 : uint8 option = Fable.Core.RustInterop.emitRustExpr v299 v303 
+    let _v302 = v304 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v305 : string = "$0.ok()"
+    let v306 : uint8 option = Fable.Core.RustInterop.emitRustExpr v299 v305 
+    let _v302 = v306 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v307 : string = "$0.ok()"
+    let v308 : uint8 option = Fable.Core.RustInterop.emitRustExpr v299 v307 
+    let _v302 = v308 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v309 : uint8 option = match v299 with Ok x -> Some x | Error _ -> None
+    let _v302 = v309 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v310 : uint8 option = match v299 with Ok x -> Some x | Error _ -> None
+    let _v302 = v310 
+    #endif
+#else
+    let v311 : uint8 option = match v299 with Ok x -> Some x | Error _ -> None
+    let _v302 = v311 
+    #endif
+    let v312 : uint8 option = _v302 
+    let v315 : (uint8 -> US8) = method84()
+    let v316 : US8 option = v312 |> Option.map v315 
+    let v327 : US8 = US8_1
+    let v328 : US8 = v316 |> Option.defaultValue v327 
+    match v328 with
     | US8_1 -> (* None *)
-        if v244 then
+        if v282 then
             ()
         else
-            let v277 : string = "$0.unwrap()"
-            let v278 : uint8 = Fable.Core.RustInterop.emitRustExpr v252 v277 
+            let v351 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v352 : string = "$0.unwrap()"
+            let v353 : uint8 = Fable.Core.RustInterop.emitRustExpr v299 v352 
+            let _v351 = v353 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v354 : string = "$0.unwrap()"
+            let v355 : uint8 = Fable.Core.RustInterop.emitRustExpr v299 v354 
+            let _v351 = v355 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v356 : string = "$0.unwrap()"
+            let v357 : uint8 = Fable.Core.RustInterop.emitRustExpr v299 v356 
+            let _v351 = v357 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v358 : uint8 = match v299 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v351 = v358 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v359 : uint8 = match v299 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v351 = v359 
+            #endif
+#else
+            let v360 : uint8 = match v299 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v351 = v360 
+            #endif
+            let v361 : uint8 = _v351 
             ()
-    | US8_0(v272) -> (* Some *)
-        if v244 then
-            let v273 : string = "Err($0)"
-            let v274 : string = "spiral_wasm.main / exception=true"
-            let v275 : Result<unit, string> = Fable.Core.RustInterop.emitRustExpr v274 v273 
-            let v276 : string = "$0.unwrap()"
-            Fable.Core.RustInterop.emitRustExpr v275 v276 
+    | US8_0(v332) -> (* Some *)
+        if v282 then
+            let v333 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v334 : string = "Err($0)"
+            let v335 : string = "spiral_wasm.main / exception=true"
+            let v336 : Result<unit, string> = Fable.Core.RustInterop.emitRustExpr v335 v334 
+            let _v333 = v336 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v337 : string = "Err($0)"
+            let v338 : Result<unit, string> = Fable.Core.RustInterop.emitRustExpr v335 v337 
+            let _v333 = v338 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v339 : string = "Err($0)"
+            let v340 : Result<unit, string> = Fable.Core.RustInterop.emitRustExpr v335 v339 
+            let _v333 = v340 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v341 : Result<unit, string> = v335 |> Error
+            let _v333 = v341 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v342 : Result<unit, string> = v335 |> Error
+            let _v333 = v342 
+            #endif
+#else
+            let v343 : Result<unit, string> = v335 |> Error
+            let _v333 = v343 
+            #endif
+            let v344 : Result<unit, string> = _v333 
+            let v347 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v348 : string = "$0.unwrap()"
+            Fable.Core.RustInterop.emitRustExpr v344 v348 
+            let _v347 = () 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v349 : string = "$0.unwrap()"
+            Fable.Core.RustInterop.emitRustExpr v344 v349 
+            let _v347 = () 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v350 : string = "$0.unwrap()"
+            Fable.Core.RustInterop.emitRustExpr v344 v350 
+            let _v347 = () 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v347 = () 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v347 = () 
+            #endif
+#else
+            match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+            let _v347 = () 
+            #endif
+            _v347 
             ()
     0
 let v0 : ((string []) -> int32) = closure0()

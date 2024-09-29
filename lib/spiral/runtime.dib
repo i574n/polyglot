@@ -250,7 +250,7 @@ inl process_child_stderr
     (child : rust.ref (rust.mut' process_child))
     : rust.ref (rust.mut' (optionm'.option' process_child_stderr))
     =
-    !\($'"&mut !child.stderr"')
+    !\\(child, $'"&mut $0.stderr"')
 
 #!markdown
 
@@ -268,7 +268,7 @@ inl process_child_stdout
     (child : rust.ref (rust.mut' process_child))
     : rust.ref (rust.mut' (optionm'.option' process_child_stdout))
     =
-    !\($'"&mut !child.stdout"')
+    !\\(child, $'"&mut $0.stdout"')
 
 #!markdown
 
@@ -551,7 +551,7 @@ inl new_command (s : rust.static_ref sm'.str) : command =
 ##"command"
 |> new_command
 |> sm'.format_pretty
-|> _assert_string_contains "\"command\""
+|> _assert sm'.contains "\"command\""
 
 #!markdown
 
@@ -582,7 +582,7 @@ inl new_arg (s : rust.static_ref sm'.str) : arg =
 ##"arg"
 |> new_arg
 |> sm'.format_pretty
-|> _assert_string_contains "\"arg\""
+|> _assert sm'.contains "\"arg\""
 
 #!markdown
 
@@ -903,7 +903,7 @@ inl command_init_arg (long, short) fn command =
 inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
+    !\\((matches, x), $'"clap::ArgMatches::get_one(&$0, $1).cloned()"')
 
 #!markdown
 
@@ -914,7 +914,7 @@ inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.op
 inl matches_get_flag (x : string) (matches : arg_matches) : bool =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
+    !\\((matches, x), $'"clap::ArgMatches::get_flag(&$0, $1)"')
 
 #!markdown
 
@@ -925,7 +925,7 @@ inl matches_get_flag (x : string) (matches : arg_matches) : bool =
 inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
+    !\\((matches, x), $'"clap::ArgMatches::get_many(&$0, $1).map(|x| x.cloned().into_iter().collect())"')
 
 #!markdown
 
@@ -1327,7 +1327,7 @@ fun () =>
 
     inl exit_code, result = execute_async $'\@$"pwsh -c ""Get-Content {!path}"""' |> async.let'
     exit_code |> join _assert_eq 1
-    result |> _assert_string_contains "not exist"
+    result |> _assert sm'.contains "not exist"
 
     content |> file_system.write_all_text_async path |> async.do
 
@@ -1689,7 +1689,7 @@ inl path = temp_dir </> file_name |> file_system.normalize_path
 inl exit_code, result =
     execute $'\@$"pwsh -c ""[IO.File]::ReadAllText(\'{!path}\')"""'
 exit_code |> _assert_eq 1
-result |> _assert_string_contains "not find file"
+result |> _assert sm'.contains "not find file"
 
 content |> file_system.write_all_text path
 

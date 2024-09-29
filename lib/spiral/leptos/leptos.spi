@@ -873,7 +873,7 @@ inl use_navigate () : string -> () =
         !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
     fun url =>
         inl url = url |> sm'.as_str
-        !\\(navigate, $'"$0(!url, Default::default())"')
+        !\\((navigate, url), $'"$0($1, Default::default())"')
 
 /// ### location_hash
 inl location_hash (location : location) : memo sm'.std_string =
@@ -910,8 +910,8 @@ inl use_url () =
 
 /// ### route
 inl route path view children : view =
-    inl path = join path
     inl path = path |> sm'.to_std_string
+    inl path = join path
     inl view : () -> fragment = join view
     inl children : () -> fragment = join children
     tag_closed_raw "leptos_router::Route" [

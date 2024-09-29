@@ -260,19 +260,19 @@ pub mod Common {
         LrcPtr<Common::Mut4>,
         Option<i64>,
     ) {
-        let v79: string = string("env!(\"AUTOMATION\")");
-        let v80: &str = env!("AUTOMATION");
-        let v82: std::string::String = String::from(v80);
+        let v117: string = string("env!(\"AUTOMATION\")");
+        let v118: &str = env!("AUTOMATION");
+        let v125: std::string::String = String::from(v118);
         let _v1: (Common::US2, Common::US3) = (
             Common::US2::US2_1,
-            if fable_library_rust::String_::fromString(v82) != string("True") {
+            if fable_library_rust::String_::fromString(v125) != string("True") {
                 Common::US3::US3_1
             } else {
                 Common::US3::US3_0(near_sdk::env::block_timestamp() as i64)
             },
         );
-        let v295: Common::US3 = _v1.1.clone();
-        let v294: Common::US2 = _v1.0.clone();
+        let v352: Common::US3 = _v1.1.clone();
+        let v351: Common::US2 = _v1.0.clone();
         (
             LrcPtr::new(Common::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -287,16 +287,16 @@ pub mod Common {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Common::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Common::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Common::US2::US2_0(v351_0_0) => match &v351 {
                         Common::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Common::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Common::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Common::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -394,11 +394,11 @@ pub mod Common {
     }
     pub fn method13() -> string {
         let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-        let v41: &str = inline_colorization::color_yellow;
-        let v43: &str = &*v5;
-        let v45: &str = inline_colorization::color_reset;
-        let v47: std::string::String = format!("{}{}{}", v41, v43, v45);
-        fable_library_rust::String_::fromString(v47)
+        let v79: &str = inline_colorization::color_yellow;
+        let v86: &str = &*v5;
+        let v102: &str = inline_colorization::color_reset;
+        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
+        fable_library_rust::String_::fromString(v104)
     }
     pub fn method16() -> string {
         string("")
@@ -508,28 +508,28 @@ pub mod Common {
                 append(append(v4.l0.get().clone(), string("\n")), v0_1.clone())
             }
         };
-        let v27: &str = &*v25.clone();
-        let v29 = v27.chars();
-        let v31 = v29;
-        let v33: Vec<char> = v31.collect::<Vec<_>>();
-        let v35: Vec<Vec<char>> = v33
+        let v32: &str = &*v25.clone();
+        let v48 = v32.chars();
+        let v50 = v48;
+        let v52: Vec<char> = v50.collect::<Vec<_>>();
+        let v54: Vec<Vec<char>> = v52
             .chunks(15000)
             .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
             .collect::<Vec<_>>();
-        let v37: bool = true;
-        let _vec_map: Vec<_> = v35
+        let v56: bool = true;
+        let _vec_map: Vec<_> = v54
             .into_iter()
             .map(|x| {
                 //;
-                let v39: Vec<char> = x;
-                let v41: std::string::String = String::from_iter(v39);
-                let v43: bool = true;
-                v41
+                let v58: Vec<char> = x;
+                let v60: std::string::String = String::from_iter(v58);
+                let v62: bool = true;
+                v60
             })
             .collect::<Vec<_>>();
-        let v45: Vec<std::string::String> = _vec_map;
+        let v64: Vec<std::string::String> = _vec_map;
         if if v0_1.clone() != string("") {
-            v45.clone().len() as i32 <= 1_i32
+            v64.clone().len() as i32 <= 1_i32
         } else {
             false
         } {
@@ -538,14 +538,14 @@ pub mod Common {
         } else {
             v4.l0.set(string(""));
             {
-                let v57: bool = true;
-                v45.into_iter().for_each(|x| {
+                let v76: bool = true;
+                v64.into_iter().for_each(|x| {
                     //;
-                    let v59: std::string::String = x;
-                    let v61: bool = true;
-                    near_sdk::log!("{}", v59);
-                    let v63: bool = true;
-                    let v65: bool = true;
+                    let v78: std::string::String = x;
+                    let v80: bool = true;
+                    near_sdk::log!("{}", v78);
+                    let v82: bool = true;
+                    let v84: bool = true;
                 }); //;
                 ()
             }

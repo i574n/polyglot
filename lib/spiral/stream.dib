@@ -477,9 +477,21 @@ listm.init 10i32 id
 
 nominal io_error =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\ntype std_io_Error = class end\n#else\ntype std_io_Error = string\n#endif\n"
         $'' : $'std_io_Error'
     )
+
+#!markdown
+
+### new_io_error
+
+#!spiral
+
+inl new_io_error (text : string) : io_error =
+    run_target_args (fun () => text) function
+        | Rust _ => fun text =>
+            !\\(text, $'"std::io::Error::new(std::io::ErrorKind::Other, &*$0)"')
+        | _ => fun text => text |> to
 
 #!markdown
 
@@ -534,7 +546,7 @@ nominal async_buf_reader t =
 #!spiral
 
 inl new_buf_reader forall t. (x : t) : buf_reader t =
-    !\($'"std::io::BufReader::new(!x)"')
+    !\\(x, $'"std::io::BufReader::new($0)"')
 
 #!markdown
 

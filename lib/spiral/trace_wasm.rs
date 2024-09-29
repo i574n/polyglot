@@ -212,8 +212,8 @@ pub mod Trace {
         Option<i64>,
     ) {
         let _v1: (Trace::US2, Trace::US3) = (Trace::US2::US2_1, Trace::US3::US3_1);
-        let v295: Trace::US3 = _v1.1.clone();
-        let v294: Trace::US2 = _v1.0.clone();
+        let v352: Trace::US3 = _v1.1.clone();
+        let v351: Trace::US2 = _v1.0.clone();
         (
             LrcPtr::new(Trace::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -228,16 +228,16 @@ pub mod Trace {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Trace::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Trace::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Trace::US2::US2_0(v351_0_0) => match &v351 {
                         Trace::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Trace::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Trace::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Trace::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -414,17 +414,17 @@ pub mod Trace {
             7_i32,
             ' ',
         );
-        let v107: &str = match &v0_1 {
+        let v126: &str = match &v0_1 {
             Trace::US0::US0_1 => inline_colorization::color_bright_blue,
             Trace::US0::US0_2 => inline_colorization::color_bright_green,
             Trace::US0::US0_0 => inline_colorization::color_bright_black,
             Trace::US0::US0_3 => inline_colorization::color_yellow,
             _ => inline_colorization::color_bright_red,
         };
-        let v109: &str = &*v55;
-        let v111: &str = inline_colorization::color_reset;
-        let v113: std::string::String = format!("{}{}{}", v107, v109, v111);
-        fable_library_rust::String_::fromString(v113)
+        let v131: &str = &*v55;
+        let v149: &str = inline_colorization::color_reset;
+        let v151: std::string::String = format!("{}{}{}", v126, v131, v149);
+        fable_library_rust::String_::fromString(v151)
     }
     pub fn method13() -> string {
         string("")

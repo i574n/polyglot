@@ -337,8 +337,8 @@ pub mod Networking {
                 Networking::US3::US3_1
             },
         );
-        let v295: Networking::US3 = _v1.1.clone();
-        let v294: Networking::US2 = _v1.0.clone();
+        let v352: Networking::US3 = _v1.1.clone();
+        let v351: Networking::US2 = _v1.0.clone();
         (
             LrcPtr::new(Networking::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -353,16 +353,16 @@ pub mod Networking {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Networking::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Networking::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Networking::US2::US2_0(v351_0_0) => match &v351 {
                         Networking::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Networking::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Networking::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Networking::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -449,10 +449,10 @@ pub mod Networking {
     pub fn method10() -> string {
         let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_bright_black;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method13() -> string {
         string("")
@@ -753,10 +753,10 @@ pub mod Networking {
     pub fn method17() -> string {
         let v5: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
         let v21: &str = inline_colorization::color_bright_red;
-        let v23: &str = &*v5;
-        let v25: &str = inline_colorization::color_reset;
-        let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-        fable_library_rust::String_::fromString(v27)
+        let v24: &str = &*v5;
+        let v44: &str = inline_colorization::color_reset;
+        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+        fable_library_rust::String_::fromString(v46)
     }
     pub fn method18(v0_1: i32, v1_1: string) -> string {
         let v3: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {

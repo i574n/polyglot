@@ -765,6 +765,9 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                     "::Slice'_"
                     "::Slice__"
                 |> sm'.replace
+                    " Slice'_"
+                    " Slice__"
+                |> sm'.replace
                     ("defaultOf()" +. !\($'"\\\",\\\".into()"'))
                     "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
                 |> sm'.replace
@@ -1986,11 +1989,11 @@ get_command ()
 |> run Verbose
 |> async.block_on
 |> resultm.unwrap'
-|> __assert_string_contains Silent "<pre>-3 "
+|> __assert sm'.contains Silent "<pre>-3 "
 
 $'$"{!path}.html"'
 |> file_system.read_all_text
-|> __assert_string_contains Silent "\"cell-id=1\""
+|> __assert sm'.contains Silent "\"cell-id=1\""
 
 disposable |> use |> ignore
 

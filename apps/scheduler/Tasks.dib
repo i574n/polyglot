@@ -228,7 +228,7 @@ inl get_tasks () : list task_template =
 
 get_tasks ()
 |> sm'.format_debug
-|> _assert_string_contains "01"
+|> _assert sm'.contains "01"
 
 #!spiral
 

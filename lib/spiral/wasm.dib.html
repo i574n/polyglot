@@ -7997,7 +7997,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">html</span> <span class="o">=</span> <span class="n">join</span> <span class="n">html</span>
     <span class="n">inl</span> <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
     <span class="n">inl</span> <span class="n">el</span> <span class="o">=</span> <span class="n">join</span> <span class="n">el</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!el.set_inner_html(!html)"'</span><span class="o">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>html,<span class="w"> </span><span class="s1">$'"!el.set_inner_html($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
