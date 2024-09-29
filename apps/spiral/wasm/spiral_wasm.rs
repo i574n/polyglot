@@ -267,31 +267,31 @@ mod module_fb49c4a9 {
                 .map(|x| {
                     //;
                     let v65: string = x;
-                    let v67: &str = &*v65;
-                    let v69: std::string::String = String::from(v67);
-                    let v71: Box<std::string::String> = Box::new(v69);
-                    let v73: &'static mut std::string::String = Box::leak(v71);
-                    let v75: clap::builder::PossibleValue =
-                        clap::builder::PossibleValue::new(&**v73);
-                    let v77: bool = true;
-                    v75
+                    let v68: &str = &*v65;
+                    let v89: std::string::String = String::from(v68);
+                    let v109: Box<std::string::String> = Box::new(v89);
+                    let v111: &'static mut std::string::String = Box::leak(v109);
+                    let v113: clap::builder::PossibleValue =
+                        clap::builder::PossibleValue::new(&**v111);
+                    let v115: bool = true;
+                    v113
                 })
                 .collect::<Vec<_>>();
-            let v79: Vec<clap::builder::PossibleValue> = _vec_map;
-            let v81: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
-                clap::builder::PossibleValuesParser::new(v79),
+            let v117: Vec<clap::builder::PossibleValue> = _vec_map;
+            let v119: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
+                clap::builder::PossibleValuesParser::new(v117),
             );
-            let v83: clap::Arg = v34.value_parser(v81);
-            let v85: clap::Command = clap::Command::arg(v23, v83);
-            let v87: string = string("r#\"wasm\"#");
-            let v88: &'static str = r#"wasm"#;
-            let v90: clap::Arg = clap::Arg::new(v88);
-            let v92: clap::Arg = v90.short('w');
-            let v93: string = string("r#\"wasm\"#");
-            let v94: &'static str = r#"wasm"#;
-            let v96: clap::Arg = v92.long(v94);
-            let v98: clap::Arg = v96.required(true);
-            clap::Command::arg(v85, v98)
+            let v121: clap::Arg = v34.value_parser(v119);
+            let v123: clap::Command = clap::Command::arg(v23, v121);
+            let v125: string = string("r#\"wasm\"#");
+            let v126: &'static str = r#"wasm"#;
+            let v128: clap::Arg = clap::Arg::new(v126);
+            let v130: clap::Arg = v128.short('w');
+            let v131: string = string("r#\"wasm\"#");
+            let v132: &'static str = r#"wasm"#;
+            let v134: clap::Arg = v130.long(v132);
+            let v136: clap::Arg = v134.required(true);
+            clap::Command::arg(v123, v136)
         }
         pub fn method1() -> string {
             string("trace_level")
@@ -430,8 +430,8 @@ mod module_fb49c4a9 {
                     Spiral_wasm::US5::US5_1
                 },
             );
-            let v295: Spiral_wasm::US5 = _v1.1.clone();
-            let v294: Spiral_wasm::US2 = _v1.0.clone();
+            let v352: Spiral_wasm::US5 = _v1.1.clone();
+            let v351: Spiral_wasm::US2 = _v1.0.clone();
             (
                 LrcPtr::new(Spiral_wasm::Mut0 {
                     l0: MutCell::new(1_i64),
@@ -446,16 +446,16 @@ mod module_fb49c4a9 {
                     l0: MutCell::new(string("")),
                 }),
                 LrcPtr::new(Spiral_wasm::Mut4 {
-                    l0: MutCell::new(match &v294 {
-                        Spiral_wasm::US2::US2_0(v294_0_0) => match &v294 {
+                    l0: MutCell::new(match &v351 {
+                        Spiral_wasm::US2::US2_0(v351_0_0) => match &v351 {
                             Spiral_wasm::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v295 {
-                    Spiral_wasm::US5::US5_0(v295_0_0) => Some(match &v295 {
+                match &v352 {
+                    Spiral_wasm::US5::US5_0(v352_0_0) => Some(match &v352 {
                         Spiral_wasm::US5::US5_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
@@ -567,10 +567,10 @@ mod module_fb49c4a9 {
         pub fn method13() -> string {
             let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
             let v21: &str = inline_colorization::color_bright_black;
-            let v23: &str = &*v5;
-            let v25: &str = inline_colorization::color_reset;
-            let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-            fable_library_rust::String_::fromString(v27)
+            let v24: &str = &*v5;
+            let v44: &str = inline_colorization::color_reset;
+            let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+            fable_library_rust::String_::fromString(v46)
         }
         pub fn method16() -> string {
             string("")
@@ -1262,10 +1262,10 @@ mod module_fb49c4a9 {
         pub fn method28() -> string {
             let v5: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
             let v21: &str = inline_colorization::color_bright_blue;
-            let v23: &str = &*v5;
-            let v25: &str = inline_colorization::color_reset;
-            let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-            fable_library_rust::String_::fromString(v27)
+            let v24: &str = &*v5;
+            let v44: &str = inline_colorization::color_reset;
+            let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+            fable_library_rust::String_::fromString(v46)
         }
         pub fn method29(v0_1: u8, v1: f64, v2: u64) -> string {
             let v4: LrcPtr<Spiral_wasm::Mut3> = LrcPtr::new(Spiral_wasm::Mut3 {
@@ -2427,88 +2427,88 @@ mod module_fb49c4a9 {
                     .map(|x| {
                         //;
                         let v370: &str = x;
-                        let v372: std::string::String = String::from(v370);
-                        let v374: bool = true;
-                        v372
+                        let v373: std::string::String = String::from(v370);
+                        let v393: bool = true;
+                        v373
                     })
                     .collect::<Vec<_>>();
-                let v376: Vec<std::string::String> = _vec_map;
-                let v379: bool = true;
-                v376.iter().for_each(|x| {
+                let v395: Vec<std::string::String> = _vec_map;
+                let v398: bool = true;
+                v395.iter().for_each(|x| {
                     Func1::new(move |v: std::string::String| Spiral_wasm::closure16((), v))(
                         x.clone(),
                     );
                 }); //;
-                let v381: near_workspaces::types::Gas = v250.clone().total_gas_burnt;
-                let v383: u64 = v381.as_gas();
-                let v390: () = {
+                let v400: near_workspaces::types::Gas = v250.clone().total_gas_burnt;
+                let v402: u64 = v400.as_gas();
+                let v409: () = {
                     Spiral_wasm::closure18(
                         v1,
-                        v383,
-                        v383 as f64 / 10000000000000000.0_f64 * 6.68_f64,
+                        v402,
+                        v402 as f64 / 10000000000000000.0_f64 * 6.68_f64,
                         (),
                     );
                     ()
                 };
-                let v503: near_workspaces::result::ExecutionFinalResult = v250.clone();
-                let v505: Vec<&near_workspaces::result::ExecutionOutcome> = v503.outcomes();
-                let v507 = v505.into_iter();
-                let v509 = v507.cloned();
-                let v512: bool = true;
-                v509.for_each(|x| {
+                let v522: near_workspaces::result::ExecutionFinalResult = v250.clone();
+                let v524: Vec<&near_workspaces::result::ExecutionOutcome> = v522.outcomes();
+                let v526 = v524.into_iter();
+                let v528 = v526.cloned();
+                let v531: bool = true;
+                v528.for_each(|x| {
                     Func1::new(move |v_1: near_workspaces::result::ExecutionOutcome| {
                         Spiral_wasm::closure19((), v_1)
                     })(x)
                 });
-                let v517: () = {
+                let v536: () = {
                     Spiral_wasm::closure21(v250.clone().into_result(), ());
                     ()
                 };
-                let v629: near_workspaces::result::ExecutionFinalResult =
+                let v648: near_workspaces::result::ExecutionFinalResult =
                     Spiral_wasm::method34(v250.clone());
-                let v631: Vec<&near_workspaces::result::ExecutionOutcome> = v629.receipt_failures();
-                let v635: i32 = v631.clone().len() as i32;
-                let v638: () = {
-                    Spiral_wasm::closure22(v631.clone(), v635, ());
+                let v650: Vec<&near_workspaces::result::ExecutionOutcome> = v648.receipt_failures();
+                let v654: i32 = v650.clone().len() as i32;
+                let v657: () = {
+                    Spiral_wasm::closure22(v650.clone(), v654, ());
                     ()
                 };
-                let v750: near_workspaces::result::ExecutionFinalResult =
+                let v769: near_workspaces::result::ExecutionFinalResult =
                     Spiral_wasm::method36(v250.clone());
-                let v752: &[near_workspaces::result::ExecutionOutcome] = v750.receipt_outcomes();
-                let v754: Vec<near_workspaces::result::ExecutionOutcome> = v752.into();
-                let v758: i32 = v754.clone().len() as i32;
-                let v761: () = {
-                    Spiral_wasm::closure23(v754, v758, ());
+                let v771: &[near_workspaces::result::ExecutionOutcome] = v769.receipt_outcomes();
+                let v773: Vec<near_workspaces::result::ExecutionOutcome> = v771.into();
+                let v777: i32 = v773.clone().len() as i32;
+                let v780: () = {
+                    Spiral_wasm::closure23(v773, v777, ());
                     ()
                 };
-                let v877: () = {
+                let v896: () = {
                     Spiral_wasm::closure24(v250.clone().json(), ());
                     ()
                 };
-                let v993: () = {
+                let v1012: () = {
                     Spiral_wasm::closure25(v250.borsh(), ());
                     ()
                 };
-                let v1105: string = Spiral_wasm::method40(v631, v758, v1);
-                let v1118: Result<Spiral_wasm::US4, anyhow::Error> =
-                    Spiral_wasm::method41(if v635 > 0_i32 {
+                let v1124: string = Spiral_wasm::method40(v650, v777, v1);
+                let v1148: Result<Spiral_wasm::US4, anyhow::Error> =
+                    Spiral_wasm::method41(if v654 > 0_i32 {
                         Ok::<Spiral_wasm::US4, anyhow::Error>(Spiral_wasm::US4::US4_0(
-                            v1105.clone(),
+                            v1124.clone(),
                         ))
                     } else {
-                        if v758 > 1_i32 {
+                        if v777 > 1_i32 {
                             Ok::<Spiral_wasm::US4, anyhow::Error>(Spiral_wasm::US4::US4_1)
                         } else {
-                            let v1113: anyhow::Error = anyhow::anyhow!(v1105);
-                            Err(v1113)
+                            let v1132: anyhow::Error = anyhow::anyhow!(v1124);
+                            Err(v1132)
                         }
                     });
-                let v1122: string = string("true; v1118 });  // rust.fix_closure\'");
-                let v1123: bool = true;
-                v1118
+                let v1152: string = string("true; v1148 });  // rust.fix_closure\'");
+                let v1153: bool = true;
+                v1148
             }); // rust.fix_closure';
-            let v1125 = __future_init;
-            v1125
+            let v1155 = __future_init;
+            v1155
         }
         pub fn closure26(unitVar: (), v0_1: anyhow::Error) -> std::string::String {
             format!("{}", v0_1)
@@ -2525,10 +2525,10 @@ mod module_fb49c4a9 {
         pub fn method43() -> string {
             let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
             let v21: &str = inline_colorization::color_yellow;
-            let v23: &str = &*v5;
-            let v25: &str = inline_colorization::color_reset;
-            let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-            fable_library_rust::String_::fromString(v27)
+            let v24: &str = &*v5;
+            let v44: &str = inline_colorization::color_reset;
+            let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+            fable_library_rust::String_::fromString(v46)
         }
         pub fn method44(v0_1: u8, v1: std::string::String) -> string {
             let v3: LrcPtr<Spiral_wasm::Mut3> = LrcPtr::new(Spiral_wasm::Mut3 {
@@ -4957,10 +4957,10 @@ mod module_fb49c4a9 {
         pub fn method50() -> string {
             let v5: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
             let v21: &str = inline_colorization::color_bright_red;
-            let v23: &str = &*v5;
-            let v25: &str = inline_colorization::color_reset;
-            let v27: std::string::String = format!("{}{}{}", v21, v23, v25);
-            fable_library_rust::String_::fromString(v27)
+            let v24: &str = &*v5;
+            let v44: &str = inline_colorization::color_reset;
+            let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
+            fable_library_rust::String_::fromString(v46)
         }
         pub fn method51(v0_1: u8, v1: string) -> string {
             let v3: LrcPtr<Spiral_wasm::Mut3> = LrcPtr::new(Spiral_wasm::Mut3 {
@@ -7597,49 +7597,50 @@ mod module_fb49c4a9 {
             let __future_init = Box::pin(async move {
                 //;
                 let v3: string = Spiral_wasm::method21();
-                let v5: &str = &*v3;
-                let v7: Option<std::string::String> = clap::ArgMatches::get_one(&v0_1, v5).cloned();
-                let v21: Spiral_wasm::US0 =
-                    defaultValue(Spiral_wasm::US0::US0_1, map(Spiral_wasm::method2(), v7));
-                let v28: std::string::String = match &v21 {
-                    Spiral_wasm::US0::US0_0(v21_0_0) => match &v21 {
+                let v6: &str = &*v3;
+                let v26: Option<std::string::String> =
+                    clap::ArgMatches::get_one(&v0_1, v6).cloned();
+                let v40: Spiral_wasm::US0 =
+                    defaultValue(Spiral_wasm::US0::US0_1, map(Spiral_wasm::method2(), v26));
+                let v47: std::string::String = match &v40 {
+                    Spiral_wasm::US0::US0_0(v40_0_0) => match &v40 {
                         Spiral_wasm::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => panic!("{}", string("Option does not have a value."),),
                 };
-                let v30: string = fable_library_rust::String_::fromString(v28);
-                let v33: () = {
-                    Spiral_wasm::closure12(v30.clone(), ());
+                let v49: string = fable_library_rust::String_::fromString(v47);
+                let v52: () = {
+                    Spiral_wasm::closure12(v49.clone(), ());
                     ()
                 };
-                let v146: Result<Vec<u8>, std::io::Error> = std::fs::read(&*v30);
-                let v148: Vec<u8> = v146?;
-                let v150: std::pin::Pin<
+                let v165: Result<Vec<u8>, std::io::Error> = std::fs::read(&*v49);
+                let v167: Vec<u8> = v165?;
+                let v169: std::pin::Pin<
                     Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4, anyhow::Error>>>,
-                > = Spiral_wasm::method24(v148.clone(), 1_u8);
-                let v152: Result<Spiral_wasm::US4, anyhow::Error> = v150.await;
-                let v153 = Spiral_wasm::method42();
-                let v155: Result<Spiral_wasm::US4, std::string::String> = v152.map_err(|x| v153(x));
-                fn v156(v: Spiral_wasm::US4) -> Spiral_wasm::US6 {
+                > = Spiral_wasm::method24(v167.clone(), 1_u8);
+                let v171: Result<Spiral_wasm::US4, anyhow::Error> = v169.await;
+                let v172 = Spiral_wasm::method42();
+                let v183: Result<Spiral_wasm::US4, std::string::String> = v171.map_err(|x| v172(x));
+                fn v186(v: Spiral_wasm::US4) -> Spiral_wasm::US6 {
                     Spiral_wasm::closure27((), v)
                 }
-                fn v157(v_1: std::string::String) -> Spiral_wasm::US6 {
+                fn v187(v_1: std::string::String) -> Spiral_wasm::US6 {
                     Spiral_wasm::closure28((), v_1)
                 }
-                let v158: Spiral_wasm::US6 = match &v155 {
-                    Err(v155_1_0) => v157(v155_1_0.clone()),
-                    Ok(v155_0_0) => v156(v155_0_0.clone()),
+                let v188: Spiral_wasm::US6 = match &v183 {
+                    Err(v183_1_0) => v187(v183_1_0.clone()),
+                    Ok(v183_0_0) => v186(v183_0_0.clone()),
                 };
-                let v8671: std::pin::Pin<Box<dyn std::future::Future<Output = Spiral_wasm::US7>>> =
-                    match &v158 {
-                        Spiral_wasm::US6::US6_0(v158_0_0) => {
-                            let v159: Spiral_wasm::US4 = v158_0_0.clone();
-                            match &v159 {
-                                Spiral_wasm::US4::US4_0(v159_0_0) => {
-                                    let v187: () = {
+                let v9009: std::pin::Pin<Box<dyn std::future::Future<Output = Spiral_wasm::US7>>> =
+                    match &v188 {
+                        Spiral_wasm::US6::US6_0(v188_0_0) => {
+                            let v189: Spiral_wasm::US4 = v188_0_0.clone();
+                            match &v189 {
+                                Spiral_wasm::US4::US4_0(v189_0_0) => {
+                                    let v217: () = {
                                         Spiral_wasm::closure86(
-                                            match &v159 {
+                                            match &v189 {
                                                 Spiral_wasm::US4::US4_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             },
@@ -7647,89 +7648,89 @@ mod module_fb49c4a9 {
                                         );
                                         ()
                                     };
-                                    let v301: bool = true;
+                                    let v331: bool = true;
                                     let __future_init = Box::pin(async move {
                                         //;
-                                        let v303: bool = true;
+                                        let v333: bool = true;
                                         let __future_init = Box::pin(async move {
                                             //;
-                                            let v304: u8 = Spiral_wasm::method80();
-                                            let v308: string =
-                                                string("true; v304 });  // rust.fix_closure\'");
-                                            let v309: bool = true;
-                                            v304
+                                            let v334: u8 = Spiral_wasm::method80();
+                                            let v338: string =
+                                                string("true; v334 });  // rust.fix_closure\'");
+                                            let v339: bool = true;
+                                            v334
                                         }); // rust.fix_closure';
-                                        let v311 = __future_init;
-                                        let v313: std::pin::Pin<
+                                        let v341 = __future_init;
+                                        let v343: std::pin::Pin<
                                             Box<dyn std::future::Future<Output = u8>>,
-                                        > = v311;
-                                        let v316: Spiral_wasm::US7 =
-                                            Spiral_wasm::method47(v313.await);
-                                        let v318: string =
-                                            string("true; v316 });  // rust.fix_closure\'");
-                                        let v319: bool = true;
-                                        v316
+                                        > = v341;
+                                        let v346: Spiral_wasm::US7 =
+                                            Spiral_wasm::method47(v343.await);
+                                        let v348: string =
+                                            string("true; v346 });  // rust.fix_closure\'");
+                                        let v349: bool = true;
+                                        v346
                                     }); // rust.fix_closure';
-                                    let v321 = __future_init;
-                                    v321
+                                    let v351 = __future_init;
+                                    v351
                                 }
                                 _ => {
-                                    let v161: bool = true;
+                                    let v191: bool = true;
                                     let __future_init = Box::pin(async move {
                                         //;
-                                        let v163: bool = true;
+                                        let v193: bool = true;
                                         let __future_init = Box::pin(async move {
                                             //;
-                                            let v164: u8 = Spiral_wasm::method80();
-                                            let v168: string =
-                                                string("true; v164 });  // rust.fix_closure\'");
-                                            let v169: bool = true;
-                                            v164
+                                            let v194: u8 = Spiral_wasm::method80();
+                                            let v198: string =
+                                                string("true; v194 });  // rust.fix_closure\'");
+                                            let v199: bool = true;
+                                            v194
                                         }); // rust.fix_closure';
-                                        let v171 = __future_init;
-                                        let v173: std::pin::Pin<
+                                        let v201 = __future_init;
+                                        let v203: std::pin::Pin<
                                             Box<dyn std::future::Future<Output = u8>>,
-                                        > = v171;
-                                        let v176: Spiral_wasm::US7 =
-                                            Spiral_wasm::method49(v173.await);
-                                        let v178: string =
-                                            string("true; v176 });  // rust.fix_closure\'");
-                                        let v179: bool = true;
-                                        v176
+                                        > = v201;
+                                        let v206: Spiral_wasm::US7 =
+                                            Spiral_wasm::method49(v203.await);
+                                        let v208: string =
+                                            string("true; v206 });  // rust.fix_closure\'");
+                                        let v209: bool = true;
+                                        v206
                                     }); // rust.fix_closure';
-                                    let v181 = __future_init;
-                                    v181
+                                    let v211 = __future_init;
+                                    v211
                                 }
                             }
                         }
-                        Spiral_wasm::US6::US6_1(v158_1_0) => {
-                            let v329: () = {
-                                Spiral_wasm::closure29(v158_1_0.clone(), ());
+                        Spiral_wasm::US6::US6_1(v188_1_0) => {
+                            let v359: () = {
+                                Spiral_wasm::closure29(v188_1_0.clone(), ());
                                 ()
                             };
-                            let v443: std::pin::Pin<
+                            let v473: std::pin::Pin<
                                 Box<
                                     dyn std::future::Future<
                                         Output = Result<Spiral_wasm::US4, anyhow::Error>,
                                     >,
                                 >,
-                            > = Spiral_wasm::method24(v148.clone(), 2_u8);
-                            let v445: Result<Spiral_wasm::US4, anyhow::Error> = v443.await;
-                            let v446 = Spiral_wasm::method42();
-                            let v448: Result<Spiral_wasm::US4, std::string::String> =
-                                v445.map_err(|x| v446(x));
-                            let v449: Spiral_wasm::US6 = match &v448 {
-                                Err(v448_1_0) => v157(v448_1_0.clone()),
-                                Ok(v448_0_0) => v156(v448_0_0.clone()),
+                            > = Spiral_wasm::method24(v167.clone(), 2_u8);
+                            let v475: Result<Spiral_wasm::US4, anyhow::Error> = v473.await;
+                            let v476 = Spiral_wasm::method42();
+                            let v487: Result<Spiral_wasm::US4, std::string::String> =
+                                v475.map_err(|x| v476(x));
+                            let v490: Spiral_wasm::US6 = match &v487 {
+                                Err(v487_1_0) => v187(v487_1_0.clone()),
+                                Ok(v487_0_0) => v186(v487_0_0.clone()),
                             };
-                            match &v449 {
-                                Spiral_wasm::US6::US6_0(v449_0_0) => {
-                                    let v450: Spiral_wasm::US4 = v449_0_0.clone();
-                                    match &v450 {
-                                        Spiral_wasm::US4::US4_0(v450_0_0) => {
-                                            let v478: () = {
+                            match &v490 {
+                                Spiral_wasm::US6::US6_0(v490_0_0) => {
+                                    let v491: Spiral_wasm::US4 = v490_0_0.clone();
+                                    match &v491 {
+                                        Spiral_wasm::US4::US4_0(v491_0_0) => {
+                                            let v519: () = {
                                                 Spiral_wasm::closure85(
-                                                    match &v450 {
+                                                    match &v491 {
                                                         Spiral_wasm::US4::US4_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     },
@@ -7737,91 +7738,91 @@ mod module_fb49c4a9 {
                                                 );
                                                 ()
                                             };
-                                            let v592: bool = true;
+                                            let v633: bool = true;
                                             let __future_init = Box::pin(async move {
                                                 //;
-                                                let v594: bool = true;
+                                                let v635: bool = true;
                                                 let __future_init = Box::pin(async move {
                                                     //;
-                                                    let v595: u8 = Spiral_wasm::method79();
-                                                    let v599: string = string(
-                                                        "true; v595 });  // rust.fix_closure\'",
+                                                    let v636: u8 = Spiral_wasm::method79();
+                                                    let v640: string = string(
+                                                        "true; v636 });  // rust.fix_closure\'",
                                                     );
-                                                    let v600: bool = true;
-                                                    v595
+                                                    let v641: bool = true;
+                                                    v636
                                                 }); // rust.fix_closure';
-                                                let v602 = __future_init;
-                                                let v604: std::pin::Pin<
+                                                let v643 = __future_init;
+                                                let v645: std::pin::Pin<
                                                     Box<dyn std::future::Future<Output = u8>>,
-                                                > = v602;
-                                                let v607: Spiral_wasm::US7 =
-                                                    Spiral_wasm::method47(v604.await);
-                                                let v609: string =
-                                                    string("true; v607 });  // rust.fix_closure\'");
-                                                let v610: bool = true;
-                                                v607
+                                                > = v643;
+                                                let v648: Spiral_wasm::US7 =
+                                                    Spiral_wasm::method47(v645.await);
+                                                let v650: string =
+                                                    string("true; v648 });  // rust.fix_closure\'");
+                                                let v651: bool = true;
+                                                v648
                                             }); // rust.fix_closure';
-                                            let v612 = __future_init;
-                                            v612
+                                            let v653 = __future_init;
+                                            v653
                                         }
                                         _ => {
-                                            let v452: bool = true;
+                                            let v493: bool = true;
                                             let __future_init = Box::pin(async move {
                                                 //;
-                                                let v454: bool = true;
+                                                let v495: bool = true;
                                                 let __future_init = Box::pin(async move {
                                                     //;
-                                                    let v455: u8 = Spiral_wasm::method79();
-                                                    let v459: string = string(
-                                                        "true; v455 });  // rust.fix_closure\'",
+                                                    let v496: u8 = Spiral_wasm::method79();
+                                                    let v500: string = string(
+                                                        "true; v496 });  // rust.fix_closure\'",
                                                     );
-                                                    let v460: bool = true;
-                                                    v455
+                                                    let v501: bool = true;
+                                                    v496
                                                 }); // rust.fix_closure';
-                                                let v462 = __future_init;
-                                                let v464: std::pin::Pin<
+                                                let v503 = __future_init;
+                                                let v505: std::pin::Pin<
                                                     Box<dyn std::future::Future<Output = u8>>,
-                                                > = v462;
-                                                let v467: Spiral_wasm::US7 =
-                                                    Spiral_wasm::method49(v464.await);
-                                                let v469: string =
-                                                    string("true; v467 });  // rust.fix_closure\'");
-                                                let v470: bool = true;
-                                                v467
+                                                > = v503;
+                                                let v508: Spiral_wasm::US7 =
+                                                    Spiral_wasm::method49(v505.await);
+                                                let v510: string =
+                                                    string("true; v508 });  // rust.fix_closure\'");
+                                                let v511: bool = true;
+                                                v508
                                             }); // rust.fix_closure';
-                                            let v472 = __future_init;
-                                            v472
+                                            let v513 = __future_init;
+                                            v513
                                         }
                                     }
                                 }
-                                Spiral_wasm::US6::US6_1(v449_1_0) => {
-                                    let v620: () = {
-                                        Spiral_wasm::closure30(v449_1_0.clone(), ());
+                                Spiral_wasm::US6::US6_1(v490_1_0) => {
+                                    let v661: () = {
+                                        Spiral_wasm::closure30(v490_1_0.clone(), ());
                                         ()
                                     };
-                                    let v734: std::pin::Pin<
+                                    let v775: std::pin::Pin<
                                         Box<
                                             dyn std::future::Future<
                                                 Output = Result<Spiral_wasm::US4, anyhow::Error>,
                                             >,
                                         >,
-                                    > = Spiral_wasm::method24(v148.clone(), 3_u8);
-                                    let v736: Result<Spiral_wasm::US4, anyhow::Error> = v734.await;
-                                    let v737 = Spiral_wasm::method42();
-                                    let v739: Result<Spiral_wasm::US4, std::string::String> =
-                                        v736.map_err(|x| v737(x));
-                                    let v740: Spiral_wasm::US6 = match &v739 {
-                                        Err(v739_1_0) => v157(v739_1_0.clone()),
-                                        Ok(v739_0_0) => v156(v739_0_0.clone()),
+                                    > = Spiral_wasm::method24(v167.clone(), 3_u8);
+                                    let v777: Result<Spiral_wasm::US4, anyhow::Error> = v775.await;
+                                    let v778 = Spiral_wasm::method42();
+                                    let v789: Result<Spiral_wasm::US4, std::string::String> =
+                                        v777.map_err(|x| v778(x));
+                                    let v792: Spiral_wasm::US6 = match &v789 {
+                                        Err(v789_1_0) => v187(v789_1_0.clone()),
+                                        Ok(v789_0_0) => v186(v789_0_0.clone()),
                                     };
-                                    match &v740 {
-                                        Spiral_wasm::US6::US6_0(v740_0_0) => {
-                                            let v741: Spiral_wasm::US4 = v740_0_0.clone();
-                                            match &v741 {
-                                                Spiral_wasm::US4::US4_0(v741_0_0) => {
-                                                    let v769: () = {
+                                    match &v792 {
+                                        Spiral_wasm::US6::US6_0(v792_0_0) => {
+                                            let v793: Spiral_wasm::US4 = v792_0_0.clone();
+                                            match &v793 {
+                                                Spiral_wasm::US4::US4_0(v793_0_0) => {
+                                                    let v821: () = {
                                                         Spiral_wasm::closure84(
-                                                            match &v741 {
+                                                            match &v793 {
                                                                 Spiral_wasm::US4::US4_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -7831,77 +7832,77 @@ mod module_fb49c4a9 {
                                                         );
                                                         ()
                                                     };
-                                                    let v883: bool = true;
+                                                    let v935: bool = true;
                                                     let __future_init = Box::pin(async move {
                                                         //;
-                                                        let v885: bool = true;
+                                                        let v937: bool = true;
                                                         let __future_init = Box::pin(async move {
                                                             //;
-                                                            let v886: u8 = Spiral_wasm::method78();
-                                                            let v890: string =
-                                                    string("true; v886 });  // rust.fix_closure\'");
-                                                            let v891: bool = true;
-                                                            v886
+                                                            let v938: u8 = Spiral_wasm::method78();
+                                                            let v942: string =
+                                                    string("true; v938 });  // rust.fix_closure\'");
+                                                            let v943: bool = true;
+                                                            v938
                                                         }); // rust.fix_closure';
-                                                        let v893 = __future_init;
-                                                        let v895: std::pin::Pin<
+                                                        let v945 = __future_init;
+                                                        let v947: std::pin::Pin<
                                                             Box<
                                                                 dyn std::future::Future<
                                                                     Output = u8,
                                                                 >,
                                                             >,
-                                                        > = v893;
-                                                        let v898: Spiral_wasm::US7 =
-                                                            Spiral_wasm::method47(v895.await);
-                                                        let v900: string = string(
-                                                            "true; v898 });  // rust.fix_closure\'",
+                                                        > = v945;
+                                                        let v950: Spiral_wasm::US7 =
+                                                            Spiral_wasm::method47(v947.await);
+                                                        let v952: string = string(
+                                                            "true; v950 });  // rust.fix_closure\'",
                                                         );
-                                                        let v901: bool = true;
-                                                        v898
+                                                        let v953: bool = true;
+                                                        v950
                                                     }); // rust.fix_closure';
-                                                    let v903 = __future_init;
-                                                    v903
+                                                    let v955 = __future_init;
+                                                    v955
                                                 }
                                                 _ => {
-                                                    let v743: bool = true;
+                                                    let v795: bool = true;
                                                     let __future_init = Box::pin(async move {
                                                         //;
-                                                        let v745: bool = true;
+                                                        let v797: bool = true;
                                                         let __future_init = Box::pin(async move {
                                                             //;
-                                                            let v746: u8 = Spiral_wasm::method78();
-                                                            let v750: string =
-                                                    string("true; v746 });  // rust.fix_closure\'");
-                                                            let v751: bool = true;
-                                                            v746
+                                                            let v798: u8 = Spiral_wasm::method78();
+                                                            let v802: string =
+                                                    string("true; v798 });  // rust.fix_closure\'");
+                                                            let v803: bool = true;
+                                                            v798
                                                         }); // rust.fix_closure';
-                                                        let v753 = __future_init;
-                                                        let v755: std::pin::Pin<
+                                                        let v805 = __future_init;
+                                                        let v807: std::pin::Pin<
                                                             Box<
                                                                 dyn std::future::Future<
                                                                     Output = u8,
                                                                 >,
                                                             >,
-                                                        > = v753;
-                                                        let v758: Spiral_wasm::US7 =
-                                                            Spiral_wasm::method49(v755.await);
-                                                        let v760: string = string(
-                                                            "true; v758 });  // rust.fix_closure\'",
+                                                        > = v805;
+                                                        let v810: Spiral_wasm::US7 =
+                                                            Spiral_wasm::method49(v807.await);
+                                                        let v812: string = string(
+                                                            "true; v810 });  // rust.fix_closure\'",
                                                         );
-                                                        let v761: bool = true;
-                                                        v758
+                                                        let v813: bool = true;
+                                                        v810
                                                     }); // rust.fix_closure';
-                                                    let v763 = __future_init;
-                                                    v763
+                                                    let v815 = __future_init;
+                                                    v815
                                                 }
                                             }
                                         }
-                                        Spiral_wasm::US6::US6_1(v740_1_0) => {
-                                            let v911: () = {
-                                                Spiral_wasm::closure31(v740_1_0.clone(), ());
+                                        Spiral_wasm::US6::US6_1(v792_1_0) => {
+                                            let v963: () = {
+                                                Spiral_wasm::closure31(v792_1_0.clone(), ());
                                                 ()
                                             };
-                                            let v1025: std::pin::Pin<
+                                            let v1077: std::pin::Pin<
                                                 Box<
                                                     dyn std::future::Future<
                                                         Output = Result<
@@ -7910,26 +7911,26 @@ mod module_fb49c4a9 {
                                                         >,
                                                     >,
                                                 >,
-                                            > = Spiral_wasm::method24(v148.clone(), 4_u8);
-                                            let v1027: Result<Spiral_wasm::US4, anyhow::Error> =
-                                                v1025.await;
-                                            let v1028 = Spiral_wasm::method42();
-                                            let v1030: Result<
+                                            > = Spiral_wasm::method24(v167.clone(), 4_u8);
+                                            let v1079: Result<Spiral_wasm::US4, anyhow::Error> =
+                                                v1077.await;
+                                            let v1080 = Spiral_wasm::method42();
+                                            let v1091: Result<
                                                 Spiral_wasm::US4,
                                                 std::string::String,
-                                            > = v1027.map_err(|x| v1028(x));
-                                            let v1031: Spiral_wasm::US6 = match &v1030 {
-                                                Err(v1030_1_0) => v157(v1030_1_0.clone()),
-                                                Ok(v1030_0_0) => v156(v1030_0_0.clone()),
+                                            > = v1079.map_err(|x| v1080(x));
+                                            let v1094: Spiral_wasm::US6 = match &v1091 {
+                                                Err(v1091_1_0) => v187(v1091_1_0.clone()),
+                                                Ok(v1091_0_0) => v186(v1091_0_0.clone()),
                                             };
-                                            match &v1031 {
-                                                Spiral_wasm::US6::US6_0(v1031_0_0) => {
-                                                    let v1032: Spiral_wasm::US4 = v1031_0_0.clone();
-                                                    match &v1032 {
-                                                        Spiral_wasm::US4::US4_0(v1032_0_0) => {
-                                                            let v1060: () = {
+                                            match &v1094 {
+                                                Spiral_wasm::US6::US6_0(v1094_0_0) => {
+                                                    let v1095: Spiral_wasm::US4 = v1094_0_0.clone();
+                                                    match &v1095 {
+                                                        Spiral_wasm::US4::US4_0(v1095_0_0) => {
+                                                            let v1123: () = {
                                                                 Spiral_wasm::closure83(
-                                                                    match &v1032 {
+                                                                    match &v1095 {
                                                                         Spiral_wasm::US4::US4_0(
                                                                             x,
                                                                         ) => x.clone(),
@@ -7939,92 +7940,92 @@ mod module_fb49c4a9 {
                                                                 );
                                                                 ()
                                                             };
-                                                            let v1174: bool = true;
+                                                            let v1237: bool = true;
                                                             let __future_init = Box::pin(
                                                                 async move {
                                                                     //;
-                                                                    let v1176: bool = true;
+                                                                    let v1239: bool = true;
                                                                     let __future_init = Box::pin(
                                                                         async move {
                                                                             //;
-                                                                            let v1177: u8 =
+                                                                            let v1240: u8 =
                                                             Spiral_wasm::method77();
-                                                                            let v1181: string =
-                                                            string("true; v1177 });  // rust.fix_closure\'");
-                                                                            let v1182: bool = true;
-                                                                            v1177
+                                                                            let v1244: string =
+                                                            string("true; v1240 });  // rust.fix_closure\'");
+                                                                            let v1245: bool = true;
+                                                                            v1240
                                                                         },
                                                                     ); // rust.fix_closure';
-                                                                    let v1184 = __future_init;
-                                                                    let v1186: std::pin::Pin<
+                                                                    let v1247 = __future_init;
+                                                                    let v1249: std::pin::Pin<
                                                                         Box<
                                                                             dyn std::future::Future<
                                                                                 Output = u8,
                                                                             >,
                                                                         >,
-                                                                    > = v1184;
-                                                                    let v1189: Spiral_wasm::US7 =
+                                                                    > = v1247;
+                                                                    let v1252: Spiral_wasm::US7 =
                                                                         Spiral_wasm::method47(
-                                                                            v1186.await,
+                                                                            v1249.await,
                                                                         );
-                                                                    let v1191: string =
-                                                            string("true; v1189 });  // rust.fix_closure\'");
-                                                                    let v1192: bool = true;
-                                                                    v1189
+                                                                    let v1254: string =
+                                                            string("true; v1252 });  // rust.fix_closure\'");
+                                                                    let v1255: bool = true;
+                                                                    v1252
                                                                 },
                                                             ); // rust.fix_closure';
-                                                            let v1194 = __future_init;
-                                                            v1194
+                                                            let v1257 = __future_init;
+                                                            v1257
                                                         }
                                                         _ => {
-                                                            let v1034: bool = true;
+                                                            let v1097: bool = true;
                                                             let __future_init = Box::pin(
                                                                 async move {
                                                                     //;
-                                                                    let v1036: bool = true;
+                                                                    let v1099: bool = true;
                                                                     let __future_init = Box::pin(
                                                                         async move {
                                                                             //;
-                                                                            let v1037: u8 =
+                                                                            let v1100: u8 =
                                                             Spiral_wasm::method77();
-                                                                            let v1041: string =
-                                                            string("true; v1037 });  // rust.fix_closure\'");
-                                                                            let v1042: bool = true;
-                                                                            v1037
+                                                                            let v1104: string =
+                                                            string("true; v1100 });  // rust.fix_closure\'");
+                                                                            let v1105: bool = true;
+                                                                            v1100
                                                                         },
                                                                     ); // rust.fix_closure';
-                                                                    let v1044 = __future_init;
-                                                                    let v1046: std::pin::Pin<
+                                                                    let v1107 = __future_init;
+                                                                    let v1109: std::pin::Pin<
                                                                         Box<
                                                                             dyn std::future::Future<
                                                                                 Output = u8,
                                                                             >,
                                                                         >,
-                                                                    > = v1044;
-                                                                    let v1049: Spiral_wasm::US7 =
+                                                                    > = v1107;
+                                                                    let v1112: Spiral_wasm::US7 =
                                                                         Spiral_wasm::method49(
-                                                                            v1046.await,
+                                                                            v1109.await,
                                                                         );
-                                                                    let v1051: string =
-                                                            string("true; v1049 });  // rust.fix_closure\'");
-                                                                    let v1052: bool = true;
-                                                                    v1049
+                                                                    let v1114: string =
+                                                            string("true; v1112 });  // rust.fix_closure\'");
+                                                                    let v1115: bool = true;
+                                                                    v1112
                                                                 },
                                                             ); // rust.fix_closure';
-                                                            let v1054 = __future_init;
-                                                            v1054
+                                                            let v1117 = __future_init;
+                                                            v1117
                                                         }
                                                     }
                                                 }
-                                                Spiral_wasm::US6::US6_1(v1031_1_0) => {
-                                                    let v1202: () = {
+                                                Spiral_wasm::US6::US6_1(v1094_1_0) => {
+                                                    let v1265: () = {
                                                         Spiral_wasm::closure32(
-                                                            v1031_1_0.clone(),
+                                                            v1094_1_0.clone(),
                                                             (),
                                                         );
                                                         ()
                                                     };
-                                                    let v1316: std::pin::Pin<
+                                                    let v1379: std::pin::Pin<
                                                         Box<
                                                             dyn std::future::Future<
                                                                 Output = Result<
@@ -8033,30 +8034,30 @@ mod module_fb49c4a9 {
                                                                 >,
                                                             >,
                                                         >,
-                                                    > = Spiral_wasm::method24(v148.clone(), 5_u8);
-                                                    let v1318: Result<
+                                                    > = Spiral_wasm::method24(v167.clone(), 5_u8);
+                                                    let v1381: Result<
                                                         Spiral_wasm::US4,
                                                         anyhow::Error,
-                                                    > = v1316.await;
-                                                    let v1319 = Spiral_wasm::method42();
-                                                    let v1321: Result<
+                                                    > = v1379.await;
+                                                    let v1382 = Spiral_wasm::method42();
+                                                    let v1393: Result<
                                                         Spiral_wasm::US4,
                                                         std::string::String,
-                                                    > = v1318.map_err(|x| v1319(x));
-                                                    let v1322: Spiral_wasm::US6 = match &v1321 {
-                                                        Err(v1321_1_0) => v157(v1321_1_0.clone()),
-                                                        Ok(v1321_0_0) => v156(v1321_0_0.clone()),
+                                                    > = v1381.map_err(|x| v1382(x));
+                                                    let v1396: Spiral_wasm::US6 = match &v1393 {
+                                                        Err(v1393_1_0) => v187(v1393_1_0.clone()),
+                                                        Ok(v1393_0_0) => v186(v1393_0_0.clone()),
                                                     };
-                                                    match &v1322 {
-                                                        Spiral_wasm::US6::US6_0(v1322_0_0) => {
-                                                            let v1323: Spiral_wasm::US4 =
-                                                                v1322_0_0.clone();
-                                                            match &v1323 {
+                                                    match &v1396 {
+                                                        Spiral_wasm::US6::US6_0(v1396_0_0) => {
+                                                            let v1397: Spiral_wasm::US4 =
+                                                                v1396_0_0.clone();
+                                                            match &v1397 {
                                                                 Spiral_wasm::US4::US4_0(
-                                                                    v1323_0_0,
+                                                                    v1397_0_0,
                                                                 ) => {
-                                                                    let v1351: () = {
-                                                                        Spiral_wasm::closure82(match &v1323
+                                                                    let v1425: () = {
+                                                                        Spiral_wasm::closure82(match &v1397
                                                                                                    {
                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                    =>
@@ -8068,96 +8069,96 @@ mod module_fb49c4a9 {
                                                                                                ());
                                                                         ()
                                                                     };
-                                                                    let v1465: bool = true;
+                                                                    let v1539: bool = true;
                                                                     let __future_init = Box::pin(
                                                                         async move {
                                                                             //;
-                                                                            let v1467: bool = true;
+                                                                            let v1541: bool = true;
                                                                             let __future_init =
                                                                                 Box::pin(
                                                                                     async move {
                                                                                         //;
-                                                                                        let v1468:
+                                                                                        let v1542:
                                                                         u8 =
                                                                     Spiral_wasm::method76();
-                                                                                        let v1472:
+                                                                                        let v1546:
                                                                         string =
-                                                                    string("true; v1468 });  // rust.fix_closure\'");
-                                                                                        let v1473:
+                                                                    string("true; v1542 });  // rust.fix_closure\'");
+                                                                                        let v1547:
                                                                         bool =
                                                                     true;
-                                                                                        v1468
+                                                                                        v1542
                                                                                     },
                                                                                 ); // rust.fix_closure';
-                                                                            let v1475 =
+                                                                            let v1549 =
                                                                                 __future_init;
-                                                                            let v1477:
+                                                                            let v1551:
                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                    v1475;
-                                                                            let v1480:
+                                                                    v1549;
+                                                                            let v1554:
                                                                         Spiral_wasm::US7 =
-                                                                    Spiral_wasm::method47(v1477.await);
-                                                                            let v1482:
+                                                                    Spiral_wasm::method47(v1551.await);
+                                                                            let v1556:
                                                                         string =
-                                                                    string("true; v1480 });  // rust.fix_closure\'");
-                                                                            let v1483: bool = true;
-                                                                            v1480
+                                                                    string("true; v1554 });  // rust.fix_closure\'");
+                                                                            let v1557: bool = true;
+                                                                            v1554
                                                                         },
                                                                     ); // rust.fix_closure';
-                                                                    let v1485 = __future_init;
-                                                                    v1485
+                                                                    let v1559 = __future_init;
+                                                                    v1559
                                                                 }
                                                                 _ => {
-                                                                    let v1325: bool = true;
+                                                                    let v1399: bool = true;
                                                                     let __future_init = Box::pin(
                                                                         async move {
                                                                             //;
-                                                                            let v1327: bool = true;
+                                                                            let v1401: bool = true;
                                                                             let __future_init =
                                                                                 Box::pin(
                                                                                     async move {
                                                                                         //;
-                                                                                        let v1328:
+                                                                                        let v1402:
                                                                         u8 =
                                                                     Spiral_wasm::method76();
-                                                                                        let v1332:
+                                                                                        let v1406:
                                                                         string =
-                                                                    string("true; v1328 });  // rust.fix_closure\'");
-                                                                                        let v1333:
+                                                                    string("true; v1402 });  // rust.fix_closure\'");
+                                                                                        let v1407:
                                                                         bool =
                                                                     true;
-                                                                                        v1328
+                                                                                        v1402
                                                                                     },
                                                                                 ); // rust.fix_closure';
-                                                                            let v1335 =
+                                                                            let v1409 =
                                                                                 __future_init;
-                                                                            let v1337:
+                                                                            let v1411:
                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                    v1335;
-                                                                            let v1340:
+                                                                    v1409;
+                                                                            let v1414:
                                                                         Spiral_wasm::US7 =
-                                                                    Spiral_wasm::method49(v1337.await);
-                                                                            let v1342:
+                                                                    Spiral_wasm::method49(v1411.await);
+                                                                            let v1416:
                                                                         string =
-                                                                    string("true; v1340 });  // rust.fix_closure\'");
-                                                                            let v1343: bool = true;
-                                                                            v1340
+                                                                    string("true; v1414 });  // rust.fix_closure\'");
+                                                                            let v1417: bool = true;
+                                                                            v1414
                                                                         },
                                                                     ); // rust.fix_closure';
-                                                                    let v1345 = __future_init;
-                                                                    v1345
+                                                                    let v1419 = __future_init;
+                                                                    v1419
                                                                 }
                                                             }
                                                         }
-                                                        Spiral_wasm::US6::US6_1(v1322_1_0) => {
-                                                            let v1493: () = {
+                                                        Spiral_wasm::US6::US6_1(v1396_1_0) => {
+                                                            let v1567: () = {
                                                                 Spiral_wasm::closure33(
-                                                                    v1322_1_0.clone(),
+                                                                    v1396_1_0.clone(),
                                                                     (),
                                                                 );
                                                                 ()
                                                             };
-                                                            let v1607: std::pin::Pin<
+                                                            let v1681: std::pin::Pin<
                                                                 Box<
                                                                     dyn std::future::Future<
                                                                         Output = Result<
@@ -8167,39 +8168,39 @@ mod module_fb49c4a9 {
                                                                     >,
                                                                 >,
                                                             > = Spiral_wasm::method24(
-                                                                v148.clone(),
+                                                                v167.clone(),
                                                                 6_u8,
                                                             );
-                                                            let v1609: Result<
+                                                            let v1683: Result<
                                                                 Spiral_wasm::US4,
                                                                 anyhow::Error,
-                                                            > = v1607.await;
-                                                            let v1610 = Spiral_wasm::method42();
-                                                            let v1612: Result<
+                                                            > = v1681.await;
+                                                            let v1684 = Spiral_wasm::method42();
+                                                            let v1695: Result<
                                                                 Spiral_wasm::US4,
                                                                 std::string::String,
-                                                            > = v1609.map_err(|x| v1610(x));
-                                                            let v1613: Spiral_wasm::US6 =
-                                                                match &v1612 {
-                                                                    Err(v1612_1_0) => {
-                                                                        v157(v1612_1_0.clone())
+                                                            > = v1683.map_err(|x| v1684(x));
+                                                            let v1698: Spiral_wasm::US6 =
+                                                                match &v1695 {
+                                                                    Err(v1695_1_0) => {
+                                                                        v187(v1695_1_0.clone())
                                                                     }
-                                                                    Ok(v1612_0_0) => {
-                                                                        v156(v1612_0_0.clone())
+                                                                    Ok(v1695_0_0) => {
+                                                                        v186(v1695_0_0.clone())
                                                                     }
                                                                 };
-                                                            match &v1613 {
+                                                            match &v1698 {
                                                                 Spiral_wasm::US6::US6_0(
-                                                                    v1613_0_0,
+                                                                    v1698_0_0,
                                                                 ) => {
-                                                                    let v1614: Spiral_wasm::US4 =
-                                                                        v1613_0_0.clone();
-                                                                    match &v1614 {
+                                                                    let v1699: Spiral_wasm::US4 =
+                                                                        v1698_0_0.clone();
+                                                                    match &v1699 {
                                                                         Spiral_wasm::US4::US4_0(
-                                                                            v1614_0_0,
+                                                                            v1699_0_0,
                                                                         ) => {
-                                                                            let v1642: () = {
-                                                                                Spiral_wasm::closure81(match &v1614
+                                                                            let v1727: () = {
+                                                                                Spiral_wasm::closure81(match &v1699
                                                                                                            {
                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                            =>
@@ -8211,149 +8212,149 @@ mod module_fb49c4a9 {
                                                                                                        ());
                                                                                 ()
                                                                             };
-                                                                            let v1756: bool = true;
+                                                                            let v1841: bool = true;
                                                                             let __future_init =
                                                                                 Box::pin(
                                                                                     async move {
                                                                                         //;
-                                                                                        let v1758:
+                                                                                        let v1843:
                                                                                 bool =
                                                                             true;
                                                                                         let __future_init =
                                                                                             Box::pin(
                                                                                                 async move {
                                                                                                     //;
-                                                                                                    let v1759:
+                                                                                                    let v1844:
                                                                                 u8 =
                                                                             Spiral_wasm::method75();
-                                                                                                    let v1763:
+                                                                                                    let v1848:
                                                                                 string =
-                                                                            string("true; v1759 });  // rust.fix_closure\'");
-                                                                                                    let v1764:
+                                                                            string("true; v1844 });  // rust.fix_closure\'");
+                                                                                                    let v1849:
                                                                                 bool =
                                                                             true;
-                                                                                                    v1759
+                                                                                                    v1844
                                                                                                 },
                                                                                             ); // rust.fix_closure';
-                                                                                        let v1766 =
+                                                                                        let v1851 =
                                                                             __future_init;
-                                                                                        let v1768:
+                                                                                        let v1853:
                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                            v1766;
-                                                                                        let v1771:
+                                                                            v1851;
+                                                                                        let v1856:
                                                                                 Spiral_wasm::US7 =
-                                                                            Spiral_wasm::method47(v1768.await);
-                                                                                        let v1773:
+                                                                            Spiral_wasm::method47(v1853.await);
+                                                                                        let v1858:
                                                                                 string =
-                                                                            string("true; v1771 });  // rust.fix_closure\'");
-                                                                                        let v1774:
+                                                                            string("true; v1856 });  // rust.fix_closure\'");
+                                                                                        let v1859:
                                                                                 bool =
                                                                             true;
-                                                                                        v1771
+                                                                                        v1856
                                                                                     },
                                                                                 ); // rust.fix_closure';
-                                                                            let v1776 =
+                                                                            let v1861 =
                                                                                 __future_init;
-                                                                            v1776
+                                                                            v1861
                                                                         }
                                                                         _ => {
-                                                                            let v1616: bool = true;
+                                                                            let v1701: bool = true;
                                                                             let __future_init =
                                                                                 Box::pin(
                                                                                     async move {
                                                                                         //;
-                                                                                        let v1618:
+                                                                                        let v1703:
                                                                                 bool =
                                                                             true;
                                                                                         let __future_init =
                                                                                             Box::pin(
                                                                                                 async move {
                                                                                                     //;
-                                                                                                    let v1619:
+                                                                                                    let v1704:
                                                                                 u8 =
                                                                             Spiral_wasm::method75();
-                                                                                                    let v1623:
+                                                                                                    let v1708:
                                                                                 string =
-                                                                            string("true; v1619 });  // rust.fix_closure\'");
-                                                                                                    let v1624:
+                                                                            string("true; v1704 });  // rust.fix_closure\'");
+                                                                                                    let v1709:
                                                                                 bool =
                                                                             true;
-                                                                                                    v1619
+                                                                                                    v1704
                                                                                                 },
                                                                                             ); // rust.fix_closure';
-                                                                                        let v1626 =
+                                                                                        let v1711 =
                                                                             __future_init;
-                                                                                        let v1628:
+                                                                                        let v1713:
                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                            v1626;
-                                                                                        let v1631:
+                                                                            v1711;
+                                                                                        let v1716:
                                                                                 Spiral_wasm::US7 =
-                                                                            Spiral_wasm::method49(v1628.await);
-                                                                                        let v1633:
+                                                                            Spiral_wasm::method49(v1713.await);
+                                                                                        let v1718:
                                                                                 string =
-                                                                            string("true; v1631 });  // rust.fix_closure\'");
-                                                                                        let v1634:
+                                                                            string("true; v1716 });  // rust.fix_closure\'");
+                                                                                        let v1719:
                                                                                 bool =
                                                                             true;
-                                                                                        v1631
+                                                                                        v1716
                                                                                     },
                                                                                 ); // rust.fix_closure';
-                                                                            let v1636 =
+                                                                            let v1721 =
                                                                                 __future_init;
-                                                                            v1636
+                                                                            v1721
                                                                         }
                                                                     }
                                                                 }
                                                                 Spiral_wasm::US6::US6_1(
-                                                                    v1613_1_0,
+                                                                    v1698_1_0,
                                                                 ) => {
-                                                                    let v1784: () = {
+                                                                    let v1869: () = {
                                                                         Spiral_wasm::closure34(
-                                                                            v1613_1_0.clone(),
+                                                                            v1698_1_0.clone(),
                                                                             (),
                                                                         );
                                                                         ()
                                                                     };
-                                                                    let v1898:
+                                                                    let v1983:
                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                   anyhow::Error>>>> =
-                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                           7_u8);
-                                                                    let v1900: Result<
+                                                                    let v1985: Result<
                                                                         Spiral_wasm::US4,
                                                                         anyhow::Error,
-                                                                    > = v1898.await;
-                                                                    let v1901 =
+                                                                    > = v1983.await;
+                                                                    let v1986 =
                                                                         Spiral_wasm::method42();
-                                                                    let v1903: Result<
+                                                                    let v1997: Result<
                                                                         Spiral_wasm::US4,
                                                                         std::string::String,
-                                                                    > = v1900.map_err(|x| v1901(x));
-                                                                    let v1904: Spiral_wasm::US6 =
-                                                                        match &v1903 {
-                                                                            Err(v1903_1_0) => v157(
-                                                                                v1903_1_0.clone(),
+                                                                    > = v1985.map_err(|x| v1986(x));
+                                                                    let v2000: Spiral_wasm::US6 =
+                                                                        match &v1997 {
+                                                                            Err(v1997_1_0) => v187(
+                                                                                v1997_1_0.clone(),
                                                                             ),
-                                                                            Ok(v1903_0_0) => v156(
-                                                                                v1903_0_0.clone(),
+                                                                            Ok(v1997_0_0) => v186(
+                                                                                v1997_0_0.clone(),
                                                                             ),
                                                                         };
-                                                                    match &v1904 {
+                                                                    match &v2000 {
                                                                         Spiral_wasm::US6::US6_0(
-                                                                            v1904_0_0,
+                                                                            v2000_0_0,
                                                                         ) => {
-                                                                            let v1905:
+                                                                            let v2001:
                                                                                 Spiral_wasm::US4 =
-                                                                            v1904_0_0.clone();
-                                                                            match &v1905
+                                                                            v2000_0_0.clone();
+                                                                            match &v2001
                                                                             {
-                                                                            Spiral_wasm::US4::US4_0(v1905_0_0)
+                                                                            Spiral_wasm::US4::US4_0(v2001_0_0)
                                                                             =>
                                                                             {
-                                                                                let v1933:
+                                                                                let v2029:
                                                                                         () =
                                                                                     {
-                                                                                        Spiral_wasm::closure80(match &v1905
+                                                                                        Spiral_wasm::closure80(match &v2001
                                                                                                                    {
                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                    =>
@@ -8365,130 +8366,130 @@ mod module_fb49c4a9 {
                                                                                                                ());
                                                                                         ()
                                                                                     };
-                                                                                let v2047:
+                                                                                let v2143:
                                                                                         bool =
                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                let v2049:
+                                                                                let v2145:
                                                                                         bool =
                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                let v2050:
+                                                                                let v2146:
                                                                                         u8 =
                                                                                     Spiral_wasm::method74();
-                                                                                let v2054:
+                                                                                let v2150:
                                                                                         string =
-                                                                                    string("true; v2050 });  // rust.fix_closure\'");
-                                                                                let v2055:
+                                                                                    string("true; v2146 });  // rust.fix_closure\'");
+                                                                                let v2151:
                                                                                         bool =
-                                                                                    true; v2050 });  // rust.fix_closure';
-                                                                                let v2057 =
+                                                                                    true; v2146 });  // rust.fix_closure';
+                                                                                let v2153 =
                                                                                     __future_init;
-                                                                                let v2059:
+                                                                                let v2155:
                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                    v2057;
-                                                                                let v2062:
+                                                                                    v2153;
+                                                                                let v2158:
                                                                                         Spiral_wasm::US7 =
-                                                                                    Spiral_wasm::method47(v2059.await);
-                                                                                let v2064:
+                                                                                    Spiral_wasm::method47(v2155.await);
+                                                                                let v2160:
                                                                                         string =
-                                                                                    string("true; v2062 });  // rust.fix_closure\'");
-                                                                                let v2065:
+                                                                                    string("true; v2158 });  // rust.fix_closure\'");
+                                                                                let v2161:
                                                                                         bool =
-                                                                                    true; v2062 });  // rust.fix_closure';
-                                                                                let v2067 =
+                                                                                    true; v2158 });  // rust.fix_closure';
+                                                                                let v2163 =
                                                                                     __future_init;
-                                                                                v2067
+                                                                                v2163
                                                                             }
                                                                             _
                                                                             =>
                                                                             {
-                                                                                let v1907:
+                                                                                let v2003:
                                                                                         bool =
                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                let v1909:
+                                                                                let v2005:
                                                                                         bool =
                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                let v1910:
+                                                                                let v2006:
                                                                                         u8 =
                                                                                     Spiral_wasm::method74();
-                                                                                let v1914:
+                                                                                let v2010:
                                                                                         string =
-                                                                                    string("true; v1910 });  // rust.fix_closure\'");
-                                                                                let v1915:
+                                                                                    string("true; v2006 });  // rust.fix_closure\'");
+                                                                                let v2011:
                                                                                         bool =
-                                                                                    true; v1910 });  // rust.fix_closure';
-                                                                                let v1917 =
+                                                                                    true; v2006 });  // rust.fix_closure';
+                                                                                let v2013 =
                                                                                     __future_init;
-                                                                                let v1919:
+                                                                                let v2015:
                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                    v1917;
-                                                                                let v1922:
+                                                                                    v2013;
+                                                                                let v2018:
                                                                                         Spiral_wasm::US7 =
-                                                                                    Spiral_wasm::method49(v1919.await);
-                                                                                let v1924:
+                                                                                    Spiral_wasm::method49(v2015.await);
+                                                                                let v2020:
                                                                                         string =
-                                                                                    string("true; v1922 });  // rust.fix_closure\'");
-                                                                                let v1925:
+                                                                                    string("true; v2018 });  // rust.fix_closure\'");
+                                                                                let v2021:
                                                                                         bool =
-                                                                                    true; v1922 });  // rust.fix_closure';
-                                                                                let v1927 =
+                                                                                    true; v2018 });  // rust.fix_closure';
+                                                                                let v2023 =
                                                                                     __future_init;
-                                                                                v1927
+                                                                                v2023
                                                                             }
                                                                         }
                                                                         }
                                                                         Spiral_wasm::US6::US6_1(
-                                                                            v1904_1_0,
+                                                                            v2000_1_0,
                                                                         ) => {
-                                                                            let v2075: () = {
-                                                                                Spiral_wasm::closure35(v1904_1_0.clone(),
+                                                                            let v2171: () = {
+                                                                                Spiral_wasm::closure35(v2000_1_0.clone(),
                                                                                                        ());
                                                                                 ()
                                                                             };
-                                                                            let v2189:
+                                                                            let v2285:
                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                           anyhow::Error>>>> =
-                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                   8_u8);
-                                                                            let v2191: Result<
+                                                                            let v2287: Result<
                                                                                 Spiral_wasm::US4,
                                                                                 anyhow::Error,
-                                                                            > = v2189.await;
-                                                                            let v2192 =
+                                                                            > = v2285.await;
+                                                                            let v2288 =
                                                                             Spiral_wasm::method42();
-                                                                            let v2194: Result<
+                                                                            let v2299: Result<
                                                                                 Spiral_wasm::US4,
                                                                                 std::string::String,
-                                                                            > = v2191.map_err(
-                                                                                |x| v2192(x),
+                                                                            > = v2287.map_err(
+                                                                                |x| v2288(x),
                                                                             );
-                                                                            let v2195:
+                                                                            let v2302:
                                                                                 Spiral_wasm::US6 =
-                                                                            match &v2194
+                                                                            match &v2299
                                                                                 {
-                                                                                Err(v2194_1_0)
+                                                                                Err(v2299_1_0)
                                                                                 =>
-                                                                                v157(v2194_1_0.clone()),
-                                                                                Ok(v2194_0_0)
+                                                                                v187(v2299_1_0.clone()),
+                                                                                Ok(v2299_0_0)
                                                                                 =>
-                                                                                v156(v2194_0_0.clone()),
+                                                                                v186(v2299_0_0.clone()),
                                                                             };
-                                                                            match &v2195
+                                                                            match &v2302
                                                                             {
-                                                                            Spiral_wasm::US6::US6_0(v2195_0_0)
+                                                                            Spiral_wasm::US6::US6_0(v2302_0_0)
                                                                             =>
                                                                             {
-                                                                                let v2196:
+                                                                                let v2303:
                                                                                         Spiral_wasm::US4 =
-                                                                                    v2195_0_0.clone();
-                                                                                match &v2196
+                                                                                    v2302_0_0.clone();
+                                                                                match &v2303
                                                                                     {
-                                                                                    Spiral_wasm::US4::US4_0(v2196_0_0)
+                                                                                    Spiral_wasm::US4::US4_0(v2303_0_0)
                                                                                     =>
                                                                                     {
-                                                                                        let v2224:
+                                                                                        let v2331:
                                                                                                 () =
                                                                                             {
-                                                                                                Spiral_wasm::closure79(match &v2196
+                                                                                                Spiral_wasm::closure79(match &v2303
                                                                                                                            {
                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                            =>
@@ -8500,130 +8501,130 @@ mod module_fb49c4a9 {
                                                                                                                        ());
                                                                                                 ()
                                                                                             };
-                                                                                        let v2338:
+                                                                                        let v2445:
                                                                                                 bool =
                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                        let v2340:
+                                                                                        let v2447:
                                                                                                 bool =
                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                        let v2341:
+                                                                                        let v2448:
                                                                                                 u8 =
                                                                                             Spiral_wasm::method73();
-                                                                                        let v2345:
+                                                                                        let v2452:
                                                                                                 string =
-                                                                                            string("true; v2341 });  // rust.fix_closure\'");
-                                                                                        let v2346:
+                                                                                            string("true; v2448 });  // rust.fix_closure\'");
+                                                                                        let v2453:
                                                                                                 bool =
-                                                                                            true; v2341 });  // rust.fix_closure';
-                                                                                        let v2348 =
+                                                                                            true; v2448 });  // rust.fix_closure';
+                                                                                        let v2455 =
                                                                                             __future_init;
-                                                                                        let v2350:
+                                                                                        let v2457:
                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                            v2348;
-                                                                                        let v2353:
+                                                                                            v2455;
+                                                                                        let v2460:
                                                                                                 Spiral_wasm::US7 =
-                                                                                            Spiral_wasm::method47(v2350.await);
-                                                                                        let v2355:
+                                                                                            Spiral_wasm::method47(v2457.await);
+                                                                                        let v2462:
                                                                                                 string =
-                                                                                            string("true; v2353 });  // rust.fix_closure\'");
-                                                                                        let v2356:
+                                                                                            string("true; v2460 });  // rust.fix_closure\'");
+                                                                                        let v2463:
                                                                                                 bool =
-                                                                                            true; v2353 });  // rust.fix_closure';
-                                                                                        let v2358 =
+                                                                                            true; v2460 });  // rust.fix_closure';
+                                                                                        let v2465 =
                                                                                             __future_init;
-                                                                                        v2358
+                                                                                        v2465
                                                                                     }
                                                                                     _
                                                                                     =>
                                                                                     {
-                                                                                        let v2198:
+                                                                                        let v2305:
                                                                                                 bool =
                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                        let v2200:
+                                                                                        let v2307:
                                                                                                 bool =
                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                        let v2201:
+                                                                                        let v2308:
                                                                                                 u8 =
                                                                                             Spiral_wasm::method73();
-                                                                                        let v2205:
+                                                                                        let v2312:
                                                                                                 string =
-                                                                                            string("true; v2201 });  // rust.fix_closure\'");
-                                                                                        let v2206:
+                                                                                            string("true; v2308 });  // rust.fix_closure\'");
+                                                                                        let v2313:
                                                                                                 bool =
-                                                                                            true; v2201 });  // rust.fix_closure';
-                                                                                        let v2208 =
+                                                                                            true; v2308 });  // rust.fix_closure';
+                                                                                        let v2315 =
                                                                                             __future_init;
-                                                                                        let v2210:
+                                                                                        let v2317:
                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                            v2208;
-                                                                                        let v2213:
+                                                                                            v2315;
+                                                                                        let v2320:
                                                                                                 Spiral_wasm::US7 =
-                                                                                            Spiral_wasm::method49(v2210.await);
-                                                                                        let v2215:
+                                                                                            Spiral_wasm::method49(v2317.await);
+                                                                                        let v2322:
                                                                                                 string =
-                                                                                            string("true; v2213 });  // rust.fix_closure\'");
-                                                                                        let v2216:
+                                                                                            string("true; v2320 });  // rust.fix_closure\'");
+                                                                                        let v2323:
                                                                                                 bool =
-                                                                                            true; v2213 });  // rust.fix_closure';
-                                                                                        let v2218 =
+                                                                                            true; v2320 });  // rust.fix_closure';
+                                                                                        let v2325 =
                                                                                             __future_init;
-                                                                                        v2218
+                                                                                        v2325
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            Spiral_wasm::US6::US6_1(v2195_1_0)
+                                                                            Spiral_wasm::US6::US6_1(v2302_1_0)
                                                                             =>
                                                                             {
-                                                                                let v2366:
+                                                                                let v2473:
                                                                                         () =
                                                                                     {
-                                                                                        Spiral_wasm::closure36(v2195_1_0.clone(),
+                                                                                        Spiral_wasm::closure36(v2302_1_0.clone(),
                                                                                                                ());
                                                                                         ()
                                                                                     };
-                                                                                let v2480:
+                                                                                let v2587:
                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                   anyhow::Error>>>> =
-                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                           9_u8);
-                                                                                let v2482:
+                                                                                let v2589:
                                                                                         Result<Spiral_wasm::US4,
                                                                                                anyhow::Error> =
-                                                                                    v2480.await;
-                                                                                let v2483 =
+                                                                                    v2587.await;
+                                                                                let v2590 =
                                                                                     Spiral_wasm::method42();
-                                                                                let v2485:
+                                                                                let v2601:
                                                                                         Result<Spiral_wasm::US4,
                                                                                                std::string::String> =
-                                                                                    v2482.map_err(|x| v2483(x));
-                                                                                let v2486:
+                                                                                    v2589.map_err(|x| v2590(x));
+                                                                                let v2604:
                                                                                         Spiral_wasm::US6 =
-                                                                                    match &v2485
+                                                                                    match &v2601
                                                                                         {
-                                                                                        Err(v2485_1_0)
+                                                                                        Err(v2601_1_0)
                                                                                         =>
-                                                                                        v157(v2485_1_0.clone()),
-                                                                                        Ok(v2485_0_0)
+                                                                                        v187(v2601_1_0.clone()),
+                                                                                        Ok(v2601_0_0)
                                                                                         =>
-                                                                                        v156(v2485_0_0.clone()),
+                                                                                        v186(v2601_0_0.clone()),
                                                                                     };
-                                                                                match &v2486
+                                                                                match &v2604
                                                                                     {
-                                                                                    Spiral_wasm::US6::US6_0(v2486_0_0)
+                                                                                    Spiral_wasm::US6::US6_0(v2604_0_0)
                                                                                     =>
                                                                                     {
-                                                                                        let v2487:
+                                                                                        let v2605:
                                                                                                 Spiral_wasm::US4 =
-                                                                                            v2486_0_0.clone();
-                                                                                        match &v2487
+                                                                                            v2604_0_0.clone();
+                                                                                        match &v2605
                                                                                             {
-                                                                                            Spiral_wasm::US4::US4_0(v2487_0_0)
+                                                                                            Spiral_wasm::US4::US4_0(v2605_0_0)
                                                                                             =>
                                                                                             {
-                                                                                                let v2515:
+                                                                                                let v2633:
                                                                                                         () =
                                                                                                     {
-                                                                                                        Spiral_wasm::closure78(match &v2487
+                                                                                                        Spiral_wasm::closure78(match &v2605
                                                                                                                                    {
                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                    =>
@@ -8635,130 +8636,130 @@ mod module_fb49c4a9 {
                                                                                                                                ());
                                                                                                         ()
                                                                                                     };
-                                                                                                let v2629:
+                                                                                                let v2747:
                                                                                                         bool =
                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                let v2631:
+                                                                                                let v2749:
                                                                                                         bool =
                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                let v2632:
+                                                                                                let v2750:
                                                                                                         u8 =
                                                                                                     Spiral_wasm::method72();
-                                                                                                let v2636:
+                                                                                                let v2754:
                                                                                                         string =
-                                                                                                    string("true; v2632 });  // rust.fix_closure\'");
-                                                                                                let v2637:
+                                                                                                    string("true; v2750 });  // rust.fix_closure\'");
+                                                                                                let v2755:
                                                                                                         bool =
-                                                                                                    true; v2632 });  // rust.fix_closure';
-                                                                                                let v2639 =
+                                                                                                    true; v2750 });  // rust.fix_closure';
+                                                                                                let v2757 =
                                                                                                     __future_init;
-                                                                                                let v2641:
+                                                                                                let v2759:
                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                    v2639;
-                                                                                                let v2644:
+                                                                                                    v2757;
+                                                                                                let v2762:
                                                                                                         Spiral_wasm::US7 =
-                                                                                                    Spiral_wasm::method47(v2641.await);
-                                                                                                let v2646:
+                                                                                                    Spiral_wasm::method47(v2759.await);
+                                                                                                let v2764:
                                                                                                         string =
-                                                                                                    string("true; v2644 });  // rust.fix_closure\'");
-                                                                                                let v2647:
+                                                                                                    string("true; v2762 });  // rust.fix_closure\'");
+                                                                                                let v2765:
                                                                                                         bool =
-                                                                                                    true; v2644 });  // rust.fix_closure';
-                                                                                                let v2649 =
+                                                                                                    true; v2762 });  // rust.fix_closure';
+                                                                                                let v2767 =
                                                                                                     __future_init;
-                                                                                                v2649
+                                                                                                v2767
                                                                                             }
                                                                                             _
                                                                                             =>
                                                                                             {
-                                                                                                let v2489:
+                                                                                                let v2607:
                                                                                                         bool =
                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                let v2491:
+                                                                                                let v2609:
                                                                                                         bool =
                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                let v2492:
+                                                                                                let v2610:
                                                                                                         u8 =
                                                                                                     Spiral_wasm::method72();
-                                                                                                let v2496:
+                                                                                                let v2614:
                                                                                                         string =
-                                                                                                    string("true; v2492 });  // rust.fix_closure\'");
-                                                                                                let v2497:
+                                                                                                    string("true; v2610 });  // rust.fix_closure\'");
+                                                                                                let v2615:
                                                                                                         bool =
-                                                                                                    true; v2492 });  // rust.fix_closure';
-                                                                                                let v2499 =
+                                                                                                    true; v2610 });  // rust.fix_closure';
+                                                                                                let v2617 =
                                                                                                     __future_init;
-                                                                                                let v2501:
+                                                                                                let v2619:
                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                    v2499;
-                                                                                                let v2504:
+                                                                                                    v2617;
+                                                                                                let v2622:
                                                                                                         Spiral_wasm::US7 =
-                                                                                                    Spiral_wasm::method49(v2501.await);
-                                                                                                let v2506:
+                                                                                                    Spiral_wasm::method49(v2619.await);
+                                                                                                let v2624:
                                                                                                         string =
-                                                                                                    string("true; v2504 });  // rust.fix_closure\'");
-                                                                                                let v2507:
+                                                                                                    string("true; v2622 });  // rust.fix_closure\'");
+                                                                                                let v2625:
                                                                                                         bool =
-                                                                                                    true; v2504 });  // rust.fix_closure';
-                                                                                                let v2509 =
+                                                                                                    true; v2622 });  // rust.fix_closure';
+                                                                                                let v2627 =
                                                                                                     __future_init;
-                                                                                                v2509
+                                                                                                v2627
                                                                                             }
                                                                                         }
                                                                                     }
-                                                                                    Spiral_wasm::US6::US6_1(v2486_1_0)
+                                                                                    Spiral_wasm::US6::US6_1(v2604_1_0)
                                                                                     =>
                                                                                     {
-                                                                                        let v2657:
+                                                                                        let v2775:
                                                                                                 () =
                                                                                             {
-                                                                                                Spiral_wasm::closure37(v2486_1_0.clone(),
+                                                                                                Spiral_wasm::closure37(v2604_1_0.clone(),
                                                                                                                        ());
                                                                                                 ()
                                                                                             };
-                                                                                        let v2771:
+                                                                                        let v2889:
                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                           anyhow::Error>>>> =
-                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                   10_u8);
-                                                                                        let v2773:
+                                                                                        let v2891:
                                                                                                 Result<Spiral_wasm::US4,
                                                                                                        anyhow::Error> =
-                                                                                            v2771.await;
-                                                                                        let v2774 =
+                                                                                            v2889.await;
+                                                                                        let v2892 =
                                                                                             Spiral_wasm::method42();
-                                                                                        let v2776:
+                                                                                        let v2903:
                                                                                                 Result<Spiral_wasm::US4,
                                                                                                        std::string::String> =
-                                                                                            v2773.map_err(|x| v2774(x));
-                                                                                        let v2777:
+                                                                                            v2891.map_err(|x| v2892(x));
+                                                                                        let v2906:
                                                                                                 Spiral_wasm::US6 =
-                                                                                            match &v2776
+                                                                                            match &v2903
                                                                                                 {
-                                                                                                Err(v2776_1_0)
+                                                                                                Err(v2903_1_0)
                                                                                                 =>
-                                                                                                v157(v2776_1_0.clone()),
-                                                                                                Ok(v2776_0_0)
+                                                                                                v187(v2903_1_0.clone()),
+                                                                                                Ok(v2903_0_0)
                                                                                                 =>
-                                                                                                v156(v2776_0_0.clone()),
+                                                                                                v186(v2903_0_0.clone()),
                                                                                             };
-                                                                                        match &v2777
+                                                                                        match &v2906
                                                                                             {
-                                                                                            Spiral_wasm::US6::US6_0(v2777_0_0)
+                                                                                            Spiral_wasm::US6::US6_0(v2906_0_0)
                                                                                             =>
                                                                                             {
-                                                                                                let v2778:
+                                                                                                let v2907:
                                                                                                         Spiral_wasm::US4 =
-                                                                                                    v2777_0_0.clone();
-                                                                                                match &v2778
+                                                                                                    v2906_0_0.clone();
+                                                                                                match &v2907
                                                                                                     {
-                                                                                                    Spiral_wasm::US4::US4_0(v2778_0_0)
+                                                                                                    Spiral_wasm::US4::US4_0(v2907_0_0)
                                                                                                     =>
                                                                                                     {
-                                                                                                        let v2806:
+                                                                                                        let v2935:
                                                                                                                 () =
                                                                                                             {
-                                                                                                                Spiral_wasm::closure77(match &v2778
+                                                                                                                Spiral_wasm::closure77(match &v2907
                                                                                                                                            {
                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                            =>
@@ -8770,130 +8771,130 @@ mod module_fb49c4a9 {
                                                                                                                                        ());
                                                                                                                 ()
                                                                                                             };
-                                                                                                        let v2920:
+                                                                                                        let v3049:
                                                                                                                 bool =
                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                        let v2922:
+                                                                                                        let v3051:
                                                                                                                 bool =
                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                        let v2923:
+                                                                                                        let v3052:
                                                                                                                 u8 =
                                                                                                             Spiral_wasm::method71();
-                                                                                                        let v2927:
+                                                                                                        let v3056:
                                                                                                                 string =
-                                                                                                            string("true; v2923 });  // rust.fix_closure\'");
-                                                                                                        let v2928:
+                                                                                                            string("true; v3052 });  // rust.fix_closure\'");
+                                                                                                        let v3057:
                                                                                                                 bool =
-                                                                                                            true; v2923 });  // rust.fix_closure';
-                                                                                                        let v2930 =
+                                                                                                            true; v3052 });  // rust.fix_closure';
+                                                                                                        let v3059 =
                                                                                                             __future_init;
-                                                                                                        let v2932:
+                                                                                                        let v3061:
                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                            v2930;
-                                                                                                        let v2935:
+                                                                                                            v3059;
+                                                                                                        let v3064:
                                                                                                                 Spiral_wasm::US7 =
-                                                                                                            Spiral_wasm::method47(v2932.await);
-                                                                                                        let v2937:
+                                                                                                            Spiral_wasm::method47(v3061.await);
+                                                                                                        let v3066:
                                                                                                                 string =
-                                                                                                            string("true; v2935 });  // rust.fix_closure\'");
-                                                                                                        let v2938:
+                                                                                                            string("true; v3064 });  // rust.fix_closure\'");
+                                                                                                        let v3067:
                                                                                                                 bool =
-                                                                                                            true; v2935 });  // rust.fix_closure';
-                                                                                                        let v2940 =
+                                                                                                            true; v3064 });  // rust.fix_closure';
+                                                                                                        let v3069 =
                                                                                                             __future_init;
-                                                                                                        v2940
+                                                                                                        v3069
                                                                                                     }
                                                                                                     _
                                                                                                     =>
                                                                                                     {
-                                                                                                        let v2780:
+                                                                                                        let v2909:
                                                                                                                 bool =
                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                        let v2782:
+                                                                                                        let v2911:
                                                                                                                 bool =
                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                        let v2783:
+                                                                                                        let v2912:
                                                                                                                 u8 =
                                                                                                             Spiral_wasm::method71();
-                                                                                                        let v2787:
+                                                                                                        let v2916:
                                                                                                                 string =
-                                                                                                            string("true; v2783 });  // rust.fix_closure\'");
-                                                                                                        let v2788:
+                                                                                                            string("true; v2912 });  // rust.fix_closure\'");
+                                                                                                        let v2917:
                                                                                                                 bool =
-                                                                                                            true; v2783 });  // rust.fix_closure';
-                                                                                                        let v2790 =
+                                                                                                            true; v2912 });  // rust.fix_closure';
+                                                                                                        let v2919 =
                                                                                                             __future_init;
-                                                                                                        let v2792:
+                                                                                                        let v2921:
                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                            v2790;
-                                                                                                        let v2795:
+                                                                                                            v2919;
+                                                                                                        let v2924:
                                                                                                                 Spiral_wasm::US7 =
-                                                                                                            Spiral_wasm::method49(v2792.await);
-                                                                                                        let v2797:
+                                                                                                            Spiral_wasm::method49(v2921.await);
+                                                                                                        let v2926:
                                                                                                                 string =
-                                                                                                            string("true; v2795 });  // rust.fix_closure\'");
-                                                                                                        let v2798:
+                                                                                                            string("true; v2924 });  // rust.fix_closure\'");
+                                                                                                        let v2927:
                                                                                                                 bool =
-                                                                                                            true; v2795 });  // rust.fix_closure';
-                                                                                                        let v2800 =
+                                                                                                            true; v2924 });  // rust.fix_closure';
+                                                                                                        let v2929 =
                                                                                                             __future_init;
-                                                                                                        v2800
+                                                                                                        v2929
                                                                                                     }
                                                                                                 }
                                                                                             }
-                                                                                            Spiral_wasm::US6::US6_1(v2777_1_0)
+                                                                                            Spiral_wasm::US6::US6_1(v2906_1_0)
                                                                                             =>
                                                                                             {
-                                                                                                let v2948:
+                                                                                                let v3077:
                                                                                                         () =
                                                                                                     {
-                                                                                                        Spiral_wasm::closure38(v2777_1_0.clone(),
+                                                                                                        Spiral_wasm::closure38(v2906_1_0.clone(),
                                                                                                                                ());
                                                                                                         ()
                                                                                                     };
-                                                                                                let v3062:
+                                                                                                let v3191:
                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                           11_u8);
-                                                                                                let v3064:
+                                                                                                let v3193:
                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                anyhow::Error> =
-                                                                                                    v3062.await;
-                                                                                                let v3065 =
+                                                                                                    v3191.await;
+                                                                                                let v3194 =
                                                                                                     Spiral_wasm::method42();
-                                                                                                let v3067:
+                                                                                                let v3205:
                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                std::string::String> =
-                                                                                                    v3064.map_err(|x| v3065(x));
-                                                                                                let v3068:
+                                                                                                    v3193.map_err(|x| v3194(x));
+                                                                                                let v3208:
                                                                                                         Spiral_wasm::US6 =
-                                                                                                    match &v3067
+                                                                                                    match &v3205
                                                                                                         {
-                                                                                                        Err(v3067_1_0)
+                                                                                                        Err(v3205_1_0)
                                                                                                         =>
-                                                                                                        v157(v3067_1_0.clone()),
-                                                                                                        Ok(v3067_0_0)
+                                                                                                        v187(v3205_1_0.clone()),
+                                                                                                        Ok(v3205_0_0)
                                                                                                         =>
-                                                                                                        v156(v3067_0_0.clone()),
+                                                                                                        v186(v3205_0_0.clone()),
                                                                                                     };
-                                                                                                match &v3068
+                                                                                                match &v3208
                                                                                                     {
-                                                                                                    Spiral_wasm::US6::US6_0(v3068_0_0)
+                                                                                                    Spiral_wasm::US6::US6_0(v3208_0_0)
                                                                                                     =>
                                                                                                     {
-                                                                                                        let v3069:
+                                                                                                        let v3209:
                                                                                                                 Spiral_wasm::US4 =
-                                                                                                            v3068_0_0.clone();
-                                                                                                        match &v3069
+                                                                                                            v3208_0_0.clone();
+                                                                                                        match &v3209
                                                                                                             {
-                                                                                                            Spiral_wasm::US4::US4_0(v3069_0_0)
+                                                                                                            Spiral_wasm::US4::US4_0(v3209_0_0)
                                                                                                             =>
                                                                                                             {
-                                                                                                                let v3097:
+                                                                                                                let v3237:
                                                                                                                         () =
                                                                                                                     {
-                                                                                                                        Spiral_wasm::closure76(match &v3069
+                                                                                                                        Spiral_wasm::closure76(match &v3209
                                                                                                                                                    {
                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                    =>
@@ -8905,6 +8906,42 @@ mod module_fb49c4a9 {
                                                                                                                                                ());
                                                                                                                         ()
                                                                                                                     };
+                                                                                                                let v3351:
+                                                                                                                        bool =
+                                                                                                                    true; let __future_init = Box::pin(async move { //;
+                                                                                                                let v3353:
+                                                                                                                        bool =
+                                                                                                                    true; let __future_init = Box::pin(async move { //;
+                                                                                                                let v3354:
+                                                                                                                        u8 =
+                                                                                                                    Spiral_wasm::method70();
+                                                                                                                let v3358:
+                                                                                                                        string =
+                                                                                                                    string("true; v3354 });  // rust.fix_closure\'");
+                                                                                                                let v3359:
+                                                                                                                        bool =
+                                                                                                                    true; v3354 });  // rust.fix_closure';
+                                                                                                                let v3361 =
+                                                                                                                    __future_init;
+                                                                                                                let v3363:
+                                                                                                                        std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
+                                                                                                                    v3361;
+                                                                                                                let v3366:
+                                                                                                                        Spiral_wasm::US7 =
+                                                                                                                    Spiral_wasm::method47(v3363.await);
+                                                                                                                let v3368:
+                                                                                                                        string =
+                                                                                                                    string("true; v3366 });  // rust.fix_closure\'");
+                                                                                                                let v3369:
+                                                                                                                        bool =
+                                                                                                                    true; v3366 });  // rust.fix_closure';
+                                                                                                                let v3371 =
+                                                                                                                    __future_init;
+                                                                                                                v3371
+                                                                                                            }
+                                                                                                            _
+                                                                                                            =>
+                                                                                                            {
                                                                                                                 let v3211:
                                                                                                                         bool =
                                                                                                                     true; let __future_init = Box::pin(async move { //;
@@ -8927,7 +8964,7 @@ mod module_fb49c4a9 {
                                                                                                                     v3221;
                                                                                                                 let v3226:
                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                    Spiral_wasm::method47(v3223.await);
+                                                                                                                    Spiral_wasm::method49(v3223.await);
                                                                                                                 let v3228:
                                                                                                                         string =
                                                                                                                     string("true; v3226 });  // rust.fix_closure\'");
@@ -8938,97 +8975,61 @@ mod module_fb49c4a9 {
                                                                                                                     __future_init;
                                                                                                                 v3231
                                                                                                             }
-                                                                                                            _
-                                                                                                            =>
-                                                                                                            {
-                                                                                                                let v3071:
-                                                                                                                        bool =
-                                                                                                                    true; let __future_init = Box::pin(async move { //;
-                                                                                                                let v3073:
-                                                                                                                        bool =
-                                                                                                                    true; let __future_init = Box::pin(async move { //;
-                                                                                                                let v3074:
-                                                                                                                        u8 =
-                                                                                                                    Spiral_wasm::method70();
-                                                                                                                let v3078:
-                                                                                                                        string =
-                                                                                                                    string("true; v3074 });  // rust.fix_closure\'");
-                                                                                                                let v3079:
-                                                                                                                        bool =
-                                                                                                                    true; v3074 });  // rust.fix_closure';
-                                                                                                                let v3081 =
-                                                                                                                    __future_init;
-                                                                                                                let v3083:
-                                                                                                                        std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                    v3081;
-                                                                                                                let v3086:
-                                                                                                                        Spiral_wasm::US7 =
-                                                                                                                    Spiral_wasm::method49(v3083.await);
-                                                                                                                let v3088:
-                                                                                                                        string =
-                                                                                                                    string("true; v3086 });  // rust.fix_closure\'");
-                                                                                                                let v3089:
-                                                                                                                        bool =
-                                                                                                                    true; v3086 });  // rust.fix_closure';
-                                                                                                                let v3091 =
-                                                                                                                    __future_init;
-                                                                                                                v3091
-                                                                                                            }
                                                                                                         }
                                                                                                     }
-                                                                                                    Spiral_wasm::US6::US6_1(v3068_1_0)
+                                                                                                    Spiral_wasm::US6::US6_1(v3208_1_0)
                                                                                                     =>
                                                                                                     {
-                                                                                                        let v3239:
+                                                                                                        let v3379:
                                                                                                                 () =
                                                                                                             {
-                                                                                                                Spiral_wasm::closure39(v3068_1_0.clone(),
+                                                                                                                Spiral_wasm::closure39(v3208_1_0.clone(),
                                                                                                                                        ());
                                                                                                                 ()
                                                                                                             };
-                                                                                                        let v3353:
+                                                                                                        let v3493:
                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                   12_u8);
-                                                                                                        let v3355:
+                                                                                                        let v3495:
                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                        anyhow::Error> =
-                                                                                                            v3353.await;
-                                                                                                        let v3356 =
+                                                                                                            v3493.await;
+                                                                                                        let v3496 =
                                                                                                             Spiral_wasm::method42();
-                                                                                                        let v3358:
+                                                                                                        let v3507:
                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                        std::string::String> =
-                                                                                                            v3355.map_err(|x| v3356(x));
-                                                                                                        let v3359:
+                                                                                                            v3495.map_err(|x| v3496(x));
+                                                                                                        let v3510:
                                                                                                                 Spiral_wasm::US6 =
-                                                                                                            match &v3358
+                                                                                                            match &v3507
                                                                                                                 {
-                                                                                                                Err(v3358_1_0)
+                                                                                                                Err(v3507_1_0)
                                                                                                                 =>
-                                                                                                                v157(v3358_1_0.clone()),
-                                                                                                                Ok(v3358_0_0)
+                                                                                                                v187(v3507_1_0.clone()),
+                                                                                                                Ok(v3507_0_0)
                                                                                                                 =>
-                                                                                                                v156(v3358_0_0.clone()),
+                                                                                                                v186(v3507_0_0.clone()),
                                                                                                             };
-                                                                                                        match &v3359
+                                                                                                        match &v3510
                                                                                                             {
-                                                                                                            Spiral_wasm::US6::US6_0(v3359_0_0)
+                                                                                                            Spiral_wasm::US6::US6_0(v3510_0_0)
                                                                                                             =>
                                                                                                             {
-                                                                                                                let v3360:
+                                                                                                                let v3511:
                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                    v3359_0_0.clone();
-                                                                                                                match &v3360
+                                                                                                                    v3510_0_0.clone();
+                                                                                                                match &v3511
                                                                                                                     {
-                                                                                                                    Spiral_wasm::US4::US4_0(v3360_0_0)
+                                                                                                                    Spiral_wasm::US4::US4_0(v3511_0_0)
                                                                                                                     =>
                                                                                                                     {
-                                                                                                                        let v3388:
+                                                                                                                        let v3539:
                                                                                                                                 () =
                                                                                                                             {
-                                                                                                                                Spiral_wasm::closure75(match &v3360
+                                                                                                                                Spiral_wasm::closure75(match &v3511
                                                                                                                                                            {
                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                            =>
@@ -9040,130 +9041,130 @@ mod module_fb49c4a9 {
                                                                                                                                                        ());
                                                                                                                                 ()
                                                                                                                             };
-                                                                                                                        let v3502:
+                                                                                                                        let v3653:
                                                                                                                                 bool =
                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                        let v3504:
+                                                                                                                        let v3655:
                                                                                                                                 bool =
                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                        let v3505:
+                                                                                                                        let v3656:
                                                                                                                                 u8 =
                                                                                                                             Spiral_wasm::method69();
-                                                                                                                        let v3509:
+                                                                                                                        let v3660:
                                                                                                                                 string =
-                                                                                                                            string("true; v3505 });  // rust.fix_closure\'");
-                                                                                                                        let v3510:
+                                                                                                                            string("true; v3656 });  // rust.fix_closure\'");
+                                                                                                                        let v3661:
                                                                                                                                 bool =
-                                                                                                                            true; v3505 });  // rust.fix_closure';
-                                                                                                                        let v3512 =
+                                                                                                                            true; v3656 });  // rust.fix_closure';
+                                                                                                                        let v3663 =
                                                                                                                             __future_init;
-                                                                                                                        let v3514:
+                                                                                                                        let v3665:
                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                            v3512;
-                                                                                                                        let v3517:
+                                                                                                                            v3663;
+                                                                                                                        let v3668:
                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                            Spiral_wasm::method47(v3514.await);
-                                                                                                                        let v3519:
+                                                                                                                            Spiral_wasm::method47(v3665.await);
+                                                                                                                        let v3670:
                                                                                                                                 string =
-                                                                                                                            string("true; v3517 });  // rust.fix_closure\'");
-                                                                                                                        let v3520:
+                                                                                                                            string("true; v3668 });  // rust.fix_closure\'");
+                                                                                                                        let v3671:
                                                                                                                                 bool =
-                                                                                                                            true; v3517 });  // rust.fix_closure';
-                                                                                                                        let v3522 =
+                                                                                                                            true; v3668 });  // rust.fix_closure';
+                                                                                                                        let v3673 =
                                                                                                                             __future_init;
-                                                                                                                        v3522
+                                                                                                                        v3673
                                                                                                                     }
                                                                                                                     _
                                                                                                                     =>
                                                                                                                     {
-                                                                                                                        let v3362:
+                                                                                                                        let v3513:
                                                                                                                                 bool =
                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                        let v3364:
+                                                                                                                        let v3515:
                                                                                                                                 bool =
                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                        let v3365:
+                                                                                                                        let v3516:
                                                                                                                                 u8 =
                                                                                                                             Spiral_wasm::method69();
-                                                                                                                        let v3369:
+                                                                                                                        let v3520:
                                                                                                                                 string =
-                                                                                                                            string("true; v3365 });  // rust.fix_closure\'");
-                                                                                                                        let v3370:
+                                                                                                                            string("true; v3516 });  // rust.fix_closure\'");
+                                                                                                                        let v3521:
                                                                                                                                 bool =
-                                                                                                                            true; v3365 });  // rust.fix_closure';
-                                                                                                                        let v3372 =
+                                                                                                                            true; v3516 });  // rust.fix_closure';
+                                                                                                                        let v3523 =
                                                                                                                             __future_init;
-                                                                                                                        let v3374:
+                                                                                                                        let v3525:
                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                            v3372;
-                                                                                                                        let v3377:
+                                                                                                                            v3523;
+                                                                                                                        let v3528:
                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                            Spiral_wasm::method49(v3374.await);
-                                                                                                                        let v3379:
+                                                                                                                            Spiral_wasm::method49(v3525.await);
+                                                                                                                        let v3530:
                                                                                                                                 string =
-                                                                                                                            string("true; v3377 });  // rust.fix_closure\'");
-                                                                                                                        let v3380:
+                                                                                                                            string("true; v3528 });  // rust.fix_closure\'");
+                                                                                                                        let v3531:
                                                                                                                                 bool =
-                                                                                                                            true; v3377 });  // rust.fix_closure';
-                                                                                                                        let v3382 =
+                                                                                                                            true; v3528 });  // rust.fix_closure';
+                                                                                                                        let v3533 =
                                                                                                                             __future_init;
-                                                                                                                        v3382
+                                                                                                                        v3533
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
-                                                                                                            Spiral_wasm::US6::US6_1(v3359_1_0)
+                                                                                                            Spiral_wasm::US6::US6_1(v3510_1_0)
                                                                                                             =>
                                                                                                             {
-                                                                                                                let v3530:
+                                                                                                                let v3681:
                                                                                                                         () =
                                                                                                                     {
-                                                                                                                        Spiral_wasm::closure40(v3359_1_0.clone(),
+                                                                                                                        Spiral_wasm::closure40(v3510_1_0.clone(),
                                                                                                                                                ());
                                                                                                                         ()
                                                                                                                     };
-                                                                                                                let v3644:
+                                                                                                                let v3795:
                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                           13_u8);
-                                                                                                                let v3646:
+                                                                                                                let v3797:
                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                anyhow::Error> =
-                                                                                                                    v3644.await;
-                                                                                                                let v3647 =
+                                                                                                                    v3795.await;
+                                                                                                                let v3798 =
                                                                                                                     Spiral_wasm::method42();
-                                                                                                                let v3649:
+                                                                                                                let v3809:
                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                std::string::String> =
-                                                                                                                    v3646.map_err(|x| v3647(x));
-                                                                                                                let v3650:
+                                                                                                                    v3797.map_err(|x| v3798(x));
+                                                                                                                let v3812:
                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                    match &v3649
+                                                                                                                    match &v3809
                                                                                                                         {
-                                                                                                                        Err(v3649_1_0)
+                                                                                                                        Err(v3809_1_0)
                                                                                                                         =>
-                                                                                                                        v157(v3649_1_0.clone()),
-                                                                                                                        Ok(v3649_0_0)
+                                                                                                                        v187(v3809_1_0.clone()),
+                                                                                                                        Ok(v3809_0_0)
                                                                                                                         =>
-                                                                                                                        v156(v3649_0_0.clone()),
+                                                                                                                        v186(v3809_0_0.clone()),
                                                                                                                     };
-                                                                                                                match &v3650
+                                                                                                                match &v3812
                                                                                                                     {
-                                                                                                                    Spiral_wasm::US6::US6_0(v3650_0_0)
+                                                                                                                    Spiral_wasm::US6::US6_0(v3812_0_0)
                                                                                                                     =>
                                                                                                                     {
-                                                                                                                        let v3651:
+                                                                                                                        let v3813:
                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                            v3650_0_0.clone();
-                                                                                                                        match &v3651
+                                                                                                                            v3812_0_0.clone();
+                                                                                                                        match &v3813
                                                                                                                             {
-                                                                                                                            Spiral_wasm::US4::US4_0(v3651_0_0)
+                                                                                                                            Spiral_wasm::US4::US4_0(v3813_0_0)
                                                                                                                             =>
                                                                                                                             {
-                                                                                                                                let v3679:
+                                                                                                                                let v3841:
                                                                                                                                         () =
                                                                                                                                     {
-                                                                                                                                        Spiral_wasm::closure74(match &v3651
+                                                                                                                                        Spiral_wasm::closure74(match &v3813
                                                                                                                                                                    {
                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                    =>
@@ -9175,130 +9176,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                ());
                                                                                                                                         ()
                                                                                                                                     };
-                                                                                                                                let v3793:
+                                                                                                                                let v3955:
                                                                                                                                         bool =
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                let v3795:
+                                                                                                                                let v3957:
                                                                                                                                         bool =
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                let v3796:
+                                                                                                                                let v3958:
                                                                                                                                         u8 =
                                                                                                                                     Spiral_wasm::method68();
-                                                                                                                                let v3800:
+                                                                                                                                let v3962:
                                                                                                                                         string =
-                                                                                                                                    string("true; v3796 });  // rust.fix_closure\'");
-                                                                                                                                let v3801:
+                                                                                                                                    string("true; v3958 });  // rust.fix_closure\'");
+                                                                                                                                let v3963:
                                                                                                                                         bool =
-                                                                                                                                    true; v3796 });  // rust.fix_closure';
-                                                                                                                                let v3803 =
+                                                                                                                                    true; v3958 });  // rust.fix_closure';
+                                                                                                                                let v3965 =
                                                                                                                                     __future_init;
-                                                                                                                                let v3805:
+                                                                                                                                let v3967:
                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                    v3803;
-                                                                                                                                let v3808:
+                                                                                                                                    v3965;
+                                                                                                                                let v3970:
                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                    Spiral_wasm::method47(v3805.await);
-                                                                                                                                let v3810:
+                                                                                                                                    Spiral_wasm::method47(v3967.await);
+                                                                                                                                let v3972:
                                                                                                                                         string =
-                                                                                                                                    string("true; v3808 });  // rust.fix_closure\'");
-                                                                                                                                let v3811:
+                                                                                                                                    string("true; v3970 });  // rust.fix_closure\'");
+                                                                                                                                let v3973:
                                                                                                                                         bool =
-                                                                                                                                    true; v3808 });  // rust.fix_closure';
-                                                                                                                                let v3813 =
+                                                                                                                                    true; v3970 });  // rust.fix_closure';
+                                                                                                                                let v3975 =
                                                                                                                                     __future_init;
-                                                                                                                                v3813
+                                                                                                                                v3975
                                                                                                                             }
                                                                                                                             _
                                                                                                                             =>
                                                                                                                             {
-                                                                                                                                let v3653:
+                                                                                                                                let v3815:
                                                                                                                                         bool =
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                let v3655:
+                                                                                                                                let v3817:
                                                                                                                                         bool =
                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                let v3656:
+                                                                                                                                let v3818:
                                                                                                                                         u8 =
                                                                                                                                     Spiral_wasm::method68();
-                                                                                                                                let v3660:
+                                                                                                                                let v3822:
                                                                                                                                         string =
-                                                                                                                                    string("true; v3656 });  // rust.fix_closure\'");
-                                                                                                                                let v3661:
+                                                                                                                                    string("true; v3818 });  // rust.fix_closure\'");
+                                                                                                                                let v3823:
                                                                                                                                         bool =
-                                                                                                                                    true; v3656 });  // rust.fix_closure';
-                                                                                                                                let v3663 =
+                                                                                                                                    true; v3818 });  // rust.fix_closure';
+                                                                                                                                let v3825 =
                                                                                                                                     __future_init;
-                                                                                                                                let v3665:
+                                                                                                                                let v3827:
                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                    v3663;
-                                                                                                                                let v3668:
+                                                                                                                                    v3825;
+                                                                                                                                let v3830:
                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                    Spiral_wasm::method49(v3665.await);
-                                                                                                                                let v3670:
+                                                                                                                                    Spiral_wasm::method49(v3827.await);
+                                                                                                                                let v3832:
                                                                                                                                         string =
-                                                                                                                                    string("true; v3668 });  // rust.fix_closure\'");
-                                                                                                                                let v3671:
+                                                                                                                                    string("true; v3830 });  // rust.fix_closure\'");
+                                                                                                                                let v3833:
                                                                                                                                         bool =
-                                                                                                                                    true; v3668 });  // rust.fix_closure';
-                                                                                                                                let v3673 =
+                                                                                                                                    true; v3830 });  // rust.fix_closure';
+                                                                                                                                let v3835 =
                                                                                                                                     __future_init;
-                                                                                                                                v3673
+                                                                                                                                v3835
                                                                                                                             }
                                                                                                                         }
                                                                                                                     }
-                                                                                                                    Spiral_wasm::US6::US6_1(v3650_1_0)
+                                                                                                                    Spiral_wasm::US6::US6_1(v3812_1_0)
                                                                                                                     =>
                                                                                                                     {
-                                                                                                                        let v3821:
+                                                                                                                        let v3983:
                                                                                                                                 () =
                                                                                                                             {
-                                                                                                                                Spiral_wasm::closure41(v3650_1_0.clone(),
+                                                                                                                                Spiral_wasm::closure41(v3812_1_0.clone(),
                                                                                                                                                        ());
                                                                                                                                 ()
                                                                                                                             };
-                                                                                                                        let v3935:
+                                                                                                                        let v4097:
                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                   14_u8);
-                                                                                                                        let v3937:
+                                                                                                                        let v4099:
                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                        anyhow::Error> =
-                                                                                                                            v3935.await;
-                                                                                                                        let v3938 =
+                                                                                                                            v4097.await;
+                                                                                                                        let v4100 =
                                                                                                                             Spiral_wasm::method42();
-                                                                                                                        let v3940:
+                                                                                                                        let v4111:
                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                        std::string::String> =
-                                                                                                                            v3937.map_err(|x| v3938(x));
-                                                                                                                        let v3941:
+                                                                                                                            v4099.map_err(|x| v4100(x));
+                                                                                                                        let v4114:
                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                            match &v3940
+                                                                                                                            match &v4111
                                                                                                                                 {
-                                                                                                                                Err(v3940_1_0)
+                                                                                                                                Err(v4111_1_0)
                                                                                                                                 =>
-                                                                                                                                v157(v3940_1_0.clone()),
-                                                                                                                                Ok(v3940_0_0)
+                                                                                                                                v187(v4111_1_0.clone()),
+                                                                                                                                Ok(v4111_0_0)
                                                                                                                                 =>
-                                                                                                                                v156(v3940_0_0.clone()),
+                                                                                                                                v186(v4111_0_0.clone()),
                                                                                                                             };
-                                                                                                                        match &v3941
+                                                                                                                        match &v4114
                                                                                                                             {
-                                                                                                                            Spiral_wasm::US6::US6_0(v3941_0_0)
+                                                                                                                            Spiral_wasm::US6::US6_0(v4114_0_0)
                                                                                                                             =>
                                                                                                                             {
-                                                                                                                                let v3942:
+                                                                                                                                let v4115:
                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                    v3941_0_0.clone();
-                                                                                                                                match &v3942
+                                                                                                                                    v4114_0_0.clone();
+                                                                                                                                match &v4115
                                                                                                                                     {
-                                                                                                                                    Spiral_wasm::US4::US4_0(v3942_0_0)
+                                                                                                                                    Spiral_wasm::US4::US4_0(v4115_0_0)
                                                                                                                                     =>
                                                                                                                                     {
-                                                                                                                                        let v3970:
+                                                                                                                                        let v4143:
                                                                                                                                                 () =
                                                                                                                                             {
-                                                                                                                                                Spiral_wasm::closure73(match &v3942
+                                                                                                                                                Spiral_wasm::closure73(match &v4115
                                                                                                                                                                            {
                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                            =>
@@ -9310,130 +9311,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                        ());
                                                                                                                                                 ()
                                                                                                                                             };
-                                                                                                                                        let v4084:
+                                                                                                                                        let v4257:
                                                                                                                                                 bool =
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                        let v4086:
+                                                                                                                                        let v4259:
                                                                                                                                                 bool =
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                        let v4087:
+                                                                                                                                        let v4260:
                                                                                                                                                 u8 =
                                                                                                                                             Spiral_wasm::method67();
-                                                                                                                                        let v4091:
+                                                                                                                                        let v4264:
                                                                                                                                                 string =
-                                                                                                                                            string("true; v4087 });  // rust.fix_closure\'");
-                                                                                                                                        let v4092:
+                                                                                                                                            string("true; v4260 });  // rust.fix_closure\'");
+                                                                                                                                        let v4265:
                                                                                                                                                 bool =
-                                                                                                                                            true; v4087 });  // rust.fix_closure';
-                                                                                                                                        let v4094 =
+                                                                                                                                            true; v4260 });  // rust.fix_closure';
+                                                                                                                                        let v4267 =
                                                                                                                                             __future_init;
-                                                                                                                                        let v4096:
+                                                                                                                                        let v4269:
                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                            v4094;
-                                                                                                                                        let v4099:
+                                                                                                                                            v4267;
+                                                                                                                                        let v4272:
                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                            Spiral_wasm::method47(v4096.await);
-                                                                                                                                        let v4101:
+                                                                                                                                            Spiral_wasm::method47(v4269.await);
+                                                                                                                                        let v4274:
                                                                                                                                                 string =
-                                                                                                                                            string("true; v4099 });  // rust.fix_closure\'");
-                                                                                                                                        let v4102:
+                                                                                                                                            string("true; v4272 });  // rust.fix_closure\'");
+                                                                                                                                        let v4275:
                                                                                                                                                 bool =
-                                                                                                                                            true; v4099 });  // rust.fix_closure';
-                                                                                                                                        let v4104 =
+                                                                                                                                            true; v4272 });  // rust.fix_closure';
+                                                                                                                                        let v4277 =
                                                                                                                                             __future_init;
-                                                                                                                                        v4104
+                                                                                                                                        v4277
                                                                                                                                     }
                                                                                                                                     _
                                                                                                                                     =>
                                                                                                                                     {
-                                                                                                                                        let v3944:
+                                                                                                                                        let v4117:
                                                                                                                                                 bool =
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                        let v3946:
+                                                                                                                                        let v4119:
                                                                                                                                                 bool =
                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                        let v3947:
+                                                                                                                                        let v4120:
                                                                                                                                                 u8 =
                                                                                                                                             Spiral_wasm::method67();
-                                                                                                                                        let v3951:
+                                                                                                                                        let v4124:
                                                                                                                                                 string =
-                                                                                                                                            string("true; v3947 });  // rust.fix_closure\'");
-                                                                                                                                        let v3952:
+                                                                                                                                            string("true; v4120 });  // rust.fix_closure\'");
+                                                                                                                                        let v4125:
                                                                                                                                                 bool =
-                                                                                                                                            true; v3947 });  // rust.fix_closure';
-                                                                                                                                        let v3954 =
+                                                                                                                                            true; v4120 });  // rust.fix_closure';
+                                                                                                                                        let v4127 =
                                                                                                                                             __future_init;
-                                                                                                                                        let v3956:
+                                                                                                                                        let v4129:
                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                            v3954;
-                                                                                                                                        let v3959:
+                                                                                                                                            v4127;
+                                                                                                                                        let v4132:
                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                            Spiral_wasm::method49(v3956.await);
-                                                                                                                                        let v3961:
+                                                                                                                                            Spiral_wasm::method49(v4129.await);
+                                                                                                                                        let v4134:
                                                                                                                                                 string =
-                                                                                                                                            string("true; v3959 });  // rust.fix_closure\'");
-                                                                                                                                        let v3962:
+                                                                                                                                            string("true; v4132 });  // rust.fix_closure\'");
+                                                                                                                                        let v4135:
                                                                                                                                                 bool =
-                                                                                                                                            true; v3959 });  // rust.fix_closure';
-                                                                                                                                        let v3964 =
+                                                                                                                                            true; v4132 });  // rust.fix_closure';
+                                                                                                                                        let v4137 =
                                                                                                                                             __future_init;
-                                                                                                                                        v3964
+                                                                                                                                        v4137
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
-                                                                                                                            Spiral_wasm::US6::US6_1(v3941_1_0)
+                                                                                                                            Spiral_wasm::US6::US6_1(v4114_1_0)
                                                                                                                             =>
                                                                                                                             {
-                                                                                                                                let v4112:
+                                                                                                                                let v4285:
                                                                                                                                         () =
                                                                                                                                     {
-                                                                                                                                        Spiral_wasm::closure42(v3941_1_0.clone(),
+                                                                                                                                        Spiral_wasm::closure42(v4114_1_0.clone(),
                                                                                                                                                                ());
                                                                                                                                         ()
                                                                                                                                     };
-                                                                                                                                let v4226:
+                                                                                                                                let v4399:
                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                           15_u8);
-                                                                                                                                let v4228:
+                                                                                                                                let v4401:
                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                anyhow::Error> =
-                                                                                                                                    v4226.await;
-                                                                                                                                let v4229 =
+                                                                                                                                    v4399.await;
+                                                                                                                                let v4402 =
                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                let v4231:
+                                                                                                                                let v4413:
                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                std::string::String> =
-                                                                                                                                    v4228.map_err(|x| v4229(x));
-                                                                                                                                let v4232:
+                                                                                                                                    v4401.map_err(|x| v4402(x));
+                                                                                                                                let v4416:
                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                    match &v4231
+                                                                                                                                    match &v4413
                                                                                                                                         {
-                                                                                                                                        Err(v4231_1_0)
+                                                                                                                                        Err(v4413_1_0)
                                                                                                                                         =>
-                                                                                                                                        v157(v4231_1_0.clone()),
-                                                                                                                                        Ok(v4231_0_0)
+                                                                                                                                        v187(v4413_1_0.clone()),
+                                                                                                                                        Ok(v4413_0_0)
                                                                                                                                         =>
-                                                                                                                                        v156(v4231_0_0.clone()),
+                                                                                                                                        v186(v4413_0_0.clone()),
                                                                                                                                     };
-                                                                                                                                match &v4232
+                                                                                                                                match &v4416
                                                                                                                                     {
-                                                                                                                                    Spiral_wasm::US6::US6_0(v4232_0_0)
+                                                                                                                                    Spiral_wasm::US6::US6_0(v4416_0_0)
                                                                                                                                     =>
                                                                                                                                     {
-                                                                                                                                        let v4233:
+                                                                                                                                        let v4417:
                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                            v4232_0_0.clone();
-                                                                                                                                        match &v4233
+                                                                                                                                            v4416_0_0.clone();
+                                                                                                                                        match &v4417
                                                                                                                                             {
-                                                                                                                                            Spiral_wasm::US4::US4_0(v4233_0_0)
+                                                                                                                                            Spiral_wasm::US4::US4_0(v4417_0_0)
                                                                                                                                             =>
                                                                                                                                             {
-                                                                                                                                                let v4261:
+                                                                                                                                                let v4445:
                                                                                                                                                         () =
                                                                                                                                                     {
-                                                                                                                                                        Spiral_wasm::closure72(match &v4233
+                                                                                                                                                        Spiral_wasm::closure72(match &v4417
                                                                                                                                                                                    {
                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                    =>
@@ -9445,130 +9446,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                ());
                                                                                                                                                         ()
                                                                                                                                                     };
-                                                                                                                                                let v4375:
+                                                                                                                                                let v4559:
                                                                                                                                                         bool =
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                let v4377:
+                                                                                                                                                let v4561:
                                                                                                                                                         bool =
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                let v4378:
+                                                                                                                                                let v4562:
                                                                                                                                                         u8 =
                                                                                                                                                     Spiral_wasm::method66();
-                                                                                                                                                let v4382:
+                                                                                                                                                let v4566:
                                                                                                                                                         string =
-                                                                                                                                                    string("true; v4378 });  // rust.fix_closure\'");
-                                                                                                                                                let v4383:
+                                                                                                                                                    string("true; v4562 });  // rust.fix_closure\'");
+                                                                                                                                                let v4567:
                                                                                                                                                         bool =
-                                                                                                                                                    true; v4378 });  // rust.fix_closure';
-                                                                                                                                                let v4385 =
+                                                                                                                                                    true; v4562 });  // rust.fix_closure';
+                                                                                                                                                let v4569 =
                                                                                                                                                     __future_init;
-                                                                                                                                                let v4387:
+                                                                                                                                                let v4571:
                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                    v4385;
-                                                                                                                                                let v4390:
+                                                                                                                                                    v4569;
+                                                                                                                                                let v4574:
                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                    Spiral_wasm::method47(v4387.await);
-                                                                                                                                                let v4392:
+                                                                                                                                                    Spiral_wasm::method47(v4571.await);
+                                                                                                                                                let v4576:
                                                                                                                                                         string =
-                                                                                                                                                    string("true; v4390 });  // rust.fix_closure\'");
-                                                                                                                                                let v4393:
+                                                                                                                                                    string("true; v4574 });  // rust.fix_closure\'");
+                                                                                                                                                let v4577:
                                                                                                                                                         bool =
-                                                                                                                                                    true; v4390 });  // rust.fix_closure';
-                                                                                                                                                let v4395 =
+                                                                                                                                                    true; v4574 });  // rust.fix_closure';
+                                                                                                                                                let v4579 =
                                                                                                                                                     __future_init;
-                                                                                                                                                v4395
+                                                                                                                                                v4579
                                                                                                                                             }
                                                                                                                                             _
                                                                                                                                             =>
                                                                                                                                             {
-                                                                                                                                                let v4235:
+                                                                                                                                                let v4419:
                                                                                                                                                         bool =
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                let v4237:
+                                                                                                                                                let v4421:
                                                                                                                                                         bool =
                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                let v4238:
+                                                                                                                                                let v4422:
                                                                                                                                                         u8 =
                                                                                                                                                     Spiral_wasm::method66();
-                                                                                                                                                let v4242:
+                                                                                                                                                let v4426:
                                                                                                                                                         string =
-                                                                                                                                                    string("true; v4238 });  // rust.fix_closure\'");
-                                                                                                                                                let v4243:
+                                                                                                                                                    string("true; v4422 });  // rust.fix_closure\'");
+                                                                                                                                                let v4427:
                                                                                                                                                         bool =
-                                                                                                                                                    true; v4238 });  // rust.fix_closure';
-                                                                                                                                                let v4245 =
+                                                                                                                                                    true; v4422 });  // rust.fix_closure';
+                                                                                                                                                let v4429 =
                                                                                                                                                     __future_init;
-                                                                                                                                                let v4247:
+                                                                                                                                                let v4431:
                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                    v4245;
-                                                                                                                                                let v4250:
+                                                                                                                                                    v4429;
+                                                                                                                                                let v4434:
                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                    Spiral_wasm::method49(v4247.await);
-                                                                                                                                                let v4252:
+                                                                                                                                                    Spiral_wasm::method49(v4431.await);
+                                                                                                                                                let v4436:
                                                                                                                                                         string =
-                                                                                                                                                    string("true; v4250 });  // rust.fix_closure\'");
-                                                                                                                                                let v4253:
+                                                                                                                                                    string("true; v4434 });  // rust.fix_closure\'");
+                                                                                                                                                let v4437:
                                                                                                                                                         bool =
-                                                                                                                                                    true; v4250 });  // rust.fix_closure';
-                                                                                                                                                let v4255 =
+                                                                                                                                                    true; v4434 });  // rust.fix_closure';
+                                                                                                                                                let v4439 =
                                                                                                                                                     __future_init;
-                                                                                                                                                v4255
+                                                                                                                                                v4439
                                                                                                                                             }
                                                                                                                                         }
                                                                                                                                     }
-                                                                                                                                    Spiral_wasm::US6::US6_1(v4232_1_0)
+                                                                                                                                    Spiral_wasm::US6::US6_1(v4416_1_0)
                                                                                                                                     =>
                                                                                                                                     {
-                                                                                                                                        let v4403:
+                                                                                                                                        let v4587:
                                                                                                                                                 () =
                                                                                                                                             {
-                                                                                                                                                Spiral_wasm::closure43(v4232_1_0.clone(),
+                                                                                                                                                Spiral_wasm::closure43(v4416_1_0.clone(),
                                                                                                                                                                        ());
                                                                                                                                                 ()
                                                                                                                                             };
-                                                                                                                                        let v4517:
+                                                                                                                                        let v4701:
                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                   16_u8);
-                                                                                                                                        let v4519:
+                                                                                                                                        let v4703:
                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                        anyhow::Error> =
-                                                                                                                                            v4517.await;
-                                                                                                                                        let v4520 =
+                                                                                                                                            v4701.await;
+                                                                                                                                        let v4704 =
                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                        let v4522:
+                                                                                                                                        let v4715:
                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                        std::string::String> =
-                                                                                                                                            v4519.map_err(|x| v4520(x));
-                                                                                                                                        let v4523:
+                                                                                                                                            v4703.map_err(|x| v4704(x));
+                                                                                                                                        let v4718:
                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                            match &v4522
+                                                                                                                                            match &v4715
                                                                                                                                                 {
-                                                                                                                                                Err(v4522_1_0)
+                                                                                                                                                Err(v4715_1_0)
                                                                                                                                                 =>
-                                                                                                                                                v157(v4522_1_0.clone()),
-                                                                                                                                                Ok(v4522_0_0)
+                                                                                                                                                v187(v4715_1_0.clone()),
+                                                                                                                                                Ok(v4715_0_0)
                                                                                                                                                 =>
-                                                                                                                                                v156(v4522_0_0.clone()),
+                                                                                                                                                v186(v4715_0_0.clone()),
                                                                                                                                             };
-                                                                                                                                        match &v4523
+                                                                                                                                        match &v4718
                                                                                                                                             {
-                                                                                                                                            Spiral_wasm::US6::US6_0(v4523_0_0)
+                                                                                                                                            Spiral_wasm::US6::US6_0(v4718_0_0)
                                                                                                                                             =>
                                                                                                                                             {
-                                                                                                                                                let v4524:
+                                                                                                                                                let v4719:
                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                    v4523_0_0.clone();
-                                                                                                                                                match &v4524
+                                                                                                                                                    v4718_0_0.clone();
+                                                                                                                                                match &v4719
                                                                                                                                                     {
-                                                                                                                                                    Spiral_wasm::US4::US4_0(v4524_0_0)
+                                                                                                                                                    Spiral_wasm::US4::US4_0(v4719_0_0)
                                                                                                                                                     =>
                                                                                                                                                     {
-                                                                                                                                                        let v4552:
+                                                                                                                                                        let v4747:
                                                                                                                                                                 () =
                                                                                                                                                             {
-                                                                                                                                                                Spiral_wasm::closure71(match &v4524
+                                                                                                                                                                Spiral_wasm::closure71(match &v4719
                                                                                                                                                                                            {
                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                            =>
@@ -9580,130 +9581,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                        ());
                                                                                                                                                                 ()
                                                                                                                                                             };
-                                                                                                                                                        let v4666:
+                                                                                                                                                        let v4861:
                                                                                                                                                                 bool =
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                        let v4668:
+                                                                                                                                                        let v4863:
                                                                                                                                                                 bool =
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                        let v4669:
+                                                                                                                                                        let v4864:
                                                                                                                                                                 u8 =
                                                                                                                                                             Spiral_wasm::method65();
-                                                                                                                                                        let v4673:
+                                                                                                                                                        let v4868:
                                                                                                                                                                 string =
-                                                                                                                                                            string("true; v4669 });  // rust.fix_closure\'");
-                                                                                                                                                        let v4674:
+                                                                                                                                                            string("true; v4864 });  // rust.fix_closure\'");
+                                                                                                                                                        let v4869:
                                                                                                                                                                 bool =
-                                                                                                                                                            true; v4669 });  // rust.fix_closure';
-                                                                                                                                                        let v4676 =
+                                                                                                                                                            true; v4864 });  // rust.fix_closure';
+                                                                                                                                                        let v4871 =
                                                                                                                                                             __future_init;
-                                                                                                                                                        let v4678:
+                                                                                                                                                        let v4873:
                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                            v4676;
-                                                                                                                                                        let v4681:
+                                                                                                                                                            v4871;
+                                                                                                                                                        let v4876:
                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                            Spiral_wasm::method47(v4678.await);
-                                                                                                                                                        let v4683:
+                                                                                                                                                            Spiral_wasm::method47(v4873.await);
+                                                                                                                                                        let v4878:
                                                                                                                                                                 string =
-                                                                                                                                                            string("true; v4681 });  // rust.fix_closure\'");
-                                                                                                                                                        let v4684:
+                                                                                                                                                            string("true; v4876 });  // rust.fix_closure\'");
+                                                                                                                                                        let v4879:
                                                                                                                                                                 bool =
-                                                                                                                                                            true; v4681 });  // rust.fix_closure';
-                                                                                                                                                        let v4686 =
+                                                                                                                                                            true; v4876 });  // rust.fix_closure';
+                                                                                                                                                        let v4881 =
                                                                                                                                                             __future_init;
-                                                                                                                                                        v4686
+                                                                                                                                                        v4881
                                                                                                                                                     }
                                                                                                                                                     _
                                                                                                                                                     =>
                                                                                                                                                     {
-                                                                                                                                                        let v4526:
+                                                                                                                                                        let v4721:
                                                                                                                                                                 bool =
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                        let v4528:
+                                                                                                                                                        let v4723:
                                                                                                                                                                 bool =
                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                        let v4529:
+                                                                                                                                                        let v4724:
                                                                                                                                                                 u8 =
                                                                                                                                                             Spiral_wasm::method65();
-                                                                                                                                                        let v4533:
+                                                                                                                                                        let v4728:
                                                                                                                                                                 string =
-                                                                                                                                                            string("true; v4529 });  // rust.fix_closure\'");
-                                                                                                                                                        let v4534:
+                                                                                                                                                            string("true; v4724 });  // rust.fix_closure\'");
+                                                                                                                                                        let v4729:
                                                                                                                                                                 bool =
-                                                                                                                                                            true; v4529 });  // rust.fix_closure';
-                                                                                                                                                        let v4536 =
+                                                                                                                                                            true; v4724 });  // rust.fix_closure';
+                                                                                                                                                        let v4731 =
                                                                                                                                                             __future_init;
-                                                                                                                                                        let v4538:
+                                                                                                                                                        let v4733:
                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                            v4536;
-                                                                                                                                                        let v4541:
+                                                                                                                                                            v4731;
+                                                                                                                                                        let v4736:
                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                            Spiral_wasm::method49(v4538.await);
-                                                                                                                                                        let v4543:
+                                                                                                                                                            Spiral_wasm::method49(v4733.await);
+                                                                                                                                                        let v4738:
                                                                                                                                                                 string =
-                                                                                                                                                            string("true; v4541 });  // rust.fix_closure\'");
-                                                                                                                                                        let v4544:
+                                                                                                                                                            string("true; v4736 });  // rust.fix_closure\'");
+                                                                                                                                                        let v4739:
                                                                                                                                                                 bool =
-                                                                                                                                                            true; v4541 });  // rust.fix_closure';
-                                                                                                                                                        let v4546 =
+                                                                                                                                                            true; v4736 });  // rust.fix_closure';
+                                                                                                                                                        let v4741 =
                                                                                                                                                             __future_init;
-                                                                                                                                                        v4546
+                                                                                                                                                        v4741
                                                                                                                                                     }
                                                                                                                                                 }
                                                                                                                                             }
-                                                                                                                                            Spiral_wasm::US6::US6_1(v4523_1_0)
+                                                                                                                                            Spiral_wasm::US6::US6_1(v4718_1_0)
                                                                                                                                             =>
                                                                                                                                             {
-                                                                                                                                                let v4694:
+                                                                                                                                                let v4889:
                                                                                                                                                         () =
                                                                                                                                                     {
-                                                                                                                                                        Spiral_wasm::closure44(v4523_1_0.clone(),
+                                                                                                                                                        Spiral_wasm::closure44(v4718_1_0.clone(),
                                                                                                                                                                                ());
                                                                                                                                                         ()
                                                                                                                                                     };
-                                                                                                                                                let v4808:
+                                                                                                                                                let v5003:
                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                           17_u8);
-                                                                                                                                                let v4810:
+                                                                                                                                                let v5005:
                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                    v4808.await;
-                                                                                                                                                let v4811 =
+                                                                                                                                                    v5003.await;
+                                                                                                                                                let v5006 =
                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                let v4813:
+                                                                                                                                                let v5017:
                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                std::string::String> =
-                                                                                                                                                    v4810.map_err(|x| v4811(x));
-                                                                                                                                                let v4814:
+                                                                                                                                                    v5005.map_err(|x| v5006(x));
+                                                                                                                                                let v5020:
                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                    match &v4813
+                                                                                                                                                    match &v5017
                                                                                                                                                         {
-                                                                                                                                                        Err(v4813_1_0)
+                                                                                                                                                        Err(v5017_1_0)
                                                                                                                                                         =>
-                                                                                                                                                        v157(v4813_1_0.clone()),
-                                                                                                                                                        Ok(v4813_0_0)
+                                                                                                                                                        v187(v5017_1_0.clone()),
+                                                                                                                                                        Ok(v5017_0_0)
                                                                                                                                                         =>
-                                                                                                                                                        v156(v4813_0_0.clone()),
+                                                                                                                                                        v186(v5017_0_0.clone()),
                                                                                                                                                     };
-                                                                                                                                                match &v4814
+                                                                                                                                                match &v5020
                                                                                                                                                     {
-                                                                                                                                                    Spiral_wasm::US6::US6_0(v4814_0_0)
+                                                                                                                                                    Spiral_wasm::US6::US6_0(v5020_0_0)
                                                                                                                                                     =>
                                                                                                                                                     {
-                                                                                                                                                        let v4815:
+                                                                                                                                                        let v5021:
                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                            v4814_0_0.clone();
-                                                                                                                                                        match &v4815
+                                                                                                                                                            v5020_0_0.clone();
+                                                                                                                                                        match &v5021
                                                                                                                                                             {
-                                                                                                                                                            Spiral_wasm::US4::US4_0(v4815_0_0)
+                                                                                                                                                            Spiral_wasm::US4::US4_0(v5021_0_0)
                                                                                                                                                             =>
                                                                                                                                                             {
-                                                                                                                                                                let v4843:
+                                                                                                                                                                let v5049:
                                                                                                                                                                         () =
                                                                                                                                                                     {
-                                                                                                                                                                        Spiral_wasm::closure70(match &v4815
+                                                                                                                                                                        Spiral_wasm::closure70(match &v5021
                                                                                                                                                                                                    {
                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                    =>
@@ -9715,130 +9716,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                ());
                                                                                                                                                                         ()
                                                                                                                                                                     };
-                                                                                                                                                                let v4957:
+                                                                                                                                                                let v5163:
                                                                                                                                                                         bool =
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                let v4959:
+                                                                                                                                                                let v5165:
                                                                                                                                                                         bool =
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                let v4960:
+                                                                                                                                                                let v5166:
                                                                                                                                                                         u8 =
                                                                                                                                                                     Spiral_wasm::method64();
-                                                                                                                                                                let v4964:
+                                                                                                                                                                let v5170:
                                                                                                                                                                         string =
-                                                                                                                                                                    string("true; v4960 });  // rust.fix_closure\'");
-                                                                                                                                                                let v4965:
+                                                                                                                                                                    string("true; v5166 });  // rust.fix_closure\'");
+                                                                                                                                                                let v5171:
                                                                                                                                                                         bool =
-                                                                                                                                                                    true; v4960 });  // rust.fix_closure';
-                                                                                                                                                                let v4967 =
+                                                                                                                                                                    true; v5166 });  // rust.fix_closure';
+                                                                                                                                                                let v5173 =
                                                                                                                                                                     __future_init;
-                                                                                                                                                                let v4969:
+                                                                                                                                                                let v5175:
                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                    v4967;
-                                                                                                                                                                let v4972:
+                                                                                                                                                                    v5173;
+                                                                                                                                                                let v5178:
                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                    Spiral_wasm::method47(v4969.await);
-                                                                                                                                                                let v4974:
+                                                                                                                                                                    Spiral_wasm::method47(v5175.await);
+                                                                                                                                                                let v5180:
                                                                                                                                                                         string =
-                                                                                                                                                                    string("true; v4972 });  // rust.fix_closure\'");
-                                                                                                                                                                let v4975:
+                                                                                                                                                                    string("true; v5178 });  // rust.fix_closure\'");
+                                                                                                                                                                let v5181:
                                                                                                                                                                         bool =
-                                                                                                                                                                    true; v4972 });  // rust.fix_closure';
-                                                                                                                                                                let v4977 =
+                                                                                                                                                                    true; v5178 });  // rust.fix_closure';
+                                                                                                                                                                let v5183 =
                                                                                                                                                                     __future_init;
-                                                                                                                                                                v4977
+                                                                                                                                                                v5183
                                                                                                                                                             }
                                                                                                                                                             _
                                                                                                                                                             =>
                                                                                                                                                             {
-                                                                                                                                                                let v4817:
+                                                                                                                                                                let v5023:
                                                                                                                                                                         bool =
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                let v4819:
+                                                                                                                                                                let v5025:
                                                                                                                                                                         bool =
                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                let v4820:
+                                                                                                                                                                let v5026:
                                                                                                                                                                         u8 =
                                                                                                                                                                     Spiral_wasm::method64();
-                                                                                                                                                                let v4824:
+                                                                                                                                                                let v5030:
                                                                                                                                                                         string =
-                                                                                                                                                                    string("true; v4820 });  // rust.fix_closure\'");
-                                                                                                                                                                let v4825:
+                                                                                                                                                                    string("true; v5026 });  // rust.fix_closure\'");
+                                                                                                                                                                let v5031:
                                                                                                                                                                         bool =
-                                                                                                                                                                    true; v4820 });  // rust.fix_closure';
-                                                                                                                                                                let v4827 =
+                                                                                                                                                                    true; v5026 });  // rust.fix_closure';
+                                                                                                                                                                let v5033 =
                                                                                                                                                                     __future_init;
-                                                                                                                                                                let v4829:
+                                                                                                                                                                let v5035:
                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                    v4827;
-                                                                                                                                                                let v4832:
+                                                                                                                                                                    v5033;
+                                                                                                                                                                let v5038:
                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                    Spiral_wasm::method49(v4829.await);
-                                                                                                                                                                let v4834:
+                                                                                                                                                                    Spiral_wasm::method49(v5035.await);
+                                                                                                                                                                let v5040:
                                                                                                                                                                         string =
-                                                                                                                                                                    string("true; v4832 });  // rust.fix_closure\'");
-                                                                                                                                                                let v4835:
+                                                                                                                                                                    string("true; v5038 });  // rust.fix_closure\'");
+                                                                                                                                                                let v5041:
                                                                                                                                                                         bool =
-                                                                                                                                                                    true; v4832 });  // rust.fix_closure';
-                                                                                                                                                                let v4837 =
+                                                                                                                                                                    true; v5038 });  // rust.fix_closure';
+                                                                                                                                                                let v5043 =
                                                                                                                                                                     __future_init;
-                                                                                                                                                                v4837
+                                                                                                                                                                v5043
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                     }
-                                                                                                                                                    Spiral_wasm::US6::US6_1(v4814_1_0)
+                                                                                                                                                    Spiral_wasm::US6::US6_1(v5020_1_0)
                                                                                                                                                     =>
                                                                                                                                                     {
-                                                                                                                                                        let v4985:
+                                                                                                                                                        let v5191:
                                                                                                                                                                 () =
                                                                                                                                                             {
-                                                                                                                                                                Spiral_wasm::closure45(v4814_1_0.clone(),
+                                                                                                                                                                Spiral_wasm::closure45(v5020_1_0.clone(),
                                                                                                                                                                                        ());
                                                                                                                                                                 ()
                                                                                                                                                             };
-                                                                                                                                                        let v5099:
+                                                                                                                                                        let v5305:
                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                   18_u8);
-                                                                                                                                                        let v5101:
+                                                                                                                                                        let v5307:
                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                            v5099.await;
-                                                                                                                                                        let v5102 =
+                                                                                                                                                            v5305.await;
+                                                                                                                                                        let v5308 =
                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                        let v5104:
+                                                                                                                                                        let v5319:
                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                        std::string::String> =
-                                                                                                                                                            v5101.map_err(|x| v5102(x));
-                                                                                                                                                        let v5105:
+                                                                                                                                                            v5307.map_err(|x| v5308(x));
+                                                                                                                                                        let v5322:
                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                            match &v5104
+                                                                                                                                                            match &v5319
                                                                                                                                                                 {
-                                                                                                                                                                Err(v5104_1_0)
+                                                                                                                                                                Err(v5319_1_0)
                                                                                                                                                                 =>
-                                                                                                                                                                v157(v5104_1_0.clone()),
-                                                                                                                                                                Ok(v5104_0_0)
+                                                                                                                                                                v187(v5319_1_0.clone()),
+                                                                                                                                                                Ok(v5319_0_0)
                                                                                                                                                                 =>
-                                                                                                                                                                v156(v5104_0_0.clone()),
+                                                                                                                                                                v186(v5319_0_0.clone()),
                                                                                                                                                             };
-                                                                                                                                                        match &v5105
+                                                                                                                                                        match &v5322
                                                                                                                                                             {
-                                                                                                                                                            Spiral_wasm::US6::US6_0(v5105_0_0)
+                                                                                                                                                            Spiral_wasm::US6::US6_0(v5322_0_0)
                                                                                                                                                             =>
                                                                                                                                                             {
-                                                                                                                                                                let v5106:
+                                                                                                                                                                let v5323:
                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                    v5105_0_0.clone();
-                                                                                                                                                                match &v5106
+                                                                                                                                                                    v5322_0_0.clone();
+                                                                                                                                                                match &v5323
                                                                                                                                                                     {
-                                                                                                                                                                    Spiral_wasm::US4::US4_0(v5106_0_0)
+                                                                                                                                                                    Spiral_wasm::US4::US4_0(v5323_0_0)
                                                                                                                                                                     =>
                                                                                                                                                                     {
-                                                                                                                                                                        let v5134:
+                                                                                                                                                                        let v5351:
                                                                                                                                                                                 () =
                                                                                                                                                                             {
-                                                                                                                                                                                Spiral_wasm::closure69(match &v5106
+                                                                                                                                                                                Spiral_wasm::closure69(match &v5323
                                                                                                                                                                                                            {
                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                            =>
@@ -9850,130 +9851,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                        ());
                                                                                                                                                                                 ()
                                                                                                                                                                             };
-                                                                                                                                                                        let v5248:
+                                                                                                                                                                        let v5465:
                                                                                                                                                                                 bool =
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                        let v5250:
+                                                                                                                                                                        let v5467:
                                                                                                                                                                                 bool =
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                        let v5251:
+                                                                                                                                                                        let v5468:
                                                                                                                                                                                 u8 =
                                                                                                                                                                             Spiral_wasm::method63();
-                                                                                                                                                                        let v5255:
+                                                                                                                                                                        let v5472:
                                                                                                                                                                                 string =
-                                                                                                                                                                            string("true; v5251 });  // rust.fix_closure\'");
-                                                                                                                                                                        let v5256:
+                                                                                                                                                                            string("true; v5468 });  // rust.fix_closure\'");
+                                                                                                                                                                        let v5473:
                                                                                                                                                                                 bool =
-                                                                                                                                                                            true; v5251 });  // rust.fix_closure';
-                                                                                                                                                                        let v5258 =
+                                                                                                                                                                            true; v5468 });  // rust.fix_closure';
+                                                                                                                                                                        let v5475 =
                                                                                                                                                                             __future_init;
-                                                                                                                                                                        let v5260:
+                                                                                                                                                                        let v5477:
                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                            v5258;
-                                                                                                                                                                        let v5263:
+                                                                                                                                                                            v5475;
+                                                                                                                                                                        let v5480:
                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                            Spiral_wasm::method47(v5260.await);
-                                                                                                                                                                        let v5265:
+                                                                                                                                                                            Spiral_wasm::method47(v5477.await);
+                                                                                                                                                                        let v5482:
                                                                                                                                                                                 string =
-                                                                                                                                                                            string("true; v5263 });  // rust.fix_closure\'");
-                                                                                                                                                                        let v5266:
+                                                                                                                                                                            string("true; v5480 });  // rust.fix_closure\'");
+                                                                                                                                                                        let v5483:
                                                                                                                                                                                 bool =
-                                                                                                                                                                            true; v5263 });  // rust.fix_closure';
-                                                                                                                                                                        let v5268 =
+                                                                                                                                                                            true; v5480 });  // rust.fix_closure';
+                                                                                                                                                                        let v5485 =
                                                                                                                                                                             __future_init;
-                                                                                                                                                                        v5268
+                                                                                                                                                                        v5485
                                                                                                                                                                     }
                                                                                                                                                                     _
                                                                                                                                                                     =>
                                                                                                                                                                     {
-                                                                                                                                                                        let v5108:
+                                                                                                                                                                        let v5325:
                                                                                                                                                                                 bool =
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                        let v5110:
+                                                                                                                                                                        let v5327:
                                                                                                                                                                                 bool =
                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                        let v5111:
+                                                                                                                                                                        let v5328:
                                                                                                                                                                                 u8 =
                                                                                                                                                                             Spiral_wasm::method63();
-                                                                                                                                                                        let v5115:
+                                                                                                                                                                        let v5332:
                                                                                                                                                                                 string =
-                                                                                                                                                                            string("true; v5111 });  // rust.fix_closure\'");
-                                                                                                                                                                        let v5116:
+                                                                                                                                                                            string("true; v5328 });  // rust.fix_closure\'");
+                                                                                                                                                                        let v5333:
                                                                                                                                                                                 bool =
-                                                                                                                                                                            true; v5111 });  // rust.fix_closure';
-                                                                                                                                                                        let v5118 =
+                                                                                                                                                                            true; v5328 });  // rust.fix_closure';
+                                                                                                                                                                        let v5335 =
                                                                                                                                                                             __future_init;
-                                                                                                                                                                        let v5120:
+                                                                                                                                                                        let v5337:
                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                            v5118;
-                                                                                                                                                                        let v5123:
+                                                                                                                                                                            v5335;
+                                                                                                                                                                        let v5340:
                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                            Spiral_wasm::method49(v5120.await);
-                                                                                                                                                                        let v5125:
+                                                                                                                                                                            Spiral_wasm::method49(v5337.await);
+                                                                                                                                                                        let v5342:
                                                                                                                                                                                 string =
-                                                                                                                                                                            string("true; v5123 });  // rust.fix_closure\'");
-                                                                                                                                                                        let v5126:
+                                                                                                                                                                            string("true; v5340 });  // rust.fix_closure\'");
+                                                                                                                                                                        let v5343:
                                                                                                                                                                                 bool =
-                                                                                                                                                                            true; v5123 });  // rust.fix_closure';
-                                                                                                                                                                        let v5128 =
+                                                                                                                                                                            true; v5340 });  // rust.fix_closure';
+                                                                                                                                                                        let v5345 =
                                                                                                                                                                             __future_init;
-                                                                                                                                                                        v5128
+                                                                                                                                                                        v5345
                                                                                                                                                                     }
                                                                                                                                                                 }
                                                                                                                                                             }
-                                                                                                                                                            Spiral_wasm::US6::US6_1(v5105_1_0)
+                                                                                                                                                            Spiral_wasm::US6::US6_1(v5322_1_0)
                                                                                                                                                             =>
                                                                                                                                                             {
-                                                                                                                                                                let v5276:
+                                                                                                                                                                let v5493:
                                                                                                                                                                         () =
                                                                                                                                                                     {
-                                                                                                                                                                        Spiral_wasm::closure46(v5105_1_0.clone(),
+                                                                                                                                                                        Spiral_wasm::closure46(v5322_1_0.clone(),
                                                                                                                                                                                                ());
                                                                                                                                                                         ()
                                                                                                                                                                     };
-                                                                                                                                                                let v5390:
+                                                                                                                                                                let v5607:
                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                           19_u8);
-                                                                                                                                                                let v5392:
+                                                                                                                                                                let v5609:
                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                    v5390.await;
-                                                                                                                                                                let v5393 =
+                                                                                                                                                                    v5607.await;
+                                                                                                                                                                let v5610 =
                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                let v5395:
+                                                                                                                                                                let v5621:
                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                    v5392.map_err(|x| v5393(x));
-                                                                                                                                                                let v5396:
+                                                                                                                                                                    v5609.map_err(|x| v5610(x));
+                                                                                                                                                                let v5624:
                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                    match &v5395
+                                                                                                                                                                    match &v5621
                                                                                                                                                                         {
-                                                                                                                                                                        Err(v5395_1_0)
+                                                                                                                                                                        Err(v5621_1_0)
                                                                                                                                                                         =>
-                                                                                                                                                                        v157(v5395_1_0.clone()),
-                                                                                                                                                                        Ok(v5395_0_0)
+                                                                                                                                                                        v187(v5621_1_0.clone()),
+                                                                                                                                                                        Ok(v5621_0_0)
                                                                                                                                                                         =>
-                                                                                                                                                                        v156(v5395_0_0.clone()),
+                                                                                                                                                                        v186(v5621_0_0.clone()),
                                                                                                                                                                     };
-                                                                                                                                                                match &v5396
+                                                                                                                                                                match &v5624
                                                                                                                                                                     {
-                                                                                                                                                                    Spiral_wasm::US6::US6_0(v5396_0_0)
+                                                                                                                                                                    Spiral_wasm::US6::US6_0(v5624_0_0)
                                                                                                                                                                     =>
                                                                                                                                                                     {
-                                                                                                                                                                        let v5397:
+                                                                                                                                                                        let v5625:
                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                            v5396_0_0.clone();
-                                                                                                                                                                        match &v5397
+                                                                                                                                                                            v5624_0_0.clone();
+                                                                                                                                                                        match &v5625
                                                                                                                                                                             {
-                                                                                                                                                                            Spiral_wasm::US4::US4_0(v5397_0_0)
+                                                                                                                                                                            Spiral_wasm::US4::US4_0(v5625_0_0)
                                                                                                                                                                             =>
                                                                                                                                                                             {
-                                                                                                                                                                                let v5425:
+                                                                                                                                                                                let v5653:
                                                                                                                                                                                         () =
                                                                                                                                                                                     {
-                                                                                                                                                                                        Spiral_wasm::closure68(match &v5397
+                                                                                                                                                                                        Spiral_wasm::closure68(match &v5625
                                                                                                                                                                                                                    {
                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                    =>
@@ -9985,130 +9986,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                ());
                                                                                                                                                                                         ()
                                                                                                                                                                                     };
-                                                                                                                                                                                let v5539:
+                                                                                                                                                                                let v5767:
                                                                                                                                                                                         bool =
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                let v5541:
+                                                                                                                                                                                let v5769:
                                                                                                                                                                                         bool =
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                let v5542:
+                                                                                                                                                                                let v5770:
                                                                                                                                                                                         u8 =
                                                                                                                                                                                     Spiral_wasm::method62();
-                                                                                                                                                                                let v5546:
+                                                                                                                                                                                let v5774:
                                                                                                                                                                                         string =
-                                                                                                                                                                                    string("true; v5542 });  // rust.fix_closure\'");
-                                                                                                                                                                                let v5547:
+                                                                                                                                                                                    string("true; v5770 });  // rust.fix_closure\'");
+                                                                                                                                                                                let v5775:
                                                                                                                                                                                         bool =
-                                                                                                                                                                                    true; v5542 });  // rust.fix_closure';
-                                                                                                                                                                                let v5549 =
+                                                                                                                                                                                    true; v5770 });  // rust.fix_closure';
+                                                                                                                                                                                let v5777 =
                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                let v5551:
+                                                                                                                                                                                let v5779:
                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                    v5549;
-                                                                                                                                                                                let v5554:
+                                                                                                                                                                                    v5777;
+                                                                                                                                                                                let v5782:
                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                    Spiral_wasm::method47(v5551.await);
-                                                                                                                                                                                let v5556:
+                                                                                                                                                                                    Spiral_wasm::method47(v5779.await);
+                                                                                                                                                                                let v5784:
                                                                                                                                                                                         string =
-                                                                                                                                                                                    string("true; v5554 });  // rust.fix_closure\'");
-                                                                                                                                                                                let v5557:
+                                                                                                                                                                                    string("true; v5782 });  // rust.fix_closure\'");
+                                                                                                                                                                                let v5785:
                                                                                                                                                                                         bool =
-                                                                                                                                                                                    true; v5554 });  // rust.fix_closure';
-                                                                                                                                                                                let v5559 =
+                                                                                                                                                                                    true; v5782 });  // rust.fix_closure';
+                                                                                                                                                                                let v5787 =
                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                v5559
+                                                                                                                                                                                v5787
                                                                                                                                                                             }
                                                                                                                                                                             _
                                                                                                                                                                             =>
                                                                                                                                                                             {
-                                                                                                                                                                                let v5399:
+                                                                                                                                                                                let v5627:
                                                                                                                                                                                         bool =
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                let v5401:
+                                                                                                                                                                                let v5629:
                                                                                                                                                                                         bool =
                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                let v5402:
+                                                                                                                                                                                let v5630:
                                                                                                                                                                                         u8 =
                                                                                                                                                                                     Spiral_wasm::method62();
-                                                                                                                                                                                let v5406:
+                                                                                                                                                                                let v5634:
                                                                                                                                                                                         string =
-                                                                                                                                                                                    string("true; v5402 });  // rust.fix_closure\'");
-                                                                                                                                                                                let v5407:
+                                                                                                                                                                                    string("true; v5630 });  // rust.fix_closure\'");
+                                                                                                                                                                                let v5635:
                                                                                                                                                                                         bool =
-                                                                                                                                                                                    true; v5402 });  // rust.fix_closure';
-                                                                                                                                                                                let v5409 =
+                                                                                                                                                                                    true; v5630 });  // rust.fix_closure';
+                                                                                                                                                                                let v5637 =
                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                let v5411:
+                                                                                                                                                                                let v5639:
                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                    v5409;
-                                                                                                                                                                                let v5414:
+                                                                                                                                                                                    v5637;
+                                                                                                                                                                                let v5642:
                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                    Spiral_wasm::method49(v5411.await);
-                                                                                                                                                                                let v5416:
+                                                                                                                                                                                    Spiral_wasm::method49(v5639.await);
+                                                                                                                                                                                let v5644:
                                                                                                                                                                                         string =
-                                                                                                                                                                                    string("true; v5414 });  // rust.fix_closure\'");
-                                                                                                                                                                                let v5417:
+                                                                                                                                                                                    string("true; v5642 });  // rust.fix_closure\'");
+                                                                                                                                                                                let v5645:
                                                                                                                                                                                         bool =
-                                                                                                                                                                                    true; v5414 });  // rust.fix_closure';
-                                                                                                                                                                                let v5419 =
+                                                                                                                                                                                    true; v5642 });  // rust.fix_closure';
+                                                                                                                                                                                let v5647 =
                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                v5419
+                                                                                                                                                                                v5647
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }
-                                                                                                                                                                    Spiral_wasm::US6::US6_1(v5396_1_0)
+                                                                                                                                                                    Spiral_wasm::US6::US6_1(v5624_1_0)
                                                                                                                                                                     =>
                                                                                                                                                                     {
-                                                                                                                                                                        let v5567:
+                                                                                                                                                                        let v5795:
                                                                                                                                                                                 () =
                                                                                                                                                                             {
-                                                                                                                                                                                Spiral_wasm::closure47(v5396_1_0.clone(),
+                                                                                                                                                                                Spiral_wasm::closure47(v5624_1_0.clone(),
                                                                                                                                                                                                        ());
                                                                                                                                                                                 ()
                                                                                                                                                                             };
-                                                                                                                                                                        let v5681:
+                                                                                                                                                                        let v5909:
                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                   20_u8);
-                                                                                                                                                                        let v5683:
+                                                                                                                                                                        let v5911:
                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                                            v5681.await;
-                                                                                                                                                                        let v5684 =
+                                                                                                                                                                            v5909.await;
+                                                                                                                                                                        let v5912 =
                                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                                        let v5686:
+                                                                                                                                                                        let v5923:
                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                        std::string::String> =
-                                                                                                                                                                            v5683.map_err(|x| v5684(x));
-                                                                                                                                                                        let v5687:
+                                                                                                                                                                            v5911.map_err(|x| v5912(x));
+                                                                                                                                                                        let v5926:
                                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                                            match &v5686
+                                                                                                                                                                            match &v5923
                                                                                                                                                                                 {
-                                                                                                                                                                                Err(v5686_1_0)
+                                                                                                                                                                                Err(v5923_1_0)
                                                                                                                                                                                 =>
-                                                                                                                                                                                v157(v5686_1_0.clone()),
-                                                                                                                                                                                Ok(v5686_0_0)
+                                                                                                                                                                                v187(v5923_1_0.clone()),
+                                                                                                                                                                                Ok(v5923_0_0)
                                                                                                                                                                                 =>
-                                                                                                                                                                                v156(v5686_0_0.clone()),
+                                                                                                                                                                                v186(v5923_0_0.clone()),
                                                                                                                                                                             };
-                                                                                                                                                                        match &v5687
+                                                                                                                                                                        match &v5926
                                                                                                                                                                             {
-                                                                                                                                                                            Spiral_wasm::US6::US6_0(v5687_0_0)
+                                                                                                                                                                            Spiral_wasm::US6::US6_0(v5926_0_0)
                                                                                                                                                                             =>
                                                                                                                                                                             {
-                                                                                                                                                                                let v5688:
+                                                                                                                                                                                let v5927:
                                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                                    v5687_0_0.clone();
-                                                                                                                                                                                match &v5688
+                                                                                                                                                                                    v5926_0_0.clone();
+                                                                                                                                                                                match &v5927
                                                                                                                                                                                     {
-                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v5688_0_0)
+                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v5927_0_0)
                                                                                                                                                                                     =>
                                                                                                                                                                                     {
-                                                                                                                                                                                        let v5716:
+                                                                                                                                                                                        let v5955:
                                                                                                                                                                                                 () =
                                                                                                                                                                                             {
-                                                                                                                                                                                                Spiral_wasm::closure67(match &v5688
+                                                                                                                                                                                                Spiral_wasm::closure67(match &v5927
                                                                                                                                                                                                                            {
                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                            =>
@@ -10120,130 +10121,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                        ());
                                                                                                                                                                                                 ()
                                                                                                                                                                                             };
-                                                                                                                                                                                        let v5830:
+                                                                                                                                                                                        let v6069:
                                                                                                                                                                                                 bool =
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                        let v5832:
+                                                                                                                                                                                        let v6071:
                                                                                                                                                                                                 bool =
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                        let v5833:
+                                                                                                                                                                                        let v6072:
                                                                                                                                                                                                 u8 =
                                                                                                                                                                                             Spiral_wasm::method61();
-                                                                                                                                                                                        let v5837:
+                                                                                                                                                                                        let v6076:
                                                                                                                                                                                                 string =
-                                                                                                                                                                                            string("true; v5833 });  // rust.fix_closure\'");
-                                                                                                                                                                                        let v5838:
+                                                                                                                                                                                            string("true; v6072 });  // rust.fix_closure\'");
+                                                                                                                                                                                        let v6077:
                                                                                                                                                                                                 bool =
-                                                                                                                                                                                            true; v5833 });  // rust.fix_closure';
-                                                                                                                                                                                        let v5840 =
+                                                                                                                                                                                            true; v6072 });  // rust.fix_closure';
+                                                                                                                                                                                        let v6079 =
                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                        let v5842:
+                                                                                                                                                                                        let v6081:
                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                            v5840;
-                                                                                                                                                                                        let v5845:
+                                                                                                                                                                                            v6079;
+                                                                                                                                                                                        let v6084:
                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                            Spiral_wasm::method47(v5842.await);
-                                                                                                                                                                                        let v5847:
+                                                                                                                                                                                            Spiral_wasm::method47(v6081.await);
+                                                                                                                                                                                        let v6086:
                                                                                                                                                                                                 string =
-                                                                                                                                                                                            string("true; v5845 });  // rust.fix_closure\'");
-                                                                                                                                                                                        let v5848:
+                                                                                                                                                                                            string("true; v6084 });  // rust.fix_closure\'");
+                                                                                                                                                                                        let v6087:
                                                                                                                                                                                                 bool =
-                                                                                                                                                                                            true; v5845 });  // rust.fix_closure';
-                                                                                                                                                                                        let v5850 =
+                                                                                                                                                                                            true; v6084 });  // rust.fix_closure';
+                                                                                                                                                                                        let v6089 =
                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                        v5850
+                                                                                                                                                                                        v6089
                                                                                                                                                                                     }
                                                                                                                                                                                     _
                                                                                                                                                                                     =>
                                                                                                                                                                                     {
-                                                                                                                                                                                        let v5690:
+                                                                                                                                                                                        let v5929:
                                                                                                                                                                                                 bool =
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                        let v5692:
+                                                                                                                                                                                        let v5931:
                                                                                                                                                                                                 bool =
                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                        let v5693:
+                                                                                                                                                                                        let v5932:
                                                                                                                                                                                                 u8 =
                                                                                                                                                                                             Spiral_wasm::method61();
-                                                                                                                                                                                        let v5697:
+                                                                                                                                                                                        let v5936:
                                                                                                                                                                                                 string =
-                                                                                                                                                                                            string("true; v5693 });  // rust.fix_closure\'");
-                                                                                                                                                                                        let v5698:
+                                                                                                                                                                                            string("true; v5932 });  // rust.fix_closure\'");
+                                                                                                                                                                                        let v5937:
                                                                                                                                                                                                 bool =
-                                                                                                                                                                                            true; v5693 });  // rust.fix_closure';
-                                                                                                                                                                                        let v5700 =
+                                                                                                                                                                                            true; v5932 });  // rust.fix_closure';
+                                                                                                                                                                                        let v5939 =
                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                        let v5702:
+                                                                                                                                                                                        let v5941:
                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                            v5700;
-                                                                                                                                                                                        let v5705:
+                                                                                                                                                                                            v5939;
+                                                                                                                                                                                        let v5944:
                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                            Spiral_wasm::method49(v5702.await);
-                                                                                                                                                                                        let v5707:
+                                                                                                                                                                                            Spiral_wasm::method49(v5941.await);
+                                                                                                                                                                                        let v5946:
                                                                                                                                                                                                 string =
-                                                                                                                                                                                            string("true; v5705 });  // rust.fix_closure\'");
-                                                                                                                                                                                        let v5708:
+                                                                                                                                                                                            string("true; v5944 });  // rust.fix_closure\'");
+                                                                                                                                                                                        let v5947:
                                                                                                                                                                                                 bool =
-                                                                                                                                                                                            true; v5705 });  // rust.fix_closure';
-                                                                                                                                                                                        let v5710 =
+                                                                                                                                                                                            true; v5944 });  // rust.fix_closure';
+                                                                                                                                                                                        let v5949 =
                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                        v5710
+                                                                                                                                                                                        v5949
                                                                                                                                                                                     }
                                                                                                                                                                                 }
                                                                                                                                                                             }
-                                                                                                                                                                            Spiral_wasm::US6::US6_1(v5687_1_0)
+                                                                                                                                                                            Spiral_wasm::US6::US6_1(v5926_1_0)
                                                                                                                                                                             =>
                                                                                                                                                                             {
-                                                                                                                                                                                let v5858:
+                                                                                                                                                                                let v6097:
                                                                                                                                                                                         () =
                                                                                                                                                                                     {
-                                                                                                                                                                                        Spiral_wasm::closure48(v5687_1_0.clone(),
+                                                                                                                                                                                        Spiral_wasm::closure48(v5926_1_0.clone(),
                                                                                                                                                                                                                ());
                                                                                                                                                                                         ()
                                                                                                                                                                                     };
-                                                                                                                                                                                let v5972:
+                                                                                                                                                                                let v6211:
                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                           21_u8);
-                                                                                                                                                                                let v5974:
+                                                                                                                                                                                let v6213:
                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                                    v5972.await;
-                                                                                                                                                                                let v5975 =
+                                                                                                                                                                                    v6211.await;
+                                                                                                                                                                                let v6214 =
                                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                                let v5977:
+                                                                                                                                                                                let v6225:
                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                                    v5974.map_err(|x| v5975(x));
-                                                                                                                                                                                let v5978:
+                                                                                                                                                                                    v6213.map_err(|x| v6214(x));
+                                                                                                                                                                                let v6228:
                                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                                    match &v5977
+                                                                                                                                                                                    match &v6225
                                                                                                                                                                                         {
-                                                                                                                                                                                        Err(v5977_1_0)
+                                                                                                                                                                                        Err(v6225_1_0)
                                                                                                                                                                                         =>
-                                                                                                                                                                                        v157(v5977_1_0.clone()),
-                                                                                                                                                                                        Ok(v5977_0_0)
+                                                                                                                                                                                        v187(v6225_1_0.clone()),
+                                                                                                                                                                                        Ok(v6225_0_0)
                                                                                                                                                                                         =>
-                                                                                                                                                                                        v156(v5977_0_0.clone()),
+                                                                                                                                                                                        v186(v6225_0_0.clone()),
                                                                                                                                                                                     };
-                                                                                                                                                                                match &v5978
+                                                                                                                                                                                match &v6228
                                                                                                                                                                                     {
-                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v5978_0_0)
+                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v6228_0_0)
                                                                                                                                                                                     =>
                                                                                                                                                                                     {
-                                                                                                                                                                                        let v5979:
+                                                                                                                                                                                        let v6229:
                                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                                            v5978_0_0.clone();
-                                                                                                                                                                                        match &v5979
+                                                                                                                                                                                            v6228_0_0.clone();
+                                                                                                                                                                                        match &v6229
                                                                                                                                                                                             {
-                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v5979_0_0)
+                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v6229_0_0)
                                                                                                                                                                                             =>
                                                                                                                                                                                             {
-                                                                                                                                                                                                let v6007:
+                                                                                                                                                                                                let v6257:
                                                                                                                                                                                                         () =
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        Spiral_wasm::closure66(match &v5979
+                                                                                                                                                                                                        Spiral_wasm::closure66(match &v6229
                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                    =>
@@ -10255,130 +10256,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                ());
                                                                                                                                                                                                         ()
                                                                                                                                                                                                     };
-                                                                                                                                                                                                let v6121:
+                                                                                                                                                                                                let v6371:
                                                                                                                                                                                                         bool =
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                let v6123:
+                                                                                                                                                                                                let v6373:
                                                                                                                                                                                                         bool =
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                let v6124:
+                                                                                                                                                                                                let v6374:
                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                     Spiral_wasm::method60();
-                                                                                                                                                                                                let v6128:
+                                                                                                                                                                                                let v6378:
                                                                                                                                                                                                         string =
-                                                                                                                                                                                                    string("true; v6124 });  // rust.fix_closure\'");
-                                                                                                                                                                                                let v6129:
+                                                                                                                                                                                                    string("true; v6374 });  // rust.fix_closure\'");
+                                                                                                                                                                                                let v6379:
                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                    true; v6124 });  // rust.fix_closure';
-                                                                                                                                                                                                let v6131 =
+                                                                                                                                                                                                    true; v6374 });  // rust.fix_closure';
+                                                                                                                                                                                                let v6381 =
                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                let v6133:
+                                                                                                                                                                                                let v6383:
                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                    v6131;
-                                                                                                                                                                                                let v6136:
+                                                                                                                                                                                                    v6381;
+                                                                                                                                                                                                let v6386:
                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                    Spiral_wasm::method47(v6133.await);
-                                                                                                                                                                                                let v6138:
+                                                                                                                                                                                                    Spiral_wasm::method47(v6383.await);
+                                                                                                                                                                                                let v6388:
                                                                                                                                                                                                         string =
-                                                                                                                                                                                                    string("true; v6136 });  // rust.fix_closure\'");
-                                                                                                                                                                                                let v6139:
+                                                                                                                                                                                                    string("true; v6386 });  // rust.fix_closure\'");
+                                                                                                                                                                                                let v6389:
                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                    true; v6136 });  // rust.fix_closure';
-                                                                                                                                                                                                let v6141 =
+                                                                                                                                                                                                    true; v6386 });  // rust.fix_closure';
+                                                                                                                                                                                                let v6391 =
                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                v6141
+                                                                                                                                                                                                v6391
                                                                                                                                                                                             }
                                                                                                                                                                                             _
                                                                                                                                                                                             =>
                                                                                                                                                                                             {
-                                                                                                                                                                                                let v5981:
+                                                                                                                                                                                                let v6231:
                                                                                                                                                                                                         bool =
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                let v5983:
+                                                                                                                                                                                                let v6233:
                                                                                                                                                                                                         bool =
                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                let v5984:
+                                                                                                                                                                                                let v6234:
                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                     Spiral_wasm::method60();
-                                                                                                                                                                                                let v5988:
+                                                                                                                                                                                                let v6238:
                                                                                                                                                                                                         string =
-                                                                                                                                                                                                    string("true; v5984 });  // rust.fix_closure\'");
-                                                                                                                                                                                                let v5989:
+                                                                                                                                                                                                    string("true; v6234 });  // rust.fix_closure\'");
+                                                                                                                                                                                                let v6239:
                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                    true; v5984 });  // rust.fix_closure';
-                                                                                                                                                                                                let v5991 =
+                                                                                                                                                                                                    true; v6234 });  // rust.fix_closure';
+                                                                                                                                                                                                let v6241 =
                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                let v5993:
+                                                                                                                                                                                                let v6243:
                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                    v5991;
-                                                                                                                                                                                                let v5996:
+                                                                                                                                                                                                    v6241;
+                                                                                                                                                                                                let v6246:
                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                    Spiral_wasm::method49(v5993.await);
-                                                                                                                                                                                                let v5998:
+                                                                                                                                                                                                    Spiral_wasm::method49(v6243.await);
+                                                                                                                                                                                                let v6248:
                                                                                                                                                                                                         string =
-                                                                                                                                                                                                    string("true; v5996 });  // rust.fix_closure\'");
-                                                                                                                                                                                                let v5999:
+                                                                                                                                                                                                    string("true; v6246 });  // rust.fix_closure\'");
+                                                                                                                                                                                                let v6249:
                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                    true; v5996 });  // rust.fix_closure';
-                                                                                                                                                                                                let v6001 =
+                                                                                                                                                                                                    true; v6246 });  // rust.fix_closure';
+                                                                                                                                                                                                let v6251 =
                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                v6001
+                                                                                                                                                                                                v6251
                                                                                                                                                                                             }
                                                                                                                                                                                         }
                                                                                                                                                                                     }
-                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v5978_1_0)
+                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v6228_1_0)
                                                                                                                                                                                     =>
                                                                                                                                                                                     {
-                                                                                                                                                                                        let v6149:
+                                                                                                                                                                                        let v6399:
                                                                                                                                                                                                 () =
                                                                                                                                                                                             {
-                                                                                                                                                                                                Spiral_wasm::closure49(v5978_1_0.clone(),
+                                                                                                                                                                                                Spiral_wasm::closure49(v6228_1_0.clone(),
                                                                                                                                                                                                                        ());
                                                                                                                                                                                                 ()
                                                                                                                                                                                             };
-                                                                                                                                                                                        let v6263:
+                                                                                                                                                                                        let v6513:
                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                   22_u8);
-                                                                                                                                                                                        let v6265:
+                                                                                                                                                                                        let v6515:
                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                                                            v6263.await;
-                                                                                                                                                                                        let v6266 =
+                                                                                                                                                                                            v6513.await;
+                                                                                                                                                                                        let v6516 =
                                                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                                                        let v6268:
+                                                                                                                                                                                        let v6527:
                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                        std::string::String> =
-                                                                                                                                                                                            v6265.map_err(|x| v6266(x));
-                                                                                                                                                                                        let v6269:
+                                                                                                                                                                                            v6515.map_err(|x| v6516(x));
+                                                                                                                                                                                        let v6530:
                                                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                                                            match &v6268
+                                                                                                                                                                                            match &v6527
                                                                                                                                                                                                 {
-                                                                                                                                                                                                Err(v6268_1_0)
+                                                                                                                                                                                                Err(v6527_1_0)
                                                                                                                                                                                                 =>
-                                                                                                                                                                                                v157(v6268_1_0.clone()),
-                                                                                                                                                                                                Ok(v6268_0_0)
+                                                                                                                                                                                                v187(v6527_1_0.clone()),
+                                                                                                                                                                                                Ok(v6527_0_0)
                                                                                                                                                                                                 =>
-                                                                                                                                                                                                v156(v6268_0_0.clone()),
+                                                                                                                                                                                                v186(v6527_0_0.clone()),
                                                                                                                                                                                             };
-                                                                                                                                                                                        match &v6269
+                                                                                                                                                                                        match &v6530
                                                                                                                                                                                             {
-                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v6269_0_0)
+                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v6530_0_0)
                                                                                                                                                                                             =>
                                                                                                                                                                                             {
-                                                                                                                                                                                                let v6270:
+                                                                                                                                                                                                let v6531:
                                                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                                                    v6269_0_0.clone();
-                                                                                                                                                                                                match &v6270
+                                                                                                                                                                                                    v6530_0_0.clone();
+                                                                                                                                                                                                match &v6531
                                                                                                                                                                                                     {
-                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v6270_0_0)
+                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v6531_0_0)
                                                                                                                                                                                                     =>
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        let v6298:
+                                                                                                                                                                                                        let v6559:
                                                                                                                                                                                                                 () =
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                Spiral_wasm::closure65(match &v6270
+                                                                                                                                                                                                                Spiral_wasm::closure65(match &v6531
                                                                                                                                                                                                                                            {
                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                            =>
@@ -10390,130 +10391,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                 ()
                                                                                                                                                                                                             };
-                                                                                                                                                                                                        let v6412:
+                                                                                                                                                                                                        let v6673:
                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                        let v6414:
+                                                                                                                                                                                                        let v6675:
                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                        let v6415:
+                                                                                                                                                                                                        let v6676:
                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                             Spiral_wasm::method59();
-                                                                                                                                                                                                        let v6419:
+                                                                                                                                                                                                        let v6680:
                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                            string("true; v6415 });  // rust.fix_closure\'");
-                                                                                                                                                                                                        let v6420:
+                                                                                                                                                                                                            string("true; v6676 });  // rust.fix_closure\'");
+                                                                                                                                                                                                        let v6681:
                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                            true; v6415 });  // rust.fix_closure';
-                                                                                                                                                                                                        let v6422 =
+                                                                                                                                                                                                            true; v6676 });  // rust.fix_closure';
+                                                                                                                                                                                                        let v6683 =
                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                        let v6424:
+                                                                                                                                                                                                        let v6685:
                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                            v6422;
-                                                                                                                                                                                                        let v6427:
+                                                                                                                                                                                                            v6683;
+                                                                                                                                                                                                        let v6688:
                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                            Spiral_wasm::method47(v6424.await);
-                                                                                                                                                                                                        let v6429:
+                                                                                                                                                                                                            Spiral_wasm::method47(v6685.await);
+                                                                                                                                                                                                        let v6690:
                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                            string("true; v6427 });  // rust.fix_closure\'");
-                                                                                                                                                                                                        let v6430:
+                                                                                                                                                                                                            string("true; v6688 });  // rust.fix_closure\'");
+                                                                                                                                                                                                        let v6691:
                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                            true; v6427 });  // rust.fix_closure';
-                                                                                                                                                                                                        let v6432 =
+                                                                                                                                                                                                            true; v6688 });  // rust.fix_closure';
+                                                                                                                                                                                                        let v6693 =
                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                        v6432
+                                                                                                                                                                                                        v6693
                                                                                                                                                                                                     }
                                                                                                                                                                                                     _
                                                                                                                                                                                                     =>
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        let v6272:
+                                                                                                                                                                                                        let v6533:
                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                        let v6274:
+                                                                                                                                                                                                        let v6535:
                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                        let v6275:
+                                                                                                                                                                                                        let v6536:
                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                             Spiral_wasm::method59();
-                                                                                                                                                                                                        let v6279:
+                                                                                                                                                                                                        let v6540:
                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                            string("true; v6275 });  // rust.fix_closure\'");
-                                                                                                                                                                                                        let v6280:
+                                                                                                                                                                                                            string("true; v6536 });  // rust.fix_closure\'");
+                                                                                                                                                                                                        let v6541:
                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                            true; v6275 });  // rust.fix_closure';
-                                                                                                                                                                                                        let v6282 =
+                                                                                                                                                                                                            true; v6536 });  // rust.fix_closure';
+                                                                                                                                                                                                        let v6543 =
                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                        let v6284:
+                                                                                                                                                                                                        let v6545:
                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                            v6282;
-                                                                                                                                                                                                        let v6287:
+                                                                                                                                                                                                            v6543;
+                                                                                                                                                                                                        let v6548:
                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                            Spiral_wasm::method49(v6284.await);
-                                                                                                                                                                                                        let v6289:
+                                                                                                                                                                                                            Spiral_wasm::method49(v6545.await);
+                                                                                                                                                                                                        let v6550:
                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                            string("true; v6287 });  // rust.fix_closure\'");
-                                                                                                                                                                                                        let v6290:
+                                                                                                                                                                                                            string("true; v6548 });  // rust.fix_closure\'");
+                                                                                                                                                                                                        let v6551:
                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                            true; v6287 });  // rust.fix_closure';
-                                                                                                                                                                                                        let v6292 =
+                                                                                                                                                                                                            true; v6548 });  // rust.fix_closure';
+                                                                                                                                                                                                        let v6553 =
                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                        v6292
+                                                                                                                                                                                                        v6553
                                                                                                                                                                                                     }
                                                                                                                                                                                                 }
                                                                                                                                                                                             }
-                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v6269_1_0)
+                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v6530_1_0)
                                                                                                                                                                                             =>
                                                                                                                                                                                             {
-                                                                                                                                                                                                let v6440:
+                                                                                                                                                                                                let v6701:
                                                                                                                                                                                                         () =
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        Spiral_wasm::closure50(v6269_1_0.clone(),
+                                                                                                                                                                                                        Spiral_wasm::closure50(v6530_1_0.clone(),
                                                                                                                                                                                                                                ());
                                                                                                                                                                                                         ()
                                                                                                                                                                                                     };
-                                                                                                                                                                                                let v6554:
+                                                                                                                                                                                                let v6815:
                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                           23_u8);
-                                                                                                                                                                                                let v6556:
+                                                                                                                                                                                                let v6817:
                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                                                    v6554.await;
-                                                                                                                                                                                                let v6557 =
+                                                                                                                                                                                                    v6815.await;
+                                                                                                                                                                                                let v6818 =
                                                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                                                let v6559:
+                                                                                                                                                                                                let v6829:
                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                                                    v6556.map_err(|x| v6557(x));
-                                                                                                                                                                                                let v6560:
+                                                                                                                                                                                                    v6817.map_err(|x| v6818(x));
+                                                                                                                                                                                                let v6832:
                                                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                                                    match &v6559
+                                                                                                                                                                                                    match &v6829
                                                                                                                                                                                                         {
-                                                                                                                                                                                                        Err(v6559_1_0)
+                                                                                                                                                                                                        Err(v6829_1_0)
                                                                                                                                                                                                         =>
-                                                                                                                                                                                                        v157(v6559_1_0.clone()),
-                                                                                                                                                                                                        Ok(v6559_0_0)
+                                                                                                                                                                                                        v187(v6829_1_0.clone()),
+                                                                                                                                                                                                        Ok(v6829_0_0)
                                                                                                                                                                                                         =>
-                                                                                                                                                                                                        v156(v6559_0_0.clone()),
+                                                                                                                                                                                                        v186(v6829_0_0.clone()),
                                                                                                                                                                                                     };
-                                                                                                                                                                                                match &v6560
+                                                                                                                                                                                                match &v6832
                                                                                                                                                                                                     {
-                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v6560_0_0)
+                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v6832_0_0)
                                                                                                                                                                                                     =>
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        let v6561:
+                                                                                                                                                                                                        let v6833:
                                                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                                                            v6560_0_0.clone();
-                                                                                                                                                                                                        match &v6561
+                                                                                                                                                                                                            v6832_0_0.clone();
+                                                                                                                                                                                                        match &v6833
                                                                                                                                                                                                             {
-                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v6561_0_0)
+                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v6833_0_0)
                                                                                                                                                                                                             =>
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                let v6589:
+                                                                                                                                                                                                                let v6861:
                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        Spiral_wasm::closure64(match &v6561
+                                                                                                                                                                                                                        Spiral_wasm::closure64(match &v6833
                                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                    =>
@@ -10525,130 +10526,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                let v6703:
+                                                                                                                                                                                                                let v6975:
                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                let v6705:
+                                                                                                                                                                                                                let v6977:
                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                let v6706:
+                                                                                                                                                                                                                let v6978:
                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                     Spiral_wasm::method58();
-                                                                                                                                                                                                                let v6710:
+                                                                                                                                                                                                                let v6982:
                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                    string("true; v6706 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                let v6711:
+                                                                                                                                                                                                                    string("true; v6978 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                let v6983:
                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                    true; v6706 });  // rust.fix_closure';
-                                                                                                                                                                                                                let v6713 =
+                                                                                                                                                                                                                    true; v6978 });  // rust.fix_closure';
+                                                                                                                                                                                                                let v6985 =
                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                let v6715:
+                                                                                                                                                                                                                let v6987:
                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                    v6713;
-                                                                                                                                                                                                                let v6718:
+                                                                                                                                                                                                                    v6985;
+                                                                                                                                                                                                                let v6990:
                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                    Spiral_wasm::method47(v6715.await);
-                                                                                                                                                                                                                let v6720:
+                                                                                                                                                                                                                    Spiral_wasm::method47(v6987.await);
+                                                                                                                                                                                                                let v6992:
                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                    string("true; v6718 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                let v6721:
+                                                                                                                                                                                                                    string("true; v6990 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                let v6993:
                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                    true; v6718 });  // rust.fix_closure';
-                                                                                                                                                                                                                let v6723 =
+                                                                                                                                                                                                                    true; v6990 });  // rust.fix_closure';
+                                                                                                                                                                                                                let v6995 =
                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                v6723
+                                                                                                                                                                                                                v6995
                                                                                                                                                                                                             }
                                                                                                                                                                                                             _
                                                                                                                                                                                                             =>
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                let v6563:
+                                                                                                                                                                                                                let v6835:
                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                let v6565:
+                                                                                                                                                                                                                let v6837:
                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                let v6566:
+                                                                                                                                                                                                                let v6838:
                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                     Spiral_wasm::method58();
-                                                                                                                                                                                                                let v6570:
+                                                                                                                                                                                                                let v6842:
                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                    string("true; v6566 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                let v6571:
+                                                                                                                                                                                                                    string("true; v6838 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                let v6843:
                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                    true; v6566 });  // rust.fix_closure';
-                                                                                                                                                                                                                let v6573 =
+                                                                                                                                                                                                                    true; v6838 });  // rust.fix_closure';
+                                                                                                                                                                                                                let v6845 =
                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                let v6575:
+                                                                                                                                                                                                                let v6847:
                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                    v6573;
-                                                                                                                                                                                                                let v6578:
+                                                                                                                                                                                                                    v6845;
+                                                                                                                                                                                                                let v6850:
                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                    Spiral_wasm::method49(v6575.await);
-                                                                                                                                                                                                                let v6580:
+                                                                                                                                                                                                                    Spiral_wasm::method49(v6847.await);
+                                                                                                                                                                                                                let v6852:
                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                    string("true; v6578 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                let v6581:
+                                                                                                                                                                                                                    string("true; v6850 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                let v6853:
                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                    true; v6578 });  // rust.fix_closure';
-                                                                                                                                                                                                                let v6583 =
+                                                                                                                                                                                                                    true; v6850 });  // rust.fix_closure';
+                                                                                                                                                                                                                let v6855 =
                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                v6583
+                                                                                                                                                                                                                v6855
                                                                                                                                                                                                             }
                                                                                                                                                                                                         }
                                                                                                                                                                                                     }
-                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v6560_1_0)
+                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v6832_1_0)
                                                                                                                                                                                                     =>
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        let v6731:
+                                                                                                                                                                                                        let v7003:
                                                                                                                                                                                                                 () =
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                Spiral_wasm::closure51(v6560_1_0.clone(),
+                                                                                                                                                                                                                Spiral_wasm::closure51(v6832_1_0.clone(),
                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                 ()
                                                                                                                                                                                                             };
-                                                                                                                                                                                                        let v6845:
+                                                                                                                                                                                                        let v7117:
                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                   24_u8);
-                                                                                                                                                                                                        let v6847:
+                                                                                                                                                                                                        let v7119:
                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                                                                            v6845.await;
-                                                                                                                                                                                                        let v6848 =
+                                                                                                                                                                                                            v7117.await;
+                                                                                                                                                                                                        let v7120 =
                                                                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                                                                        let v6850:
+                                                                                                                                                                                                        let v7131:
                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                        std::string::String> =
-                                                                                                                                                                                                            v6847.map_err(|x| v6848(x));
-                                                                                                                                                                                                        let v6851:
+                                                                                                                                                                                                            v7119.map_err(|x| v7120(x));
+                                                                                                                                                                                                        let v7134:
                                                                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                                                                            match &v6850
+                                                                                                                                                                                                            match &v7131
                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                Err(v6850_1_0)
+                                                                                                                                                                                                                Err(v7131_1_0)
                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                v157(v6850_1_0.clone()),
-                                                                                                                                                                                                                Ok(v6850_0_0)
+                                                                                                                                                                                                                v187(v7131_1_0.clone()),
+                                                                                                                                                                                                                Ok(v7131_0_0)
                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                v156(v6850_0_0.clone()),
+                                                                                                                                                                                                                v186(v7131_0_0.clone()),
                                                                                                                                                                                                             };
-                                                                                                                                                                                                        match &v6851
+                                                                                                                                                                                                        match &v7134
                                                                                                                                                                                                             {
-                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v6851_0_0)
+                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v7134_0_0)
                                                                                                                                                                                                             =>
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                let v6852:
+                                                                                                                                                                                                                let v7135:
                                                                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                                                                    v6851_0_0.clone();
-                                                                                                                                                                                                                match &v6852
+                                                                                                                                                                                                                    v7134_0_0.clone();
+                                                                                                                                                                                                                match &v7135
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v6852_0_0)
+                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v7135_0_0)
                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        let v6880:
+                                                                                                                                                                                                                        let v7163:
                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                Spiral_wasm::closure63(match &v6852
+                                                                                                                                                                                                                                Spiral_wasm::closure63(match &v7135
                                                                                                                                                                                                                                                            {
                                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                            =>
@@ -10660,130 +10661,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                        let v6994:
+                                                                                                                                                                                                                        let v7277:
                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                        let v6996:
+                                                                                                                                                                                                                        let v7279:
                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                        let v6997:
+                                                                                                                                                                                                                        let v7280:
                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                             Spiral_wasm::method57();
-                                                                                                                                                                                                                        let v7001:
+                                                                                                                                                                                                                        let v7284:
                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                            string("true; v6997 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                        let v7002:
+                                                                                                                                                                                                                            string("true; v7280 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                        let v7285:
                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                            true; v6997 });  // rust.fix_closure';
-                                                                                                                                                                                                                        let v7004 =
+                                                                                                                                                                                                                            true; v7280 });  // rust.fix_closure';
+                                                                                                                                                                                                                        let v7287 =
                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                        let v7006:
+                                                                                                                                                                                                                        let v7289:
                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                            v7004;
-                                                                                                                                                                                                                        let v7009:
+                                                                                                                                                                                                                            v7287;
+                                                                                                                                                                                                                        let v7292:
                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                            Spiral_wasm::method47(v7006.await);
-                                                                                                                                                                                                                        let v7011:
+                                                                                                                                                                                                                            Spiral_wasm::method47(v7289.await);
+                                                                                                                                                                                                                        let v7294:
                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                            string("true; v7009 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                        let v7012:
+                                                                                                                                                                                                                            string("true; v7292 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                        let v7295:
                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                            true; v7009 });  // rust.fix_closure';
-                                                                                                                                                                                                                        let v7014 =
+                                                                                                                                                                                                                            true; v7292 });  // rust.fix_closure';
+                                                                                                                                                                                                                        let v7297 =
                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                        v7014
+                                                                                                                                                                                                                        v7297
                                                                                                                                                                                                                     }
                                                                                                                                                                                                                     _
                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        let v6854:
+                                                                                                                                                                                                                        let v7137:
                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                        let v6856:
+                                                                                                                                                                                                                        let v7139:
                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                        let v6857:
+                                                                                                                                                                                                                        let v7140:
                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                             Spiral_wasm::method57();
-                                                                                                                                                                                                                        let v6861:
+                                                                                                                                                                                                                        let v7144:
                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                            string("true; v6857 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                        let v6862:
+                                                                                                                                                                                                                            string("true; v7140 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                        let v7145:
                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                            true; v6857 });  // rust.fix_closure';
-                                                                                                                                                                                                                        let v6864 =
+                                                                                                                                                                                                                            true; v7140 });  // rust.fix_closure';
+                                                                                                                                                                                                                        let v7147 =
                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                        let v6866:
+                                                                                                                                                                                                                        let v7149:
                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                            v6864;
-                                                                                                                                                                                                                        let v6869:
+                                                                                                                                                                                                                            v7147;
+                                                                                                                                                                                                                        let v7152:
                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                            Spiral_wasm::method49(v6866.await);
-                                                                                                                                                                                                                        let v6871:
+                                                                                                                                                                                                                            Spiral_wasm::method49(v7149.await);
+                                                                                                                                                                                                                        let v7154:
                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                            string("true; v6869 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                        let v6872:
+                                                                                                                                                                                                                            string("true; v7152 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                        let v7155:
                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                            true; v6869 });  // rust.fix_closure';
-                                                                                                                                                                                                                        let v6874 =
+                                                                                                                                                                                                                            true; v7152 });  // rust.fix_closure';
+                                                                                                                                                                                                                        let v7157 =
                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                        v6874
+                                                                                                                                                                                                                        v7157
                                                                                                                                                                                                                     }
                                                                                                                                                                                                                 }
                                                                                                                                                                                                             }
-                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v6851_1_0)
+                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v7134_1_0)
                                                                                                                                                                                                             =>
                                                                                                                                                                                                             {
-                                                                                                                                                                                                                let v7022:
+                                                                                                                                                                                                                let v7305:
                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        Spiral_wasm::closure52(v6851_1_0.clone(),
+                                                                                                                                                                                                                        Spiral_wasm::closure52(v7134_1_0.clone(),
                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                let v7136:
+                                                                                                                                                                                                                let v7419:
                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                           25_u8);
-                                                                                                                                                                                                                let v7138:
+                                                                                                                                                                                                                let v7421:
                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                                                                    v7136.await;
-                                                                                                                                                                                                                let v7139 =
+                                                                                                                                                                                                                    v7419.await;
+                                                                                                                                                                                                                let v7422 =
                                                                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                                                                let v7141:
+                                                                                                                                                                                                                let v7433:
                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                                                                    v7138.map_err(|x| v7139(x));
-                                                                                                                                                                                                                let v7142:
+                                                                                                                                                                                                                    v7421.map_err(|x| v7422(x));
+                                                                                                                                                                                                                let v7436:
                                                                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                                                                    match &v7141
+                                                                                                                                                                                                                    match &v7433
                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                        Err(v7141_1_0)
+                                                                                                                                                                                                                        Err(v7433_1_0)
                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                        v157(v7141_1_0.clone()),
-                                                                                                                                                                                                                        Ok(v7141_0_0)
+                                                                                                                                                                                                                        v187(v7433_1_0.clone()),
+                                                                                                                                                                                                                        Ok(v7433_0_0)
                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                        v156(v7141_0_0.clone()),
+                                                                                                                                                                                                                        v186(v7433_0_0.clone()),
                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                match &v7142
+                                                                                                                                                                                                                match &v7436
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v7142_0_0)
+                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v7436_0_0)
                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        let v7143:
+                                                                                                                                                                                                                        let v7437:
                                                                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                                                                            v7142_0_0.clone();
-                                                                                                                                                                                                                        match &v7143
+                                                                                                                                                                                                                            v7436_0_0.clone();
+                                                                                                                                                                                                                        match &v7437
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v7143_0_0)
+                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v7437_0_0)
                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                let v7171:
+                                                                                                                                                                                                                                let v7465:
                                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        Spiral_wasm::closure62(match &v7143
+                                                                                                                                                                                                                                        Spiral_wasm::closure62(match &v7437
                                                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                                    =>
@@ -10795,130 +10796,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                let v7285:
+                                                                                                                                                                                                                                let v7579:
                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                let v7287:
+                                                                                                                                                                                                                                let v7581:
                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                let v7288:
+                                                                                                                                                                                                                                let v7582:
                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                     Spiral_wasm::method56();
-                                                                                                                                                                                                                                let v7292:
+                                                                                                                                                                                                                                let v7586:
                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                    string("true; v7288 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                let v7293:
+                                                                                                                                                                                                                                    string("true; v7582 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                let v7587:
                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                    true; v7288 });  // rust.fix_closure';
-                                                                                                                                                                                                                                let v7295 =
+                                                                                                                                                                                                                                    true; v7582 });  // rust.fix_closure';
+                                                                                                                                                                                                                                let v7589 =
                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                let v7297:
+                                                                                                                                                                                                                                let v7591:
                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                    v7295;
-                                                                                                                                                                                                                                let v7300:
+                                                                                                                                                                                                                                    v7589;
+                                                                                                                                                                                                                                let v7594:
                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                    Spiral_wasm::method47(v7297.await);
-                                                                                                                                                                                                                                let v7302:
+                                                                                                                                                                                                                                    Spiral_wasm::method47(v7591.await);
+                                                                                                                                                                                                                                let v7596:
                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                    string("true; v7300 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                let v7303:
+                                                                                                                                                                                                                                    string("true; v7594 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                let v7597:
                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                    true; v7300 });  // rust.fix_closure';
-                                                                                                                                                                                                                                let v7305 =
+                                                                                                                                                                                                                                    true; v7594 });  // rust.fix_closure';
+                                                                                                                                                                                                                                let v7599 =
                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                v7305
+                                                                                                                                                                                                                                v7599
                                                                                                                                                                                                                             }
                                                                                                                                                                                                                             _
                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                let v7145:
+                                                                                                                                                                                                                                let v7439:
                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                let v7147:
+                                                                                                                                                                                                                                let v7441:
                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                let v7148:
+                                                                                                                                                                                                                                let v7442:
                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                     Spiral_wasm::method56();
-                                                                                                                                                                                                                                let v7152:
+                                                                                                                                                                                                                                let v7446:
                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                    string("true; v7148 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                let v7153:
+                                                                                                                                                                                                                                    string("true; v7442 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                let v7447:
                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                    true; v7148 });  // rust.fix_closure';
-                                                                                                                                                                                                                                let v7155 =
+                                                                                                                                                                                                                                    true; v7442 });  // rust.fix_closure';
+                                                                                                                                                                                                                                let v7449 =
                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                let v7157:
+                                                                                                                                                                                                                                let v7451:
                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                    v7155;
-                                                                                                                                                                                                                                let v7160:
+                                                                                                                                                                                                                                    v7449;
+                                                                                                                                                                                                                                let v7454:
                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                    Spiral_wasm::method49(v7157.await);
-                                                                                                                                                                                                                                let v7162:
+                                                                                                                                                                                                                                    Spiral_wasm::method49(v7451.await);
+                                                                                                                                                                                                                                let v7456:
                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                    string("true; v7160 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                let v7163:
+                                                                                                                                                                                                                                    string("true; v7454 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                let v7457:
                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                    true; v7160 });  // rust.fix_closure';
-                                                                                                                                                                                                                                let v7165 =
+                                                                                                                                                                                                                                    true; v7454 });  // rust.fix_closure';
+                                                                                                                                                                                                                                let v7459 =
                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                v7165
+                                                                                                                                                                                                                                v7459
                                                                                                                                                                                                                             }
                                                                                                                                                                                                                         }
                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v7142_1_0)
+                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v7436_1_0)
                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                        let v7313:
+                                                                                                                                                                                                                        let v7607:
                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                Spiral_wasm::closure53(v7142_1_0.clone(),
+                                                                                                                                                                                                                                Spiral_wasm::closure53(v7436_1_0.clone(),
                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                        let v7427:
+                                                                                                                                                                                                                        let v7721:
                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                                   26_u8);
-                                                                                                                                                                                                                        let v7429:
+                                                                                                                                                                                                                        let v7723:
                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                                                                                            v7427.await;
-                                                                                                                                                                                                                        let v7430 =
+                                                                                                                                                                                                                            v7721.await;
+                                                                                                                                                                                                                        let v7724 =
                                                                                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                                                                                        let v7432:
+                                                                                                                                                                                                                        let v7735:
                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                        std::string::String> =
-                                                                                                                                                                                                                            v7429.map_err(|x| v7430(x));
-                                                                                                                                                                                                                        let v7433:
+                                                                                                                                                                                                                            v7723.map_err(|x| v7724(x));
+                                                                                                                                                                                                                        let v7738:
                                                                                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                                                                                            match &v7432
+                                                                                                                                                                                                                            match &v7735
                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                Err(v7432_1_0)
+                                                                                                                                                                                                                                Err(v7735_1_0)
                                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                                v157(v7432_1_0.clone()),
-                                                                                                                                                                                                                                Ok(v7432_0_0)
+                                                                                                                                                                                                                                v187(v7735_1_0.clone()),
+                                                                                                                                                                                                                                Ok(v7735_0_0)
                                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                                v156(v7432_0_0.clone()),
+                                                                                                                                                                                                                                v186(v7735_0_0.clone()),
                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                        match &v7433
+                                                                                                                                                                                                                        match &v7738
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v7433_0_0)
+                                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v7738_0_0)
                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                let v7434:
+                                                                                                                                                                                                                                let v7739:
                                                                                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                                                                                    v7433_0_0.clone();
-                                                                                                                                                                                                                                match &v7434
+                                                                                                                                                                                                                                    v7738_0_0.clone();
+                                                                                                                                                                                                                                match &v7739
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v7434_0_0)
+                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v7739_0_0)
                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        let v7462:
+                                                                                                                                                                                                                                        let v7767:
                                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                Spiral_wasm::closure61(match &v7434
+                                                                                                                                                                                                                                                Spiral_wasm::closure61(match &v7739
                                                                                                                                                                                                                                                                            {
                                                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                                            =>
@@ -10930,130 +10931,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                                        let v7576:
+                                                                                                                                                                                                                                        let v7881:
                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                        let v7578:
+                                                                                                                                                                                                                                        let v7883:
                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                        let v7579:
+                                                                                                                                                                                                                                        let v7884:
                                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                                             Spiral_wasm::method55();
-                                                                                                                                                                                                                                        let v7583:
+                                                                                                                                                                                                                                        let v7888:
                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                            string("true; v7579 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                        let v7584:
+                                                                                                                                                                                                                                            string("true; v7884 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                        let v7889:
                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                            true; v7579 });  // rust.fix_closure';
-                                                                                                                                                                                                                                        let v7586 =
+                                                                                                                                                                                                                                            true; v7884 });  // rust.fix_closure';
+                                                                                                                                                                                                                                        let v7891 =
                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                        let v7588:
+                                                                                                                                                                                                                                        let v7893:
                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                            v7586;
-                                                                                                                                                                                                                                        let v7591:
+                                                                                                                                                                                                                                            v7891;
+                                                                                                                                                                                                                                        let v7896:
                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                            Spiral_wasm::method47(v7588.await);
-                                                                                                                                                                                                                                        let v7593:
+                                                                                                                                                                                                                                            Spiral_wasm::method47(v7893.await);
+                                                                                                                                                                                                                                        let v7898:
                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                            string("true; v7591 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                        let v7594:
+                                                                                                                                                                                                                                            string("true; v7896 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                        let v7899:
                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                            true; v7591 });  // rust.fix_closure';
-                                                                                                                                                                                                                                        let v7596 =
+                                                                                                                                                                                                                                            true; v7896 });  // rust.fix_closure';
+                                                                                                                                                                                                                                        let v7901 =
                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                        v7596
+                                                                                                                                                                                                                                        v7901
                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                     _
                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        let v7436:
+                                                                                                                                                                                                                                        let v7741:
                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                        let v7438:
+                                                                                                                                                                                                                                        let v7743:
                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                        let v7439:
+                                                                                                                                                                                                                                        let v7744:
                                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                                             Spiral_wasm::method55();
-                                                                                                                                                                                                                                        let v7443:
+                                                                                                                                                                                                                                        let v7748:
                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                            string("true; v7439 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                        let v7444:
+                                                                                                                                                                                                                                            string("true; v7744 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                        let v7749:
                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                            true; v7439 });  // rust.fix_closure';
-                                                                                                                                                                                                                                        let v7446 =
+                                                                                                                                                                                                                                            true; v7744 });  // rust.fix_closure';
+                                                                                                                                                                                                                                        let v7751 =
                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                        let v7448:
+                                                                                                                                                                                                                                        let v7753:
                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                            v7446;
-                                                                                                                                                                                                                                        let v7451:
+                                                                                                                                                                                                                                            v7751;
+                                                                                                                                                                                                                                        let v7756:
                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                            Spiral_wasm::method49(v7448.await);
-                                                                                                                                                                                                                                        let v7453:
+                                                                                                                                                                                                                                            Spiral_wasm::method49(v7753.await);
+                                                                                                                                                                                                                                        let v7758:
                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                            string("true; v7451 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                        let v7454:
+                                                                                                                                                                                                                                            string("true; v7756 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                        let v7759:
                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                            true; v7451 });  // rust.fix_closure';
-                                                                                                                                                                                                                                        let v7456 =
+                                                                                                                                                                                                                                            true; v7756 });  // rust.fix_closure';
+                                                                                                                                                                                                                                        let v7761 =
                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                        v7456
+                                                                                                                                                                                                                                        v7761
                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v7433_1_0)
+                                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v7738_1_0)
                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                let v7604:
+                                                                                                                                                                                                                                let v7909:
                                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        Spiral_wasm::closure54(v7433_1_0.clone(),
+                                                                                                                                                                                                                                        Spiral_wasm::closure54(v7738_1_0.clone(),
                                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                let v7718:
+                                                                                                                                                                                                                                let v8023:
                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                                           27_u8);
-                                                                                                                                                                                                                                let v7720:
+                                                                                                                                                                                                                                let v8025:
                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                                                                                    v7718.await;
-                                                                                                                                                                                                                                let v7721 =
+                                                                                                                                                                                                                                    v8023.await;
+                                                                                                                                                                                                                                let v8026 =
                                                                                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                                                                                let v7723:
+                                                                                                                                                                                                                                let v8037:
                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                                                                                    v7720.map_err(|x| v7721(x));
-                                                                                                                                                                                                                                let v7724:
+                                                                                                                                                                                                                                    v8025.map_err(|x| v8026(x));
+                                                                                                                                                                                                                                let v8040:
                                                                                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                                                                                    match &v7723
+                                                                                                                                                                                                                                    match &v8037
                                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                                        Err(v7723_1_0)
+                                                                                                                                                                                                                                        Err(v8037_1_0)
                                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                                        v157(v7723_1_0.clone()),
-                                                                                                                                                                                                                                        Ok(v7723_0_0)
+                                                                                                                                                                                                                                        v187(v8037_1_0.clone()),
+                                                                                                                                                                                                                                        Ok(v8037_0_0)
                                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                                        v156(v7723_0_0.clone()),
+                                                                                                                                                                                                                                        v186(v8037_0_0.clone()),
                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                match &v7724
+                                                                                                                                                                                                                                match &v8040
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v7724_0_0)
+                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v8040_0_0)
                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        let v7725:
+                                                                                                                                                                                                                                        let v8041:
                                                                                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                                                                                            v7724_0_0.clone();
-                                                                                                                                                                                                                                        match &v7725
+                                                                                                                                                                                                                                            v8040_0_0.clone();
+                                                                                                                                                                                                                                        match &v8041
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v7725_0_0)
+                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v8041_0_0)
                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                let v7753:
+                                                                                                                                                                                                                                                let v8069:
                                                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        Spiral_wasm::closure60(match &v7725
+                                                                                                                                                                                                                                                        Spiral_wasm::closure60(match &v8041
                                                                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                                                    =>
@@ -11065,130 +11066,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                                let v7867:
+                                                                                                                                                                                                                                                let v8183:
                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                let v7869:
+                                                                                                                                                                                                                                                let v8185:
                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                let v7870:
+                                                                                                                                                                                                                                                let v8186:
                                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                                     Spiral_wasm::method54();
-                                                                                                                                                                                                                                                let v7874:
+                                                                                                                                                                                                                                                let v8190:
                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                    string("true; v7870 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                let v7875:
+                                                                                                                                                                                                                                                    string("true; v8186 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                let v8191:
                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                    true; v7870 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                let v7877 =
+                                                                                                                                                                                                                                                    true; v8186 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                let v8193 =
                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                let v7879:
+                                                                                                                                                                                                                                                let v8195:
                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                    v7877;
-                                                                                                                                                                                                                                                let v7882:
+                                                                                                                                                                                                                                                    v8193;
+                                                                                                                                                                                                                                                let v8198:
                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method47(v7879.await);
-                                                                                                                                                                                                                                                let v7884:
+                                                                                                                                                                                                                                                    Spiral_wasm::method47(v8195.await);
+                                                                                                                                                                                                                                                let v8200:
                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                    string("true; v7882 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                let v7885:
+                                                                                                                                                                                                                                                    string("true; v8198 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                let v8201:
                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                    true; v7882 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                let v7887 =
+                                                                                                                                                                                                                                                    true; v8198 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                let v8203 =
                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                v7887
+                                                                                                                                                                                                                                                v8203
                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                             _
                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                let v7727:
+                                                                                                                                                                                                                                                let v8043:
                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                let v7729:
+                                                                                                                                                                                                                                                let v8045:
                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                let v7730:
+                                                                                                                                                                                                                                                let v8046:
                                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                                     Spiral_wasm::method54();
-                                                                                                                                                                                                                                                let v7734:
+                                                                                                                                                                                                                                                let v8050:
                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                    string("true; v7730 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                let v7735:
+                                                                                                                                                                                                                                                    string("true; v8046 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                let v8051:
                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                    true; v7730 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                let v7737 =
+                                                                                                                                                                                                                                                    true; v8046 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                let v8053 =
                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                let v7739:
+                                                                                                                                                                                                                                                let v8055:
                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                    v7737;
-                                                                                                                                                                                                                                                let v7742:
+                                                                                                                                                                                                                                                    v8053;
+                                                                                                                                                                                                                                                let v8058:
                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                    Spiral_wasm::method49(v7739.await);
-                                                                                                                                                                                                                                                let v7744:
+                                                                                                                                                                                                                                                    Spiral_wasm::method49(v8055.await);
+                                                                                                                                                                                                                                                let v8060:
                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                    string("true; v7742 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                let v7745:
+                                                                                                                                                                                                                                                    string("true; v8058 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                let v8061:
                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                    true; v7742 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                let v7747 =
+                                                                                                                                                                                                                                                    true; v8058 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                let v8063 =
                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                v7747
+                                                                                                                                                                                                                                                v8063
                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v7724_1_0)
+                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v8040_1_0)
                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                        let v7895:
+                                                                                                                                                                                                                                        let v8211:
                                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                Spiral_wasm::closure55(v7724_1_0.clone(),
+                                                                                                                                                                                                                                                Spiral_wasm::closure55(v8040_1_0.clone(),
                                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                                        let v8009:
+                                                                                                                                                                                                                                        let v8325:
                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                           anyhow::Error>>>> =
-                                                                                                                                                                                                                                            Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                                                            Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                                                   28_u8);
-                                                                                                                                                                                                                                        let v8011:
+                                                                                                                                                                                                                                        let v8327:
                                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                        anyhow::Error> =
-                                                                                                                                                                                                                                            v8009.await;
-                                                                                                                                                                                                                                        let v8012 =
+                                                                                                                                                                                                                                            v8325.await;
+                                                                                                                                                                                                                                        let v8328 =
                                                                                                                                                                                                                                             Spiral_wasm::method42();
-                                                                                                                                                                                                                                        let v8014:
+                                                                                                                                                                                                                                        let v8339:
                                                                                                                                                                                                                                                 Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                        std::string::String> =
-                                                                                                                                                                                                                                            v8011.map_err(|x| v8012(x));
-                                                                                                                                                                                                                                        let v8015:
+                                                                                                                                                                                                                                            v8327.map_err(|x| v8328(x));
+                                                                                                                                                                                                                                        let v8342:
                                                                                                                                                                                                                                                 Spiral_wasm::US6 =
-                                                                                                                                                                                                                                            match &v8014
+                                                                                                                                                                                                                                            match &v8339
                                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                                Err(v8014_1_0)
+                                                                                                                                                                                                                                                Err(v8339_1_0)
                                                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                                                v157(v8014_1_0.clone()),
-                                                                                                                                                                                                                                                Ok(v8014_0_0)
+                                                                                                                                                                                                                                                v187(v8339_1_0.clone()),
+                                                                                                                                                                                                                                                Ok(v8339_0_0)
                                                                                                                                                                                                                                                 =>
-                                                                                                                                                                                                                                                v156(v8014_0_0.clone()),
+                                                                                                                                                                                                                                                v186(v8339_0_0.clone()),
                                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                                        match &v8015
+                                                                                                                                                                                                                                        match &v8342
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v8015_0_0)
+                                                                                                                                                                                                                                            Spiral_wasm::US6::US6_0(v8342_0_0)
                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                let v8016:
+                                                                                                                                                                                                                                                let v8343:
                                                                                                                                                                                                                                                         Spiral_wasm::US4 =
-                                                                                                                                                                                                                                                    v8015_0_0.clone();
-                                                                                                                                                                                                                                                match &v8016
+                                                                                                                                                                                                                                                    v8342_0_0.clone();
+                                                                                                                                                                                                                                                match &v8343
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v8016_0_0)
+                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(v8343_0_0)
                                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        let v8044:
+                                                                                                                                                                                                                                                        let v8371:
                                                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                Spiral_wasm::closure59(match &v8016
+                                                                                                                                                                                                                                                                Spiral_wasm::closure59(match &v8343
                                                                                                                                                                                                                                                                                            {
                                                                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                                                            =>
@@ -11200,130 +11201,130 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                                                        let v8158:
+                                                                                                                                                                                                                                                        let v8485:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8160:
+                                                                                                                                                                                                                                                        let v8487:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8161:
+                                                                                                                                                                                                                                                        let v8488:
                                                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                                                             Spiral_wasm::method53();
-                                                                                                                                                                                                                                                        let v8165:
+                                                                                                                                                                                                                                                        let v8492:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8161 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8166:
+                                                                                                                                                                                                                                                            string("true; v8488 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8493:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8161 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8168 =
+                                                                                                                                                                                                                                                            true; v8488 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8495 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        let v8170:
+                                                                                                                                                                                                                                                        let v8497:
                                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                            v8168;
-                                                                                                                                                                                                                                                        let v8173:
+                                                                                                                                                                                                                                                            v8495;
+                                                                                                                                                                                                                                                        let v8500:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method47(v8170.await);
-                                                                                                                                                                                                                                                        let v8175:
+                                                                                                                                                                                                                                                            Spiral_wasm::method47(v8497.await);
+                                                                                                                                                                                                                                                        let v8502:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8173 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8176:
+                                                                                                                                                                                                                                                            string("true; v8500 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8503:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8173 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8178 =
+                                                                                                                                                                                                                                                            true; v8500 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8505 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        v8178
+                                                                                                                                                                                                                                                        v8505
                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                     _
                                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        let v8018:
+                                                                                                                                                                                                                                                        let v8345:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8020:
+                                                                                                                                                                                                                                                        let v8347:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8021:
+                                                                                                                                                                                                                                                        let v8348:
                                                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                                                             Spiral_wasm::method53();
-                                                                                                                                                                                                                                                        let v8025:
+                                                                                                                                                                                                                                                        let v8352:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8021 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8026:
+                                                                                                                                                                                                                                                            string("true; v8348 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8353:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8021 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8028 =
+                                                                                                                                                                                                                                                            true; v8348 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8355 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        let v8030:
+                                                                                                                                                                                                                                                        let v8357:
                                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                            v8028;
-                                                                                                                                                                                                                                                        let v8033:
+                                                                                                                                                                                                                                                            v8355;
+                                                                                                                                                                                                                                                        let v8360:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method49(v8030.await);
-                                                                                                                                                                                                                                                        let v8035:
+                                                                                                                                                                                                                                                            Spiral_wasm::method49(v8357.await);
+                                                                                                                                                                                                                                                        let v8362:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8033 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8036:
+                                                                                                                                                                                                                                                            string("true; v8360 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8363:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8033 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8038 =
+                                                                                                                                                                                                                                                            true; v8360 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8365 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        v8038
+                                                                                                                                                                                                                                                        v8365
                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v8015_1_0)
+                                                                                                                                                                                                                                            Spiral_wasm::US6::US6_1(v8342_1_0)
                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                let v8186:
+                                                                                                                                                                                                                                                let v8513:
                                                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        Spiral_wasm::closure56(v8015_1_0.clone(),
+                                                                                                                                                                                                                                                        Spiral_wasm::closure56(v8342_1_0.clone(),
                                                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                                let v8300:
+                                                                                                                                                                                                                                                let v8627:
                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                                                                   anyhow::Error>>>> =
-                                                                                                                                                                                                                                                    Spiral_wasm::method24(v148.clone(),
+                                                                                                                                                                                                                                                    Spiral_wasm::method24(v167.clone(),
                                                                                                                                                                                                                                                                           29_u8);
-                                                                                                                                                                                                                                                let v8302:
+                                                                                                                                                                                                                                                let v8629:
                                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                anyhow::Error> =
-                                                                                                                                                                                                                                                    v8300.await;
-                                                                                                                                                                                                                                                let v8303 =
+                                                                                                                                                                                                                                                    v8627.await;
+                                                                                                                                                                                                                                                let v8630 =
                                                                                                                                                                                                                                                     Spiral_wasm::method42();
-                                                                                                                                                                                                                                                let v8305:
+                                                                                                                                                                                                                                                let v8641:
                                                                                                                                                                                                                                                         Result<Spiral_wasm::US4,
                                                                                                                                                                                                                                                                std::string::String> =
-                                                                                                                                                                                                                                                    v8302.map_err(|x| v8303(x));
-                                                                                                                                                                                                                                                let v8306:
+                                                                                                                                                                                                                                                    v8629.map_err(|x| v8630(x));
+                                                                                                                                                                                                                                                let v8644:
                                                                                                                                                                                                                                                         Spiral_wasm::US6 =
-                                                                                                                                                                                                                                                    match &v8305
+                                                                                                                                                                                                                                                    match &v8641
                                                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                                                        Err(v8305_1_0)
+                                                                                                                                                                                                                                                        Err(v8641_1_0)
                                                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                                                        v157(v8305_1_0.clone()),
-                                                                                                                                                                                                                                                        Ok(v8305_0_0)
+                                                                                                                                                                                                                                                        v187(v8641_1_0.clone()),
+                                                                                                                                                                                                                                                        Ok(v8641_0_0)
                                                                                                                                                                                                                                                         =>
-                                                                                                                                                                                                                                                        v156(v8305_0_0.clone()),
+                                                                                                                                                                                                                                                        v186(v8641_0_0.clone()),
                                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                                match &v8306
+                                                                                                                                                                                                                                                match &v8644
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v8306_0_0)
+                                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_0(v8644_0_0)
                                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        let v8307:
+                                                                                                                                                                                                                                                        let v8645:
                                                                                                                                                                                                                                                                 Spiral_wasm::US4 =
-                                                                                                                                                                                                                                                            v8306_0_0.clone();
-                                                                                                                                                                                                                                                        match &v8307
+                                                                                                                                                                                                                                                            v8644_0_0.clone();
+                                                                                                                                                                                                                                                        match &v8645
                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v8307_0_0)
+                                                                                                                                                                                                                                                            Spiral_wasm::US4::US4_0(v8645_0_0)
                                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                let v8335:
+                                                                                                                                                                                                                                                                let v8673:
                                                                                                                                                                                                                                                                         () =
                                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                                        Spiral_wasm::closure58(match &v8307
+                                                                                                                                                                                                                                                                        Spiral_wasm::closure58(match &v8645
                                                                                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                                                                                    Spiral_wasm::US4::US4_0(x)
                                                                                                                                                                                                                                                                                                    =>
@@ -11335,119 +11336,119 @@ mod module_fb49c4a9 {
                                                                                                                                                                                                                                                                                                ());
                                                                                                                                                                                                                                                                         ()
                                                                                                                                                                                                                                                                     };
-                                                                                                                                                                                                                                                                let v8449:
+                                                                                                                                                                                                                                                                let v8787:
                                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                                let v8451:
+                                                                                                                                                                                                                                                                let v8789:
                                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                                let v8452:
+                                                                                                                                                                                                                                                                let v8790:
                                                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                                                     Spiral_wasm::method48();
-                                                                                                                                                                                                                                                                let v8456:
+                                                                                                                                                                                                                                                                let v8794:
                                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                                    string("true; v8452 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                                let v8457:
+                                                                                                                                                                                                                                                                    string("true; v8790 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                                let v8795:
                                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                                    true; v8452 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                                let v8459 =
+                                                                                                                                                                                                                                                                    true; v8790 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                                let v8797 =
                                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                                let v8461:
+                                                                                                                                                                                                                                                                let v8799:
                                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                                    v8459;
-                                                                                                                                                                                                                                                                let v8464:
+                                                                                                                                                                                                                                                                    v8797;
+                                                                                                                                                                                                                                                                let v8802:
                                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method47(v8461.await);
-                                                                                                                                                                                                                                                                let v8466:
+                                                                                                                                                                                                                                                                    Spiral_wasm::method47(v8799.await);
+                                                                                                                                                                                                                                                                let v8804:
                                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                                    string("true; v8464 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                                let v8467:
+                                                                                                                                                                                                                                                                    string("true; v8802 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                                let v8805:
                                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                                    true; v8464 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                                let v8469 =
+                                                                                                                                                                                                                                                                    true; v8802 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                                let v8807 =
                                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                                v8469
+                                                                                                                                                                                                                                                                v8807
                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                             _
                                                                                                                                                                                                                                                             =>
                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                let v8309:
+                                                                                                                                                                                                                                                                let v8647:
                                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                                let v8311:
+                                                                                                                                                                                                                                                                let v8649:
                                                                                                                                                                                                                                                                         bool =
                                                                                                                                                                                                                                                                     true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                                let v8312:
+                                                                                                                                                                                                                                                                let v8650:
                                                                                                                                                                                                                                                                         u8 =
                                                                                                                                                                                                                                                                     Spiral_wasm::method48();
-                                                                                                                                                                                                                                                                let v8316:
+                                                                                                                                                                                                                                                                let v8654:
                                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                                    string("true; v8312 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                                let v8317:
+                                                                                                                                                                                                                                                                    string("true; v8650 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                                let v8655:
                                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                                    true; v8312 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                                let v8319 =
+                                                                                                                                                                                                                                                                    true; v8650 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                                let v8657 =
                                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                                let v8321:
+                                                                                                                                                                                                                                                                let v8659:
                                                                                                                                                                                                                                                                         std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                                    v8319;
-                                                                                                                                                                                                                                                                let v8324:
+                                                                                                                                                                                                                                                                    v8657;
+                                                                                                                                                                                                                                                                let v8662:
                                                                                                                                                                                                                                                                         Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                                    Spiral_wasm::method49(v8321.await);
-                                                                                                                                                                                                                                                                let v8326:
+                                                                                                                                                                                                                                                                    Spiral_wasm::method49(v8659.await);
+                                                                                                                                                                                                                                                                let v8664:
                                                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                                                    string("true; v8324 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                                let v8327:
+                                                                                                                                                                                                                                                                    string("true; v8662 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                                let v8665:
                                                                                                                                                                                                                                                                         bool =
-                                                                                                                                                                                                                                                                    true; v8324 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                                let v8329 =
+                                                                                                                                                                                                                                                                    true; v8662 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                                let v8667 =
                                                                                                                                                                                                                                                                     __future_init;
-                                                                                                                                                                                                                                                                v8329
+                                                                                                                                                                                                                                                                v8667
                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v8306_1_0)
+                                                                                                                                                                                                                                                    Spiral_wasm::US6::US6_1(v8644_1_0)
                                                                                                                                                                                                                                                     =>
                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                        let v8477:
+                                                                                                                                                                                                                                                        let v8815:
                                                                                                                                                                                                                                                                 () =
                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                Spiral_wasm::closure57(v8306_1_0.clone(),
+                                                                                                                                                                                                                                                                Spiral_wasm::closure57(v8644_1_0.clone(),
                                                                                                                                                                                                                                                                                        ());
                                                                                                                                                                                                                                                                 ()
                                                                                                                                                                                                                                                             };
-                                                                                                                                                                                                                                                        let v8591:
+                                                                                                                                                                                                                                                        let v8929:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8593:
+                                                                                                                                                                                                                                                        let v8931:
                                                                                                                                                                                                                                                                 bool =
                                                                                                                                                                                                                                                             true; let __future_init = Box::pin(async move { //;
-                                                                                                                                                                                                                                                        let v8594:
+                                                                                                                                                                                                                                                        let v8932:
                                                                                                                                                                                                                                                                 u8 =
                                                                                                                                                                                                                                                             Spiral_wasm::method46();
-                                                                                                                                                                                                                                                        let v8598:
+                                                                                                                                                                                                                                                        let v8936:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8594 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8599:
+                                                                                                                                                                                                                                                            string("true; v8932 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8937:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8594 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8601 =
+                                                                                                                                                                                                                                                            true; v8932 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8939 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        let v8603:
+                                                                                                                                                                                                                                                        let v8941:
                                                                                                                                                                                                                                                                 std::pin::Pin<Box<dyn std::future::Future<Output = u8>>> =
-                                                                                                                                                                                                                                                            v8601;
-                                                                                                                                                                                                                                                        let v8606:
+                                                                                                                                                                                                                                                            v8939;
+                                                                                                                                                                                                                                                        let v8944:
                                                                                                                                                                                                                                                                 Spiral_wasm::US7 =
-                                                                                                                                                                                                                                                            Spiral_wasm::method47(v8603.await);
-                                                                                                                                                                                                                                                        let v8608:
+                                                                                                                                                                                                                                                            Spiral_wasm::method47(v8941.await);
+                                                                                                                                                                                                                                                        let v8946:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            string("true; v8606 });  // rust.fix_closure\'");
-                                                                                                                                                                                                                                                        let v8609:
+                                                                                                                                                                                                                                                            string("true; v8944 });  // rust.fix_closure\'");
+                                                                                                                                                                                                                                                        let v8947:
                                                                                                                                                                                                                                                                 bool =
-                                                                                                                                                                                                                                                            true; v8606 });  // rust.fix_closure';
-                                                                                                                                                                                                                                                        let v8611 =
+                                                                                                                                                                                                                                                            true; v8944 });  // rust.fix_closure';
+                                                                                                                                                                                                                                                        let v8949 =
                                                                                                                                                                                                                                                             __future_init;
-                                                                                                                                                                                                                                                        v8611
+                                                                                                                                                                                                                                                        v8949
                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                             }
@@ -11506,27 +11507,27 @@ mod module_fb49c4a9 {
                             }
                         }
                     };
-                let v8673: Spiral_wasm::US7 = v8671.await;
-                let v8676: () = {
-                    Spiral_wasm::closure87(v8673.clone(), ());
+                let v9011: Spiral_wasm::US7 = v9009.await;
+                let v9014: () = {
+                    Spiral_wasm::closure87(v9011.clone(), ());
                     ()
                 };
-                let v8798: Result<u8, anyhow::Error> = Spiral_wasm::method83(match &v8673 {
-                    Spiral_wasm::US7::US7_0(v8673_0_0) => {
-                        Ok::<u8, anyhow::Error>(v8673_0_0.clone())
+                let v9147: Result<u8, anyhow::Error> = Spiral_wasm::method83(match &v9011 {
+                    Spiral_wasm::US7::US7_0(v9011_0_0) => {
+                        Ok::<u8, anyhow::Error>(v9011_0_0.clone())
                     }
-                    Spiral_wasm::US7::US7_1(v8673_1_0) => {
-                        let v8791: string = Spiral_wasm::method82(v8673_1_0.clone());
-                        let v8793: anyhow::Error = anyhow::anyhow!(v8791);
-                        Err(v8793)
+                    Spiral_wasm::US7::US7_1(v9011_1_0) => {
+                        let v9129: string = Spiral_wasm::method82(v9011_1_0.clone());
+                        let v9131: anyhow::Error = anyhow::anyhow!(v9129);
+                        Err(v9131)
                     }
                 });
-                let v8802: string = string("true; v8798 });  // rust.fix_closure\'");
-                let v8803: bool = true;
-                v8798
+                let v9151: string = string("true; v9147 });  // rust.fix_closure\'");
+                let v9152: bool = true;
+                v9147
             }); // rust.fix_closure';
-            let v8805 = __future_init;
-            v8805
+            let v9154 = __future_init;
+            v9154
         }
         pub fn closure88(unitVar: (), v0_1: u8) -> Spiral_wasm::US8 {
             Spiral_wasm::US8::US8_0(v0_1)
@@ -11538,79 +11539,79 @@ mod module_fb49c4a9 {
             let v1: clap::Command = Spiral_wasm::method0();
             let v3: clap::ArgMatches = clap::Command::get_matches(v1);
             let v4: string = Spiral_wasm::method1();
-            let v6: &str = &*v4;
-            let v8: Option<std::string::String> =
-                clap::ArgMatches::get_one(&v3.clone(), v6).cloned();
-            let v22: Spiral_wasm::US0 =
-                defaultValue(Spiral_wasm::US0::US0_1, map(Spiral_wasm::method2(), v8));
-            let v78: Spiral_wasm::US1 = match &v22 {
-                Spiral_wasm::US0::US0_0(v22_0_0) => {
-                    let v28: string = fable_library_rust::String_::fromString(match &v22 {
+            let v7: &str = &*v4;
+            let v27: Option<std::string::String> =
+                clap::ArgMatches::get_one(&v3.clone(), v7).cloned();
+            let v41: Spiral_wasm::US0 =
+                defaultValue(Spiral_wasm::US0::US0_1, map(Spiral_wasm::method2(), v27));
+            let v97: Spiral_wasm::US1 = match &v41 {
+                Spiral_wasm::US0::US0_0(v41_0_0) => {
+                    let v47: string = fable_library_rust::String_::fromString(match &v41 {
                         Spiral_wasm::US0::US0_0(x) => x.clone(),
                         _ => unreachable!(),
                     });
-                    let v33: Spiral_wasm::US2 = if string("Verbose") == v28.clone() {
+                    let v52: Spiral_wasm::US2 = if string("Verbose") == v47.clone() {
                         Spiral_wasm::US2::US2_0(Spiral_wasm::US3::US3_0)
                     } else {
                         Spiral_wasm::US2::US2_1
                     };
-                    Spiral_wasm::US1::US1_0(match &v33 {
-                        Spiral_wasm::US2::US2_0(v33_0_0) => Spiral_wasm::US2::US2_0(match &v33 {
+                    Spiral_wasm::US1::US1_0(match &v52 {
+                        Spiral_wasm::US2::US2_0(v52_0_0) => Spiral_wasm::US2::US2_0(match &v52 {
                             Spiral_wasm::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v40: Spiral_wasm::US2 = if string("Debug") == v28.clone() {
+                            let v59: Spiral_wasm::US2 = if string("Debug") == v47.clone() {
                                 Spiral_wasm::US2::US2_0(Spiral_wasm::US3::US3_1)
                             } else {
                                 Spiral_wasm::US2::US2_1
                             };
-                            match &v40 {
-                                Spiral_wasm::US2::US2_0(v40_0_0) => {
-                                    Spiral_wasm::US2::US2_0(match &v40 {
+                            match &v59 {
+                                Spiral_wasm::US2::US2_0(v59_0_0) => {
+                                    Spiral_wasm::US2::US2_0(match &v59 {
                                         Spiral_wasm::US2::US2_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v47: Spiral_wasm::US2 = if string("Info") == v28.clone() {
+                                    let v66: Spiral_wasm::US2 = if string("Info") == v47.clone() {
                                         Spiral_wasm::US2::US2_0(Spiral_wasm::US3::US3_2)
                                     } else {
                                         Spiral_wasm::US2::US2_1
                                     };
-                                    match &v47 {
-                                        Spiral_wasm::US2::US2_0(v47_0_0) => {
-                                            Spiral_wasm::US2::US2_0(match &v47 {
+                                    match &v66 {
+                                        Spiral_wasm::US2::US2_0(v66_0_0) => {
+                                            Spiral_wasm::US2::US2_0(match &v66 {
                                                 Spiral_wasm::US2::US2_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v54: Spiral_wasm::US2 =
-                                                if string("Warning") == v28.clone() {
+                                            let v73: Spiral_wasm::US2 =
+                                                if string("Warning") == v47.clone() {
                                                     Spiral_wasm::US2::US2_0(Spiral_wasm::US3::US3_3)
                                                 } else {
                                                     Spiral_wasm::US2::US2_1
                                                 };
-                                            match &v54 {
-                                                Spiral_wasm::US2::US2_0(v54_0_0) => {
-                                                    Spiral_wasm::US2::US2_0(match &v54 {
+                                            match &v73 {
+                                                Spiral_wasm::US2::US2_0(v73_0_0) => {
+                                                    Spiral_wasm::US2::US2_0(match &v73 {
                                                         Spiral_wasm::US2::US2_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v61: Spiral_wasm::US2 =
-                                                        if string("Critical") == v28.clone() {
+                                                    let v80: Spiral_wasm::US2 =
+                                                        if string("Critical") == v47.clone() {
                                                             Spiral_wasm::US2::US2_0(
                                                                 Spiral_wasm::US3::US3_4,
                                                             )
                                                         } else {
                                                             Spiral_wasm::US2::US2_1
                                                         };
-                                                    match &v61 {
-                                                        Spiral_wasm::US2::US2_0(v61_0_0) => {
-                                                            Spiral_wasm::US2::US2_0(match &v61 {
+                                                    match &v80 {
+                                                        Spiral_wasm::US2::US2_0(v80_0_0) => {
+                                                            Spiral_wasm::US2::US2_0(match &v80 {
                                                                 Spiral_wasm::US2::US2_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -11630,13 +11631,13 @@ mod module_fb49c4a9 {
                 }
                 _ => Spiral_wasm::US1::US1_1,
             };
-            let v85: Spiral_wasm::US2 = if let Spiral_wasm::US1::US1_0(v78_0_0) = &v78 {
-                let v79: Spiral_wasm::US2 = match &v78 {
+            let v104: Spiral_wasm::US2 = if let Spiral_wasm::US1::US1_0(v97_0_0) = &v97 {
+                let v98: Spiral_wasm::US2 = match &v97 {
                     Spiral_wasm::US1::US1_0(x) => x.clone(),
                     _ => unreachable!(),
                 };
-                if let Spiral_wasm::US2::US2_0(v79_0_0) = &v79 {
-                    Spiral_wasm::US2::US2_0(match &v79 {
+                if let Spiral_wasm::US2::US2_0(v98_0_0) = &v98 {
+                    Spiral_wasm::US2::US2_0(match &v98 {
                         Spiral_wasm::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     })
@@ -11646,10 +11647,10 @@ mod module_fb49c4a9 {
             } else {
                 Spiral_wasm::US2::US2_1
             };
-            let v92: () = {
+            let v111: () = {
                 Spiral_wasm::closure2(
-                    match &v85 {
-                        Spiral_wasm::US2::US2_0(v85_0_0) => match &v85 {
+                    match &v104 {
+                        Spiral_wasm::US2::US2_0(v104_0_0) => match &v104 {
                             Spiral_wasm::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -11667,40 +11668,41 @@ mod module_fb49c4a9 {
                 LrcPtr<Spiral_wasm::Mut4>,
                 Option<i64>,
             ) = getValue(Spiral_wasm::TraceState::trace_state().get().clone());
-            let v124: () = {
+            let v143: () = {
                 Spiral_wasm::closure5(v0_1, ());
                 ()
             };
-            let v240: string = Spiral_wasm::method19();
-            let v242: &str = &*v240;
-            let v244: bool = clap::ArgMatches::get_flag(&v3, v242);
-            let v245: std::pin::Pin<
+            let v259: string = Spiral_wasm::method19();
+            let v262: &str = &*v259;
+            let v282: bool = clap::ArgMatches::get_flag(&v3.clone(), v262);
+            let v283: std::pin::Pin<
                 Box<dyn std::future::Future<Output = Result<u8, anyhow::Error>>>,
             > = Spiral_wasm::method20(v3);
-            let v247 = tokio::runtime::Builder::new_multi_thread()
+            let v285 = tokio::runtime::Builder::new_multi_thread()
                 .enable_all()
                 .build()
                 .unwrap();
-            let v249: Result<u8, anyhow::Error> = v247.handle().block_on(v245);
-            let v250 = Spiral_wasm::method42();
-            let v252: Result<u8, std::string::String> = v249.map_err(|x| v250(x));
-            let v254: Option<u8> = v252.clone().ok();
-            let v268: Spiral_wasm::US8 =
-                defaultValue(Spiral_wasm::US8::US8_1, map(Spiral_wasm::method84(), v254));
-            match &v268 {
-                Spiral_wasm::US8::US8_0(v268_0_0) => {
-                    if v244 {
-                        let v275: Result<(), string> =
+            let v287: Result<u8, anyhow::Error> = v285.handle().block_on(v283);
+            let v288 = Spiral_wasm::method42();
+            let v299: Result<u8, std::string::String> = v287.map_err(|x| v288(x));
+            let v304: Option<u8> = v299.clone().ok();
+            let v328: Spiral_wasm::US8 =
+                defaultValue(Spiral_wasm::US8::US8_1, map(Spiral_wasm::method84(), v304));
+            match &v328 {
+                Spiral_wasm::US8::US8_0(v328_0_0) => {
+                    if v282 {
+                        let v336: Result<(), string> =
                             Err(string("spiral_wasm.main / exception=true"));
-                        v275.unwrap();
+                        v336.unwrap();
+                        ();
                         ()
                     }
                 }
                 _ => {
-                    if v244 {
+                    if v282 {
                         ()
                     } else {
-                        let v278: u8 = v252.unwrap();
+                        let v353: u8 = v299.unwrap();
                         ()
                     }
                 }

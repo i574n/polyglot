@@ -291,8 +291,8 @@ pub mod Trace {
                 Trace::US3::US3_1
             },
         );
-        let v295: Trace::US3 = _v1.1.clone();
-        let v294: Trace::US2 = _v1.0.clone();
+        let v352: Trace::US3 = _v1.1.clone();
+        let v351: Trace::US2 = _v1.0.clone();
         (
             LrcPtr::new(Trace::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -307,16 +307,16 @@ pub mod Trace {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Trace::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Trace::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Trace::US2::US2_0(v351_0_0) => match &v351 {
                         Trace::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Trace::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Trace::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Trace::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -500,10 +500,10 @@ pub mod Trace {
             Trace::US0::US0_3 => inline_colorization::color_yellow,
             _ => inline_colorization::color_bright_red,
         };
-        let v86: &str = &*v55;
-        let v88: &str = inline_colorization::color_reset;
-        let v90: std::string::String = format!("{}{}{}", v84, v86, v88);
-        fable_library_rust::String_::fromString(v90)
+        let v87: &str = &*v55;
+        let v107: &str = inline_colorization::color_reset;
+        let v109: std::string::String = format!("{}{}{}", v84, v87, v107);
+        fable_library_rust::String_::fromString(v109)
     }
     pub fn method13() -> string {
         string("")

@@ -263,8 +263,8 @@ pub mod Common {
         Option<i64>,
     ) {
         let _v1: (Common::US2, Common::US3) = (Common::US2::US2_1, Common::US3::US3_1);
-        let v295: Common::US3 = _v1.1.clone();
-        let v294: Common::US2 = _v1.0.clone();
+        let v352: Common::US3 = _v1.1.clone();
+        let v351: Common::US2 = _v1.0.clone();
         (
             LrcPtr::new(Common::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -279,16 +279,16 @@ pub mod Common {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Common::Mut4 {
-                l0: MutCell::new(match &v294 {
-                    Common::US2::US2_0(v294_0_0) => match &v294 {
+                l0: MutCell::new(match &v351 {
+                    Common::US2::US2_0(v351_0_0) => match &v351 {
                         Common::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v295 {
-                Common::US3::US3_0(v295_0_0) => Some(match &v295 {
+            match &v352 {
+                Common::US3::US3_0(v352_0_0) => Some(match &v352 {
                     Common::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -396,11 +396,11 @@ pub mod Common {
     }
     pub fn method13() -> string {
         let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-        let v31: &str = inline_colorization::color_yellow;
-        let v33: &str = &*v5;
-        let v35: &str = inline_colorization::color_reset;
-        let v37: std::string::String = format!("{}{}{}", v31, v33, v35);
-        fable_library_rust::String_::fromString(v37)
+        let v50: &str = inline_colorization::color_yellow;
+        let v55: &str = &*v5;
+        let v73: &str = inline_colorization::color_reset;
+        let v75: std::string::String = format!("{}{}{}", v50, v55, v73);
+        fable_library_rust::String_::fromString(v75)
     }
     pub fn method16() -> string {
         string("")

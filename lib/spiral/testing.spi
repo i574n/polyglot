@@ -95,12 +95,12 @@ inl rec __assert_le trace b a =
 inl _assert_le b a =
     __assert_le Console b a
 
-/// ### __assert_string_contains
-inl rec __assert_string_contains trace b a =
-    __expect sm'.contains trace (reflection.nameof { __assert_string_contains }) a b
+/// ### __assert
+inl rec __assert fn trace b a =
+    __expect fn trace (reflection.nameof { __assert }) a b
 
-inl _assert_string_contains b a =
-    __assert_string_contains Console b a
+inl _assert fn b a =
+    __assert fn Console b a
 
 /// ### __assert_between
 inl rec __assert_between trace a b actual =

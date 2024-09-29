@@ -14,7 +14,7 @@ inl into_iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 
 /// ### iter
 inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
-    !\($'"!x.iter()"')
+    !\\(x, $'"$0.iter()"')
 
 /// ### map
 inl map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator u =

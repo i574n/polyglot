@@ -7604,7 +7604,7 @@ a.anchor-link {
         <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
             <span class="n">Fsharp</span> <span class="o">=</span>
                 <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_String = class end"</span>
+                    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">type std_string_String = class end</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type std_string_String = string</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
                 <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
         <span class="p">}</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_string_String'</span>
@@ -9605,7 +9605,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type Str = class end"</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">type Str = class end</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type Str = string</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'Str'</span>
     <span class="p">)</span>
 </pre></div>
@@ -10161,7 +10161,9 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="o">//</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="p">)</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;*$0"'</span><span class="p">)</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;*$0"'</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
 </div>
@@ -10213,7 +10215,9 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ref_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from($0)"'</span><span class="p">)</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">str</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">str</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from($0)"'</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">str</span> <span class="o">=&gt;</span> <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
 </div>
@@ -10794,7 +10798,8 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">regex_captures_iter</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' std_string)) (regex : regex) : regex_capture_matches =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"!regex.captures_iter(!s)"'</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">regex</span> <span class="o">=</span> <span class="n">regex</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.captures_iter(!s)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10984,7 +10989,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">deserialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">json</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t std_string =</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">join</span> <span class="n">json</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span> <span class="o">|&gt;</span> <span class="n">as_str</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::from_str(&amp;!json)"'</span><span class="p">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"serde_json::from_str(&amp;$0)"'</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : json_error) =&gt; x |&gt; format'</span>
 </pre></div>
 </div>

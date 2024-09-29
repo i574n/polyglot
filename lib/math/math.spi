@@ -145,7 +145,7 @@ nominal pyerr =
 inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
     inl py = join py
     inl code = code |> sm'.as_str
-    !\($'"pyo3::types::PyModule::from_code_bound(!py, !code, \\"\\", \\"\\")"')
+    !\\(code, $'"pyo3::types::PyModule::from_code_bound(!py, $0, \\"\\", \\"\\")"')
     |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl use_pyanymethods () =
@@ -156,7 +156,7 @@ inl getattr (attr : string) (module : bound pymodule) : _ (bound pyany) _ =
     inl attr = attr |> sm'.as_str
     inl module = join module
     use_pyanymethods ()
-    !\($'"!module.getattr(!attr)"')
+    !\\(attr, $'"!module.getattr($0)"')
     |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl call forall t. (args : t) (module : bound pyany) : _ (bound pyany) _ =

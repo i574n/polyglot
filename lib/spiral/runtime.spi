@@ -110,7 +110,7 @@ inl process_child_stderr
     (child : rust.ref (rust.mut' process_child))
     : rust.ref (rust.mut' (optionm'.option' process_child_stderr))
     =
-    !\($'"&mut !child.stderr"')
+    !\\(child, $'"&mut $0.stderr"')
 
 /// ### process_child_stdout
 nominal process_child_stdout =
@@ -123,7 +123,7 @@ inl process_child_stdout
     (child : rust.ref (rust.mut' process_child))
     : rust.ref (rust.mut' (optionm'.option' process_child_stdout))
     =
-    !\($'"&mut !child.stdout"')
+    !\\(child, $'"&mut $0.stdout"')
 
 /// ### process_command
 nominal process_command =
@@ -483,19 +483,19 @@ inl command_init_arg (long, short) fn command =
 inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
+    !\\((matches, x), $'"clap::ArgMatches::get_one(&$0, $1).cloned()"')
 
 /// ### matches_get_flag
 inl matches_get_flag (x : string) (matches : arg_matches) : bool =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
+    !\\((matches, x), $'"clap::ArgMatches::get_flag(&$0, $1)"')
 
 /// ### matches_get_many
 inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
+    !\\((matches, x), $'"clap::ArgMatches::get_many(&$0, $1).map(|x| x.cloned().into_iter().collect())"')
 
 /// ### matches_get_occurrences
 inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.option' (array_base sm'.std_string) =

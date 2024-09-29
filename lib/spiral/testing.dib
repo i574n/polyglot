@@ -183,15 +183,15 @@ inl _assert_le b a =
 
 #!markdown
 
-### __assert_string_contains
+### __assert
 
 #!spiral
 
-inl rec __assert_string_contains trace b a =
-    __expect sm'.contains trace (reflection.nameof { __assert_string_contains }) a b
+inl rec __assert fn trace b a =
+    __expect fn trace (reflection.nameof { __assert }) a b
 
-inl _assert_string_contains b a =
-    __assert_string_contains Console b a
+inl _assert fn b a =
+    __assert fn Console b a
 
 #!markdown
 

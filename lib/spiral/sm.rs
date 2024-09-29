@@ -140,11 +140,11 @@ pub mod Sm {
     }
     pub fn closure15(v0_1: string, v1_1: string, v2_1: string) -> string {
         let v5_1: Result<regex::Regex, regex::Error> = regex::Regex::new(&v0_1);
-        let v7_1: regex::Regex = v5_1.unwrap();
-        let v8_1: string = Sm::method0(v2_1);
-        let v10_1: std::borrow::Cow<str> = v7_1.replace_all(&*v8_1, &*v1_1);
-        let v12_1: std::string::String = String::from(v10_1);
-        fable_library_rust::String_::fromString(v12_1)
+        let v8_1: regex::Regex = v5_1.unwrap();
+        let v19_1: string = Sm::method0(v2_1);
+        let v21_1: std::borrow::Cow<str> = v8_1.replace_all(&*v19_1, &*v1_1);
+        let v23: std::string::String = String::from(v21_1);
+        fable_library_rust::String_::fromString(v23)
     }
     pub fn closure14(v0_1: string, v1_1: string) -> Func1<string, string> {
         Func1::new({

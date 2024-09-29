@@ -10,7 +10,7 @@ from fable_modules.fable_library.time_span import (hours, to_string as to_string
 from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
-def _expr98() -> TypeInfo:
+def _expr102() -> TypeInfo:
     return union_type("Date_time.US0", [], US0, lambda: [[("f0_0", class_type("Date_time.chrono_DateTime`1", [class_type("Date_time.chrono_Utc")]))], []])
 
 
@@ -26,9 +26,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr98
+US0_reflection = _expr102
 
-def _expr99() -> TypeInfo:
+def _expr103() -> TypeInfo:
     return union_type("Date_time.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -44,9 +44,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr99
+US1_reflection = _expr103
 
-def _expr102() -> TypeInfo:
+def _expr104() -> TypeInfo:
     return union_type("Date_time.US2", [], US2, lambda: [[], [], []])
 
 
@@ -62,7 +62,7 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr102
+US2_reflection = _expr104
 
 def _expr105() -> TypeInfo:
     return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())], [("f4_0", US2_reflection())]])

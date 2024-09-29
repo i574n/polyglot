@@ -46,7 +46,7 @@ inl into_iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 #!spiral
 
 inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
-    !\($'"!x.iter()"')
+    !\\(x, $'"$0.iter()"')
 
 #!markdown
 
