@@ -73,7 +73,34 @@ inl new_lookup_map prefix =
 #!spiral
 
 inl new_vector prefix =
-    !\($'"near_sdk::store::vec::Vector::new(!prefix)"')
+    !\\(prefix, $'"near_sdk::store::vec::Vector::new($0)"')
+
+#!markdown
+
+### vector_extend
+
+#!spiral
+
+inl vector_extend forall t. (vec : am'.vec t) (vector : rust.ref (rust.mut' (vector t))) : () =
+    (!\\(vec, $'"true; !vector.extend($0); //"') : bool) |> ignore
+
+#!markdown
+
+### vector_to_vec
+
+#!spiral
+
+inl vector_to_vec forall (t : * -> *) u. (vector : t (vector u)) : am'.vec u =
+    !\($'$"!vector.iter().map(|x| *x).collect::<Vec<_>>()"')
+
+#!markdown
+
+### keccak512
+
+#!spiral
+
+inl keccak512 (entropy : am'.vec u8) : am'.vec u8 =
+    !\\(entropy, $'$"near_sdk::env::keccak512(&$0)"')
 
 #!markdown
 

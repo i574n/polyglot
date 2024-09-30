@@ -81,6 +81,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
                 inl result =
                     contract
                     |> near_workspaces.call "state_main"
+                    |> near_workspaces.gas (near_workspaces.from_tgas 300)
                     |> near_workspaces.transact
                     |> async.await
                     |> resultm.try'
