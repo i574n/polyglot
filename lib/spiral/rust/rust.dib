@@ -431,6 +431,15 @@ inl unwrap_0_ref forall (t : * -> *) u. (x : ref (t u)) : ref u =
 
 #!markdown
 
+### len
+
+#!spiral
+
+inl len forall t u {uint; int}. (x : t) : u =
+    !\($'$"!x.len()"')
+
+#!markdown
+
 ### emit
 
 #!spiral
@@ -626,6 +635,7 @@ inl to_ref forall t. (x : t) : ref t =
 #!spiral
 
 inl to_ref_mut forall t. (x : t) : ref (mut' t) =
+    x |> to_mut
     !\\(x, $'"&mut $0"')
 
 #!markdown
@@ -645,6 +655,15 @@ inl deref forall t. (ref : ref t) : t =
 
 inl from_ref forall t. (ref : ref t) : t =
     !\($'"!ref"')
+
+#!markdown
+
+### reref
+
+#!spiral
+
+inl reref forall t (u : * -> *). (x : ref (u t)) : ref t =
+    !\($'$"&*!x"')
 
 #!markdown
 

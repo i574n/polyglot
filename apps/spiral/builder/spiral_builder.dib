@@ -883,8 +883,9 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                             | Some (Wasm cmd) => cmd
                             | Some (Contract cmd) => cmd
                             | _ => ""
-                        $'$"\'workspace/target/release/spiral_wasm -t Debug -w {!wasm_path} {!runtime_cmd}\'"'
-                    $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm_command} -Linux -EnvironmentVariables NEAR_RPC_TIMEOUT_SECS=100\\\""'
+                        $'$"\'workspace/target/release/spiral_wasm -w {!wasm_path} -t Debug {!runtime_cmd}\'"'
+                    inl automation = "AUTOMATION" |> env.get_environment_variable
+                    $'$"pwsh -c \\\"pwsh {!invoke_block_path} {!spiral_wasm_command} -Linux -EnvironmentVariables AUTOMATION={!automation}\`nNEAR_RPC_TIMEOUT_SECS=100\\\""'
 
                 if exit_code = 0 then
                     inl exit_code, spiral_wasm_result =

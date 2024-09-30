@@ -392,6 +392,15 @@ inl from_vec forall dim el. (vec : vec el) : a dim el =
 
 #!markdown
 
+### from_vec_base
+
+#!spiral
+
+inl from_vec_base forall el. (vec : vec el) : array_base el =
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
+
+#!markdown
+
 ### to_vec
 
 #!spiral
@@ -854,6 +863,15 @@ inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
 #!spiral
 
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
+    $'!items |> Array.toList'
+
+#!markdown
+
+### to_list_base'
+
+#!spiral
+
+inl to_list_base' forall t. (items : array_base t) : listm'.list' t =
     $'!items |> Array.toList'
 
 #!spiral

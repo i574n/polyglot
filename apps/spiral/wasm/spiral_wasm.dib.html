@@ -7674,6 +7674,7 @@ a.anchor-link {
                 <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
                     <span class="n">contract</span>
                     <span class="o">|&gt;</span> <span class="n">near_workspaces</span><span class="o">.</span><span class="n">call</span> <span class="s2">"state_main"</span>
+                    <span class="o">|&gt;</span> <span class="n">near_workspaces</span><span class="o">.</span><span class="n">gas</span> <span class="p">(</span><span class="n">near_workspaces</span><span class="o">.</span><span class="n">from_tgas</span> <span class="mi">300</span><span class="p">)</span>
                     <span class="o">|&gt;</span> <span class="n">near_workspaces</span><span class="o">.</span><span class="n">transact</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
                     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="k">try</span><span class="s1">'</span>

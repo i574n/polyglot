@@ -238,6 +238,10 @@ inl unwrap_0 forall (t : * -> *) u. (x : t u) : u =
 inl unwrap_0_ref forall (t : * -> *) u. (x : ref (t u)) : ref u =
     !\\(x, $'"&$0.0"')
 
+/// ### len
+inl len forall t u {uint; int}. (x : t) : u =
+    !\($'$"!x.len()"')
+
 /// ### emit
 inl emit forall t. (x : t) : t =
     !\\(x, $'"$0"')
@@ -330,6 +334,7 @@ inl to_ref forall t. (x : t) : ref t =
 
 /// ### to_ref_mut
 inl to_ref_mut forall t. (x : t) : ref (mut' t) =
+    x |> to_mut
     !\\(x, $'"&mut $0"')
 
 /// ### deref
@@ -339,6 +344,10 @@ inl deref forall t. (ref : ref t) : t =
 /// ### from_ref
 inl from_ref forall t. (ref : ref t) : t =
     !\($'"!ref"')
+
+/// ### reref
+inl reref forall t (u : * -> *). (x : ref (u t)) : ref t =
+    !\($'$"&*!x"')
 
 /// ### into
 inl into forall t u. (x : t) : u =

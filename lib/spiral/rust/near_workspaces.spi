@@ -104,13 +104,6 @@ inl dev_deploy
 inl call (fn_name : string) (contract : contract) : call_transaction =
     !\\((contract, fn_name), $'"$0.call(&*$1)"')
 
-/// ### transact
-inl transact
-    (call : call_transaction)
-    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
-    =
-    !\($'"Box::pin(!call.transact())"')
-
 /// ### logs
 inl logs (result : execution_final_result) : am'.vec (rust.ref sm'.str) =
     !\($'"!result.logs()"')
@@ -166,12 +159,34 @@ inl gas_burnt (outcome : execution_outcome) : gas =
 inl tokens_burnt (outcome : execution_outcome) : near_token_workspaces =
     !\\(outcome, $'"$0.tokens_burnt"')
 
+/// ### transact
+inl transact
+    (call : call_transaction)
+    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
+    =
+    !\($'"Box::pin(!call.transact())"')
+
+/// ### gas
+inl gas
+    (gas : gas)
+    (call : call_transaction)
+    : call_transaction
+    =
+    !\($'"!call.gas(!gas)"')
+
+/// ### from_tgas
+inl from_tgas
+    (tgas : i32)
+    : gas
+    =
+    !\($'"near_workspaces::types::Gas::from_tgas(!tgas)"')
+
 /// ### print_usd
 inl print_usd retry (result : execution_final_result) =
     inl total_gas_burnt = result |> total_gas_burnt |> as_gas
     inl total_gas_burnt_usd = total_gas_burnt |> near.gas_to_usd
 
-    trace Debug
+    trace Info
         fun () => "near_workspaces.print_usd"
         fun () => { retry total_gas_burnt_usd total_gas_burnt }
 
@@ -188,6 +203,6 @@ inl print_usd retry (result : execution_final_result) =
         inl tokens_burnt = outcome |> tokens_burnt |> near.as_yoctonear
         inl tokens_burnt_usd = tokens_burnt |> near.tokens_to_usd
 
-        trace Debug
+        trace Info
             fun () => "near_workspaces.print_usd / outcome"
             fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }

@@ -198,18 +198,6 @@ inl call (fn_name : string) (contract : contract) : call_transaction =
 
 #!markdown
 
-### transact
-
-#!spiral
-
-inl transact
-    (call : call_transaction)
-    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
-    =
-    !\($'"Box::pin(!call.transact())"')
-
-#!markdown
-
 ### logs
 
 #!spiral
@@ -325,6 +313,43 @@ inl tokens_burnt (outcome : execution_outcome) : near_token_workspaces =
 
 #!markdown
 
+### transact
+
+#!spiral
+
+inl transact
+    (call : call_transaction)
+    : async.future_pin (resultm.result' execution_final_result near_workspaces_error)
+    =
+    !\($'"Box::pin(!call.transact())"')
+
+#!markdown
+
+### gas
+
+#!spiral
+
+inl gas
+    (gas : gas)
+    (call : call_transaction)
+    : call_transaction
+    =
+    !\($'"!call.gas(!gas)"')
+
+#!markdown
+
+### from_tgas
+
+#!spiral
+
+inl from_tgas
+    (tgas : i32)
+    : gas
+    =
+    !\($'"near_workspaces::types::Gas::from_tgas(!tgas)"')
+
+#!markdown
+
 ### print_usd
 
 #!spiral
@@ -333,7 +358,7 @@ inl print_usd retry (result : execution_final_result) =
     inl total_gas_burnt = result |> total_gas_burnt |> as_gas
     inl total_gas_burnt_usd = total_gas_burnt |> near.gas_to_usd
 
-    trace Debug
+    trace Info
         fun () => "near_workspaces.print_usd"
         fun () => { retry total_gas_burnt_usd total_gas_burnt }
 
@@ -350,6 +375,6 @@ inl print_usd retry (result : execution_final_result) =
         inl tokens_burnt = outcome |> tokens_burnt |> near.as_yoctonear
         inl tokens_burnt_usd = tokens_burnt |> near.tokens_to_usd
 
-        trace Debug
+        trace Info
             fun () => "near_workspaces.print_usd / outcome"
             fun () => { is_success gas_burnt_usd tokens_burnt_usd gas_burnt tokens_burnt }

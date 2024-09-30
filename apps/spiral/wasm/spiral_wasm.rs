@@ -1260,8 +1260,8 @@ mod module_fb49c4a9 {
             ()
         }
         pub fn method28() -> string {
-            let v5: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-            let v21: &str = inline_colorization::color_bright_blue;
+            let v5: string = padLeft(toLower(string("Info")), 7_i32, ' ');
+            let v21: &str = inline_colorization::color_bright_green;
             let v24: &str = &*v5;
             let v44: &str = inline_colorization::color_reset;
             let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
@@ -1365,7 +1365,7 @@ mod module_fb49c4a9 {
             if if (patternInput.2.clone()).l0.get().clone() == false {
                 false
             } else {
-                1_i32
+                2_i32
                     >= find(
                         v37,
                         ofSeq(ofList(ofArray(new_array(&[
@@ -1568,7 +1568,7 @@ mod module_fb49c4a9 {
             if if (patternInput.2.clone()).l0.get().clone() == false {
                 false
             } else {
-                1_i32
+                2_i32
                     >= find(
                         v39,
                         ofSeq(ofList(ofArray(new_array(&[
@@ -2401,7 +2401,9 @@ mod module_fb49c4a9 {
                 };
                 let v244: near_workspaces::operations::CallTransaction =
                     v127.call(&*string("state_main"));
-                let v246: std::pin::Pin<
+                let v246: near_workspaces::types::Gas = near_workspaces::types::Gas::from_tgas(300);
+                let v248: near_workspaces::operations::CallTransaction = v244.gas(v246);
+                let v250: std::pin::Pin<
                     Box<
                         dyn std::future::Future<
                             Output = Result<
@@ -2410,105 +2412,105 @@ mod module_fb49c4a9 {
                             >,
                         >,
                     >,
-                > = Box::pin(v244.transact());
-                let v248: Result<
+                > = Box::pin(v248.transact());
+                let v252: Result<
                     near_workspaces::result::ExecutionFinalResult,
                     near_workspaces::error::Error,
-                > = v246.await;
-                let v250: near_workspaces::result::ExecutionFinalResult = v248?;
-                let v253: () = {
-                    Spiral_wasm::closure15(v1, v250.clone(), ());
+                > = v250.await;
+                let v254: near_workspaces::result::ExecutionFinalResult = v252?;
+                let v257: () = {
+                    Spiral_wasm::closure15(v1, v254.clone(), ());
                     ()
                 };
-                let v366: Vec<&str> = v250.logs();
-                let v368: bool = true;
-                let _vec_map: Vec<_> = v366
+                let v370: Vec<&str> = v254.logs();
+                let v372: bool = true;
+                let _vec_map: Vec<_> = v370
                     .into_iter()
                     .map(|x| {
                         //;
-                        let v370: &str = x;
-                        let v373: std::string::String = String::from(v370);
-                        let v393: bool = true;
-                        v373
+                        let v374: &str = x;
+                        let v377: std::string::String = String::from(v374);
+                        let v397: bool = true;
+                        v377
                     })
                     .collect::<Vec<_>>();
-                let v395: Vec<std::string::String> = _vec_map;
-                let v398: bool = true;
-                v395.iter().for_each(|x| {
+                let v399: Vec<std::string::String> = _vec_map;
+                let v402: bool = true;
+                v399.iter().for_each(|x| {
                     Func1::new(move |v: std::string::String| Spiral_wasm::closure16((), v))(
                         x.clone(),
                     );
                 }); //;
-                let v400: near_workspaces::types::Gas = v250.clone().total_gas_burnt;
-                let v402: u64 = v400.as_gas();
-                let v409: () = {
+                let v404: near_workspaces::types::Gas = v254.clone().total_gas_burnt;
+                let v406: u64 = v404.as_gas();
+                let v413: () = {
                     Spiral_wasm::closure18(
                         v1,
-                        v402,
-                        v402 as f64 / 10000000000000000.0_f64 * 6.68_f64,
+                        v406,
+                        v406 as f64 / 10000000000000000.0_f64 * 6.68_f64,
                         (),
                     );
                     ()
                 };
-                let v522: near_workspaces::result::ExecutionFinalResult = v250.clone();
-                let v524: Vec<&near_workspaces::result::ExecutionOutcome> = v522.outcomes();
-                let v526 = v524.into_iter();
-                let v528 = v526.cloned();
-                let v531: bool = true;
-                v528.for_each(|x| {
+                let v526: near_workspaces::result::ExecutionFinalResult = v254.clone();
+                let v528: Vec<&near_workspaces::result::ExecutionOutcome> = v526.outcomes();
+                let v530 = v528.into_iter();
+                let v532 = v530.cloned();
+                let v535: bool = true;
+                v532.for_each(|x| {
                     Func1::new(move |v_1: near_workspaces::result::ExecutionOutcome| {
                         Spiral_wasm::closure19((), v_1)
                     })(x)
                 });
-                let v536: () = {
-                    Spiral_wasm::closure21(v250.clone().into_result(), ());
+                let v540: () = {
+                    Spiral_wasm::closure21(v254.clone().into_result(), ());
                     ()
                 };
-                let v648: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method34(v250.clone());
-                let v650: Vec<&near_workspaces::result::ExecutionOutcome> = v648.receipt_failures();
-                let v654: i32 = v650.clone().len() as i32;
-                let v657: () = {
-                    Spiral_wasm::closure22(v650.clone(), v654, ());
+                let v652: near_workspaces::result::ExecutionFinalResult =
+                    Spiral_wasm::method34(v254.clone());
+                let v654: Vec<&near_workspaces::result::ExecutionOutcome> = v652.receipt_failures();
+                let v658: i32 = v654.clone().len() as i32;
+                let v661: () = {
+                    Spiral_wasm::closure22(v654.clone(), v658, ());
                     ()
                 };
-                let v769: near_workspaces::result::ExecutionFinalResult =
-                    Spiral_wasm::method36(v250.clone());
-                let v771: &[near_workspaces::result::ExecutionOutcome] = v769.receipt_outcomes();
-                let v773: Vec<near_workspaces::result::ExecutionOutcome> = v771.into();
-                let v777: i32 = v773.clone().len() as i32;
-                let v780: () = {
-                    Spiral_wasm::closure23(v773, v777, ());
+                let v773: near_workspaces::result::ExecutionFinalResult =
+                    Spiral_wasm::method36(v254.clone());
+                let v775: &[near_workspaces::result::ExecutionOutcome] = v773.receipt_outcomes();
+                let v777: Vec<near_workspaces::result::ExecutionOutcome> = v775.into();
+                let v781: i32 = v777.clone().len() as i32;
+                let v784: () = {
+                    Spiral_wasm::closure23(v777, v781, ());
                     ()
                 };
-                let v896: () = {
-                    Spiral_wasm::closure24(v250.clone().json(), ());
+                let v900: () = {
+                    Spiral_wasm::closure24(v254.clone().json(), ());
                     ()
                 };
-                let v1012: () = {
-                    Spiral_wasm::closure25(v250.borsh(), ());
+                let v1016: () = {
+                    Spiral_wasm::closure25(v254.borsh(), ());
                     ()
                 };
-                let v1124: string = Spiral_wasm::method40(v650, v777, v1);
-                let v1148: Result<Spiral_wasm::US4, anyhow::Error> =
-                    Spiral_wasm::method41(if v654 > 0_i32 {
+                let v1128: string = Spiral_wasm::method40(v654, v781, v1);
+                let v1152: Result<Spiral_wasm::US4, anyhow::Error> =
+                    Spiral_wasm::method41(if v658 > 0_i32 {
                         Ok::<Spiral_wasm::US4, anyhow::Error>(Spiral_wasm::US4::US4_0(
-                            v1124.clone(),
+                            v1128.clone(),
                         ))
                     } else {
-                        if v777 > 1_i32 {
+                        if v781 > 1_i32 {
                             Ok::<Spiral_wasm::US4, anyhow::Error>(Spiral_wasm::US4::US4_1)
                         } else {
-                            let v1132: anyhow::Error = anyhow::anyhow!(v1124);
-                            Err(v1132)
+                            let v1136: anyhow::Error = anyhow::anyhow!(v1128);
+                            Err(v1136)
                         }
                     });
-                let v1152: string = string("true; v1148 });  // rust.fix_closure\'");
-                let v1153: bool = true;
-                v1148
+                let v1156: string = string("true; v1152 });  // rust.fix_closure\'");
+                let v1157: bool = true;
+                v1152
             }); // rust.fix_closure';
-            let v1155 = __future_init;
-            v1155
+            let v1159 = __future_init;
+            v1159
         }
         pub fn closure26(unitVar: (), v0_1: anyhow::Error) -> std::string::String {
             format!("{}", v0_1)

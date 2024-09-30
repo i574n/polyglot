@@ -146,6 +146,10 @@ nominal vec t =
 inl from_vec forall dim el. (vec : vec el) : a dim el =
     !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
 
+/// ### from_vec_base
+inl from_vec_base forall el. (vec : vec el) : array_base el =
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
+
 /// ### to_vec
 inl to_vec forall t. (ab : array_base t) : vec t =
     !\\(ab, $'"$0.to_vec()"')
@@ -397,6 +401,10 @@ inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
 
 /// ### to_list'
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
+    $'!items |> Array.toList'
+
+/// ### to_list_base'
+inl to_list_base' forall t. (items : array_base t) : listm'.list' t =
     $'!items |> Array.toList'
 
 /// ### parallel_map
