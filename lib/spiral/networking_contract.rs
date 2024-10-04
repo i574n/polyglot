@@ -22,7 +22,7 @@ pub mod Networking {
     use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
-    use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
@@ -322,19 +322,57 @@ pub mod Networking {
             ()
         };
     }
+    pub fn method6(v0_1: Networking::US0) -> bool {
+        let v3: () = {
+            Networking::closure0((), ());
+            ()
+        };
+        let patternInput: (
+            LrcPtr<Networking::Mut0>,
+            LrcPtr<Networking::Mut1>,
+            LrcPtr<Networking::Mut2>,
+            LrcPtr<Networking::Mut3>,
+            LrcPtr<Networking::Mut4>,
+            Option<i64>,
+        ) = getValue(Networking::TraceState::trace_state().get().clone());
+        let v35: Networking::US0 = (patternInput.4.clone()).l0.get().clone();
+        if (patternInput.2.clone()).l0.get().clone() == false {
+            false
+        } else {
+            find(
+                v0_1,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((Networking::US0::US0_0, 0_i32)),
+                    LrcPtr::new((Networking::US0::US0_1, 1_i32)),
+                    LrcPtr::new((Networking::US0::US0_2, 2_i32)),
+                    LrcPtr::new((Networking::US0::US0_3, 3_i32)),
+                    LrcPtr::new((Networking::US0::US0_4, 4_i32)),
+                ])))),
+            ) >= find(
+                v35,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((Networking::US0::US0_0, 0_i32)),
+                    LrcPtr::new((Networking::US0::US0_1, 1_i32)),
+                    LrcPtr::new((Networking::US0::US0_2, 2_i32)),
+                    LrcPtr::new((Networking::US0::US0_3, 3_i32)),
+                    LrcPtr::new((Networking::US0::US0_4, 4_i32)),
+                ])))),
+            )
+        }
+    }
     pub fn closure6(unitVar: (), v0_1: i64) -> Networking::US3 {
         Networking::US3::US3_0(v0_1)
     }
-    pub fn method7() -> Func1<i64, Networking::US3> {
+    pub fn method8() -> Func1<i64, Networking::US3> {
         Func1::new(move |v: i64| Networking::closure6((), v))
     }
-    pub fn method8() -> string {
+    pub fn method9() -> string {
         string("hh:mm:ss")
     }
-    pub fn method9() -> string {
+    pub fn method10() -> string {
         string("HH:mm:ss")
     }
-    pub fn method6(
+    pub fn method7(
         v0_1: LrcPtr<Networking::Mut0>,
         v1_1: LrcPtr<Networking::Mut1>,
         v2_1: LrcPtr<Networking::Mut2>,
@@ -344,7 +382,7 @@ pub mod Networking {
     ) -> string {
         let v130: u64 = near_sdk::env::block_timestamp();
         let v144: Networking::US3 =
-            defaultValue(Networking::US3::US3_1, map(Networking::method7(), v5));
+            defaultValue(Networking::US3::US3_1, map(Networking::method8(), v5));
         let v154: u64 = match &v144 {
             Networking::US3::US3_0(v144_0_0) => {
                 v130 - match &v144 {
@@ -360,17 +398,6 @@ pub mod Networking {
         let v161: std::string::String = format!("{:02}:{:02}:{:02}", v159, v157, v155);
         fable_library_rust::String_::fromString(v161)
     }
-    pub fn method11() -> string {
-        string("\u{001b}[0m")
-    }
-    pub fn method10() -> string {
-        let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_bright_black;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
-    }
     pub fn method13() -> string {
         string("")
     }
@@ -379,7 +406,28 @@ pub mod Networking {
         v0_1.l0.set(v3);
         ()
     }
-    pub fn method12(v0_1: i32, v1_1: string) -> string {
+    pub fn method12(v0_1: char) -> string {
+        let v2_1: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
+            l0: MutCell::new(Networking::method13()),
+        });
+        let v8: () = {
+            Networking::closure7(v2_1.clone(), sprintf!("{}", v0_1), ());
+            ()
+        };
+        v2_1.l0.get().clone()
+    }
+    pub fn method14() -> string {
+        string("\u{001b}[0m")
+    }
+    pub fn method11() -> string {
+        let v6: string = Networking::method12(getCharAt(toLower(string("Verbose")), 0_i32));
+        let v67: &str = inline_colorization::color_bright_black;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
+    }
+    pub fn method16(v0_1: i32, v1_1: string) -> string {
         let v3: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
             l0: MutCell::new(Networking::method13()),
         });
@@ -421,14 +469,34 @@ pub mod Networking {
         };
         v3.l0.get().clone()
     }
-    pub fn method14(v0_1: string, v1_1: string, v2_1: string, v3: i64, v4: string) -> string {
+    pub fn method17(v0_1: string) -> string {
         trimEndChars(
-            trimStartChars(
-                sprintf!("{} {} #{} {} / {}", v0_1, v1_1, v3, v2_1, v4),
-                toArray(empty::<char>()),
-            ),
+            trimStartChars(v0_1, toArray(empty::<char>())),
             toArray(ofArray(new_array(&[' ', '/']))),
         )
+    }
+    pub fn method15(
+        v0_1: LrcPtr<Networking::Mut0>,
+        v1_1: LrcPtr<Networking::Mut1>,
+        v2_1: LrcPtr<Networking::Mut2>,
+        v3: LrcPtr<Networking::Mut3>,
+        v4: LrcPtr<Networking::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: i32,
+        v10: string,
+    ) -> string {
+        let v11: string = Networking::method16(v9, v10);
+        Networking::method17(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v11
+        ))
     }
     pub fn closure8(v0_1: LrcPtr<Networking::Mut0>, unitVar: ()) {
         let v2_1: i64 = v0_1.l0.get().clone() + 1_i64;
@@ -445,79 +513,9 @@ pub mod Networking {
         };
         ()
     }
-    pub fn method15(
-        v0_1: string,
-        v1_1: LrcPtr<Networking::Mut0>,
-        v2_1: LrcPtr<Networking::Mut1>,
-        v3: LrcPtr<Networking::Mut2>,
-        v4: LrcPtr<Networking::Mut3>,
-        v5: LrcPtr<Networking::Mut4>,
-        v6: Option<i64>,
-    ) {
-        let v9: () = {
-            Networking::closure8(v1_1, ());
-            ()
-        };
-        let v25: string = if v4.l0.get().clone() == string("") {
-            v0_1.clone()
-        } else {
-            if v0_1.clone() == string("") {
-                v4.l0.get().clone()
-            } else {
-                append(append(v4.l0.get().clone(), string("\n")), v0_1.clone())
-            }
-        };
-        let v32: &str = &*v25.clone();
-        let v48 = v32.chars();
-        let v50 = v48;
-        let v52: Vec<char> = v50.collect::<Vec<_>>();
-        let v54: Vec<Vec<char>> = v52
-            .chunks(15000)
-            .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
-            .collect::<Vec<_>>();
-        let v56: bool = true;
-        let _vec_map: Vec<_> = v54
-            .into_iter()
-            .map(|x| {
-                //;
-                let v58: Vec<char> = x;
-                let v60: std::string::String = String::from_iter(v58);
-                let v62: bool = true;
-                v60
-            })
-            .collect::<Vec<_>>();
-        let v64: Vec<std::string::String> = _vec_map;
-        if if v0_1.clone() != string("") {
-            v64.clone().len() as i32 <= 1_i32
-        } else {
-            false
-        } {
-            v4.l0.set(v25);
-            ()
-        } else {
-            v4.l0.set(string(""));
-            {
-                let v76: bool = true;
-                v64.into_iter().for_each(|x| {
-                    //;
-                    let v78: std::string::String = x;
-                    let v80: bool = true;
-                    near_sdk::log!("{}", v78);
-                    let v82: bool = true;
-                    let v84: bool = true;
-                }); //;
-                ()
-            }
-        }
-        ();
-        (v2_1.l0.get().clone())(v0_1)
-    }
-    pub fn closure5(v0_1: i32, v1_1: string, unitVar: ()) {
-        fn v3() {
+    pub fn method18(v0_1: string) {
+        let v3: () = {
             Networking::closure0((), ());
-        }
-        let v4: () = {
-            v3();
             ()
         };
         let patternInput: (
@@ -528,71 +526,99 @@ pub mod Networking {
             LrcPtr<Networking::Mut4>,
             Option<i64>,
         ) = getValue(Networking::TraceState::trace_state().get().clone());
-        let v36: Networking::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
+        let v20: LrcPtr<Networking::Mut3> = patternInput.3.clone();
+        let v37: () = {
+            Networking::closure8(patternInput.0.clone(), ());
+            ()
+        };
+        let v53: string = if v20.l0.get().clone() == string("") {
+            v0_1.clone()
         } else {
-            0_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Networking::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Networking::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Networking::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Networking::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Networking::US0::US0_4, 4_i32)),
-                    ])))),
-                )
+            if v0_1.clone() == string("") {
+                v20.l0.get().clone()
+            } else {
+                append(append(v20.l0.get().clone(), string("\n")), v0_1.clone())
+            }
+        };
+        let v60: &str = &*v53.clone();
+        let v76 = v60.chars();
+        let v78 = v76;
+        let v80: Vec<char> = v78.collect::<Vec<_>>();
+        let v82: Vec<Vec<char>> = v80
+            .chunks(15000)
+            .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
+            .collect::<Vec<_>>();
+        let v84: bool = true;
+        let _vec_map: Vec<_> = v82
+            .into_iter()
+            .map(|x| {
+                //;
+                let v86: Vec<char> = x;
+                let v88: std::string::String = String::from_iter(v86);
+                let v90: bool = true;
+                v88
+            })
+            .collect::<Vec<_>>();
+        let v92: Vec<std::string::String> = _vec_map;
+        if if v0_1.clone() != string("") {
+            v92.clone().len() as i32 <= 1_i32
+        } else {
+            false
         } {
-            let v43: () = {
-                v3();
+            v20.l0.set(v53);
+            ()
+        } else {
+            v20.l0.set(string(""));
+            {
+                let v104: bool = true;
+                v92.into_iter().for_each(|x| {
+                    //;
+                    let v106: std::string::String = x;
+                    let v108: bool = true;
+                    near_sdk::log!("{}", v106);
+                    let v110: bool = true;
+                    let v112: bool = true;
+                }); //;
                 ()
-            };
-            let patternInput_1: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<Networking::Mut0> = patternInput_1.0.clone();
-            let v83: string = Networking::method14(
-                Networking::method6(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                Networking::method10(),
-                string("networking.test_port_open"),
-                v57.l0.get().clone(),
-                Networking::method12(v0_1, v1_1),
-            );
-            let v85: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            Networking::method15(
-                v83,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
+            }
         }
+        ();
+        ((patternInput.1.clone()).l0.get().clone())(v0_1)
+    }
+    pub fn closure5(v0_1: i32, v1_1: string, unitVar: ()) {
+        if Networking::method6(Networking::US0::US0_0) {
+            let v6: () = {
+                Networking::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<Networking::Mut0>,
+                LrcPtr<Networking::Mut1>,
+                LrcPtr<Networking::Mut2>,
+                LrcPtr<Networking::Mut3>,
+                LrcPtr<Networking::Mut4>,
+                Option<i64>,
+            ) = getValue(Networking::TraceState::trace_state().get().clone());
+            let v25: Option<i64> = patternInput.5.clone();
+            let v24: LrcPtr<Networking::Mut4> = patternInput.4.clone();
+            let v23: LrcPtr<Networking::Mut3> = patternInput.3.clone();
+            let v22: LrcPtr<Networking::Mut2> = patternInput.2.clone();
+            let v21: LrcPtr<Networking::Mut1> = patternInput.1.clone();
+            let v20: LrcPtr<Networking::Mut0> = patternInput.0.clone();
+            Networking::method18(Networking::method15(
+                v20.clone(),
+                v21.clone(),
+                v22.clone(),
+                v23.clone(),
+                v24.clone(),
+                v25.clone(),
+                Networking::method7(v20, v21, v22, v23, v24, v25),
+                Networking::method11(),
+                string("networking.test_port_open"),
+                v0_1,
+                v1_1,
+            ))
+        };
     }
     pub fn closure4(v0_1: string, v1_1: i32) -> Arc<Async<bool>> {
         defaultOf()
@@ -609,7 +635,7 @@ pub mod Networking {
     pub fn closure15(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US5 {
         Networking::US5::US5_1(v0_1)
     }
-    pub fn method16(v0_1: i32) -> string {
+    pub fn method20(v0_1: i32) -> string {
         let v2_1: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
             l0: MutCell::new(Networking::method13()),
         });
@@ -635,43 +661,35 @@ pub mod Networking {
         };
         v2_1.l0.get().clone()
     }
+    pub fn method19(
+        v0_1: LrcPtr<Networking::Mut0>,
+        v1_1: LrcPtr<Networking::Mut1>,
+        v2_1: LrcPtr<Networking::Mut2>,
+        v3: LrcPtr<Networking::Mut3>,
+        v4: LrcPtr<Networking::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: i32,
+    ) -> string {
+        let v10: string = Networking::method20(v9);
+        Networking::method17(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v10
+        ))
+    }
     pub fn closure16(v0_1: i32, unitVar: ()) {
-        fn v2_1() {
-            Networking::closure0((), ());
-        }
-        let v3: () = {
-            v2_1();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<Networking::Mut0>,
-            LrcPtr<Networking::Mut1>,
-            LrcPtr<Networking::Mut2>,
-            LrcPtr<Networking::Mut3>,
-            LrcPtr<Networking::Mut4>,
-            Option<i64>,
-        ) = getValue(Networking::TraceState::trace_state().get().clone());
-        let v35: Networking::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            0_i32
-                >= find(
-                    v35,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Networking::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Networking::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Networking::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Networking::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Networking::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v42: () = {
-                v2_1();
+        if Networking::method6(Networking::US0::US0_0) {
+            let v5: () = {
+                Networking::closure0((), ());
                 ()
             };
-            let patternInput_1: (
+            let patternInput: (
                 LrcPtr<Networking::Mut0>,
                 LrcPtr<Networking::Mut1>,
                 LrcPtr<Networking::Mut2>,
@@ -679,53 +697,35 @@ pub mod Networking {
                 LrcPtr<Networking::Mut4>,
                 Option<i64>,
             ) = getValue(Networking::TraceState::trace_state().get().clone());
-            let v56: LrcPtr<Networking::Mut0> = patternInput_1.0.clone();
-            let v82: string = Networking::method14(
-                Networking::method6(
-                    v56.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                Networking::method10(),
+            let v24: Option<i64> = patternInput.5.clone();
+            let v23: LrcPtr<Networking::Mut4> = patternInput.4.clone();
+            let v22: LrcPtr<Networking::Mut3> = patternInput.3.clone();
+            let v21: LrcPtr<Networking::Mut2> = patternInput.2.clone();
+            let v20: LrcPtr<Networking::Mut1> = patternInput.1.clone();
+            let v19_1: LrcPtr<Networking::Mut0> = patternInput.0.clone();
+            Networking::method18(Networking::method19(
+                v19_1.clone(),
+                v20.clone(),
+                v21.clone(),
+                v22.clone(),
+                v23.clone(),
+                v24.clone(),
+                Networking::method7(v19_1, v20, v21, v22, v23, v24),
+                Networking::method11(),
                 string("async.run_with_timeout_async"),
-                v56.l0.get().clone(),
-                Networking::method16(v0_1),
-            );
-            let v84: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            Networking::method15(
-                v82,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+                v0_1,
+            ))
+        };
     }
-    pub fn method17() -> string {
-        let v5: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_bright_red;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
+    pub fn method21() -> string {
+        let v6: string = Networking::method12(getCharAt(toLower(string("Critical")), 0_i32));
+        let v67: &str = inline_colorization::color_bright_red;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
     }
-    pub fn method18(v0_1: i32, v1_1: string) -> string {
+    pub fn method23(v0_1: i32, v1_1: string) -> string {
         let v3: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
             l0: MutCell::new(Networking::method13()),
         });
@@ -767,43 +767,36 @@ pub mod Networking {
         };
         v3.l0.get().clone()
     }
+    pub fn method22(
+        v0_1: LrcPtr<Networking::Mut0>,
+        v1_1: LrcPtr<Networking::Mut1>,
+        v2_1: LrcPtr<Networking::Mut2>,
+        v3: LrcPtr<Networking::Mut3>,
+        v4: LrcPtr<Networking::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: i32,
+        v10: string,
+    ) -> string {
+        let v11: string = Networking::method23(v9, v10);
+        Networking::method17(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v11
+        ))
+    }
     pub fn closure17(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
-        fn v3() {
-            Networking::closure0((), ());
-        }
-        let v4: () = {
-            v3();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<Networking::Mut0>,
-            LrcPtr<Networking::Mut1>,
-            LrcPtr<Networking::Mut2>,
-            LrcPtr<Networking::Mut3>,
-            LrcPtr<Networking::Mut4>,
-            Option<i64>,
-        ) = getValue(Networking::TraceState::trace_state().get().clone());
-        let v36: Networking::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            4_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Networking::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Networking::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Networking::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Networking::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Networking::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
+        if Networking::method6(Networking::US0::US0_4) {
+            let v6: () = {
+                Networking::closure0((), ());
                 ()
             };
-            let patternInput_1: (
+            let patternInput: (
                 LrcPtr<Networking::Mut0>,
                 LrcPtr<Networking::Mut1>,
                 LrcPtr<Networking::Mut2>,
@@ -811,43 +804,26 @@ pub mod Networking {
                 LrcPtr<Networking::Mut4>,
                 Option<i64>,
             ) = getValue(Networking::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<Networking::Mut0> = patternInput_1.0.clone();
-            let v105: string = Networking::method14(
-                Networking::method6(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                Networking::method17(),
+            let v25: Option<i64> = patternInput.5.clone();
+            let v24: LrcPtr<Networking::Mut4> = patternInput.4.clone();
+            let v23: LrcPtr<Networking::Mut3> = patternInput.3.clone();
+            let v22: LrcPtr<Networking::Mut2> = patternInput.2.clone();
+            let v21: LrcPtr<Networking::Mut1> = patternInput.1.clone();
+            let v20: LrcPtr<Networking::Mut0> = patternInput.0.clone();
+            Networking::method18(Networking::method22(
+                v20.clone(),
+                v21.clone(),
+                v22.clone(),
+                v23.clone(),
+                v24.clone(),
+                v25.clone(),
+                Networking::method7(v20, v21, v22, v23, v24, v25),
+                Networking::method21(),
                 string("async.run_with_timeout_async**"),
-                v57.l0.get().clone(),
-                Networking::method18(v0_1, sprintf!("{:?}", v1_1)),
-            );
-            let v107: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            Networking::method15(
-                v105,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+                v0_1,
+                sprintf!("{:?}", v1_1),
+            ))
+        };
     }
     pub fn closure13(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
         defaultOf()
@@ -868,10 +844,10 @@ pub mod Networking {
     pub fn closure22(unitVar: (), v0_1: i32) -> Networking::US7 {
         Networking::US7::US7_0(v0_1)
     }
-    pub fn method20() -> Func1<i32, Networking::US7> {
+    pub fn method25() -> Func1<i32, Networking::US7> {
         Func1::new(move |v: i32| Networking::closure22((), v))
     }
-    pub fn method21(v0_1: i32, v1_1: i64, v2_1: Option<i32>, v3: bool) -> string {
+    pub fn method27(v0_1: i32, v1_1: i64, v2_1: Option<i32>, v3: bool) -> string {
         let v5: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
             l0: MutCell::new(Networking::method13()),
         });
@@ -954,104 +930,67 @@ pub mod Networking {
         };
         v5.l0.get().clone()
     }
-    pub fn method22(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("networking.wait_for_port_access"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method26(
+        v0_1: LrcPtr<Networking::Mut0>,
+        v1_1: LrcPtr<Networking::Mut1>,
+        v2_1: LrcPtr<Networking::Mut2>,
+        v3: LrcPtr<Networking::Mut3>,
+        v4: LrcPtr<Networking::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: i32,
+        v9: i64,
+        v10: Option<i32>,
+        v11: bool,
+    ) -> string {
+        let v12: string = Networking::method27(v8, v9, v10, v11);
+        Networking::method17(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("networking.wait_for_port_access"),
+            v12
+        ))
     }
     pub fn closure23(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3: i64, unitVar: ()) {
-        fn v5() {
-            Networking::closure0((), ());
-        }
-        let v6: () = {
-            v5();
-            ()
+        if Networking::method6(Networking::US0::US0_0) {
+            let v8: () = {
+                Networking::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<Networking::Mut0>,
+                LrcPtr<Networking::Mut1>,
+                LrcPtr<Networking::Mut2>,
+                LrcPtr<Networking::Mut3>,
+                LrcPtr<Networking::Mut4>,
+                Option<i64>,
+            ) = getValue(Networking::TraceState::trace_state().get().clone());
+            let v27: Option<i64> = patternInput.5.clone();
+            let v26: LrcPtr<Networking::Mut4> = patternInput.4.clone();
+            let v25: LrcPtr<Networking::Mut3> = patternInput.3.clone();
+            let v24: LrcPtr<Networking::Mut2> = patternInput.2.clone();
+            let v23: LrcPtr<Networking::Mut1> = patternInput.1.clone();
+            let v22: LrcPtr<Networking::Mut0> = patternInput.0.clone();
+            Networking::method18(Networking::method26(
+                v22.clone(),
+                v23.clone(),
+                v24.clone(),
+                v25.clone(),
+                v26.clone(),
+                v27.clone(),
+                Networking::method7(v22, v23, v24, v25, v26, v27),
+                Networking::method11(),
+                v2_1,
+                v3,
+                v0_1,
+                v1_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<Networking::Mut0>,
-            LrcPtr<Networking::Mut1>,
-            LrcPtr<Networking::Mut2>,
-            LrcPtr<Networking::Mut3>,
-            LrcPtr<Networking::Mut4>,
-            Option<i64>,
-        ) = getValue(Networking::TraceState::trace_state().get().clone());
-        let v38: Networking::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            0_i32
-                >= find(
-                    v38,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Networking::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Networking::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Networking::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Networking::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Networking::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v45: () = {
-                v5();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            let v59: LrcPtr<Networking::Mut0> = patternInput_1.0.clone();
-            let v81: string = Networking::method22(
-                Networking::method6(
-                    v59.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                Networking::method10(),
-                v59.l0.get().clone(),
-                Networking::method21(v2_1, v3, v0_1, v1_1),
-            );
-            let v83: () = {
-                v5();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Networking::Mut0>,
-                LrcPtr<Networking::Mut1>,
-                LrcPtr<Networking::Mut2>,
-                LrcPtr<Networking::Mut3>,
-                LrcPtr<Networking::Mut4>,
-                Option<i64>,
-            ) = getValue(Networking::TraceState::trace_state().get().clone());
-            Networking::method15(
-                v81,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method19(
+    pub fn method24(
         v0_1: Option<i32>,
         v1_1: bool,
         v2_1: string,
@@ -1061,7 +1000,7 @@ pub mod Networking {
         defaultOf()
     }
     pub fn closure21(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3: i32) -> Arc<Async<i64>> {
-        Networking::method19(v0_1, v1_1, v2_1, v3, 0_i64)
+        Networking::method24(v0_1, v1_1, v2_1, v3, 0_i64)
     }
     pub fn closure20(v0_1: Option<i32>, v1_1: bool, v2_1: string) -> Func1<i32, Arc<Async<i64>>> {
         Func1::new({
@@ -1087,11 +1026,11 @@ pub mod Networking {
             move |v: bool| Networking::closure19(v0_1.clone(), v)
         })
     }
-    pub fn method23(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
+    pub fn method28(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
         defaultOf()
     }
     pub fn closure26(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
-        Networking::method23(v0_1, v1_1, v2_1)
+        Networking::method28(v0_1, v1_1, v2_1)
     }
     pub fn closure25(v0_1: Option<i32>, v1_1: string) -> Func1<i32, Arc<Async<i32>>> {
         Func1::new({

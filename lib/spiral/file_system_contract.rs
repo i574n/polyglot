@@ -33,7 +33,6 @@ pub mod File_system {
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::ofChar;
-    use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
@@ -483,19 +482,57 @@ pub mod File_system {
         ();
         ()
     }
+    pub fn method10(v0_1: File_system::US0) -> bool {
+        let v3: () = {
+            File_system::closure0((), ());
+            ()
+        };
+        let patternInput: (
+            LrcPtr<File_system::Mut0>,
+            LrcPtr<File_system::Mut1>,
+            LrcPtr<File_system::Mut2>,
+            LrcPtr<File_system::Mut3>,
+            LrcPtr<File_system::Mut4>,
+            Option<i64>,
+        ) = getValue(File_system::TraceState::trace_state().get().clone());
+        let v35_1: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
+        if (patternInput.2.clone()).l0.get().clone() == false {
+            false
+        } else {
+            find(
+                v0_1,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((File_system::US0::US0_0, 0_i32)),
+                    LrcPtr::new((File_system::US0::US0_1, 1_i32)),
+                    LrcPtr::new((File_system::US0::US0_2, 2_i32)),
+                    LrcPtr::new((File_system::US0::US0_3, 3_i32)),
+                    LrcPtr::new((File_system::US0::US0_4, 4_i32)),
+                ])))),
+            ) >= find(
+                v35_1,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((File_system::US0::US0_0, 0_i32)),
+                    LrcPtr::new((File_system::US0::US0_1, 1_i32)),
+                    LrcPtr::new((File_system::US0::US0_2, 2_i32)),
+                    LrcPtr::new((File_system::US0::US0_3, 3_i32)),
+                    LrcPtr::new((File_system::US0::US0_4, 4_i32)),
+                ])))),
+            )
+        }
+    }
     pub fn closure5(unitVar: (), v0_1: i64) -> File_system::US3 {
         File_system::US3::US3_0(v0_1)
     }
-    pub fn method11() -> Func1<i64, File_system::US3> {
+    pub fn method12() -> Func1<i64, File_system::US3> {
         Func1::new(move |v: i64| File_system::closure5((), v))
     }
-    pub fn method12() -> string {
+    pub fn method13() -> string {
         string("hh:mm:ss")
     }
-    pub fn method13() -> string {
+    pub fn method14() -> string {
         string("HH:mm:ss")
     }
-    pub fn method10(
+    pub fn method11(
         v0_1: LrcPtr<File_system::Mut0>,
         v1_1: LrcPtr<File_system::Mut1>,
         v2_1: LrcPtr<File_system::Mut2>,
@@ -505,7 +542,7 @@ pub mod File_system {
     ) -> string {
         let v130: u64 = near_sdk::env::block_timestamp();
         let v144: File_system::US3 =
-            defaultValue(File_system::US3::US3_1, map(File_system::method11(), v5));
+            defaultValue(File_system::US3::US3_1, map(File_system::method12(), v5));
         let v154: u64 = match &v144 {
             File_system::US3::US3_0(v144_0_0) => {
                 v130 - match &v144 {
@@ -521,21 +558,7 @@ pub mod File_system {
         let v161: std::string::String = format!("{:02}:{:02}:{:02}", v159, v157, v155);
         fable_library_rust::String_::fromString(v161)
     }
-    pub fn method15() -> string {
-        string("\u{001b}[0m")
-    }
-    pub fn method14() -> string {
-        let v5: string = padLeft(toLower(string("Debug")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_bright_blue;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
-    }
-    pub fn method16(v0_1: string) -> string {
-        unbox::<string>(&defaultOf())
-    }
-    pub fn method18() -> string {
+    pub fn method17() -> string {
         string("")
     }
     pub fn closure6(v0_1: LrcPtr<File_system::Mut3>, v1_1: string, unitVar: ()) {
@@ -543,9 +566,33 @@ pub mod File_system {
         v0_1.l0.set(v3);
         ()
     }
-    pub fn method17(v0_1: string, v1_1: string) -> string {
+    pub fn method16(v0_1: char) -> string {
+        let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
+            l0: MutCell::new(File_system::method17()),
+        });
+        let v8: () = {
+            File_system::closure6(v2_1.clone(), sprintf!("{}", v0_1), ());
+            ()
+        };
+        v2_1.l0.get().clone()
+    }
+    pub fn method18() -> string {
+        string("\u{001b}[0m")
+    }
+    pub fn method15() -> string {
+        let v6: string = File_system::method16(getCharAt(toLower(string("Debug")), 0_i32));
+        let v67: &str = inline_colorization::color_bright_blue;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
+    }
+    pub fn method19(v0_1: string) -> string {
+        unbox::<string>(&defaultOf())
+    }
+    pub fn method21(v0_1: string, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -585,21 +632,33 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
-    pub fn method19(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
+    pub fn method22(v0_1: string) -> string {
         trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("file_system.delete_directory_async"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
+            trimStartChars(v0_1, toArray(empty::<char>())),
             toArray(ofArray(new_array(&[' ', '/']))),
         )
+    }
+    pub fn method20(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: string,
+    ) -> string {
+        let v10: string = File_system::method21(v8, v9);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.delete_directory_async"),
+            v10
+        ))
     }
     pub fn closure7(v0_1: LrcPtr<File_system::Mut0>, unitVar: ()) {
         let v2_1: i64 = v0_1.l0.get().clone() + 1_i64;
@@ -616,79 +675,9 @@ pub mod File_system {
         };
         ()
     }
-    pub fn method20(
-        v0_1: string,
-        v1_1: LrcPtr<File_system::Mut0>,
-        v2_1: LrcPtr<File_system::Mut1>,
-        v3: LrcPtr<File_system::Mut2>,
-        v4: LrcPtr<File_system::Mut3>,
-        v5: LrcPtr<File_system::Mut4>,
-        v6: Option<i64>,
-    ) {
-        let v9: () = {
-            File_system::closure7(v1_1, ());
-            ()
-        };
-        let v25_1: string = if v4.l0.get().clone() == string("") {
-            v0_1.clone()
-        } else {
-            if v0_1.clone() == string("") {
-                v4.l0.get().clone()
-            } else {
-                append(append(v4.l0.get().clone(), string("\n")), v0_1.clone())
-            }
-        };
-        let v32_1: &str = &*v25_1.clone();
-        let v48 = v32_1.chars();
-        let v50 = v48;
-        let v52: Vec<char> = v50.collect::<Vec<_>>();
-        let v54: Vec<Vec<char>> = v52
-            .chunks(15000)
-            .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
-            .collect::<Vec<_>>();
-        let v56: bool = true;
-        let _vec_map: Vec<_> = v54
-            .into_iter()
-            .map(|x| {
-                //;
-                let v58: Vec<char> = x;
-                let v60: std::string::String = String::from_iter(v58);
-                let v62: bool = true;
-                v60
-            })
-            .collect::<Vec<_>>();
-        let v64: Vec<std::string::String> = _vec_map;
-        if if v0_1.clone() != string("") {
-            v64.clone().len() as i32 <= 1_i32
-        } else {
-            false
-        } {
-            v4.l0.set(v25_1);
-            ()
-        } else {
-            v4.l0.set(string(""));
-            {
-                let v76: bool = true;
-                v64.into_iter().for_each(|x| {
-                    //;
-                    let v78: std::string::String = x;
-                    let v80: bool = true;
-                    near_sdk::log!("{}", v78);
-                    let v82: bool = true;
-                    let v84: bool = true;
-                }); //;
-                ()
-            }
-        }
-        ();
-        (v2_1.l0.get().clone())(v0_1)
-    }
-    pub fn closure4(v0_1: string, v1_1: string, unitVar: ()) {
-        fn v3() {
+    pub fn method23(v0_1: string) {
+        let v3: () = {
             File_system::closure0((), ());
-        }
-        let v4: () = {
-            v3();
             ()
         };
         let patternInput: (
@@ -699,70 +688,98 @@ pub mod File_system {
             LrcPtr<File_system::Mut4>,
             Option<i64>,
         ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v36: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
+        let v20_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+        let v37: () = {
+            File_system::closure7(patternInput.0.clone(), ());
+            ()
+        };
+        let v53: string = if v20_1.l0.get().clone() == string("") {
+            v0_1.clone()
         } else {
-            1_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
+            if v0_1.clone() == string("") {
+                v20_1.l0.get().clone()
+            } else {
+                append(append(v20_1.l0.get().clone(), string("\n")), v0_1.clone())
+            }
+        };
+        let v60: &str = &*v53.clone();
+        let v76 = v60.chars();
+        let v78 = v76;
+        let v80: Vec<char> = v78.collect::<Vec<_>>();
+        let v82: Vec<Vec<char>> = v80
+            .chunks(15000)
+            .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
+            .collect::<Vec<_>>();
+        let v84: bool = true;
+        let _vec_map: Vec<_> = v82
+            .into_iter()
+            .map(|x| {
+                //;
+                let v86: Vec<char> = x;
+                let v88: std::string::String = String::from_iter(v86);
+                let v90: bool = true;
+                v88
+            })
+            .collect::<Vec<_>>();
+        let v92: Vec<std::string::String> = _vec_map;
+        if if v0_1.clone() != string("") {
+            v92.clone().len() as i32 <= 1_i32
+        } else {
+            false
         } {
-            let v43: () = {
-                v3();
+            v20_1.l0.set(v53);
+            ()
+        } else {
+            v20_1.l0.set(string(""));
+            {
+                let v104: bool = true;
+                v92.into_iter().for_each(|x| {
+                    //;
+                    let v106: std::string::String = x;
+                    let v108: bool = true;
+                    near_sdk::log!("{}", v106);
+                    let v110: bool = true;
+                    let v112: bool = true;
+                }); //;
                 ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v80: string = File_system::method19(
-                File_system::method10(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method14(),
-                v57.l0.get().clone(),
-                File_system::method17(v1_1, File_system::method16(v0_1)),
-            );
-            let v82: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v80,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
+            }
         }
+        ();
+        ((patternInput.1.clone()).l0.get().clone())(v0_1)
+    }
+    pub fn closure4(v0_1: string, v1_1: string, unitVar: ()) {
+        if File_system::method10(File_system::US0::US0_1) {
+            let v6: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v25_1: Option<i64> = patternInput.5.clone();
+            let v24_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v23_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v22_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v21_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v20_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method20(
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                File_system::method11(v20_1, v21_1, v22_1, v23_1, v24_1, v25_1),
+                File_system::method15(),
+                v1_1,
+                File_system::method19(v0_1),
+            ))
+        };
     }
     pub fn method6(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
         defaultOf()
@@ -770,9 +787,9 @@ pub mod File_system {
     pub fn closure3(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
         defaultOf()
     }
-    pub fn method22(v0_1: string, v1_1: i64, v2_1: string) -> string {
+    pub fn method26(v0_1: string, v1_1: i64, v2_1: string) -> string {
         let v4: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v11: () = {
             File_system::closure6(v4.clone(), sprintf!("{}", string("{ ")), ());
@@ -828,104 +845,65 @@ pub mod File_system {
         };
         v4.l0.get().clone()
     }
-    pub fn method23(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("file_system.wait_for_file_access"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method25(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: i64,
+        v10: string,
+    ) -> string {
+        let v11: string = File_system::method26(v8, v9, v10);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.wait_for_file_access"),
+            v11
+        ))
     }
     pub fn closure12(v0_1: string, v1_1: i64, v2_1: string, unitVar: ()) {
-        fn v4() {
-            File_system::closure0((), ());
-        }
-        let v5: () = {
-            v4();
-            ()
+        if File_system::method10(File_system::US0::US0_1) {
+            let v7: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v26_1: Option<i64> = patternInput.5.clone();
+            let v25_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v24_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v23_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v22_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v21_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method25(
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                v26_1.clone(),
+                File_system::method11(v21_1, v22_1, v23_1, v24_1, v25_1, v26_1),
+                File_system::method15(),
+                File_system::method19(v0_1),
+                v1_1,
+                v2_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v37: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            1_i32
-                >= find(
-                    v37,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v44: () = {
-                v4();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v58: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v81: string = File_system::method23(
-                File_system::method10(
-                    v58.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method14(),
-                v58.l0.get().clone(),
-                File_system::method22(File_system::method16(v0_1), v1_1, v2_1),
-            );
-            let v83: () = {
-                v4();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v81,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method21(
+    pub fn method24(
         v0_1: string,
         v1_1: File_system::US8,
         v2_1: File_system::US7,
@@ -942,7 +920,7 @@ pub mod File_system {
             move |v: string| File_system::closure11(v0_1.clone(), v)
         })
     }
-    pub fn method24(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
+    pub fn method27(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
         defaultOf()
     }
     pub fn closure13(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
@@ -951,17 +929,17 @@ pub mod File_system {
     pub fn closure14(unitVar: (), v0_1: string) -> Arc<Async<string>> {
         defaultOf()
     }
-    pub fn method26(v0_1: string) -> bool {
+    pub fn method29(v0_1: string) -> bool {
         unbox::<bool>(&defaultOf())
     }
-    pub fn method27(v0_1: Vec<u8>) -> Vec<u8> {
+    pub fn method30(v0_1: Vec<u8>) -> Vec<u8> {
         v0_1
     }
-    pub fn method25(v0_1: string, v1_1: string) -> bool {
+    pub fn method28(v0_1: string, v1_1: string) -> bool {
         unbox::<bool>(&defaultOf())
     }
     pub fn closure16(v0_1: string, v1_1: string) -> bool {
-        File_system::method25(v0_1, v1_1)
+        File_system::method28(v0_1, v1_1)
     }
     pub fn closure15(unitVar: (), v0_1: string) -> Func1<string, bool> {
         Func1::new({
@@ -987,17 +965,17 @@ pub mod File_system {
             move |v: string| File_system::closure20(v0_1.clone(), v)
         })
     }
-    pub fn method29() -> string {
-        let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_yellow;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
+    pub fn method32() -> string {
+        let v6: string = File_system::method16(getCharAt(toLower(string("Warning")), 0_i32));
+        let v67: &str = inline_colorization::color_yellow;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
     }
-    pub fn method30(v0_1: string, v1_1: string) -> string {
+    pub fn method34(v0_1: string, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -1037,112 +1015,71 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
-    pub fn method31(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("delete_file_async"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method33(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: string,
+    ) -> string {
+        let v10: string = File_system::method34(v8, v9);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("delete_file_async"),
+            v10
+        ))
     }
     pub fn closure22(v0_1: string, v1_1: LrcPtr<Exception>, unitVar: ()) {
-        fn v3() {
-            File_system::closure0((), ());
-        }
-        let v4: () = {
-            v3();
-            ()
+        if File_system::method10(File_system::US0::US0_3) {
+            let v6: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v25_1: Option<i64> = patternInput.5.clone();
+            let v24_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v23_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v22_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v21_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v20_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method33(
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                File_system::method11(v20_1, v21_1, v22_1, v23_1, v24_1, v25_1),
+                File_system::method32(),
+                File_system::method19(v0_1),
+                sprintf!("{:?}", v1_1),
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v36: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            3_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v102: string = File_system::method31(
-                File_system::method10(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method29(),
-                v57.l0.get().clone(),
-                File_system::method30(File_system::method16(v0_1), sprintf!("{:?}", v1_1)),
-            );
-            let v104: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v102,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method28(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
+    pub fn method31(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
         defaultOf()
     }
     pub fn closure21(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
         defaultOf()
     }
-    pub fn method33(v0_1: string, v1_1: string, v2_1: LrcPtr<Exception>) -> string {
+    pub fn method37(v0_1: string, v1_1: string, v2_1: LrcPtr<Exception>) -> string {
         let v4: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v11: () = {
             File_system::closure6(v4.clone(), sprintf!("{}", string("{ ")), ());
@@ -1203,108 +1140,65 @@ pub mod File_system {
         };
         v4.l0.get().clone()
     }
-    pub fn method34(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("move_file_async"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method36(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: string,
+        v10: LrcPtr<Exception>,
+    ) -> string {
+        let v11: string = File_system::method37(v8, v9, v10);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("move_file_async"),
+            v11
+        ))
     }
     pub fn closure25(v0_1: string, v1_1: string, v2_1: LrcPtr<Exception>, unitVar: ()) {
-        fn v4() {
-            File_system::closure0((), ());
-        }
-        let v5: () = {
-            v4();
-            ()
+        if File_system::method10(File_system::US0::US0_3) {
+            let v7: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v26_1: Option<i64> = patternInput.5.clone();
+            let v25_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v24_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v23_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v22_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v21_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method36(
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                v26_1.clone(),
+                File_system::method11(v21_1, v22_1, v23_1, v24_1, v25_1, v26_1),
+                File_system::method32(),
+                File_system::method19(v1_1),
+                File_system::method19(v0_1),
+                v2_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v37: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            3_i32
-                >= find(
-                    v37,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v44: () = {
-                v4();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v58: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v82: string = File_system::method34(
-                File_system::method10(
-                    v58.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method29(),
-                v58.l0.get().clone(),
-                File_system::method33(
-                    File_system::method16(v1_1),
-                    File_system::method16(v0_1),
-                    v2_1,
-                ),
-            );
-            let v84: () = {
-                v4();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v82,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method32(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
+    pub fn method35(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
         defaultOf()
     }
     pub fn closure24(v0_1: string, v1_1: string) -> Arc<Async<i64>> {
@@ -1322,17 +1216,17 @@ pub mod File_system {
     pub fn closure28(unitVar: (), v0_1: LrcPtr<Exception>) -> File_system::US9 {
         File_system::US9::US9_1(v0_1)
     }
-    pub fn method36() -> string {
-        let v5: string = padLeft(toLower(string("Verbose")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_bright_black;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
+    pub fn method39() -> string {
+        let v6: string = File_system::method16(getCharAt(toLower(string("Verbose")), 0_i32));
+        let v67: &str = inline_colorization::color_bright_black;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
     }
-    pub fn method37(v0_1: i32) -> string {
+    pub fn method41(v0_1: i32) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v9: () = {
             File_system::closure6(v2_1.clone(), sprintf!("{}", string("{ ")), ());
@@ -1356,52 +1250,34 @@ pub mod File_system {
         };
         v2_1.l0.get().clone()
     }
-    pub fn method38(v0_1: string, v1_1: string, v2_1: string, v3: i64, v4: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!("{} {} #{} {} / {}", v0_1, v1_1, v3, v2_1, v4),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method40(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+    ) -> string {
+        let v10: string = File_system::method41(1000_i32);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v10
+        ))
     }
     pub fn closure29(unitVar: (), unitVar_1: ()) {
-        fn v1_1() {
-            File_system::closure0((), ());
-        }
-        let v2_1: () = {
-            v1_1();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v34_1: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            0_i32
-                >= find(
-                    v34_1,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v41: () = {
-                v1_1();
+        if File_system::method10(File_system::US0::US0_0) {
+            let v4: () = {
+                File_system::closure0((), ());
                 ()
             };
-            let patternInput_1: (
+            let patternInput: (
                 LrcPtr<File_system::Mut0>,
                 LrcPtr<File_system::Mut1>,
                 LrcPtr<File_system::Mut2>,
@@ -1409,55 +1285,36 @@ pub mod File_system {
                 LrcPtr<File_system::Mut4>,
                 Option<i64>,
             ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v55: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v82: string = File_system::method38(
-                File_system::method10(
-                    v55.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method36(),
+            let v23_1: Option<i64> = patternInput.5.clone();
+            let v22_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v21_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v20_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v19_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v18_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method40(
+                v18_1.clone(),
+                v19_1.clone(),
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                File_system::method11(v18_1, v19_1, v20_1, v21_1, v22_1, v23_1),
+                File_system::method39(),
                 string("async.run_with_timeout_async"),
-                v55.l0.get().clone(),
-                File_system::method37(1000_i32),
-            );
-            let v84: () = {
-                v1_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v82,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+            ))
+        };
     }
-    pub fn method39() -> string {
-        let v5: string = padLeft(toLower(string("Critical")), 7_i32, ' ');
-        let v79: &str = inline_colorization::color_bright_red;
-        let v86: &str = &*v5;
-        let v102: &str = inline_colorization::color_reset;
-        let v104: std::string::String = format!("{}{}{}", v79, v86, v102);
-        fable_library_rust::String_::fromString(v104)
+    pub fn method42() -> string {
+        let v6: string = File_system::method16(getCharAt(toLower(string("Critical")), 0_i32));
+        let v67: &str = inline_colorization::color_bright_red;
+        let v74: &str = &*v6;
+        let v90: &str = inline_colorization::color_reset;
+        let v92: std::string::String = format!("{}{}{}", v67, v74, v90);
+        fable_library_rust::String_::fromString(v92)
     }
-    pub fn method40(v0_1: i32, v1_1: string) -> string {
+    pub fn method44(v0_1: i32, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -1497,91 +1354,65 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
-    pub fn closure30(v0_1: LrcPtr<Exception>, unitVar: ()) {
-        fn v2_1() {
-            File_system::closure0((), ());
-        }
-        let v3: () = {
-            v2_1();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v35_1: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            4_i32
-                >= find(
-                    v35_1,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v42: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v56: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v105: string = File_system::method38(
-                File_system::method10(
-                    v56.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method39(),
-                string("async.run_with_timeout_async**"),
-                v56.l0.get().clone(),
-                File_system::method40(1000_i32, sprintf!("{:?}", v0_1)),
-            );
-            let v107: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v105,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+    pub fn method43(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: string,
+    ) -> string {
+        let v11: string = File_system::method44(1000_i32, v9);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v11
+        ))
     }
-    pub fn method41(v0_1: i64, v1_1: string) -> string {
+    pub fn closure30(v0_1: LrcPtr<Exception>, unitVar: ()) {
+        if File_system::method10(File_system::US0::US0_4) {
+            let v5: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v24_1: Option<i64> = patternInput.5.clone();
+            let v23_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v22_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v21_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v20_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v19_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method43(
+                v19_1.clone(),
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                File_system::method11(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1),
+                File_system::method42(),
+                string("async.run_with_timeout_async**"),
+                sprintf!("{:?}", v0_1),
+            ))
+        };
+    }
+    pub fn method46(v0_1: i64, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -1621,89 +1452,65 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
-    pub fn closure31(v0_1: i64, v1_1: string, unitVar: ()) {
-        fn v3() {
-            File_system::closure0((), ());
-        }
-        let v4: () = {
-            v3();
-            ()
-        };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v36: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            1_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v83: string = File_system::method38(
-                File_system::method10(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method14(),
-                string("read_all_text_retry_async"),
-                v57.l0.get().clone(),
-                File_system::method41(v0_1, v1_1),
-            );
-            let v85: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v83,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+    pub fn method45(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: i64,
+        v10: string,
+    ) -> string {
+        let v11: string = File_system::method46(v9, v10);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            v8,
+            v11
+        ))
     }
-    pub fn method35(v0_1: string, v1_1: i64) -> Arc<Async<Option<string>>> {
+    pub fn closure31(v0_1: i64, v1_1: string, unitVar: ()) {
+        if File_system::method10(File_system::US0::US0_1) {
+            let v6: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v25_1: Option<i64> = patternInput.5.clone();
+            let v24_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v23_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v22_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v21_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v20_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method45(
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                File_system::method11(v20_1, v21_1, v22_1, v23_1, v24_1, v25_1),
+                File_system::method15(),
+                string("read_all_text_retry_async"),
+                v0_1,
+                v1_1,
+            ))
+        };
+    }
+    pub fn method38(v0_1: string, v1_1: i64) -> Arc<Async<Option<string>>> {
         defaultOf()
     }
     pub fn closure26(unitVar: (), v0_1: string) -> Arc<Async<Option<string>>> {
@@ -1712,58 +1519,58 @@ pub mod File_system {
     pub fn closure33(unitVar: (), v0_1: Option<()>) -> File_system::US11 {
         File_system::US11::US11_0(v0_1)
     }
-    pub fn method44() -> Func1<Option<()>, File_system::US11> {
+    pub fn method49() -> Func1<Option<()>, File_system::US11> {
         Func1::new(move |v: Option<()>| File_system::closure33((), v))
     }
-    pub fn method45() -> string {
+    pub fn method50() -> string {
         string("hh:mm")
     }
-    pub fn method46() -> string {
+    pub fn method51() -> string {
         string("yyyyMMdd-HHmm-ssff-ffff-f")
     }
-    pub fn method47() -> string {
+    pub fn method52() -> string {
         string("hhmm")
     }
-    pub fn method43(v0_1: Guid, v1_1: DateTime) -> Guid {
+    pub fn method48(v0_1: Guid, v1_1: DateTime) -> Guid {
         unbox::<Guid>(&defaultOf())
     }
-    pub fn method49() -> string {
-        unbox::<string>(&defaultOf())
-    }
-    pub fn method50() -> string {
-        string("!create_temp_path_")
-    }
-    pub fn method53(v0_1: string) -> string {
-        v0_1
-    }
-    pub fn method52(v0_1: string, v1_1: string) -> (string, string) {
-        (v1_1, File_system::method53(v0_1))
-    }
-    pub fn method51(v0_1: string, v1_1: string) -> string {
+    pub fn method54() -> string {
         unbox::<string>(&defaultOf())
     }
     pub fn method55() -> string {
-        string("CARGO_PKG_NAME")
+        string("!create_temp_path_")
     }
-    pub fn method54() -> string {
-        File_system::method2(File_system::method55())
+    pub fn method58(v0_1: string) -> string {
+        v0_1
     }
-    pub fn method48(v0_1: Guid) -> string {
+    pub fn method57(v0_1: string, v1_1: string) -> (string, string) {
+        (v1_1, File_system::method58(v0_1))
+    }
+    pub fn method56(v0_1: string, v1_1: string) -> string {
         unbox::<string>(&defaultOf())
     }
-    pub fn method42() -> string {
+    pub fn method60() -> string {
+        string("CARGO_PKG_NAME")
+    }
+    pub fn method59() -> string {
+        File_system::method2(File_system::method60())
+    }
+    pub fn method53(v0_1: Guid) -> string {
+        unbox::<string>(&defaultOf())
+    }
+    pub fn method47() -> string {
         unbox::<string>(&defaultOf())
     }
     pub fn closure32(unitVar: (), unitVar_1: ()) -> string {
-        File_system::method42()
+        File_system::method47()
     }
-    pub fn method57(v0_1: string) -> string {
+    pub fn method62(v0_1: string) -> string {
         v0_1
     }
     pub fn closure35(unitVar: (), v0_1: std::io::Error) -> std::string::String {
         format!("{}", v0_1)
     }
-    pub fn method58() -> Func1<std::io::Error, std::string::String> {
+    pub fn method63() -> Func1<std::io::Error, std::string::String> {
         Func1::new(move |v: std::io::Error| File_system::closure35((), v))
     }
     pub fn closure36(unitVar: (), unitVar_1: ()) -> File_system::US12 {
@@ -1772,9 +1579,9 @@ pub mod File_system {
     pub fn closure37(unitVar: (), v0_1: std::string::String) -> File_system::US12 {
         File_system::US12::US12_1(v0_1)
     }
-    pub fn method59(v0_1: string, v1_1: std::string::String) -> string {
+    pub fn method65(v0_1: string, v1_1: std::string::String) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -1819,106 +1626,65 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
-    pub fn method60(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("file_system.create_dir"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method64(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: std::string::String,
+    ) -> string {
+        let v10: string = File_system::method65(v8, v9);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.create_dir"),
+            v10
+        ))
     }
     pub fn closure38(v0_1: string, v1_1: std::string::String, unitVar: ()) {
-        fn v3() {
-            File_system::closure0((), ());
-        }
-        let v4: () = {
-            v3();
-            ()
+        if File_system::method10(File_system::US0::US0_4) {
+            let v6: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v25_1: Option<i64> = patternInput.5.clone();
+            let v24_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v23_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v22_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v21_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v20_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method64(
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                File_system::method11(v20_1, v21_1, v22_1, v23_1, v24_1, v25_1),
+                File_system::method42(),
+                v0_1,
+                v1_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v36: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            4_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v79: string = File_system::method60(
-                File_system::method10(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method39(),
-                v57.l0.get().clone(),
-                File_system::method59(v0_1, v1_1),
-            );
-            let v81: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v79,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method61(v0_1: string) -> string {
+    pub fn method67(v0_1: string) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v9: () = {
             File_system::closure6(v2_1.clone(), sprintf!("{}", string("{ ")), ());
@@ -1942,105 +1708,78 @@ pub mod File_system {
         };
         v2_1.l0.get().clone()
     }
+    pub fn method66(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+    ) -> string {
+        let v9: string = File_system::method67(v8);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.create_dir"),
+            v9
+        ))
+    }
     pub fn closure39(v0_1: string, unitVar: ()) {
-        fn v2_1() {
-            File_system::closure0((), ());
-        }
-        let v3: () = {
-            v2_1();
-            ()
+        if File_system::method10(File_system::US0::US0_0) {
+            let v5: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v24_1: Option<i64> = patternInput.5.clone();
+            let v23_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v22_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v21_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v20_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v19_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method66(
+                v19_1.clone(),
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                File_system::method11(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1),
+                File_system::method39(),
+                v0_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v35_1: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            0_i32
-                >= find(
-                    v35_1,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v42: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v56: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v78: string = File_system::method60(
-                File_system::method10(
-                    v56.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method36(),
-                v56.l0.get().clone(),
-                File_system::method61(v0_1),
-            );
-            let v80: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v78,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
     pub fn closure40(v0_1: string, unitVar: ()) {
         File_system::method7(true, v0_1);
     }
-    pub fn method62(v0_1: string) -> Func0<()> {
+    pub fn method68(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure40(v0_1.clone(), ())
         })
     }
-    pub fn method63(v0_1: string) -> Func0<()> {
+    pub fn method69(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure40(v0_1.clone(), ())
         })
     }
-    pub fn method64(v0_1: string, v1_1: string) -> string {
+    pub fn method71(v0_1: string, v1_1: string) -> string {
         let v3: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v10: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -2080,86 +1819,61 @@ pub mod File_system {
         };
         v3.l0.get().clone()
     }
+    pub fn method70(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+        v9: string,
+    ) -> string {
+        let v10: string = File_system::method71(v8, v9);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.create_dir"),
+            v10
+        ))
+    }
     pub fn closure41(v0_1: string, v1_1: string, unitVar: ()) {
-        fn v3() {
-            File_system::closure0((), ());
-        }
-        let v4: () = {
-            v3();
-            ()
+        if File_system::method10(File_system::US0::US0_1) {
+            let v6: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v25_1: Option<i64> = patternInput.5.clone();
+            let v24_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v23_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v22_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v21_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v20_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method70(
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                v25_1.clone(),
+                File_system::method11(v20_1, v21_1, v22_1, v23_1, v24_1, v25_1),
+                File_system::method15(),
+                v0_1,
+                v1_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v36: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            1_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v79: string = File_system::method60(
-                File_system::method10(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method14(),
-                v57.l0.get().clone(),
-                File_system::method64(v0_1, v1_1),
-            );
-            let v81: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v79,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
     pub fn closure42(v0_1: string, unitVar: ()) {
         let v8: Arc<Async<i64>> = defaultOf();
@@ -2168,41 +1882,41 @@ pub mod File_system {
         ();
         ()
     }
-    pub fn method65(v0_1: string) -> Func0<()> {
+    pub fn method72(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure42(v0_1.clone(), ())
         })
     }
-    pub fn method66(v0_1: string) -> Func0<()> {
+    pub fn method73(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure42(v0_1.clone(), ())
         })
     }
-    pub fn method56(v0_1: string) -> LrcPtr<dyn IDisposable> {
+    pub fn method61(v0_1: string) -> LrcPtr<dyn IDisposable> {
         interface_cast!(
             defaultOf::<std::rc::Rc<dyn IDisposable>>(),
             Lrc<dyn IDisposable>,
         )
     }
     pub fn closure34(unitVar: (), unitVar_1: ()) -> (string, LrcPtr<dyn IDisposable>) {
-        let v0_1: string = File_system::method42();
-        (v0_1.clone(), File_system::method56(v0_1))
+        let v0_1: string = File_system::method47();
+        (v0_1.clone(), File_system::method61(v0_1))
     }
-    pub fn method67(v0_1: string) -> Guid {
+    pub fn method74(v0_1: string) -> Guid {
         unbox::<Guid>(&defaultOf())
     }
     pub fn closure43(unitVar: (), v0_1: string) -> (string, LrcPtr<dyn IDisposable>) {
-        let v2_1: string = File_system::method48(File_system::method67(v0_1));
-        (v2_1.clone(), File_system::method56(v2_1))
+        let v2_1: string = File_system::method53(File_system::method74(v0_1));
+        (v2_1.clone(), File_system::method61(v2_1))
     }
     pub fn closure44(unitVar: (), unitVar_1: ()) -> string {
         string("/home/runner/work/polyglot/polyglot/lib/spiral")
     }
-    pub fn method70(v0_1: std::io::Error) -> string {
+    pub fn method77(v0_1: std::io::Error) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v13: std::string::String = format!("{:#?}", v0_1);
         let v35_1: () = {
@@ -2216,9 +1930,9 @@ pub mod File_system {
         v2_1.l0.get().clone()
     }
     pub fn closure46(unitVar: (), v0_1: std::io::Error) -> string {
-        File_system::method70(v0_1)
+        File_system::method77(v0_1)
     }
-    pub fn method69() -> Func1<std::io::Error, string> {
+    pub fn method76() -> Func1<std::io::Error, string> {
         Func1::new(move |v: std::io::Error| File_system::closure46((), v))
     }
     pub fn closure47(unitVar: (), v0_1: std::path::PathBuf) -> File_system::US13 {
@@ -2227,10 +1941,10 @@ pub mod File_system {
     pub fn closure48(unitVar: (), v0_1: string) -> File_system::US13 {
         File_system::US13::US13_1(v0_1)
     }
-    pub fn method72(v0_1: string) -> string {
+    pub fn method79(v0_1: string) -> string {
         unbox::<string>(&defaultOf())
     }
-    pub fn method71(v0_1: string) -> Option<string> {
+    pub fn method78(v0_1: string) -> Option<string> {
         let v51: File_system::US1 = unbox::<File_system::US1>(&defaultOf());
         match &v51 {
             File_system::US1::US1_0(v51_0_0) => Some(match &v51 {
@@ -2243,13 +1957,13 @@ pub mod File_system {
     pub fn closure49(unitVar: (), v0_1: std::path::PathBuf) -> File_system::US14 {
         File_system::US14::US14_0(v0_1)
     }
-    pub fn method73() -> Func1<std::path::PathBuf, File_system::US14> {
+    pub fn method80() -> Func1<std::path::PathBuf, File_system::US14> {
         Func1::new(move |v: std::path::PathBuf| File_system::closure49((), v))
     }
-    pub fn method74(v0_1: string) -> string {
+    pub fn method81(v0_1: string) -> string {
         v0_1
     }
-    pub fn method68(v0_1: string) -> string {
+    pub fn method75(v0_1: string) -> string {
         if v0_1.clone() == string("") {
             string("")
         } else {
@@ -2260,7 +1974,7 @@ pub mod File_system {
             } else {
                 let v5902: Result<std::path::PathBuf, std::io::Error> =
                     std::fs::read_link(&*v0_1.clone());
-                let v5903 = File_system::method69();
+                let v5903 = File_system::method76();
                 let v5914: Result<std::path::PathBuf, string> = v5902.map_err(|x| v5903(x));
                 fn v5917(v: std::path::PathBuf) -> File_system::US13 {
                     File_system::closure47((), v)
@@ -2276,8 +1990,8 @@ pub mod File_system {
                     File_system::US13::US13_0(v5919_0_0) => Ok(v5919_0_0.clone()),
                     File_system::US13::US13_1(v5919_1_0) => {
                         let v5934: string = v5919_1_0.clone();
-                        let v5935: string = File_system::method16(v0_1.clone());
-                        let v5936: Option<string> = File_system::method71(v0_1.clone());
+                        let v5935: string = File_system::method19(v0_1.clone());
+                        let v5936: Option<string> = File_system::method78(v0_1.clone());
                         let v5950: File_system::US1 = defaultValue(
                             File_system::US1::US1_1,
                             map(File_system::method4(), v5936),
@@ -2290,7 +2004,7 @@ pub mod File_system {
                             if v0_1.clone() != string("") {
                                 let v5960: Result<std::path::PathBuf, std::io::Error> =
                                     std::fs::read_link(&*v5954.clone());
-                                let v5961 = File_system::method69();
+                                let v5961 = File_system::method76();
                                 let v5972: Result<std::path::PathBuf, string> =
                                     v5960.map_err(|x| v5961(x));
                                 let v5975: File_system::US13 = match &v5972 {
@@ -2302,9 +2016,9 @@ pub mod File_system {
                                     File_system::US13::US13_0(v5975_0_0) => Ok(v5975_0_0.clone()),
                                     File_system::US13::US13_1(v5975_1_0) => {
                                         let v5990: string = v5975_1_0.clone();
-                                        let v5991: string = File_system::method16(v5954.clone());
+                                        let v5991: string = File_system::method19(v5954.clone());
                                         let v5992: Option<string> =
-                                            File_system::method71(v5954.clone());
+                                            File_system::method78(v5954.clone());
                                         let v6006: File_system::US1 = defaultValue(
                                             File_system::US1::US1_1,
                                             map(File_system::method4(), v5992),
@@ -2319,7 +2033,7 @@ pub mod File_system {
                                                     std::path::PathBuf,
                                                     std::io::Error,
                                                 > = std::fs::read_link(&*v6010.clone());
-                                                let v6016 = File_system::method69();
+                                                let v6016 = File_system::method76();
                                                 let v6027: Result<std::path::PathBuf, string> =
                                                     v6015.map_err(|x| v6016(x));
                                                 let v6030: File_system::US13 = match &v6027 {
@@ -2336,9 +2050,9 @@ pub mod File_system {
                                                     File_system::US13::US13_1(v6030_1_0) => {
                                                         let v6045: string = v6030_1_0.clone();
                                                         let v6046: string =
-                                                            File_system::method16(v6010.clone());
+                                                            File_system::method19(v6010.clone());
                                                         let v6047: Option<string> =
-                                                            File_system::method71(v6010.clone());
+                                                            File_system::method78(v6010.clone());
                                                         let v6061: File_system::US1 = defaultValue(
                                                             File_system::US1::US1_1,
                                                             map(File_system::method4(), v6047),
@@ -2359,7 +2073,7 @@ pub mod File_system {
                                                                 > = std::fs::read_link(
                                                                     &*v6065.clone(),
                                                                 );
-                                                                let v6071 = File_system::method69();
+                                                                let v6071 = File_system::method76();
                                                                 let v6082: Result<
                                                                     std::path::PathBuf,
                                                                     string,
@@ -2386,11 +2100,11 @@ pub mod File_system {
                                                                         let v6100: string =
                                                                             v6085_1_0.clone();
                                                                         let v6101: string =
-                                                                            File_system::method16(
+                                                                            File_system::method19(
                                                                                 v6065.clone(),
                                                                             );
                                                                         let v6102: Option<string> =
-                                                                            File_system::method71(
+                                                                            File_system::method78(
                                                                                 v6065.clone(),
                                                                             );
                                                                         let v6116:
@@ -2422,7 +2136,7 @@ pub mod File_system {
                                                                                                                std::io::Error> =
                                                                                                     std::fs::read_link(&*v6120.clone());
                                                                                                 let v6126 =
-                                                                                                    File_system::method69();
+                                                                                                    File_system::method76();
                                                                                                 let v6137:
                                                                                                         Result<std::path::PathBuf,
                                                                                                                string> =
@@ -2454,10 +2168,10 @@ pub mod File_system {
                                                                                                                 v6140_1_0.clone();
                                                                                                             let v6156:
                                                                                                                     string =
-                                                                                                                File_system::method16(v6120.clone());
+                                                                                                                File_system::method19(v6120.clone());
                                                                                                             let v6157:
                                                                                                                     Option<string> =
-                                                                                                                File_system::method71(v6120.clone());
+                                                                                                                File_system::method78(v6120.clone());
                                                                                                             let v6171:
                                                                                                                     File_system::US1 =
                                                                                                                 defaultValue(File_system::US1::US1_1,
@@ -2487,7 +2201,7 @@ pub mod File_system {
                                                                                                                                    std::io::Error> =
                                                                                                                         std::fs::read_link(&*v6175.clone());
                                                                                                                     let v6181 =
-                                                                                                                        File_system::method69();
+                                                                                                                        File_system::method76();
                                                                                                                     let v6192:
                                                                                                                             Result<std::path::PathBuf,
                                                                                                                                    string> =
@@ -2519,10 +2233,10 @@ pub mod File_system {
                                                                                                                                     v6195_1_0.clone();
                                                                                                                                 let v6211:
                                                                                                                                         string =
-                                                                                                                                    File_system::method16(v6175.clone());
+                                                                                                                                    File_system::method19(v6175.clone());
                                                                                                                                 let v6212:
                                                                                                                                         Option<string> =
-                                                                                                                                    File_system::method71(v6175.clone());
+                                                                                                                                    File_system::method78(v6175.clone());
                                                                                                                                 let v6226:
                                                                                                                                         File_system::US1 =
                                                                                                                                     defaultValue(File_system::US1::US1_1,
@@ -2552,7 +2266,7 @@ pub mod File_system {
                                                                                                                                                        std::io::Error> =
                                                                                                                                             std::fs::read_link(&*v6230.clone());
                                                                                                                                         let v6236 =
-                                                                                                                                            File_system::method69();
+                                                                                                                                            File_system::method76();
                                                                                                                                         let v6247:
                                                                                                                                                 Result<std::path::PathBuf,
                                                                                                                                                        string> =
@@ -2584,10 +2298,10 @@ pub mod File_system {
                                                                                                                                                         v6250_1_0.clone();
                                                                                                                                                     let v6266:
                                                                                                                                                             string =
-                                                                                                                                                        File_system::method16(v6230.clone());
+                                                                                                                                                        File_system::method19(v6230.clone());
                                                                                                                                                     let v6267:
                                                                                                                                                             Option<string> =
-                                                                                                                                                        File_system::method71(v6230.clone());
+                                                                                                                                                        File_system::method78(v6230.clone());
                                                                                                                                                     let v6281:
                                                                                                                                                             File_system::US1 =
                                                                                                                                                         defaultValue(File_system::US1::US1_1,
@@ -2617,7 +2331,7 @@ pub mod File_system {
                                                                                                                                                                            std::io::Error> =
                                                                                                                                                                 std::fs::read_link(&*v6285.clone());
                                                                                                                                                             let v6291 =
-                                                                                                                                                                File_system::method69();
+                                                                                                                                                                File_system::method76();
                                                                                                                                                             let v6302:
                                                                                                                                                                     Result<std::path::PathBuf,
                                                                                                                                                                            string> =
@@ -2649,10 +2363,10 @@ pub mod File_system {
                                                                                                                                                                             v6305_1_0.clone();
                                                                                                                                                                         let v6321:
                                                                                                                                                                                 string =
-                                                                                                                                                                            File_system::method16(v6285.clone());
+                                                                                                                                                                            File_system::method19(v6285.clone());
                                                                                                                                                                         let v6322:
                                                                                                                                                                                 Option<string> =
-                                                                                                                                                                            File_system::method71(v6285.clone());
+                                                                                                                                                                            File_system::method78(v6285.clone());
                                                                                                                                                                         let v6336:
                                                                                                                                                                                 File_system::US1 =
                                                                                                                                                                             defaultValue(File_system::US1::US1_1,
@@ -2682,7 +2396,7 @@ pub mod File_system {
                                                                                                                                                                                                std::io::Error> =
                                                                                                                                                                                     std::fs::read_link(&*v6340.clone());
                                                                                                                                                                                 let v6346 =
-                                                                                                                                                                                    File_system::method69();
+                                                                                                                                                                                    File_system::method76();
                                                                                                                                                                                 let v6357:
                                                                                                                                                                                         Result<std::path::PathBuf,
                                                                                                                                                                                                string> =
@@ -2714,10 +2428,10 @@ pub mod File_system {
                                                                                                                                                                                                 v6360_1_0.clone();
                                                                                                                                                                                             let v6376:
                                                                                                                                                                                                     string =
-                                                                                                                                                                                                File_system::method16(v6340.clone());
+                                                                                                                                                                                                File_system::method19(v6340.clone());
                                                                                                                                                                                             let v6377:
                                                                                                                                                                                                     Option<string> =
-                                                                                                                                                                                                File_system::method71(v6340.clone());
+                                                                                                                                                                                                File_system::method78(v6340.clone());
                                                                                                                                                                                             let v6391:
                                                                                                                                                                                                     File_system::US1 =
                                                                                                                                                                                                 defaultValue(File_system::US1::US1_1,
@@ -2747,7 +2461,7 @@ pub mod File_system {
                                                                                                                                                                                                                    std::io::Error> =
                                                                                                                                                                                                         std::fs::read_link(&*v6395.clone());
                                                                                                                                                                                                     let v6401 =
-                                                                                                                                                                                                        File_system::method69();
+                                                                                                                                                                                                        File_system::method76();
                                                                                                                                                                                                     let v6412:
                                                                                                                                                                                                             Result<std::path::PathBuf,
                                                                                                                                                                                                                    string> =
@@ -2779,10 +2493,10 @@ pub mod File_system {
                                                                                                                                                                                                                     v6415_1_0.clone();
                                                                                                                                                                                                                 let v6431:
                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                    File_system::method16(v6395.clone());
+                                                                                                                                                                                                                    File_system::method19(v6395.clone());
                                                                                                                                                                                                                 let v6432:
                                                                                                                                                                                                                         Option<string> =
-                                                                                                                                                                                                                    File_system::method71(v6395.clone());
+                                                                                                                                                                                                                    File_system::method78(v6395.clone());
                                                                                                                                                                                                                 let v6446:
                                                                                                                                                                                                                         File_system::US1 =
                                                                                                                                                                                                                     defaultValue(File_system::US1::US1_1,
@@ -2812,7 +2526,7 @@ pub mod File_system {
                                                                                                                                                                                                                                        std::io::Error> =
                                                                                                                                                                                                                             std::fs::read_link(&*v6450.clone());
                                                                                                                                                                                                                         let v6456 =
-                                                                                                                                                                                                                            File_system::method69();
+                                                                                                                                                                                                                            File_system::method76();
                                                                                                                                                                                                                         let v6467:
                                                                                                                                                                                                                                 Result<std::path::PathBuf,
                                                                                                                                                                                                                                        string> =
@@ -2844,10 +2558,10 @@ pub mod File_system {
                                                                                                                                                                                                                                         v6470_1_0.clone();
                                                                                                                                                                                                                                     let v6486:
                                                                                                                                                                                                                                             string =
-                                                                                                                                                                                                                                        File_system::method16(v6450.clone());
+                                                                                                                                                                                                                                        File_system::method19(v6450.clone());
                                                                                                                                                                                                                                     let v6487:
                                                                                                                                                                                                                                             Option<string> =
-                                                                                                                                                                                                                                        File_system::method71(v6450.clone());
+                                                                                                                                                                                                                                        File_system::method78(v6450.clone());
                                                                                                                                                                                                                                     let v6501:
                                                                                                                                                                                                                                             File_system::US1 =
                                                                                                                                                                                                                                         defaultValue(File_system::US1::US1_1,
@@ -2877,7 +2591,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                            std::io::Error> =
                                                                                                                                                                                                                                                 std::fs::read_link(&*v6505.clone());
                                                                                                                                                                                                                                             let v6511 =
-                                                                                                                                                                                                                                                File_system::method69();
+                                                                                                                                                                                                                                                File_system::method76();
                                                                                                                                                                                                                                             let v6522:
                                                                                                                                                                                                                                                     Result<std::path::PathBuf,
                                                                                                                                                                                                                                                            string> =
@@ -2906,10 +2620,10 @@ pub mod File_system {
                                                                                                                                                                                                                                                     {
                                                                                                                                                                                                                                                         let v6541:
                                                                                                                                                                                                                                                                 string =
-                                                                                                                                                                                                                                                            File_system::method16(v6505.clone());
+                                                                                                                                                                                                                                                            File_system::method19(v6505.clone());
                                                                                                                                                                                                                                                         let v6542:
                                                                                                                                                                                                                                                                 Option<string> =
-                                                                                                                                                                                                                                                            File_system::method71(v6505.clone());
+                                                                                                                                                                                                                                                            File_system::method78(v6505.clone());
                                                                                                                                                                                                                                                         let v6556:
                                                                                                                                                                                                                                                                 File_system::US1 =
                                                                                                                                                                                                                                                             defaultValue(File_system::US1::US1_1,
@@ -2929,7 +2643,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                 };
                                                                                                                                                                                                                                             let v6589 =
-                                                                                                                                                                                                                                                File_system::method69();
+                                                                                                                                                                                                                                                File_system::method76();
                                                                                                                                                                                                                                             let v6600:
                                                                                                                                                                                                                                                     Result<std::path::PathBuf,
                                                                                                                                                                                                                                                            string> =
@@ -2952,7 +2666,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                 {
                                                                                                                                                                                                                                                     let v6629:
                                                                                                                                                                                                                                                             string =
-                                                                                                                                                                                                                                                        File_system::method51(toString(v6603_0_0.clone().display()),
+                                                                                                                                                                                                                                                        File_system::method56(toString(v6603_0_0.clone().display()),
                                                                                                                                                                                                                                                                               v6486.clone());
                                                                                                                                                                                                                                                     let v6636:
                                                                                                                                                                                                                                                             &str =
@@ -3009,7 +2723,7 @@ pub mod File_system {
                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                             };
                                                                                                                                                                                                                         let v6794 =
-                                                                                                                                                                                                                            File_system::method69();
+                                                                                                                                                                                                                            File_system::method76();
                                                                                                                                                                                                                         let v6805:
                                                                                                                                                                                                                                 Result<std::path::PathBuf,
                                                                                                                                                                                                                                        string> =
@@ -3032,7 +2746,7 @@ pub mod File_system {
                                                                                                                                                                                                                             {
                                                                                                                                                                                                                                 let v6834:
                                                                                                                                                                                                                                         string =
-                                                                                                                                                                                                                                    File_system::method51(toString(v6808_0_0.clone().display()),
+                                                                                                                                                                                                                                    File_system::method56(toString(v6808_0_0.clone().display()),
                                                                                                                                                                                                                                                           v6431.clone());
                                                                                                                                                                                                                                 let v6841:
                                                                                                                                                                                                                                         &str =
@@ -3089,7 +2803,7 @@ pub mod File_system {
                                                                                                                                                                                                             }
                                                                                                                                                                                                         };
                                                                                                                                                                                                     let v6999 =
-                                                                                                                                                                                                        File_system::method69();
+                                                                                                                                                                                                        File_system::method76();
                                                                                                                                                                                                     let v7010:
                                                                                                                                                                                                             Result<std::path::PathBuf,
                                                                                                                                                                                                                    string> =
@@ -3112,7 +2826,7 @@ pub mod File_system {
                                                                                                                                                                                                         {
                                                                                                                                                                                                             let v7039:
                                                                                                                                                                                                                     string =
-                                                                                                                                                                                                                File_system::method51(toString(v7013_0_0.clone().display()),
+                                                                                                                                                                                                                File_system::method56(toString(v7013_0_0.clone().display()),
                                                                                                                                                                                                                                       v6376.clone());
                                                                                                                                                                                                             let v7046:
                                                                                                                                                                                                                     &str =
@@ -3169,7 +2883,7 @@ pub mod File_system {
                                                                                                                                                                                         }
                                                                                                                                                                                     };
                                                                                                                                                                                 let v7204 =
-                                                                                                                                                                                    File_system::method69();
+                                                                                                                                                                                    File_system::method76();
                                                                                                                                                                                 let v7215:
                                                                                                                                                                                         Result<std::path::PathBuf,
                                                                                                                                                                                                string> =
@@ -3192,7 +2906,7 @@ pub mod File_system {
                                                                                                                                                                                     {
                                                                                                                                                                                         let v7244:
                                                                                                                                                                                                 string =
-                                                                                                                                                                                            File_system::method51(toString(v7218_0_0.clone().display()),
+                                                                                                                                                                                            File_system::method56(toString(v7218_0_0.clone().display()),
                                                                                                                                                                                                                   v6321.clone());
                                                                                                                                                                                         let v7251:
                                                                                                                                                                                                 &str =
@@ -3249,7 +2963,7 @@ pub mod File_system {
                                                                                                                                                                     }
                                                                                                                                                                 };
                                                                                                                                                             let v7409 =
-                                                                                                                                                                File_system::method69();
+                                                                                                                                                                File_system::method76();
                                                                                                                                                             let v7420:
                                                                                                                                                                     Result<std::path::PathBuf,
                                                                                                                                                                            string> =
@@ -3272,7 +2986,7 @@ pub mod File_system {
                                                                                                                                                                 {
                                                                                                                                                                     let v7449:
                                                                                                                                                                             string =
-                                                                                                                                                                        File_system::method51(toString(v7423_0_0.clone().display()),
+                                                                                                                                                                        File_system::method56(toString(v7423_0_0.clone().display()),
                                                                                                                                                                                               v6266.clone());
                                                                                                                                                                     let v7456:
                                                                                                                                                                             &str =
@@ -3329,7 +3043,7 @@ pub mod File_system {
                                                                                                                                                 }
                                                                                                                                             };
                                                                                                                                         let v7614 =
-                                                                                                                                            File_system::method69();
+                                                                                                                                            File_system::method76();
                                                                                                                                         let v7625:
                                                                                                                                                 Result<std::path::PathBuf,
                                                                                                                                                        string> =
@@ -3352,7 +3066,7 @@ pub mod File_system {
                                                                                                                                             {
                                                                                                                                                 let v7654:
                                                                                                                                                         string =
-                                                                                                                                                    File_system::method51(toString(v7628_0_0.clone().display()),
+                                                                                                                                                    File_system::method56(toString(v7628_0_0.clone().display()),
                                                                                                                                                                           v6211.clone());
                                                                                                                                                 let v7661:
                                                                                                                                                         &str =
@@ -3409,7 +3123,7 @@ pub mod File_system {
                                                                                                                             }
                                                                                                                         };
                                                                                                                     let v7819 =
-                                                                                                                        File_system::method69();
+                                                                                                                        File_system::method76();
                                                                                                                     let v7830:
                                                                                                                             Result<std::path::PathBuf,
                                                                                                                                    string> =
@@ -3432,7 +3146,7 @@ pub mod File_system {
                                                                                                                         {
                                                                                                                             let v7859:
                                                                                                                                     string =
-                                                                                                                                File_system::method51(toString(v7833_0_0.clone().display()),
+                                                                                                                                File_system::method56(toString(v7833_0_0.clone().display()),
                                                                                                                                                       v6156.clone());
                                                                                                                             let v7866:
                                                                                                                                     &str =
@@ -3489,7 +3203,7 @@ pub mod File_system {
                                                                                                         }
                                                                                                     };
                                                                                                 let v8024 =
-                                                                                                    File_system::method69();
+                                                                                                    File_system::method76();
                                                                                                 let v8035:
                                                                                                         Result<std::path::PathBuf,
                                                                                                                string> =
@@ -3512,7 +3226,7 @@ pub mod File_system {
                                                                                                     {
                                                                                                         let v8064:
                                                                                                                 string =
-                                                                                                            File_system::method51(toString(v8038_0_0.clone().display()),
+                                                                                                            File_system::method56(toString(v8038_0_0.clone().display()),
                                                                                                                                   v6101.clone());
                                                                                                         let v8071:
                                                                                                                 &str =
@@ -3568,7 +3282,7 @@ pub mod File_system {
                                                                                         }
                                                                     }
                                                                 };
-                                                                let v8229 = File_system::method69();
+                                                                let v8229 = File_system::method76();
                                                                 let v8240: Result<
                                                                     std::path::PathBuf,
                                                                     string,
@@ -3587,7 +3301,7 @@ pub mod File_system {
                                                                         v8243_0_0,
                                                                     ) => {
                                                                         let v8269: string =
-                                                                            File_system::method51(
+                                                                            File_system::method56(
                                                                                 toString(
                                                                                     v8243_0_0
                                                                                         .clone()
@@ -3651,7 +3365,7 @@ pub mod File_system {
                                                         }
                                                     }
                                                 };
-                                                let v8434 = File_system::method69();
+                                                let v8434 = File_system::method76();
                                                 let v8445: Result<std::path::PathBuf, string> =
                                                     v8433.map_err(|x| v8434(x));
                                                 let v8448: File_system::US13 = match &v8445 {
@@ -3660,7 +3374,7 @@ pub mod File_system {
                                                 };
                                                 match &v8448 {
                                                     File_system::US13::US13_0(v8448_0_0) => {
-                                                        let v8474: string = File_system::method51(
+                                                        let v8474: string = File_system::method56(
                                                             toString(v8448_0_0.clone().display()),
                                                             v5991.clone(),
                                                         );
@@ -3714,7 +3428,7 @@ pub mod File_system {
                                         }
                                     }
                                 };
-                                let v8639 = File_system::method69();
+                                let v8639 = File_system::method76();
                                 let v8650: Result<std::path::PathBuf, string> =
                                     v8638.map_err(|x| v8639(x));
                                 let v8653: File_system::US13 = match &v8650 {
@@ -3723,7 +3437,7 @@ pub mod File_system {
                                 };
                                 match &v8653 {
                                     File_system::US13::US13_0(v8653_0_0) => {
-                                        let v8679: string = File_system::method51(
+                                        let v8679: string = File_system::method56(
                                             toString(v8653_0_0.clone().display()),
                                             v5935.clone(),
                                         );
@@ -3768,7 +3482,7 @@ pub mod File_system {
             let v13141: Option<std::path::PathBuf> = v8844.ok();
             let v13161: File_system::US14 = defaultValue(
                 File_system::US14::US14_1,
-                map(File_system::method73(), v13141),
+                map(File_system::method80(), v13141),
             );
             if match &v13161 {
                 File_system::US14::US14_0(v13161_0_0) => {
@@ -3804,29 +3518,29 @@ pub mod File_system {
         }
     }
     pub fn closure45(unitVar: (), v0_1: string) -> string {
-        File_system::method68(v0_1)
+        File_system::method75(v0_1)
     }
     pub fn closure50(unitVar: (), v0_1: string) -> string {
         sprintf!("file:///{}", trimStartChars(v0_1, toArray(singleton('/'))))
     }
     pub fn closure52(unitVar: (), v0_1: string) -> Option<string> {
-        File_system::method71(v0_1)
+        File_system::method78(v0_1)
     }
-    pub fn method76() -> Func1<string, Option<string>> {
+    pub fn method83() -> Func1<string, Option<string>> {
         Func1::new(move |v: string| File_system::closure52((), v))
     }
-    pub fn method77(v0_1: string, v1_1: string, v2_1: string) -> File_system::US15 {
+    pub fn method84(v0_1: string, v1_1: string, v2_1: string) -> File_system::US15 {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method77: loop {
-            break '_method77 (if File_system::method9(File_system::method51(
+        '_method84: loop {
+            break '_method84 (if File_system::method9(File_system::method56(
                 v2_1.get().clone(),
                 v0_1.get().clone(),
             )) {
                 File_system::US15::US15_0(v2_1.get().clone())
             } else {
-                let v7: Option<string> = (File_system::method76())(v2_1.get().clone());
+                let v7: Option<string> = (File_system::method83())(v2_1.get().clone());
                 let v21_1: File_system::US1 =
                     defaultValue(File_system::US1::US1_1, map(File_system::method4(), v7));
                 match &v21_1 {
@@ -3840,7 +3554,7 @@ pub mod File_system {
                         v0_1.set(v0_1_temp);
                         v1_1.set(v1_1_temp);
                         v2_1.set(v2_1_temp);
-                        continue '_method77;
+                        continue '_method84;
                     }
                     _ => File_system::US15::US15_1(sprintf!(
                         "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
@@ -3853,15 +3567,15 @@ pub mod File_system {
             });
         }
     }
-    pub fn method75(v0_1: string, v1_1: string) -> File_system::US15 {
-        if File_system::method9(File_system::method51(v1_1.clone(), v0_1.clone())) {
+    pub fn method82(v0_1: string, v1_1: string) -> File_system::US15 {
+        if File_system::method9(File_system::method56(v1_1.clone(), v0_1.clone())) {
             File_system::US15::US15_0(v1_1.clone())
         } else {
-            let v6: Option<string> = (File_system::method76())(v1_1.clone());
+            let v6: Option<string> = (File_system::method83())(v1_1.clone());
             let v20_1: File_system::US1 =
                 defaultValue(File_system::US1::US1_1, map(File_system::method4(), v6));
             match &v20_1 {
-                File_system::US1::US1_0(v20_1_0_0) => File_system::method77(
+                File_system::US1::US1_0(v20_1_0_0) => File_system::method84(
                     v0_1.clone(),
                     v1_1.clone(),
                     match &v20_1 {
@@ -3879,9 +3593,9 @@ pub mod File_system {
             }
         }
     }
-    pub fn method78(v0_1: string) -> string {
+    pub fn method86(v0_1: string) -> string {
         let v2_1: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
-            l0: MutCell::new(File_system::method18()),
+            l0: MutCell::new(File_system::method17()),
         });
         let v9: () = {
             File_system::closure6(v2_1.clone(), sprintf!("{}", string("{ ")), ());
@@ -3905,112 +3619,69 @@ pub mod File_system {
         };
         v2_1.l0.get().clone()
     }
-    pub fn method79(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
-        trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("file_system.get_workspace_root"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
-            toArray(ofArray(new_array(&[' ', '/']))),
-        )
+    pub fn method85(
+        v0_1: LrcPtr<File_system::Mut0>,
+        v1_1: LrcPtr<File_system::Mut1>,
+        v2_1: LrcPtr<File_system::Mut2>,
+        v3: LrcPtr<File_system::Mut3>,
+        v4: LrcPtr<File_system::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: string,
+    ) -> string {
+        let v9: string = File_system::method86(v8);
+        File_system::method22(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("file_system.get_workspace_root"),
+            v9
+        ))
     }
     pub fn closure53(v0_1: string, unitVar: ()) {
-        fn v2_1() {
-            File_system::closure0((), ());
-        }
-        let v3: () = {
-            v2_1();
-            ()
+        if File_system::method10(File_system::US0::US0_3) {
+            let v5: () = {
+                File_system::closure0((), ());
+                ()
+            };
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                LrcPtr<File_system::Mut4>,
+                Option<i64>,
+            ) = getValue(File_system::TraceState::trace_state().get().clone());
+            let v24_1: Option<i64> = patternInput.5.clone();
+            let v23_1: LrcPtr<File_system::Mut4> = patternInput.4.clone();
+            let v22_1: LrcPtr<File_system::Mut3> = patternInput.3.clone();
+            let v21_1: LrcPtr<File_system::Mut2> = patternInput.2.clone();
+            let v20_1: LrcPtr<File_system::Mut1> = patternInput.1.clone();
+            let v19_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            File_system::method23(File_system::method85(
+                v19_1.clone(),
+                v20_1.clone(),
+                v21_1.clone(),
+                v22_1.clone(),
+                v23_1.clone(),
+                v24_1.clone(),
+                File_system::method11(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1),
+                File_system::method32(),
+                v0_1,
+            ))
         };
-        let patternInput: (
-            LrcPtr<File_system::Mut0>,
-            LrcPtr<File_system::Mut1>,
-            LrcPtr<File_system::Mut2>,
-            LrcPtr<File_system::Mut3>,
-            LrcPtr<File_system::Mut4>,
-            Option<i64>,
-        ) = getValue(File_system::TraceState::trace_state().get().clone());
-        let v35_1: File_system::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            3_i32
-                >= find(
-                    v35_1,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((File_system::US0::US0_0, 0_i32)),
-                        LrcPtr::new((File_system::US0::US0_1, 1_i32)),
-                        LrcPtr::new((File_system::US0::US0_2, 2_i32)),
-                        LrcPtr::new((File_system::US0::US0_3, 3_i32)),
-                        LrcPtr::new((File_system::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v42: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_1: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            let v56: LrcPtr<File_system::Mut0> = patternInput_1.0.clone();
-            let v78: string = File_system::method79(
-                File_system::method10(
-                    v56.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                File_system::method29(),
-                v56.l0.get().clone(),
-                File_system::method78(v0_1),
-            );
-            let v80: () = {
-                v2_1();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                LrcPtr<File_system::Mut4>,
-                Option<i64>,
-            ) = getValue(File_system::TraceState::trace_state().get().clone());
-            File_system::method20(
-                v78,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
     }
-    pub fn method80() -> string {
+    pub fn method87() -> string {
         unbox::<string>(&defaultOf())
     }
     pub fn closure51(unitVar: (), unitVar_1: ()) -> string {
-        let v4: File_system::US15 = File_system::method75(
-            File_system::method51(string("polyglot"), string(".devcontainer")),
+        let v4: File_system::US15 = File_system::method82(
+            File_system::method56(string("polyglot"), string(".devcontainer")),
             string("/home/runner/work/polyglot/polyglot/lib/spiral"),
         );
-        let v124: File_system::US1 = match &v4 {
+        let v52: File_system::US1 = match &v4 {
             File_system::US15::US15_0(v4_0_0) => File_system::US1::US1_0(v4_0_0.clone()),
             File_system::US15::US15_1(v4_1_0) => {
                 let v10: () = {
@@ -4020,24 +3691,22 @@ pub mod File_system {
                 File_system::US1::US1_1
             }
         };
-        let v251: File_system::US1 = match &v124 {
-            File_system::US1::US1_0(v124_0_0) => File_system::US1::US1_0(match &v124 {
+        let v107: File_system::US1 = match &v52 {
+            File_system::US1::US1_0(v52_0_0) => File_system::US1::US1_0(match &v52 {
                 File_system::US1::US1_0(x) => x.clone(),
                 _ => unreachable!(),
             }),
             _ => {
-                let v127: string = File_system::method80();
-                let v129: File_system::US15 = File_system::method75(
-                    File_system::method51(string("polyglot"), string(".devcontainer")),
-                    v127,
+                let v55: string = File_system::method87();
+                let v57: File_system::US15 = File_system::method82(
+                    File_system::method56(string("polyglot"), string(".devcontainer")),
+                    v55,
                 );
-                match &v129 {
-                    File_system::US15::US15_0(v129_0_0) => {
-                        File_system::US1::US1_0(v129_0_0.clone())
-                    }
-                    File_system::US15::US15_1(v129_1_0) => {
-                        let v135: () = {
-                            File_system::closure53(v129_1_0.clone(), ());
+                match &v57 {
+                    File_system::US15::US15_0(v57_0_0) => File_system::US1::US1_0(v57_0_0.clone()),
+                    File_system::US15::US15_1(v57_1_0) => {
+                        let v63: () = {
+                            File_system::closure53(v57_1_0.clone(), ());
                             ()
                         };
                         File_system::US1::US1_1
@@ -4045,9 +3714,9 @@ pub mod File_system {
                 }
             }
         };
-        File_system::method51(
-            match &v251 {
-                File_system::US1::US1_0(v251_0_0) => match &v251 {
+        File_system::method56(
+            match &v107 {
+                File_system::US1::US1_0(v107_0_0) => match &v107 {
                     File_system::US1::US1_0(x) => x.clone(),
                     _ => unreachable!(),
                 },
@@ -4056,12 +3725,12 @@ pub mod File_system {
             string("polyglot"),
         )
     }
-    pub fn method81(v0_1: string) {
+    pub fn method88(v0_1: string) {
         ();
         ()
     }
     pub fn closure55(unitVar: (), v0_1: string) {
-        File_system::method81(v0_1);
+        File_system::method88(v0_1);
     }
     pub fn closure54(unitVar: (), v0_1: bool) {
         let v3: () = {
@@ -4084,15 +3753,15 @@ pub mod File_system {
         (patternInput.1.clone()).l0.set(v37);
         ()
     }
-    pub fn method82(v0_1: string, v1_1: string) {
+    pub fn method89(v0_1: string, v1_1: string) {
         if File_system::method9(v0_1.clone()) == false {
-            let v4: LrcPtr<dyn IDisposable> = File_system::method56(v0_1);
+            let v4: LrcPtr<dyn IDisposable> = File_system::method61(v0_1);
             ()
         }
         {
-            let v5: string = File_system::method72(v1_1.clone());
+            let v5: string = File_system::method79(v1_1.clone());
             if File_system::method9(v5.clone()) == false {
-                let v8: LrcPtr<dyn IDisposable> = File_system::method56(v5);
+                let v8: LrcPtr<dyn IDisposable> = File_system::method61(v5);
                 ()
             }
             if if File_system::method9(v1_1.clone()) {
@@ -4103,7 +3772,7 @@ pub mod File_system {
                 } else {
                     let v5909: Result<std::path::PathBuf, std::io::Error> =
                         std::fs::read_link(&*v1_1.clone());
-                    let v5910 = File_system::method69();
+                    let v5910 = File_system::method76();
                     let v5921: Result<std::path::PathBuf, string> = v5909.map_err(|x| v5910(x));
                     fn v5924(v: std::path::PathBuf) -> File_system::US13 {
                         File_system::closure47((), v)
@@ -4119,8 +3788,8 @@ pub mod File_system {
                         File_system::US13::US13_0(v5926_0_0) => Ok(v5926_0_0.clone()),
                         File_system::US13::US13_1(v5926_1_0) => {
                             let v5941: string = v5926_1_0.clone();
-                            let v5942: string = File_system::method16(v1_1.clone());
-                            let v5943: Option<string> = File_system::method71(v1_1.clone());
+                            let v5942: string = File_system::method19(v1_1.clone());
+                            let v5943: Option<string> = File_system::method78(v1_1.clone());
                             let v5957: File_system::US1 = defaultValue(
                                 File_system::US1::US1_1,
                                 map(File_system::method4(), v5943),
@@ -4133,7 +3802,7 @@ pub mod File_system {
                                 if v1_1.clone() != string("") {
                                     let v5967: Result<std::path::PathBuf, std::io::Error> =
                                         std::fs::read_link(&*v5961.clone());
-                                    let v5968 = File_system::method69();
+                                    let v5968 = File_system::method76();
                                     let v5979: Result<std::path::PathBuf, string> =
                                         v5967.map_err(|x| v5968(x));
                                     let v5982: File_system::US13 = match &v5979 {
@@ -4148,9 +3817,9 @@ pub mod File_system {
                                             File_system::US13::US13_1(v5982_1_0) => {
                                                 let v5997: string = v5982_1_0.clone();
                                                 let v5998: string =
-                                                    File_system::method16(v5961.clone());
+                                                    File_system::method19(v5961.clone());
                                                 let v5999: Option<string> =
-                                                    File_system::method71(v5961.clone());
+                                                    File_system::method78(v5961.clone());
                                                 let v6013: File_system::US1 = defaultValue(
                                                     File_system::US1::US1_1,
                                                     map(File_system::method4(), v5999),
@@ -4165,7 +3834,7 @@ pub mod File_system {
                                                             std::path::PathBuf,
                                                             std::io::Error,
                                                         > = std::fs::read_link(&*v6017.clone());
-                                                        let v6023 = File_system::method69();
+                                                        let v6023 = File_system::method76();
                                                         let v6034: Result<
                                                             std::path::PathBuf,
                                                             string,
@@ -4192,11 +3861,11 @@ pub mod File_system {
                                                                 let v6052: string =
                                                                     v6037_1_0.clone();
                                                                 let v6053: string =
-                                                                    File_system::method16(
+                                                                    File_system::method19(
                                                                         v6017.clone(),
                                                                     );
                                                                 let v6054: Option<string> =
-                                                                    File_system::method71(
+                                                                    File_system::method78(
                                                                         v6017.clone(),
                                                                     );
                                                                 let v6068: File_system::US1 =
@@ -4226,7 +3895,7 @@ pub mod File_system {
                                                                             &*v6072.clone(),
                                                                         );
                                                                         let v6078 =
-                                                                            File_system::method69();
+                                                                            File_system::method76();
                                                                         let v6089: Result<
                                                                             std::path::PathBuf,
                                                                             string,
@@ -4259,10 +3928,10 @@ pub mod File_system {
                                                                                                    v6092_1_0.clone();
                                                                                                let v6108:
                                                                                                        string =
-                                                                                                   File_system::method16(v6072.clone());
+                                                                                                   File_system::method19(v6072.clone());
                                                                                                let v6109:
                                                                                                        Option<string> =
-                                                                                                   File_system::method71(v6072.clone());
+                                                                                                   File_system::method78(v6072.clone());
                                                                                                let v6123:
                                                                                                        File_system::US1 =
                                                                                                    defaultValue(File_system::US1::US1_1,
@@ -4292,7 +3961,7 @@ pub mod File_system {
                                                                                                                       std::io::Error> =
                                                                                                            std::fs::read_link(&*v6127.clone());
                                                                                                        let v6133 =
-                                                                                                           File_system::method69();
+                                                                                                           File_system::method76();
                                                                                                        let v6144:
                                                                                                                Result<std::path::PathBuf,
                                                                                                                       string> =
@@ -4324,10 +3993,10 @@ pub mod File_system {
                                                                                                                        v6147_1_0.clone();
                                                                                                                    let v6163:
                                                                                                                            string =
-                                                                                                                       File_system::method16(v6127.clone());
+                                                                                                                       File_system::method19(v6127.clone());
                                                                                                                    let v6164:
                                                                                                                            Option<string> =
-                                                                                                                       File_system::method71(v6127.clone());
+                                                                                                                       File_system::method78(v6127.clone());
                                                                                                                    let v6178:
                                                                                                                            File_system::US1 =
                                                                                                                        defaultValue(File_system::US1::US1_1,
@@ -4357,7 +4026,7 @@ pub mod File_system {
                                                                                                                                           std::io::Error> =
                                                                                                                                std::fs::read_link(&*v6182.clone());
                                                                                                                            let v6188 =
-                                                                                                                               File_system::method69();
+                                                                                                                               File_system::method76();
                                                                                                                            let v6199:
                                                                                                                                    Result<std::path::PathBuf,
                                                                                                                                           string> =
@@ -4389,10 +4058,10 @@ pub mod File_system {
                                                                                                                                            v6202_1_0.clone();
                                                                                                                                        let v6218:
                                                                                                                                                string =
-                                                                                                                                           File_system::method16(v6182.clone());
+                                                                                                                                           File_system::method19(v6182.clone());
                                                                                                                                        let v6219:
                                                                                                                                                Option<string> =
-                                                                                                                                           File_system::method71(v6182.clone());
+                                                                                                                                           File_system::method78(v6182.clone());
                                                                                                                                        let v6233:
                                                                                                                                                File_system::US1 =
                                                                                                                                            defaultValue(File_system::US1::US1_1,
@@ -4422,7 +4091,7 @@ pub mod File_system {
                                                                                                                                                               std::io::Error> =
                                                                                                                                                    std::fs::read_link(&*v6237.clone());
                                                                                                                                                let v6243 =
-                                                                                                                                                   File_system::method69();
+                                                                                                                                                   File_system::method76();
                                                                                                                                                let v6254:
                                                                                                                                                        Result<std::path::PathBuf,
                                                                                                                                                               string> =
@@ -4454,10 +4123,10 @@ pub mod File_system {
                                                                                                                                                                v6257_1_0.clone();
                                                                                                                                                            let v6273:
                                                                                                                                                                    string =
-                                                                                                                                                               File_system::method16(v6237.clone());
+                                                                                                                                                               File_system::method19(v6237.clone());
                                                                                                                                                            let v6274:
                                                                                                                                                                    Option<string> =
-                                                                                                                                                               File_system::method71(v6237.clone());
+                                                                                                                                                               File_system::method78(v6237.clone());
                                                                                                                                                            let v6288:
                                                                                                                                                                    File_system::US1 =
                                                                                                                                                                defaultValue(File_system::US1::US1_1,
@@ -4487,7 +4156,7 @@ pub mod File_system {
                                                                                                                                                                                   std::io::Error> =
                                                                                                                                                                        std::fs::read_link(&*v6292.clone());
                                                                                                                                                                    let v6298 =
-                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                       File_system::method76();
                                                                                                                                                                    let v6309:
                                                                                                                                                                            Result<std::path::PathBuf,
                                                                                                                                                                                   string> =
@@ -4519,10 +4188,10 @@ pub mod File_system {
                                                                                                                                                                                    v6312_1_0.clone();
                                                                                                                                                                                let v6328:
                                                                                                                                                                                        string =
-                                                                                                                                                                                   File_system::method16(v6292.clone());
+                                                                                                                                                                                   File_system::method19(v6292.clone());
                                                                                                                                                                                let v6329:
                                                                                                                                                                                        Option<string> =
-                                                                                                                                                                                   File_system::method71(v6292.clone());
+                                                                                                                                                                                   File_system::method78(v6292.clone());
                                                                                                                                                                                let v6343:
                                                                                                                                                                                        File_system::US1 =
                                                                                                                                                                                    defaultValue(File_system::US1::US1_1,
@@ -4552,7 +4221,7 @@ pub mod File_system {
                                                                                                                                                                                                       std::io::Error> =
                                                                                                                                                                                            std::fs::read_link(&*v6347.clone());
                                                                                                                                                                                        let v6353 =
-                                                                                                                                                                                           File_system::method69();
+                                                                                                                                                                                           File_system::method76();
                                                                                                                                                                                        let v6364:
                                                                                                                                                                                                Result<std::path::PathBuf,
                                                                                                                                                                                                       string> =
@@ -4584,10 +4253,10 @@ pub mod File_system {
                                                                                                                                                                                                        v6367_1_0.clone();
                                                                                                                                                                                                    let v6383:
                                                                                                                                                                                                            string =
-                                                                                                                                                                                                       File_system::method16(v6347.clone());
+                                                                                                                                                                                                       File_system::method19(v6347.clone());
                                                                                                                                                                                                    let v6384:
                                                                                                                                                                                                            Option<string> =
-                                                                                                                                                                                                       File_system::method71(v6347.clone());
+                                                                                                                                                                                                       File_system::method78(v6347.clone());
                                                                                                                                                                                                    let v6398:
                                                                                                                                                                                                            File_system::US1 =
                                                                                                                                                                                                        defaultValue(File_system::US1::US1_1,
@@ -4617,7 +4286,7 @@ pub mod File_system {
                                                                                                                                                                                                                           std::io::Error> =
                                                                                                                                                                                                                std::fs::read_link(&*v6402.clone());
                                                                                                                                                                                                            let v6408 =
-                                                                                                                                                                                                               File_system::method69();
+                                                                                                                                                                                                               File_system::method76();
                                                                                                                                                                                                            let v6419:
                                                                                                                                                                                                                    Result<std::path::PathBuf,
                                                                                                                                                                                                                           string> =
@@ -4649,10 +4318,10 @@ pub mod File_system {
                                                                                                                                                                                                                            v6422_1_0.clone();
                                                                                                                                                                                                                        let v6438:
                                                                                                                                                                                                                                string =
-                                                                                                                                                                                                                           File_system::method16(v6402.clone());
+                                                                                                                                                                                                                           File_system::method19(v6402.clone());
                                                                                                                                                                                                                        let v6439:
                                                                                                                                                                                                                                Option<string> =
-                                                                                                                                                                                                                           File_system::method71(v6402.clone());
+                                                                                                                                                                                                                           File_system::method78(v6402.clone());
                                                                                                                                                                                                                        let v6453:
                                                                                                                                                                                                                                File_system::US1 =
                                                                                                                                                                                                                            defaultValue(File_system::US1::US1_1,
@@ -4682,7 +4351,7 @@ pub mod File_system {
                                                                                                                                                                                                                                               std::io::Error> =
                                                                                                                                                                                                                                    std::fs::read_link(&*v6457.clone());
                                                                                                                                                                                                                                let v6463 =
-                                                                                                                                                                                                                                   File_system::method69();
+                                                                                                                                                                                                                                   File_system::method76();
                                                                                                                                                                                                                                let v6474:
                                                                                                                                                                                                                                        Result<std::path::PathBuf,
                                                                                                                                                                                                                                               string> =
@@ -4714,10 +4383,10 @@ pub mod File_system {
                                                                                                                                                                                                                                                v6477_1_0.clone();
                                                                                                                                                                                                                                            let v6493:
                                                                                                                                                                                                                                                    string =
-                                                                                                                                                                                                                                               File_system::method16(v6457.clone());
+                                                                                                                                                                                                                                               File_system::method19(v6457.clone());
                                                                                                                                                                                                                                            let v6494:
                                                                                                                                                                                                                                                    Option<string> =
-                                                                                                                                                                                                                                               File_system::method71(v6457.clone());
+                                                                                                                                                                                                                                               File_system::method78(v6457.clone());
                                                                                                                                                                                                                                            let v6508:
                                                                                                                                                                                                                                                    File_system::US1 =
                                                                                                                                                                                                                                                defaultValue(File_system::US1::US1_1,
@@ -4747,7 +4416,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                                   std::io::Error> =
                                                                                                                                                                                                                                                        std::fs::read_link(&*v6512.clone());
                                                                                                                                                                                                                                                    let v6518 =
-                                                                                                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                                                                                                       File_system::method76();
                                                                                                                                                                                                                                                    let v6529:
                                                                                                                                                                                                                                                            Result<std::path::PathBuf,
                                                                                                                                                                                                                                                                   string> =
@@ -4776,10 +4445,10 @@ pub mod File_system {
                                                                                                                                                                                                                                                            {
                                                                                                                                                                                                                                                                let v6548:
                                                                                                                                                                                                                                                                        string =
-                                                                                                                                                                                                                                                                   File_system::method16(v6512.clone());
+                                                                                                                                                                                                                                                                   File_system::method19(v6512.clone());
                                                                                                                                                                                                                                                                let v6549:
                                                                                                                                                                                                                                                                        Option<string> =
-                                                                                                                                                                                                                                                                   File_system::method71(v6512.clone());
+                                                                                                                                                                                                                                                                   File_system::method78(v6512.clone());
                                                                                                                                                                                                                                                                let v6563:
                                                                                                                                                                                                                                                                        File_system::US1 =
                                                                                                                                                                                                                                                                    defaultValue(File_system::US1::US1_1,
@@ -4799,7 +4468,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                            }
                                                                                                                                                                                                                                                        };
                                                                                                                                                                                                                                                    let v6596 =
-                                                                                                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                                                                                                       File_system::method76();
                                                                                                                                                                                                                                                    let v6607:
                                                                                                                                                                                                                                                            Result<std::path::PathBuf,
                                                                                                                                                                                                                                                                   string> =
@@ -4822,7 +4491,7 @@ pub mod File_system {
                                                                                                                                                                                                                                                        {
                                                                                                                                                                                                                                                            let v6636:
                                                                                                                                                                                                                                                                    string =
-                                                                                                                                                                                                                                                               File_system::method51(toString(v6610_0_0.clone().display()),
+                                                                                                                                                                                                                                                               File_system::method56(toString(v6610_0_0.clone().display()),
                                                                                                                                                                                                                                                                                      v6493.clone());
                                                                                                                                                                                                                                                            let v6643:
                                                                                                                                                                                                                                                                    &str =
@@ -4879,7 +4548,7 @@ pub mod File_system {
                                                                                                                                                                                                                                        }
                                                                                                                                                                                                                                    };
                                                                                                                                                                                                                                let v6801 =
-                                                                                                                                                                                                                                   File_system::method69();
+                                                                                                                                                                                                                                   File_system::method76();
                                                                                                                                                                                                                                let v6812:
                                                                                                                                                                                                                                        Result<std::path::PathBuf,
                                                                                                                                                                                                                                               string> =
@@ -4902,7 +4571,7 @@ pub mod File_system {
                                                                                                                                                                                                                                    {
                                                                                                                                                                                                                                        let v6841:
                                                                                                                                                                                                                                                string =
-                                                                                                                                                                                                                                           File_system::method51(toString(v6815_0_0.clone().display()),
+                                                                                                                                                                                                                                           File_system::method56(toString(v6815_0_0.clone().display()),
                                                                                                                                                                                                                                                                  v6438.clone());
                                                                                                                                                                                                                                        let v6848:
                                                                                                                                                                                                                                                &str =
@@ -4959,7 +4628,7 @@ pub mod File_system {
                                                                                                                                                                                                                    }
                                                                                                                                                                                                                };
                                                                                                                                                                                                            let v7006 =
-                                                                                                                                                                                                               File_system::method69();
+                                                                                                                                                                                                               File_system::method76();
                                                                                                                                                                                                            let v7017:
                                                                                                                                                                                                                    Result<std::path::PathBuf,
                                                                                                                                                                                                                           string> =
@@ -4982,7 +4651,7 @@ pub mod File_system {
                                                                                                                                                                                                                {
                                                                                                                                                                                                                    let v7046:
                                                                                                                                                                                                                            string =
-                                                                                                                                                                                                                       File_system::method51(toString(v7020_0_0.clone().display()),
+                                                                                                                                                                                                                       File_system::method56(toString(v7020_0_0.clone().display()),
                                                                                                                                                                                                                                              v6383.clone());
                                                                                                                                                                                                                    let v7053:
                                                                                                                                                                                                                            &str =
@@ -5039,7 +4708,7 @@ pub mod File_system {
                                                                                                                                                                                                }
                                                                                                                                                                                            };
                                                                                                                                                                                        let v7211 =
-                                                                                                                                                                                           File_system::method69();
+                                                                                                                                                                                           File_system::method76();
                                                                                                                                                                                        let v7222:
                                                                                                                                                                                                Result<std::path::PathBuf,
                                                                                                                                                                                                       string> =
@@ -5062,7 +4731,7 @@ pub mod File_system {
                                                                                                                                                                                            {
                                                                                                                                                                                                let v7251:
                                                                                                                                                                                                        string =
-                                                                                                                                                                                                   File_system::method51(toString(v7225_0_0.clone().display()),
+                                                                                                                                                                                                   File_system::method56(toString(v7225_0_0.clone().display()),
                                                                                                                                                                                                                          v6328.clone());
                                                                                                                                                                                                let v7258:
                                                                                                                                                                                                        &str =
@@ -5119,7 +4788,7 @@ pub mod File_system {
                                                                                                                                                                            }
                                                                                                                                                                        };
                                                                                                                                                                    let v7416 =
-                                                                                                                                                                       File_system::method69();
+                                                                                                                                                                       File_system::method76();
                                                                                                                                                                    let v7427:
                                                                                                                                                                            Result<std::path::PathBuf,
                                                                                                                                                                                   string> =
@@ -5142,7 +4811,7 @@ pub mod File_system {
                                                                                                                                                                        {
                                                                                                                                                                            let v7456:
                                                                                                                                                                                    string =
-                                                                                                                                                                               File_system::method51(toString(v7430_0_0.clone().display()),
+                                                                                                                                                                               File_system::method56(toString(v7430_0_0.clone().display()),
                                                                                                                                                                                                      v6273.clone());
                                                                                                                                                                            let v7463:
                                                                                                                                                                                    &str =
@@ -5199,7 +4868,7 @@ pub mod File_system {
                                                                                                                                                        }
                                                                                                                                                    };
                                                                                                                                                let v7621 =
-                                                                                                                                                   File_system::method69();
+                                                                                                                                                   File_system::method76();
                                                                                                                                                let v7632:
                                                                                                                                                        Result<std::path::PathBuf,
                                                                                                                                                               string> =
@@ -5222,7 +4891,7 @@ pub mod File_system {
                                                                                                                                                    {
                                                                                                                                                        let v7661:
                                                                                                                                                                string =
-                                                                                                                                                           File_system::method51(toString(v7635_0_0.clone().display()),
+                                                                                                                                                           File_system::method56(toString(v7635_0_0.clone().display()),
                                                                                                                                                                                  v6218.clone());
                                                                                                                                                        let v7668:
                                                                                                                                                                &str =
@@ -5279,7 +4948,7 @@ pub mod File_system {
                                                                                                                                    }
                                                                                                                                };
                                                                                                                            let v7826 =
-                                                                                                                               File_system::method69();
+                                                                                                                               File_system::method76();
                                                                                                                            let v7837:
                                                                                                                                    Result<std::path::PathBuf,
                                                                                                                                           string> =
@@ -5302,7 +4971,7 @@ pub mod File_system {
                                                                                                                                {
                                                                                                                                    let v7866:
                                                                                                                                            string =
-                                                                                                                                       File_system::method51(toString(v7840_0_0.clone().display()),
+                                                                                                                                       File_system::method56(toString(v7840_0_0.clone().display()),
                                                                                                                                                              v6163.clone());
                                                                                                                                    let v7873:
                                                                                                                                            &str =
@@ -5359,7 +5028,7 @@ pub mod File_system {
                                                                                                                }
                                                                                                            };
                                                                                                        let v8031 =
-                                                                                                           File_system::method69();
+                                                                                                           File_system::method76();
                                                                                                        let v8042:
                                                                                                                Result<std::path::PathBuf,
                                                                                                                       string> =
@@ -5382,7 +5051,7 @@ pub mod File_system {
                                                                                                            {
                                                                                                                let v8071:
                                                                                                                        string =
-                                                                                                                   File_system::method51(toString(v8045_0_0.clone().display()),
+                                                                                                                   File_system::method56(toString(v8045_0_0.clone().display()),
                                                                                                                                          v6108.clone());
                                                                                                                let v8078:
                                                                                                                        &str =
@@ -5439,7 +5108,7 @@ pub mod File_system {
                                                                                            }
                                                                                        };
                                                                         let v8236 =
-                                                                            File_system::method69();
+                                                                            File_system::method76();
                                                                         let v8247: Result<
                                                                             std::path::PathBuf,
                                                                             string,
@@ -5463,7 +5132,7 @@ pub mod File_system {
                                                                                        {
                                                                                            let v8276:
                                                                                                    string =
-                                                                                               File_system::method51(toString(v8250_0_0.clone().display()),
+                                                                                               File_system::method56(toString(v8250_0_0.clone().display()),
                                                                                                                      v6053.clone());
                                                                                            let v8283:
                                                                                                    &str =
@@ -5519,7 +5188,7 @@ pub mod File_system {
                                                                 }
                                                             }
                                                         };
-                                                        let v8441 = File_system::method69();
+                                                        let v8441 = File_system::method76();
                                                         let v8452: Result<
                                                             std::path::PathBuf,
                                                             string,
@@ -5538,7 +5207,7 @@ pub mod File_system {
                                                                 v8455_0_0,
                                                             ) => {
                                                                 let v8481: string =
-                                                                    File_system::method51(
+                                                                    File_system::method56(
                                                                         toString(
                                                                             v8455_0_0
                                                                                 .clone()
@@ -5600,7 +5269,7 @@ pub mod File_system {
                                                 }
                                             }
                                         };
-                                    let v8646 = File_system::method69();
+                                    let v8646 = File_system::method76();
                                     let v8657: Result<std::path::PathBuf, string> =
                                         v8645.map_err(|x| v8646(x));
                                     let v8660: File_system::US13 = match &v8657 {
@@ -5609,7 +5278,7 @@ pub mod File_system {
                                     };
                                     match &v8660 {
                                         File_system::US13::US13_0(v8660_0_0) => {
-                                            let v8686: string = File_system::method51(
+                                            let v8686: string = File_system::method56(
                                                 toString(v8660_0_0.clone().display()),
                                                 v5942.clone(),
                                             );
@@ -5669,7 +5338,7 @@ pub mod File_system {
         }
     }
     pub fn closure57(v0_1: string, v1_1: string) {
-        File_system::method82(v0_1, v1_1);
+        File_system::method89(v0_1, v1_1);
     }
     pub fn closure56(unitVar: (), v0_1: string) -> Func1<string, ()> {
         Func1::new({
@@ -5678,7 +5347,7 @@ pub mod File_system {
         })
     }
     pub fn closure59(v0_1: string, v1_1: string) -> string {
-        File_system::method51(v0_1, v1_1)
+        File_system::method56(v0_1, v1_1)
     }
     pub fn closure58(unitVar: (), v0_1: string) -> Func1<string, string> {
         Func1::new({

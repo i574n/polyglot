@@ -107,7 +107,7 @@ nominal arc t =
 #!spiral
 
 inl new_arc forall t. (x : t) : arc t =
-    !\\(x, $'"std::sync::Arc::new($0)"')
+    !\($'"std::sync::Arc::new(!x)"')
 
 #!markdown
 
@@ -128,7 +128,7 @@ nominal mutex t =
 #!spiral
 
 inl new_mutex forall t. (x : t) : mutex t =
-    !\\(x, $'"std::sync::Mutex::new($0)"')
+    !\($'"std::sync::Mutex::new(!x)"')
 
 #!markdown
 

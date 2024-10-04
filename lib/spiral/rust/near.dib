@@ -47,6 +47,18 @@ nominal lookup_map k v =
 
 #!markdown
 
+### iterable_set
+
+#!spiral
+
+nominal iterable_set t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"near_sdk::store::IterableSet<$0>\")>]\n#endif\ntype near_sdk_store_IterableSet<'T> = class end"
+        $'' : $'near_sdk_store_IterableSet<`t>'
+    )
+
+#!markdown
+
 ### account_id
 
 #!spiral
@@ -65,6 +77,15 @@ nominal account_id =
 
 inl new_lookup_map prefix =
     !\($'"near_sdk::store::LookupMap::new(!prefix)"')
+
+#!markdown
+
+### new_iterable_set
+
+#!spiral
+
+inl new_iterable_set prefix =
+    !\($'"near_sdk::store::IterableSet::new(!prefix)"')
 
 #!markdown
 
@@ -149,6 +170,45 @@ inl lookup_insert forall k v.
 
 #!markdown
 
+### iterable_set_insert
+
+#!spiral
+
+inl iterable_set_insert forall t.
+    (x : t)
+    (set : rust.ref (rust.mut' (iterable_set t)))
+    : bool
+    =
+    !\\(x, $'$"!set.insert($0)"')
+
+#!markdown
+
+### iterable_set_remove
+
+#!spiral
+
+inl iterable_set_remove forall t.
+    (x : rust.ref t)
+    (set : rust.ref (rust.mut' (iterable_set t)))
+    : bool
+    =
+    !\\(x, $'$"!set.remove($0)"')
+
+#!markdown
+
+### iterable_set_contains
+
+#!spiral
+
+inl iterable_set_contains forall t.
+    (x : rust.ref t)
+    (set : rust.ref (rust.mut' (iterable_set t)))
+    : bool
+    =
+    !\\(x, $'$"!set.contains($0)"')
+
+#!markdown
+
 ### near_token
 
 #!spiral
@@ -215,6 +275,15 @@ inl epoch_height () : u64 =
 
 inl account_balance () : near_token =
     !\($'$"near_sdk::env::account_balance()"')
+
+#!markdown
+
+### predecessor_account_id
+
+#!spiral
+
+inl predecessor_account_id () : account_id =
+    !\($'$"near_sdk::env::predecessor_account_id()"')
 
 #!markdown
 

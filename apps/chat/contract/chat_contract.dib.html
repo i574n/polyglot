@@ -7599,8 +7599,10 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">state</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">version</span> <span class="p">:</span> <span class="n">u32</span>
-        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))</span>
+        <span class="n">account_set</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">iterable_set</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span>
+        <span class="n">alias_set</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">iterable_set</span> <span class="n">sm</span><span class="s1">'.std_string</span>
         <span class="n">account_map</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string</span>
+        <span class="n">alias_map</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7631,46 +7633,24 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:24:22 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000957; total_gas_burnt = 1432554003351 }
-08:24:22 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:24:22 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000602; tokens_burnt_usd = +0.000602; gas_burnt = 901289581511; tokens_burnt = 90128958151100000000 }
-08:24:22 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:05 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.000808; total_gas_burnt = 1209371440851 }
+00:00:05 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:05 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000602; tokens_burnt_usd = +0.000602; gas_burnt = 901289581511; tokens_burnt = 90128958151100000000 }
+00:00:05 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+ 
+00:00:18 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.000957; total_gas_burnt = 1432554003351 }
+00:00:18 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:18 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000602; tokens_burnt_usd = +0.000602; gas_burnt = 901289581511; tokens_burnt = 90128958151100000000 }
+00:00:18 <span class="ansi-green-intense-fg">i</span> #11 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="new">new<a class="anchor-link" href="#new">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new</span> <span class="p">()</span> <span class="p">:</span> <span class="n">state</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">alias_map</span> <span class="o">=</span> <span class="s2">"l"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
-        <span class="n">account_map</span> <span class="o">=</span> <span class="s2">"c"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7681,8 +7661,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
 
-<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
-<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="p">}</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
 </pre></div>
 </div>
 </div>
@@ -7695,117 +7674,112 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:24:35 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:24:35 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:24:35 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:24:35 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:24:43 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:24:43 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:24:43 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:24:43 <span class="ansi-yellow-fg">warning</span> #8 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 2 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:24:51 <span class="ansi-blue-intense-fg">  debug</span> #9 spiral_wasm.print_usd / { retry = 3; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:24:51 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:24:51 <span class="ansi-blue-intense-fg">  debug</span> #11 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:24:51 <span class="ansi-yellow-fg">warning</span> #12 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 3 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:24:58 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_wasm.print_usd / { retry = 4; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:24:58 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:24:58 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:24:58 <span class="ansi-yellow-fg">warning</span> #16 spiral_wasm.run / Error error / { retry = 4; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 4 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:25:06 <span class="ansi-blue-intense-fg">  debug</span> #17 spiral_wasm.print_usd / { retry = 5; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:25:06 <span class="ansi-blue-intense-fg">  debug</span> #18 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:06 <span class="ansi-blue-intense-fg">  debug</span> #19 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:25:06 <span class="ansi-yellow-fg">warning</span> #20 spiral_wasm.run / Error error / { retry = 5; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 5 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:25:12 <span class="ansi-blue-intense-fg">  debug</span> #21 spiral_wasm.print_usd / { retry = 6; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:25:12 <span class="ansi-blue-intense-fg">  debug</span> #22 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:12 <span class="ansi-blue-intense-fg">  debug</span> #23 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:25:12 <span class="ansi-yellow-fg">warning</span> #24 spiral_wasm.run / Error error / { retry = 6; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 6 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:25:20 <span class="ansi-blue-intense-fg">  debug</span> #25 spiral_wasm.print_usd / { retry = 7; total_gas_burnt_usd = +0.001087; total_gas_burnt = 1627680388694 }
-08:25:20 <span class="ansi-blue-intense-fg">  debug</span> #26 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:20 <span class="ansi-blue-intense-fg">  debug</span> #27 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:25:20 <span class="ansi-yellow-fg">warning</span> #28 spiral_wasm.run / Error error / { retry = 7; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 7 }" }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 chat_contract / { state = { version = 1; alias_map = LookupMap {
-    prefix: [
-        108,
-    ],
-}; account_map = LookupMap {
-    prefix: [
-        99,
-    ],
-} } }
-08:25:26 <span class="ansi-blue-intense-fg">  debug</span> #29 spiral_wasm.print_usd / { retry = 8; total_gas_burnt_usd = +0.001236; total_gas_burnt = 1850862951194 }
-08:25:26 <span class="ansi-blue-intense-fg">  debug</span> #30 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:26 <span class="ansi-blue-intense-fg">  debug</span> #31 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000881; tokens_burnt_usd = +0.000881; gas_burnt = 1319598529354; tokens_burnt = 131959852935400000000 }
-08:25:26 <span class="ansi-blue-intense-fg">  debug</span> #32 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:08 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.001032; total_gas_burnt = 1545362460366 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000677; tokens_burnt_usd = +0.000677; gas_burnt = 1014098038526; tokens_burnt = 101409803852600000000 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #5 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="new">new<a class="anchor-link" href="#new">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new</span> <span class="p">()</span> <span class="p">:</span> <span class="n">state</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">account_set</span> <span class="o">=</span> <span class="s2">"account_set"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_iterable_set</span>
+        <span class="n">alias_set</span> <span class="o">=</span> <span class="s2">"alias_set"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_iterable_set</span>
+        <span class="n">account_map</span> <span class="o">=</span> <span class="s2">"account_map"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
+        <span class="n">alias_map</span> <span class="o">=</span> <span class="s2">"alias_map"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.byte_slice |&gt; near.new_lookup_map</span>
+
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
+
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug }</span>
+<span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 chat_contract / { state = (2, IterableSet { elements: Vector { len: 0, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 0, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:10 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.001333; total_gas_burnt = 1995329366949 }
+00:00:10 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:10 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.001127; tokens_burnt_usd = +0.001127; gas_burnt = 1687247507609; tokens_burnt = 168724750760900000000 }
+00:00:10 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 chat_contract / { state = (2, IterableSet { elements: Vector { len: 0, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 0, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:16 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.001333; total_gas_burnt = 1995329366949 }
+00:00:16 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:16 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.001127; tokens_burnt_usd = +0.001127; gas_burnt = 1687247507609; tokens_burnt = 168724750760900000000 }
+00:00:16 <span class="ansi-yellow-fg">w</span> #11 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_outcomes_len = 1; retry = 2; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 chat_contract / { state = (2, IterableSet { elements: Vector { len: 0, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 0, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:25 <span class="ansi-green-intense-fg">i</span> #14 near_workspaces.print_usd / { retry = 3; total_gas_burnt_usd = +0.001333; total_gas_burnt = 1995329366949 }
+00:00:25 <span class="ansi-green-intense-fg">i</span> #15 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:25 <span class="ansi-green-intense-fg">i</span> #16 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.001127; tokens_burnt_usd = +0.001127; gas_burnt = 1687247507609; tokens_burnt = 168724750760900000000 }
+00:00:25 <span class="ansi-yellow-fg">w</span> #17 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_outcomes_len = 1; retry = 3; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 chat_contract / { state = (2, IterableSet { elements: Vector { len: 0, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 0, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:32 <span class="ansi-green-intense-fg">i</span> #20 near_workspaces.print_usd / { retry = 4; total_gas_burnt_usd = +0.001482; total_gas_burnt = 2218511929449 }
+00:00:32 <span class="ansi-green-intense-fg">i</span> #21 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:32 <span class="ansi-green-intense-fg">i</span> #22 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.001127; tokens_burnt_usd = +0.001127; gas_burnt = 1687247507609; tokens_burnt = 168724750760900000000 }
+00:00:32 <span class="ansi-green-intense-fg">i</span> #23 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7815,7 +7789,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7837,7 +7811,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7864,20 +7838,59 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:25:38 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
-08:25:38 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:38 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
-08:25:39 <span class="ansi-yellow-fg">warning</span> #4 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_failures = []; receipt_outcomes_len = 1; retry = 1 }" }
-08:25:46 <span class="ansi-blue-intense-fg">  debug</span> #5 spiral_wasm.print_usd / { retry = 2; total_gas_burnt_usd = +0.000971; total_gas_burnt = 1454121045668 }
-08:25:46 <span class="ansi-blue-intense-fg">  debug</span> #6 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:46 <span class="ansi-blue-intense-fg">  debug</span> #7 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
-08:25:46 <span class="ansi-blue-intense-fg">  debug</span> #8 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:08 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:08 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+ 
+00:00:17 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:17 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:17 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:17 <span class="ansi-yellow-fg">w</span> #11 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_outcomes_len = 1; retry = 2; receipt_failures = [] }" }
+
+
+ 
+00:00:25 <span class="ansi-green-intense-fg">i</span> #14 near_workspaces.print_usd / { retry = 3; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:25 <span class="ansi-green-intense-fg">i</span> #15 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:25 <span class="ansi-green-intense-fg">i</span> #16 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:25 <span class="ansi-yellow-fg">w</span> #17 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_outcomes_len = 1; retry = 3; receipt_failures = [] }" }
+
+
+ 
+00:00:32 <span class="ansi-green-intense-fg">i</span> #20 near_workspaces.print_usd / { retry = 4; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:32 <span class="ansi-green-intense-fg">i</span> #21 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:32 <span class="ansi-green-intense-fg">i</span> #22 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:32 <span class="ansi-yellow-fg">w</span> #23 spiral_wasm.run / Error error / { retry = 4; error = "{ receipt_outcomes_len = 1; retry = 4; receipt_failures = [] }" }
+
+
+ 
+00:00:39 <span class="ansi-green-intense-fg">i</span> #26 near_workspaces.print_usd / { retry = 5; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:39 <span class="ansi-green-intense-fg">i</span> #27 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:39 <span class="ansi-green-intense-fg">i</span> #28 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:39 <span class="ansi-yellow-fg">w</span> #29 spiral_wasm.run / Error error / { retry = 5; error = "{ receipt_outcomes_len = 1; retry = 5; receipt_failures = [] }" }
+
+
+ 
+00:00:47 <span class="ansi-green-intense-fg">i</span> #32 near_workspaces.print_usd / { retry = 6; total_gas_burnt_usd = +0.000822; total_gas_burnt = 1230938483168 }
+00:00:47 <span class="ansi-green-intense-fg">i</span> #33 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:47 <span class="ansi-green-intense-fg">i</span> #34 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:47 <span class="ansi-yellow-fg">w</span> #35 spiral_wasm.run / Error error / { retry = 6; error = "{ receipt_outcomes_len = 1; retry = 6; receipt_failures = [] }" }
+
+
+ 
+00:00:54 <span class="ansi-green-intense-fg">i</span> #38 near_workspaces.print_usd / { retry = 7; total_gas_burnt_usd = +0.000971; total_gas_burnt = 1454121045668 }
+00:00:54 <span class="ansi-green-intense-fg">i</span> #39 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:54 <span class="ansi-green-intense-fg">i</span> #40 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000616; tokens_burnt_usd = +0.000616; gas_burnt = 922856623828; tokens_burnt = 92285662382800000000 }
+00:00:54 <span class="ansi-green-intense-fg">i</span> #41 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7904,16 +7917,52 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:25:58 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000973; total_gas_burnt = 1456087363091 }
-08:25:58 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:25:58 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
-08:25:58 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:05 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.000824; total_gas_burnt = 1232904800591 }
+00:00:05 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:05 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:05 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+ 
+00:00:11 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.000824; total_gas_burnt = 1232904800591 }
+00:00:11 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:11 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:11 <span class="ansi-yellow-fg">w</span> #11 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_outcomes_len = 1; retry = 2; receipt_failures = [] }" }
+
+
+ 
+00:00:21 <span class="ansi-green-intense-fg">i</span> #14 near_workspaces.print_usd / { retry = 3; total_gas_burnt_usd = +0.000824; total_gas_burnt = 1232904800591 }
+00:00:21 <span class="ansi-green-intense-fg">i</span> #15 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:21 <span class="ansi-green-intense-fg">i</span> #16 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:21 <span class="ansi-yellow-fg">w</span> #17 spiral_wasm.run / Error error / { retry = 3; error = "{ receipt_outcomes_len = 1; retry = 3; receipt_failures = [] }" }
+
+
+ 
+00:00:30 <span class="ansi-green-intense-fg">i</span> #20 near_workspaces.print_usd / { retry = 4; total_gas_burnt_usd = +0.000824; total_gas_burnt = 1232904800591 }
+00:00:30 <span class="ansi-green-intense-fg">i</span> #21 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:30 <span class="ansi-green-intense-fg">i</span> #22 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:30 <span class="ansi-yellow-fg">w</span> #23 spiral_wasm.run / Error error / { retry = 4; error = "{ receipt_outcomes_len = 1; retry = 4; receipt_failures = [] }" }
+
+
+ 
+00:00:39 <span class="ansi-green-intense-fg">i</span> #26 near_workspaces.print_usd / { retry = 5; total_gas_burnt_usd = +0.000824; total_gas_burnt = 1232904800591 }
+00:00:39 <span class="ansi-green-intense-fg">i</span> #27 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:39 <span class="ansi-green-intense-fg">i</span> #28 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:39 <span class="ansi-yellow-fg">w</span> #29 spiral_wasm.run / Error error / { retry = 5; error = "{ receipt_outcomes_len = 1; retry = 5; receipt_failures = [] }" }
+
+
+ 
+00:00:46 <span class="ansi-green-intense-fg">i</span> #32 near_workspaces.print_usd / { retry = 6; total_gas_burnt_usd = +0.000973; total_gas_burnt = 1456087363091 }
+00:00:46 <span class="ansi-green-intense-fg">i</span> #33 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:46 <span class="ansi-green-intense-fg">i</span> #34 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000618; tokens_burnt_usd = +0.000618; gas_burnt = 924822941251; tokens_burnt = 92482294125100000000 }
+00:00:46 <span class="ansi-green-intense-fg">i</span> #35 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7940,17 +7989,25 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:26:10 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.000974; total_gas_burnt = 1457681122890 }
-08:26:10 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:26:10 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
-08:26:10 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:07 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.000825; total_gas_burnt = 1234498560390 }
+00:00:07 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:07 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+00:00:07 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+ 
+00:00:14 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.000974; total_gas_burnt = 1457681122890 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000619; tokens_burnt_usd = +0.000619; gas_burnt = 926416701050; tokens_burnt = 92641670105000000000 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #11 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7960,7 +8017,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7997,7 +8054,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8025,17 +8082,18 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:26:22 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001025; total_gas_burnt = 1535005758238 }
-08:26:22 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:26:22 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
-08:26:22 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+<pre> 
+00:00:08 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.001025; total_gas_burnt = 1535005758238 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000670; tokens_burnt_usd = +0.000670; gas_burnt = 1003741336398; tokens_burnt = 100374133639800000000 }
+00:00:08 <span class="ansi-green-intense-fg">i</span> #5 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8045,7 +8103,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8054,114 +8112,87 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">claim_alias</span> <span class="p">(</span><span class="n">state</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' state)) (alias : sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map near.account_id sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">))</span> <span class="o">=</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.2"'</span><span class="o">)</span>
-
-    <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="p">(</span><span class="n">mapm</span><span class="o">.</span><span class="n">hash_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="n">u32</span><span class="p">))))</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">account_set</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.iterable_set near.account_id)) =</span>
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.1"'</span><span class="o">)</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let account_id = near_sdk::env::signer_account_id(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let timestamp = near_sdk::env::block_timestamp(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">inl</span> <span class="n">alias_set</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.iterable_set sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">))</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.2"'</span><span class="o">)</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      \\\"claim_alias "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            alias: {!alias:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            account_id: {account_id:#?} "'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"            timestamp: {timestamp:#?}\\\" //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    ) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map near.account_id sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">))</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.3"'</span><span class="o">)</span>
 
-    <span class="n">inl</span> <span class="n">is_valid_alias</span> <span class="o">=</span> <span class="n">join</span> <span class="n">is_valid_alias</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if \!!is_valid_alias(!alias.clone()) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    near_sdk::env::panic_str(\\\"Invalid alias\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (near.lookup_map sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="p">(</span><span class="n">mapm</span><span class="o">.</span><span class="n">hash_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="n">u32</span><span class="p">))))</span> <span class="o">=</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;mut !state.4"'</span><span class="o">)</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  if let Some(previous_alias) = !account_map.get(&amp;account_id) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    if *previous_alias == !alias { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      near_sdk::log\!(\\\"{}\\\", \\\"Alias already claimed\\\"); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      return; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">inl</span> <span class="n">signer_account_id</span> <span class="o">=</span> <span class="n">near</span><span class="o">.</span><span class="n">signer_account_id</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">predecessor_account_id</span> <span class="o">=</span> <span class="n">near</span><span class="o">.</span><span class="n">predecessor_account_id</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">block_timestamp</span> <span class="o">=</span> <span class="n">near</span><span class="o">.</span><span class="n">block_timestamp</span> <span class="p">()</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get_mut(previous_alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .unwrap() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .remove(&amp;account_id); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="n">trace</span> <span class="n">Debug</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract.claim_alias"</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">alias</span>
+            <span class="n">block_timestamp</span>
+            <span class="n">signer_account_id</span> <span class="o">=</span> <span class="n">signer_account_id</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_string</span>
+            <span class="n">predecessor_account_id</span> <span class="o">=</span> <span class="n">predecessor_account_id</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_string</span>
+        <span class="p">}</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !account_map.insert(account_id.clone(), !alias.clone()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="k">if</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">is_valid_alias</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+    <span class="n">then</span> <span class="n">near</span><span class="o">.</span><span class="n">panic_str</span> <span class="s2">"chat_contract.claim_alias / invalid alias"</span> <span class="o">.</span> <span class="n">true</span>
+    <span class="k">else</span> <span class="n">false</span>
+    <span class="o">|&gt;</span> <span class="n">ignore</span>
+    
+    <span class="n">inl</span> <span class="n">account_alias</span> <span class="o">=</span>
+        <span class="n">account_map</span>
+        <span class="o">|&gt;</span> <span class="n">near</span><span class="o">.</span><span class="n">lookup_get</span> <span class="n">signer_account_id</span>
+        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.cloned</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  let new_alias_account_map = match !alias_map.get(&amp;!alias) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    None =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = std::collections::HashMap::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, 0u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Some(accounts) =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut accounts_vec = accounts.iter().collect::&lt;Vec&lt;_&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = accounts_vec //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .iter() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .enumerate() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .map(|(i, (account_id, (timestamp, _)))| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          ((*account_id).clone(), (*timestamp, i as u32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .collect::&lt;std::collections::HashMap&lt;_, _&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map.insert(account_id, (timestamp, accounts_vec.len() as u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="k">match</span> <span class="n">account_alias</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+    <span class="o">|</span> <span class="n">Some</span> <span class="n">account_alias</span> <span class="n">when</span> <span class="n">account_alias</span> <span class="o">=.</span> <span class="n">alias</span> <span class="o">=&gt;</span>
+        <span class="n">trace</span> <span class="ne">Warning</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract.claim_alias / alias already claimed"</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">account_alias</span> <span class="o">=</span> <span class="n">account_alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug }</span>
+    <span class="o">|</span> <span class="n">account_alias</span><span class="s1">' =&gt;</span>
+        <span class="n">trace</span> <span class="n">Debug</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract.claim_alias"</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">account_alias</span> <span class="o">=</span> <span class="n">account_alias</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug }</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !alias_map.insert(!alias, new_alias_account_map); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="k">match</span> <span class="n">account_alias</span><span class="s1">' with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">account_alias</span> <span class="o">=&gt;</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get_mut(&amp;!account_alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .unwrap() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>signer_account_id,<span class="w"> </span><span class="s1">$'"      .remove(&amp;$0); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="p">()</span>
+
+        <span class="o">!</span><span class="se">\\</span><span class="o">((</span>signer_account_id,<span class="w"> </span><span class="nb">alias</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"  !account_map.insert($0.clone(), $1.clone()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="n">account_set</span> <span class="o">|&gt;</span> <span class="n">near</span><span class="o">.</span><span class="n">iterable_set_insert</span> <span class="n">signer_account_id</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+        <span class="n">alias_set</span> <span class="o">|&gt;</span> <span class="n">near</span><span class="o">.</span><span class="n">iterable_set_insert</span> <span class="n">alias</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+
+        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>alias,<span class="w"> </span><span class="s1">$'"  let new_alias_account_map = match !alias_map.get(&amp;$0) { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    None =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = std::collections::HashMap::new(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\\</span><span class="o">((</span>signer_account_id,<span class="w"> </span>block_timestamp<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"      new_map.insert($0, ($1, 0u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    Some(accounts) =&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut accounts_vec = accounts.iter().collect::&lt;Vec&lt;_&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      accounts_vec.sort_unstable_by_key(|(_, (_, index))| index); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      let mut new_map = accounts_vec //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .iter() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .enumerate() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .map(|(i, (signer_account_id, (timestamp, _)))| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          ((*signer_account_id).clone(), (*timestamp, i as u32)) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"        .collect::&lt;std::collections::HashMap&lt;_, _&gt;&gt;(); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>signer_account_id,<span class="w"> </span><span class="s1">$'"      new_map.insert($0, (!block_timestamp, accounts_vec.len() as u32)); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      new_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    } //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }; //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>alias,<span class="w"> </span><span class="s1">$'"  !alias_map.insert($0, new_alias_account_map); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
-
-<span class="s2">"alias1"</span>
-<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="p">(</span>
-    <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
-    <span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
-    <span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
-    <span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>version,<span class="w"> </span><span class="s1">$'$"&amp;mut ($0, !alias_map, !account_map)"'</span><span class="o">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>claim_alias ;
-                        alias: "alias1" ;
-                        account_id: AccountId(
-    "dev-20240906122633-59792448370297",
-) ;
-                        timestamp: 1725625594840566870
-08:26:35 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001282; total_gas_burnt = 1918830993174 }
-08:26:35 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:26:35 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000927; tokens_burnt_usd = +0.000927; gas_burnt = 1387566571334; tokens_burnt = 138756657133400000000 }
-08:26:35 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
-</pre>
 </div>
 </div>
 </div>
@@ -8175,17 +8206,34 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c<span class="o">=</span>-e
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-c
 
-<span class="s2">""</span>
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
+<span class="n">inl</span> <span class="n">account_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_set</span>
+<span class="n">inl</span> <span class="n">alias_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_set</span>
+<span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
+<span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
+<span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">join</span> <span class="n">version</span>
+<span class="n">inl</span> <span class="n">account_set</span> <span class="o">=</span> <span class="n">join</span> <span class="n">account_set</span>
+<span class="n">inl</span> <span class="n">alias_set</span> <span class="o">=</span> <span class="n">join</span> <span class="n">alias_set</span>
+<span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">join</span> <span class="n">account_map</span>
+<span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">join</span> <span class="n">alias_map</span>
+<span class="n">inl</span> <span class="n">state</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' state) =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>
+        <span class="n">version</span><span class="p">,</span>
+        <span class="err">$</span><span class="s1">'$"&amp;mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'</span>
+    <span class="p">)</span>
+
+<span class="s2">"alias1"</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="p">(</span>
-    <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
-    <span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
-    <span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
-    <span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>version,<span class="w"> </span><span class="s1">$'$"&amp;mut ($0, !alias_map, !account_map)"'</span><span class="o">)</span>
-<span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="n">state</span>
+
+<span class="n">trace</span> <span class="n">Verbose</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug }</span>
+
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
 </pre></div>
 </div>
 </div>
@@ -8198,45 +8246,264 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>claim_alias ;
-                        alias: "" ;
-                        account_id: AccountId(
-    "dev-20240906122645-86344620166282",
-) ;
-                        timestamp: 1725625607101517862
-08:26:47 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_wasm.print_usd / { retry = 1; total_gas_burnt_usd = +0.001066; total_gas_burnt = 1596474108994 }
-08:26:47 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
-08:26:47 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_wasm.print_usd / outcome / { is_success = false; gas_burnt_usd = +0.000712; tokens_burnt_usd = +0.000712; gas_burnt = 1065209687154; tokens_burnt = 106520968715400000000 }
-08:26:47 <span class="ansi-blue-intense-fg">  debug</span> #4 spiral_wasm.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
-08:26:47 <span class="ansi-red-intense-fg">critical</span> #5 spiral_wasm.run / Ok (Some error) / { retry = 1; error = { receipt_failures = [
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003081516023687; signer_account_id = "dev-20241004005120-96618896672455"; predecessor_account_id = "dev-20241004005120-96618896672455" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 chat_contract.claim_alias / { account_alias = None }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 chat_contract / { state = (2, IterableSet { elements: Vector { len: 1, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 1, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:07 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.002551; total_gas_burnt = 3818730562666 }
+00:00:07 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:07 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.002345; tokens_burnt_usd = +0.002345; gas_burnt = 3510648703326; tokens_burnt = 351064870332600000000 }
+00:00:07 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003088655800729; signer_account_id = "dev-20241004005127-45469855385063"; predecessor_account_id = "dev-20241004005127-45469855385063" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 chat_contract.claim_alias / { account_alias = None }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 chat_contract / { state = (2, IterableSet { elements: Vector { len: 1, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 1, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:14 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.002700; total_gas_burnt = 4041913125166 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.002345; tokens_burnt_usd = +0.002345; gas_burnt = 3510648703326; tokens_burnt = 351064870332600000000 }
+00:00:14 <span class="ansi-green-intense-fg">i</span> #11 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span><span class="se">\"</span>-c<span class="o">=</span>-e<span class="o">=</span><span class="se">\\\"</span>chat_contract.claim_alias<span class="w"> </span>/<span class="w"> </span>invalid<span class="w"> </span>alias<span class="se">\\\"\"</span>
+
+<span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="p">(</span>
+    <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
+    <span class="n">inl</span> <span class="n">account_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_set</span>
+    <span class="n">inl</span> <span class="n">alias_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_set</span>
+    <span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
+    <span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>version,<span class="w"> </span><span class="s1">$'$"&amp;mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'</span><span class="o">)</span>
+<span class="p">)</span>
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre> 
+00:00:06 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.001312; total_gas_burnt = 1964710590586 }
+00:00:06 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:06 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = false; gas_burnt_usd = +0.000958; tokens_burnt_usd = +0.000958; gas_burnt = 1433446168746; tokens_burnt = 143344616874600000000 }
+00:00:06 <span class="ansi-green-intense-fg">i</span> #5 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
+00:00:06 <span class="ansi-red-intense-fg">c</span> #6 spiral_wasm.run / Ok (Some error) / { retry = 1; error = { receipt_outcomes_len = 2; retry = 1; receipt_failures = [
     ExecutionOutcome {
-        transaction_hash: 36knEAShcArvmUtpArx8FpaUcxqM5Y6agKhHvcmiEMsP,
-        block_hash: CsV9PfRdt1q8FJExVu1vjDB3QnznYTVhKzdd1M6sHd6L,
-        logs: [
-            "claim_alias ;\n                        alias: \"\" ;\n                        account_id: AccountId(\n    \"dev-20240906122645-86344620166282\",\n) ;\n                        timestamp: 1725625607101517862",
-        ],
+        transaction_hash: 54dysVBjtkefLuuJ7PnWXfbJs81XUzACBPJu45mcXnUn,
+        block_hash: 4pg9xcK4p9ReDXNKvkhYgArYAvZKwGDavYcWWdJriYk5,
+        logs: [],
         receipt_ids: [
-            D61XzhcYMKMd4bDm2Ey5nQnqAR181z5Mbd9CdGdArLuk,
+            5cuEz26LpXp617igLg5F3QNxT3QTnTfjyv1qm6Ksizdq,
         ],
         gas_burnt: NearGas {
-            inner: 1065209687154,
+            inner: 1433446168746,
         },
         tokens_burnt: NearToken {
-            inner: 106520968715400000000,
+            inner: 143344616874600000000,
         },
         executor_id: AccountId(
-            "dev-20240906122645-86344620166282",
+            "dev-20241004005148-28385603414663",
         ),
-        status: Failure(ActionError(ActionError { index: Some(0), kind: FunctionCallError(ExecutionError("Smart contract panicked: Invalid alias")) })),
+        status: Failure(ActionError(ActionError { index: Some(0), kind: FunctionCallError(ExecutionError("Smart contract panicked: chat_contract.claim_alias / invalid alias")) })),
     },
-]; receipt_outcomes_len = 2; retry = 1 } }
+] } }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-cd<span class="w"> </span>borsh
+
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">version</span>
+<span class="n">inl</span> <span class="n">account_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_set</span>
+<span class="n">inl</span> <span class="n">alias_set</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_set</span>
+<span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">account_map</span>
+<span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">alias_map</span>
+<span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">join</span> <span class="n">version</span>
+<span class="n">inl</span> <span class="n">account_set</span> <span class="o">=</span> <span class="n">join</span> <span class="n">account_set</span>
+<span class="n">inl</span> <span class="n">alias_set</span> <span class="o">=</span> <span class="n">join</span> <span class="n">alias_set</span>
+<span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">join</span> <span class="n">account_map</span>
+<span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">join</span> <span class="n">alias_map</span>
+<span class="n">inl</span> <span class="n">state</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_rc</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">state</span><span class="s1">' = state |&gt; sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">'</span>
+    <span class="o">//</span> <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span><span class="s1">' }</span>
+
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">version</span> <span class="o">=</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc_unwrap_or_clone</span> <span class="n">state</span> <span class="o">.</span><span class="n">version</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">alias_map</span> <span class="o">=</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc_unwrap_or_clone</span> <span class="n">state</span> <span class="o">.</span><span class="n">alias_map</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">account_map</span> <span class="o">=</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc_unwrap_or_clone</span> <span class="n">state</span> <span class="o">.</span><span class="n">account_map</span>
+
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>
+        <span class="p">(</span>
+            <span class="n">version</span><span class="p">,</span>
+            <span class="n">account_map</span><span class="p">,</span>
+            <span class="n">alias_map</span>
+        <span class="p">),</span>
+        <span class="err">$</span><span class="s1">'$"&amp;mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'</span>
+    <span class="p">)</span>
+
+<span class="s2">"alias1"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="n">state</span>
+
+<span class="s2">"alias1"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="n">state</span>
+
+<span class="s2">"alias1"</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+<span class="o">|&gt;</span> <span class="n">claim_alias</span> <span class="n">state</span>
+
+<span class="n">trace</span> <span class="n">Verbose</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract"</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug }</span>
+
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003145318231352; signer_account_id = "dev-20241004005223-55469869785031"; predecessor_account_id = "dev-20241004005223-55469869785031" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 chat_contract.claim_alias / { account_alias = None }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003145318231352; signer_account_id = "dev-20241004005223-55469869785031"; predecessor_account_id = "dev-20241004005223-55469869785031" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003145318231352; signer_account_id = "dev-20241004005223-55469869785031"; predecessor_account_id = "dev-20241004005223-55469869785031" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 chat_contract / { state = (2, IterableSet { elements: Vector { len: 1, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 1, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:12 <span class="ansi-green-intense-fg">i</span> #2 near_workspaces.print_usd / { retry = 1; total_gas_burnt_usd = +0.004254; total_gas_burnt = 6367744163711 }
+00:00:12 <span class="ansi-green-intense-fg">i</span> #3 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:12 <span class="ansi-green-intense-fg">i</span> #4 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.004048; tokens_burnt_usd = +0.004048; gas_burnt = 6059662304371; tokens_burnt = 605966230437100000000 }
+00:00:12 <span class="ansi-yellow-fg">w</span> #5 spiral_wasm.run / Error error / { retry = 1; error = "{ receipt_outcomes_len = 1; retry = 1; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003154945729696; signer_account_id = "dev-20241004005233-41118624329743"; predecessor_account_id = "dev-20241004005233-41118624329743" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 chat_contract.claim_alias / { account_alias = None }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003154945729696; signer_account_id = "dev-20241004005233-41118624329743"; predecessor_account_id = "dev-20241004005233-41118624329743" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003154945729696; signer_account_id = "dev-20241004005233-41118624329743"; predecessor_account_id = "dev-20241004005233-41118624329743" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 chat_contract / { state = (2, IterableSet { elements: Vector { len: 1, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 1, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:21 <span class="ansi-green-intense-fg">i</span> #8 near_workspaces.print_usd / { retry = 2; total_gas_burnt_usd = +0.004254; total_gas_burnt = 6367744163711 }
+00:00:21 <span class="ansi-green-intense-fg">i</span> #9 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:21 <span class="ansi-green-intense-fg">i</span> #10 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.004048; tokens_burnt_usd = +0.004048; gas_burnt = 6059662304371; tokens_burnt = 605966230437100000000 }
+00:00:21 <span class="ansi-yellow-fg">w</span> #11 spiral_wasm.run / Error error / { retry = 2; error = "{ receipt_outcomes_len = 1; retry = 2; receipt_failures = [] }" }
+
+
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003160016712869; signer_account_id = "dev-20241004005238-38503720477824"; predecessor_account_id = "dev-20241004005238-38503720477824" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 chat_contract.claim_alias / { account_alias = None }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003160016712869; signer_account_id = "dev-20241004005238-38503720477824"; predecessor_account_id = "dev-20241004005238-38503720477824" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 chat_contract.claim_alias / { alias = "alias1"; block_timestamp = 1728003160016712869; signer_account_id = "dev-20241004005238-38503720477824"; predecessor_account_id = "dev-20241004005238-38503720477824" }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 chat_contract.claim_alias / { account_alias = Some("alias1") }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 chat_contract / { state = (2, IterableSet { elements: Vector { len: 1, prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 115, 101, 116, 109] } }, IterableSet { elements: Vector { len: 1, prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 118] }, index: LookupMap { prefix: [97, 108, 105, 97, 115, 95, 115, 101, 116, 109] } }, LookupMap { prefix: [97, 99, 99, 111, 117, 110, 116, 95, 109, 97, 112] }, LookupMap { prefix: [97, 108, 105, 97, 115, 95, 109, 97, 112] }) }
+ 
+00:00:26 <span class="ansi-green-intense-fg">i</span> #14 near_workspaces.print_usd / { retry = 3; total_gas_burnt_usd = +0.004403; total_gas_burnt = 6590926726211 }
+00:00:26 <span class="ansi-green-intense-fg">i</span> #15 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000206; tokens_burnt_usd = +0.000206; gas_burnt = 308081859340; tokens_burnt = 30808185934000000000 }
+00:00:26 <span class="ansi-green-intense-fg">i</span> #16 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.004048; tokens_burnt_usd = +0.004048; gas_burnt = 6059662304371; tokens_burnt = 605966230437100000000 }
+00:00:26 <span class="ansi-green-intense-fg">i</span> #17 near_workspaces.print_usd / outcome / { is_success = true; gas_burnt_usd = +0.000149; tokens_burnt_usd = +0.000000; gas_burnt = 223182562500; tokens_burnt = 0 }
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="get_account_info">get_account_info<a class="anchor-link" href="#get_account_info">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_account_info</span>
+    <span class="p">(</span><span class="n">state</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">state</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">account_id</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span><span class="p">)</span>
+    <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.std_string * (u64 * u32))</span>
+    <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string) =</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;!state.2"'</span><span class="o">)</span>
+
+    <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))) =</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;!state.1"'</span><span class="o">)</span>
+
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>account_id,<span class="w"> </span><span class="s1">$'"let result = !account_map.get(&amp;$0).and_then(|alias| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .map(|accounts| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          let result = (alias.clone(), *accounts.get(&amp;!account_id).unwrap()); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"          (result.0, result.1.0, result.1.1) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"}); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"result"'</span><span class="o">)</span>
+
+    <span class="n">trace</span> <span class="n">Debug</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"chat_contract.get_account_info"</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">account_id</span> <span class="n">result</span> <span class="p">}</span>
+
+    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="nb">id</span>
+
+    <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8246,7 +8513,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8284,6 +8551,7 @@ a.anchor-link {
         <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; */"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
 
         <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">new</span> <span class="p">()</span>
+
         <span class="err">$</span><span class="s1">'let _result = !result in _result |&gt; (fun x -&gt; Fable.Core.RustInterop.emitRustExpr x $"Self($0) // x") // 2'</span> <span class="p">:</span> <span class="p">()</span>
 
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // 2."'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
@@ -8331,6 +8599,7 @@ a.anchor-link {
         <span class="n">inl</span> <span class="n">alias</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"alias"'</span><span class="o">)</span>
         
         <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">claim_alias</span> <span class="n">state</span> <span class="n">alias</span>
+        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="nb">id</span><span class="p">)</span>
 
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
@@ -8344,27 +8613,17 @@ a.anchor-link {
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"pub fn get_account_info( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  &amp;self, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  account_id: near_sdk::AccountId, //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, (u64, u32))&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'") -&gt; Option&lt;(String, u64, u32)&gt; { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-        <span class="n">inl</span> <span class="n">account_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="n">sm</span><span class="s1">'.std_string) =</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.2"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">account_id</span> <span class="p">:</span> <span class="n">near</span><span class="o">.</span><span class="n">account_id</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"account_id"'</span><span class="o">)</span>
 
-        <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))) =</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.1"'</span><span class="o">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">account_id</span> <span class="o">|&gt;</span> <span class="n">get_account_info</span> <span class="n">state</span>
+        <span class="err">$</span><span class="s1">'let _result = !result in _result |&gt; (fun x -&gt; Fable.Core.RustInterop.emitRustExpr x "$0 } // 4") // 3'</span> <span class="p">:</span> <span class="p">()</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_account_info / account_id: {account_id:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // 2"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !account_map.get(&amp;account_id).and_then(|alias| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    !alias_map //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .get(alias) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"      .map(|accounts| (alias.clone(), *accounts.get(&amp;account_id).unwrap())) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  }) //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // 1"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
         <span class="mi">2</span>
 
@@ -8377,12 +8636,15 @@ a.anchor-link {
         <span class="n">inl</span> <span class="n">alias_map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">near</span><span class="o">.</span><span class="n">lookup_map</span> <span class="n">sm</span><span class="s1">'.std_string (mapm.hash_map near.account_id (u64 * u32))) =</span>
             <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"&amp;self.0.1"'</span><span class="o">)</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  near_sdk::log\!( //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    \\\"{}\\\", //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"    format\!(\\\"get_alias_map / alias: {alias:#?}\\\") //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  ); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="n">inl</span> <span class="n">alias</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string = !\($'</span><span class="err">$</span><span class="s2">"alias"</span><span class="s1">')</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"  !alias_map.get(&amp;alias).cloned() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="n">trace</span> <span class="n">Debug</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"chat_contract.get_alias_map"'</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">alias</span> <span class="p">}</span>
+
+        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="nb">id</span><span class="p">)</span>
+
+        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>alias,<span class="w"> </span><span class="s1">$'"  !alias_map.get(&amp;$0).cloned() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
         <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
@@ -8435,7 +8697,7 @@ a.anchor-link {
     <span class="o">//</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} // b"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"fn _main() //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
 
     <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span><span class="s1">' i'</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">i</span><span class="s1">' &lt;= n</span>

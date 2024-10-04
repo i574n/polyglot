@@ -9416,24 +9416,24 @@ __assert_eq' / actual: US0_0 1 / expected: US0_0 1
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output:
-00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Exception {
+00:00:00 <span class="ansi-yellow-fg">w</span> #1 common.retry_fn / { retry = 0; ex = Exception {
     message: "test",
 } }
-00:00:00 <span class="ansi-yellow-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Exception {
+00:00:00 <span class="ansi-yellow-fg">w</span> #2 common.retry_fn / { retry = 1; ex = Exception {
     message: "test",
 } }
 __assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 
 
 .ts output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Error: test }
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Error: test }
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #1 common.retry_fn / { retry = 0; ex = Error: test }
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #2 common.retry_fn / { retry = 1; ex = Error: test }
 __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 
 
 .py output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = test }
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = test }
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #1 common.retry_fn / { retry = 0; ex = test }
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #2 common.retry_fn / { retry = 1; ex = test }
 __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 
 
@@ -9444,10 +9444,10 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = System.Exception: test
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #1 common.retry_fn / { retry = 0; ex = System.Exception: test
    at FSI_0031.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
    at FSI_0031.method1(Mut0 v0, Int32 v1) }
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
    at FSI_0031.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
    at FSI_0031.method1(Mut0 v0, Int32 v1) }
 __assert_eq' / actual: US0_0 2 / expected: US0_0 2

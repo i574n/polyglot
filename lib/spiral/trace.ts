@@ -1,13 +1,13 @@
 import { compare, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { value as value_1, map, defaultArg, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { map, defaultArg, value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, op_Subtraction, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
-import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
 
 export let TraceState_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>]>>(undefined);
 
@@ -259,33 +259,68 @@ export function closure0(unitVar: void, unitVar_1: void): void {
     }
 }
 
+export function method6(v0_1: US0_$union): boolean {
+    let v3: any;
+    closure0(undefined, undefined);
+    v3 = undefined;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    const v35: US0_$union = patternInput[4].l0;
+    if (patternInput[2].l0 === false) {
+        return false;
+    }
+    else {
+        return find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+            Compare: compare,
+        })) >= find<US0_$union, int32>(v35, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+            Compare: compare,
+        }));
+    }
+}
+
 export function closure7(unitVar: void, v0_1: int64): US3_$union {
     return US3_US3_0(v0_1);
 }
 
-export function method7(): ((arg0: int64) => US3_$union) {
+export function method8(): ((arg0: int64) => US3_$union) {
     return (v: int64): US3_$union => closure7(undefined, v);
 }
 
-export function method8(): string {
+export function method9(): string {
     return "hh:mm:ss";
 }
 
-export function method9(): string {
+export function method10(): string {
     return "HH:mm:ss";
 }
 
-export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
+export function method7(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
     let v181: int64, v191: number;
-    const v177: US3_$union = defaultArg(map<int64, US3_$union>(method7(), v5), US3_US3_1());
-    return toString((v177.tag === /* US3_0 */ 0) ? ((v181 = v177.fields[0], (v191 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v181))), create(1, 1, 1, hours(v191), minutes(v191), seconds(v191), milliseconds(v191))))) : now(), method9());
+    const v177: US3_$union = defaultArg(map<int64, US3_$union>(method8(), v5), US3_US3_1());
+    return toString((v177.tag === /* US3_0 */ 0) ? ((v181 = v177.fields[0], (v191 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v181))), create(1, 1, 1, hours(v191), minutes(v191), seconds(v191), milliseconds(v191))))) : now(), method10());
 }
 
-export function method11(): string {
+export function method13(): string {
+    return "";
+}
+
+export function closure8(v0_1: Mut3, v1_1: string, unitVar: void): void {
+    const v3: string = v0_1.l0 + v1_1;
+    v0_1.l0 = v3;
+}
+
+export function method12(v0_1: string): string {
+    const v2_1: Mut3 = new Mut3(method13());
+    let v8: any;
+    closure8(v2_1, `${v0_1}`, undefined);
+    v8 = undefined;
+    return v2_1.l0;
+}
+
+export function method14(): string {
     return "\u001b[0m";
 }
 
-export function method10(v0_1: US0_$union): string {
+export function method11(v0_1: US0_$union): string {
     const v5: US1_$union = (v0_1.tag === /* US0_0 */ 0) ? US1_US1_0("Verbose") : US1_US1_1();
     let v46: US1_$union;
     if (v5.tag === /* US1_0 */ 0) {
@@ -320,20 +355,12 @@ export function method10(v0_1: US0_$union): string {
     else {
         throw new Error("Option does not have a value.");
     }
-    const v55: string = padLeft(v50.toLocaleLowerCase(), 7, " ");
-    return (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v55) + method11();
+    const v52: string = v50.toLocaleLowerCase();
+    const v56: string = method12(v52[0]);
+    return (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v56) + method14();
 }
 
-export function method13(): string {
-    return "";
-}
-
-export function closure8(v0_1: Mut3, v1_1: string, unitVar: void): void {
-    const v3: string = v0_1.l0 + v1_1;
-    v0_1.l0 = v3;
-}
-
-export function method12(v0_1: string): string {
+export function method16(v0_1: string): string {
     const v2_1: Mut3 = new Mut3(method13());
     let v8: any;
     closure8(v2_1, `${v0_1}`, undefined);
@@ -341,8 +368,13 @@ export function method12(v0_1: string): string {
     return v2_1.l0;
 }
 
-export function method14(v0_1: string, v1_1: string, v2_1: string, v3: int64, v4: string): string {
-    return trimEnd(trimStart(`${v0_1} ${v1_1} #${v3} ${v2_1} / ${v4}`, ...[]), ...[" ", "/"]);
+export function method17(v0_1: string): string {
+    return trimEnd(trimStart(v0_1, ...[]), ...[" ", "/"]);
+}
+
+export function method15(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: string, v9: string): string {
+    const v10: string = method16(v9);
+    return method17(`${v6} ${v7} #${v0_1.l0} ${v8} / ${v10}`);
 }
 
 export function closure9(v0_1: Mut0, unitVar: void): void {
@@ -360,42 +392,34 @@ export function closure10(unitVar: void, v0_1: string): void {
     v3 = undefined;
 }
 
-export function method15(v0_1: string, v1_1: Mut0, v2_1: Mut1, v3: Mut2, v4: Mut3, v5: Mut4, v6: Option<int64>): void {
-    let v9: any;
-    closure9(v1_1, undefined);
-    v9 = undefined;
+export function method18(v0_1: string): void {
+    let v3: any;
+    closure0(undefined, undefined);
+    v3 = undefined;
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+    let v37: any;
+    closure9(patternInput[0], undefined);
+    v37 = undefined;
     closure10(undefined, v0_1);
-    v2_1.l0(v0_1);
+    patternInput[1].l0(v0_1);
 }
 
 export function closure6(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): void {
-    const v4 = (): void => {
+    if (method6(v0_1)) {
+        let v6: any;
         closure0(undefined, undefined);
-    };
-    let v5: any;
-    v4();
-    v5 = undefined;
-    const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
-    const v37: US0_$union = patternInput[4].l0;
-    if ((patternInput[2].l0 === false) ? false : (find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
-        Compare: compare,
-    })) >= find<US0_$union, int32>(v37, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
-        Compare: compare,
-    })))) {
-        let v45: any;
-        v4();
-        v45 = undefined;
-        const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
-        const v59: Mut0 = patternInput_1[0];
-        const v77: string = method6(v59, patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5]);
-        const v78: string = method10(v0_1);
-        const v79: string = v1_1();
-        const v86: string = (v79 === "") ? "" : method14(v77, v78, v79, v59.l0, method12(v2_1()));
-        let v88: any;
-        v4();
-        v88 = undefined;
-        const patternInput_2: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
-        method15(v86, patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5]);
+        v6 = undefined;
+        const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_1(TraceState_trace_state());
+        const v25: Option<int64> = patternInput[5];
+        const v24: Mut4 = patternInput[4];
+        const v23: Mut3 = patternInput[3];
+        const v22: Mut2 = patternInput[2];
+        const v21: Mut1 = patternInput[1];
+        const v20: Mut0 = patternInput[0];
+        const v38: string = method7(v20, v21, v22, v23, v24, v25);
+        const v39: string = method11(v0_1);
+        const v40: string = v1_1();
+        method18((v40 === "") ? "" : method15(v20, v21, v22, v23, v24, v25, v38, v39, v40, v2_1()));
     }
 }
 

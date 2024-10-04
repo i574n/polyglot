@@ -132,7 +132,6 @@ inl init_trace_state trace_level : () =
 
 inl get_trace_state_or_init trace_level : trace_state =
     init_trace_state trace_level
-    // $'match State.trace_state with Some x -> x | None -> failwith "trace.get_trace_state_or_init / State.trace_state=None"'
     backend_switch {
         Fsharp = fun () =>
             $'TraceState.trace_state.Value' : trace_state
@@ -146,7 +145,7 @@ inl get_trace_state_or_init trace_level : trace_state =
 
 #!spiral
 
-inl test_trace_level level : bool =
+let test_trace_level level : bool =
     inl state = get_trace_state_or_init None
     inl level' = *state.level
     if *state.enabled |> not
@@ -184,8 +183,8 @@ inl trace_raw level fn =
     fun () =>
         if level |> test_trace_level then
             inl text = fn ()
-            inl ({ count acc } & trace_state) = get_trace_state_or_init None
             join
+                inl ({ count acc } & trace_state) = get_trace_state_or_init None
                 fun () =>
                     count <- *count + 1
                 |> exec_unit
@@ -241,7 +240,7 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
                     | Rust (Contract) => fun () =>
                         open rust.rust_operators
                         open rust
-                        inl timestamp : u64 = !\($'$"near_sdk::env::block_timestamp()"')
+                        inl timestamp = near.block_timestamp ()
                         inl timestamp =
                             match trace_state.repl_start |> optionm'.unbox with
                             | Some repl_start => timestamp - u64 repl_start
@@ -277,7 +276,12 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
                         )
         inl level_str =
             join
-                inl level_str = level |> reflection.union_to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
+                inl level_str =
+                    level
+                    |> reflection.union_to_string
+                    |> sm'.to_lower
+                    |> sm'.index 0i32
+                    |> sm'.format
                 run_target function
                 | Rust _ => fun () =>
                     open rust
@@ -307,15 +311,19 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
         if text = ""
         then ""
         else
-            inl count = *trace_state.count
-            inl locals = locals () |> sm'.format
+            inl locals = locals ()
             join
+                inl locals = locals |> sm'.format
+                inl count = *trace_state.count
                 backend_switch {
                     Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text} / {!locals}"' : string
                     Python = fun () => $'f"{!time} {!level_str} #{!count} {!text} / {!locals}"' : string
                 }
-                |> sm'.trim_start []
-                |> sm'.trim_end [ ' '; '/' ]
+                |> fun x =>
+                    join
+                        x
+                        |> sm'.trim_start []
+                        |> sm'.trim_end [ ' '; '/' ]
     |> trace_raw level
 
 #!spiral

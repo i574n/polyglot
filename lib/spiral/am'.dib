@@ -686,6 +686,23 @@ nominal slice' el dim =
 
 #!markdown
 
+### slice''
+
+#!spiral
+
+nominal slice'' el dim =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; 10]\")>]\n#endif\ntype Slice'_<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'Slice\'_<`el>'
+    )
+
+#!markdown
+
 ### slice_singleton
 
 #!spiral
