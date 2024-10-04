@@ -26,7 +26,7 @@ pub mod Common {
     use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
-    use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::printfn;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
@@ -423,19 +423,57 @@ pub mod Common {
             Common::US4::US4_1
         }
     }
+    pub fn method9(v0_1: Common::US0) -> bool {
+        let v3: () = {
+            Common::closure0((), ());
+            ()
+        };
+        let patternInput: (
+            LrcPtr<Common::Mut0>,
+            LrcPtr<Common::Mut1>,
+            LrcPtr<Common::Mut2>,
+            LrcPtr<Common::Mut3>,
+            LrcPtr<Common::Mut4>,
+            Option<i64>,
+        ) = getValue(Common::TraceState::trace_state().get().clone());
+        let v35: Common::US0 = (patternInput.4.clone()).l0.get().clone();
+        if (patternInput.2.clone()).l0.get().clone() == false {
+            false
+        } else {
+            find(
+                v0_1,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((Common::US0::US0_0, 0_i32)),
+                    LrcPtr::new((Common::US0::US0_1, 1_i32)),
+                    LrcPtr::new((Common::US0::US0_2, 2_i32)),
+                    LrcPtr::new((Common::US0::US0_3, 3_i32)),
+                    LrcPtr::new((Common::US0::US0_4, 4_i32)),
+                ])))),
+            ) >= find(
+                v35,
+                ofSeq(ofList(ofArray(new_array(&[
+                    LrcPtr::new((Common::US0::US0_0, 0_i32)),
+                    LrcPtr::new((Common::US0::US0_1, 1_i32)),
+                    LrcPtr::new((Common::US0::US0_2, 2_i32)),
+                    LrcPtr::new((Common::US0::US0_3, 3_i32)),
+                    LrcPtr::new((Common::US0::US0_4, 4_i32)),
+                ])))),
+            )
+        }
+    }
     pub fn closure10(unitVar: (), v0_1: i64) -> Common::US3 {
         Common::US3::US3_0(v0_1)
     }
-    pub fn method10() -> Func1<i64, Common::US3> {
+    pub fn method11() -> Func1<i64, Common::US3> {
         Func1::new(move |v: i64| Common::closure10((), v))
     }
-    pub fn method11() -> string {
+    pub fn method12() -> string {
         string("hh:mm:ss")
     }
-    pub fn method12() -> string {
+    pub fn method13() -> string {
         string("HH:mm:ss")
     }
-    pub fn method9(
+    pub fn method10(
         v0_1: LrcPtr<Common::Mut0>,
         v1_1: LrcPtr<Common::Mut1>,
         v2_1: LrcPtr<Common::Mut2>,
@@ -443,7 +481,7 @@ pub mod Common {
         v4: LrcPtr<Common::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v20: Common::US3 = defaultValue(Common::US3::US3_1, map(Common::method10(), v5));
+        let v20: Common::US3 = defaultValue(Common::US3::US3_1, map(Common::method11(), v5));
         let v60: DateTime = match &v20 {
             Common::US3::US3_0(v20_0_0) => {
                 let v34: TimeSpan = TimeSpan::new_ticks(
@@ -467,19 +505,8 @@ pub mod Common {
             }
             _ => DateTime::now(),
         };
-        let provider: string = Common::method11();
+        let provider: string = Common::method12();
         v60.toString(provider)
-    }
-    pub fn method14() -> string {
-        string("\u{001b}[0m")
-    }
-    pub fn method13() -> string {
-        let v5: string = padLeft(toLower(string("Warning")), 7_i32, ' ');
-        let v21: &str = inline_colorization::color_yellow;
-        let v24: &str = &*v5;
-        let v44: &str = inline_colorization::color_reset;
-        let v46: std::string::String = format!("{}{}{}", v21, v24, v44);
-        fable_library_rust::String_::fromString(v46)
     }
     pub fn method16() -> string {
         string("")
@@ -489,7 +516,28 @@ pub mod Common {
         v0_1.l0.set(v3);
         ()
     }
-    pub fn method15(v0_1: i32, v1_1: LrcPtr<Exception>) -> string {
+    pub fn method15(v0_1: char) -> string {
+        let v2_1: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
+            l0: MutCell::new(Common::method16()),
+        });
+        let v8: () = {
+            Common::closure11(v2_1.clone(), sprintf!("{}", v0_1), ());
+            ()
+        };
+        v2_1.l0.get().clone()
+    }
+    pub fn method17() -> string {
+        string("\u{001b}[0m")
+    }
+    pub fn method14() -> string {
+        let v6: string = Common::method15(getCharAt(toLower(string("Warning")), 0_i32));
+        let v9: &str = inline_colorization::color_yellow;
+        let v12: &str = &*v6;
+        let v32: &str = inline_colorization::color_reset;
+        let v34: std::string::String = format!("{}{}{}", v9, v12, v32);
+        fable_library_rust::String_::fromString(v34)
+    }
+    pub fn method19(v0_1: i32, v1_1: LrcPtr<Exception>) -> string {
         let v3: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
             l0: MutCell::new(Common::method16()),
         });
@@ -536,21 +584,33 @@ pub mod Common {
         };
         v3.l0.get().clone()
     }
-    pub fn method17(v0_1: string, v1_1: string, v2_1: i64, v3: string) -> string {
+    pub fn method20(v0_1: string) -> string {
         trimEndChars(
-            trimStartChars(
-                sprintf!(
-                    "{} {} #{} {} / {}",
-                    v0_1,
-                    v1_1,
-                    v2_1,
-                    string("common.retry_fn"),
-                    v3
-                ),
-                toArray(empty::<char>()),
-            ),
+            trimStartChars(v0_1, toArray(empty::<char>())),
             toArray(ofArray(new_array(&[' ', '/']))),
         )
+    }
+    pub fn method18(
+        v0_1: LrcPtr<Common::Mut0>,
+        v1_1: LrcPtr<Common::Mut1>,
+        v2_1: LrcPtr<Common::Mut2>,
+        v3: LrcPtr<Common::Mut3>,
+        v4: LrcPtr<Common::Mut4>,
+        v5: Option<i64>,
+        v6: string,
+        v7: string,
+        v8: i32,
+        v9: LrcPtr<Exception>,
+    ) -> string {
+        let v10: string = Common::method19(v8, v9);
+        Common::method20(sprintf!(
+            "{} {} #{} {} / {}",
+            v6,
+            v7,
+            v0_1.l0.get().clone(),
+            string("common.retry_fn"),
+            v10
+        ))
     }
     pub fn closure12(v0_1: LrcPtr<Common::Mut0>, unitVar: ()) {
         let v2_1: i64 = v0_1.l0.get().clone() + 1_i64;
@@ -567,29 +627,9 @@ pub mod Common {
         };
         ()
     }
-    pub fn method18(
-        v0_1: string,
-        v1_1: LrcPtr<Common::Mut0>,
-        v2_1: LrcPtr<Common::Mut1>,
-        v3: LrcPtr<Common::Mut2>,
-        v4: LrcPtr<Common::Mut3>,
-        v5: LrcPtr<Common::Mut4>,
-        v6: Option<i64>,
-    ) {
-        let v9: () = {
-            Common::closure12(v1_1, ());
-            ()
-        };
-        println!("{}", v0_1.clone());
-        ();
-        (v2_1.l0.get().clone())(v0_1)
-    }
-    pub fn closure9(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
-        fn v3() {
+    pub fn method21(v0_1: string) {
+        let v3: () = {
             Common::closure0((), ());
-        }
-        let v4: () = {
-            v3();
             ()
         };
         let patternInput: (
@@ -600,27 +640,21 @@ pub mod Common {
             LrcPtr<Common::Mut4>,
             Option<i64>,
         ) = getValue(Common::TraceState::trace_state().get().clone());
-        let v36: Common::US0 = (patternInput.4.clone()).l0.get().clone();
-        if if (patternInput.2.clone()).l0.get().clone() == false {
-            false
-        } else {
-            3_i32
-                >= find(
-                    v36,
-                    ofSeq(ofList(ofArray(new_array(&[
-                        LrcPtr::new((Common::US0::US0_0, 0_i32)),
-                        LrcPtr::new((Common::US0::US0_1, 1_i32)),
-                        LrcPtr::new((Common::US0::US0_2, 2_i32)),
-                        LrcPtr::new((Common::US0::US0_3, 3_i32)),
-                        LrcPtr::new((Common::US0::US0_4, 4_i32)),
-                    ])))),
-                )
-        } {
-            let v43: () = {
-                v3();
+        let v37: () = {
+            Common::closure12(patternInput.0.clone(), ());
+            ()
+        };
+        println!("{}", v0_1.clone());
+        ();
+        ((patternInput.1.clone()).l0.get().clone())(v0_1)
+    }
+    pub fn closure9(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
+        if Common::method9(Common::US0::US0_3) {
+            let v6: () = {
+                Common::closure0((), ());
                 ()
             };
-            let patternInput_1: (
+            let patternInput: (
                 LrcPtr<Common::Mut0>,
                 LrcPtr<Common::Mut1>,
                 LrcPtr<Common::Mut2>,
@@ -628,42 +662,25 @@ pub mod Common {
                 LrcPtr<Common::Mut4>,
                 Option<i64>,
             ) = getValue(Common::TraceState::trace_state().get().clone());
-            let v57: LrcPtr<Common::Mut0> = patternInput_1.0.clone();
-            let v79: string = Common::method17(
-                Common::method9(
-                    v57.clone(),
-                    patternInput_1.1.clone(),
-                    patternInput_1.2.clone(),
-                    patternInput_1.3.clone(),
-                    patternInput_1.4.clone(),
-                    patternInput_1.5.clone(),
-                ),
-                Common::method13(),
-                v57.l0.get().clone(),
-                Common::method15(v0_1, v1_1),
-            );
-            let v81: () = {
-                v3();
-                ()
-            };
-            let patternInput_2: (
-                LrcPtr<Common::Mut0>,
-                LrcPtr<Common::Mut1>,
-                LrcPtr<Common::Mut2>,
-                LrcPtr<Common::Mut3>,
-                LrcPtr<Common::Mut4>,
-                Option<i64>,
-            ) = getValue(Common::TraceState::trace_state().get().clone());
-            Common::method18(
-                v79,
-                patternInput_2.0.clone(),
-                patternInput_2.1.clone(),
-                patternInput_2.2.clone(),
-                patternInput_2.3.clone(),
-                patternInput_2.4.clone(),
-                patternInput_2.5.clone(),
-            )
-        }
+            let v25: Option<i64> = patternInput.5.clone();
+            let v24: LrcPtr<Common::Mut4> = patternInput.4.clone();
+            let v23: LrcPtr<Common::Mut3> = patternInput.3.clone();
+            let v22: LrcPtr<Common::Mut2> = patternInput.2.clone();
+            let v21: LrcPtr<Common::Mut1> = patternInput.1.clone();
+            let v20: LrcPtr<Common::Mut0> = patternInput.0.clone();
+            Common::method21(Common::method18(
+                v20.clone(),
+                v21.clone(),
+                v22.clone(),
+                v23.clone(),
+                v24.clone(),
+                v25.clone(),
+                Common::method10(v20, v21, v22, v23, v24, v25),
+                Common::method14(),
+                v0_1,
+                v1_1,
+            ))
+        };
     }
     pub fn closure8(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US5 {
         let v4: () = {
@@ -729,7 +746,7 @@ pub mod Common {
             move |v: Func0<()>| Common::closure5(v0_1, v)
         })
     }
-    pub fn method19(v0_1: Func0<()>) -> Func0<()> {
+    pub fn method22(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
     pub fn closure16(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
@@ -737,7 +754,7 @@ pub mod Common {
         ()
     }
     pub fn closure15(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
-        let v1_1 = Common::method19(v0_1);
+        let v1_1 = Common::method22(v0_1);
         let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
             let v1_1 = v1_1.clone();
             move || v1_1()

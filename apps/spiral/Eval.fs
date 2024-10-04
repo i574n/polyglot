@@ -424,7 +424,7 @@ module Eval =
                             |> SpiralRuntime.execute_with_options_async
                         trace Debug
                             (fun () -> $"Eval.processSpiralOutput / spiral_builder")
-                            (fun () -> $"exitCode: {exitCode} / builderCommand: {builderCommand} / result: {result |> SpiralSm.ellipsis_end 400} / {_locals ()}")
+                            (fun () -> $"exitCode: {exitCode} / builderCommand: {builderCommand} / command: {command} / result: {result |> SpiralSm.ellipsis_end 400} / {_locals ()}")
                         return
                             if exitCode = 0
                             then {| code = result; eval = false; builderCommand = builderCommand |} |> Ok
@@ -859,7 +859,7 @@ module Eval =
                                 return Ok(v), errors
                             | Choice2Of2 ex ->
                                 return
-                                    Error (Exception $"Eval.eval / -2 / Exception / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / ex: {ex |> SpiralSm.format_exception}"),
+                                    Error (Exception $"Eval.eval / -2 / Exception / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400}"),
                                     errors
                         | Ok code, errors ->
                             return
@@ -867,7 +867,7 @@ module Eval =
                                 errors
                         | Error ex, errors ->
                             return
-                                Error (Exception $"Eval.eval / -1 / Exception / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 1500} / ex: {ex |> SpiralSm.format_exception}"),
+                                Error (Exception $"Eval.eval / -1 / Exception / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 1500}"),
                                 errors
                     | Some (Error ex) ->
                         trace Critical (fun () -> $"Eval.eval / buildCodeResults Error / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}") _locals
@@ -875,7 +875,7 @@ module Eval =
                             Error (Exception $"Eval.eval / buildCodeResults Error / Exception / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}"),
                             [|
                                 (
-                                    TraceLevel.Critical, $"Eval.eval / buildCodeResults Error / errors[0] / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
+                                    TraceLevel.Critical, $"Eval.eval / buildCodeResults Error / errors[0] / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: %A{buildCodeResults}", 0, ("", (0, 0), (0, 0))
                                 )
                             |]
                     | _ ->

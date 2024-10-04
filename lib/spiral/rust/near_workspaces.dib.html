@@ -7975,7 +7975,8 @@ a.anchor-link {
     <span class="p">(</span><span class="n">worker</span> <span class="p">:</span> <span class="n">worker</span> <span class="n">sandbox</span><span class="p">)</span>
     <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' contract near_workspaces_error)</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>worker,<span class="w"> </span>wasm<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"Box::pin($0.dev_deploy(&amp;$1))"'</span><span class="o">)</span>
+    <span class="n">inl</span> <span class="n">worker</span> <span class="o">=</span> <span class="n">worker</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>wasm,<span class="w"> </span><span class="s1">$'"Box::pin(!worker.dev_deploy(&amp;$0))"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>

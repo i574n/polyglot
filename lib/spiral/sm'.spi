@@ -590,6 +590,12 @@ inl deserialize forall t. (json : string) : resultm.result' t std_string =
     !\\(json, $'"serde_json::from_str(&$0)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
 
+/// ### borsh_serialize
+inl borsh_serialize forall t. (data : t) : am'.vec u8 =
+    (!\($'"true; let mut data = Vec::new()"') : bool) |> ignore
+    (!\\(data, $'"true; borsh::BorshSerialize::serialize(&$0, &mut data).unwrap()"') : bool) |> ignore
+    !\($'"data"')
+
 /// ### borsh_deserialize
 inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
     inl data = data |> am'.as_slice

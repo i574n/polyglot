@@ -2,10 +2,13 @@
 
 /// ## rust
 
+/// ### any_base
+type any_base = any
+
 /// ### any
 nominal any =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\ntype core_any_Any = class end\n#else\ntype core_any_Any = obj\n#endif\n"
         $'' : $'core_any_Any'
     )
 
@@ -391,14 +394,19 @@ inl break () : () =
     (!\($'"true; break"') : bool) |> ignore
 
 /// ### fix_closure'
-inl fix_closure' (depth : u8 * u8) x =
+inl fix_closure' forall t. (depth : u8 * u8) (x : t) : string =
     inl rec loop text (acc : string) n : string =
         if n <= 0
         then acc
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    $'"true; !x " + !a + "); " + !b + " // rust.fix_closure\'"' : string
+    inl x' : infer = $'!x '
+    run_target_args (fun () => x') function
+        | Rust _ => fun x' => !\\(x', $'$"true; let !x' = $0"') : bool
+        | _ => fun x' => $'true'
+    |> ignore
+    $'$"true; !x' " + !a + "); " + !b + " // rust.fix_closure\'"'
 
 /// ### fix_closure
 inl fix_closure depth x =

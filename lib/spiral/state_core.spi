@@ -67,16 +67,12 @@ inl set_data forall t (u : * -> *). (id : string) (data : t) (database : u wasm.
     leptos.log $'"state_core.set_data () / data_len: " + string !data_len + ""'
 
     fun () =>
-        inl transaction : wasm.rexie_transaction = !\\(database, $'"$0.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
-        inl store : wasm.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
-
-        (!\($'"true; let mut data = Vec::new()"') : bool) |> ignore
-        (!\\(data, $'"true; borsh::BorshSerialize::serialize(&$0, &mut data).unwrap()"') : bool) |> ignore
-        inl data : am'.vec u8 = !\($'"data"')
-
+        inl data = data |> sm'.borsh_serialize
         inl data_js_value : wasm.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
         inl id = join id
         inl id = id |> sm'.as_str
+        inl transaction : wasm.rexie_transaction = !\\(database, $'"$0.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
+        inl store : wasm.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
         (!\\(id, $'"true; !store.put(&!data_js_value, Some(&$0.into())).await?"') : bool) |> ignore
         (!\($'"true; !transaction.done().await?"') : bool) |> ignore
 
@@ -282,6 +278,7 @@ inl use_database () =
                     build_database ()
                     |> async.await
                     |> resultm.unwrap'
+                    |> join id
                     |> threading.new_arc
                     |> leptos.log_format fun log => $'"state_core.use_database (3) / database create_local_resource / result: " + string !log + ""'
                 |> async.new_future_move

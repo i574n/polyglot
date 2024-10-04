@@ -300,6 +300,8 @@ let format_real forall t. (x : t) : string =
 
 /// ### deserialize
 
+/// ### borsh_serialize
+
 /// ### borsh_deserialize
 
 /// ### deserialize_vec

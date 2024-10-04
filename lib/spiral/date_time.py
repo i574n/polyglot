@@ -10,7 +10,7 @@ from fable_modules.fable_library.time_span import (hours, to_string as to_string
 from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
-def _expr92() -> TypeInfo:
+def _expr84() -> TypeInfo:
     return union_type("Date_time.US0", [], US0, lambda: [[("f0_0", class_type("Date_time.chrono_DateTime`1", [class_type("Date_time.chrono_Utc")]))], []])
 
 
@@ -26,9 +26,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr92
+US0_reflection = _expr84
 
-def _expr94() -> TypeInfo:
+def _expr90() -> TypeInfo:
     return union_type("Date_time.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -44,9 +44,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr94
+US1_reflection = _expr90
 
-def _expr96() -> TypeInfo:
+def _expr92() -> TypeInfo:
     return union_type("Date_time.US2", [], US2, lambda: [[], [], []])
 
 
@@ -62,9 +62,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr96
+US2_reflection = _expr92
 
-def _expr97() -> TypeInfo:
+def _expr95() -> TypeInfo:
     return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())], [("f4_0", US2_reflection())]])
 
 
@@ -80,7 +80,7 @@ class US3(Union):
         return ["US3_0", "US3_1", "US3_2", "US3_3", "US3_4"]
 
 
-US3_reflection = _expr97
+US3_reflection = _expr95
 
 def closure2(unit_var: None, v0_1: chrono_date_time_1[chrono_utc]) -> US0:
     return US0(0, v0_1)
@@ -219,41 +219,41 @@ def timestamp_from_guid(x: str) -> int64:
     return v3(x)
 
 
-def _arrow106(v: Any) -> str:
+def _arrow107(v: Any) -> str:
     return closure8(None, v)
 
 
-v4: Callable[[Any], str] = _arrow106
+v4: Callable[[Any], str] = _arrow107
 
 def new_guid_from_date_time(x: Any) -> str:
     return v4(x)
 
 
-def _arrow107(v: int64) -> str:
+def _arrow109(v: int64) -> str:
     return closure9(None, v)
 
 
-v5: Callable[[int64], str] = _arrow107
+v5: Callable[[int64], str] = _arrow109
 
 def new_guid_from_timestamp(x: int64) -> str:
     return v5(x)
 
 
-def _arrow108(v: str) -> Callable[[Any], str]:
+def _arrow110(v: str) -> Callable[[Any], str]:
     return closure10(None, v)
 
 
-v6: Callable[[str, Any], str] = _arrow108
+v6: Callable[[str, Any], str] = _arrow110
 
 def format(x: str) -> Callable[[Any], str]:
     return v6(x)
 
 
-def _arrow109(v: Any) -> str:
+def _arrow111(v: Any) -> str:
     return closure12(None, v)
 
 
-v7: Callable[[Any], str] = _arrow109
+v7: Callable[[Any], str] = _arrow111
 
 def format_iso8601(x: Any) -> str:
     return v7(x)

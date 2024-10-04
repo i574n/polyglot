@@ -961,15 +961,22 @@ mod module_b7a9935b {
                 Math::method1(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1040,15 +1047,22 @@ mod module_b7a9935b {
                 Math::method21(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1169,15 +1183,22 @@ mod module_b7a9935b {
                 Math::method23(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1269,15 +1290,22 @@ mod module_b7a9935b {
                 Math::method27(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1361,15 +1389,22 @@ mod module_b7a9935b {
                 Math::method29(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1436,15 +1471,22 @@ mod module_b7a9935b {
                 Math::method31(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1535,15 +1577,22 @@ mod module_b7a9935b {
                 Math::method33(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1610,15 +1659,22 @@ mod module_b7a9935b {
                 Math::method35(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1749,15 +1805,22 @@ mod module_b7a9935b {
                 Math::method37(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -1870,15 +1933,22 @@ mod module_b7a9935b {
                 Math::method41(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -2059,15 +2129,22 @@ mod module_b7a9935b {
                 Math::method45(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }
@@ -2247,15 +2324,22 @@ mod module_b7a9935b {
                 Math::method49(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("true; v5 }}); { // rust.fix_closure\'");
-                    let v13: bool = true;
-                    v5
+                    let v9: string = string("}}");
+                    let v11: string = string("{");
+                    let v15: bool = true;
+                    let v12 = v5;
+                    let v26: string = append(
+                        append(append(append(string("true; v12 "), v9), string("); ")), v11),
+                        string(" // rust.fix_closure\'"),
+                    );
+                    let v27: bool = true;
+                    v12
                 }
             });
             {
                 // rust.fix_closure';
-                let v15: Result<(), pyo3::PyErr> = __run_test;
-                v15.unwrap();
+                let v29: Result<(), pyo3::PyErr> = __run_test;
+                v29.unwrap();
                 ();
                 ()
             }

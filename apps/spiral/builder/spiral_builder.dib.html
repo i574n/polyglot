@@ -8160,9 +8160,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\test1 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 build_project / { full_path = \\?\C:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\test1 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 build_project / { full_path = \\?\C:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "publish",
     "c:/home/git/polyglot/target/spiral_builder/test1/test1.fsproj",
     "--configuration",
@@ -8174,15 +8174,14 @@ a.anchor-link {
 ]; options = { command = dotnet publish "c:/home/git/polyglot/target/spiral_builder/test1/test1.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
     "\\?\C:\home\git\polyglot\target\spiral_builder\test1",
 ) } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;   Determining projects to restore...
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj (in 956 ms).
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; c:\home\git\polyglot\target\spiral_builder\test1\test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #9 &gt;   test1 -&gt; c:\home\git\polyglot\target\spiral_builder\test1\bin\Release\net9.0\win-x64\test1.dll
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;   test1 -&gt; \\?\C:\home\git\polyglot\target\spiral_builder\test1\dist\
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 900 }
-00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #12 runtime.execute_with_options / { file_name = dotnet; arguments = [
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt;   Determining projects to restore...
+00:00:02 <span class="ansi-black-intense-fg">v</span> #6 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj (in 582 ms).
+00:00:02 <span class="ansi-black-intense-fg">v</span> #7 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
+00:00:03 <span class="ansi-black-intense-fg">v</span> #8 &gt;   test1 -&gt; c:\home\git\polyglot\target\spiral_builder\test1\bin\Release\net9.0\win-x64\test1.dll
+00:00:04 <span class="ansi-black-intense-fg">v</span> #9 &gt;   test1 -&gt; \\?\C:\home\git\polyglot\target\spiral_builder\test1\dist\
+00:00:04 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 687 }
+00:00:04 <span class="ansi-blue-intense-fg">d</span> #11 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "publish",
     "c:/home/git/polyglot/target/spiral_builder/test1/test1.fsproj",
     "--configuration",
@@ -8194,14 +8193,13 @@ a.anchor-link {
 ]; options = { command = dotnet publish "c:/home/git/polyglot/target/spiral_builder/test1/test1.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
     "\\?\C:\home\git\polyglot\target\spiral_builder\test1",
 ) } }
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;   Determining projects to restore...
-00:00:10 <span class="ansi-black-intense-fg">verbose</span> #15 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj (in 435 ms).
-00:00:10 <span class="ansi-black-intense-fg">verbose</span> #16 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
-00:00:13 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; c:\home\git\polyglot\target\spiral_builder\test1\test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
-00:00:14 <span class="ansi-black-intense-fg">verbose</span> #18 &gt;   test1 -&gt; c:\home\git\polyglot\target\spiral_builder\test1\bin\Release\net9.0\linux-x64\test1.dll
-00:00:16 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;   test1 -&gt; \\?\C:\home\git\polyglot\target\spiral_builder\test1\dist\
-00:00:16 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 902 }
+00:00:04 <span class="ansi-black-intense-fg">v</span> #12 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:05 <span class="ansi-black-intense-fg">v</span> #13 &gt;   Determining projects to restore...
+00:00:06 <span class="ansi-black-intense-fg">v</span> #14 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj (in 606 ms).
+00:00:06 <span class="ansi-black-intense-fg">v</span> #15 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test1\test1.fsproj]
+00:00:07 <span class="ansi-black-intense-fg">v</span> #16 &gt;   test1 -&gt; c:\home\git\polyglot\target\spiral_builder\test1\bin\Release\net9.0\linux-x64\test1.dll
+00:00:08 <span class="ansi-black-intense-fg">v</span> #17 &gt;   test1 -&gt; \\?\C:\home\git\polyglot\target\spiral_builder\test1\dist\
+00:00:09 <span class="ansi-black-intense-fg">v</span> #18 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 689 }
 __assert_eq / actual: 0 / expected: 0
 </pre>
 </div>
@@ -8242,9 +8240,9 @@ __assert_eq / actual: 0 / expected: 0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\test2 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 build_project / { full_path = \\?\C:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\test2 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 build_project / { full_path = \\?\C:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "publish",
     "c:/home/git/polyglot/target/spiral_builder/test2/test2.fsproj",
     "--configuration",
@@ -8256,13 +8254,13 @@ __assert_eq / actual: 0 / expected: 0
 ]; options = { command = dotnet publish "c:/home/git/polyglot/target/spiral_builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
     "\\?\C:\home\git\polyglot\target\spiral_builder\test2",
 ) } }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;   Determining projects to restore...
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj (in 491 ms).
-00:00:03 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; c:\home\git\polyglot\target\spiral_builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #9 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 707 }
-00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #10 runtime.execute_with_options / { file_name = dotnet; arguments = [
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt;   Determining projects to restore...
+00:00:02 <span class="ansi-black-intense-fg">v</span> #6 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj (in 672 ms).
+00:00:02 <span class="ansi-black-intense-fg">v</span> #7 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
+00:00:05 <span class="ansi-black-intense-fg">v</span> #8 &gt; c:\home\git\polyglot\target\spiral_builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
+00:00:05 <span class="ansi-black-intense-fg">v</span> #9 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 707 }
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #10 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "publish",
     "c:/home/git/polyglot/target/spiral_builder/test2/test2.fsproj",
     "--configuration",
@@ -8274,13 +8272,13 @@ __assert_eq / actual: 0 / expected: 0
 ]; options = { command = dotnet publish "c:/home/git/polyglot/target/spiral_builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
     "\\?\C:\home\git\polyglot\target\spiral_builder\test2",
 ) } }
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Determining projects to restore...
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj (in 475 ms).
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #14 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; c:\home\git\polyglot\target\spiral_builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #16 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 707 }
-00:00:12 <span class="ansi-red-intense-fg">critical</span> #17 build_code / { code = 1 + a |&gt; ignore; fsproj_text = &lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+00:00:05 <span class="ansi-black-intense-fg">v</span> #11 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:06 <span class="ansi-black-intense-fg">v</span> #12 &gt;   Determining projects to restore...
+00:00:07 <span class="ansi-black-intense-fg">v</span> #13 &gt;   Restored c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj (in 595 ms).
+00:00:07 <span class="ansi-black-intense-fg">v</span> #14 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
+00:00:10 <span class="ansi-black-intense-fg">v</span> #15 &gt; c:\home\git\polyglot\target\spiral_builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\spiral_builder\test2\test2.fsproj]
+00:00:10 <span class="ansi-black-intense-fg">v</span> #16 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 707 }
+00:00:10 <span class="ansi-red-intense-fg">c</span> #17 build_code / { code = 1 + a |&gt; ignore; fsproj_text = &lt;Project Sdk="Microsoft.NET.Sdk"&gt;
 &lt;PropertyGroup&gt;
     &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
     &lt;LangVersion&gt;preview&lt;/LangVersion&gt;
@@ -10045,9 +10043,9 @@ __assert_eq / actual: 2 / expected: 2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dca73fc07a8e74a4e94e70a24cdddf8b5351b1deec91b3a9ef1b1eab0c1bc089\c6422374-71e4-07d4-0ba4-c3084b24fbba }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e907dda8f80d39433cbcfde33c1c27c0529af5e3550207ab557df6aff0d9d9cf\c6422374-71e4-07d4-0ba4-c3084b24fbba }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "fable",
     "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/Rust/30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081/spiral_builder.fsproj",
     "--optimize",
@@ -10060,36 +10058,36 @@ __assert_eq / actual: 2 / expected: 2
     "--define",
     "_WINDOWS",
 ]; options = { command = dotnet fable "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/Rust/30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081/spiral_builder.fsproj" --optimize --lang rs --extension .rs --outDir "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081" --define _WINDOWS; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; Fable 4.21.0: F# to Rust compiler (status: alpha)
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; Thanks to the contributor! @cboudereau
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; Stand with Ukraine! https://standwithukraine.com.ua
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\spiral_builder.fsproj...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; Project and references (1 source files) parsed in 283ms
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; Skipped compilation because all generated files are up-to-date!
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 531 }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #15 runtime.execute_with_options / { file_name = cargo; arguments = [
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 &gt; Fable 4.21.0: F# to Rust compiler (status: alpha)
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; Thanks to the contributor! @thautwarm
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 &gt; Stand with Ukraine! https://standwithukraine.com.ua
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #9 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\spiral_builder.fsproj...
+00:00:01 <span class="ansi-black-intense-fg">v</span> #10 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
+00:00:01 <span class="ansi-black-intense-fg">v</span> #11 &gt; Project and references (1 source files) parsed in 381ms
+00:00:01 <span class="ansi-black-intense-fg">v</span> #12 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #13 &gt; Skipped compilation because all generated files are up-to-date!
+00:00:01 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 530 }
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #15 runtime.execute_with_options / { file_name = cargo; arguments = [
     "fmt",
     "--manifest-path",
     "c:\\home\\git\\polyglot\\target/spiral_builder\\spiral_builder\\packages\\Rust\\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\\Cargo.toml",
     "--",
 ]; options = { command = cargo fmt --manifest-path "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\Cargo.toml" --; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #16 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #17 runtime.execute_with_options / { file_name = cargo; arguments = [
+00:00:03 <span class="ansi-black-intense-fg">v</span> #16 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:03 <span class="ansi-blue-intense-fg">d</span> #17 runtime.execute_with_options / { file_name = cargo; arguments = [
     "run",
     "--manifest-path",
     "c:\\home\\git\\polyglot\\target/spiral_builder\\spiral_builder\\packages\\Rust\\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\\Cargo.toml",
 ]; options = { command = cargo run --manifest-path "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\Cargo.toml"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("RUSTC_WRAPPER", "sccache"), ("RUSTFLAGS", "-C prefer-dynamic")])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:04 <span class="ansi-black-intense-fg">verbose</span> #18 !    Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #19 !    Compiling spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081)
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #20 !     Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.58s
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #21 !      Running `c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.exe`
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #22 &gt; -3
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #23 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 633 }
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #24 spiral_builder.process_rust / cleanup / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\spiral_builder.rs; cleanup = UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.d", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.exe", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.pdb", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.wasm", false, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081", false, UH4_0))))) }
+00:00:04 <span class="ansi-black-intense-fg">v</span> #18 !    Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)
+00:00:06 <span class="ansi-black-intense-fg">v</span> #19 !    Compiling spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081)
+00:00:07 <span class="ansi-black-intense-fg">v</span> #20 !     Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.01s
+00:00:07 <span class="ansi-black-intense-fg">v</span> #21 !      Running `c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.exe`
+00:00:07 <span class="ansi-black-intense-fg">v</span> #22 &gt; -3
+00:00:07 <span class="ansi-black-intense-fg">v</span> #23 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 633 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #24 spiral_builder.process_rust / cleanup / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\spiral_builder.rs; cleanup = UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.d", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.exe", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.pdb", true, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081.wasm", false, UH4_1("c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Rust\30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081\../../..\target/debug/spiral_builder_30d206e2fbf536c98c2b62b269daad8bf6f8f0e05540e7189f63cfdf29f12081", false, UH4_0))))) }
 __assert_eq / actual: "rs" / expected: "rs"
 __assert_eq / actual: "-3" / expected: "-3"
 </pre>
@@ -10157,10 +10155,10 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_9e9ccd5e3d307e04477611dbb266d87ad1e89a3a3f45c07474de22361772595a\c6422374-71e4-07d4-0ba4-c3084b24fbba }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_builder.process_typescript / { version = US44_1 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_271ae03fe3cddc3243ddb3d9b38afbb8df1626bf65bc6b63f287fef76221898f\c6422374-71e4-07d4-0ba4-c3084b24fbba }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 spiral_builder.process_typescript / { version = US44_1 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "fable",
     "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj",
     "--optimize",
@@ -10173,25 +10171,25 @@ __assert_eq / actual: "-3" / expected: "-3"
     "--define",
     "_WINDOWS",
 ]; options = { command = dotnet fable "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/TypeScript/702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8/spiral_builder.fsproj" --optimize --lang ts --extension .ts --outDir "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8" --define _WINDOWS; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; Fable 4.21.0: F# to TypeScript compiler
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; Minimum @fable-org/fable-library-ts version (when installed from npm): 1.5.0
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; Thanks to the contributor! @alfonsogarciacaro
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; Stand with Ukraine! https://standwithukraine.com.ua
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\spiral_builder.fsproj...
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; Project and references (1 source files) parsed in 456ms
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; Skipped compilation because all generated files are up-to-date!
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #16 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 611 }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #17 spiral_builder.process_typescript / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\spiral_builder.ts }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #18 runtime.execute_with_options / { file_name = bun; arguments = [
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt; Fable 4.21.0: F# to TypeScript compiler
+00:00:01 <span class="ansi-black-intense-fg">v</span> #6 &gt; Minimum @fable-org/fable-library-ts version (when installed from npm): 1.5.0
+00:00:01 <span class="ansi-black-intense-fg">v</span> #7 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #8 &gt; Thanks to the contributor! @zaaack
+00:00:01 <span class="ansi-black-intense-fg">v</span> #9 &gt; Stand with Ukraine! https://standwithukraine.com.ua
+00:00:01 <span class="ansi-black-intense-fg">v</span> #10 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #11 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\spiral_builder.fsproj...
+00:00:01 <span class="ansi-black-intense-fg">v</span> #12 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
+00:00:01 <span class="ansi-black-intense-fg">v</span> #13 &gt; Project and references (1 source files) parsed in 338ms
+00:00:01 <span class="ansi-black-intense-fg">v</span> #14 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #15 &gt; Skipped compilation because all generated files are up-to-date!
+00:00:01 <span class="ansi-black-intense-fg">v</span> #16 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 600 }
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #17 spiral_builder.process_typescript / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\spiral_builder.ts }
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #18 runtime.execute_with_options / { file_name = bun; arguments = [
     "run",
     "c:\\home\\git\\polyglot\\target/spiral_builder\\spiral_builder\\packages\\TypeScript\\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\\spiral_builder.ts",
 ]; options = { command = bun run "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\TypeScript\702335b0756baa7db0d02dbbeaf9fc04cf2c3b7dbb45866c578c5109aaa8c4a8\spiral_builder.ts"; cancellation_token = None; environment_variables = Array(MutCell([("PATH", "~/.bun/bin;c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps;c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug;C:\Users\i574n\scoop\persist\rustup\.rustup\toolchains\nightly-2024-07-14-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib;C:\Users\i574n\scoop\apps\pwsh\current;C:\Program Files\NVIDIA\CUDNN\v9.1\bin;C:\ProgramData\scoop\shims;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Perforce;C:\Program Files\Wasmtime\bin;C:\Program Files\Perforce\;C:\Users\i574n\scoop\apps\vscode-insiders\current\bin;C:\Users\i574n\scoop\apps\python\current\Scripts;C:\Users\i574n\scoop\apps\python\current\.;C:\Users\i574n\scoop\apps\elixir\current\bin;C:\Users\i574n\scoop\apps\rustup\current\.cargo\bin;C:\Users\i574n\scoop\apps\latex\current\texmfs\install\miktex\bin\x64;C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current;C:\Users\i574n\scoop\apps\dotnet-sdk\current;C:\Users\i574n\scoop\apps\gsudo\current;C:\Users\i574n\scoop\apps\python\current;C:\Users\i574n\scoop\apps\nircmd\current;C:\Users\i574n\AppData\Local\Microsoft\WindowsApps;C:\Users\i574n/scoop/buckets/mold/home/windows/path;C:\Users\i574n/scoop/persist/rustup/.cargo/bin;C:\Users\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\Users\i574n/scoop/apps/cygwin/current/root/bin;C:\Users\i574n\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\i574n\AppData\Local\Microsoft\WindowsApps;C:\Users\i574n\.bun\bin;C:\Users\i574n\.dotnet\tools;C:\Users\i574n\scoop\shims;C:\Users\i574n\.fly\bin;C:\Program Files\Wasmtime\bin;C:\Users\i574n/.cargo/bin;C:\Users\i574n/.bun/bin;C:\Users\i574n/.cargo/bin;C:\Users\i574n/.bun/bin;C:\Users\i574n/.cargo/bin;C:\Users\i574n/.bun/bin"), ("TRACE_LEVEL", "Verbose")])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #19 &gt; -3
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #19 &gt; -3
+00:00:01 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2 }
 __assert_eq / actual: "ts" / expected: "ts"
 __assert_eq / actual: "-3" / expected: "-3"
 </pre>
@@ -10259,9 +10257,9 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_10fd798f2b19a8f78b67f7ee59212d6b3d6fcc9363bd5dcf6e493e1cbf146ea7\c6422374-71e4-07d4-0ba4-c3084b24fbba }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_5c1daba5018f3f8dac21b64876a1cd70ada4ccb88dd6687722cd2a4a240177f9\c6422374-71e4-07d4-0ba4-c3084b24fbba }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 file_system.create_dir / { dir = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "fable",
     "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj",
     "--optimize",
@@ -10274,23 +10272,23 @@ __assert_eq / actual: "-3" / expected: "-3"
     "--define",
     "_WINDOWS",
 ]; options = { command = dotnet fable "c:/home/git/polyglot/target/spiral_builder/spiral_builder/packages/Python/cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce/spiral_builder.fsproj" --optimize --lang py --extension .py --outDir "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce" --define _WINDOWS; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 &gt; Fable 4.21.0: F# to Python compiler (status: beta)
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; Thanks to the contributor! @iyegoroff
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; Stand with Ukraine! https://standwithukraine.com.ua
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\spiral_builder.fsproj...
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; Project and references (1 source files) parsed in 502ms
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; Skipped compilation because all generated files are up-to-date!
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 533 }
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_builder.process_python / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\spiral_builder.py }
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options / { file_name = python; arguments = [
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 &gt; Fable 4.21.0: F# to Python compiler (status: beta)
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; Thanks to the contributor! @7sharp9
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 &gt; Stand with Ukraine! https://standwithukraine.com.ua
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; Parsing ..\..\..\target\spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\spiral_builder.fsproj...
+00:00:01 <span class="ansi-black-intense-fg">v</span> #10 &gt; Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
+00:00:01 <span class="ansi-black-intense-fg">v</span> #11 &gt; Project and references (1 source files) parsed in 246ms
+00:00:01 <span class="ansi-black-intense-fg">v</span> #12 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #13 &gt; Skipped compilation because all generated files are up-to-date!
+00:00:01 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 531 }
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #15 spiral_builder.process_python / { new_code_path = c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\spiral_builder.py }
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #16 runtime.execute_with_options / { file_name = python; arguments = [
     "c:\\home\\git\\polyglot\\target/spiral_builder\\spiral_builder\\packages\\Python\\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\\spiral_builder.py",
 ]; options = { command = python "c:\home\git\polyglot\target/spiral_builder\spiral_builder\packages\Python\cb8f3dd33197bb0bc95f09b3f3057a6844a0b70d75477350491883d14d8680ce\spiral_builder.py"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose")])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; -3
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #18 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #17 &gt; -3
+00:00:01 <span class="ansi-black-intense-fg">v</span> #18 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2 }
 __assert_eq / actual: "py" / expected: "py"
 __assert_eq / actual: "-3" / expected: "-3"
 </pre>
@@ -10347,20 +10345,20 @@ __assert_eq / actual: "-3" / expected: "-3"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128\af524e22-8e9a-5d18-99ed-bd86e1b74623 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = dotnet; arguments = [
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad\af524e22-8e9a-5d18-99ed-bd86e1b74623 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = dotnet; arguments = [
     "repl",
     "--exit-after-run",
     "--run",
-    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib",
+    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib",
     "--output-path",
-    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
-]; options = { command = dotnet repl --exit-after-run --run "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib" --output-path "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
+    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
+]; options = { command = dotnet repl --exit-after-run --run "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib" --output-path "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
 &gt; 
 &gt; ── fsharp ──────────────────────────────────────────────────────────────────────
 &gt; 3 - 6
 &gt; 
-&gt; ╭─[ 13.25s - return value ]────────────────────────────────────────────────────╮
+&gt; ╭─[ 8.34s - return value ]─────────────────────────────────────────────────────╮
 &gt; │ &lt;div class="dni-plaintext"&gt;&lt;pre&gt;-3                                           │
 &gt; │ &lt;/pre&gt;&lt;/div&gt;&lt;style&gt;                                                          │
 &gt; │ .dni-code-hint {                                                             │
@@ -10395,27 +10393,27 @@ __assert_eq / actual: "-3" / expected: "-3"
 &gt; │ }                                                                            │
 &gt; │ &lt;/style&gt;                                                                     │
 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:21 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2923 }
-00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = [
+00:00:12 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 2923 }
+00:00:12 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = [
     "nbconvert",
-    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
+    "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb",
     "--to",
     "html",
     "--HTMLExporter.theme=dark",
-]; options = { command = jupyter nbconvert "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:25 <span class="ansi-black-intense-fg">verbose</span> #5 ! [NbConvertApp] Converting notebook c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb to html
-00:00:25 <span class="ansi-black-intense-fg">verbose</span> #6 ! C:\Users\i574n\scoop\apps\python\current\Lib\site-packages\nbformat\__init__.py:93: MissingIDFieldWarning: Code cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
-00:00:25 <span class="ansi-black-intense-fg">verbose</span> #7 !   validate(nb)
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #8 ! [NbConvertApp] Writing 271490 bytes to c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128\af524e22-8e9a-5d18-99ed-bd86e1b74623\test.dib.html
-00:00:27 <span class="ansi-black-intense-fg">verbose</span> #9 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 915 }
-00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 915 }
-00:00:27 <span class="ansi-blue-intense-fg">  debug</span> #11 runtime.execute_with_options / { file_name = pwsh; arguments = [
+]; options = { command = jupyter nbconvert "c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:19 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.ipynb to html
+00:00:19 <span class="ansi-black-intense-fg">v</span> #6 ! C:\Users\i574n\scoop\apps\python\current\Lib\site-packages\nbformat\__init__.py:93: MissingIDFieldWarning: Code cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:19 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
+00:00:22 <span class="ansi-black-intense-fg">v</span> #8 ! [NbConvertApp] Writing 271490 bytes to c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad\af524e22-8e9a-5d18-99ed-bd86e1b74623\test.dib.html
+00:00:22 <span class="ansi-black-intense-fg">v</span> #9 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 915 }
+00:00:22 <span class="ansi-blue-intense-fg">d</span> #10 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 915 }
+00:00:22 <span class="ansi-blue-intense-fg">d</span> #11 runtime.execute_with_options / { file_name = pwsh; arguments = [
     "-c",
-    "$counter = 1; $path = 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path",
-]; options = { command = pwsh -c "$counter = 1; $path = 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e685f391d1a80fe3483ac8eff128d8729d1fec8b970243deff97fa2c93e97128/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:28 <span class="ansi-black-intense-fg">verbose</span> #12 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:28 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_builder.run / dib / { exit_code = 0; result_length = 3897 }
+    "$counter = 1; $path = 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path",
+]; options = { command = pwsh -c "$counter = 1; $path = 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_07c8ca59b9a756b10cafdd56fac1509d04606e9d6c3d84fe041ff00951d28aad/af524e22-8e9a-5d18-99ed-bd86e1b74623/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:23 <span class="ansi-black-intense-fg">v</span> #12 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:23 <span class="ansi-blue-intense-fg">d</span> #13 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:23 <span class="ansi-blue-intense-fg">d</span> #14 spiral_builder.run / dib / { exit_code = 0; result_length = 3897 }
 </pre>
 </div>
 </div>

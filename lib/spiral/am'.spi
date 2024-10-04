@@ -315,6 +315,18 @@ nominal slice' el dim =
         $'' : $'Slice\'<`el>'
     )
 
+/// ### slice''
+nominal slice'' el dim =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; 10]\")>]\n#endif\ntype Slice'_<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'Slice\'_<`el>'
+    )
+
 /// ### slice_singleton
 inl slice_singleton forall dim el. (x : option el) : slice' el dim =
     match x with

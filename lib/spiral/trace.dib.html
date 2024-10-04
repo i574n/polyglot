@@ -7776,7 +7776,6 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_trace_state_or_init</span> <span class="n">trace_level</span> <span class="p">:</span> <span class="n">trace_state</span> <span class="o">=</span>
     <span class="n">init_trace_state</span> <span class="n">trace_level</span>
-    <span class="o">//</span> <span class="err">$</span><span class="s1">'match State.trace_state with Some x -&gt; x | None -&gt; failwith "trace.get_trace_state_or_init / State.trace_state=None"'</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'TraceState.trace_state.Value'</span> <span class="p">:</span> <span class="n">trace_state</span>
@@ -7807,7 +7806,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">test_trace_level</span> <span class="n">level</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">test_trace_level</span> <span class="n">level</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
     <span class="n">inl</span> <span class="n">level</span><span class="s1">' = *state.level</span>
     <span class="k">if</span> <span class="o">*</span><span class="n">state</span><span class="o">.</span><span class="n">enabled</span> <span class="o">|&gt;</span> <span class="ow">not</span>
@@ -7924,8 +7923,8 @@ __assert_eq / actual: true / expected: true
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="k">if</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">test_trace_level</span> <span class="n">then</span>
             <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">fn</span> <span class="p">()</span>
-            <span class="n">inl</span> <span class="p">({</span> <span class="n">count</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">&amp;</span> <span class="n">trace_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
             <span class="n">join</span>
+                <span class="n">inl</span> <span class="p">({</span> <span class="n">count</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">&amp;</span> <span class="n">trace_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_trace_state_or_init</span> <span class="kc">None</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
                 <span class="o">|&gt;</span> <span class="n">exec_unit</span>
@@ -7998,7 +7997,7 @@ __assert_eq / actual: true / expected: true
                     <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                         <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
                         <span class="nb">open</span> <span class="n">rust</span>
-                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">near</span><span class="o">.</span><span class="n">block_timestamp</span> <span class="p">()</span>
                         <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span>
                             <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
                             <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span> <span class="n">timestamp</span> <span class="o">-</span> <span class="n">u64</span> <span class="n">repl_start</span>
@@ -8034,7 +8033,12 @@ __assert_eq / actual: true / expected: true
                         <span class="p">)</span>
         <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span>
             <span class="n">join</span>
-                <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_to_string</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; sm'</span><span class="o">.</span><span class="n">pad_left</span> <span class="mi">7</span> <span class="s1">' '</span>
+                <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span>
+                    <span class="n">level</span>
+                    <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_to_string</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.index 0i32</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
                 <span class="n">run_target</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="nb">open</span> <span class="n">rust</span>
@@ -8064,15 +8068,19 @@ __assert_eq / actual: true / expected: true
         <span class="k">if</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="n">then</span> <span class="s2">""</span>
         <span class="k">else</span>
-            <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
-            <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+            <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="p">()</span>
             <span class="n">join</span>
+                <span class="n">inl</span> <span class="nb">locals</span> <span class="o">=</span> <span class="nb">locals</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+                <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
                 <span class="n">backend_switch</span> <span class="p">{</span>
                     <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!time} {!level_str} #{!count} </span><span class="si">%s</span><span class="s1">{!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
                     <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!time} {!level_str} #{!count} {!text} / {!locals}"'</span> <span class="p">:</span> <span class="n">string</span>
                 <span class="p">}</span>
-                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
-                <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
+                <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
+                    <span class="n">join</span>
+                        <span class="n">x</span>
+                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start []</span>
+                        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_end [ '</span> <span class="s1">'; '</span><span class="o">/</span><span class="s1">' ]</span>
     <span class="o">|&gt;</span> <span class="n">trace_raw</span> <span class="n">level</span>
 </pre></div>
 </div>
@@ -8113,26 +8121,26 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3 / expected: 3
 
 
 .rs output:
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3 / expected: 3
 
 
 .ts output:
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3 / expected: 3
 
 
 .py output:
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3 / expected: 3
 
 
@@ -8143,8 +8151,8 @@ __assert_eq / actual: 3 / expected: 3
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3L / expected: 3L
 </pre>
 </div>

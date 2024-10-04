@@ -10,7 +10,7 @@ from fable_modules.fable_library.long import (op_subtraction, op_addition)
 from fable_modules.fable_library.map import (find, of_seq)
 from fable_modules.fable_library.option import (some, value as value_1, default_arg, map)
 from fable_modules.fable_library.reflection import (TypeInfo, union_type, int64_type, record_type, string_type, unit_type, lambda_type, bool_type)
-from fable_modules.fable_library.string_ import (pad_left, trim_end, trim_start)
+from fable_modules.fable_library.string_ import (trim_end, trim_start)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
 from fable_modules.fable_library.types import (int64, Array, Union, Record)
 from fable_modules.fable_library.util import (create_atom, to_enumerable, compare)
@@ -235,39 +235,80 @@ def closure0(unit_var: None, unit_var_1: None) -> None:
 
 
 
+def method6(v0_1: US0) -> bool:
+    v3: None
+    closure0(None, None)
+    v3 = None
+    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
+    v35: US0 = pattern_input[4].l0
+    if pattern_input[2].l0 == False:
+        return False
+
+    else: 
+        class ObjectExpr171:
+            @property
+            def Compare(self) -> Callable[[US0, US0], int]:
+                return compare
+
+        class ObjectExpr172:
+            @property
+            def Compare(self) -> Callable[[US0, US0], int]:
+                return compare
+
+        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr171())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr172()))
+
+
+
 def closure7(unit_var: None, v0_1: int64) -> US3:
     return US3(0, v0_1)
 
 
-def method7(__unit: None=None) -> Callable[[int64], US3]:
-    def _arrow171(v: int64) -> US3:
+def method8(__unit: None=None) -> Callable[[int64], US3]:
+    def _arrow173(v: int64) -> US3:
         return closure7(None, v)
 
-    return _arrow171
-
-
-def method8(__unit: None=None) -> str:
-    return "hh:mm:ss"
+    return _arrow173
 
 
 def method9(__unit: None=None) -> str:
+    return "hh:mm:ss"
+
+
+def method10(__unit: None=None) -> str:
     return "HH:mm:ss"
 
 
-def method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
-    v238: US3 = default_arg(map(method7(), v5), US3(1))
-    def _arrow172(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
+def method7(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
+    v238: US3 = default_arg(map(method8(), v5), US3(1))
+    def _arrow174(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
         v252: Any = create(op_subtraction(ticks_1(now()), v238.fields[0]))
         return create_1(1, 1, 1, hours(v252), minutes(v252), seconds(v252), milliseconds(v252))
 
-    return to_string(_arrow172() if (v238.tag == 0) else now(), method9())
+    return to_string(_arrow174() if (v238.tag == 0) else now(), method10())
 
 
-def method11(__unit: None=None) -> str:
+def method13(__unit: None=None) -> str:
+    return ""
+
+
+def closure8(v0_1: Mut3, v1_1: str, unit_var: None) -> None:
+    v3: str = v0_1.l0 + v1_1
+    v0_1.l0 = v3
+
+
+def method12(v0_1: str) -> str:
+    v2_1: Mut3 = Mut3(method13())
+    v8: None
+    closure8(v2_1, ("" + str(v0_1)) + "", None)
+    v8 = None
+    return v2_1.l0
+
+
+def method14(__unit: None=None) -> str:
     return "\u001b[0m"
 
 
-def method10(v0_1: US0) -> str:
+def method11(v0_1: US0) -> str:
     v5: US1 = US1(0, "Verbose") if (True if (v0_1.tag == 0) else False) else US1(1)
     v46: US1
     if v5.tag == 0:
@@ -302,20 +343,12 @@ def method10(v0_1: US0) -> str:
     else: 
         raise Exception("Option does not have a value.")
 
-    v55: str = pad_left(v50.lower(), 7, " ")
-    return (("\u001b[94m" if (v0_1.tag == 1) else ("\u001b[92m" if (v0_1.tag == 2) else ("\u001b[90m" if (v0_1.tag == 0) else ("\u001b[93m" if (v0_1.tag == 3) else "\u001b[91m")))) + v55) + method11()
+    v52: str = v50.lower()
+    v56: str = method12(v52[0])
+    return (("\u001b[94m" if (v0_1.tag == 1) else ("\u001b[92m" if (v0_1.tag == 2) else ("\u001b[90m" if (v0_1.tag == 0) else ("\u001b[93m" if (v0_1.tag == 3) else "\u001b[91m")))) + v56) + method14()
 
 
-def method13(__unit: None=None) -> str:
-    return ""
-
-
-def closure8(v0_1: Mut3, v1_1: str, unit_var: None) -> None:
-    v3: str = v0_1.l0 + v1_1
-    v0_1.l0 = v3
-
-
-def method12(v0_1: str) -> str:
+def method16(v0_1: str) -> str:
     v2_1: Mut3 = Mut3(method13())
     v8: None
     closure8(v2_1, ("" + v0_1) + "", None)
@@ -323,8 +356,13 @@ def method12(v0_1: str) -> str:
     return v2_1.l0
 
 
-def method14(v0_1: str, v1_1: str, v2_1: str, v3: int64, v4: str) -> str:
-    return trim_end(trim_start(((((((((("" + v0_1) + " ") + v1_1) + " #") + str(v3)) + " ") + v2_1) + " / ") + v4) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
+def method17(v0_1: str) -> str:
+    return trim_end(trim_start(v0_1, *to_array(empty())), *to_array(of_array([" ", "/"])))
+
+
+def method15(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: str, v9: str) -> str:
+    v10: str = method16(v9)
+    return method17(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + v8) + " / ") + v10) + "")
 
 
 def closure9(v0_1: Mut0, unit_var: None) -> None:
@@ -342,48 +380,34 @@ def closure10(unit_var: None, v0_1: str) -> None:
     v3 = None
 
 
-def method15(v0_1: str, v1_1: Mut0, v2_1: Mut1, v3: Mut2, v4: Mut3, v5: Mut4, v6: int64 | None=None) -> None:
-    v9: None
-    closure9(v1_1, None)
-    v9 = None
+def method18(v0_1: str) -> None:
+    v3: None
+    closure0(None, None)
+    v3 = None
+    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
+    v37: None
+    closure9(pattern_input[0], None)
+    v37 = None
     closure10(None, v0_1)
-    v2_1.l0(v0_1)
+    pattern_input[1].l0(v0_1)
 
 
 def closure6(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> None:
-    def v4(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> None:
+    if method6(v0_1):
+        v6: None
         closure0(None, None)
-
-    v5: None
-    v4(None)
-    v5 = None
-    pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-    v37: US0 = pattern_input[4].l0
-    class ObjectExpr173:
-        @property
-        def Compare(self) -> Callable[[US0, US0], int]:
-            return compare
-
-    class ObjectExpr174:
-        @property
-        def Compare(self) -> Callable[[US0, US0], int]:
-            return compare
-
-    if False if (pattern_input[2].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr173())) >= find(v37, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr174()))):
-        v45: None
-        v4(None)
-        v45 = None
-        pattern_input_1: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-        v59: Mut0 = pattern_input_1[0]
-        v77: str = method6(v59, pattern_input_1[1], pattern_input_1[2], pattern_input_1[3], pattern_input_1[4], pattern_input_1[5])
-        v78: str = method10(v0_1)
-        v79: str = v1_1(None)
-        v86: str = "" if (v79 == "") else method14(v77, v78, v79, v59.l0, method12(v2_1(None)))
-        v88: None
-        v4(None)
-        v88 = None
-        pattern_input_2: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
-        method15(v86, pattern_input_2[0], pattern_input_2[1], pattern_input_2[2], pattern_input_2[3], pattern_input_2[4], pattern_input_2[5])
+        v6 = None
+        pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_1(TraceState_trace_state())
+        v25: int64 | None = pattern_input[5]
+        v24: Mut4 = pattern_input[4]
+        v23: Mut3 = pattern_input[3]
+        v22: Mut2 = pattern_input[2]
+        v21: Mut1 = pattern_input[1]
+        v20: Mut0 = pattern_input[0]
+        v38: str = method7(v20, v21, v22, v23, v24, v25)
+        v39: str = method11(v0_1)
+        v40: str = v1_1(None)
+        method18("" if (v40 == "") else method15(v20, v21, v22, v23, v24, v25, v38, v39, v40, v2_1(None)))
 
 
 

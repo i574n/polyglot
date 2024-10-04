@@ -1633,42 +1633,75 @@ and method0 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method21 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1788,42 +1821,75 @@ and method20 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method24 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -1957,42 +2023,75 @@ and method22 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method27 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2130,42 +2229,75 @@ and method26 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method29 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
@@ -2280,42 +2412,75 @@ and method28 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method31 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2419,42 +2584,75 @@ and method30 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method33 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2623,42 +2821,75 @@ and method32 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method35 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2762,42 +2993,75 @@ and method34 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method38 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -2921,42 +3185,75 @@ and method36 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method42 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
@@ -3083,42 +3380,75 @@ and method40 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method46 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
@@ -3407,42 +3737,75 @@ and method44 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and method50 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -3606,42 +3969,75 @@ and method48 () : unit =
     let v9 : string = v8 + v7 
     let v10 : string = "{"
     let v11 : string = v6 + v10 
-    let v12 : string = "true; v5 " + v9 + "); " + v11 + " // rust.fix_closure'"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = "__run_test"
-    let v15 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v14 
-    let v16 : unit = ()
+    let v12 : _ = v5 
+    let v13 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v17 
-    let _v16 = () 
+    let v14 : string = $"true; let v12 = $0"
+    let v15 : bool = Fable.Core.RustInterop.emitRustExpr v12 v14 
+    let _v13 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _v16 = () 
+    let v16 : string = $"true; let v12 = $0"
+    let v17 : bool = Fable.Core.RustInterop.emitRustExpr v12 v16 
+    let _v13 = v17 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v15 v19 
-    let _v16 = () 
+    let v18 : string = $"true; let v12 = $0"
+    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v12 v18 
+    let _v13 = v19 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v20 : bool = true
+    let _v13 = v20 
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v21 : bool = true
+    let _v13 = v21 
     #endif
 #else
-    match v15 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v16 = () 
+    let v22 : bool = true
+    let _v13 = v22 
     #endif
-    _v16 
+    let v23 : bool = _v13 
+    let v26 : string = $"true; v12 " + v9 + "); " + v11 + " // rust.fix_closure'"
+    let v27 : bool = Fable.Core.RustInterop.emitRustExpr () v26 
+    let v28 : string = "__run_test"
+    let v29 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v28 
+    let v30 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v31 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v31 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v32 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v32 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v33 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v29 v33 
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+#else
+    match v29 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v30 = () 
+    #endif
+    _v30 
     ()
 and closure0 () () : unit =
     let v0 : string = "true; () //"

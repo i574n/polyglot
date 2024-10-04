@@ -19,7 +19,14 @@ let get_command () =
     |> runtime.new_command
     |> runtime.command_args_override_self true
     |> runtime.command_init_arg (get_args () .exception) (
-        runtime.arg_action runtime.SetTrue
+        runtime.arg_num_args_range (
+            runtime.new_value_range
+                true
+                (am'.End id)
+                (am'.End fun _ => (1i32 |> convert : unativeint))
+        )
+        >> runtime.arg_require_equals true
+        >> runtime.arg_default_missing_value ""
     )
     |> runtime.command_init_arg (get_args () .trace_level) (
         real runtime.arg_union `trace_level ignore
@@ -29,7 +36,14 @@ let get_command () =
     )
 
 /// ### run
-let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' u8 resultm.anyhow_error) =
+let rec run
+    (matches : runtime.arg_matches)
+    : async.future_pin (
+        resultm.result'
+            u8
+            resultm.anyhow_error
+    )
+    =
     fun () =>
         inl wasm_path =
             matches
@@ -45,12 +59,9 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
         let fn (retry : u8) =
             fun () =>
                 inl worker = near_workspaces.sandbox_worker () |> resultm.try'
-
-                trace Verbose (fun () => "spiral_wasm.run") fun () => { retry worker }
-
                 inl contract = worker |> near_workspaces.dev_deploy wasm |> async.await |> resultm.try'
 
-                trace Verbose (fun () => "spiral_wasm.run") fun () => { retry contract }
+                trace Verbose (fun () => "spiral_wasm.run") fun () => { retry worker contract }
 
                 inl result =
                     contract
@@ -67,6 +78,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
                 |> am'.vec_map sm'.ref_to_std_string
                 |> am'.vec_for_each console.write_line
 
+                trace_raw Info (fun () => " ")
                 result |> near_workspaces.print_usd retry
 
                 inl result2 = result |> near_workspaces.into_result
@@ -95,7 +107,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 
                 trace Verbose (fun () => "spiral_wasm.run") fun () => { borsh }
 
-                inl error = { receipt_failures receipt_outcomes_len retry } |> sm'.format
+                inl error = { receipt_outcomes_len retry receipt_failures } |> sm'.format
                 if receipt_failures_len > 0
                 then (Ok (Some error) : _ _ resultm.anyhow_error) |> resultm.box
                 elif receipt_outcomes_len > 1
@@ -103,50 +115,45 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
                 else error |> resultm.anyhow_error |> resultm.err
             |> async.new_future_move
 
-        inl rec loop (retry : u8) =
+        let rec loop (retry : u8) =
             inl max = 30
-            inl init () =
+            inl init (error : _ string) =
                 fun () =>
-                    retry
+                    { retry error }
                 |> async.new_future_move
-            if retry >= max then
-                fun () =>
-                    init ()
-                    |> async.await
-                    |> Error
-                |> async.new_future_move
-            else
-                inl result =
-                    fn retry
-                    |> async.await
-                    |> resultm.map_error' sm'.format'
-                    |> resultm.unbox
-                match result with
-                | Ok (None) =>
-                    fun () =>
-                        init ()
-                        |> async.await
-                        |> Ok
-                    |> async.new_future_move
-                | Ok (Some error) =>
-                    trace Critical (fun () => "spiral_wasm.run / Ok (Some error)") fun () => { retry error }
-                    fun () =>
-                        init ()
+            fun () =>
+                if retry >= max then
+                        init None
                         |> async.await
                         |> Error
-                    |> async.new_future_move
-                | Error error =>
-                    trace Warning (fun () => "spiral_wasm.run / Error error") fun () => { retry error }
-                    loop (retry + 1)
-        inl retries =
-            loop 1
-            |> async.await
+                else
+                    inl result =
+                        fn retry
+                        |> async.await
+                        |> resultm.map_error' sm'.format'
+                        |> resultm.unbox
+                    match result with
+                    | Ok (None) =>
+                        init None
+                        |> async.await
+                        |> Ok
+                    | Ok (Some error) =>
+                        trace Critical (fun () => "spiral_wasm.run / Ok (Some error)") fun () => { retry error }
+                        init (Some error)
+                        |> async.await
+                        |> Error
+                    | Error error =>
+                        trace Warning (fun () => "spiral_wasm.run / Error error") fun () => { retry error }
+                        trace_raw Warning (fun () => "\n")
+                        loop (retry + 1) |> async.await
+            |> async.new_future_move
+        inl retries = loop 1 |> async.await
 
         trace Verbose (fun () => "spiral_wasm.run") fun () => { retries }
 
         match retries with
-        | Ok retries => Ok retries |> resultm.box
-        | Error retries => { retries } |> sm'.format |> resultm.anyhow_error |> resultm.err
+        | Ok { retry } => Ok retry |> resultm.box
+        | Error { retry error } => { retries error } |> sm'.format |> resultm.anyhow_error |> resultm.err
 
     |> async.new_future_move
 
@@ -171,12 +178,14 @@ inl main (args : array_base string) =
     inl trace_state = get_trace_state_or_init (Some trace_level)
 
     trace Verbose
-        fun () => $'$"spiral_wasm.main"'
+        fun () => "spiral_wasm.main"
         fun () => { args }
 
-    inl exception : bool =
+    inl exception =
         arg_matches
-        |> runtime.matches_get_flag (get_args () .exception |> fst)
+        |> runtime.matches_get_one (get_args () .exception |> fst)
+        |> optionm'.map (sm'.from_std_string >> sm'.trim_start [ '\\' ] >> sm'.trim_end [ '\\' ])
+        |> optionm'.unbox
 
     inl result =
         arg_matches
@@ -184,11 +193,21 @@ inl main (args : array_base string) =
         |> async.block_on
         |> resultm.map_error' sm'.format'
 
-    match result |> resultm.ok' |> optionm'.unbox with
-    | Some retries when exception => "spiral_wasm.main / exception=true" |> resultm.err |> resultm.unwrap'
-    | None when exception => ()
-    | Some retries => retries |> ignore
-    | None => result |> resultm.unwrap' |> ignore
+    match result |> resultm.unbox, exception with
+    | Ok retries, Some exception =>
+        ($'$"spiral_wasm.main / retries: {!retries} / exception: \'{!exception}\'"' : string)
+        |> resultm.err |> resultm.unwrap'
+    | Error _error, Some ("") =>
+        ()
+    | Error error, Some exception when error |> sm'.from_std_string |> sm'.contains exception =>
+        ()
+    | Error error, Some exception =>
+        ($'$"spiral_wasm.main / exception: \'{!exception}\' / error: {!error}"' : string)
+        |> resultm.err |> resultm.unwrap'
+    | Ok _retries, _ =>
+        ()
+    | Error _error, _ =>
+        result |> resultm.unwrap' |> ignore
 
     0i32
 

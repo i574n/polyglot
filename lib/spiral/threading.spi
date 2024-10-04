@@ -60,7 +60,7 @@ nominal arc t =
 
 /// ### new_arc
 inl new_arc forall t. (x : t) : arc t =
-    !\\(x, $'"std::sync::Arc::new($0)"')
+    !\($'"std::sync::Arc::new(!x)"')
 
 /// ### mutex
 nominal mutex t =
@@ -71,7 +71,7 @@ nominal mutex t =
 
 /// ### new_mutex
 inl new_mutex forall t. (x : t) : mutex t =
-    !\\(x, $'"std::sync::Mutex::new($0)"')
+    !\($'"std::sync::Mutex::new(!x)"')
 
 /// ### rw_lock
 nominal rw_lock t =

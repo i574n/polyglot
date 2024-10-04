@@ -8008,23 +8008,23 @@ struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 110L)</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 ```
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 benchmark.run_all / { test_name = empty_2_tests; count = 2000000 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 benchmark.run_all / { test_name = empty_2_tests; count = 2000000 }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 benchmark.run / { input_str = struct ("a", "a") }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 357 }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 benchmark.run / solutions.map / { i = 2; test_name = B; time = 235 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 benchmark.run / { input_str = struct ("a", "a") }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 142 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / solutions.map / { i = 2; test_name = B; time = 130 }
 
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 benchmark.run / { input_str = struct ("b", "b") }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 benchmark.run / solutions.map / { i = 1; test_name = A; time = 247 }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #7 benchmark.run / solutions.map / { i = 2; test_name = B; time = 212 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / { input_str = struct ("b", "b") }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / solutions.map / { i = 1; test_name = A; time = 136 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / solutions.map / { i = 2; test_name = B; time = 151 }
 ```
 input            	| expected	| result	| best  
 ---              	| ---     	| ---   	| ---   
-struct ("a", "a")	| "a"     	| "a"   	| 2, 235
-struct ("b", "b")	| "b"     	| "b"   	| 2, 212
+struct ("a", "a")	| "a"     	| "a"   	| 2, 130
+struct ("b", "b")	| "b"     	| "b"   	| 1, 136
 ```
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #8 benchmark.sort_result_list / averages.iter / { i = 2; avg = 223 }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 benchmark.sort_result_list / averages.iter / { i = 1; avg = 302 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #8 benchmark.sort_result_list / averages.iter / { i = 1; avg = 139 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #9 benchmark.sort_result_list / averages.iter / { i = 2; avg = 140 }
 ```
 </pre>
 </div>
@@ -8160,24 +8160,24 @@ Test case 1. Average Time: 64L</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 ```
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 benchmark.run_all / { test_name = empty_1_tests; count = 2000000 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 benchmark.run_all / { test_name = empty_1_tests; count = 2000000 }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 benchmark.run / { input_str = 0.0 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 114 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 benchmark.run / { input_str = 0.0 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 22 }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 benchmark.run / { input_str = 2.0 }
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 benchmark.run / solutions.map / { i = 1; test_name = A; time = 48 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / { input_str = 2.0 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / solutions.map / { i = 1; test_name = A; time = 12 }
 
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 benchmark.run / { input_str = 5.0 }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 benchmark.run / solutions.map / { i = 1; test_name = A; time = 43 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / { input_str = 5.0 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / solutions.map / { i = 1; test_name = A; time = 13 }
 ```
-input	| expected	| result	| best  
----  	| ---     	| ---   	| ---   
-0.0  	| 1.0     	| 1.0   	| 1, 114
-2.0  	| 3.0     	| 3.0   	| 1, 48 
-5.0  	| 6.0     	| 6.0   	| 1, 43 
+input	| expected	| result	| best 
+---  	| ---     	| ---   	| ---  
+0.0  	| 1.0     	| 1.0   	| 1, 22
+2.0  	| 3.0     	| 3.0   	| 1, 12
+5.0  	| 6.0     	| 6.0   	| 1, 13
 ```
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 benchmark.sort_result_list / averages.iter / { i = 1; avg = 68 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 benchmark.sort_result_list / averages.iter / { i = 1; avg = 15 }
 ```
 </pre>
 </div>

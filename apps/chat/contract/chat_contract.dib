@@ -30,8 +30,10 @@ open testing
 type state =
     {
         version : u32
-        alias_map : near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))
+        account_set : near.iterable_set near.account_id
+        alias_set : near.iterable_set sm'.std_string
         account_map : near.lookup_map near.account_id sm'.std_string
+        alias_map : near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))
     }
 
 #!spiral
@@ -56,9 +58,12 @@ trace Verbose (fun () => "") id
 
 inl new () : state =
     {
-        version = 1
-        alias_map = "alias_map" |> sm'.byte_slice |> near.new_lookup_map
+        version = 2
+        account_set = "account_set" |> sm'.byte_slice |> near.new_iterable_set
+        alias_set = "alias_set" |> sm'.byte_slice |> near.new_iterable_set
         account_map = "account_map" |> sm'.byte_slice |> near.new_lookup_map
+        alias_map = "alias_map" |> sm'.byte_slice |> near.new_lookup_map
+
     }
 
 #!spiral
@@ -165,18 +170,30 @@ inl generate_cid (content : am'.vec u8) : sm'.std_string =
 #!spiral
 
 inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : () =
-    inl account_map : rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) =
-        !\($'$"&mut !state.2"')
-
-    inl alias_map : rust.ref (rust.mut' (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32)))) =
+    inl account_set : rust.ref (rust.mut' (near.iterable_set near.account_id)) =
         !\($'$"&mut !state.1"')
 
-    inl account_id = near.signer_account_id ()
+    inl alias_set : rust.ref (rust.mut' (near.iterable_set sm'.std_string)) =
+        !\($'$"&mut !state.2"')
+
+    inl account_map : rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) =
+        !\($'$"&mut !state.3"')
+
+    inl alias_map : rust.ref (rust.mut' (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32)))) =
+        !\($'$"&mut !state.4"')
+
+    inl signer_account_id = near.signer_account_id ()
+    inl predecessor_account_id = near.predecessor_account_id ()
     inl block_timestamp = near.block_timestamp ()
 
     trace Debug
-        fun () => $'$"chat_contract.claim_alias"'
-        fun () => { alias block_timestamp account_id = account_id |> sm'.to_string }
+        fun () => "chat_contract.claim_alias"
+        fun () => {
+            alias
+            block_timestamp
+            signer_account_id = signer_account_id |> sm'.to_string
+            predecessor_account_id = predecessor_account_id |> sm'.to_string
+        }
 
     if alias |> is_valid_alias |> not
     then near.panic_str "chat_contract.claim_alias / invalid alias" . true
@@ -185,17 +202,17 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
     
     inl account_alias =
         account_map
-        |> near.lookup_get account_id
+        |> near.lookup_get signer_account_id
         |> optionm'.cloned
 
     match account_alias |> optionm'.unbox with
     | Some account_alias when account_alias =. alias =>
         trace Warning
-            fun () => $'$"chat_contract.claim_alias / alias already claimed"'
+            fun () => "chat_contract.claim_alias / alias already claimed"
             fun () => { account_alias = account_alias |> sm'.format_debug }
     | account_alias' =>
         trace Debug
-            fun () => $'$"chat_contract.claim_alias"'
+            fun () => "chat_contract.claim_alias"
             fun () => { account_alias = account_alias |> sm'.format_debug }
 
         match account_alias' with
@@ -203,15 +220,18 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
             !\($'"    !alias_map //"') : ()
             !\($'"      .get_mut(&!account_alias) //"') : ()
             !\($'"      .unwrap() //"') : ()
-            !\\(account_id, $'"      .remove(&$0); //"') : ()
+            !\\(signer_account_id, $'"      .remove(&$0); //"') : ()
         | None => ()
 
-        !\\(account_id, $'"  !account_map.insert($0.clone(), !alias.clone()); //"') : ()
+        !\\((signer_account_id, alias), $'"  !account_map.insert($0.clone(), $1.clone()); //"') : ()
 
-        !\($'"  let new_alias_account_map = match !alias_map.get(&!alias) { //"') : ()
+        account_set |> near.iterable_set_insert signer_account_id |> ignore
+        alias_set |> near.iterable_set_insert alias |> ignore
+
+        !\\(alias, $'"  let new_alias_account_map = match !alias_map.get(&$0) { //"') : ()
         !\($'"    None => { //"') : ()
         !\($'"      let mut new_map = std::collections::HashMap::new(); //"') : ()
-        !\\((account_id, block_timestamp), $'"      new_map.insert($0, ($1, 0u32)); //"') : ()
+        !\\((signer_account_id, block_timestamp), $'"      new_map.insert($0, ($1, 0u32)); //"') : ()
         !\($'"      new_map //"') : ()
         !\($'"    } //"') : ()
         !\($'"    Some(accounts) => { //"') : ()
@@ -220,16 +240,16 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
         !\($'"      let mut new_map = accounts_vec //"') : ()
         !\($'"        .iter() //"') : ()
         !\($'"        .enumerate() //"') : ()
-        !\($'"        .map(|(i, (account_id, (timestamp, _)))| { //"') : ()
-        !\($'"          ((*account_id).clone(), (*timestamp, i as u32)) //"') : ()
+        !\($'"        .map(|(i, (signer_account_id, (timestamp, _)))| { //"') : ()
+        !\($'"          ((*signer_account_id).clone(), (*timestamp, i as u32)) //"') : ()
         !\($'"        }) //"') : ()
         !\($'"        .collect::<std::collections::HashMap<_, _>>(); //"') : ()
-        !\($'"      new_map.insert(!account_id, (!block_timestamp, accounts_vec.len() as u32)); //"') : ()
+        !\\(signer_account_id, $'"      new_map.insert($0, (!block_timestamp, accounts_vec.len() as u32)); //"') : ()
         !\($'"      new_map //"') : ()
         !\($'"    } //"') : ()
         !\($'"  }; //"') : ()
 
-        !\($'"  !alias_map.insert(!alias, new_alias_account_map); //"') : ()
+        !\\(alias, $'"  !alias_map.insert($0, new_alias_account_map); //"') : ()
 
 #!spiral
 
@@ -237,37 +257,101 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
 ///! rust -c
 
 inl state = new ()
-inl state_debug = state |> sm'.format'
-trace Verbose (fun () => "chat_contract") fun () => { state_debug }
-trace Debug (fun () => "") id
+inl version = state.version
+inl account_set = state.account_set
+inl alias_set = state.alias_set
+inl account_map = state.account_map
+inl alias_map = state.alias_map
+inl version = join version
+inl account_set = join account_set
+inl alias_set = join alias_set
+inl account_map = join account_map
+inl alias_map = join alias_map
+inl state : rust.ref (rust.mut' state) =
+    !\\(
+        version,
+        $'$"&mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'
+    )
+
 "alias1"
 |> sm'.to_std_string
-|> claim_alias (
-    inl version = state.version
-    inl alias_map = state.alias_map
-    inl account_map = state.account_map
-    inl version = join version
-    inl alias_map = join alias_map
-    inl account_map = join account_map
-    !\($'$"&mut (!version, !alias_map, !account_map)"')
-)
-trace Verbose (fun () => "chat_contract") id
+|> claim_alias state
+
+trace Verbose
+    fun () => "chat_contract"
+    fun () => { state = state |> sm'.format_debug }
+
 trace Debug (fun () => "") id
 
 #!spiral
 
 //// test
-///! rust -c=-e
+///! rust \"-c=-e=\\\"chat_contract.claim_alias / invalid alias\\\"\"
 
 ""
 |> sm'.to_std_string
 |> claim_alias (
     inl state = new ()
     inl version = state.version
-    inl alias_map = state.alias_map
+    inl account_set = state.account_set
+    inl alias_set = state.alias_set
     inl account_map = state.account_map
-    !\\(version, $'$"&mut ($0, !alias_map, !account_map)"')
+    inl alias_map = state.alias_map
+    !\\(version, $'$"&mut ($0, !account_set, !alias_set, !account_map, !alias_map)"')
 )
+trace Debug (fun () => "") id
+
+#!spiral
+
+//// test
+///! rust -cd borsh
+
+inl state = new ()
+inl version = state.version
+inl account_set = state.account_set
+inl alias_set = state.alias_set
+inl account_map = state.account_map
+inl alias_map = state.alias_map
+inl version = join version
+inl account_set = join account_set
+inl alias_set = join alias_set
+inl account_map = join account_map
+inl alias_map = join alias_map
+inl state =
+    inl state = state
+    // inl state = state |> rust.new_rc
+    // inl state' = state |> sm'.format'
+    // trace Verbose (fun () => "chat_contract") fun () => { state' }
+
+    // inl version = rust.rc_unwrap_or_clone state .version
+    // inl alias_map = rust.rc_unwrap_or_clone state .alias_map
+    // inl account_map = rust.rc_unwrap_or_clone state .account_map
+
+    !\\(
+        (
+            version,
+            account_map,
+            alias_map
+        ),
+        $'$"&mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'
+    )
+
+"alias1"
+|> sm'.to_std_string
+|> claim_alias state
+
+"alias1"
+|> sm'.to_std_string
+|> claim_alias state
+
+"alias1"
+|> sm'.to_std_string
+|> claim_alias state
+
+trace Verbose
+    fun () => "chat_contract"
+    fun () => { state = state |> sm'.format_debug }
+
 trace Debug (fun () => "") id
 
 #!markdown
@@ -282,10 +366,10 @@ inl get_account_info
     : optionm'.option' (sm'.std_string * (u64 * u32))
     =
     inl account_map : rust.ref (near.lookup_map near.account_id sm'.std_string) =
-        !\($'$"&!state.2"')
+        !\($'$"&!state.3"')
 
     inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
-        !\($'$"&!state.1"')
+        !\($'$"&!state.4"')
 
     !\\(account_id, $'"let result = !account_map.get(&$0).and_then(|alias| { //"') : ()
     !\($'"    !alias_map //"') : ()
@@ -299,7 +383,7 @@ inl get_account_info
     inl result = !\($'"result"')
 
     trace Debug
-        fun () => $'$"chat_contract.get_account_info"'
+        fun () => "chat_contract.get_account_info"
         fun () => { account_id result }
 
     trace Debug (fun () => "") id
@@ -425,7 +509,7 @@ inl main () =
         !\($'") -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> { //"') : ()
 
         inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
-            !\($'$"&self.0.1"')
+            !\($'$"&self.0.4"')
 
         inl alias : sm'.std_string = !\($'$"alias"')
 

@@ -98,7 +98,8 @@ inl dev_deploy
     (worker : worker sandbox)
     : async.future_pin (resultm.result' contract near_workspaces_error)
     =
-    !\\((worker, wasm), $'"Box::pin($0.dev_deploy(&$1))"')
+    inl worker = worker |> rust.emit
+    !\\(wasm, $'"Box::pin(!worker.dev_deploy(&$0))"')
 
 /// ### call
 inl call (fn_name : string) (contract : contract) : call_transaction =
