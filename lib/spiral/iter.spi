@@ -16,6 +16,22 @@ inl into_iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
     !\\(x, $'"$0.iter()"')
 
+/// ### iter_ref
+inl iter_ref forall (t : * -> *) u. (x : t u) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+/// ### iter_ref'
+inl iter_ref' forall (t : * -> *) u. (x : rust.ref (t u)) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+/// ### iter_ref''
+inl iter_ref'' forall (t : * -> *) u (v : * -> *). (x : v (t u)) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+/// ### iter_ref'''
+inl iter_ref''' forall (t : * -> *) u (v : * -> *) (w : * -> *). (x : w (v (t u))) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
 /// ### map
 inl map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator u =
     !\\(fn, $'"!iter.map(|x| $0(x))"')

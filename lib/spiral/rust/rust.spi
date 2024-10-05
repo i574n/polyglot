@@ -33,6 +33,13 @@ nominal ref_cell t =
         $'' : $'std_cell_RefCell<`t>'
     )
 
+/// ### cell_ref
+nominal cell_ref t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::Ref<$0>\")>]\n#endif\ntype std_cell_Ref<'T> = class end"
+        $'' : $'std_cell_Ref<`t>'
+    )
+
 /// ### rc
 nominal rc t =
     `(
@@ -245,6 +252,10 @@ inl unwrap_0_ref forall (t : * -> *) u. (x : ref (t u)) : ref u =
 inl len forall t u {uint; int}. (x : t) : u =
     !\($'$"!x.len()"')
 
+/// ### len'
+inl len' forall t u {uint; int}. (x : t) : u =
+    !\\(x, $'$"$0.len()"')
+
 /// ### emit
 inl emit forall t. (x : t) : t =
     !\\(x, $'"$0"')
@@ -284,15 +295,19 @@ inl rc_downgrade forall t. (x : rc t) : weak_rc t =
 
 /// ### new_ref_cell
 inl new_ref_cell forall t. (x : t) : ref_cell t =
-    !\\(x, $'"std::cell::RefCell::new($0)"')
+    !\($'"std::cell::RefCell::new(!x)"')
 
 /// ### ref_cell_borrow
-inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
-    !\\(x, $'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&$0))"')
+inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : cell_ref t =
+    !\\(x, $'"std::cell::RefCell::borrow(&std::rc::Rc::clone(&$0))"')
 
 /// ### ref_cell_borrow_mut
 inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
-    !\\(x, $'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&$0))"')
+    !\\(x, $'"std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&$0))"')
+
+/// ### ref_leak
+inl ref_leak forall t. (x : cell_ref t) : ref t =
+    !\\(x, $'"std::cell::Ref::leak($0)"')
 
 /// ### to_mut
 inl to_mut forall t. (x : t) : () =
@@ -344,8 +359,16 @@ inl to_ref_mut forall t. (x : t) : ref (mut' t) =
 inl deref forall t. (ref : ref t) : t =
     !\\(ref, $'"*$0"')
 
+/// ### clone_deref
+inl clone_deref forall t. (ref : ref t) : t =
+    !\\(ref, $'"$0.clone()"')
+
 /// ### from_ref
 inl from_ref forall t. (ref : ref t) : t =
+    !\($'"!ref"')
+
+/// ### from_ref_mut
+inl from_ref_mut forall t. (ref : ref (mut' t)) : t =
     !\($'"!ref"')
 
 /// ### reref

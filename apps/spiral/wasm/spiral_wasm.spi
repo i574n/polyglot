@@ -116,36 +116,37 @@ let rec run
             |> async.new_future_move
 
         let rec loop (retry : u8) =
-            inl max = 30
+            inl max = 15
             inl init (error : _ string) =
                 fun () =>
                     { retry error }
                 |> async.new_future_move
             fun () =>
-                if retry >= max then
-                        init None
-                        |> async.await
-                        |> Error
-                else
-                    inl result =
-                        fn retry
-                        |> async.await
-                        |> resultm.map_error' sm'.format'
-                        |> resultm.unbox
-                    match result with
-                    | Ok (None) =>
-                        init None
-                        |> async.await
-                        |> Ok
-                    | Ok (Some error) =>
-                        trace Critical (fun () => "spiral_wasm.run / Ok (Some error)") fun () => { retry error }
-                        init (Some error)
-                        |> async.await
-                        |> Error
-                    | Error error =>
-                        trace Warning (fun () => "spiral_wasm.run / Error error") fun () => { retry error }
-                        trace_raw Warning (fun () => "\n")
-                        loop (retry + 1) |> async.await
+                inl result =
+                    fn retry
+                    |> async.await
+                    |> resultm.map_error' sm'.format'
+                    |> resultm.unbox
+                match result with
+                | Ok (None) =>
+                    init None
+                    |> async.await
+                    |> Ok
+                | Ok (Some error) =>
+                    trace Critical (fun () => "spiral_wasm.run / Ok (Some error)") fun () => { retry error }
+                    init (Some error)
+                    |> async.await
+                    |> Error
+                | Error error when retry >= max =>
+                    trace Warning (fun () => "spiral_wasm.run / Error error") fun () => { retry error }
+                    trace_raw Warning (fun () => "\n")
+                    init None
+                    |> async.await
+                    |> Ok
+                | Error error =>
+                    trace Warning (fun () => "spiral_wasm.run / Error error") fun () => { retry error }
+                    trace_raw Warning (fun () => "\n")
+                    loop (retry + 1) |> async.await
             |> async.new_future_move
         inl retries = loop 1 |> async.await
 

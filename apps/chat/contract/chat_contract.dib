@@ -306,7 +306,8 @@ trace Debug (fun () => "") id
 //// test
 ///! rust -cd borsh
 
-inl state = new ()
+inl state' = new ()
+inl state = state'
 inl version = state.version
 inl account_set = state.account_set
 inl alias_set = state.alias_set
@@ -317,23 +318,11 @@ inl account_set = join account_set
 inl alias_set = join alias_set
 inl account_map = join account_map
 inl alias_map = join alias_map
+
 inl state =
-    inl state = state
-    // inl state = state |> rust.new_rc
-    // inl state' = state |> sm'.format'
-    // trace Verbose (fun () => "chat_contract") fun () => { state' }
-
-    // inl version = rust.rc_unwrap_or_clone state .version
-    // inl alias_map = rust.rc_unwrap_or_clone state .alias_map
-    // inl account_map = rust.rc_unwrap_or_clone state .account_map
-
     !\\(
-        (
-            version,
-            account_map,
-            alias_map
-        ),
-        $'$"&mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'
+        (version, account_set, alias_set),
+        $'$"&mut ($0, $1, $2, !account_map, !alias_map)"'
     )
 
 "alias1"
@@ -348,11 +337,43 @@ inl state =
 |> sm'.to_std_string
 |> claim_alias state
 
+inl account_set' : rust.ref (near.iterable_set near.account_id) =
+    !\($'$"&!state.1"')
+
+inl alias_set' : rust.ref (near.iterable_set sm'.std_string) =
+    !\($'$"&!state.2"')
+
+inl account_set' =
+    account_set'
+    |> iter.iter_ref''
+    |> iter.cloned
+    |> iter_collect
+
+inl alias_set' =
+    alias_set'
+    |> iter.iter_ref''
+    |> iter.cloned
+    |> iter_collect
+    |> am'.vec_map sm'.from_std_string
+
 trace Verbose
     fun () => "chat_contract"
-    fun () => { state = state |> sm'.format_debug }
+    fun () => {
+        account_set' = account_set' |> sm'.format_debug
+        alias_set' = alias_set' |> sm'.format_debug
+        state = state |> sm'.format_debug
+    }
 
 trace Debug (fun () => "") id
+
+account_set'
+|> am'.vec_len
+|> convert
+|> _assert_eq 1u32
+
+alias_set'
+|> am'.from_vec_base
+|> _assert_eq' ;[ "alias1" ]
 
 #!markdown
 
