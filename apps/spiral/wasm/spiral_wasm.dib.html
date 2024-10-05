@@ -7735,36 +7735,37 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_future_move</span>
 
         <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">u8</span><span class="p">)</span> <span class="o">=</span>
-            <span class="n">inl</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">30</span>
+            <span class="n">inl</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">15</span>
             <span class="n">inl</span> <span class="n">init</span> <span class="p">(</span><span class="n">error</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_future_move</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;=</span> <span class="nb">max</span> <span class="n">then</span>
-                        <span class="n">init</span> <span class="kc">None</span>
-                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
-                        <span class="o">|&gt;</span> <span class="n">Error</span>
-                <span class="k">else</span>
-                    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
-                        <span class="n">fn</span> <span class="n">retry</span>
-                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
-                        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">'</span>
-                        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unbox</span>
-                    <span class="k">match</span> <span class="n">result</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="o">=&gt;</span>
-                        <span class="n">init</span> <span class="kc">None</span>
-                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
-                        <span class="o">|&gt;</span> <span class="n">Ok</span>
-                    <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">Some</span> <span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span>
-                        <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_wasm.run / Ok (Some error)"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
-                        <span class="n">init</span> <span class="p">(</span><span class="n">Some</span> <span class="n">error</span><span class="p">)</span>
-                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
-                        <span class="o">|&gt;</span> <span class="n">Error</span>
-                    <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span> <span class="o">=&gt;</span>
-                        <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_wasm.run / Error error"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
-                        <span class="n">trace_raw</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-                        <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
+                <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
+                    <span class="n">fn</span> <span class="n">retry</span>
+                    <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
+                    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">'</span>
+                    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unbox</span>
+                <span class="k">match</span> <span class="n">result</span> <span class="k">with</span>
+                <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="o">=&gt;</span>
+                    <span class="n">init</span> <span class="kc">None</span>
+                    <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
+                    <span class="o">|&gt;</span> <span class="n">Ok</span>
+                <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">Some</span> <span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span>
+                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_wasm.run / Ok (Some error)"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
+                    <span class="n">init</span> <span class="p">(</span><span class="n">Some</span> <span class="n">error</span><span class="p">)</span>
+                    <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
+                    <span class="o">|&gt;</span> <span class="n">Error</span>
+                <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span> <span class="n">when</span> <span class="n">retry</span> <span class="o">&gt;=</span> <span class="nb">max</span> <span class="o">=&gt;</span>
+                    <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_wasm.run / Error error"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
+                    <span class="n">trace_raw</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="n">init</span> <span class="kc">None</span>
+                    <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
+                    <span class="o">|&gt;</span> <span class="n">Ok</span>
+                <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span> <span class="o">=&gt;</span>
+                    <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"spiral_wasm.run / Error error"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">error</span> <span class="p">}</span>
+                    <span class="n">trace_raw</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
             <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_future_move</span>
         <span class="n">inl</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">loop</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="k">await</span>
 

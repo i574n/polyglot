@@ -50,6 +50,42 @@ inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 
 #!markdown
 
+### iter_ref
+
+#!spiral
+
+inl iter_ref forall (t : * -> *) u. (x : t u) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+#!markdown
+
+### iter_ref'
+
+#!spiral
+
+inl iter_ref' forall (t : * -> *) u. (x : rust.ref (t u)) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+#!markdown
+
+### iter_ref''
+
+#!spiral
+
+inl iter_ref'' forall (t : * -> *) u (v : * -> *). (x : v (t u)) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+#!markdown
+
+### iter_ref'''
+
+#!spiral
+
+inl iter_ref''' forall (t : * -> *) u (v : * -> *) (w : * -> *). (x : w (v (t u))) : into_iterator (rust.ref u) =
+    !\\(x, $'"$0.iter()"')
+
+#!markdown
+
 ### map
 
 #!spiral
