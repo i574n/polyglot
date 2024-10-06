@@ -1,6 +1,7 @@
 param(
     $fast,
     $SkipNotebook,
+    $SkipTests,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -40,6 +41,6 @@ cargo fmt --
 New-Item dist -ItemType Directory -Force | Out-Null
 Copy-Item ../../../workspace/target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm -Force
 
-if (!$fast) {
+if (!$fast -and !$SkipTests) {
     { ../../../workspace/target/release/chat_contract_tests } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100 }
 }

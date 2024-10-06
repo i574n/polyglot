@@ -6,7 +6,7 @@ from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_
 from fable_modules.fable_library.types import (Array, Union)
 from fable_modules.fable_library.util import IDisposable
 
-def _expr31() -> TypeInfo:
+def _expr80() -> TypeInfo:
     return class_type("Threading.Disposable", None, Disposable)
 
 
@@ -19,13 +19,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr31
+Disposable_reflection = _expr80
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr37() -> TypeInfo:
+def _expr81() -> TypeInfo:
     return union_type("Threading.US0", [], US0, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -41,17 +41,17 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr37
+US0_reflection = _expr81
 
 def closure1(unit_var: None, v0_1: CancellationToken) -> US0:
     return US0(0, v0_1)
 
 
 def method0(__unit: None=None) -> Callable[[CancellationToken], US0]:
-    def _arrow42(v: CancellationToken) -> US0:
+    def _arrow82(v: CancellationToken) -> US0:
         return closure1(None, v)
 
-    return _arrow42
+    return _arrow82
 
 
 def closure2(v0_1: Any, unit_var: None) -> None:
@@ -59,17 +59,17 @@ def closure2(v0_1: Any, unit_var: None) -> None:
 
 
 def method1(v0_1: Any) -> Callable[[], None]:
-    def _arrow47(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow83(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure2(v0_1, None)
 
-    return _arrow47
+    return _arrow83
 
 
 def method2(v0_1: Any) -> Callable[[], None]:
-    def _arrow49(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow84(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure2(v0_1, None)
 
-    return _arrow49
+    return _arrow84
 
 
 def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
@@ -78,11 +78,11 @@ def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[Cance
     return (_v1[0], _v1[1])
 
 
-def _arrow52(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def _arrow85(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow52
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow85
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return v0(x)

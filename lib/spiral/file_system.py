@@ -38,7 +38,7 @@ class IPathJoin(Protocol):
         ...
 
 
-def _expr245() -> TypeInfo:
+def _expr236() -> TypeInfo:
     return class_type("File_system.Disposable", None, Disposable)
 
 
@@ -51,7 +51,7 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr245
+Disposable_reflection = _expr236
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
@@ -63,7 +63,7 @@ class IPathDirname(Protocol):
         ...
 
 
-def _expr246() -> TypeInfo:
+def _expr237() -> TypeInfo:
     return union_type("File_system.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -79,9 +79,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr246
+US0_reflection = _expr237
 
-def _expr247() -> TypeInfo:
+def _expr238() -> TypeInfo:
     return record_type("File_system.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -89,9 +89,9 @@ def _expr247() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr247
+Mut0_reflection = _expr238
 
-def _expr248() -> TypeInfo:
+def _expr239() -> TypeInfo:
     return record_type("File_system.Mut1", [], Mut1, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -99,9 +99,9 @@ def _expr248() -> TypeInfo:
 class Mut1(Record):
     l0: Callable[[str], None]
 
-Mut1_reflection = _expr248
+Mut1_reflection = _expr239
 
-def _expr249() -> TypeInfo:
+def _expr240() -> TypeInfo:
     return record_type("File_system.Mut2", [], Mut2, lambda: [("l0", bool_type)])
 
 
@@ -109,9 +109,9 @@ def _expr249() -> TypeInfo:
 class Mut2(Record):
     l0: bool
 
-Mut2_reflection = _expr249
+Mut2_reflection = _expr240
 
-def _expr250() -> TypeInfo:
+def _expr241() -> TypeInfo:
     return record_type("File_system.Mut3", [], Mut3, lambda: [("l0", string_type)])
 
 
@@ -119,9 +119,9 @@ def _expr250() -> TypeInfo:
 class Mut3(Record):
     l0: str
 
-Mut3_reflection = _expr250
+Mut3_reflection = _expr241
 
-def _expr251() -> TypeInfo:
+def _expr242() -> TypeInfo:
     return record_type("File_system.Mut4", [], Mut4, lambda: [("l0", US0_reflection())])
 
 
@@ -129,9 +129,9 @@ def _expr251() -> TypeInfo:
 class Mut4(Record):
     l0: US0
 
-Mut4_reflection = _expr251
+Mut4_reflection = _expr242
 
-def _expr252() -> TypeInfo:
+def _expr243() -> TypeInfo:
     return union_type("File_system.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -147,9 +147,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr252
+US1_reflection = _expr243
 
-def _expr253() -> TypeInfo:
+def _expr244() -> TypeInfo:
     return union_type("File_system.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -165,9 +165,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr253
+US2_reflection = _expr244
 
-def _expr254() -> TypeInfo:
+def _expr245() -> TypeInfo:
     return union_type("File_system.US3", [], US3, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -183,9 +183,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr254
+US3_reflection = _expr245
 
-def _expr255() -> TypeInfo:
+def _expr246() -> TypeInfo:
     return union_type("File_system.US4", [], US4, lambda: [[], [], []])
 
 
@@ -201,9 +201,9 @@ class US4(Union):
         return ["US4_0", "US4_1", "US4_2"]
 
 
-US4_reflection = _expr255
+US4_reflection = _expr246
 
-def _expr256() -> TypeInfo:
+def _expr247() -> TypeInfo:
     return union_type("File_system.US5", [], US5, lambda: [[("f0_0", US4_reflection())], [("f1_0", US4_reflection())], [("f2_0", US4_reflection())], [("f3_0", US4_reflection())], [("f4_0", US4_reflection())]])
 
 
@@ -219,9 +219,9 @@ class US5(Union):
         return ["US5_0", "US5_1", "US5_2", "US5_3", "US5_4"]
 
 
-US5_reflection = _expr256
+US5_reflection = _expr247
 
-def _expr257() -> TypeInfo:
+def _expr248() -> TypeInfo:
     return union_type("File_system.US7", [], US7, lambda: [[], [], []])
 
 
@@ -237,9 +237,9 @@ class US7(Union):
         return ["US7_0", "US7_1", "US7_2"]
 
 
-US7_reflection = _expr257
+US7_reflection = _expr248
 
-def _expr258() -> TypeInfo:
+def _expr249() -> TypeInfo:
     return union_type("File_system.US8", [], US8, lambda: [[], [], [], [], []])
 
 
@@ -255,9 +255,9 @@ class US8(Union):
         return ["US8_0", "US8_1", "US8_2", "US8_3", "US8_4"]
 
 
-US8_reflection = _expr258
+US8_reflection = _expr249
 
-def _expr259() -> TypeInfo:
+def _expr250() -> TypeInfo:
     return union_type("File_system.US6", [], US6, lambda: [[("f0_0", US7_reflection()), ("f0_1", US8_reflection())], []])
 
 
@@ -273,9 +273,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr259
+US6_reflection = _expr250
 
-def _expr260() -> TypeInfo:
+def _expr251() -> TypeInfo:
     return union_type("File_system.US9", [], US9, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -291,9 +291,9 @@ class US9(Union):
         return ["US9_0", "US9_1"]
 
 
-US9_reflection = _expr260
+US9_reflection = _expr251
 
-def _expr261() -> TypeInfo:
+def _expr252() -> TypeInfo:
     return union_type("File_system.US10", [], US10, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -309,9 +309,9 @@ class US10(Union):
         return ["US10_0", "US10_1"]
 
 
-US10_reflection = _expr261
+US10_reflection = _expr252
 
-def _expr262() -> TypeInfo:
+def _expr253() -> TypeInfo:
     return union_type("File_system.US11", [], US11, lambda: [[("f0_0", class_type("File_system.chrono_DateTime`1", [class_type("File_system.chrono_Utc")]))], []])
 
 
@@ -327,9 +327,9 @@ class US11(Union):
         return ["US11_0", "US11_1"]
 
 
-US11_reflection = _expr262
+US11_reflection = _expr253
 
-def _expr263() -> TypeInfo:
+def _expr254() -> TypeInfo:
     return union_type("File_system.US12", [], US12, lambda: [[], [("f1_0", class_type("File_system.std_string_String"))]])
 
 
@@ -345,9 +345,9 @@ class US12(Union):
         return ["US12_0", "US12_1"]
 
 
-US12_reflection = _expr263
+US12_reflection = _expr254
 
-def _expr264() -> TypeInfo:
+def _expr255() -> TypeInfo:
     return union_type("File_system.US13", [], US13, lambda: [[("f0_0", class_type("File_system.std_path_PathBuf"))], [("f1_0", string_type)]])
 
 
@@ -363,9 +363,9 @@ class US13(Union):
         return ["US13_0", "US13_1"]
 
 
-US13_reflection = _expr264
+US13_reflection = _expr255
 
-def _expr265() -> TypeInfo:
+def _expr256() -> TypeInfo:
     return union_type("File_system.US14", [], US14, lambda: [[("f0_0", class_type("File_system.std_path_PathBuf"))], []])
 
 
@@ -381,9 +381,9 @@ class US14(Union):
         return ["US14_0", "US14_1"]
 
 
-US14_reflection = _expr265
+US14_reflection = _expr256
 
-def _expr266() -> TypeInfo:
+def _expr257() -> TypeInfo:
     return union_type("File_system.US15", [], US15, lambda: [[("f0_0", string_type)], [("f1_0", string_type)]])
 
 
@@ -399,7 +399,7 @@ class US15(Union):
         return ["US15_0", "US15_1"]
 
 
-US15_reflection = _expr266
+US15_reflection = _expr257
 
 def method1(__unit: None=None) -> str:
     return "TRACE_LEVEL"
@@ -414,10 +414,10 @@ def closure1(unit_var: None, v0_1: str) -> US1:
 
 
 def method4(__unit: None=None) -> Callable[[str], US1]:
-    def _arrow267(v: str) -> US1:
+    def _arrow258(v: str) -> US1:
         return closure1(None, v)
 
-    return _arrow267
+    return _arrow258
 
 
 def method2(v0_1: str) -> str:
@@ -453,7 +453,7 @@ def closure2(unit_var: None, v0_1: str) -> None:
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
     v230: str = method2(method1())
     v235: US2 = US2(0, US0(0)) if ("Verbose" == v230) else US2(1)
-    def _arrow268(__unit: None=None, v0_1: Any=v0_1) -> US2:
+    def _arrow259(__unit: None=None, v0_1: Any=v0_1) -> US2:
         v242: US2 = US2(0, US0(1)) if ("Debug" == v230) else US2(1)
         if v242.tag == 0:
             return US2(0, v242.fields[0])
@@ -475,7 +475,7 @@ def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
 
 
 
-    _v1: tuple[US2, US3] = (US2(0, v235.fields[0]) if (v235.tag == 0) else _arrow268(), US3(0, ticks_1(now())) if (method2(method5()) == "True") else US3(1))
+    _v1: tuple[US2, US3] = (US2(0, v235.fields[0]) if (v235.tag == 0) else _arrow259(), US3(0, ticks_1(now())) if (method2(method5()) == "True") else US3(1))
     v352: US3 = _v1[1]
     v351: US2 = _v1[0]
     def v417(v: str, v0_1: Any=v0_1) -> None:
@@ -513,17 +513,17 @@ def method10(v0_1: US0) -> bool:
         return False
 
     else: 
-        class ObjectExpr269:
+        class ObjectExpr260:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        class ObjectExpr270:
+        class ObjectExpr261:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr269())) >= find(v35_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr270()))
+        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr260())) >= find(v35_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr261()))
 
 
 
@@ -532,10 +532,10 @@ def closure5(unit_var: None, v0_1: int64) -> US3:
 
 
 def method12(__unit: None=None) -> Callable[[int64], US3]:
-    def _arrow271(v: int64) -> US3:
+    def _arrow262(v: int64) -> US3:
         return closure5(None, v)
 
-    return _arrow271
+    return _arrow262
 
 
 def method13(__unit: None=None) -> str:
@@ -548,11 +548,11 @@ def method14(__unit: None=None) -> str:
 
 def method11(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
     v238: US3 = default_arg(map(method12(), v5), US3(1))
-    def _arrow272(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
+    def _arrow263(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
         v252: Any = create(op_subtraction(ticks_1(now()), v238.fields[0]))
         return create_1(1, 1, 1, hours(v252), minutes(v252), seconds(v252), milliseconds(v252))
 
-    return to_string(_arrow272() if (v238.tag == 0) else now(), method14())
+    return to_string(_arrow263() if (v238.tag == 0) else now(), method14())
 
 
 def method17(__unit: None=None) -> str:
@@ -751,10 +751,10 @@ def closure11(v0_1: US6, v1_1: str) -> Async[int64]:
 
 
 def closure10(unit_var: None, v0_1: US6) -> Callable[[str], Async[int64]]:
-    def _arrow273(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
+    def _arrow264(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
         return closure11(v0_1, v)
 
-    return _arrow273
+    return _arrow264
 
 
 def method27(v0_1: str, v1_1: int64) -> Async[int64]:
@@ -786,10 +786,10 @@ def closure16(v0_1: str, v1_1: str) -> bool:
 
 
 def closure15(unit_var: None, v0_1: str) -> Callable[[str], bool]:
-    def _arrow274(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> bool:
+    def _arrow265(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> bool:
         return closure16(v0_1, v)
 
-    return _arrow274
+    return _arrow265
 
 
 def closure18(v0_1: str, v1_1: str) -> Async[None]:
@@ -797,10 +797,10 @@ def closure18(v0_1: str, v1_1: str) -> Async[None]:
 
 
 def closure17(unit_var: None, v0_1: str) -> Callable[[str], Async[None]]:
-    def _arrow275(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
+    def _arrow266(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
         return closure18(v0_1, v)
 
-    return _arrow275
+    return _arrow266
 
 
 def closure20(v0_1: str, v1_1: str) -> Async[None]:
@@ -808,10 +808,10 @@ def closure20(v0_1: str, v1_1: str) -> Async[None]:
 
 
 def closure19(unit_var: None, v0_1: str) -> Callable[[str], Async[None]]:
-    def _arrow276(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
+    def _arrow267(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
         return closure20(v0_1, v)
 
-    return _arrow276
+    return _arrow267
 
 
 def method32(__unit: None=None) -> str:
@@ -954,10 +954,10 @@ def closure24(v0_1: str, v1_1: str) -> Async[int64]:
 
 
 def closure23(unit_var: None, v0_1: str) -> Callable[[str], Async[int64]]:
-    def _arrow277(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
+    def _arrow268(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
         return closure24(v0_1, v)
 
-    return _arrow277
+    return _arrow268
 
 
 def closure27(unit_var: None, v0_1: int64) -> US9:
@@ -1138,10 +1138,10 @@ def closure33(unit_var: None, v0_1: chrono_date_time_1[chrono_utc]) -> US11:
 
 
 def method49(__unit: None=None) -> Callable[[chrono_date_time_1[chrono_utc]], US11]:
-    def _arrow278(v: chrono_date_time_1[chrono_utc]) -> US11:
+    def _arrow269(v: chrono_date_time_1[chrono_utc]) -> US11:
         return closure33(None, v)
 
-    return _arrow278
+    return _arrow269
 
 
 def method50(__unit: None=None) -> str:
@@ -1217,10 +1217,10 @@ def closure35(unit_var: None, v0_1: std_io_error) -> std_string_string:
 
 
 def method63(__unit: None=None) -> Callable[[std_io_error], std_string_string]:
-    def _arrow279(v: std_io_error) -> std_string_string:
+    def _arrow270(v: std_io_error) -> std_string_string:
         return closure35(None, v)
 
-    return _arrow279
+    return _arrow270
 
 
 def closure36(unit_var: None, unit_var_1: None) -> US12:
@@ -1330,17 +1330,17 @@ def closure40(v0_1: str, unit_var: None) -> None:
 
 
 def method68(v0_1: str) -> Callable[[], None]:
-    def _arrow280(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow271(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure40(v0_1, None)
 
-    return _arrow280
+    return _arrow271
 
 
 def method69(v0_1: str) -> Callable[[], None]:
-    def _arrow281(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow272(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure40(v0_1, None)
 
-    return _arrow281
+    return _arrow272
 
 
 def method71(v0_1: str, v1_1: str) -> str:
@@ -1401,17 +1401,17 @@ def closure42(v0_1: str, unit_var: None) -> None:
 
 
 def method72(v0_1: str) -> Callable[[], None]:
-    def _arrow282(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow273(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure42(v0_1, None)
 
-    return _arrow282
+    return _arrow273
 
 
 def method73(v0_1: str) -> Callable[[], None]:
-    def _arrow283(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow274(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure42(v0_1, None)
 
-    return _arrow283
+    return _arrow274
 
 
 def method61(v0_1: str) -> IDisposable:
@@ -1425,11 +1425,11 @@ def method61(v0_1: str) -> IDisposable:
         v335 = None
 
     v384: Callable[[], None] = method73(v0_1)
-    class ObjectExpr284(IDisposable):
+    class ObjectExpr275(IDisposable):
         def Dispose(self, __unit: None=None, v0_1: Any=v0_1) -> None:
             v384(None)
 
-    return ObjectExpr284()
+    return ObjectExpr275()
 
 
 def closure34(unit_var: None, unit_var_1: None) -> tuple[str, IDisposable]:
@@ -1464,10 +1464,10 @@ def closure46(unit_var: None, v0_1: std_io_error) -> str:
 
 
 def method76(__unit: None=None) -> Callable[[std_io_error], str]:
-    def _arrow285(v: std_io_error) -> str:
+    def _arrow276(v: std_io_error) -> str:
         return closure46(None, v)
 
-    return _arrow285
+    return _arrow276
 
 
 def closure47(unit_var: None, v0_1: std_path_path_buf) -> US13:
@@ -1497,10 +1497,10 @@ def closure49(unit_var: None, v0_1: std_path_path_buf) -> US14:
 
 
 def method80(__unit: None=None) -> Callable[[std_path_path_buf], US14]:
-    def _arrow286(v: std_path_path_buf) -> US14:
+    def _arrow277(v: std_path_path_buf) -> US14:
         return closure49(None, v)
 
-    return _arrow286
+    return _arrow277
 
 
 def method81(v0_1: str) -> str:
@@ -1515,20 +1515,20 @@ def method75(v0_1: str) -> str:
         v13132: FSharpResult_2[std_path_path_buf, std_io_error] = FSharpResult_2()
         v13143: std_path_path_buf | None = None if (v13132.tag == 1) else v13132.fields[0]
         v13161: US14 = default_arg(map(method80(), v13143), US14(1))
-        def _arrow287(__unit: None=None, v0_1: Any=v0_1) -> str:
+        def _arrow278(__unit: None=None, v0_1: Any=v0_1) -> str:
             v13187: str = to_string_2(v13161.fields[0])
             return v0_1 if (v13187 == "") else v13187
 
-        if (_arrow287() if (v13161.tag == 0) else v0_1) == "":
+        if (_arrow278() if (v13161.tag == 0) else v0_1) == "":
             return ""
 
         else: 
             v13234: str = None
-            def _arrow288(__unit: None=None, v0_1: Any=v0_1) -> str:
+            def _arrow279(__unit: None=None, v0_1: Any=v0_1) -> str:
                 _arg: str = v13234[0]
                 return _arg.lower()
 
-            return replace(((("" + _arrow288()) + "") + v13234[1:len(v13234)]) + "", "\\", "/")
+            return replace(((("" + _arrow279()) + "") + v13234[1:len(v13234)]) + "", "\\", "/")
 
 
 
@@ -1546,10 +1546,10 @@ def closure52(unit_var: None, v0_1: str) -> str | None:
 
 
 def method83(__unit: None=None) -> Callable[[str], str | None]:
-    def _arrow289(v: str) -> str | None:
+    def _arrow280(v: str) -> str | None:
         return closure52(None, v)
 
-    return _arrow289
+    return _arrow280
 
 
 def method84(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> US15:
@@ -1664,10 +1664,10 @@ def closure51(unit_var: None, unit_var_1: None) -> str:
             v107 = US1(1)
 
 
-    def _arrow290(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+    def _arrow281(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
         raise Exception("Option does not have a value.")
 
-    return method56(v107.fields[0] if (v107.tag == 0) else _arrow290(), "polyglot")
+    return method56(v107.fields[0] if (v107.tag == 0) else _arrow281(), "polyglot")
 
 
 def method88(v0_1: str) -> None:
@@ -1683,13 +1683,13 @@ def closure54(unit_var: None, v0_1: bool) -> None:
     closure0(None, None)
     v3 = None
     pattern_input: tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None] = value_4(TraceState_trace_state())
-    def _arrow291(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    def _arrow282(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure55(None, v)
 
-    def _arrow292(v_1: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    def _arrow283(v_1: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure2(None, v_1)
 
-    v37: Callable[[str], None] = _arrow291 if v0_1 else _arrow292
+    v37: Callable[[str], None] = _arrow282 if v0_1 else _arrow283
     pattern_input[1].l0 = v37
 
 
@@ -1701,11 +1701,11 @@ def method89(v0_1: str, v1_1: str) -> None:
     if method9(v5) == False:
         v8: IDisposable = method61(v5)
 
-    def _arrow293(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> bool:
+    def _arrow284(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> bool:
         v8855: FSharpResult_2[std_path_path_buf, std_io_error] = FSharpResult_2()
         return True
 
-    if _arrow293() if method9(v1_1) else False:
+    if _arrow284() if method9(v1_1) else False:
         method7(True, v1_1)
 
     if method9(v1_1) == False:
@@ -1718,10 +1718,10 @@ def closure57(v0_1: str, v1_1: str) -> None:
 
 
 def closure56(unit_var: None, v0_1: str) -> Callable[[str], None]:
-    def _arrow294(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    def _arrow285(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure57(v0_1, v)
 
-    return _arrow294
+    return _arrow285
 
 
 def closure59(v0_1: str, v1_1: str) -> str:
@@ -1729,222 +1729,222 @@ def closure59(v0_1: str, v1_1: str) -> str:
 
 
 def closure58(unit_var: None, v0_1: str) -> Callable[[str], str]:
-    def _arrow295(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow286(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure59(v0_1, v)
 
-    return _arrow295
+    return _arrow286
 
 
 v0: None = None
 
-def _arrow296(__unit: None=None) -> None:
+def _arrow287(__unit: None=None) -> None:
     closure0(None, None)
 
 
-v1: Callable[[], None] = _arrow296
+v1: Callable[[], None] = _arrow287
 
-def _expr297():
+def _expr288():
     v1(None)
     return v0
 
 
-v2: None = _expr297()
+v2: None = _expr288()
 
-def _arrow298(v: str) -> Async[int64]:
+def _arrow289(v: str) -> Async[int64]:
     return closure3(None, v)
 
 
-v16: Callable[[str], Async[int64]] = _arrow298
+v16: Callable[[str], Async[int64]] = _arrow289
 
 def delete_directory_async(x: str) -> Async[int64]:
     return v16(x)
 
 
-def _arrow299(v: US6) -> Callable[[str], Async[int64]]:
+def _arrow290(v: US6) -> Callable[[str], Async[int64]]:
     return closure10(None, v)
 
 
-v17: Callable[[US6, str], Async[int64]] = _arrow299
+v17: Callable[[US6, str], Async[int64]] = _arrow290
 
 def wait_for_file_access(x: US6) -> Callable[[str], Async[int64]]:
     return v17(x)
 
 
-def _arrow300(v: str) -> Async[int64]:
+def _arrow291(v: str) -> Async[int64]:
     return closure13(None, v)
 
 
-v18: Callable[[str], Async[int64]] = _arrow300
+v18: Callable[[str], Async[int64]] = _arrow291
 
 def wait_for_file_access_read(x: str) -> Async[int64]:
     return v18(x)
 
 
-def _arrow301(v: str) -> Async[str]:
+def _arrow292(v: str) -> Async[str]:
     return closure14(None, v)
 
 
-v19: Callable[[str], Async[str]] = _arrow301
+v19: Callable[[str], Async[str]] = _arrow292
 
 def read_all_text_async(x: str) -> Async[str]:
     return v19(x)
 
 
-def _arrow302(v: str) -> Callable[[str], bool]:
+def _arrow293(v: str) -> Callable[[str], bool]:
     return closure15(None, v)
 
 
-v20: Callable[[str, str], bool] = _arrow302
+v20: Callable[[str, str], bool] = _arrow293
 
 def file_exists_content(x: str) -> Callable[[str], bool]:
     return v20(x)
 
 
-def _arrow303(v: str) -> Callable[[str], Async[None]]:
+def _arrow294(v: str) -> Callable[[str], Async[None]]:
     return closure17(None, v)
 
 
-v21: Callable[[str, str], Async[None]] = _arrow303
+v21: Callable[[str, str], Async[None]] = _arrow294
 
 def write_all_text_async(x: str) -> Callable[[str], Async[None]]:
     return v21(x)
 
 
-def _arrow304(v: str) -> Callable[[str], Async[None]]:
+def _arrow295(v: str) -> Callable[[str], Async[None]]:
     return closure19(None, v)
 
 
-v22: Callable[[str, str], Async[None]] = _arrow304
+v22: Callable[[str, str], Async[None]] = _arrow295
 
 def write_all_text_exists(x: str) -> Callable[[str], Async[None]]:
     return v22(x)
 
 
-def _arrow305(v: str) -> Async[int64]:
+def _arrow296(v: str) -> Async[int64]:
     return closure21(None, v)
 
 
-v23: Callable[[str], Async[int64]] = _arrow305
+v23: Callable[[str], Async[int64]] = _arrow296
 
 def delete_file_async(x: str) -> Async[int64]:
     return v23(x)
 
 
-def _arrow306(v: str) -> Callable[[str], Async[int64]]:
+def _arrow297(v: str) -> Callable[[str], Async[int64]]:
     return closure23(None, v)
 
 
-v24: Callable[[str, str], Async[int64]] = _arrow306
+v24: Callable[[str, str], Async[int64]] = _arrow297
 
 def move_file_async(x: str) -> Callable[[str], Async[int64]]:
     return v24(x)
 
 
-def _arrow307(v: str) -> Async[str | None]:
+def _arrow298(v: str) -> Async[str | None]:
     return closure26(None, v)
 
 
-v25: Callable[[str], Async[str | None]] = _arrow307
+v25: Callable[[str], Async[str | None]] = _arrow298
 
 def read_all_text_retry_async(x: str) -> Async[str | None]:
     return v25(x)
 
 
-def _arrow308(__unit: None=None) -> str:
+def _arrow299(__unit: None=None) -> str:
     return closure32(None, None)
 
 
-v26: Callable[[], str] = _arrow308
+v26: Callable[[], str] = _arrow299
 
 def create_temp_path(__unit: None=None) -> str:
     return v26(None)
 
 
-def _arrow309(__unit: None=None) -> tuple[str, IDisposable]:
+def _arrow300(__unit: None=None) -> tuple[str, IDisposable]:
     return closure34(None, None)
 
 
-v27: Callable[[], tuple[str, IDisposable]] = _arrow309
+v27: Callable[[], tuple[str, IDisposable]] = _arrow300
 
 def create_temp_dir(__unit: None=None) -> tuple[str, IDisposable]:
     return v27(None)
 
 
-def _arrow310(v: str) -> tuple[str, IDisposable]:
+def _arrow301(v: str) -> tuple[str, IDisposable]:
     return closure43(None, v)
 
 
-v28: Callable[[str], tuple[str, IDisposable]] = _arrow310
+v28: Callable[[str], tuple[str, IDisposable]] = _arrow301
 
 def create_temp_dir_0027(x: str) -> tuple[str, IDisposable]:
     return v28(x)
 
 
-def _arrow311(__unit: None=None) -> str:
+def _arrow302(__unit: None=None) -> str:
     return closure44(None, None)
 
 
-v29: Callable[[], str] = _arrow311
+v29: Callable[[], str] = _arrow302
 
 def get_source_directory(__unit: None=None) -> str:
     return v29(None)
 
 
-def _arrow312(v: str) -> str:
+def _arrow303(v: str) -> str:
     return closure45(None, v)
 
 
-v30: Callable[[str], str] = _arrow312
+v30: Callable[[str], str] = _arrow303
 
 def normalize_path(x: str) -> str:
     return v30(x)
 
 
-def _arrow313(v: str) -> str:
+def _arrow304(v: str) -> str:
     return closure50(None, v)
 
 
-v31: Callable[[str], str] = _arrow313
+v31: Callable[[str], str] = _arrow304
 
 def new_file_uri(x: str) -> str:
     return v31(x)
 
 
-def _arrow314(__unit: None=None) -> str:
+def _arrow305(__unit: None=None) -> str:
     return closure51(None, None)
 
 
-v32: Callable[[], str] = _arrow314
+v32: Callable[[], str] = _arrow305
 
 def get_workspace_root(__unit: None=None) -> str:
     return v32(None)
 
 
-def _arrow315(v: bool) -> None:
+def _arrow306(v: bool) -> None:
     closure54(None, v)
 
 
-v33: Callable[[bool], None] = _arrow315
+v33: Callable[[bool], None] = _arrow306
 
 def init_trace_file(x: bool) -> None:
     v33(x)
 
 
-def _arrow316(v: str) -> Callable[[str], None]:
+def _arrow307(v: str) -> Callable[[str], None]:
     return closure56(None, v)
 
 
-v34: Callable[[str, str], None] = _arrow316
+v34: Callable[[str, str], None] = _arrow307
 
 def link_directory(x: str) -> Callable[[str], None]:
     return v34(x)
 
 
-def _arrow317(v: str) -> Callable[[str], str]:
+def _arrow308(v: str) -> Callable[[str], str]:
     return closure58(None, v)
 
 
-v35: Callable[[str, str], str] = _arrow317
+v35: Callable[[str, str], str] = _arrow308
 
 def op_less_divide_greater(x: str) -> Callable[[str], str]:
     return v35(x)
