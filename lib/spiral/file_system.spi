@@ -537,10 +537,16 @@ let file_copy (new_path : string) (old_path : string) : () =
             $'System.IO.File.Copy (!old_path, !new_path, true)'
         | Rust (Native) => fun () =>
             inl new_path = join new_path
-            !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
-            |> fun x => x : _ u64 stream.io_error
-            |> resultm.unwrap'
-            |> ignore
+            inl result : _ _ stream.io_error = !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
+            match result |> resultm.map_error' sm'.format' |> resultm.unbox with
+            | Ok (result : u64) =>
+                trace Debug
+                    fun () => "file_system.file_copy"
+                    fun () => { old_path new_path result }
+            | Error error =>
+                trace Warning
+                    fun () => "file_system.file_copy"
+                    fun () => { old_path new_path error }
         | _ => fun () => ()
 
 /// ### file_exists

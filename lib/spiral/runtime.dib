@@ -1466,7 +1466,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                 |> am'.vec_map sm'.to_std_string
             trace Debug
                 fun () => "runtime.execute_with_options"
-                fun () => { file_name arguments options }
+                fun () => { file_name arguments = arguments |> sm'.format_debug; options }
             fun () =>
                 fun () =>
                     file_name
