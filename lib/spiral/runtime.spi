@@ -473,7 +473,8 @@ inl command_args_override_self (yes : bool) (command : command) : command =
 inl command_init_arg (long, short) fn command =
     command
     |> command_arg (
-        new_arg ##long
+        ##long
+        |> new_arg
         |> arg_short short
         |> arg_long ##long
         |> fn
