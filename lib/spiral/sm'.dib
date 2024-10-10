@@ -1280,7 +1280,7 @@ inl regex_captures_iter (s : rust.static_ref (rust.mut' std_string)) (regex : re
 
 #!spiral
 
-inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string string) =
+let regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string string) =
     // inl s = join s
     // !\\(regex, $'$"$0.captures_iter(&*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"')
 
@@ -1752,7 +1752,7 @@ inl format_ellipsis s =
 
 #!spiral
 
-inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
+let replace_regex (pattern : string) (replacement : string) (s : string) : string =
     run_target_args (fun () => s, pattern, replacement) function
         | Fsharp (Native) => fun s, pattern, replacement =>
             $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'

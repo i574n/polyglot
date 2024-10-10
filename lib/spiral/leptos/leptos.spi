@@ -223,29 +223,29 @@ nominal animate =
 /// ### action
 nominal action t u =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>]\n#endif\ntype leptos_Action<'T, 'U> = class end"
-        $'' : $'leptos_Action<`t, `u>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Action<$0, $1>\")>]\n#endif\ntype leptos_prelude_Action<'T, 'U> = class end"
+        $'' : $'leptos_prelude_Action<`t, `u>'
     )
 
 /// ### for
 nominal for =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>]\n#endif\ntype leptos_For = class end"
-        $'' : $'leptos_For'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::For\")>]\n#endif\ntype leptos_prelude_For = class end"
+        $'' : $'leptos_prelude_For'
     )
 
 /// ### show
 nominal show =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Show\")>]\n#endif\ntype leptos_Show = class end"
-        $'' : $'leptos_Show'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Show\")>]\n#endif\ntype leptos_prelude_Show = class end"
+        $'' : $'leptos_prelude_Show'
     )
 
 /// ### fragment
 nominal fragment =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>]\n#endif\ntype leptos_Fragment = class end"
-        $'' : $'leptos_Fragment'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>]\n#endif\ntype leptos_dom_Fragment = class end"
+        $'' : $'leptos_dom_Fragment'
     )
 
 /// ### interval_handle
@@ -258,8 +258,8 @@ nominal interval_handle =
 /// ### text
 nominal text =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>]\n#endif\ntype leptos_dom_Text = class end"
-        $'' : $'leptos_dom_Text'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Text\")>]\n#endif\ntype leptos_svg_Text = class end"
+        $'' : $'leptos_svg_Text'
     )
 
 /// ### transparent
@@ -300,8 +300,8 @@ nominal routes =
 /// ### html_element
 nominal html_element t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>]\n#endif\ntype leptos_HtmlElement<'T> = class end"
-        $'' : $'leptos_HtmlElement<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_dom::html::HtmlElement<$0>\")>]\n#endif\ntype leptos_dom_html_HtmlElement<'T> = class end"
+        $'' : $'leptos_dom_html_HtmlElement<`t>'
     )
 
 /// ### into_view
@@ -314,8 +314,8 @@ nominal into_view =
 /// ### location
 nominal location =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>]\n#endif\ntype leptos_router_Location = class end"
-        $'' : $'leptos_router_Location'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::location::Location\")>]\n#endif\ntype leptos_router_location_Location = class end"
+        $'' : $'leptos_router_location_Location'
     )
 
 /// ### navigate_options
@@ -328,57 +328,57 @@ nominal navigate_options =
 /// ### url
 nominal url =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>]\n#endif\ntype leptos_router_Url = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::location::Url\")>]\n#endif\ntype leptos_router_Url = class end"
         $'' : $'leptos_router_Url'
     )
 
 /// ### memo
 nominal memo t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>]\n#endif\ntype leptos_Memo<'T> = class end"
-        $'' : $'leptos_Memo<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Memo<$0>\")>]\n#endif\ntype leptos_prelude_Memo<'T> = class end"
+        $'' : $'leptos_prelude_Memo<`t>'
     )
 
 /// ### rw_signal
 nominal rw_signal t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>]\n#endif\ntype leptos_RwSignal<'T> = class end"
-        $'' : $'leptos_RwSignal<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::RwSignal<$0>\")>]\n#endif\ntype leptos_prelude_RwSignal<'T> = class end"
+        $'' : $'leptos_prelude_RwSignal<`t>'
     )
 
 /// ### signal
 nominal signal t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Signal<$0>\")>]\n#endif\ntype leptos_Signal<'T> = class end"
-        $'' : $'leptos_Signal<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Signal<$0>\")>]\n#endif\ntype leptos_prelude_Signal<'T> = class end"
+        $'' : $'leptos_prelude_Signal<`t>'
     )
 
 /// ### read_signal
 nominal read_signal t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>]\n#endif\ntype leptos_ReadSignal<'T> = class end"
-        $'' : $'leptos_ReadSignal<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ReadSignal<$0>\")>]\n#endif\ntype leptos_prelude_ReadSignal<'T> = class end"
+        $'' : $'leptos_prelude_ReadSignal<`t>'
     )
 
 /// ### write_signal
 nominal write_signal t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>]\n#endif\ntype leptos_WriteSignal<'T> = class end"
-        $'' : $'leptos_WriteSignal<`t>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::WriteSignal<$0>\")>]\n#endif\ntype leptos_prelude_WriteSignal<'T> = class end"
+        $'' : $'leptos_prelude_WriteSignal<`t>'
     )
 
 /// ### resource
 nominal resource t u =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>]\n#endif\ntype leptos_Resource<'T, 'U> = class end"
-        $'' : $'leptos_Resource<`t, `u>'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Resource<$0, $1>\")>]\n#endif\ntype leptos_prelude_Resource<'T, 'U> = class end"
+        $'' : $'leptos_prelude_Resource<`t, `u>'
     )
 
 /// ### view
 nominal view =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>]\n#endif\ntype leptos_View = class end"
-        $'' : $'leptos_View'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::View<_>\")>]\n#endif\ntype leptos_prelude_View = class end"
+        $'' : $'leptos_prelude_View'
     )
 
 /// ### signal_get
@@ -418,11 +418,11 @@ inl log_format fn obj =
 
 /// ### mount_to_body
 inl mount_to_body (view_fn : () -> rust.impl into_view) : () =
-    (!\\(view_fn, $'"true; leptos::mount_to_body(|| $0());"') : bool) |> ignore
+    (!\\(view_fn, $'"true; leptos::prelude::mount_to_body(|| $0());"') : bool) |> ignore
 
 /// ### view_vec_to_fragment
 inl view_vec_to_fragment (view : am'.vec view) : fragment =
-    !\\(view, $'"leptos::Fragment::new($0)"')
+    !\\(view, $'"Fragment::new($0)"')
 
 /// ### view_array_to_fragment
 inl view_array_to_fragment (view : array_base view) : fragment =
@@ -492,15 +492,15 @@ inl from_fragment_unbox (fragment : fragment) =
 
 /// ### element_to_view_trait
 inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
-    !\($'"leptos::view\! { {!macro} }"')
+    !\($'"leptos::prelude::view\! { {!macro} }"')
 
 /// ### macro_to_view_trait
 inl macro_to_view_trait (macro : string) : rust.impl into_view =
-    !\($'"leptos::view\! { " + !macro + " }"')
+    !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### macro_to_fragment
 inl macro_to_fragment (macro : string) : fragment =
-    !\($'"leptos::view\! { " + !macro + " }"')
+    !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### new_transparent
 inl new_transparent x : transparent =
@@ -512,7 +512,7 @@ inl closure_to_view (closure : rust.func0 view) : view =
 
 /// ### batch
 inl batch (fn : () -> ()) : () =
-    (!\\(fn, $'"true; leptos::batch(move || $0());"') : bool) |> ignore
+    (!\\(fn, $'"true; leptos::prelude::batch(move || $0());"') : bool) |> ignore
 
 /// ### closure_to_fragment
 inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
@@ -521,7 +521,7 @@ inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
 
 /// ### array_to_view
 inl array_to_view (view : a _ view) : view =
-    !\\(view, $'"leptos::CollectView::collect_view($0.to_vec())"')
+    !\\(view, $'"leptos::prelude::CollectView::collect_view($0.to_vec())"')
 
 /// ### to_fragment
 inl to_fragment x : fragment =
@@ -539,7 +539,7 @@ inl text_to_fragment (text : text) : fragment =
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
-    !\($'"leptos::IntoView::into_view(leptos::view\! { " + !macro + " })"')
+    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### transparent_to_view
 inl transparent_to_view (transparent : transparent) : view =
@@ -558,7 +558,7 @@ inl macro_to_element (view : string) : html_element _ =
 /// ### transparents_fragment
 inl transparents_fragment (items : array_base transparent) : fragment =
     inl items = items |> am'.to_vec
-    !\\((items, transparent_to_view), $'"$0.iter().map(|x| $1(x.clone())).collect::<leptos::Fragment>()"')
+    !\\((items, transparent_to_view), $'"$0.iter().map(|x| $1(x.clone())).collect::<Fragment>()"')
 
 /// ### views_to_view
 inl views_to_view (items : array_base view) : view =
@@ -571,7 +571,7 @@ inl views_to_view (items : array_base view) : view =
 /// ### new_text
 inl new_text (text : string) : text =
     inl text = text |> sm'.to_std_string
-    !\\(text, $'"leptos::html::text($0)"')
+    !\\(text, $'"leptos::svg::text($0)"')
 
 /// ### text_view
 inl text_view (text : string) : view =
@@ -595,19 +595,19 @@ inl provide_context forall t. (x : t) =
 
 /// ### create_signal
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
-    !\\(value, $'$"leptos::create_signal($0)"')
+    !\\(value, $'$"leptos::prelude::create_signal($0)"')
 
 /// ### create_rw_signal
 inl create_rw_signal forall t. (value : t) : rw_signal t =
-    !\\(value, $'$"leptos::create_rw_signal($0)"')
+    !\\(value, $'$"leptos::prelude::create_rw_signal($0)"')
 
 /// ### read_only
 inl read_only forall t. (value : rw_signal t) : read_signal t =
-    !\\(value, $'$"leptos::RwSignal::read_only(&$0)"')
+    !\\(value, $'$"leptos::prelude::RwSignal::read_only(&$0)"')
 
 /// ### write_only
 inl write_only forall t. (value : rw_signal t) : write_signal t =
-    !\\(value, $'$"leptos::RwSignal::write_only(&$0)"')
+    !\\(value, $'$"leptos::prelude::RwSignal::write_only(&$0)"')
 
 /// ### typecheck_signal
 inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
@@ -627,7 +627,7 @@ inl memo_get' forall t. (memo : memo t) : t =
 /// ### signal_get'
 inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
-    !\\(signal, $'$"leptos::SignalGet::get(&$0)"')
+    !\\(signal, $'$"SignalGet::get(&$0)"')
 
 /// ### signal_get signal
 instance signal_get signal = signal_get'
@@ -644,7 +644,7 @@ instance signal_get memo = memo_get'
 /// ### signal_update'
 inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) : () =
     signal |> typecheck_signal
-    (!\\((signal, fn), $'"true; leptos::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) });"') : bool) |> ignore
+    (!\\((signal, fn), $'"true; leptos::prelude::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) });"') : bool) |> ignore
 
 /// ### signal_update rw_signal
 instance signal_update rw_signal = signal_update'
@@ -655,7 +655,7 @@ instance signal_update write_signal = signal_update'
 /// ### signal_get_untracked'
 inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
-    !\\(signal, $'$"leptos::SignalGetUntracked::get_untracked(&$0)"')
+    !\\(signal, $'$"SignalGetUntracked::get_untracked(&$0)"')
 
 /// ### signal_get_untracked rw_signal
 instance signal_get_untracked rw_signal = signal_get_untracked'
@@ -669,7 +669,7 @@ instance signal_get_untracked memo = signal_get_untracked'
 /// ### signal_set'
 inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
     signal |> typecheck_signal
-    (!\\((signal, value), $'$"true; leptos::SignalSet::set(&$0, $1);"') : bool) |> ignore
+    (!\\((signal, value), $'$"true; leptos::prelude::SignalSet::set(&$0, $1);"') : bool) |> ignore
 
 /// ### signal_set rw_signal
 instance signal_set rw_signal = signal_set'
@@ -698,7 +698,7 @@ inl create_local_resource forall t u.
 
 
     join
-        !\\(source, $'"let __create_local_resource = leptos::create_local_resource(move || $0(), |x| async move { //"')
+        !\\(source, $'"let __create_local_resource = create_local_resource(move || $0(), |x| async move { //"')
 
         inl x = !\($'"x"')
         inl x' = fetcher x
@@ -717,48 +717,48 @@ inl create_local_resource forall t u.
 
 /// ### create_action
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
-    !\\(action_fn, $'"leptos::create_action(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
+    !\\(action_fn, $'"leptos::prelude::create_action(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
 
 /// ### action_dispatch
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
-    (!\\((action, value), $'"true; leptos::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
+    (!\\((action, value), $'"true; leptos::prelude::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
 
 /// ### action_input
 inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
-    !\\(action, $'"leptos::Action::input(&$0)"')
+    !\\(action, $'"leptos::prelude::Action::input(&$0)"')
 
 /// ### action_pending
 inl action_pending forall t u. (action : action (heap t) u) : read_signal bool =
-    !\\(action, $'"leptos::Action::pending(&$0)"')
+    !\\(action, $'"leptos::prelude::Action::pending(&$0)"')
 
 /// ### action_value
 inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
-    !\\(action, $'"leptos::Action::value(&$0)"')
+    !\\(action, $'"leptos::prelude::Action::value(&$0)"')
 
 /// ### use_context
 inl use_context forall t. () : optionm'.option' t =
-    !\($'"leptos::use_context::<std::sync::Arc<`t>>()"')
+    !\($'"leptos::hooks::use_context::<std::sync::Arc<`t>>()"')
 
 /// ### resource_loading
 inl resource_loading forall t u. (resource : resource t u) : signal bool =
-    !\\(resource, $'$"leptos::Resource::loading(&$0)"')
+    !\\(resource, $'$"leptos::prelude::Resource::loading(&$0)"')
 
 /// ### resource_get
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
-    !\\(resource, $'$"leptos::SignalGet::get(&$0)"')
+    !\\(resource, $'$"SignalGet::get(&$0)"')
 
 /// ### resource_with
 inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
-    !\\((resource, fn), $'$"leptos::SignalWith::with(&$0, |x| $1(x.clone()))"')
+    !\\((resource, fn), $'$"leptos::prelude::SignalWith::with(&$0, |x| $1(x.clone()))"')
 
 /// ### create_effect
 inl create_effect (fn : () -> ()) : () =
     inl fn = fn |> rust.emit
-    (!\($'"true; leptos::create_effect(move |_| { !fn(()) })"') : bool) |> ignore
+    (!\($'"true; leptos::prelude::create_effect(move |_| { !fn(()) })"') : bool) |> ignore
 
 /// ### create_effect'
 inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
-    (!\\(fn, $'"true; leptos::create_effect(move |x| { $0(x) })"') : bool) |> ignore
+    (!\\(fn, $'"true; leptos::prelude::create_effect(move |x| { $0(x) })"') : bool) |> ignore
 
 /// ### interval_handle_clear
 inl interval_handle_clear (interval_handle : interval_handle) =
@@ -775,7 +775,7 @@ inl set_interval_with_handle
 /// ### create_memo
 inl create_memo forall t. (fn : () -> t) : memo t =
     inl fn = fn |> rust.emit
-    !\($'"leptos::create_memo(move |_| { !fn(()) })"')
+    !\($'"leptos::prelude::create_memo(move |_| { !fn(()) })"')
 
 /// ### window
 let window () : wasm.window =
@@ -825,7 +825,7 @@ inl tag_closed tag props : html_element _ =
 
 /// ### for
 inl for props : view =
-    tag_closed_raw "leptos::For" props
+    tag_closed_raw "leptos::prelude::For" props
     |> macro_to_view
 
 /// ### for
@@ -848,7 +848,7 @@ inl for forall t u (signal : * -> *).
 
 /// ### show
 inl show props : view =
-    tag_closed_raw "leptos::Show" props
+    tag_closed_raw "leptos::prelude::Show" props
     |> macro_to_view
 
 /// ### show
@@ -865,7 +865,7 @@ inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragme
 
 /// ### use_location
 inl use_location () : location =
-    !\($'"leptos_router::use_location()"')
+    !\($'"leptos_router::hooks::use_location()"')
 
 /// ### use_navigate
 inl use_navigate () : string -> () =
@@ -889,7 +889,7 @@ inl location_search (location : location) : memo sm'.std_string =
 
 /// ### url_try_from
 inl url_try_from (s : rust.ref sm'.str) : resultm.result' url sm'.std_string =
-    !\\(s, $'"leptos_router::Url::try_from($0)"')
+    !\\(s, $'"leptos_router::location::Url::try_from($0)"')
 
 /// ### url_pathname
 inl url_pathname (url : url) : sm'.std_string =

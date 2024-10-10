@@ -17,59 +17,66 @@ type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 /// ### future_pin_send
 type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
-/// ### block_on
-inl block_on forall t. (fn : future_pin t) : t =
+/// ### block_on_tokio
+inl block_on_tokio forall t. (fn : future_pin t) : t =
     inl runtime : infer =
         !\($'$"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"')
     !\\(fn, $'"!runtime.handle().block_on($0)"')
 
-/// ### block_on'
-inl block_on' forall t. (fn : future_pin t) : t =
+/// ### block_on_futures_lite
+inl block_on_futures_lite forall t. (fn : future_pin t) : t =
     !\\(fn, $'"futures_lite::future::block_on($0)"')
 
-/// ### block_on''
-inl block_on'' forall t. (fn : future_pin t) : t =
+/// ### block_on_futures
+inl block_on_futures forall t. (fn : future_pin t) : t =
     !\\(fn, $'"futures::executor::block_on($0)"')
 
-/// ### block_on'''
-inl block_on''' forall t. (fn : future_pin t) : t =
+/// ### block_on_async_std
+inl block_on_async_std forall t. (fn : future_pin t) : t =
     !\\(fn, $'"async_std::task::block_on($0)"')
 
-/// ### block_on_send
-inl block_on_send forall t. (fn : future_pin_send t) : t =
+/// ### block_on_tokio_send
+inl block_on_tokio_send forall t. (fn : future_pin_send t) : t =
     !\($'"tokio::runtime::block_on(!fn)"')
 
-/// ### stream_ext
-nominal stream_ext =
+/// ### stream_ext_tokio
+nominal stream_ext_tokio =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio_stream::StreamExt\")>]\n#endif\ntype tokio_stream_StreamExt = class end"
         $'' : $'tokio_stream_StreamExt'
     )
 
-/// ### join_handle
-nominal join_handle t =
+/// ### join_handle_tokio
+nominal join_handle_tokio t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::task::JoinHandle<$0>\")>]\n#endif\ntype tokio_task_JoinHandle<'T> = class end"
         $'' : $'tokio_task_JoinHandle<`t>'
     )
 
-/// ### stream_collect
-inl stream_collect forall t u.
+/// ### stream_collect_tokio
+inl stream_collect_tokio forall t u.
     (stream : t)
     : future_pin (am'.vec u)
     =
     !\($'"Box::pin(tokio_stream::StreamExt::collect(!stream))"')
 
-/// ### stream_next
-inl stream_next forall t u.
+/// ### stream_collect_futures
+inl stream_collect_futures forall t u.
+    (stream : t)
+    : future_pin (am'.vec u)
+    =
+    !\($'"Box::pin(futures::stream::StreamExt::collect(!stream))"')
+
+/// ### stream_next_tokio
+inl stream_next_tokio forall t u.
     (stream : t)
     : future_pin (optionm'.option' u)
     =
     !\($'"let mut !stream = !stream"')
     !\($'"Box::pin(tokio_stream::StreamExt::next(&mut !stream))"')
 
-/// ### stream_filter_map
-inl stream_filter_map forall t u v.
+/// ### stream_filter_map_tokio
+inl stream_filter_map_tokio forall t u v.
     (fn : u -> optionm'.option' v)
     (stream : t)
     : infer' v
@@ -77,8 +84,17 @@ inl stream_filter_map forall t u v.
     inl fn = join fn
     !\($'"tokio_stream::StreamExt::filter_map(!stream, |x| !fn(x))"')
 
-/// ### spawn
-inl spawn forall t. (fn : future_pin_send t) : join_handle t =
+/// ### stream_filter_map_futures
+inl stream_filter_map_futures forall t u v.
+    (fn : u -> optionm'.option' v)
+    (stream : t)
+    : infer' v
+    =
+    inl fn = join fn
+    !\($'"futures::stream::StreamExt::filter_map(!stream, |x| async { !fn(x) })"')
+
+/// ### spawn_tokio
+inl spawn_tokio forall t. (fn : future_pin_send t) : join_handle_tokio t =
     !\($'"tokio::runtime::spawn(!fn)"')
 
 /// ### try_join_all
@@ -92,15 +108,18 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
     inl x = join x
     !\($'"futures::future::try_join_all(!x)"')
 
-/// ### fuse
-nominal fuse t =
+/// ### fuse_tokio
+nominal fuse_tokio t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::prelude::stream::Fuse<$0>\")>]\n#endif\ntype tokio_prelude_stream_Fuse<'T> = class end"
         $'' : $'tokio_prelude_stream_Fuse<`t>'
     )
 
+/// ### fuse'
+type fuse' t = fuse_tokio t
+
 /// ### future_fuse
-inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
+inl future_fuse forall t. (x : future_pin t) : fuse' (future_pin t) =
     !\($'"futures::future::FutureExt::fuse(!x)"')
 
 /// ### join_all
@@ -119,8 +138,11 @@ inl join_all_send forall t. (x : am'.vec (future_pin_send t)) : join_all (future
     inl x = join x
     !\($'"futures::future::join_all(!x)"')
 
+/// ### join_handle'
+type join_handle' t = join_handle_tokio t
+
 /// ### await_handle
-inl await_handle forall t. (x : join_handle t) : t =
+inl await_handle forall t. (x : join_handle' t) : t =
     !\($'"!x.await"')
 
 /// ### await_all

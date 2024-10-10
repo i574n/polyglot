@@ -10,5 +10,5 @@ inl render forall t. (class : () -> string) props getter setter : _ input =
         ([
             $'"class=move || \\\"bg-gray-50 h-[31px] [font-size:.875rem] \\\".to_owned() + &!class(())"'
             $'"prop:value=move || !getter()"'
-            $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
+            $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::prelude::event_target_value(&event))"'
         ] ++ props)
