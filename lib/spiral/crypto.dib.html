@@ -7733,7 +7733,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io<span class="w"> </span>regex<span class="w"> </span>sha2
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span> <span class="n">regex</span> <span class="n">sha2</span>
 
 <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
 <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
@@ -7762,11 +7762,8 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4710f6517cc32e1cd50ac29047fc032cdb4b2edc9476fba1ce1558d6b2fff8ff\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = [
-    "-c",
-    "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_4710f6517cc32e1cd50ac29047fc032cdb4b2edc9476fba1ce1558d6b2fff8ff/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash",
-]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_4710f6517cc32e1cd50ac29047fc032cdb4b2edc9476fba1ce1558d6b2fff8ff/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_0dbb4ba68084db3ffb379bd2541cf49e7e3215bb8b6d266a058277f72c538484\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_0dbb4ba68084db3ffb379bd2541cf49e7e3215bb8b6d266a058277f72c538484/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_0dbb4ba68084db3ffb379bd2541cf49e7e3215bb8b6d266a058277f72c538484/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
 __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
@@ -7829,8 +7826,8 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_sha256</span> <span class="p">()</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">' =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let result : sha2::Sha256 = sha2::Digest::new()"'</span><span class="o">)</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"result"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let result : sha2::Sha256 = sha2::Digest::new()"'</span><span class="p">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"result"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7856,7 +7853,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_update</span> <span class="n">forall</span> <span class="n">el</span> <span class="n">dim</span><span class="o">.</span> <span class="p">(</span><span class="nb">slice</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice'</span> <span class="n">el</span> <span class="n">dim</span><span class="p">))</span> <span class="p">(</span><span class="n">hasher</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">') : () =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"sha2::Digest::update(&amp;mut !hasher, !slice)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"sha2::Digest::update(&amp;mut !hasher, !slice)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7882,7 +7879,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_finalize</span> <span class="p">(</span><span class="n">hasher</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">') : rust.ref (am'</span><span class="o">.</span><span class="n">slice</span> <span class="n">u8</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"&amp;sha2::Digest::finalize(!hasher)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"&amp;sha2::Digest::finalize(!hasher)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7909,9 +7906,9 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_read</span> <span class="n">data</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' string stream.io_error =</span>
     <span class="n">inl</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">data</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_buf_reader</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !reader = !reader"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !reader = !reader"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
     <span class="n">inl</span> <span class="n">hasher</span> <span class="o">=</span> <span class="n">new_sha256</span> <span class="p">()</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !hasher = !hasher"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !hasher = !hasher"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">real</span>
         <span class="n">inl</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1024</span>
@@ -7987,7 +7984,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono<span class="w"> </span>regex<span class="w"> </span>sha2
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">regex</span> <span class="n">sha2</span>
 
 <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
 <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
@@ -8018,7 +8015,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_08b4ddaa6ca11239ad37867ca327664953e8f8286ae381e1840db36dbfd798ef\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bb6ff9dad8e0d5e5e11db2eb696a819e99c6146facf131de56f50d5171047a1f\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
 __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -8034,7 +8031,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono<span class="w"> </span>regex<span class="w"> </span>sha2
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">regex</span> <span class="n">sha2</span>
 
 <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
 <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
@@ -8064,7 +8061,7 @@ __assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805d
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_97c8b6e3b665d693cb5e4ec6688d9f61a18bedc55dad0e9f181dd0d26b91eadf\c0e26dac-4cb1-4b09-be07-ff616700f056 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_942930da721fcee4f82607cd567593b7a54bdfd5d5088b76ae787c08b1c90aa9\c0e26dac-4cb1-4b09-be07-ff616700f056 }
 __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
@@ -8105,7 +8102,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
     <span class="nb">open</span> <span class="n">typescript_operators</span>
     <span class="k">global</span> <span class="s2">"type ICryptoCreateHash = abstract createHash: x: string -&gt; obj"</span>
     <span class="n">inl</span> <span class="n">crypto</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'ICryptoCreateHash'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"crypto"</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"!crypto.createHash($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"!crypto.createHash($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8132,7 +8129,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_update</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">:</span> <span class="nb">any</span> <span class="o">=</span>
     <span class="nb">open</span> <span class="n">typescript_operators</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.update($1, \'utf8\')"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.update($1, </span><span class="se">\'</span><span class="s1">utf8</span><span class="se">\'</span><span class="s1">)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8159,7 +8156,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_digest</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="nb">open</span> <span class="n">typescript_operators</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.digest($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.digest($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8226,7 +8223,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
             <span class="nb">open</span> <span class="n">python_operators</span>
             <span class="k">global</span> <span class="s2">"type IHashlibSha256 = abstract sha256: x: unit -&gt; obj"</span>
             <span class="n">inl</span> <span class="n">hashlib</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IHashlibSha256'</span> <span class="o">=</span> <span class="n">python</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"hashlib"</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!hashlib.sha256()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>py_sha256
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!hashlib.sha256()"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">py_sha256</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="k">global</span> <span class="s2">"import hashlib"</span>
             <span class="err">$</span><span class="s1">'hashlib.sha256()'</span> <span class="p">:</span> <span class="n">py_sha256</span>
@@ -8259,7 +8256,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">python_operators</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"!sha256.update($0)"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+            <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"!sha256.update($0)"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'!sha256.update(!x)'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="p">}</span>
@@ -8292,7 +8289,7 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">python_operators</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!sha256.hexdigest()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>string
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!sha256.hexdigest()"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'!sha256.hexdigest()'</span> <span class="p">:</span> <span class="n">string</span>
     <span class="p">}</span>
@@ -8372,11 +8369,11 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>sha2
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">sha2</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">hash_text</span>
@@ -8473,11 +8470,11 @@ __assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span>Only<span class="w"> </span>stack<span class="w"> </span>allocated<span class="w"> </span>primitive<span class="w"> </span>types<span class="w"> </span><span class="o">(</span>i8,i16,i32,i64<span class="w"> </span>and<span class="w"> </span>u8,u16,u32,u64<span class="w"> </span>and<span class="w"> </span>f32,f64<span class="w"> </span>and<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>allowed<span class="w"> </span><span class="k">in</span><span class="w"> </span>CuPy<span class="w"> </span>arrays.
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>sha2
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">stack</span> <span class="n">allocated</span> <span class="n">primitive</span> <span class="n">types</span> <span class="p">(</span><span class="n">i8</span><span class="p">,</span><span class="n">i16</span><span class="p">,</span><span class="n">i32</span><span class="p">,</span><span class="n">i64</span> <span class="ow">and</span> <span class="n">u8</span><span class="p">,</span><span class="n">u16</span><span class="p">,</span><span class="n">u32</span><span class="p">,</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">f32</span><span class="p">,</span><span class="n">f64</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">are</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">CuPy</span> <span class="n">arrays</span><span class="o">.</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">sha2</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">hash_text</span>

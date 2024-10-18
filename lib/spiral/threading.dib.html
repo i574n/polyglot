@@ -7598,7 +7598,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sleep</span> <span class="p">(</span><span class="n">duration</span> <span class="p">:</span> <span class="n">date_time</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">duration</span> <span class="o">=</span> <span class="n">join</span> <span class="n">duration</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::thread::sleep(!duration)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::thread::sleep(!duration)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7654,15 +7654,15 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">spawn</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">depth</span> <span class="n">flag</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">join_handle</span> <span class="n">t</span> <span class="o">=</span>
     <span class="k">if</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="n">u8</span>
-    <span class="n">then</span> <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let __spawn = std::thread::spawn(move || { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="k">else</span> <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let __spawn = std::thread::spawn(|| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="n">then</span> <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let __spawn = std::thread::spawn(move || { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="k">else</span> <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let __spawn = std::thread::spawn(|| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">let</span> <span class="n">x</span><span class="s1">' = x ()</span>
     <span class="n">inl</span> <span class="n">x</span><span class="s1">' = join x'</span>
 
     <span class="n">x</span><span class="s1">' |&gt; rust.fix_closure depth</span>
 
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"__spawn"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"__spawn"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7706,7 +7706,7 @@ a.anchor-link {
                     <span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::thread::JoinHandle::join($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::thread::JoinHandle::join($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7761,7 +7761,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arc</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::sync::Arc::new(!x)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::sync::Arc::new(!x)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7816,7 +7816,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_mutex</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">mutex</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::sync::Mutex::new(!x)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::sync::Mutex::new(!x)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7871,7 +7871,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_rw_lock</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rw_lock</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::sync::RwLock::new($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::RwLock::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7950,7 +7950,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_clone</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::sync::Arc::clone(&amp;!x)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::sync::Arc::clone(&amp;!x)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7976,7 +7976,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_ptr_eq</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">arc</span> <span class="n">t</span><span class="p">))</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">arc</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>a,<span class="w"> </span>b<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::sync::Arc::ptr_eq($0, $1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::sync::Arc::ptr_eq($0, $1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8002,7 +8002,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_try_unwrap</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t (arc t) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::sync::Arc::try_unwrap($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::Arc::try_unwrap($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8028,7 +8028,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_into_raw</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ptr</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::sync::Arc::into_raw($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::Arc::into_raw($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8054,7 +8054,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_from_raw</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ptr</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::sync::Arc::from_raw($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::Arc::from_raw($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8286,7 +8286,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_mutex_lock</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">mutex</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (mutex_guard t) (poison_error (mutex_guard t)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.lock()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.lock()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8313,7 +8313,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_rw_lock_read</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">rw_lock</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (rw_lock_read_guard t) (poison_error (rw_lock_read_guard t)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.read()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.read()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8340,7 +8340,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_rw_lock_write</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">rw_lock</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (rw_lock_write_guard t) (poison_error (rw_lock_write_guard t)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.write()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.write()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8367,7 +8367,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_rw_lock_try_read</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">rw_lock</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (rw_lock_read_guard t) (try_lock_error (rw_lock_read_guard t)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.try_read()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.try_read()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8394,7 +8394,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_rw_lock_try_write</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">rw_lock</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (rw_lock_write_guard t) (try_lock_error (rw_lock_write_guard t)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.try_write()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.try_write()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8420,7 +8420,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">mutex_guard_ref</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">mutex_guard</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"&amp;$0"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;$0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8446,7 +8446,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rw_lock_read_guard_ref</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rw_lock_read_guard</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"&amp;$0"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;$0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8472,7 +8472,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rw_lock_write_guard_ref</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rw_lock_write_guard</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"&amp;$0"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;$0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8499,8 +8499,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">mutex_guard_ref_mut</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">mutex_guard</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' t) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !x = !x"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"&amp;mut $0"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !x = !x"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;mut $0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8526,8 +8526,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">mutex_guard_as_mut</span> <span class="n">forall</span> <span class="p">(</span><span class="n">t</span> <span class="p">:</span> <span class="o">*</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="p">)</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">mutex_guard</span> <span class="p">(</span><span class="n">t</span> <span class="n">u</span><span class="p">))</span> <span class="p">:</span> <span class="n">t</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' u)) =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !x = !x"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.as_mut()"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !x = !x"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.as_mut()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8611,7 +8611,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_channel</span> <span class="p">()</span> <span class="p">:</span> <span class="n">channel_sender</span> <span class="n">sm</span><span class="s1">'.std_string * arc (channel_receiver sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8666,7 +8666,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">channel_send</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">line</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">sender</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">channel_sender</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' () (send_error sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>sender,<span class="w"> </span>line<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.send($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">sender</span><span class="p">,</span> <span class="n">line</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.send($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

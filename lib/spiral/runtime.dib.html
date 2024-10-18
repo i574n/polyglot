@@ -7631,11 +7631,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span>Only<span class="w"> </span>stack<span class="w"> </span>allocated<span class="w"> </span>primitive<span class="w"> </span>types<span class="w"> </span><span class="o">(</span>i8,i16,i32,i64<span class="w"> </span>and<span class="w"> </span>u8,u16,u32,u64<span class="w"> </span>and<span class="w"> </span>f32,f64<span class="w"> </span>and<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>allowed<span class="w"> </span><span class="k">in</span><span class="w"> </span>CuPy<span class="w"> </span>arrays.
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">stack</span> <span class="n">allocated</span> <span class="n">primitive</span> <span class="n">types</span> <span class="p">(</span><span class="n">i8</span><span class="p">,</span><span class="n">i16</span><span class="p">,</span><span class="n">i32</span><span class="p">,</span><span class="n">i64</span> <span class="ow">and</span> <span class="n">u8</span><span class="p">,</span><span class="n">u16</span><span class="p">,</span><span class="n">u32</span><span class="p">,</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">f32</span><span class="p">,</span><span class="n">f64</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">are</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">CuPy</span> <span class="n">arrays</span><span class="o">.</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="p">[</span>
     <span class="s2">"a b c"</span><span class="p">,</span>
@@ -7886,11 +7886,11 @@ __assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span>Only<span class="w"> </span>stack<span class="w"> </span>allocated<span class="w"> </span>primitive<span class="w"> </span>types<span class="w"> </span><span class="o">(</span>i8,i16,i32,i64<span class="w"> </span>and<span class="w"> </span>u8,u16,u32,u64<span class="w"> </span>and<span class="w"> </span>f32,f64<span class="w"> </span>and<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>allowed<span class="w"> </span><span class="k">in</span><span class="w"> </span>CuPy<span class="w"> </span>arrays.
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">stack</span> <span class="n">allocated</span> <span class="n">primitive</span> <span class="n">types</span> <span class="p">(</span><span class="n">i8</span><span class="p">,</span><span class="n">i16</span><span class="p">,</span><span class="n">i32</span><span class="p">,</span><span class="n">i64</span> <span class="ow">and</span> <span class="n">u8</span><span class="p">,</span><span class="n">u16</span><span class="p">,</span><span class="n">u32</span><span class="p">,</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">f32</span><span class="p">,</span><span class="n">f64</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">are</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">CuPy</span> <span class="n">arrays</span><span class="o">.</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="p">[</span>
     <span class="s2">""</span><span class="p">,</span>
@@ -8147,7 +8147,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">child</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_child))</span>
     <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' process_child_stdin))</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>child,<span class="w"> </span><span class="s1">$'"&amp;mut $0.stdin"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;mut $0.stdin"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8250,7 +8250,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">child</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_child))</span>
     <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' process_child_stderr))</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>child,<span class="w"> </span><span class="s1">$'"&amp;mut $0.stderr"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;mut $0.stderr"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8285,7 +8285,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">child</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_child))</span>
     <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' process_child_stdout))</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>child,<span class="w"> </span><span class="s1">$'"&amp;mut $0.stdout"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;mut $0.stdout"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8427,7 +8427,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_output_status</span> <span class="p">(</span><span class="n">output</span> <span class="p">:</span> <span class="n">process_output</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_exit_status</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>output,<span class="w"> </span><span class="s1">$'"$0.status"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.status"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8453,7 +8453,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_exit_status_code</span> <span class="p">(</span><span class="n">status</span> <span class="p">:</span> <span class="n">process_exit_status</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>status,<span class="w"> </span><span class="s1">$'"$0.code()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.code()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8481,8 +8481,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">stdin_write_all</span> <span class="p">(</span><span class="n">stdin</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">mutex_guard</span> <span class="n">process_child_stdin</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_bytes</span>
     <span class="n">inl</span> <span class="n">stdin</span> <span class="o">=</span> <span class="n">join</span> <span class="n">stdin</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !stdin = !stdin"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>stdin,<span class="w"> </span><span class="s1">$'"true; std::io::Write::write_all(&amp;mut *$0, !stream).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !stdin = !stdin"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; std::io::Write::write_all(&amp;mut *$0, !stream).unwrap()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -8509,8 +8509,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">stdin_flush</span> <span class="p">(</span><span class="n">stdin</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">mutex_guard</span> <span class="n">process_child_stdin</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">stdin</span> <span class="o">=</span> <span class="n">join</span> <span class="n">stdin</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !stdin = !stdin"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>stdin,<span class="w"> </span><span class="s1">$'"true; std::io::Write::flush(&amp;mut *$0).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !stdin = !stdin"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; std::io::Write::flush(&amp;mut *$0).unwrap()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -8536,7 +8536,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_process_command</span> <span class="p">(</span><span class="n">file_name</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>file_name,<span class="w"> </span><span class="s1">$'"std::process::Command::new(&amp;*$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::new(&amp;*$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8562,7 +8562,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_stdio_piped</span> <span class="p">()</span> <span class="p">:</span> <span class="n">process_stdio</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::process::Stdio::piped()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::process::Stdio::piped()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8588,8 +8588,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_args</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command) =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !c = !c"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>c,<span class="w"> </span>args<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::process::Command::args(&amp;mut $0, &amp;*$1)"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::process::Command::args(&amp;mut $0, &amp;*$1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8615,7 +8615,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdout</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>c,<span class="w"> </span><span class="s1">$'"std::process::Command::stdout($0, std::process::Stdio::piped())"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stdout($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8641,7 +8641,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stderr</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>c,<span class="w"> </span><span class="s1">$'"std::process::Command::stderr($0, std::process::Stdio::piped())"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stderr($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8667,7 +8667,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdin</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>c,<span class="w"> </span><span class="s1">$'"std::process::Command::stdin($0, std::process::Stdio::piped())"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stdin($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8697,7 +8697,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
     <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>dir,<span class="w"> </span><span class="s1">$'"std::process::Command::current_dir(!c, &amp;*$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::current_dir(!c, &amp;*$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8728,7 +8728,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
     <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>key,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::process::Command::env(!c, &amp;*$0, &amp;*$1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::process::Command::env(!c, &amp;*$0, &amp;*$1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8757,7 +8757,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
     <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' process_child stream.io_error</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>c,<span class="w"> </span><span class="s1">$'"std::process::Command::spawn($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::spawn($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8786,7 +8786,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="p">(</span><span class="n">child</span> <span class="p">:</span> <span class="n">process_child</span><span class="p">)</span>
     <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' process_output stream.io_error</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>child,<span class="w"> </span><span class="s1">$'"$0.wait_with_output()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.wait_with_output()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8852,8 +8852,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
             <span class="o">|</span> <span class="n">Error</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">highlight</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
         <span class="o">|</span> <span class="n">Error</span> <span class="n">e</span> <span class="o">=&gt;</span>
             <span class="n">trace</span> <span class="n">Critical</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"runtime.stdio_line"'</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">e</span> <span class="p">}</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"runtime.stdio_line"</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">trace</span><span class="s1">' e }</span>
             <span class="n">e</span> <span class="o">|&gt;</span> <span class="n">highlight</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
     <span class="n">channel_sender</span>
     <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">arc_mutex_lock</span>
@@ -8915,7 +8915,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_command</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) : command =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"clap::Command::new($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8930,7 +8930,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>clap
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">clap</span>
 
 <span class="c1">##"command"</span>
 <span class="o">|&gt;</span> <span class="n">new_command</span>
@@ -9053,7 +9053,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arg</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) : arg =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"clap::Arg::new($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Arg::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9068,7 +9068,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>clap
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">clap</span>
 
 <span class="c1">##"arg"</span>
 <span class="o">|&gt;</span> <span class="n">new_arg</span>
@@ -9147,7 +9147,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_arg</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">command</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>command,<span class="w"> </span>arg<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::Command::arg($0, $1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">command</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::Command::arg($0, $1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9173,7 +9173,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_required</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.required($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.required($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9199,7 +9199,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_require_equals</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.require_equals($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.require_equals($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9226,7 +9226,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_default_value</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="c1">#value</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.default_value($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.default_value($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9253,7 +9253,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_default_missing_value</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="c1">#value</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.default_missing_value($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.default_missing_value($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9280,7 +9280,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_overrides_with</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="c1">#value</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.overrides_with($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.overrides_with($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9306,7 +9306,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_short</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.short($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.short($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9332,7 +9332,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_long</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) (arg : arg) : arg =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.long($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.long($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9359,7 +9359,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_value_names</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str)) (arg : arg) : arg =</span>
     <span class="n">inl</span> <span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>values<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.value_names($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">values</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.value_names($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9385,7 +9385,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_num_args</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.num_args($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.num_args($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9453,8 +9453,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
         <span class="n">then</span> <span class="s2">"="</span>
         <span class="k">else</span> <span class="s2">""</span>
     <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="n">when</span> <span class="n">end</span> <span class="o">=.</span> <span class="nb">len</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>start,<span class="w"> </span><span class="s1">$'"clap::builder::ValueRange::new($0..)"'</span><span class="o">)</span>
-    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">((</span>start,<span class="w"> </span>end<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::builder::ValueRange::new($0.." + !inclusive + "$1)"'</span><span class="o">)</span>
+    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="n">when</span> <span class="n">end</span> <span class="o">=.</span> <span class="nb">len</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::builder::ValueRange::new($0..)"'</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::builder::ValueRange::new($0.." + !inclusive + "$1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9480,7 +9480,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_num_args_range</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">value_range</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.num_args($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.num_args($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9507,7 +9507,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_value_name</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.value_name($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.value_name($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9591,7 +9591,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_possible_value</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">possible_value</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"clap::builder::PossibleValue::new(&amp;**$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::builder::PossibleValue::new(&amp;**$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9617,7 +9617,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">value_parser_path_buf</span> <span class="p">()</span> <span class="p">:</span> <span class="n">value_parser</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::value_parser\!(std::path::PathBuf)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::value_parser\!(std::path::PathBuf)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9643,7 +9643,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">value_parser_expr</span> <span class="p">(</span><span class="n">expr</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">value_parser</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::value_parser\!(" + !expr + ").into()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::value_parser\!(" + !expr + ").into()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9669,7 +9669,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_value_parser</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">value_parser</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>values<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.value_parser($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">values</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.value_parser($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9712,19 +9712,19 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
     <span class="o">|</span> <span class="n">Version</span>
 
 <span class="n">inl</span> <span class="n">arg_action</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Set</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::Set"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">Append</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::Append"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">SetTrue</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::SetTrue"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">SetFalse</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::SetFalse"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">Count</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::Count"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">Help</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::Help"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">HelpShort</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::HelpShort"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">HelpLong</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::HelpLong"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
-    <span class="o">|</span> <span class="n">Version</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgAction::Version"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>arg_action<span class="err">'</span>
+    <span class="o">|</span> <span class="n">Set</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::Set"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">Append</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::Append"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">SetTrue</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::SetTrue"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">SetFalse</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::SetFalse"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">Count</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::Count"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">Help</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::Help"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">HelpShort</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::HelpShort"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">HelpLong</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::HelpLong"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
+    <span class="o">|</span> <span class="n">Version</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgAction::Version"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_action</span><span class="s1">'</span>
 
 <span class="n">inl</span> <span class="n">arg_action</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">arg_action</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">arg_action</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.action($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.action($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9750,7 +9750,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_index</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>arg,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.index($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.index($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9805,7 +9805,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_get_matches</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_matches</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::get_matches($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::get_matches($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9832,7 +9832,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_get_matches_from</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg_matches</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">args</span> <span class="o">=</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec |&gt; am'</span><span class="o">.</span><span class="n">vec_map</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::get_matches_from($0, !args)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::get_matches_from($0, !args)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9858,7 +9858,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_args_override_self</span> <span class="p">(</span><span class="n">yes</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">command</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::args_override_self($0, !yes)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::args_override_self($0, !yes)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9886,7 +9886,8 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_init_arg</span> <span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">short</span><span class="p">)</span> <span class="n">fn</span> <span class="n">command</span> <span class="o">=</span>
     <span class="n">command</span>
     <span class="o">|&gt;</span> <span class="n">command_arg</span> <span class="p">(</span>
-        <span class="n">new_arg</span> <span class="c1">##long</span>
+        <span class="c1">##long</span>
+        <span class="o">|&gt;</span> <span class="n">new_arg</span>
         <span class="o">|&gt;</span> <span class="n">arg_short</span> <span class="n">short</span>
         <span class="o">|&gt;</span> <span class="n">arg_long</span> <span class="c1">##long</span>
         <span class="o">|&gt;</span> <span class="n">fn</span>
@@ -9918,7 +9919,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_get_one</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>matches,<span class="w"> </span>x<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::ArgMatches::get_one(&amp;$0, $1).cloned()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">matches</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::ArgMatches::get_one(&amp;$0, $1).cloned()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9946,7 +9947,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_get_flag</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>matches,<span class="w"> </span>x<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::ArgMatches::get_flag(&amp;$0, $1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">matches</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::ArgMatches::get_flag(&amp;$0, $1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9974,7 +9975,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_get_many</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.vec t) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>matches,<span class="w"> </span>x<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::ArgMatches::get_many(&amp;$0, $1).map(|x| x.cloned().into_iter().collect())"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">matches</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::ArgMatches::get_many(&amp;$0, $1).map(|x| x.cloned().into_iter().collect())"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10002,7 +10003,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_get_occurrences</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">array_base</span> <span class="n">sm</span><span class="s1">'.std_string) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"clap::ArgMatches::get_occurrences(&amp;!matches, !x).cloned()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"clap::ArgMatches::get_occurrences(&amp;!matches, !x).cloned()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10028,7 +10029,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_subcommand</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.std_string * arg_matches) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>matches,<span class="w"> </span>sm<span class="s1">'.ref_to_std_string), $'</span><span class="s2">"clap::ArgMatches::subcommand(Box::leak(Box::new(</span><span class="nv">$0</span><span class="s2">))).map(|(a, b)| (</span><span class="nv">$1</span><span class="s2">(a), b.clone()))"</span><span class="err">'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">matches</span><span class="p">,</span> <span class="n">sm</span><span class="s1">'.ref_to_std_string), $'</span><span class="s2">"clap::ArgMatches::subcommand(Box::leak(Box::new($0))).map(|(a, b)| ($1(a), b.clone()))"</span><span class="s1">')</span>
 </pre></div>
 </div>
 </div>
@@ -10054,7 +10055,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">matches_values_of</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">matches</span> <span class="p">:</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>matches,<span class="w"> </span>x<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"clap::ArgMatches::values_of($0, &amp;*$1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">matches</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::ArgMatches::values_of($0, &amp;*$1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10080,7 +10081,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_subcommand_required</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">command</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::subcommand_required($0, !value)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::subcommand_required($0, !value)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10106,7 +10107,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_subcommand</span> <span class="p">(</span><span class="n">subcommand</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="n">command</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::subcommand($0, !subcommand)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::subcommand($0, !subcommand)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10136,7 +10137,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
         <span class="n">values</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map (sm'</span><span class="o">.</span><span class="n">to_std_string</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span> <span class="o">&gt;&gt;</span> <span class="n">new_possible_value</span><span class="p">)</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>values,<span class="w"> </span><span class="s1">$'"Into::&lt;clap::builder::ValueParser&gt;::into(clap::builder::PossibleValuesParser::new($0))"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"Into::&lt;clap::builder::ValueParser&gt;::into(clap::builder::PossibleValuesParser::new($0))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10185,7 +10186,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>clap
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">clap</span>
 
 <span class="c1">##"command"</span>
 <span class="o">|&gt;</span> <span class="n">new_command</span>
@@ -10237,7 +10238,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_debug_assert</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>command,<span class="w"> </span><span class="s1">$'"clap::Command::debug_assert($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::debug_assert($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11102,7 +11103,7 @@ __assert_eq / actual: true / expected: true
                 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map sm'</span><span class="o">.</span><span class="n">to_std_string</span>
             <span class="n">trace</span> <span class="n">Debug</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"runtime.execute_with_options"</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">file_name</span> <span class="n">arguments</span> <span class="n">options</span> <span class="p">}</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">file_name</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug; options }</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">file_name</span>
@@ -11335,7 +11336,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io<span class="w"> </span>regex<span class="w"> </span>sha2
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span> <span class="n">regex</span> <span class="n">sha2</span>
 
 <span class="n">inl</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"╭─[ 你好，世界！こんにちは世界！ ]─╮"</span>
 
@@ -11383,30 +11384,22 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = [
-    "-c",
-    "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')",
-]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
-00:00:01 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 312 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 312 }
 __assert_eq / actual: 1 / expected: 1
-__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #5 runtime.execute_with_options / { file_name = cat; arguments = [
-    "test.txt",
-]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">v</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = [
-    "-c",
-    "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')",
-]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_dd22b03f870cb48513f7a6434ec662112394518bd8bcb711e1790d1554ce6e67\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4d492520ecc02386beffed00264315156fe11b2722bcf46556901f15224ba0f1\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:00 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 __assert_eq / actual: 0 / expected: 0
 __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>
@@ -11474,7 +11467,7 @@ __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─�
             <span class="n">x</span>
             <span class="o">|&gt;</span> <span class="n">heap</span>
             <span class="o">|&gt;</span> <span class="n">fn</span>
-            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="o">!</span>x
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">!</span><span class="n">x</span>
     <span class="err">$</span><span class="s1">'let execution_options x = !execution_options x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">split_args</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">split_args</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
     <span class="err">$</span><span class="s1">'let split_args x = !split_args x'</span> <span class="p">:</span> <span class="p">()</span>

@@ -7648,7 +7648,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_string</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"!x.to_string()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"!x.to_string()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7734,9 +7734,9 @@ a.anchor-link {
     <span class="o">//</span> <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">type_lit_to_lit</span> <span class="err">`</span><span class="n">t</span>
     <span class="o">//</span> <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">type_to_symbol</span> <span class="err">`</span><span class="n">t</span>
     <span class="o">//</span> <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">type_lit_to_lit</span> <span class="err">`</span><span class="n">t</span>
-    <span class="o">//</span> <span class="o">!</span>!!!SymbolToString<span class="w"> </span><span class="o">(</span><span class="sb">`</span><span class="o">(</span><span class="sb">`</span>t<span class="o">))</span>
+    <span class="o">//</span> <span class="err">!!!!</span><span class="n">SymbolToString</span> <span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">t</span><span class="p">))</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">type_to_symbol</span> <span class="err">`</span><span class="n">t</span>
-    <span class="o">!</span>!!!SymbolToString<span class="w"> </span><span class="o">(</span>x<span class="o">)</span>
+    <span class="err">!!!!</span><span class="n">SymbolToString</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8343,11 +8343,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda
-<span class="o">////!</span><span class="w"> </span>rust
-<span class="o">////!</span><span class="w"> </span>typescript
-<span class="o">////!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"3"</span><span class="p">;</span> <span class="s2">"4"</span><span class="p">],</span> <span class="p">{</span> <span class="n">b</span> <span class="o">=</span> <span class="s2">"5"</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">"6"</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"7"</span> <span class="p">})</span>
 <span class="o">|&gt;</span> <span class="nb">format</span>
@@ -8407,7 +8407,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 
 <span class="p">;[</span>
     <span class="s2">"1"</span>
@@ -8479,7 +8479,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 
 <span class="p">[</span>
     <span class="s2">"1"</span>
@@ -8552,7 +8552,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 
 <span class="p">[</span>
     <span class="s2">"1"</span>
@@ -9633,7 +9633,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">chars</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (into_iterator char) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"$0.chars()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.chars()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9659,7 +9659,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">char_is_alphanumeric</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"$0.is_alphanumeric()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.is_alphanumeric()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9685,7 +9685,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">byte_slice</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"b\\\"" + !s + "\\\""'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"b</span><span class="se">\\\"</span><span class="s1">" + !s + "</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10030,7 +10030,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"r#\\"" + !s + "\\"#"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"r#</span><span class="se">\\</span><span class="s1">"" + !s + "</span><span class="se">\\</span><span class="s1">"#"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10056,7 +10056,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal_static</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"r#\\"" + !s + "\\"#"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"r#</span><span class="se">\\</span><span class="s1">"" + !s + "</span><span class="se">\\</span><span class="s1">"#"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10134,7 +10134,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">include_str</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"include_str\!(\\\"" + !path + "\\\")"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"include_str\!(</span><span class="se">\\\"</span><span class="s1">" + !path + "</span><span class="se">\\\"</span><span class="s1">)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10160,9 +10160,9 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">//</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="o">)</span>
+    <span class="o">//</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="p">)</span>
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"&amp;*$0"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;*$0"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
@@ -10189,7 +10189,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_iter</span> <span class="n">forall</span> <span class="p">(</span><span class="n">t</span> <span class="p">:</span> <span class="o">*</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="p">)</span><span class="o">.</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">t</span> <span class="n">char</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"String::from_iter($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from_iter($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10216,7 +10216,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ref_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">str</span><span class="p">)</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">str</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>str,<span class="w"> </span><span class="s1">$'"String::from($0)"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">str</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from($0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">str</span> <span class="o">=&gt;</span> <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
@@ -10243,7 +10243,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">cow_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">cow</span> <span class="nb">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>str,<span class="w"> </span><span class="s1">$'"String::from($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10295,7 +10295,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str_std</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.as_str()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.as_str()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10321,7 +10321,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">into_boxed_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">box</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.into_boxed_str()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.into_boxed_str()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10347,7 +10347,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_string_as_ref</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">os_str</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.as_ref()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.as_ref()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10373,7 +10373,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_os_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">os_str</span><span class="p">)</span> <span class="p">:</span> <span class="n">os_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_os_string()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.to_os_string()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10399,7 +10399,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_to_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_str()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.to_str()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10458,7 +10458,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_custom</span><span class="s1">' (f : string) x : std_string =</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"format\!(\\\"" + !f + "\\\", $0)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"format\!(</span><span class="se">\\\"</span><span class="s1">" + !f + "</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10487,7 +10487,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_debug</span><span class="s1">' x : std_string =</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"format\!(\\\"{:?}\\\", $0)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"format\!(</span><span class="se">\\\"</span><span class="s1">{:?}</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10516,7 +10516,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">' x : std_string =</span>
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"format\!(\\\"{}\\\", $0)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"format\!(</span><span class="se">\\\"</span><span class="si">{}</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10543,7 +10543,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_hex</span><span class="s1">' x : std_string =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"format\!(\\\"{:02x}\\\", $0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"format\!(</span><span class="se">\\\"</span><span class="si">{:02x}</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10569,7 +10569,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">''</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'@@$"format\!(" + !format + ")"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'@@$"format\!(" + !format + ")"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10653,7 +10653,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_regex</span> <span class="p">(</span><span class="n">pattern</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' regex regex_error =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>pattern,<span class="w"> </span><span class="s1">$'$"regex::Regex::new(&amp;$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"regex::Regex::new(&amp;$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10743,7 +10743,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
     <span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">regex_capture_names</span> <span class="p">(</span><span class="n">regex</span> <span class="p">:</span> <span class="n">regex</span><span class="p">)</span> <span class="p">:</span> <span class="n">regex_capture_names</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>regex,<span class="w"> </span><span class="s1">$'$"$0.capture_names()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.capture_names()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10799,7 +10799,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">regex_captures_iter</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' std_string)) (regex : regex) : regex_capture_matches =</span>
     <span class="n">inl</span> <span class="n">regex</span> <span class="o">=</span> <span class="n">regex</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>regex,<span class="w"> </span><span class="s1">$'$"$0.captures_iter(!s)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.captures_iter(!s)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10824,9 +10824,9 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">regex_captures</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">regex</span> <span class="p">:</span> <span class="n">regex</span><span class="p">)</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (mapm.hash_map string string) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">regex_captures</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">regex</span> <span class="p">:</span> <span class="n">regex</span><span class="p">)</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (mapm.hash_map string string) =</span>
     <span class="o">//</span> <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
-    <span class="o">//</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>regex,<span class="w"> </span><span class="s1">$'$"$0.captures_iter(&amp;*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"'</span><span class="o">)</span>
+    <span class="o">//</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.captures_iter(&amp;*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"'</span><span class="p">)</span>
 
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">to_std_string</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -10834,31 +10834,31 @@ __assert_eq / actual: "1234..." / expected: "1234..."
             <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span>
             <span class="n">regex</span> <span class="o">|&gt;</span> <span class="n">regex_captures_iter</span> <span class="n">s</span>
 
-        <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let _regex_captures : Vec&lt;_&gt; = !matches.map(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+        <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let _regex_captures : Vec&lt;_&gt; = !matches.map(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
         <span class="n">inl</span> <span class="n">fn</span> <span class="p">(</span><span class="n">match</span><span class="s1">' : rust.static_ref (rust.mut'</span> <span class="p">(</span><span class="n">regex_captures</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_lifetime</span><span class="p">)))</span> <span class="p">:</span> <span class="n">mapm</span><span class="o">.</span><span class="n">hash_map</span> <span class="n">string</span> <span class="n">string</span> <span class="o">=</span>
 
             <span class="n">inl</span> <span class="n">names</span> <span class="o">=</span> <span class="n">regex</span> <span class="o">|&gt;</span> <span class="n">regex_capture_names</span>
 
-            <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let _regex_captures : std::collections::HashMap&lt;_, _&gt; = !names.map(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+            <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let _regex_captures : std::collections::HashMap&lt;_, _&gt; = !names.map(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
             <span class="n">inl</span> <span class="n">fn</span> <span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">pair</span> <span class="n">string</span> <span class="n">string</span> <span class="o">=</span>
                 <span class="n">inl</span> <span class="n">n</span><span class="s1">' = n |&gt; rust.clone</span>
 
                 <span class="n">new_pair</span> <span class="n">n</span><span class="s1">' !</span><span class="se">\\</span><span class="s1">(n, $'</span><span class="err">$</span><span class="s2">"!match'.name(&amp;$0).map(|x| x.as_str()).unwrap_or(</span><span class="se">\\\"\\\"</span><span class="s2">).to_string().into()"</span><span class="s1">')</span>
 
-            <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x.unwrap_or(\\\"\\\").to_string().into()"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 }).map(|x| std::sync::Arc::try_unwrap(x).unwrap_or_else(|x| (*x).clone())).collect()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+            <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x.unwrap_or(</span><span class="se">\\\"\\\"</span><span class="s1">).to_string().into()"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 }).map(|x| std::sync::Arc::try_unwrap(x).unwrap_or_else(|x| (*x).clone())).collect()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_regex_captures"'</span><span class="o">)</span>
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_regex_captures"'</span><span class="p">)</span>
 
         <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"x"'</span><span class="o">)</span>
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"x"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span>
             <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span>
 
-        <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>x,<span class="w"> </span><span class="s1">$'"true; $0 }).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+        <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; $0 }).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_regex_captures"'</span><span class="o">)</span>
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_regex_captures"'</span><span class="p">)</span>
 
     <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">capture_move</span>
 </pre></div>
@@ -10875,7 +10875,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">regex</span>
 
 <span class="s2">"fable-library-ts</span><span class="se">\\</span><span class="s2">.(?&lt;a&gt;[</span><span class="se">\\</span><span class="s2">d.]+)$"</span>
 <span class="o">|&gt;</span> <span class="n">new_regex</span>
@@ -10932,7 +10932,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">regex</span> <span class="o">=</span> <span class="n">pattern</span> <span class="o">|&gt;</span> <span class="n">new_regex</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>regex,<span class="w"> </span>#s,<span class="w"> </span>replacement<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"$0.replace_all($1, &amp;*$2)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">((</span><span class="n">regex</span><span class="p">,</span> <span class="c1">#s, replacement), $'$"$0.replace_all($1, &amp;*$2)"')</span>
             <span class="o">|&gt;</span> <span class="n">cow_to_std_string</span>
             <span class="o">|&gt;</span> <span class="n">from_std_string</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -10961,7 +10961,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">serialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' std_string json_error =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_json::to_string(&amp;!x)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::to_string(&amp;!x)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10989,7 +10989,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">deserialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">json</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t std_string =</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">join</span> <span class="n">json</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span> <span class="o">|&gt;</span> <span class="n">as_str</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>json,<span class="w"> </span><span class="s1">$'"serde_json::from_str(&amp;$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"serde_json::from_str(&amp;$0)"'</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : json_error) =&gt; x |&gt; format'</span>
 </pre></div>
 </div>
@@ -11016,9 +11016,9 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">borsh_serialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8 =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut data = Vec::new()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>data,<span class="w"> </span><span class="s1">$'"true; borsh::BorshSerialize::serialize(&amp;$0, &amp;mut data).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"data"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut data = Vec::new()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; borsh::BorshSerialize::serialize(&amp;$0, &amp;mut data).unwrap()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"data"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11045,8 +11045,8 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">borsh_deserialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">u8</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t std_string =</span>
     <span class="n">inl</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.as_slice</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !data = !data"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"borsh::BorshDeserialize::deserialize(&amp;mut !data)"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !data = !data"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"borsh::BorshDeserialize::deserialize(&amp;mut !data)"'</span><span class="p">)</span>
     <span class="n">result</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : borsh_io_error) =&gt; x |&gt; format'</span>
 </pre></div>
@@ -11075,7 +11075,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">deserialize_vec</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">json_value</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">vec</span> <span class="n">u8</span><span class="p">)</span> <span class="n">std_string</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">join</span> <span class="n">value</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_json::from_value(!value)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::from_value(!value)"'</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : json_error) =&gt; x |&gt; format'</span>
 </pre></div>
 </div>
@@ -11102,7 +11102,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encode_uri_component</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">js_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"js_sys::encode_uri_component(&amp;!s)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"js_sys::encode_uri_component(&amp;!s)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11129,7 +11129,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">strip_prefix</span> <span class="p">(</span><span class="n">prefix</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!s.strip_prefix(!prefix)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!s.strip_prefix(!prefix)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11155,7 +11155,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">str_from_utf8</span> <span class="p">(</span><span class="nb">bytes</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8)) : resultm.result'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="n">utf8_error</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>bytes,<span class="w"> </span><span class="s1">$'"std::str::from_utf8($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">bytes</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::str::from_utf8($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11182,7 +11182,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">string_from_utf8</span> <span class="p">(</span><span class="nb">bytes</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : resultm.result'</span> <span class="n">std_string</span> <span class="n">from_utf8_error</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">join</span> <span class="nb">bytes</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>bytes,<span class="w"> </span><span class="s1">$'"std::string::String::from_utf8($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">bytes</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::string::String::from_utf8($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11211,7 +11211,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
         <span class="n">inl</span> <span class="nb">bytes</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">vec</span> <span class="n">u8</span><span class="p">)</span> <span class="n">base64_decode_error</span> <span class="o">=</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"base64::Engine::decode(&amp;base64::engine::general_purpose::STANDARD, !s)"'</span><span class="o">)</span>
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"base64::Engine::decode(&amp;base64::engine::general_purpose::STANDARD, !s)"'</span><span class="p">)</span>
         <span class="nb">bytes</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' format'</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="k">try</span><span class="s1">'</span>
@@ -11274,7 +11274,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_utf8</span><span class="s1">' () : rust.ref encoding'</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"encoding_rs::UTF_8"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"encoding_rs::UTF_8"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11300,7 +11300,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_1252</span><span class="s1">' () : rust.ref encoding'</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"encoding_rs::WINDOWS_1252"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"encoding_rs::WINDOWS_1252"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11326,7 +11326,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_encode</span><span class="s1">' (encoding : rust.ref encoding'</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">cow</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>encoding,<span class="w"> </span>text<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.encode(&amp;*$1).0"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">encoding</span><span class="p">,</span> <span class="n">text</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.encode(&amp;*$1).0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11352,7 +11352,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">utf8_decode</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : resultm.result'</span> <span class="n">std_string</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">cow</span> <span class="nb">str</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"encoding::Encoding::decode(encoding::all::UTF_8, &amp;!data, encoding::DecoderTrap::Replace)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"encoding::Encoding::decode(encoding::all::UTF_8, &amp;!data, encoding::DecoderTrap::Replace)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11386,7 +11386,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <span class="n">inl</span> <span class="n">windows</span> <span class="p">(</span><span class="nb">len</span> <span class="p">:</span> <span class="n">unativeint</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : windows u8 =</span>
     <span class="n">inl</span> <span class="n">source</span> <span class="o">=</span> <span class="n">source</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span>
     <span class="o">//</span> <span class="n">inl</span> <span class="n">source</span><span class="s1">' = source |&gt; rust.clone</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>len,<span class="w"> </span><span class="s1">$'"&lt;[_]&gt;::windows(!source, $0)"'</span><span class="o">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">!</span>\\<span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&lt;[_]&gt;::windows(!source, $0)"'</span><span class="p">)</span>
     <span class="o">//</span> <span class="n">source</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">drop</span>
     <span class="n">result</span>
 </pre></div>
@@ -11414,7 +11414,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">any</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">windows</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !source = !source"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !source = !source"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
     <span class="n">inl</span> <span class="n">fn</span><span class="s1">' x =</span>
         <span class="n">x</span>
         <span class="o">|&gt;</span> <span class="n">str_from_utf8</span>
@@ -11422,7 +11422,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
         <span class="o">|&gt;</span> <span class="n">ref_to_std_string</span>
         <span class="o">|&gt;</span> <span class="n">from_std_string</span>
         <span class="o">|&gt;</span> <span class="n">fn</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="s1">', $'</span><span class="s2">"!source.any(move |x| </span><span class="nv">$0</span><span class="s2">(x))"</span><span class="err">'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span><span class="s1">', $'</span><span class="s2">"!source.any(move |x| $0(x))"</span><span class="s1">')</span>
 </pre></div>
 </div>
 </div>
@@ -11480,7 +11480,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_bytes</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
     <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">join</span> <span class="n">text</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!text.as_bytes()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!text.as_bytes()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11506,7 +11506,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">into_bytes</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8 =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"$0.into_bytes()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"$0.into_bytes()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11547,7 +11547,7 @@ __assert_eq / actual: "1234..." / expected: "1234..."
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">python_operators</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>s,<span class="w"> </span>encoding<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.encode($1)"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>string
+            <span class="err">!</span>\\<span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="n">encoding</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.encode($1)"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'!s.encode(!encoding)'</span> <span class="p">:</span> <span class="n">string</span>
     <span class="p">}</span>
@@ -11670,10 +11670,10 @@ __assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="s2">"test"</span>
 <span class="o">|&gt;</span> <span class="n">_throws</span>
@@ -11907,14 +11907,14 @@ __assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">replace_regex</span> <span class="p">(</span><span class="n">pattern</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">replacement</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">replace_regex</span> <span class="p">(</span><span class="n">pattern</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">replacement</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">s</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">regex</span> <span class="o">=</span> <span class="n">pattern</span> <span class="o">|&gt;</span> <span class="n">new_regex</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
             <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>regex,<span class="w"> </span>s,<span class="w"> </span>replacement<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"$0.replace_all(&amp;*$1, &amp;*$2)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">((</span><span class="n">regex</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">replacement</span><span class="p">),</span> <span class="err">$</span><span class="s1">'$"$0.replace_all(&amp;*$1, &amp;*$2)"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">cow_to_std_string</span>
             <span class="o">|&gt;</span> <span class="n">from_std_string</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -11932,8 +11932,8 @@ __assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">regex</span>
 
 <span class="s2">" 123"</span>
 <span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">s</span><span class="se">\\</span><span class="s2">w2"</span> <span class="s2">""</span>
@@ -11975,7 +11975,7 @@ __assert_eq / actual: "3" / expected: "3"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">regex</span>
 
 <span class="s2">"    let main args =</span><span class="se">\n</span><span class="s2">        ()</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="err">$</span><span class="s1">'@@"(?P&lt;a&gt; *)(?P&lt;b&gt;let</span><span class="se">\\</span><span class="s1">s+main</span><span class="se">\\</span><span class="s1">s+.*?</span><span class="se">\\</span><span class="s1">s*=)"'</span> <span class="s2">"$a[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">$a$b"</span>

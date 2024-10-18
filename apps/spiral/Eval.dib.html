@@ -7987,9 +7987,9 @@ a.anchor-link {
                             <span class="n">let</span> <span class="n">spiralExists</span> <span class="o">=</span> <span class="n">spiralCodePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
                             <span class="n">let</span> <span class="n">spiralRealExists</span> <span class="o">=</span> <span class="n">spiralRealCodePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
                             <span class="k">if</span> <span class="n">spiralExists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">&amp;&amp;</span> <span class="n">spiralRealExists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                            <span class="n">then</span> <span class="n">do</span><span class="o">!</span><span class="w"> </span>codeDir<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.delete_directory_async<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
+                            <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">codeDir</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_directory_async</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
                             <span class="k">else</span>
-                                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">tokens</span><span class="w"> </span><span class="o">=</span>
+                                <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span>
                                     <span class="k">if</span> <span class="n">spiralExists</span> <span class="n">then</span> <span class="n">spiralCodePath</span> <span class="k">else</span> <span class="n">spiralRealCodePath</span>
                                     <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="kc">None</span> <span class="kc">None</span>
                                 <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
@@ -8019,19 +8019,19 @@ a.anchor-link {
                             <span class="n">let</span> <span class="n">hashHex</span> <span class="o">=</span> <span class="n">hashDir</span><span class="o">.</span><span class="n">Name</span>
                             <span class="n">let</span> <span class="n">codePath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">codePath</span>
                             <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">tokensDir</span> <span class="o">&lt;/&gt;</span> <span class="n">hashHex</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
-                            <span class="o">//</span> <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">30</span>
+                            <span class="o">//</span> <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
                             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-                                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>codePath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Supervisor.getFileTokenRange<span class="w"> </span>None<span class="w"> </span>None
+                                <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="kc">None</span> <span class="kc">None</span>
                                 <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">||</span> <span class="n">tokens</span> <span class="o">&lt;&gt;</span> <span class="n">Some</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
                                 <span class="n">then</span> <span class="k">return</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">retry</span>
                                 <span class="k">else</span>
                                     <span class="n">trace</span> <span class="n">Debug</span>
                                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel"</span><span class="p">)</span>
                                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / tokens: </span><span class="si">{tokens}</span><span class="s2">"</span><span class="p">)</span>
-                                    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">30</span>
-                                    <span class="k">return</span><span class="o">!</span><span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>retry<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+                                    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
+                                    <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                             <span class="p">}</span>
-                            <span class="n">let</span><span class="o">!</span><span class="w"> </span>tokens,<span class="w"> </span><span class="nv">retries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>loop<span class="w"> </span><span class="m">1</span>
+                            <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">loop</span> <span class="mi">1</span>
                             <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
                             <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
                                 <span class="n">do</span><span class="err">!</span>
@@ -8056,7 +8056,7 @@ a.anchor-link {
 
                 <span class="k">if</span> <span class="n">parentProcessId</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="n">u</span> <span class="n">then</span>
                     <span class="n">let</span> <span class="n">parentProcess</span> <span class="o">=</span> <span class="n">parentProcessId</span> <span class="o">|&gt;</span> <span class="nb">int</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">GetProcessById</span>
-                    <span class="n">do</span><span class="o">!</span><span class="w"> </span>parentProcess.WaitForExitAsync<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.AwaitTask
+                    <span class="n">do</span><span class="err">!</span> <span class="n">parentProcess</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
                     <span class="n">trace</span> <span class="n">Debug</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.parentAsyncChild / Parent process has exited. Performing cleanup..."</span><span class="p">)</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"{_locals ()}"</span><span class="p">)</span>
@@ -8065,7 +8065,7 @@ a.anchor-link {
             <span class="p">}</span>
 
             <span class="k">async</span> <span class="p">{</span>
-                <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">3000</span>
+                <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">3000</span>
                 <span class="n">existingFilesChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartImmediate</span>
                 <span class="n">streamAsyncChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
                 <span class="n">parentAsyncChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
@@ -8130,12 +8130,12 @@ a.anchor-link {
         <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">json</span><span class="p">)</span> <span class="o">-&gt;</span>
             <span class="k">try</span>
                 <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">commandsDir</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span>
-                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>connection.InvokeAsync&lt;string&gt;<span class="o">(</span><span class="s2">"ClientToServerMsg"</span>,<span class="w"> </span>json<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.AwaitTask
+                <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">InvokeAsync</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">"ClientToServerMsg"</span><span class="p">,</span> <span class="n">json</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
                 <span class="n">let</span> <span class="n">commandHistoryPath</span> <span class="o">=</span> <span class="n">commandHistoryDir</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span>
-                <span class="n">do</span><span class="o">!</span><span class="w"> </span>fullPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.move_file_async<span class="w"> </span>commandHistoryPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
+                <span class="n">do</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="n">commandHistoryPath</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
                 <span class="k">if</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span>
                     <span class="n">let</span> <span class="n">resultPath</span> <span class="o">=</span> <span class="n">commandHistoryDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"{Path.GetFileNameWithoutExtension path}_result.json"</span>
-                    <span class="n">do</span><span class="o">!</span><span class="w"> </span>result<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span>resultPath
+                    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">resultPath</span>
             <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
                 <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span>
                 <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.startCommandsWatcher / iterAsyncParallel"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -8292,7 +8292,7 @@ a.anchor-link {
         <span class="n">then</span> <span class="kc">None</span>
         <span class="k">else</span> <span class="n">Some</span> <span class="n">workspaceRoot</span>
 
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">spiralBuilderResults</span><span class="w"> </span><span class="o">=</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">spiralBuilderResults</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span><span class="p">,</span> <span class="n">props</span><span class="o">.</span><span class="n">lastTopLevelIndex</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">[</span><span class="o">||</span><span class="p">],</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">init</span>
         <span class="o">|</span> <span class="n">builderCommands</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
@@ -8319,7 +8319,7 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">builderCommand</span><span class="p">,</span> <span class="n">commands</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">commands</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">command</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                    <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
+                    <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
                         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                             <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
                                 <span class="n">l0</span> <span class="o">=</span> <span class="n">command</span>
@@ -8656,10 +8656,10 @@ a.anchor-link {
                     <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval"</span><span class="p">)</span>
                     <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"lastTopLevelIndex: </span><span class="si">{lastTopLevelIndex}</span><span class="s2"> / builderCommands: %A</span><span class="si">{builderCommands}</span><span class="s2"> / buildBackends: %A</span><span class="si">{buildBackends}</span><span class="s2"> / isReal: </span><span class="si">{isReal}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
 
-                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">buildCodeResults</span><span class="w"> </span><span class="o">=</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">buildCodeResults</span> <span class="o">=</span>
                     <span class="n">buildBackends</span>
                     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">backend</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                        <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
+                        <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
                             <span class="k">if</span> <span class="n">isReal</span>
                             <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spir</span> <span class="n">newAllCode</span>
                             <span class="k">else</span>
@@ -8674,14 +8674,14 @@ a.anchor-link {
 
                 <span class="k">match</span> <span class="n">buildCodeResults</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">buildCodeResults</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">let</span><span class="o">!</span><span class="w"> </span>result,<span class="w"> </span><span class="nv">errors</span><span class="w"> </span><span class="o">=</span>
+                    <span class="n">let</span><span class="err">!</span> <span class="n">result</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
                         <span class="p">((</span><span class="n">Ok</span> <span class="p">[],</span> <span class="p">[</span><span class="o">||</span><span class="p">]),</span> <span class="n">buildCodeResults</span><span class="p">)</span>
                         <span class="o">||&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">buildCodeResult</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                             <span class="k">match</span> <span class="n">buildCodeResult</span> <span class="k">with</span>
                             <span class="o">|</span> <span class="n">backend</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="p">),</span> <span class="n">spiralErrors</span><span class="p">)</span> <span class="o">-&gt;</span>
                                 <span class="n">let</span> <span class="n">spiralErrors</span> <span class="o">=</span>
                                     <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
-                                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
+                                <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
                                     <span class="n">processSpiralOutput</span>
                                         <span class="p">{</span><span class="o">|</span>
                                             <span class="n">printCode</span> <span class="o">=</span> <span class="n">printCode</span>

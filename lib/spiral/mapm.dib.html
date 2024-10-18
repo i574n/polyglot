@@ -7638,7 +7638,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_hash_map</span> <span class="p">()</span> <span class="p">:</span> <span class="n">hash_map</span> <span class="n">_</span> <span class="n">_</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::HashMap::new()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::HashMap::new()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7664,7 +7664,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_b_tree_map</span> <span class="p">()</span> <span class="p">:</span> <span class="n">b_tree_map</span> <span class="n">_</span> <span class="n">_</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::BTreeMap::new()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::BTreeMap::new()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7691,7 +7691,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="n">k</span><span class="p">)</span> <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">hash_map</span> <span class="n">k</span> <span class="n">v</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">v</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">key</span> <span class="o">=</span> <span class="n">join</span> <span class="n">key</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>map,<span class="w"> </span><span class="s1">$'"std::collections::HashMap::get(&amp;$0, &amp;!key).map(|x| x).cloned()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::collections::HashMap::get(&amp;$0, &amp;!key).map(|x| x).cloned()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7718,8 +7718,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">insert</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="n">k</span><span class="p">)</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">hash_map</span> <span class="n">k</span> <span class="n">v</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">v</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">key</span> <span class="o">=</span> <span class="n">join</span> <span class="n">key</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let mut !map = !map"'</span><span class="o">)</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::HashMap::insert(&amp;mut !map, !key, !value)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let mut !map = !map"'</span><span class="p">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::HashMap::insert(&amp;mut !map, !key, !value)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7745,7 +7745,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span><span class="s1">' forall k v w. (fn : v -&gt; w) (map : hash_map k v) : hash_map k w =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>map,<span class="w"> </span>fn<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.into_iter().map(|(k, v)| (k, $1(v))).collect()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="nb">map</span><span class="p">,</span> <span class="n">fn</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.into_iter().map(|(k, v)| (k, $1(v))).collect()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7771,7 +7771,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_map_count</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">hash_map</span> <span class="n">k</span> <span class="n">v</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>map,<span class="w"> </span><span class="s1">$'"$0.count()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.count()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7797,7 +7797,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_vec</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">vec</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (k * v)) : hash_map k v =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::HashMap::from_iter(!vec)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::HashMap::from_iter(!vec)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7823,7 +7823,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_vec_pairs</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">vec</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (pair k v)) : hash_map k v =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::HashMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&amp;(ref k, ref v)| (k.clone(), v.clone())))"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::HashMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&amp;(ref k, ref v)| (k.clone(), v.clone())))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7849,7 +7849,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">b_tree_map_from_vec_pairs</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">vec</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (pair k v)) : b_tree_map k v =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::collections::BTreeMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&amp;(ref k, ref v)| (k.clone(), v.clone())))"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::collections::BTreeMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&amp;(ref k, ref v)| (k.clone(), v.clone())))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7928,7 +7928,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_vec</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">hash_map</span> <span class="n">k</span> <span class="n">v</span><span class="p">)</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (k * v) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>map,<span class="w"> </span><span class="s1">$'"$0.into_iter().map(|(k, v)| (k, v)).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.into_iter().map(|(k, v)| (k, v)).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -7701,12 +7701,12 @@ a.anchor-link {
                 <span class="p">]</span>
             <span class="p">]</span>
             <span class="n">Elem</span><span class="o">.</span><span class="n">div</span> <span class="p">[]</span> <span class="p">[</span>
-                <span class="k">yield</span><span class="o">!</span><span class="w"> </span>children<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>List.map<span class="w"> </span>generateHtml
+                <span class="k">yield</span><span class="err">!</span> <span class="n">children</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">generateHtml</span>
             <span class="p">]</span>
         <span class="p">]</span>
     <span class="o">|</span> <span class="n">Root</span> <span class="n">children</span> <span class="o">-&gt;</span>
         <span class="n">Elem</span><span class="o">.</span><span class="n">div</span> <span class="p">[]</span> <span class="p">[</span>
-            <span class="k">yield</span><span class="o">!</span><span class="w"> </span>children<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>List.map<span class="w"> </span>generateHtml
+            <span class="k">yield</span><span class="err">!</span> <span class="n">children</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">generateHtml</span>
         <span class="p">]</span>
 
 <span class="n">let</span> <span class="n">generateHtmlForFileSystem</span> <span class="n">root</span> <span class="o">=</span>
@@ -7793,7 +7793,7 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">string</span>
             <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="n">d</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file.txt"</span><span class="p">)</span>
-        <span class="n">do</span><span class="o">!</span><span class="w"> </span>loop<span class="w"> </span><span class="s2">$"{d}/{n}"</span><span class="w"> </span><span class="o">(</span>n<span class="w"> </span>-<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">loop</span> <span class="err">$</span><span class="s2">"</span><span class="si">{d}</span><span class="s2">/</span><span class="si">{n}</span><span class="s2">"</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="n">loop</span> <span class="s2">"_.root"</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>

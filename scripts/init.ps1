@@ -59,6 +59,8 @@ if (!(Search-Command "rustup")) {
     }
 }
 rustup install nightly-2024-10-07
+rustup install nightly-2024-07-14
+
 rustup default nightly-2024-10-07
 
 if ($init) {

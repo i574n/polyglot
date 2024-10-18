@@ -7627,7 +7627,7 @@ a.anchor-link {
                     <span class="k">if</span> <span class="n">automation</span> <span class="o">&lt;&gt;.</span> <span class="s2">"True"</span>
                     <span class="n">then</span> <span class="kc">None</span>
                     <span class="k">else</span>
-                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::block_timestamp()"'</span><span class="p">)</span>
                         <span class="n">timestamp</span> <span class="o">|&gt;</span> <span class="n">i64</span> <span class="o">|&gt;</span> <span class="n">Some</span>
             <span class="p">}</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -7829,11 +7829,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">test_trace_level</span> <span class="n">Critical</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 <span class="n">test_trace_level</span> <span class="n">Verbose</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
@@ -7958,7 +7958,7 @@ __assert_eq / actual: true / expected: true
                             <span class="n">chunks</span>
                             <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_for_each'''</span> <span class="n">near</span><span class="o">.</span><span class="n">log</span>
                     <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span>
-                        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'\@"println\!(""{}"", $0)"'</span><span class="o">)</span>
+                        <span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'\@"println\!(""</span><span class="si">{}</span><span class="s1">"", $0)"'</span><span class="p">)</span>
                     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span><span class="p">,</span> <span class="n">write_line</span> <span class="o">=&gt;</span>
                         <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_line</span>
                 <span class="n">text</span> <span class="o">|&gt;</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">trace_file</span>
@@ -8007,7 +8007,7 @@ __assert_eq / actual: true / expected: true
                         <span class="n">inl</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span>
                         <span class="n">inl</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">24</span>
                         <span class="n">inl</span> <span class="nb">str</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
-                            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>h,<span class="w"> </span>m,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
+                            <span class="err">!</span>\\<span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="err">$</span><span class="s1">'$"format\!(</span><span class="se">\\\"</span><span class="s1">{{:02}}:{{:02}}:{{:02}}</span><span class="se">\\\"</span><span class="s1">, $0, $1, $2)"'</span><span class="p">)</span>
                         <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
                     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                         <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
@@ -8045,14 +8045,14 @@ __assert_eq / actual: true / expected: true
                     <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
                     <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str =</span>
                         <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
-                        <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_black"'</span><span class="o">)</span>
-                        <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_blue"'</span><span class="o">)</span>
-                        <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_green"'</span><span class="o">)</span>
-                        <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_yellow"'</span><span class="o">)</span>
-                        <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"inline_colorization::color_bright_red"'</span><span class="o">)</span>
+                        <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_bright_black"'</span><span class="p">)</span>
+                        <span class="o">|</span> <span class="n">Debug</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_bright_blue"'</span><span class="p">)</span>
+                        <span class="o">|</span> <span class="n">Info</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_bright_green"'</span><span class="p">)</span>
+                        <span class="o">|</span> <span class="ne">Warning</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_yellow"'</span><span class="p">)</span>
+                        <span class="o">|</span> <span class="n">Critical</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_bright_red"'</span><span class="p">)</span>
                     <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level_str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
                     <span class="n">inl</span> <span class="n">color_reset</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str = !\($'</span><span class="s2">"inline_colorization::color_reset"</span><span class="s1">')</span>
-                    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>color,<span class="w"> </span>level_str,<span class="w"> </span>color_reset<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{}}{{}}{{}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
+                    <span class="err">!</span>\\<span class="p">((</span><span class="n">color</span><span class="p">,</span> <span class="n">level_str</span><span class="p">,</span> <span class="n">color_reset</span><span class="p">),</span> <span class="err">$</span><span class="s1">'$"format\!(</span><span class="se">\\\"</span><span class="s1">{{}}{{}}{{}}</span><span class="se">\\\"</span><span class="s1">, $0, $1, $2)"'</span><span class="p">)</span>
                     <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">inl</span> <span class="n">color</span> <span class="o">=</span>
@@ -8096,11 +8096,11 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test1"</span><span class="p">)</span> <span class="nb">id</span>
 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test2"</span><span class="p">)</span> <span class="nb">id</span>

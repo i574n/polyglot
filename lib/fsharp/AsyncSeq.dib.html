@@ -7692,7 +7692,7 @@ a.anchor-link {
 
     <span class="n">member</span> <span class="n">_</span><span class="o">.</span><span class="n">WaitCall</span> <span class="n">text</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">Calls</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="n">text</span> <span class="n">do</span>
-            <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.SwitchToThreadPool<span class="w"> </span><span class="o">()</span>
+            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">SwitchToThreadPool</span> <span class="p">()</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7713,10 +7713,10 @@ a.anchor-link {
 
 <span class="k">async</span> <span class="p">{</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"1"</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>testEvent.Subscribe<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>testEvent.Iter<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.StartChild
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>testEvent.WaitCall<span class="w"> </span><span class="s2">"AddHandler"</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Iter</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">WaitCall</span> <span class="s2">"AddHandler"</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"2"</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>child
+    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"3"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
@@ -7737,7 +7737,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 <span class="ansi-blue-intense-fg">d</span> #1 runWithTimeoutAsync / timeout: 300
+<pre>00:00:02 <span class="ansi-blue-intense-fg">d</span> #1 Async.runWithTimeoutAsync / timeout: 300
 &lt;null&gt;
 
 ["1"; "AddHandler"; "2"; "RemoveHandler"]
@@ -7761,14 +7761,14 @@ a.anchor-link {
 
 <span class="k">async</span> <span class="p">{</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"1"</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>testEvent.Subscribe<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>testEvent.Iter<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.StartChild
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>testEvent.WaitCall<span class="w"> </span><span class="s2">"AddHandler"</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Iter</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">WaitCall</span> <span class="s2">"AddHandler"</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"2"</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">EventInterface</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">(</span><span class="n">fun</span> <span class="n">args</span> <span class="o">-&gt;</span>
         <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="err">$</span><span class="s2">"testEvent.EventInterface.Subscribe(</span><span class="si">{args}</span><span class="s2">)"</span>
     <span class="p">)</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"3"</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>child
+    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"4"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
@@ -7788,7 +7788,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 <span class="ansi-blue-intense-fg">d</span> #2 runWithTimeoutAsync / timeout: 300
+<pre>00:00:02 <span class="ansi-blue-intense-fg">d</span> #2 Async.runWithTimeoutAsync / timeout: 300
 &lt;null&gt;
 
 ["1"; "AddHandler"; "2"; "IObservable.Subscribe"; "3"; "RemoveHandler"; "IObservable.Dispose"]
@@ -7812,12 +7812,12 @@ a.anchor-link {
 
 <span class="k">async</span> <span class="p">{</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"1"</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>testEvent.Subscribe<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>testEvent.Iter<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.StartChild
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>testEvent.WaitCall<span class="w"> </span><span class="s2">"AddHandler"</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">Iter</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">WaitCall</span> <span class="s2">"AddHandler"</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"2"</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">EventInterface</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">(</span><span class="n">fun</span> <span class="n">args</span> <span class="o">-&gt;</span>
         <span class="k">async</span> <span class="p">{</span>
-            <span class="n">do</span><span class="o">!</span><span class="w"> </span>testEvent.WaitCall<span class="w"> </span><span class="s2">"TestEvent.Iter(0: System.Exception: error)"</span>
+            <span class="n">do</span><span class="err">!</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">WaitCall</span> <span class="s2">"TestEvent.Iter(0: System.Exception: error)"</span>
             <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="err">$</span><span class="s2">"testEvent.EventInterface.Subscribe({args.GetException () |&gt; SpiralSm.format_exception})"</span>
         <span class="p">}</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
@@ -7825,7 +7825,7 @@ a.anchor-link {
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"3"</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">Event</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">ErrorEventArgs</span> <span class="p">(</span><span class="ne">Exception</span> <span class="s2">"error"</span><span class="p">))</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"4"</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>child
+    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"5"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
@@ -7857,7 +7857,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:08 <span class="ansi-blue-intense-fg">d</span> #3 runWithTimeoutAsync / timeout: 300
+<pre>00:00:03 <span class="ansi-blue-intense-fg">d</span> #3 Async.runWithTimeoutAsync / timeout: 300
 &lt;null&gt;
 
 ["1"; "AddHandler"; "2"; "IObservable.Subscribe"; "3"; "TestEvent.Subscribe(System.Exception: error)";
@@ -7894,7 +7894,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="o">.</span><span class="n">Ticks</span>
     <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-            <span class="n">do</span><span class="o">!</span><span class="w"> </span>tcs.Task<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.AwaitTask
+            <span class="n">do</span><span class="err">!</span> <span class="n">tcs</span><span class="o">.</span><span class="n">Task</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
             <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="o">.</span><span class="n">Ticks</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="p">())</span>
         <span class="p">})</span>
         <span class="p">()</span>
@@ -7916,15 +7916,15 @@ a.anchor-link {
 <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span> <span class="p">()</span>
 
 <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">child</span><span class="w"> </span><span class="o">=</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span>
         <span class="n">cts</span><span class="o">.</span><span class="n">Token</span>
         <span class="o">|&gt;</span> <span class="n">subscribeToken</span>
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">tryFirst</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
 
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">100</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">100</span>
     <span class="n">cts</span><span class="o">.</span><span class="n">Cancel</span> <span class="p">()</span>
-    <span class="k">return</span><span class="o">!</span><span class="w"> </span>child
+    <span class="k">return</span><span class="err">!</span> <span class="n">child</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>

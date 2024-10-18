@@ -7585,19 +7585,19 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span><span class="s1">' tests =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; () //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; () //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">inl</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">get_record_fields</span> <span class="n">tests</span>
 
     <span class="n">fields</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="o">=&gt;</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"} /* /*"'</span><span class="o">)</span>
-        <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'$"*/ #[test] fn " + !name + "() { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"} /* /*"'</span><span class="p">)</span>
+        <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"*/ #[test] fn " + !name + "() { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="n">fn</span> <span class="n">name</span>
 
     <span class="n">fields</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span>
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"{ //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"{ //"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7642,7 +7642,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">run_tests</span><span class="s1">' {</span>
@@ -7661,48 +7661,44 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed",
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["test", "--", "--show-output"]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b",
 ) } }
-00:00:02 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed)
-00:00:09 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 9.13s
-00:00:09 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed-6e60567ab6ff79cf.exe)
-00:00:09 <span class="ansi-black-intense-fg">v</span> #5 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
-00:00:09 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_d6cb0fda::Spiral_builder::a ... ok
-00:00:09 <span class="ansi-black-intense-fg">v</span> #8 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
-00:00:09 <span class="ansi-black-intense-fg">v</span> #10 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_d6cb0fda::Spiral_builder::a stdout ----
-00:00:09 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
-00:00:09 <span class="ansi-black-intense-fg">v</span> #13 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #14 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
-00:00:09 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_d6cb0fda::Spiral_builder::a
-00:00:09 <span class="ansi-black-intense-fg">v</span> #17 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:09 <span class="ansi-black-intense-fg">v</span> #19 &gt;
-00:00:09 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b)
+00:00:01 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 1.43s
+00:00:01 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b-0e3e9c29ca07fb4c.exe)
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
+00:00:01 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_7c7cec46::Spiral_builder::a ... ok
+00:00:01 <span class="ansi-black-intense-fg">v</span> #8 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">v</span> #10 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_7c7cec46::Spiral_builder::a stdout ----
+00:00:01 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
+00:00:01 <span class="ansi-black-intense-fg">v</span> #13 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #14 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_7c7cec46::Spiral_builder::a
+00:00:01 <span class="ansi-black-intense-fg">v</span> #17 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+00:00:01 <span class="ansi-black-intense-fg">v</span> #19 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
 __assert_eq / actual: 0 / expected: 0
-__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.13s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed-6e60567ab6ff79cf.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.43s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b-0e3e9c29ca07fb4c.exe)</span>
 
 running 1 test
-test module_d6cb0fda::Spiral_builder::a ... ok
+test module_7c7cec46::Spiral_builder::a ... ok
 
 successes:
 
----- module_d6cb0fda::Spiral_builder::a stdout ----
+---- module_7c7cec46::Spiral_builder::a stdout ----
 __assert_eq / actual: "a" / expected: "a"
 
 
 successes:
-    module_d6cb0fda::Spiral_builder::a
+    module_7c7cec46::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "
@@ -7752,7 +7748,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">run_tests</span> <span class="p">{</span>
@@ -7771,48 +7767,44 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed",
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["test", "--", "--show-output"]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b",
 ) } }
-00:00:02 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed)
-00:00:07 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 7.23s
-00:00:07 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed-6e60567ab6ff79cf.exe)
-00:00:07 <span class="ansi-black-intense-fg">v</span> #5 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
-00:00:07 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_d6cb0fda::Spiral_builder::a ... ok
-00:00:07 <span class="ansi-black-intense-fg">v</span> #8 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
-00:00:07 <span class="ansi-black-intense-fg">v</span> #10 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_d6cb0fda::Spiral_builder::a stdout ----
-00:00:07 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
-00:00:07 <span class="ansi-black-intense-fg">v</span> #13 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #14 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
-00:00:07 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_d6cb0fda::Spiral_builder::a
-00:00:07 <span class="ansi-black-intense-fg">v</span> #17 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:07 <span class="ansi-black-intense-fg">v</span> #19 &gt;
-00:00:07 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b)
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.84s
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b-0e3e9c29ca07fb4c.exe)
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_7c7cec46::Spiral_builder::a ... ok
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
+00:00:00 <span class="ansi-black-intense-fg">v</span> #10 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_7c7cec46::Spiral_builder::a stdout ----
+00:00:00 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: "a" / expected: "a"
+00:00:00 <span class="ansi-black-intense-fg">v</span> #13 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #14 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
+00:00:00 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_7c7cec46::Spiral_builder::a
+00:00:00 <span class="ansi-black-intense-fg">v</span> #17 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+00:00:00 <span class="ansi-black-intense-fg">v</span> #19 &gt;
+00:00:00 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 879 }
 __assert_eq / actual: 0 / expected: 0
-__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.23s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_bac7eb38761b02c64ae65dcf78fd860ac30da28713884846f1ee2bfaf11679ed-6e60567ab6ff79cf.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.84s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_8eaa22bdfe2400c3749733be79a3418e8590a070ff431b93564d7268ede2e84b-0e3e9c29ca07fb4c.exe)</span>
 
 running 1 test
-test module_d6cb0fda::Spiral_builder::a ... ok
+test module_7c7cec46::Spiral_builder::a ... ok
 
 successes:
 
----- module_d6cb0fda::Spiral_builder::a stdout ----
+---- module_7c7cec46::Spiral_builder::a stdout ----
 __assert_eq / actual: "a" / expected: "a"
 
 
 successes:
-    module_d6cb0fda::Spiral_builder::a
+    module_7c7cec46::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "
@@ -7862,7 +7854,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>encoding_rs<span class="w"> </span>encoding_rs_io
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">run_tests_log</span> <span class="p">{</span>
@@ -7881,48 +7873,44 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = [
-    "test",
-    "--",
-    "--show-output",
-]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880",
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["test", "--", "--show-output"]; options = { command = cargo test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some(
+    "c:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60",
 ) } }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880)
-00:00:08 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 8.01s
-00:00:08 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880-8fe22c5df8e1e9a9.exe)
-00:00:08 <span class="ansi-black-intense-fg">v</span> #5 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
-00:00:08 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_d3ae8522::Spiral_builder::a ... ok
-00:00:08 <span class="ansi-black-intense-fg">v</span> #8 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
-00:00:08 <span class="ansi-black-intense-fg">v</span> #10 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_d3ae8522::Spiral_builder::a stdout ----
-00:00:08 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: false / expected: false
-00:00:08 <span class="ansi-black-intense-fg">v</span> #13 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #14 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
-00:00:08 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_d3ae8522::Spiral_builder::a
-00:00:08 <span class="ansi-black-intense-fg">v</span> #17 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-00:00:08 <span class="ansi-black-intense-fg">v</span> #19 &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 883 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 !    Compiling spiral_builder_690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60)
+00:00:01 <span class="ansi-black-intense-fg">v</span> #3 !     Finished `test` profile [unoptimized + debuginfo] target(s) in 1.44s
+00:00:01 <span class="ansi-black-intense-fg">v</span> #4 !      Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60-2a6198e0cf20c17b.exe)
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #6 &gt; running 1 test
+00:00:01 <span class="ansi-black-intense-fg">v</span> #7 &gt; test module_cff1306b::Spiral_builder::a ... ok
+00:00:01 <span class="ansi-black-intense-fg">v</span> #8 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #9 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">v</span> #10 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #11 &gt; ---- module_cff1306b::Spiral_builder::a stdout ----
+00:00:01 <span class="ansi-black-intense-fg">v</span> #12 &gt; __assert_eq / actual: false / expected: false
+00:00:01 <span class="ansi-black-intense-fg">v</span> #13 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #14 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #15 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">v</span> #16 &gt;     module_cff1306b::Spiral_builder::a
+00:00:01 <span class="ansi-black-intense-fg">v</span> #17 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+00:00:01 <span class="ansi-black-intense-fg">v</span> #19 &gt;
+00:00:01 <span class="ansi-black-intense-fg">v</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 883 }
 __assert_eq / actual: 0 / expected: 0
-__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.01s</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_0bbdc29f7f27339d153bf2970ec6cd3c77f68d00e5a7e794414405dbbb37a880-8fe22c5df8e1e9a9.exe)</span>
+__assert / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">   Compiling spiral_builder_690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60 v0.0.1 (C:\home\git\polyglot\target\spiral_builder\spiral_builder\packages\Rust\690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.44s</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">     Running unittests spiral_builder.rs (c:\home\git\polyglot\target\spiral_builder\spiral_builder\target\debug\deps\spiral_builder_690a74bff8c881ccf615640aa05f68a83e5e30e0d777d139e361874e34ee0a60-2a6198e0cf20c17b.exe)</span>
 
 running 1 test
-test module_d3ae8522::Spiral_builder::a ... ok
+test module_cff1306b::Spiral_builder::a ... ok
 
 successes:
 
----- module_d3ae8522::Spiral_builder::a stdout ----
+---- module_cff1306b::Spiral_builder::a stdout ----
 __assert_eq / actual: false / expected: false
 
 
 successes:
-    module_d3ae8522::Spiral_builder::a
+    module_cff1306b::Spiral_builder::a
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 "

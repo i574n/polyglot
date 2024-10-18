@@ -7989,7 +7989,7 @@ a.anchor-link {
     <span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">anyhow_error</span> <span class="n">error</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>error,<span class="w"> </span><span class="s1">$'"anyhow::anyhow\!($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"anyhow::anyhow\!($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8021,8 +8021,8 @@ a.anchor-link {
             <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">true</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
     <span class="k">if</span> <span class="n">is_unit</span>
-    <span class="n">then</span> <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"true; $0?"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>fun<span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s1">$''</span>
-    <span class="k">else</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0?"'</span><span class="o">)</span>
+    <span class="n">then</span> <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; $0?"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span>
+    <span class="k">else</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0?"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8048,7 +8048,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_try</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u) : rust.try t =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8075,7 +8075,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap</span><span class="s1">' forall t u. (x : result'</span> <span class="n">t</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.unwrap()"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.unwrap()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'match !x with Ok x -&gt; x | Error e -&gt; failwith $"resultm.unwrap</span><span class="se">\'</span><span class="s1"> / e: </span><span class="si">{e}</span><span class="s1">"'</span>
 </pre></div>
 </div>
@@ -8135,12 +8135,12 @@ a.anchor-link {
     <span class="n">real</span>
         <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="p">(</span><span class="o">~!</span><span class="se">\\</span><span class="o">)</span>
+            <span class="p">(</span><span class="o">~</span><span class="err">!</span>\\<span class="p">)</span>
                 <span class="err">`</span><span class="p">((</span><span class="n">result</span><span class="s1">' t u -&gt; result t u) * (result'</span> <span class="n">t</span> <span class="n">u</span> <span class="o">-&gt;</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span><span class="p">))</span>
                 <span class="err">`</span><span class="p">(</span><span class="n">result</span> <span class="n">t</span> <span class="n">u</span><span class="p">)</span>
                 <span class="p">((</span><span class="n">ok</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="err">$</span><span class="s1">'"match $2 { Ok(()) =&gt; $0(()), Err(e) =&gt; $1(e) }"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">))</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
-            <span class="p">(</span><span class="o">~!</span><span class="se">\\</span><span class="o">)</span>
+            <span class="p">(</span><span class="o">~</span><span class="err">!</span>\\<span class="p">)</span>
                 <span class="err">`</span><span class="p">((</span><span class="n">result</span><span class="s1">' t u -&gt; result t u) * (result'</span> <span class="n">t</span> <span class="n">u</span> <span class="o">-&gt;</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span><span class="p">))</span>
                 <span class="err">`</span><span class="p">(</span><span class="n">result</span> <span class="n">t</span> <span class="n">u</span><span class="p">)</span>
                 <span class="p">((</span><span class="n">ok</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="err">$</span><span class="s1">'"match $2 { Ok(x) =&gt; $0(x), Err(e) =&gt; $1(e) }"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">))</span>
@@ -8169,9 +8169,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span><span class="s1">' forall t e u. (fn : t -&gt; u) (source : result'</span> <span class="n">t</span> <span class="n">e</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' u e =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>source,<span class="w"> </span><span class="s1">$'"true; let _result_map_ = $0.map(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_result_map_"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; let _result_map_ = $0.map(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 })"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result_map_"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8199,7 +8199,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span><span class="s1">''</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e) : result'</span> <span class="n">u</span> <span class="n">e</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
     <span class="n">inl</span> <span class="n">source</span> <span class="o">=</span> <span class="n">join</span> <span class="n">source</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!source.map(|x| !fn(x))"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!source.map(|x| !fn(x))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8228,7 +8228,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">fn</span><span class="p">)</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>source,<span class="w"> </span>fn<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.map_err(|x| $1(x))"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">((</span><span class="n">source</span><span class="p">,</span> <span class="n">fn</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.map_err(|x| $1(x))"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'match !source with Ok x -&gt; Ok x | Error x -&gt; Error (!fn x)'</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u</span>
 </pre></div>
@@ -8256,9 +8256,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">map_error</span><span class="s1">''</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e) : result'</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>source,<span class="w"> </span><span class="s1">$'"true; let _result_map_error__ = $0.map_err(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_result_map_error__"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; let _result_map_error__ = $0.map_err(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 })"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result_map_error__"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8284,7 +8284,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">option_ok_or</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span><span class="o">.</span> <span class="p">(</span><span class="n">e</span> <span class="p">:</span> <span class="n">e</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>source,<span class="w"> </span><span class="s1">$'"$0.ok_or(!e)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.ok_or(!e)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8310,9 +8310,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap_or_else</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e) : u =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>source,<span class="w"> </span><span class="s1">$'"true; let _result_unwrap_or_else = $0.unwrap_or_else(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_result_unwrap_or_else"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; let _result_unwrap_or_else = $0.unwrap_or_else(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 })"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result_unwrap_or_else"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8338,10 +8338,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">map_or_else</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span> <span class="n">u</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="p">)</span> <span class="p">(</span><span class="n">fn2</span> <span class="p">:</span> <span class="n">u</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e) : v =</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>source,<span class="w"> </span><span class="s1">$'"true; let _result_map_or_else = $0.map_or_else(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 }, |x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>fn2<span class="w"> </span>!<span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0 })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"_result_map_or_else"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; let _result_map_or_else = $0.map_or_else(|x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 }, |x| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn2</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"x"'</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; $0 })"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result_map_or_else"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8367,7 +8367,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_ref</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span><span class="o">.</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t e) : result'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">e</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!source.as_ref()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!source.as_ref()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8393,7 +8393,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_ref</span><span class="s1">' forall t e. (source : rust.ref (result'</span> <span class="n">t</span> <span class="n">e</span><span class="p">))</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' (rust.ref t) (rust.ref e) =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!source.as_ref()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!source.as_ref()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8419,7 +8419,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap_or</span><span class="s1">' forall t u. (default : t) (x : result'</span> <span class="n">t</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>default<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.unwrap_or($1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">default</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.unwrap_or($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8445,7 +8445,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">expect</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">error</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u) : t =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.expect(&amp;!error)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.expect(&amp;!error)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8472,7 +8472,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">is_err</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u) : bool =</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.is_err()"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.is_err()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">true</span>
 </pre></div>
 </div>
@@ -8500,7 +8500,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ok</span><span class="s1">' forall t. (x : result'</span> <span class="n">t</span> <span class="n">_</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.ok()"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.ok()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'match !x with Ok x -&gt; Some x | Error _ -&gt; None'</span>
 </pre></div>
 </div>
@@ -8528,7 +8528,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">err</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u =</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"Err($0)"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"Err($0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!x |&gt; Error'</span>
 </pre></div>
 </div>
@@ -8556,7 +8556,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ok</span><span class="s1">''</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u =</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"Ok($0)"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"Ok($0)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!x |&gt; Ok'</span>
 </pre></div>
 </div>
@@ -8583,7 +8583,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">transpose</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">result</span><span class="s1">' t u)) : result'</span> <span class="p">(</span><span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">t</span><span class="p">)</span> <span class="n">u</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.transpose()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.transpose()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8609,7 +8609,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rc_try_unwrap</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t (rust.rc t) =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::rc::Rc::try_unwrap($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::rc::Rc::try_unwrap($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8624,7 +8624,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 
 <span class="n">rust</span><span class="o">.</span><span class="n">new_rc</span> <span class="n">true</span>
 <span class="o">|&gt;</span> <span class="n">rc_try_unwrap</span>

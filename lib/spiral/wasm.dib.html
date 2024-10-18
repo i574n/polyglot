@@ -7890,7 +7890,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">closure_wrap</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">box</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">closure</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"wasm_bindgen::closure::Closure::wrap(!x)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"wasm_bindgen::closure::Closure::wrap(!x)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7916,7 +7916,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">closure_forget</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">closure</span> <span class="p">:</span> <span class="n">closure</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!closure.forget()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span><span class="o">()</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!closure.forget()"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7942,7 +7942,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">closure_as_ref</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">closure</span> <span class="p">:</span> <span class="n">closure</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">js_value</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"wasm_bindgen::closure::Closure::as_ref(&amp;!closure)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"wasm_bindgen::closure::Closure::as_ref(&amp;!closure)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7968,7 +7968,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unchecked_ref</span> <span class="p">(</span><span class="n">ref</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">js_value</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">js_function</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"wasm_bindgen::JsCast::unchecked_ref(!ref)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"wasm_bindgen::JsCast::unchecked_ref(!ref)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7997,7 +7997,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">html</span> <span class="o">=</span> <span class="n">join</span> <span class="n">html</span>
     <span class="n">inl</span> <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
     <span class="n">inl</span> <span class="n">el</span> <span class="o">=</span> <span class="n">join</span> <span class="n">el</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>html,<span class="w"> </span><span class="s1">$'"!el.set_inner_html($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"!el.set_inner_html($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8024,7 +8024,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_js_value</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">js_value</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">json_value</span><span class="p">)</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">join</span> <span class="n">value</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_wasm_bindgen::from_value(!value)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_wasm_bindgen::from_value(!value)"'</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : sm'</span><span class="o">.</span><span class="n">serde_wasm_bindgen_error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span>
 </pre></div>
 </div>

@@ -7713,7 +7713,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_lookup_map</span> <span class="n">prefix</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"near_sdk::store::LookupMap::new(!prefix)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"near_sdk::store::LookupMap::new(!prefix)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7739,7 +7739,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_iterable_set</span> <span class="n">prefix</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"near_sdk::store::IterableSet::new(!prefix)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"near_sdk::store::IterableSet::new(!prefix)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7765,7 +7765,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_vector</span> <span class="n">prefix</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>prefix,<span class="w"> </span><span class="s1">$'"near_sdk::store::vec::Vector::new($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"near_sdk::store::vec::Vector::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7791,7 +7791,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">vector_extend</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">vec</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec t) (vector : rust.ref (rust.mut'</span> <span class="p">(</span><span class="n">vector</span> <span class="n">t</span><span class="p">)))</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>vec,<span class="w"> </span><span class="s1">$'"true; !vector.extend($0); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; !vector.extend($0); //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7817,7 +7817,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">vector_to_vec</span> <span class="n">forall</span> <span class="p">(</span><span class="n">t</span> <span class="p">:</span> <span class="o">*</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="p">)</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">vector</span> <span class="p">:</span> <span class="n">t</span> <span class="p">(</span><span class="n">vector</span> <span class="n">u</span><span class="p">))</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"!vector.iter().map(|x| *x).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"!vector.iter().map(|x| *x).collect::&lt;Vec&lt;_&gt;&gt;()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7843,7 +7843,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">keccak512</span> <span class="p">(</span><span class="n">entropy</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : am'</span><span class="o">.</span><span class="n">vec</span> <span class="n">u8</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>entropy,<span class="w"> </span><span class="s1">$'$"near_sdk::env::keccak512(&amp;$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">entropy</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"near_sdk::env::keccak512(&amp;$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7869,7 +7869,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">log</span> <span class="n">text</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'$"true; near_sdk::log\!(\\\"{{}}\\\", $0)"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"true; near_sdk::log\!(</span><span class="se">\\\"</span><span class="s1">{{}}</span><span class="se">\\\"</span><span class="s1">, $0)"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7895,7 +7895,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">panic_str</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'$"true; near_sdk::env::panic_str(&amp;*$0); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"true; near_sdk::env::panic_str(&amp;*$0); //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7925,7 +7925,7 @@ a.anchor-link {
     <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (lookup_map k v)))</span>
     <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">v</span><span class="p">)</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>key,<span class="w"> </span><span class="s1">$'$"!map.get(&amp;$0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"!map.get(&amp;$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7956,7 +7956,7 @@ a.anchor-link {
     <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (lookup_map k v)))</span>
     <span class="p">:</span> <span class="p">()</span>
     <span class="o">=</span>
-    <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">((</span>key,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"true; !map.insert(&amp;$0, $1); //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'$"true; !map.insert(&amp;$0, $1); //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7986,7 +7986,7 @@ a.anchor-link {
     <span class="p">(</span><span class="nb">set</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (iterable_set t)))</span>
     <span class="p">:</span> <span class="nb">bool</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"!set.insert($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"!set.insert($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8016,7 +8016,7 @@ a.anchor-link {
     <span class="p">(</span><span class="nb">set</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (iterable_set t)))</span>
     <span class="p">:</span> <span class="nb">bool</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"!set.remove($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"!set.remove($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8046,7 +8046,7 @@ a.anchor-link {
     <span class="p">(</span><span class="nb">set</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' (iterable_set t)))</span>
     <span class="p">:</span> <span class="nb">bool</span>
     <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'$"!set.contains($0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"!set.contains($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8130,7 +8130,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">random_seed</span> <span class="p">()</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8 =</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::random_seed()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::random_seed()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8156,7 +8156,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">block_timestamp</span> <span class="p">()</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::block_timestamp()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8182,7 +8182,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">block_height</span> <span class="p">()</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_height()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::block_height()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8208,7 +8208,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">epoch_height</span> <span class="p">()</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::epoch_height()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::epoch_height()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8234,7 +8234,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">account_balance</span> <span class="p">()</span> <span class="p">:</span> <span class="n">near_token</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::account_balance()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::account_balance()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8260,7 +8260,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">predecessor_account_id</span> <span class="p">()</span> <span class="p">:</span> <span class="n">account_id</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::predecessor_account_id()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::predecessor_account_id()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8286,7 +8286,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">signer_account_id</span> <span class="p">()</span> <span class="p">:</span> <span class="n">account_id</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::signer_account_id()"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"near_sdk::env::signer_account_id()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8312,7 +8312,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_yoctonear</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">gas</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">u128</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>gas,<span class="w"> </span><span class="s1">$'"$0.as_yoctonear()"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.as_yoctonear()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

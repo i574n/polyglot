@@ -7745,7 +7745,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">join</span> <span class="n">url</span>
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">join</span> <span class="n">url</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7774,7 +7774,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">join</span> <span class="n">url</span>
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
     <span class="n">inl</span> <span class="n">url</span> <span class="o">=</span> <span class="n">join</span> <span class="n">url</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.post(!url)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.post(!url)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7801,7 +7801,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">request_send</span> <span class="p">(</span><span class="n">request</span> <span class="p">:</span> <span class="n">request_builder</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' reqwest_response reqwest_error) =</span>
     <span class="n">inl</span> <span class="n">request</span> <span class="o">=</span> <span class="n">join</span> <span class="n">request</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"Box::pin(reqwest_wasm::RequestBuilder::send(!request))"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Box::pin(reqwest_wasm::RequestBuilder::send(!request))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7828,7 +7828,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">request_body</span> <span class="p">(</span><span class="n">body</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">request</span> <span class="p">:</span> <span class="n">request_builder</span><span class="p">)</span> <span class="p">:</span> <span class="n">request_builder</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">body</span> <span class="o">=</span> <span class="n">body</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>body,<span class="w"> </span><span class="s1">$'"reqwest_wasm::RequestBuilder::body(!request, $0)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"reqwest_wasm::RequestBuilder::body(!request, $0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7857,7 +7857,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">request</span> <span class="o">=</span> <span class="n">join</span> <span class="n">request</span>
     <span class="n">inl</span> <span class="n">key</span> <span class="o">=</span> <span class="n">key</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>key,<span class="w"> </span>value<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"reqwest_wasm::RequestBuilder::header(!request, $0, $1)"'</span><span class="o">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"reqwest_wasm::RequestBuilder::header(!request, $0, $1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7883,7 +7883,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">request_json</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">obj</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">request</span> <span class="p">:</span> <span class="n">request_builder</span><span class="p">)</span> <span class="p">:</span> <span class="n">request_builder</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"reqwest_wasm::RequestBuilder::json(!request, &amp;!obj)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"reqwest_wasm::RequestBuilder::json(!request, &amp;!obj)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7909,7 +7909,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">response_text</span> <span class="p">(</span><span class="n">response</span> <span class="p">:</span> <span class="n">reqwest_response</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="n">reqwest_error</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"Box::pin(reqwest_wasm::Response::text(!response))"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Box::pin(reqwest_wasm::Response::text(!response))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8192,7 +8192,7 @@ a.anchor-link {
         <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
             <span class="n">trace</span> <span class="n">Verbose</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"networking.test_port_open"'</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"networking.test_port_open"</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">ex</span> <span class="p">}</span>
             <span class="k">return</span> <span class="n">false</span>
 </pre></div>
@@ -8333,7 +8333,7 @@ __assert_eq / actual: false / expected: false
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">retry</span> <span class="n">timeout</span> <span class="n">status</span> <span class="p">}</span>
                 <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                 <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
-    <span class="n">loop</span> <span class="mi">0</span><span class="n">i64</span>
+    <span class="n">loop</span> <span class="mi">1</span><span class="n">i64</span>
 </pre></div>
 </div>
 </div>
@@ -8411,19 +8411,17 @@ __assert_eq / actual: false / expected: false
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 3
 00:00:02 <span class="ansi-black-intense-fg">v</span> #5 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
-00:00:02 <span class="ansi-black-intense-fg">v</span> #6 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = None; status = true }
-00:00:04 <span class="ansi-black-intense-fg">v</span> #7 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
-00:00:05 <span class="ansi-blue-intense-fg">d</span> #8 _2
-00:00:05 <span class="ansi-blue-intense-fg">d</span> #9 _3
-00:00:05 <span class="ansi-blue-intense-fg">d</span> #10 4
-00:00:05 <span class="ansi-black-intense-fg">v</span> #11 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = None; status = false }
-00:00:06 <span class="ansi-black-intense-fg">v</span> #12 networking.wait_for_port_access / { port = 5555; retry = 100; timeout = None; status = false }
-00:00:07 <span class="ansi-blue-intense-fg">d</span> #13 _4
-00:00:07 <span class="ansi-blue-intense-fg">d</span> #14 _5
-00:00:09 <span class="ansi-black-intense-fg">v</span> #15 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
-00:00:09 <span class="ansi-blue-intense-fg">d</span> #16 5
-00:00:09 <span class="ansi-blue-intense-fg">d</span> #17 6
-__assert_between / actual: 2L / expected: struct (2L, 5L)
+00:00:04 <span class="ansi-black-intense-fg">v</span> #6 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #7 _2
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #8 _3
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #9 4
+00:00:06 <span class="ansi-black-intense-fg">v</span> #10 networking.wait_for_port_access / { port = 5555; retry = 100; timeout = None; status = false }
+00:00:07 <span class="ansi-blue-intense-fg">d</span> #11 _4
+00:00:07 <span class="ansi-blue-intense-fg">d</span> #12 _5
+00:00:09 <span class="ansi-black-intense-fg">v</span> #13 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
+00:00:09 <span class="ansi-blue-intense-fg">d</span> #14 5
+00:00:09 <span class="ansi-blue-intense-fg">d</span> #15 6
+__assert_between / actual: 3L / expected: struct (2L, 5L)
 __assert_between / actual: 122L / expected: struct (80L, 200L)
 __assert_eq / actual: true / expected: true
 </pre>
@@ -8503,23 +8501,21 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 3
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #6 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = true }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #10 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #11 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #12 _2
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #13 _3
-00:00:00 <span class="ansi-black-intense-fg">v</span> #14 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #15 4
-00:00:00 <span class="ansi-black-intense-fg">v</span> #16 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #17 _4
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #18 _5
-00:00:00 <span class="ansi-black-intense-fg">v</span> #19 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #20 5
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #21 6
-__assert_between / actual: 7L / expected: struct (4L, 15L)
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #11 _2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #12 _3
+00:00:00 <span class="ansi-black-intense-fg">v</span> #13 async.run_with_timeout_async / { timeout = 60 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #14 4
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #15 _4
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #16 _5
+00:00:00 <span class="ansi-black-intense-fg">v</span> #17 async.run_with_timeout_async / { timeout = 60 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #18 5
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #19 6
+__assert_between / actual: 8L / expected: struct (4L, 15L)
 __assert_between / actual: 8L / expected: struct (5L, 20L)
 __assert_eq / actual: true / expected: true
 </pre>
@@ -8637,15 +8633,14 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 3
 00:00:02 <span class="ansi-black-intense-fg">v</span> #7 networking.test_port_open / { port = 5557; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #8 4
-00:00:02 <span class="ansi-black-intense-fg">v</span> #9 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = None; status = false }
-00:00:03 <span class="ansi-black-intense-fg">v</span> #10 networking.wait_for_port_access / { port = 5555; retry = 100; timeout = None; status = false }
-00:00:04 <span class="ansi-blue-intense-fg">d</span> #11 _4
-00:00:04 <span class="ansi-blue-intense-fg">d</span> #12 _5
-00:00:06 <span class="ansi-black-intense-fg">v</span> #13 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
-00:00:06 <span class="ansi-blue-intense-fg">d</span> #14 5
-00:00:06 <span class="ansi-blue-intense-fg">d</span> #15 6
+00:00:03 <span class="ansi-black-intense-fg">v</span> #9 networking.wait_for_port_access / { port = 5555; retry = 100; timeout = None; status = false }
+00:00:04 <span class="ansi-blue-intense-fg">d</span> #10 _4
+00:00:04 <span class="ansi-blue-intense-fg">d</span> #11 _5
+00:00:06 <span class="ansi-black-intense-fg">v</span> #12 networking.test_port_open / { port = 5555; ex = System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.) }
+00:00:06 <span class="ansi-blue-intense-fg">d</span> #13 5
+00:00:06 <span class="ansi-blue-intense-fg">d</span> #14 6
 __assert_eq / actual: 5557 / expected: 5557
-__assert_between / actual: 109L / expected: struct (50L, 150L)
+__assert_between / actual: 110L / expected: struct (50L, 150L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8720,20 +8715,19 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 _1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _3
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 3
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 4
-00:00:00 <span class="ansi-black-intense-fg">v</span> #9 networking.wait_for_port_access / { port = 5555; retry = 0; timeout = Some 60; status = false }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #10 _4
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #11 _5
-00:00:00 <span class="ansi-black-intense-fg">v</span> #12 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #13 5
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #14 6
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #9 _4
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #10 _5
+00:00:00 <span class="ansi-black-intense-fg">v</span> #11 async.run_with_timeout_async / { timeout = 60 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #12 5
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #13 6
 __assert_eq / actual: 5557 / expected: 5557
-__assert_between / actual: 4L / expected: struct (2L, 10L)
+__assert_between / actual: 3L / expected: struct (2L, 10L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>

@@ -1097,17 +1097,16 @@ mod module_31a2fc18 {
             v5: Option<i64>,
             v6: string,
             v7: string,
-            v8: string,
-            v9: std::string::String,
+            v8: std::string::String,
         ) -> string {
-            let v10: string = Chat_contract::method29(v9);
+            let v9: string = Chat_contract::method29(v8);
             Chat_contract::method17(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
                 v0_1.l0.get().clone(),
-                v8,
-                v10
+                string("chat_contract.get_alias_map"),
+                v9
             ))
         }
         pub fn closure18(v0_1: std::string::String, unitVar: ()) {
@@ -1139,7 +1138,6 @@ mod module_31a2fc18 {
                     v24.clone(),
                     Chat_contract::method7(v19, v20, v21, v22, v23, v24),
                     Chat_contract::method11(),
-                    string("chat_contract.get_alias_map"),
                     v0_1,
                 ))
             };
@@ -1629,7 +1627,7 @@ mod module_31a2fc18 {
                         Chat_contract::closure18(v665.clone(), ());
                         ()
                     };
-                    let v715: () = {
+                    let v711: () = {
                         Chat_contract::closure19(Chat_contract::method30(), ());
                         ()
                     };
@@ -1638,10 +1636,10 @@ mod module_31a2fc18 {
             } //;
         } /* c;
           {
-              let v759:
+              let v755:
                       bool =
                   true; // ??? / i: 7uy / i': 1uy / acc: 11uy / n: 2uy;
-              let v761:
+              let v757:
                       bool =
                   true; */
  // ???? / i: 7uy / i': 2uy / acc: 11uy / n: 2uy;
@@ -1659,10 +1657,10 @@ mod module_31a2fc18 {
             } //;
         } /* c;
           {
-              let v773:
+              let v769:
                       bool =
                   true; // ??? / i: 8uy / i': 1uy / acc: 13uy / n: 1uy;
-              let v775:
+              let v771:
                       bool =
                   true; */
  // ???? / i: 8uy / i': 2uy / acc: 13uy / n: 1uy;
@@ -1671,49 +1669,49 @@ mod module_31a2fc18 {
             {
                 //;
                 {
-                    let v779: bool = true;
+                    let v775: bool = true;
                     {
                         (); // ?? / i': 1uy / n: 14uy;
-                        let v781: bool = true;
+                        let v777: bool = true;
                         {
                             (); // ?? / i': 2uy / n: 14uy;
-                            let v783: bool = true;
+                            let v779: bool = true;
                             {
                                 (); // ?? / i': 3uy / n: 14uy;
-                                let v785: bool = true;
+                                let v781: bool = true;
                                 {
                                     (); // ?? / i': 4uy / n: 14uy;
-                                    let v787: bool = true;
+                                    let v783: bool = true;
                                     {
                                         (); // ?? / i': 5uy / n: 14uy;
-                                        let v789: bool = true;
+                                        let v785: bool = true;
                                         {
                                             (); // ?? / i': 6uy / n: 14uy;
-                                            let v791: bool = true;
+                                            let v787: bool = true;
                                             {
                                                 (); // ?? / i': 7uy / n: 14uy;
-                                                let v793: bool = true;
+                                                let v789: bool = true;
                                                 {
                                                     (); // ?? / i': 8uy / n: 14uy;
-                                                    let v795: bool = true;
+                                                    let v791: bool = true;
                                                     {
                                                         (); // ?? / i': 9uy / n: 14uy;
-                                                        let v797: bool = true;
+                                                        let v793: bool = true;
                                                         {
                                                             (); // ?? / i': 10uy / n: 14uy;
-                                                            let v799: bool = true;
+                                                            let v795: bool = true;
                                                             {
                                                                 (); // ?? / i': 11uy / n: 14uy;
-                                                                let v801: bool = true;
+                                                                let v797: bool = true;
                                                                 {
                                                                     (); // ?? / i': 12uy / n: 14uy;
-                                                                    let v803: bool = true;
+                                                                    let v799: bool = true;
                                                                     {
                                                                         (); // ?? / i': 13uy / n: 14uy;
-                                                                        let v805: bool = true;
+                                                                        let v801: bool = true;
                                                                         {
                                                                             (); // ?? / i': 14uy / n: 14uy;
-                                                                            let v807: bool = true;
+                                                                            let v803: bool = true;
                                                                             {
                                                                                 {
                                                                                     (); // ? / i': 15uy / n: 14uy;
