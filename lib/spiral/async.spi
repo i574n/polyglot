@@ -406,12 +406,12 @@ inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
                     | Ok result => Some result
                     | Error ex when ex |> sm'.format_debug |> sm'.contains "System.TimeoutException" =>
                         trace Verbose
-                            fun () => $'"async.run_with_timeout_async"'
+                            fun () => "async.run_with_timeout_async"
                             fun () => { timeout }
                         None
                     | Error (ex : exn) =>
                         trace Critical
-                            fun () => $'$"async.run_with_timeout_async**"'
+                            fun () => "async.run_with_timeout_async**"
                             fun () => { timeout ex = ex |> sm'.format_exception }
                         None
                 |> return_await

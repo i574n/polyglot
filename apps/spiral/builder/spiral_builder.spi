@@ -446,11 +446,6 @@ inl get_empty_cargo_toml_content () =
 /// ### process_rust
 inl process_rust { fs_path deps trace_level runtime cleanup } =
     open runtime
-    inl is_trace = trace_level = Verbose
-    inl _trace (fn : () -> string) =
-        if is_trace
-        then trace Info (fun () => $'$"spiral_builder.process_rust / {!fn ()}"') id
-        else fn () |> console.write_line
 
     inl extension = "rs"
     inl code = fs_path |> file_system.read_all_text
@@ -860,7 +855,7 @@ inl process_dib { path retries working_directory } =
             then exit_code, repl_result
             else
                 trace Debug
-                    fun () => $'"spiral_builder.run / repl error"'
+                    fun () => "spiral_builder.run / repl error"
                     fun () => { exit_code repl_result retry = $'$"{!retry}/{!retries}"' : string }
                 loop (retry + 1)
         loop 1
@@ -876,7 +871,7 @@ inl process_dib { path retries working_directory } =
                 |> runtime.execute_with_options
 
             trace Debug
-                fun () => $'"spiral_builder.run / dib / jupyter nbconvert"'
+                fun () => "spiral_builder.run / dib / jupyter nbconvert"
                 fun () => { exit_code jupyter_result_length = jupyter_result |> sm'.length : i32 }
 
             if exit_code <>. 0
@@ -890,7 +885,7 @@ inl process_dib { path retries working_directory } =
                     |> runtime.execute_with_options
 
                 trace Debug
-                    fun () => $'"spiral_builder.run / dib / html cell ids"'
+                    fun () => "spiral_builder.run / dib / html cell ids"
                     fun () => { exit_code pwsh_replace_html_result_length = pwsh_replace_html_result |> sm'.length : i32 }
 
                 $'$"{!path}.html"'
@@ -907,7 +902,7 @@ inl process_dib { path retries working_directory } =
                 exit_code, $'$"repl_result: {!repl_result}\n\njupyter_result: {!jupyter_result}\n\npwsh_replace_html_result: {!pwsh_replace_html_result}"'
 
     trace Debug
-        fun () => $'"spiral_builder.run / dib"'
+        fun () => "spiral_builder.run / dib"
         fun () => { exit_code result_length = result |> sm'.length : i32 }
 
     if exit_code <>. 0
@@ -922,11 +917,6 @@ inl process_dib { path retries working_directory } =
 /// ### process_typescript
 inl process_typescript { fs_path deps trace_level } =
     inl extension = "ts"
-    inl is_trace = trace_level = Verbose
-    inl _trace (fn : () -> string) =
-        if is_trace
-        then trace Info (fun () => $'$"spiral_builder.process_typescript / {!fn ()}"') id
-        else fn () |> console.write_line
 
     inl code = fs_path |> file_system.read_all_text
 
@@ -999,7 +989,7 @@ inl process_typescript { fs_path deps trace_level } =
                 | Some version => Some (path, version)
             | Error error =>
                 trace Critical
-                    fun () => $'"spiral_builder.process_typescript / stream_filter_map"'
+                    fun () => "spiral_builder.process_typescript / stream_filter_map"
                     fun () => { error }
                 None
             |> optionm'.box
@@ -1016,7 +1006,7 @@ inl process_typescript { fs_path deps trace_level } =
         |> am'.try_item 0
 
     trace Debug
-        fun () => $'"spiral_builder.process_typescript"'
+        fun () => "spiral_builder.process_typescript"
         fun () => { version }
 
     match version with
@@ -1032,7 +1022,7 @@ inl process_typescript { fs_path deps trace_level } =
 
     if exit_code <>. 0 then
         trace Critical
-            fun () => $'$"spiral_builder.process_typescript"'
+            fun () => "spiral_builder.process_typescript"
             fun () => { exit_code dotnet_fable_result }
         { extension = Some extension; code = None; code_path = None; output = Some dotnet_fable_result }
     else
@@ -1072,7 +1062,7 @@ inl process_typescript { fs_path deps trace_level } =
 
         inl new_code_path = package_dir </> $'$"{!workspace_name}.{!extension}"'
         trace Debug
-            fun () => $'"spiral_builder.process_typescript"'
+            fun () => "spiral_builder.process_typescript"
             fun () => { new_code_path }
         inl new_code = new_code_path |> file_system.read_all_text
 
@@ -1198,7 +1188,7 @@ inl process_python { fs_path deps trace_level } =
 
     if exit_code <>. 0 then
         trace Critical
-            fun () => $'$"spiral_builder.process_python"'
+            fun () => "spiral_builder.process_python"
             fun () => { exit_code dotnet_fable_result }
         { extension = Some extension; code = None; code_path = None; output = Some dotnet_fable_result }
     else
@@ -1238,7 +1228,7 @@ inl process_python { fs_path deps trace_level } =
 
         inl new_code_path = package_dir </> $'$"{!workspace_name}.{!extension}"'
         trace Debug
-            fun () => $'"spiral_builder.process_python"'
+            fun () => "spiral_builder.process_python"
             fun () => { new_code_path }
         inl new_code = new_code_path |> file_system.read_all_text
 
@@ -1696,7 +1686,7 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
 
             | Some (subcommand, arg_matches) =>
                 trace Debug
-                    fun () => $'"spiral_builder.run / invalid subcommand"'
+                    fun () => "spiral_builder.run / invalid subcommand"
                     fun () => { subcommand arg_matches }
 
                 { extension = None; code = None; code_path = None; output = None }
@@ -1731,7 +1721,7 @@ inl main (args : array_base string) =
     inl trace_state = get_trace_state_or_init None
 
     trace Debug
-        fun () => $'$"spiral_builder.main"'
+        fun () => "spiral_builder.main"
         fun () => { args }
 
     inl command = get_command ()

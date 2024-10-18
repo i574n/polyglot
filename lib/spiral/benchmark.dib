@@ -65,7 +65,7 @@ inl run forall input expected.
 
     console.write_line ""
     trace Verbose
-        fun () => $'$"benchmark.run"'
+        fun () => "benchmark.run"
         fun () => { input_str = input_str |> sm'.ellipsis_end 40 }
 
     inl results_with_time : array_base _ =
@@ -78,7 +78,7 @@ inl run forall input expected.
                 fun () => solution input
                 |> run' count
             trace Verbose
-                fun () => $'$"benchmark.run / solutions.map"'
+                fun () => "benchmark.run / solutions.map"
                 fun () => { i = i + 1; test_name time }
             result, time
 
@@ -109,7 +109,7 @@ inl run_all forall input expected.
     console.write_line ""
     console.write_line "```"
     trace Verbose
-        fun () => $'$"benchmark.run_all"'
+        fun () => "benchmark.run_all"
         fun () => { test_name count }
     test_cases
     |> listm'.box
@@ -231,7 +231,7 @@ inl sort_result_list results =
     |> listm'.unbox
     |> listm.iter fun ((i : i32), avg) =>
         trace Verbose
-            fun () => $'$"benchmark.sort_result_list / averages.iter"'
+            fun () => "benchmark.sort_result_list / averages.iter"
             fun () => { i = i + 1; avg }
     console.write_line "```"
 
