@@ -17183,7 +17183,7 @@ mod module_7e2cd9e0 {
                                                                                        !=
                                                                                        true
                                                                                    {
-                                                                                    sprintf!("cargo build --release --target wasm32-unknown-unknown --manifest-path \"{}\"",
+                                                                                    sprintf!("cargo +nightly-2024-07-14 build --release --target wasm32-unknown-unknown --manifest-path \"{}\"",
                                                                                              v1867.clone())
                                                                                 } else {
                                                                                     sprintf!("cargo run --manifest-path \"{}\"",
