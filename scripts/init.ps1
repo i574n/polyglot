@@ -58,10 +58,14 @@ if (!(Search-Command "rustup")) {
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }
 }
-rustup install nightly-2024-10-07
-rustup install nightly-2024-07-14
 
+rustup install nightly-2024-07-14
+rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
+rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
+
+rustup install nightly-2024-10-07
 rustup default nightly-2024-10-07
+
 
 if ($init) {
     exit
