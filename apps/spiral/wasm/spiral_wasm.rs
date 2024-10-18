@@ -2999,59 +2999,63 @@ mod module_fb49c4a9 {
             let v289: std::pin::Pin<
                 Box<dyn std::future::Future<Output = Result<u8, anyhow::Error>>>,
             > = Spiral_wasm::method24(v3);
-            let v291: Result<u8, anyhow::Error> = futures::executor::block_on(v289);
-            let v292 = Spiral_wasm::method54();
-            let v303: Result<u8, std::string::String> = v291.map_err(|x| v292(x));
-            let v308: Spiral_wasm::US8 = match &v303 {
-                Err(v303_1_0) => Spiral_wasm::closure37((), v303_1_0.clone()),
-                Ok(v303_0_0) => Spiral_wasm::closure36((), v303_0_0.clone()),
+            let v291 = tokio::runtime::Builder::new_multi_thread()
+                .enable_all()
+                .build()
+                .unwrap();
+            let v293: Result<u8, anyhow::Error> = v291.handle().block_on(v289);
+            let v294 = Spiral_wasm::method54();
+            let v305: Result<u8, std::string::String> = v293.map_err(|x| v294(x));
+            let v310: Spiral_wasm::US8 = match &v305 {
+                Err(v305_1_0) => Spiral_wasm::closure37((), v305_1_0.clone()),
+                Ok(v305_0_0) => Spiral_wasm::closure36((), v305_0_0.clone()),
             };
-            match &v308 {
-                Spiral_wasm::US8::US8_0(v308_0_0) => {
+            match &v310 {
+                Spiral_wasm::US8::US8_0(v310_0_0) => {
                     if let Spiral_wasm::US4::US4_0(v285_0_0) = &v285 {
-                        let v311: string = sprintf!(
+                        let v313: string = sprintf!(
                             "spiral_wasm.main / retries: {} / exception: \'{}\'",
-                            v308_0_0.clone(),
+                            v310_0_0.clone(),
                             match &v285 {
                                 Spiral_wasm::US4::US4_0(x) => x.clone(),
                                 _ => unreachable!(),
                             }
                         );
-                        let v314: Result<(), string> = Err(v311);
-                        v314.unwrap();
+                        let v316: Result<(), string> = Err(v313);
+                        v316.unwrap();
                         ();
                         ()
                     }
                 }
-                Spiral_wasm::US8::US8_1(v308_1_0) => {
-                    let v329: std::string::String = v308_1_0.clone();
+                Spiral_wasm::US8::US8_1(v310_1_0) => {
+                    let v331: std::string::String = v310_1_0.clone();
                     if let Spiral_wasm::US4::US4_0(v285_0_0) = &v285 {
-                        let v330: string = match &v285 {
+                        let v332: string = match &v285 {
                             Spiral_wasm::US4::US4_0(x) => x.clone(),
                             _ => unreachable!(),
                         };
-                        if string("") == v330.clone() {
+                        if string("") == v332.clone() {
                             ()
                         } else {
                             if contains(
-                                fable_library_rust::String_::fromString(v329.clone()),
-                                v330.clone(),
+                                fable_library_rust::String_::fromString(v331.clone()),
+                                v332.clone(),
                             ) {
                                 ()
                             } else {
-                                let v337: string = sprintf!(
+                                let v339: string = sprintf!(
                                     "spiral_wasm.main / exception: \'{}\' / error: {}",
-                                    v330,
-                                    v329
+                                    v332,
+                                    v331
                                 );
-                                let v340: Result<(), string> = Err(v337);
-                                v340.unwrap();
+                                let v342: Result<(), string> = Err(v339);
+                                v342.unwrap();
                                 ();
                                 ()
                             }
                         }
                     } else {
-                        let v357: u8 = v303.clone().unwrap();
+                        let v359: u8 = v305.clone().unwrap();
                         ()
                     }
                 }
