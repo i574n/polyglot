@@ -7832,7 +7832,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
         <span class="n">arg_matches</span>
         <span class="o">|&gt;</span> <span class="n">run</span>
-        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">block_on</span>
+        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">block_on_tokio</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">'</span>
 
     <span class="k">match</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unbox</span><span class="p">,</span> <span class="n">exception</span> <span class="k">with</span>

@@ -51,58 +51,58 @@ type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
 #!markdown
 
-### block_on
+### block_on_tokio
 
 #!spiral
 
-inl block_on forall t. (fn : future_pin t) : t =
+inl block_on_tokio forall t. (fn : future_pin t) : t =
     inl runtime : infer =
         !\($'$"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"')
     !\\(fn, $'"!runtime.handle().block_on($0)"')
 
 #!markdown
 
-### block_on'
+### block_on_futures_lite
 
 #!spiral
 
-inl block_on' forall t. (fn : future_pin t) : t =
+inl block_on_futures_lite forall t. (fn : future_pin t) : t =
     !\\(fn, $'"futures_lite::future::block_on($0)"')
 
 #!markdown
 
-### block_on''
+### block_on_futures
 
 #!spiral
 
-inl block_on'' forall t. (fn : future_pin t) : t =
+inl block_on_futures forall t. (fn : future_pin t) : t =
     !\\(fn, $'"futures::executor::block_on($0)"')
 
 #!markdown
 
-### block_on'''
+### block_on_async_std
 
 #!spiral
 
-inl block_on''' forall t. (fn : future_pin t) : t =
+inl block_on_async_std forall t. (fn : future_pin t) : t =
     !\\(fn, $'"async_std::task::block_on($0)"')
 
 #!markdown
 
-### block_on_send
+### block_on_tokio_send
 
 #!spiral
 
-inl block_on_send forall t. (fn : future_pin_send t) : t =
+inl block_on_tokio_send forall t. (fn : future_pin_send t) : t =
     !\($'"tokio::runtime::block_on(!fn)"')
 
 #!markdown
 
-### stream_ext
+### stream_ext_tokio
 
 #!spiral
 
-nominal stream_ext =
+nominal stream_ext_tokio =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio_stream::StreamExt\")>]\n#endif\ntype tokio_stream_StreamExt = class end"
         $'' : $'tokio_stream_StreamExt'
@@ -110,11 +110,11 @@ nominal stream_ext =
 
 #!markdown
 
-### join_handle
+### join_handle_tokio
 
 #!spiral
 
-nominal join_handle t =
+nominal join_handle_tokio t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::task::JoinHandle<$0>\")>]\n#endif\ntype tokio_task_JoinHandle<'T> = class end"
         $'' : $'tokio_task_JoinHandle<`t>'
@@ -122,11 +122,11 @@ nominal join_handle t =
 
 #!markdown
 
-### stream_collect
+### stream_collect_tokio
 
 #!spiral
 
-inl stream_collect forall t u.
+inl stream_collect_tokio forall t u.
     (stream : t)
     : future_pin (am'.vec u)
     =
@@ -134,11 +134,23 @@ inl stream_collect forall t u.
 
 #!markdown
 
-### stream_next
+### stream_collect_futures
 
 #!spiral
 
-inl stream_next forall t u.
+inl stream_collect_futures forall t u.
+    (stream : t)
+    : future_pin (am'.vec u)
+    =
+    !\($'"Box::pin(futures::stream::StreamExt::collect(!stream))"')
+
+#!markdown
+
+### stream_next_tokio
+
+#!spiral
+
+inl stream_next_tokio forall t u.
     (stream : t)
     : future_pin (optionm'.option' u)
     =
@@ -147,11 +159,11 @@ inl stream_next forall t u.
 
 #!markdown
 
-### stream_filter_map
+### stream_filter_map_tokio
 
 #!spiral
 
-inl stream_filter_map forall t u v.
+inl stream_filter_map_tokio forall t u v.
     (fn : u -> optionm'.option' v)
     (stream : t)
     : infer' v
@@ -161,11 +173,25 @@ inl stream_filter_map forall t u v.
 
 #!markdown
 
-### spawn
+### stream_filter_map_futures
 
 #!spiral
 
-inl spawn forall t. (fn : future_pin_send t) : join_handle t =
+inl stream_filter_map_futures forall t u v.
+    (fn : u -> optionm'.option' v)
+    (stream : t)
+    : infer' v
+    =
+    inl fn = join fn
+    !\($'"futures::stream::StreamExt::filter_map(!stream, |x| async { !fn(x) })"')
+
+#!markdown
+
+### spawn_tokio
+
+#!spiral
+
+inl spawn_tokio forall t. (fn : future_pin_send t) : join_handle_tokio t =
     !\($'"tokio::runtime::spawn(!fn)"')
 
 #!markdown
@@ -186,11 +212,11 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!markdown
 
-### fuse
+### fuse_tokio
 
 #!spiral
 
-nominal fuse t =
+nominal fuse_tokio t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::prelude::stream::Fuse<$0>\")>]\n#endif\ntype tokio_prelude_stream_Fuse<'T> = class end"
         $'' : $'tokio_prelude_stream_Fuse<`t>'
@@ -198,11 +224,19 @@ nominal fuse t =
 
 #!markdown
 
+### fuse'
+
+#!spiral
+
+type fuse' t = fuse_tokio t
+
+#!markdown
+
 ### future_fuse
 
 #!spiral
 
-inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
+inl future_fuse forall t. (x : future_pin t) : fuse' (future_pin t) =
     !\($'"futures::future::FutureExt::fuse(!x)"')
 
 #!markdown
@@ -233,11 +267,19 @@ inl join_all_send forall t. (x : am'.vec (future_pin_send t)) : join_all (future
 
 #!markdown
 
+### join_handle'
+
+#!spiral
+
+type join_handle' t = join_handle_tokio t
+
+#!markdown
+
 ### await_handle
 
 #!spiral
 
-inl await_handle forall t. (x : join_handle t) : t =
+inl await_handle forall t. (x : join_handle' t) : t =
     !\($'"!x.await"')
 
 #!markdown
@@ -703,12 +745,12 @@ inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
                     | Ok result => Some result
                     | Error ex when ex |> sm'.format_debug |> sm'.contains "System.TimeoutException" =>
                         trace Verbose
-                            fun () => $'"async.run_with_timeout_async"'
+                            fun () => "async.run_with_timeout_async"
                             fun () => { timeout }
                         None
                     | Error (ex : exn) =>
                         trace Critical
-                            fun () => $'$"async.run_with_timeout_async**"'
+                            fun () => "async.run_with_timeout_async**"
                             fun () => { timeout ex = ex |> sm'.format_exception }
                         None
                 |> return_await

@@ -34,15 +34,6 @@ module Async =
         return fn x
     }
 
-    /// ## catch
-    let inline catch a =
-        a
-        |> Async.Catch
-        |> map (function
-            | Choice1Of2 result -> Ok result
-            | Choice2Of2 ex -> Error ex
-        )
-
     /// ## runWithTimeoutChoiceAsync
     let inline runWithTimeoutChoiceAsync (timeout : int) fn =
         let _locals () = $"timeout: {timeout} / {_locals ()}"
@@ -81,6 +72,15 @@ module Async =
         |> runWithTimeoutChoiceAsync timeout
         |> Async.RunSynchronously
 
+    /// ## catch
+    let inline catch a =
+        a
+        |> Async.Catch
+        |> map (function
+            | Choice1Of2 result -> Ok result
+            | Choice2Of2 ex -> Error ex
+        )
+
     /// ## runWithTimeoutAsync
     let inline runWithTimeoutAsync (timeout : int) fn = async {
         let _locals () = $"timeout: {timeout} / {_locals ()}"
@@ -91,10 +91,10 @@ module Async =
             |> map (function
                 | Ok result -> Some result
                 | Error (:? System.TimeoutException as ex) ->
-                    trace Debug (fun () -> $"runWithTimeoutAsync") _locals
+                    trace Debug (fun () -> $"Async.runWithTimeoutAsync") _locals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutAsync** / ex: %A{ex}") _locals
+                    trace Critical (fun () -> $"Async.runWithTimeoutAsync** / ex: %A{ex}") _locals
                     None
             )
     }
@@ -122,7 +122,7 @@ module Async =
                 return None, _locals
             | ex ->
                 trace Critical
-                    (fun () -> "runWithTimeoutStrict / async error")
+                    (fun () -> "Async.runWithTimeoutStrict / async error")
                     (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
                 return raise ex
         }
@@ -143,12 +143,12 @@ module Async =
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
             trace Warning
-                (fun () -> "runWithTimeoutStrict")
+                (fun () -> "Async.runWithTimeoutStrict")
                 (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             None
         | ex ->
             trace Critical
-                (fun () -> "runWithTimeoutStrict / task error")
+                (fun () -> "Async.runWithTimeoutStrict / task error")
                 (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             None
 

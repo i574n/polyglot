@@ -222,7 +222,7 @@ inl main (args : array_base string) =
     inl result =
         arg_matches
         |> run
-        |> async.block_on
+        |> async.block_on_tokio
         |> resultm.map_error' sm'.format'
 
     match result |> resultm.unbox, exception with

@@ -17,7 +17,7 @@ jobs:
 
       - uses: moonrepo/setup-rust@v1
         with:
-          channel: 'nightly-2024-07-14'
+          channel: 'nightly-2024-10-07'
           components: 'clippy,rust-src,rustfmt'
           targets: 'wasm32-unknown-unknown'
 
@@ -27,11 +27,11 @@ jobs:
           cache: true
           cache-dependency-path: paket.lock
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 21
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -51,7 +51,7 @@ jobs:
         env:
             NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gh-pages
           path: dist
@@ -66,12 +66,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: gh-pages
           path: gh-pages
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: gh-pages

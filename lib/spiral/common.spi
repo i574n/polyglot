@@ -44,7 +44,7 @@ inl retry_fn' retries fn =
         then result
         else
             trace Debug
-                fun () => $'"common.retry_fn\' / loop"'
+                fun () => "common.retry_fn\' / loop"
                 fun () => { is_error retry = $'$"{!retry}/{!retries}"' : string; result }
             loop (retry + 1)
     loop 1

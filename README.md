@@ -19,35 +19,89 @@ pwsh scripts/build.ps1
 
 ### Code and Documentation
 
-- Repository File Tree
+<table>
+
+<tr>
+<td>
+
+Documentation
+
+</td>
+<td>
+
+- Repository File Tree (HTML)
 <https://i574n.github.io/polyglot>
 
-- Initialization Output
+</td>
+</tr>
+
+<tr>
+<td>
+
+Build
+
+</td>
+<td>
+
+- Initialization Output (PowerShell)
 <https://i574n.github.io/polyglot/scripts/init.dib.html>
 
-- Full Build Output
+- Full Build Output (PowerShell)
 <https://i574n.github.io/polyglot/scripts/build.dib.html>
 
-- Physics Sample: "Learn Physics with Functional Programming" book
-<https://i574n.github.io/polyglot/lib/spiral/physics.dib.html>
+- Spiral Supervisor Code (F#)
+<https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+Dice Sample
+
+</td>
+<td>
+
+- Dice Library
+<https://i574n.github.io/dice/lib/dice.dib.html>
+
+- Dice Contract
+<https://i574n.github.io/dice/contract/dice_contract.dib.html>
 
 - Smart Contract Dice Rolls History (Rust WASM frontend, display of on-chain data using NEAR Protocol queried from their Public API)
 <https://i574n.github.io/dice/ui/dist>
 
-- Dice Core Code
-<https://i574n.github.io/dice/lib/dice.dib.html>
+</td>
+</tr>
 
-- Computational Mathematics: Unit Testing With Spiral, Rust and Python
-<https://i574n.github.io/polyglot/lib/math/math.dib.html>
+<tr>
+<td>
 
-- Spiral Supervisor Code
-<https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
+Other Samples
+
+</td>
+<td>
+
+- Performance Tests
+<https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
+
+- Parsing Library
+<https://i574n.github.io/polyglot/lib/spiral/parsing.dib.html>
+
+- Physics Sample: "Learn Physics with Functional Programming" book
+<https://i574n.github.io/polyglot/lib/spiral/physics.dib.html>
 
 - Domain Modeling Sample: Scheduling With Recurrency
 <https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
 
-- Performance Tests
-<https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
+- Computational Mathematics: Unit Testing With Spiral, Rust and Python
+<https://i574n.github.io/polyglot/lib/math/math.dib.html>
+
+</td>
+</tr>
+
+</table>
 
 ### Social
 

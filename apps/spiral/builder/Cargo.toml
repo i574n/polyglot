@@ -17,8 +17,7 @@ chrono = { workspace = true }
 regex = { workspace = true }
 clap = { workspace = true }
 serde_json = { workspace = true }
-tokio = { workspace = true }
-tokio-stream = ">=0.1,<1"
+futures = { workspace = true }
 encoding_rs = ">=0.8,<1"
 encoding_rs_io = ">=0.1,<1"
 rand = "~0.9.0-alpha.2"

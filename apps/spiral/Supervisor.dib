@@ -58,7 +58,7 @@ let inline sendJson (port : int) (json : string) = async {
         try
             let connection = HubConnectionBuilder().WithUrl($"http://{host}:{port}").Build()
             do! connection.StartAsync () |> Async.AwaitTask
-            let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
+            let! result = connection.InvokeAsync<string> ("ClientToServerMsg", json) |> Async.AwaitTask
             do! connection.StopAsync () |> Async.AwaitTask
             trace Verbose (fun () -> $"Supervisor.sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / result: {result |> Option.ofObj |> Option.map (SpiralSm.ellipsis_end 200)}") _locals
             return Some result
@@ -66,7 +66,7 @@ let inline sendJson (port : int) (json : string) = async {
             trace Critical (fun () -> $"Supervisor.sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / ex: {ex |> SpiralSm.format_exception}") _locals
             return None
     else
-        trace Debug (fun () -> "Supervisor.sendJson / port: {port} / error: port not open") _locals
+        trace Debug (fun () -> $"Supervisor.sendJson / port: {port} / error: port not open") _locals
         return None
 }
 
@@ -177,22 +177,23 @@ let inline awaitCompiler port cancellationToken = async {
                                     try
                                         let pingObj = {| Ping = true |}
                                         let! pingResult = pingObj |> sendObj availablePort
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
+                                        trace Verbose (fun () -> $"Supervisor.awaitCompiler / Ping / result: '%A{pingResult}'") _locals
 
-                                        inbox.Post (availablePort, true)
+                                        match pingResult with
+                                        | Some _ -> inbox.Post (availablePort, true)
+                                        | None -> do! loop (retry + 1)
                                     with ex ->
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
-                                        do! Async.Sleep 10
+                                        trace Verbose (fun () -> $"Supervisor.awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
                                         do! loop (retry + 1)
                                 }
-                                do! loop 0
+                                do! loop 1
                         })
                         l6 = Some workspaceRoot
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async
 
-            trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") _locals
+            trace Debug (fun () -> $"Supervisor.awaitCompiler / exitCode: {exitCode} / result: {result}") _locals
             disposable.Dispose ()
     }, ct)
 

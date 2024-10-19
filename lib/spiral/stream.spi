@@ -228,8 +228,8 @@ nominal cursor t =
         $'' : $'std_io_Cursor<`t>'
     )
 
-/// ### async_buf_reader
-nominal async_buf_reader t =
+/// ### buf_reader_tokio
+nominal buf_reader_tokio t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
         $'' : $'tokio_io_BufReader<`t>'

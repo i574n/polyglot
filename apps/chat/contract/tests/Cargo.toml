@@ -8,7 +8,7 @@ repository.workspace = true
 
 [dependencies]
 serde_json = { workspace = true }
-tokio = { workspace = true }
+tokio = { version = "1.40", features = ["full"] }
 anyhow = "1.0"
 near-sdk = "5.4"
 near-workspaces = { version = "=0.11.1", features = ["experimental", "unstable"] }

@@ -512,8 +512,8 @@ inl stdio_line
             | Error () => line |> highlight |> sm'.to_std_string
         | Error e =>
             trace Critical
-                fun () => $'$"runtime.stdio_line"'
-                fun () => { e }
+                fun () => "runtime.stdio_line"
+                fun () => { trace' e }
             e |> highlight |> sm'.to_std_string
     channel_sender
     |> threading.arc_mutex_lock
@@ -888,7 +888,8 @@ inl command_args_override_self (yes : bool) (command : command) : command =
 inl command_init_arg (long, short) fn command =
     command
     |> command_arg (
-        new_arg ##long
+        ##long
+        |> new_arg
         |> arg_short short
         |> arg_long ##long
         |> fn

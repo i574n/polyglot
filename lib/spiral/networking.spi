@@ -130,7 +130,7 @@ inl test_port_open host port : _ bool = async.new_async fun () =>
         fun ex =>
             inl ex = ex |> sm'.format_exception
             trace Verbose
-                fun () => $'$"networking.test_port_open"'
+                fun () => "networking.test_port_open"
                 fun () => { port ex }
             return false
 
@@ -163,7 +163,7 @@ inl wait_for_port_access timeout status host port : _ i64 =
                         fun () => { port retry timeout status }
                 async.sleep 10 |> async.do
                 loop (retry + 1) |> async.return_await
-    loop 0i64
+    loop 1i64
 
 /// ### get_available_port
 inl get_available_port timeout host initial_port : _ i32 =

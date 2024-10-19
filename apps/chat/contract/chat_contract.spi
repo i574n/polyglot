@@ -295,7 +295,7 @@ inl main () =
         inl alias : sm'.std_string = !\($'$"alias"')
 
         trace Debug
-            fun () => $'$"chat_contract.get_alias_map"'
+            fun () => "chat_contract.get_alias_map"
             fun () => { alias }
 
         trace Debug (fun () => "") (join id)

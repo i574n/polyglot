@@ -7940,10 +7940,14 @@ mod module_7e2cd9e0 {
                 panic!("{}", v8,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
 
 .ts:
 import { int32 } from "./fable_modules/fable-library-ts.4.21.0/Int32.js";
@@ -8333,10 +8337,14 @@ mod module_7e2cd9e0 {
                 panic!("{}", v9,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
 
 .ts:
 import { int32 } from "./fable_modules/fable-library-ts.4.21.0/Int32.js";
@@ -8773,10 +8781,14 @@ mod module_7e2cd9e0 {
                 panic!("{}", v8,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
 
 .ts:
 import { int32 } from "./fable_modules/fable-library-ts.4.21.0/Int32.js";
@@ -9074,7 +9086,7 @@ __assert_eq / actual: 15 / expected: 15
         <span class="n">then</span> <span class="n">result</span>
         <span class="k">else</span>
             <span class="n">trace</span> <span class="n">Debug</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"common.retry_fn</span><span class="se">\'</span><span class="s1"> / loop"'</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"common.retry_fn</span><span class="se">\'</span><span class="s2"> / loop"</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">is_error</span> <span class="n">retry</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!retry}/{!retries}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">result</span> <span class="p">}</span>
             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">loop</span> <span class="mi">1</span>
