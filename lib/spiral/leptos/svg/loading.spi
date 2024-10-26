@@ -15,7 +15,7 @@ inl render (class : () -> string) : _ svg =
         $'"xml:space=\\\"preserve\\\""'
         $'"class=move || \\\" \\\".to_owned() + &!class(())"'
     ] fun () =>
-        :>(;[
+        :>[
             rect [
                 $'"x=\\\"0\\\""'
                 $'"y=\\\"10\\\""'
@@ -24,7 +24,7 @@ inl render (class : () -> string) : _ svg =
                 $'"fill=\\\"#333\\\""'
                 $'"opacity=\\\"0.2\\\""'
             ] fun () =>
-                :>(;[
+                :>[
                     animate [
                         $'"attributeName=\\\"opacity\\\""'
                         $'"attributeType=\\\"XML\\\""'
@@ -52,7 +52,7 @@ inl render (class : () -> string) : _ svg =
                         $'"repeatCount=\\\"indefinite\\\""'
                     ]
                     |> element_to_view
-                ])
+                ]
 
             rect [
                 $'"x=\\\"8\\\""'
@@ -62,7 +62,7 @@ inl render (class : () -> string) : _ svg =
                 $'"fill=\\\"#333\\\""'
                 $'"opacity=\\\"0.2\\\""'
             ] fun () =>
-                :>(;[
+                :>[
                     animate [
                         $'"attributeName=\\\"opacity\\\""'
                         $'"attributeType=\\\"XML\\\""'
@@ -90,7 +90,7 @@ inl render (class : () -> string) : _ svg =
                         $'"repeatCount=\\\"indefinite\\\""'
                     ]
                     |> element_to_view
-                ])
+                ]
 
             rect [
                 $'"x=\\\"16\\\""'
@@ -100,7 +100,7 @@ inl render (class : () -> string) : _ svg =
                 $'"fill=\\\"#333\\\""'
                 $'"opacity=\\\"0.2\\\""'
             ] fun () =>
-                :>(;[
+                :>[
                     animate [
                         $'"attributeName=\\\"opacity\\\""'
                         $'"attributeType=\\\"XML\\\""'
@@ -128,5 +128,5 @@ inl render (class : () -> string) : _ svg =
                         $'"repeatCount=\\\"indefinite\\\""'
                     ]
                     |> element_to_view
-                ])
-        ])
+                ]
+        ]

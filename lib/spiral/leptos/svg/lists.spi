@@ -13,7 +13,7 @@ inl render (class : () -> string) props : _ svg =
         $'"stroke=\\\"currentColor\\\""'
         $'"class=move || \\\"text-gray-700 \\\".to_owned() + &!class(())"'
         ] ++ props) fun () =>
-        :>(;[
+        :>[
             path [
                 $'"stroke-linecap=\\\"round\\\""'
                 $'"stroke-linejoin=\\\"round\\\""'
@@ -41,4 +41,4 @@ inl render (class : () -> string) props : _ svg =
                 $'"fill=\\\"currentColor\\\""'
             ]
             |> element_to_view
-        ])
+        ]

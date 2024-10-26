@@ -10,10 +10,10 @@ inl render () : _ svg =
         $'"stroke=\\\"currentColor\\\""'
         $'"class=\\\"text-red-700\\\""'
     ] fun () =>
-        :>(;[
+        :>[
             path [
                 $'"stroke-linecap=\\\"round\\\""'
                 $'"stroke-linejoin=\\\"round\\\""'
                 $'"d=\\\"M6 18L18 6M6 6l12 12\\\""'
             ]
-        ])
+        ]

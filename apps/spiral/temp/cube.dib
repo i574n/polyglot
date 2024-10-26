@@ -1,0 +1,166 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# cube
+
+#!markdown
+
+## cube
+
+#!fsharp
+
+open System
+open System.Threading.Tasks
+open System.Text
+
+#!fsharp
+
+// Screen dimensions
+let width = 160
+let height = 44
+
+#!fsharp
+
+// Constants
+let backgroundChar = '.'
+let distanceFromCam = 100.0
+let k1 = 40.0
+let incrementSpeed = 0.6
+
+#!fsharp
+
+// Data types for rotation and cubes
+type Rotation = { a: float; b: float; c: float }
+
+#!fsharp
+
+type Cube = { cubeWidth: float; horizontalOffset: float }
+
+#!fsharp
+
+// List of cubes to render
+let cubes = [
+    { cubeWidth = 20.0; horizontalOffset = -40.0 }   // First cube
+    { cubeWidth = 10.0; horizontalOffset = 10.0 }    // Second cube
+    { cubeWidth = 5.0; horizontalOffset = 40.0 }     // Third cube
+]
+
+#!fsharp
+
+// Calculate transformed coordinates
+let calculateX i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    j * sin a * sin b * cos c - k * cos a * sin b * cos c +
+    j * cos a * sin c + k * sin a * sin c + i * cos b * cos c
+
+#!fsharp
+
+let calculateY i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    j * cos a * cos c + k * sin a * cos c -
+    j * sin a * sin b * sin c + k * cos a * sin b * sin c -
+    i * cos b * sin c
+
+#!fsharp
+
+let calculateZ i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    k * cos a * cos b - j * sin a * cos b + i * sin b
+
+#!fsharp
+
+// Render a single surface of the cube
+let calculateForSurface cubeX cubeY cubeZ ch rot horizontalOffset =
+    let x = calculateX cubeX cubeY cubeZ rot
+    let y = calculateY cubeX cubeY cubeZ rot
+    let z = calculateZ cubeX cubeY cubeZ rot + distanceFromCam
+    let ooz = 1.0 / z
+    let xp = int (float width / 2.0 + horizontalOffset + k1 * ooz * x * 2.0)
+    let yp = int (float height / 2.0 + k1 * ooz * y)
+    let idx = xp + yp * width
+    if idx >= 0 && idx < width * height then
+        Some (idx, (ooz, ch))
+    else
+        None
+
+#!fsharp
+
+// Generate a range of floating-point numbers
+let frange start stop step =
+    seq {
+        let mutable current = start
+        while (step > 0.0 && current < stop) || (step < 0.0 && current > stop) do
+            yield current
+            current <- current + step
+    }
+
+#!fsharp
+
+// For a cube, generate all surface points
+let getCubePoints (cube: Cube) rot =
+    let cw = cube.cubeWidth
+    let ho = cube.horizontalOffset
+    let cubeRange = frange (-cw) cw incrementSpeed
+    seq {
+        for cubeX in cubeRange do
+            for cubeY in cubeRange do
+                yield! [
+                    calculateForSurface cubeX cubeY (-cw) '@' rot ho
+                    calculateForSurface cw cubeY cubeX '$' rot ho
+                    calculateForSurface (-cw) cubeY (-cubeX) '~' rot ho
+                    calculateForSurface (-cubeX) cubeY cw '#' rot ho
+                    calculateForSurface cubeX (-cw) (-cubeY) ';' rot ho
+                    calculateForSurface cubeX cw cubeY '+' rot ho
+                ] |> Seq.choose id
+    }
+
+#!fsharp
+
+let generateFrame rot =
+    let updates = 
+        cubes
+        |> Seq.collect (fun cube -> getCubePoints cube rot)
+    let buffer = Array.create (width * height) None
+    updates
+    |> Seq.iter (fun (idx, (ooz, ch)) ->
+        match buffer.[idx] with
+        | Some (prevOoz, _) when prevOoz >= ooz -> ()
+        | _ -> buffer.[idx] <- Some (ooz, ch)
+    )
+    let sb = StringBuilder()
+    for row in 0 .. (height - 1) do
+        for col in 0 .. (width - 1) do
+            let idx = col + row * width
+            let ch =
+                match buffer.[idx] with
+                | Some (_, ch) -> ch
+                | None -> backgroundChar
+            sb.Append(ch) |> ignore
+        sb.AppendLine() |> ignore
+    sb.ToString()
+
+#!fsharp
+
+let rec mainLoop rot = async {
+    let frame = generateFrame rot
+    // Console.SetCursorPosition(0, 0)
+    Console.Write(frame)
+    let rot' = { a = rot.a + 0.05; b = rot.b + 0.05; c = rot.c + 0.01 }
+    do! Async.Sleep 16
+    return! mainLoop rot'
+}
+
+#!fsharp
+
+// [<EntryPoint>]
+let main argv =
+    // Console.CursorVisible <- false
+    Async.StartImmediate (mainLoop { a = 0.0; b = 0.0; c = 0.0 })
+    System.Threading.Thread.Sleep(1000)
+
+#!fsharp
+
+main [||]

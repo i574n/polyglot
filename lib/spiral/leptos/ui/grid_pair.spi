@@ -30,7 +30,7 @@ inl render props_fn left right : _ dl =
         $'"class=move || \\\"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] [grid-auto-columns:max-content] \\\".to_owned() + &!cols_class(()) + \\\" \\\" + &!padding_class(()) + \\\" \\\" + &!class(())"'
     ] fun () =>
         inl dd_class = props.dd_class |> rust.emit
-        :>(;[
+        :>[
             dt [
                 $'"class=\\\"[font-size:12px] text-gray-400\\\""'
             ] left
@@ -40,4 +40,4 @@ inl render props_fn left right : _ dl =
                 $'"class=move || \\\"text-gray-700 sm:col-span-2 flex flex-1 \\\".to_owned () + &!dd_class(())"'
             ] right
             |> element_to_view
-        ])
+        ]

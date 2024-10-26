@@ -36,7 +36,7 @@ inl render props_fn children : _ div
     ] fun () =>
         inl details_class = props.details_class |> rust.emit
         inl open' = props.open' |> rust.emit
-        :>(;[
+        :>[
             div [
                 $'"class=\\\"[position:absolute] [right:0] [top:0]\\\""'
             ] fun () =>
@@ -54,11 +54,11 @@ inl render props_fn children : _ div
                     then ##""
                     else ##"[margin-right:40px]"
                 inl summary_margin_right = summary_margin_right |> rust.emit
-                :>(;[
+                :>[
                     summary [
                         $'"class=move || \\\"flex flex-1 items-center justify-between px-4 cursor-pointer text-gray-600 hover:text-gray-700 bg-gray-300 hover:bg-gray-200 \\\".to_owned() + !summary_margin_right(()) + \\\" \\\" + &!summary_class(())"'
                     ] fun () =>
-                        :>(;[
+                        :>[
                             div [
                                 $'"class=\\\"flex items-center gap-2\\\""'
                             ] fun () =>
@@ -77,7 +77,7 @@ inl render props_fn children : _ div
                                 arrow_down.render (fun () => "h-5 w-5") []
                                 |> element_to_fragment
                             |> element_to_view
-                        ])
+                        ]
                     |> element_to_view
 
                     div [
@@ -85,6 +85,6 @@ inl render props_fn children : _ div
                     ] fun () =>
                         children ()
                     |> element_to_view
-                ])
+                ]
             |> element_to_view
-        ])
+        ]

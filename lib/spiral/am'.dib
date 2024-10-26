@@ -428,6 +428,15 @@ inl to_vec'' forall (t : * -> *) (u : * -> *) v. (x : t (u v)) : vec v =
 
 #!markdown
 
+### to_vec'''
+
+#!spiral
+
+inl to_vec''' forall t. (ab : array_base t) : vec t =
+    !\\(ab, $'"to_vec($0)"')
+
+#!markdown
+
 ### vec_push
 
 #!spiral

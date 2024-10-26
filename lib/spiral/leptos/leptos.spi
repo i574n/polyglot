@@ -244,7 +244,7 @@ nominal show =
 /// ### fragment
 nominal fragment =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>]\n#endif\ntype leptos_dom_Fragment = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Fragment\")>]\n#endif\ntype leptos_dom_Fragment = class end"
         $'' : $'leptos_dom_Fragment'
     )
 
@@ -300,7 +300,7 @@ nominal routes =
 /// ### html_element
 nominal html_element t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_dom::html::HtmlElement<$0>\")>]\n#endif\ntype leptos_dom_html_HtmlElement<'T> = class end"
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::HtmlElement<$0, _, _>\")>]\n#endif\ntype leptos_dom_html_HtmlElement<'T> = class end"
         $'' : $'leptos_dom_html_HtmlElement<`t>'
     )
 
@@ -374,11 +374,25 @@ nominal resource t u =
         $'' : $'leptos_prelude_Resource<`t, `u>'
     )
 
+/// ### any_view
+nominal any_view =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::AnyView\")>]\n#endif\ntype leptos_prelude_AnyView = class end"
+        $'' : $'leptos_prelude_AnyView'
+    )
+
+/// ### view'
+nominal view' t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::View<$0>\")>]\n#endif\ntype leptos_prelude_View<'T> = class end"
+        $'' : $'leptos_prelude_View<`t>'
+    )
+
 /// ### view
 nominal view =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::View<_>\")>]\n#endif\ntype leptos_prelude_View = class end"
-        $'' : $'leptos_prelude_View'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::AnyView\")>]\n#endif\ntype leptos_prelude_AnyView_ = class end"
+        $'' : $'leptos_prelude_AnyView_'
     )
 
 /// ### signal_get
@@ -422,11 +436,11 @@ inl mount_to_body (view_fn : () -> rust.impl into_view) : () =
 
 /// ### view_vec_to_fragment
 inl view_vec_to_fragment (view : am'.vec view) : fragment =
-    !\\(view, $'"Fragment::new($0)"')
+    !\\(view, $'"leptos::prelude::Fragment::new($0)"')
 
-/// ### view_array_to_fragment
-inl view_array_to_fragment (view : array_base view) : fragment =
-    view |> am'.to_vec |> view_vec_to_fragment
+/// ### view_list_to_fragment
+inl view_list_to_fragment (view : list view) : fragment =
+    view |> am'.new_vec |> view_vec_to_fragment
 
 /// ### element_to_view
 inl element_to_view (view : html_element _) : view =
@@ -434,7 +448,7 @@ inl element_to_view (view : html_element _) : view =
 
 /// ### view_to_fragment
 inl view_to_fragment (view : view) : fragment =
-    ;[view] |> view_array_to_fragment
+    [ view ] |> view_list_to_fragment
 
 /// ### fragment_to_view
 inl fragment_to_view (fragment : fragment) : view =
@@ -454,9 +468,12 @@ instance (~:>) fragment = fun x =>
             inl x = am'.to_vec `(html_element el) x
             inl x = am'.vec_map' `(html_element el) `view (element_to_view `el) x
             inl x : a i32 view = am'.from_vec `i32 `view x
-            inl (a x) = x
-            view_array_to_fragment x
-        | array_base view => view_array_to_fragment x
+            inl x = am.toList `a `i32 `view x
+            view_list_to_fragment x
+        | list (html_element ~el) =>
+            inl x = listm.map `(html_element el) `view (element_to_view `el) x
+            view_list_to_fragment x
+        | list view => view_list_to_fragment x
         | _ => x
 
 /// ### (~:>) view
@@ -492,14 +509,18 @@ inl from_fragment_unbox (fragment : fragment) =
 
 /// ### element_to_view_trait
 inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.element_to_view_trait"') : bool) |> ignore
     !\($'"leptos::prelude::view\! { {!macro} }"')
 
 /// ### macro_to_view_trait
 inl macro_to_view_trait (macro : string) : rust.impl into_view =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view_trait"') : bool) |> ignore
+    (!\($'$"true; use leptos::prelude::ClassAttribute; // leptos.macro_to_view_trait"') : bool) |> ignore
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### macro_to_fragment
 inl macro_to_fragment (macro : string) : fragment =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_fragment"') : bool) |> ignore
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### new_transparent
@@ -521,7 +542,8 @@ inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
 
 /// ### array_to_view
 inl array_to_view (view : a _ view) : view =
-    !\\(view, $'"leptos::prelude::CollectView::collect_view($0.to_vec())"')
+    inl view = view |> am'.base
+    !\\(view, $'"leptos::prelude::CollectView::collect_view($0)"')
 
 /// ### to_fragment
 inl to_fragment x : fragment =
@@ -539,7 +561,17 @@ inl text_to_fragment (text : text) : fragment =
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view"') : bool) |> ignore
     !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
+
+/// ### macro_to_view'
+inl macro_to_view' (macro : string) : view' infer =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view\'"') : bool) |> ignore
+    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
+
+/// ### into_any_view
+inl into_any_view (view : view' _) : view =
+    !\\(view, $'"&leptos::IntoAny::into_any($0)"')
 
 /// ### transparent_to_view
 inl transparent_to_view (transparent : transparent) : view =
@@ -571,7 +603,7 @@ inl views_to_view (items : array_base view) : view =
 /// ### new_text
 inl new_text (text : string) : text =
     inl text = text |> sm'.to_std_string
-    !\\(text, $'"leptos::svg::text($0)"')
+    !\\(text, $'"leptos::text($0)"')
 
 /// ### text_view
 inl text_view (text : string) : view =
@@ -591,15 +623,15 @@ inl provide_meta_context () =
 
 /// ### provide_context
 inl provide_context forall t. (x : t) =
-    (!\\(x, $'$"true; leptos::provide_context::<std::sync::Arc<`t>>($0)"') : bool) |> ignore
+    (!\\(x, $'$"true; leptos::context::provide_context::<std::sync::Arc<`t>>($0)"') : bool) |> ignore
 
 /// ### create_signal
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
-    !\\(value, $'$"leptos::prelude::create_signal($0)"')
+    !\\(value, $'$"leptos::prelude::signal($0)"')
 
 /// ### create_rw_signal
 inl create_rw_signal forall t. (value : t) : rw_signal t =
-    !\\(value, $'$"leptos::prelude::create_rw_signal($0)"')
+    !\\(value, $'$"leptos::prelude::RwSignal::new($0)"')
 
 /// ### read_only
 inl read_only forall t. (value : rw_signal t) : read_signal t =
@@ -627,7 +659,7 @@ inl memo_get' forall t. (memo : memo t) : t =
 /// ### signal_get'
 inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
-    !\\(signal, $'$"SignalGet::get(&$0)"')
+    !\\(signal, $'$"leptos::prelude::SignalGet::get(&$0)"')
 
 /// ### signal_get signal
 instance signal_get signal = signal_get'
@@ -655,7 +687,7 @@ instance signal_update write_signal = signal_update'
 /// ### signal_get_untracked'
 inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
-    !\\(signal, $'$"SignalGetUntracked::get_untracked(&$0)"')
+    !\\(signal, $'$"leptos::prelude::SignalGetUntracked::get_untracked(&$0)"')
 
 /// ### signal_get_untracked rw_signal
 instance signal_get_untracked rw_signal = signal_get_untracked'
@@ -698,7 +730,7 @@ inl create_local_resource forall t u.
 
 
     join
-        !\\(source, $'"let __create_local_resource = create_local_resource(move || $0(), |x| async move { //"')
+        !\\(source, $'"let __create_local_resource = leptos::prelude::create_local_resource(move || $0(), |x| async move { //"')
 
         inl x = !\($'"x"')
         inl x' = fetcher x
@@ -717,7 +749,7 @@ inl create_local_resource forall t u.
 
 /// ### create_action
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
-    !\\(action_fn, $'"leptos::prelude::create_action(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
+    !\\(action_fn |> rust.box_pin, $'"leptos::prelude::Action::new(*std::sync::Arc::new(move |value: &std::sync::Arc<`t>| $0(value.clone())))"')
 
 /// ### action_dispatch
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
@@ -737,15 +769,15 @@ inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.
 
 /// ### use_context
 inl use_context forall t. () : optionm'.option' t =
-    !\($'"leptos::hooks::use_context::<std::sync::Arc<`t>>()"')
+    !\($'"leptos::context::use_context::<std::sync::Arc<`t>>()"')
 
 /// ### resource_loading
 inl resource_loading forall t u. (resource : resource t u) : signal bool =
-    !\\(resource, $'$"leptos::prelude::Resource::loading(&$0)"')
+    !\\(resource, $'$"leptos::prelude::loading(&$0)"')
 
 /// ### resource_get
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
-    !\\(resource, $'$"SignalGet::get(&$0)"')
+    !\\(resource, $'$"leptos::prelude::SignalGet::get(&$0)"')
 
 /// ### resource_with
 inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
@@ -754,11 +786,11 @@ inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option'
 /// ### create_effect
 inl create_effect (fn : () -> ()) : () =
     inl fn = fn |> rust.emit
-    (!\($'"true; leptos::prelude::create_effect(move |_| { !fn(()) })"') : bool) |> ignore
+    (!\($'"true; leptos::prelude::Effect::new(move |_| { !fn(()) })"') : bool) |> ignore
 
 /// ### create_effect'
 inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
-    (!\\(fn, $'"true; leptos::prelude::create_effect(move |x| { $0(x) })"') : bool) |> ignore
+    (!\\(fn, $'"true; leptos::prelude::Effect::new(move |x| { $0(x) })"') : bool) |> ignore
 
 /// ### interval_handle_clear
 inl interval_handle_clear (interval_handle : interval_handle) =
@@ -775,7 +807,7 @@ inl set_interval_with_handle
 /// ### create_memo
 inl create_memo forall t. (fn : () -> t) : memo t =
     inl fn = fn |> rust.emit
-    !\($'"leptos::prelude::create_memo(move |_| { !fn(()) })"')
+    !\($'"leptos::prelude::Memo::new(move |_| { !fn(()) })"')
 
 /// ### window
 let window () : wasm.window =
@@ -799,12 +831,13 @@ inl move_to_fragment fn =
 
 /// ### tag_raw
 inl tag_raw tag props children =
+    (!\($'$"true; use leptos::prelude::*; // leptos.tag_raw"') : bool) |> ignore
     inl tag : string = tag
     inl props = props |> concat_props
     inl children = join children
     inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
-    $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
+    $'"<" + !tag + " " + !props + ">{ !children() }</" + !tag + ">"'
 
 /// ### tag_element
 inl tag_element tag props children : html_element _ =
@@ -870,7 +903,7 @@ inl use_location () : location =
 /// ### use_navigate
 inl use_navigate () : string -> () =
     inl navigate : threading.arc (rust.dyn' (rust.action_fn2 (rust.ref sm'.str) navigate_options)) =
-        !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
+        !\($'"std::sync::Arc::new(leptos_router::hooks::use_navigate())"')
     fun url =>
         inl url = url |> sm'.as_str
         !\\((navigate, url), $'"$0($1, Default::default())"')
@@ -914,22 +947,31 @@ inl route path view children : view =
     inl path = join path
     inl view : () -> fragment = join view
     inl children : () -> fragment = join children
-    tag_closed_raw "leptos_router::Route" [
-        $'"path=!path"'
-        $'"view=move || !view()"'
-        $'"children=Box::new(move || !children())"'
-    ]
-    |> macro_to_view
+    tag_raw
+        "leptos_router::components::Route"
+        [
+            $'"path=!path"'
+            $'"view=move || !view()"'
+        ]
+        children
+    |> macro_to_view'
+    |> into_any_view
+
+/// ### macro_to_view
+inl macro_to_view (macro : string) : view =
+    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view"') : bool) |> ignore
+    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### router
 inl router children : view =
     inl children () =
         children ()
     inl children : () -> fragment = join children
-    tag_closed_raw "leptos_router::Router" [
+    tag_closed_raw "leptos_router::components::Router" [
         $'"children=Box::new(move || !children())"'
     ]
-    |> macro_to_view
+    |> macro_to_view'
+    |> into_any_view
 
 /// ### routes
 inl routes children : view =
@@ -937,7 +979,8 @@ inl routes children : view =
     tag_closed_raw "leptos_router::Routes" [
         $'"children=Box::new(move || !children(()))"'
     ]
-    |> macro_to_view
+    |> macro_to_view'
+    |> into_any_view
 
 /// ### a'
 inl a' props children : _ a' =
@@ -1036,11 +1079,11 @@ inl svg props children : _ svg =
 
 /// ### path
 inl path props : _ path =
-    tag_element "path" props (fun () => ;[] |> view_array_to_fragment)
+    tag_element "path" props (fun () => [] |> view_list_to_fragment)
 
 /// ### circle
 inl circle props : _ circle =
-    tag_element "circle" props (fun () => ;[] |> view_array_to_fragment)
+    tag_element "circle" props (fun () => [] |> view_list_to_fragment)
 
 /// ### rect
 inl rect props children : _ rect =
@@ -1048,7 +1091,7 @@ inl rect props children : _ rect =
 
 /// ### animate
 inl animate props : _ animate =
-    tag_element "animate" props (fun () => ;[] |> view_array_to_fragment)
+    tag_element "animate" props (fun () => [] |> view_list_to_fragment)
 
 /// ### input
 inl input props : _ input =

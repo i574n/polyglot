@@ -60,14 +60,14 @@ inl render props_fn : _ _ =
                                     inl item = item |> sm'.from_std_string
                                     props.select (i, item)
                                 !\\(on_click, $'"let !on_click = $0"')
-                                :>(;[
+                                :>[
                                     leptos.button [
                                         $'"class=\\\"flex flex-1 gap-[10px] [align-items:center] [justify-content:center] inline-block rounded border border-gray-400 hover:bg-gray-100 px-[22px] py-1 text-sm text-gray-900 bg-gray-200 hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500\\\""'
                                         $'"on:click=move |_| !on_click()"'
                                         $'"aria-label=!item'"'
                                     ] fun () =>
                                         inl item = item |> sm'.from_std_string
-                                        :>(;[
+                                        :>[
                                             match
                                                 item,
                                                 props.item
@@ -82,8 +82,8 @@ inl render props_fn : _ _ =
 
                                             item
                                             |> leptos.text_view
-                                        ])
-                                ])
+                                        ]
+                                ]
                         |> leptos.view_to_fragment
-                    | None => ;[] |> leptos.view_array_to_fragment
+                    | None => [] |> leptos.view_list_to_fragment
             |> leptos.element_to_fragment
