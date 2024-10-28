@@ -12,7 +12,7 @@ inl render (class : () -> string) props : _ svg =
         $'"stroke=\\\"currentColor\\\""'
         $'"class=move || \\\" \\\".to_owned() + &!class(())"'
         ] ++ props) fun () =>
-        :>(;[
+        :>[
             rect [
                 $'"x=\\\"3\\\""'
                 $'"y=\\\"3\\\""'
@@ -22,7 +22,7 @@ inl render (class : () -> string) props : _ svg =
                 $'"stroke-linecap=\\\"round\\\""'
                 $'"stroke-linejoin=\\\"round\\\""'
             ] fun () =>
-                ;[] |> view_array_to_fragment
+                [] |> view_list_to_fragment
             |> element_to_view
             circle [
                 $'"cx=\\\"7.5\\\""'
@@ -59,4 +59,4 @@ inl render (class : () -> string) props : _ svg =
                 $'"fill=\\\"currentColor\\\""'
             ]
             |> element_to_view
-        ])
+        ]

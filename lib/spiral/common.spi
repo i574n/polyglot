@@ -79,10 +79,15 @@ inl dispose (disposable : disposable _) : () =
         Python = fun () => $'!disposable.__exit__(None, None, None)' : ()
     }
 
+/// ### yield
+inl yield forall t. (x : t) : () =
+    $'yield !x '
+
 /// ### return
 inl return forall t. (x : t) : () =
     $'return !x '
 
+/// ### return'
 inl return' forall t. (x : t) : t =
     $'return !x '
 

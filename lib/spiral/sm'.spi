@@ -172,11 +172,20 @@ inl char_to_upper (input : char) : char =
 nominal string_builder = $'System.Text.StringBuilder'
 
 inl string_builder (initial : string) : string_builder =
+    inl initial =
+        if initial = ""
+        then join initial
+        else initial
     initial |> $'`string_builder '
 
 /// ### builder_append
 inl builder_append (item : string) (sb : string_builder) : string_builder =
     ($'!sb.Append' item : string_builder) |> ignore
+    sb
+
+/// ### builder_append_line
+inl builder_append_line (sb : string_builder) : string_builder =
+    ($'!sb.AppendLine ()' : string_builder) |> ignore
     sb
 
 /// ### builder_replace
@@ -202,6 +211,10 @@ inl trim (input : string) : string =
 inl concat (a : string) (b : seq.seq' string) : string =
     backend_switch {
         Fsharp = fun () =>
+            inl a =
+                if a = "\n"
+                then join a
+                else a
             b |> $'String.concat' a : string
         Python = fun () =>
             $'!a.join(!b)' : string

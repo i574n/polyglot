@@ -4,7 +4,7 @@ inl render head body =
     leptos.table [
         $'"class=\\\"flex-1 min-w-full divide-y-2 divide-gray-200 text-sm dark:divide-gray-700\\\""'
     ] fun () =>
-        :>(;[
+        :>[
             leptos.thead [
                 $'"class=\\\"ltr:text-left rtl:text-right\\\""'
             ] fun () =>
@@ -16,4 +16,4 @@ inl render head body =
             ] fun () =>
                 body
             |> leptos.element_to_view
-        ])
+        ]

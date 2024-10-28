@@ -42,14 +42,20 @@ let rec closure0 () () : bool =
     let v14 : bool = failwith<bool> v13
     let _v0 = v14 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v15 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v16 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v17 : bool = v16 v15
     let _v0 = v17 
     #endif
-    let v18 : bool = _v0 
-    v18
+#else
+    let v18 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
+    let v19 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
+    let v20 : bool = v19 v18
+    let _v0 = v20 
+    #endif
+    let v21 : bool = _v0 
+    v21
 and closure1 () () : string =
     let v0 : unit = ()
     
@@ -84,19 +90,25 @@ and closure1 () () : string =
     let v14 : bool = failwith<bool> v13
     let _v0 = v14 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v15 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v16 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v17 : bool = v16 v15
     let _v0 = v17 
     #endif
-    let v18 : bool = _v0 
-    if v18 then
-        let v24 : string = ".exe"
-        v24
+#else
+    let v18 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
+    let v19 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
+    let v20 : bool = v19 v18
+    let _v0 = v20 
+    #endif
+    let v21 : bool = _v0 
+    if v21 then
+        let v27 : string = ".exe"
+        v27
     else
-        let v25 : string = ""
-        v25
+        let v28 : string = ""
+        v28
 let v0 : (unit -> bool) = closure0()
 let is_windows () = v0 ()
 let v1 : (unit -> string) = closure1()

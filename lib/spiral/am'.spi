@@ -162,6 +162,10 @@ inl to_vec' forall (t : * -> * -> *) u v. (x : t u v) : vec u =
 inl to_vec'' forall (t : * -> *) (u : * -> *) v. (x : t (u v)) : vec v =
     !\($'$"!x.to_vec()"')
 
+/// ### to_vec'''
+inl to_vec''' forall t. (ab : array_base t) : vec t =
+    !\\(ab, $'"to_vec($0)"')
+
 /// ### vec_push
 inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     inl el = join el

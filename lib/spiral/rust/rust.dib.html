@@ -9764,27 +9764,31 @@ and method0 () : unit =
     let v17 : bool = true
     let _v9 = v17 
     #endif
-#else
+#if !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !FABLE_COMPILER_PYTHON
     let v18 : bool = true
     let _v9 = v18 
     #endif
-    let v19 : bool = _v9 
-    let v22 : string = $"true; v8 " + v4 + "); " + v7 + " // rust.fix_closure'"
-    let v23 : bool = v22 = "true; v8 }}}); {{ // rust.fix_closure'"
-    let v25 : bool =
-        if v23 then
+#else
+    let v19 : bool = true
+    let _v9 = v19 
+    #endif
+    let v20 : bool = _v9 
+    let v23 : string = $"true; v8 " + v4 + "); " + v7 + " // rust.fix_closure'"
+    let v24 : bool = v23 = "true; v8 }}}); {{ // rust.fix_closure'"
+    let v26 : bool =
+        if v24 then
             true
         else
-            method1(v23)
-    let v26 : string = "__assert_eq"
-    let v27 : string = "true; v8 }}}); {{ // rust.fix_closure'"
-    let v28 : string = $"{v26} / actual: %A{v22} / expected: %A{v27}"
-    let v31 : unit = ()
-    let v32 : (unit -&gt; unit) = closure0(v28)
-    let v33 : unit = (fun () -&gt; v32 (); v31) ()
-    let v35 : bool = v25 = false
-    if v35 then
-        failwith&lt;unit&gt; v28
+            method1(v24)
+    let v27 : string = "__assert_eq"
+    let v28 : string = "true; v8 }}}); {{ // rust.fix_closure'"
+    let v29 : string = $"{v27} / actual: %A{v23} / expected: %A{v28}"
+    let v32 : unit = ()
+    let v33 : (unit -&gt; unit) = closure0(v29)
+    let v34 : unit = (fun () -&gt; v33 (); v32) ()
+    let v36 : bool = v26 = false
+    if v36 then
+        failwith&lt;unit&gt; v29
 method0()
 
 __assert_eq / actual: "true; v8 }}}); {{ // rust.fix_closure'" / expected: "true; v8 }}}); {{ // rust.fix_closure'"
@@ -9852,28 +9856,32 @@ and method0 () : unit =
     let v9 : bool = true
     let _v1 = v9 
     #endif
-#else
+#if !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !FABLE_COMPILER_PYTHON
     let v10 : bool = true
     let _v1 = v10 
     #endif
-    let v11 : bool = _v1 
-    let v14 : string = ""
-    let v15 : string = $"true; v0 " + v14 + "); " + v14 + " // rust.fix_closure'"
-    let v16 : bool = v15 = "true; v0 );  // rust.fix_closure'"
-    let v18 : bool =
-        if v16 then
+#else
+    let v11 : bool = true
+    let _v1 = v11 
+    #endif
+    let v12 : bool = _v1 
+    let v15 : string = ""
+    let v16 : string = $"true; v0 " + v15 + "); " + v15 + " // rust.fix_closure'"
+    let v17 : bool = v16 = "true; v0 );  // rust.fix_closure'"
+    let v19 : bool =
+        if v17 then
             true
         else
-            method1(v16)
-    let v19 : string = "__assert_eq"
-    let v20 : string = "true; v0 );  // rust.fix_closure'"
-    let v21 : string = $"{v19} / actual: %A{v15} / expected: %A{v20}"
-    let v24 : unit = ()
-    let v25 : (unit -&gt; unit) = closure0(v21)
-    let v26 : unit = (fun () -&gt; v25 (); v24) ()
-    let v28 : bool = v18 = false
-    if v28 then
-        failwith&lt;unit&gt; v21
+            method1(v17)
+    let v20 : string = "__assert_eq"
+    let v21 : string = "true; v0 );  // rust.fix_closure'"
+    let v22 : string = $"{v20} / actual: %A{v16} / expected: %A{v21}"
+    let v25 : unit = ()
+    let v26 : (unit -&gt; unit) = closure0(v22)
+    let v27 : unit = (fun () -&gt; v26 (); v25) ()
+    let v29 : bool = v19 = false
+    if v29 then
+        failwith&lt;unit&gt; v22
 method0()
 
 __assert_eq / actual: "true; v0 );  // rust.fix_closure'" / expected: "true; v0 );  // rust.fix_closure'"

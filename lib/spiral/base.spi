@@ -15,6 +15,11 @@ inl use forall t. (x : t) : t =
     $'use !x = !x ' : ()
     $'!x '
 
+/// ## type
+
+/// ### unit
+nominal unit = $'unit'
+
 /// ## target
 
 /// ### backend_switch
@@ -45,12 +50,11 @@ union target =
     | TypeScript : target_runtime
     | Python : target_runtime
 
-/// ### run_target_args
-inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
-    inl args = args () |> dyn
+/// ### run_target_args'
+inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
     backend_switch {
         Fsharp = fun () =>
-            inl result = $'()' : $'unit'
+            inl result = $'()' : unit
             inl emit_result x : () =
                 $'let _!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
@@ -69,6 +73,9 @@ inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
             $'#endif\n#if FABLE_COMPILER_PYTHON'
             inl target = Python Native
             fn target args |> emit_result
+            $'#endif\n#if \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!FABLE_COMPILER_PYTHON'
+            inl target = Fsharp Wasm
+            fn target args |> emit_result
             $'#endif\n#else'
             inl target = Fsharp Native
             fn target args |> emit_result
@@ -79,6 +86,11 @@ inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
             fn target args
     }
 
+/// ### run_target_args
+inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
+    inl args = args () |> dyn
+    fn |> run_target_args' args
+
 /// ### run_target
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     run_target_args id fn
@@ -88,6 +100,26 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
 /// ### eval
 inl eval fn =
     fn ()
+
+/// ### do
+inl do (body : () -> ()) : () =
+    !!!!Do (body())
+
+/// ### indent
+inl indent (body : () -> ()) : () =
+    inl body =
+        fun () =>
+            body ()
+            $'(*' : ()
+    !!!!Indent (body())
+    $'*)'
+
+/// ### let'
+inl let' fn =
+    inl result : unit = $'()'
+    $'let _!result ='
+    fn |> indent
+    $'_!result '
 
 /// ### exec_unit
 inl exec_unit (fn : () -> ()) : () =
@@ -213,9 +245,6 @@ nominal infer' t = $'_'
 /// ### any
 nominal any = $'obj'
 
-/// ### unit
-nominal unit = $'unit'
-
 /// ### null
 inl null forall t. () : t =
     backend_switch {
@@ -232,12 +261,14 @@ nominal choice2' a b = $'Choice<`a, `b>'
 
 /// ### choice2_unbox
 inl choice2_unbox forall t1 t2. (choice : choice2' t1 t2) : choice2 t1 t2 =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args (fun () => choice) function
+        | Fsharp _ => fun choice =>
             inl c1of2 (x : t1) : _ _ t2 = C1of2 x
             inl c2of2 (x : t2) : _ t1 _ = C2of2 x
+            inl c1of2 = join c1of2
+            inl c2of2 = join c2of2
             $'match !choice with Choice1Of2 x -> !c1of2 x | Choice2Of2 x -> !c2of2 x'
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 /// ## pair
 
@@ -379,8 +410,23 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     fn ()
     |> ignore
     $'with ex ->'
-    ex_fn $'ex'
+    fun () =>
+        ex_fn $'ex'
+        |> ignore
+    |> indent
+    $'(*'
+    $'*)'
+
+/// ### try_unit'
+inl try_unit' forall t. (ex_fn : exn -> ()) (fn : () -> ()) : t =
+    $'try'
+    fn ()
     |> ignore
+    $'with ex ->'
+    fun () =>
+        ex_fn $'ex'
+        |> ignore
+    |> indent
     $'(*'
     $'*)'
 

@@ -9671,7 +9671,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_7b78f3991f798aba0ea9cfafb5607f4bcab5eb3c1f361356910e3cd0fc44c378/20241019-1033-0704-8837-000000e9a690" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_71514128aa092e3f286d7b78803157c95d5826eaab4056c0d36ef001cd6a42bb/20241028-1307-2330-4471-0000000614af" / expected: '/'
 
 </pre>
 </div>
@@ -9680,7 +9680,7 @@ __assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_7b78f3991f79
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241019-1033-0741-4153-400000b5f7d9" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241028-1307-2374-7437-7000004b060e" / expected: '/'
 </pre>
 </div>
 </div>
@@ -11095,7 +11095,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ff155cc6a1d44821632be4bb78c67978be968392a7cbce1df9e3249bb777630d/20241019-1034-0587-6540-00000042060d }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ca86f4d0d5af51fc35a6023bbf9f8aad9630b4a5795edce38f867dd7761eb036/20241028-1308-2892-8983-000000c70f79 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
 </pre>
@@ -11686,6 +11686,7 @@ __assert_eq / actual: true / expected: true
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="n">inl</span> <span class="n">retry</span> <span class="o">=</span> <span class="n">join</span> <span class="n">retry</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>

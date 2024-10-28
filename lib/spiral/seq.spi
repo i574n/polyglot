@@ -194,6 +194,14 @@ inl list_find_last forall item result. (fn : item -> option result) (target : li
 /// ### seq'
 nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
 
+/// ### new_seq
+inl new_seq fn : seq' _ =
+    fun () =>
+        $'seq {'
+        fn |> indent
+        $'}' : ()
+    |> let'
+
 /// ### of_array'
 inl of_array' forall dim t. (items : a dim t) : seq' t =
     backend_switch {

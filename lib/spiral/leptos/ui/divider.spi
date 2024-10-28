@@ -9,7 +9,7 @@ inl render children : _ span =
     span [
         $'"class=\\\"flex items-center pb-[6px]\\\""'
     ] fun () =>
-        :>(;[
+        :>[
             span [
                 $'"class=\\\"pr-[15px] [font-size:13px]\\\""'
             ] fun () =>
@@ -19,6 +19,6 @@ inl render children : _ span =
             span [
                 $'"class=\\\"h-px flex-1 bg-gray-300\\\""'
             ] fun () =>
-                ;[] |> view_array_to_fragment
+                [] |> view_list_to_fragment
             |> element_to_view
-        ])
+        ]

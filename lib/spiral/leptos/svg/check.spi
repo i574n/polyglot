@@ -12,7 +12,7 @@ inl render (class : () -> string) props : _ svg =
         $'"stroke=\\\"currentColor\\\""'
         $'"class=move || \\\" \\\".to_owned() + &!class(())"'
         ] ++ props) fun () =>
-        :>(;[
+        :>[
             circle [
                 $'"cx=\\\"12\\\""'
                 $'"cy=\\\"12\\\""'
@@ -27,4 +27,4 @@ inl render (class : () -> string) props : _ svg =
                 $'"d=\\\"M9 12l2 2l4 -4\\\""'
             ]
             |> element_to_view
-        ])
+        ]

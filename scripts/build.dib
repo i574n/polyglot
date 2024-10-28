@@ -65,11 +65,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/spiral/temp/extension/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/spiral/temp/test/build.ps1 } | Invoke-Block
+{ pwsh ../apps/spiral/temp/build.ps1 } | Invoke-Block
 
 #!pwsh
 

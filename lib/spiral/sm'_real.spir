@@ -168,6 +168,8 @@ let format_real forall t. (x : t) : string =
 
 /// ### builder_append
 
+/// ### builder_append_line
+
 /// ### builder_replace
 
 /// ### builder_insert

@@ -604,6 +604,10 @@ inl char_to_upper (input : char) : char =
 nominal string_builder = $'System.Text.StringBuilder'
 
 inl string_builder (initial : string) : string_builder =
+    inl initial =
+        if initial = ""
+        then join initial
+        else initial
     initial |> $'`string_builder '
 
 #!markdown
@@ -614,6 +618,16 @@ inl string_builder (initial : string) : string_builder =
 
 inl builder_append (item : string) (sb : string_builder) : string_builder =
     ($'!sb.Append' item : string_builder) |> ignore
+    sb
+
+#!markdown
+
+### builder_append_line
+
+#!spiral
+
+inl builder_append_line (sb : string_builder) : string_builder =
+    ($'!sb.AppendLine ()' : string_builder) |> ignore
     sb
 
 #!markdown
@@ -664,6 +678,10 @@ inl trim (input : string) : string =
 inl concat (a : string) (b : seq.seq' string) : string =
     backend_switch {
         Fsharp = fun () =>
+            inl a =
+                if a = "\n"
+                then join a
+                else a
             b |> $'String.concat' a : string
         Python = fun () =>
             $'!a.join(!b)' : string
@@ -1664,10 +1682,10 @@ fun () => failwith "test"
 |> optionm.value
 |> sm'.format_exception
 |> _assert_eq (run_target function
-    | Fsharp _ => fun () => "System.Exception: test"
+    | Fsharp _ => fun () => join "System.Exception: test"
     | Rust _ => fun () => "Exception { message: \"test\" }"
     | TypeScript _ => fun () => "Error: test"
-    | Python _ => fun () => "test"
+    | Python _ => fun () => join "test"
     | _ => fun () => null ()
 )
 

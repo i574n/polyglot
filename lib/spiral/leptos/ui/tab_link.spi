@@ -17,7 +17,7 @@ inl render href icon label select : _ a' =
         $'"class=move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[15px] pl-[15px] text-sm font-medium \\\".to_owned() + !select_class(())"'
         $'"aria-current=move || if !select(()) { \\\"page\\\" } else { \\\"\\\" }"'
     ] fun () =>
-        :>(;[
+        :>[
             icon |> fragment_to_view
             label |> text_view
-        ])
+        ]

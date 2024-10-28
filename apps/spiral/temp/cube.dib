@@ -1,0 +1,440 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# cube
+
+#!markdown
+
+## cube
+
+#!fsharp
+
+open System
+open System.Threading.Tasks
+open System.Text
+
+#!fsharp
+
+// Screen dimensions
+let width = 160
+let height = 44
+
+#!markdown
+
+### get_width
+
+#!spiral
+
+inl get_width () =
+    160i32
+
+#!markdown
+
+### get_height
+
+#!spiral
+
+inl get_height () =
+    44i32
+
+#!fsharp
+
+// Constants
+let backgroundChar = '.'
+let distanceFromCam = 100.0
+let k1 = 40.0
+let incrementSpeed = 0.6
+
+#!markdown
+
+### get_background_char
+
+#!spiral
+
+inl get_background_char () =
+    '.'
+
+#!markdown
+
+### get_distance_from_cam
+
+#!spiral
+
+inl get_distance_from_cam () =
+    100f64
+
+#!markdown
+
+### get_k1
+
+#!spiral
+
+inl get_k1 () =
+    40f64
+
+#!markdown
+
+### get_increment_speed
+
+#!spiral
+
+inl get_increment_speed () =
+    0.6f64
+
+#!markdown
+
+### rotation
+
+#!fsharp
+
+// Data types for rotation and cubes
+type Rotation = { a: float; b: float; c: float }
+
+#!spiral
+
+type rotation =
+    {
+        a : f64
+        b : f64
+        c : f64
+    }
+
+#!markdown
+
+### cube
+
+#!fsharp
+
+type Cube = { cubeWidth: float; horizontalOffset: float }
+
+#!spiral
+
+type cube =
+    {
+        cube_width : f64
+        horizontal_offset : f64
+    }
+
+#!markdown
+
+### get_cubes
+
+#!fsharp
+
+// List of cubes to render
+let cubes = [
+    { cubeWidth = 20.0; horizontalOffset = -40.0 }   // First cube
+    { cubeWidth = 10.0; horizontalOffset = 10.0 }    // Second cube
+    { cubeWidth = 5.0; horizontalOffset = 40.0 }     // Third cube
+]
+
+#!spiral
+
+inl get_cubes () : array_base cube =
+    ;[
+        { cube_width = 20; horizontal_offset = -40 }
+        { cube_width = 10; horizontal_offset = 10 }
+        { cube_width = 5; horizontal_offset = 40 }
+    ]
+
+#!markdown
+
+### calculate_x
+
+#!fsharp
+
+// Calculate transformed coordinates
+let calculateX i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    j * sin a * sin b * cos c - k * cos a * sin b * cos c +
+    j * cos a * sin c + k * sin a * sin c + i * cos b * cos c
+
+#!spiral
+
+inl calculate_x i j k (rot : rotation) =
+    inl a, b, c = rot.a, rot.b, rot.c
+    j * sin a * sin b * cos c - k * cos a * sin b * cos c +
+    j * cos a * sin c + k * sin a * sin c + i * cos b * cos c
+
+#!markdown
+
+### calculate_y
+
+#!fsharp
+
+let calculateY i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    j * cos a * cos c + k * sin a * cos c -
+    j * sin a * sin b * sin c + k * cos a * sin b * sin c -
+    i * cos b * sin c
+
+#!spiral
+
+inl calculate_y i j k (rot : rotation) =
+    inl a, b, c = rot.a, rot.b, rot.c
+    j * cos a * cos c + k * sin a * cos c -
+    j * sin a * sin b * sin c + k * cos a * sin b * sin c -
+    i * cos b * sin c
+
+#!markdown
+
+### calculate_z
+
+#!fsharp
+
+let calculateZ i j k (rot: Rotation) =
+    let a, b, c = rot.a, rot.b, rot.c
+    k * cos a * cos b - j * sin a * cos b + i * sin b
+
+#!spiral
+
+inl calculate_z i j k (rot : rotation) =
+    inl a, b, c = rot.a, rot.b, rot.c
+    k * cos a * cos b - j * sin a * cos b + i * sin b
+
+#!markdown
+
+### calculate_for_surface
+
+#!fsharp
+
+// Render a single surface of the cube
+let calculateForSurface cubeX cubeY cubeZ ch rot horizontalOffset =
+    let x = calculateX cubeX cubeY cubeZ rot
+    let y = calculateY cubeX cubeY cubeZ rot
+    let z = calculateZ cubeX cubeY cubeZ rot + distanceFromCam
+    let ooz = 1.0 / z
+    let xp = int (float width / 2.0 + horizontalOffset + k1 * ooz * x * 2.0)
+    let yp = int (float height / 2.0 + k1 * ooz * y)
+    let idx = xp + yp * width
+    if idx >= 0 && idx < width * height then
+        Some (idx, (ooz, ch))
+    else
+        None
+
+#!spiral
+
+let calculate_for_surface cube_x cube_y cube_z ch rot horizontal_offset =
+    inl x = calculate_x cube_x cube_y cube_z rot
+    inl y = calculate_y cube_x cube_y cube_z rot
+    inl z = calculate_z cube_x cube_y cube_z rot + get_distance_from_cam ()
+    inl ooz = 1.0 / z
+    inl xp = i32 (f64 (get_width ()) / 2.0 + horizontal_offset + get_k1 () * ooz * x * 2.0)
+    inl yp = i32 (f64 (get_height ()) / 2.0 + get_k1 () * ooz * y)
+    inl idx = xp + yp * get_width ()
+    if idx >= 0 && idx < get_width () * get_height ()
+    then Some (idx, (ooz, ch))
+    else None
+
+#!markdown
+
+### frange
+
+#!fsharp
+
+// Generate a range of floating-point numbers
+let frange start stop step =
+    seq {
+        let mutable current = start
+        while (step > 0.0 && current < stop) || (step < 0.0 && current > stop) do
+            yield current
+            current <- current + step
+    }
+
+#!spiral
+
+inl frange start stop step : _ f64 =
+    inl current = mut start
+    fun () =>
+        loopw.while
+            fun () => (step > 0f64 && *current < stop) || (step < 0 && *current > stop)
+            fun () =>
+                *current |> yield
+                current <- *current + step
+    |> seq.new_seq
+
+#!markdown
+
+### get_cube_points
+
+#!fsharp
+
+// For a cube, generate all surface points
+let getCubePoints (cube: Cube) rot =
+    let cw = cube.cubeWidth
+    let ho = cube.horizontalOffset
+    let cubeRange = frange (-cw) cw incrementSpeed
+    seq {
+        for cubeX in cubeRange do
+            for cubeY in cubeRange do
+                yield! [
+                    calculateForSurface cubeX cubeY (-cw) '@' rot ho
+                    calculateForSurface cw cubeY cubeX '$' rot ho
+                    calculateForSurface (-cw) cubeY (-cubeX) '~' rot ho
+                    calculateForSurface (-cubeX) cubeY cw '#' rot ho
+                    calculateForSurface cubeX (-cw) (-cubeY) ';' rot ho
+                    calculateForSurface cubeX cw cubeY '+' rot ho
+                ] |> Seq.choose id
+    }
+
+#!spiral
+
+inl get_cube_points (cube : cube) rot =
+    inl cw = cube.cube_width
+    inl ho = cube.horizontal_offset
+    inl cube_range = frange -cw cw (get_increment_speed ())
+    inl cube_range = join cube_range
+    inl get cube_x cube_y =
+        ;[
+            calculate_for_surface cube_x cube_y -cw '@' rot ho
+            calculate_for_surface cw cube_y cube_x '$' rot ho
+            calculate_for_surface -cw cube_y -cube_x '~' rot ho
+            calculate_for_surface -cube_x cube_y cw '#' rot ho
+            calculate_for_surface cube_x -cw -cube_y ';' rot ho
+            calculate_for_surface cube_x cw cube_y '+' rot ho
+        ]
+    inl get = join get
+    inl box x : _ (i32 * f64 * char) =
+        optionm'.box x
+    inl box = join box
+    $'seq { for cube_x in !cube_range do for cube_y in !cube_range do yield\! !get cube_x cube_y |> Seq.choose !box }'
+
+#!markdown
+
+### generate_frame
+
+#!fsharp
+
+let generateFrame rot =
+    let updates = 
+        cubes
+        |> Seq.collect (fun cube -> getCubePoints cube rot)
+    let buffer = Array.create (width * height) None
+    updates
+    |> Seq.iter (fun (idx, (ooz, ch)) ->
+        match buffer.[idx] with
+        | Some (prevOoz, _) when prevOoz >= ooz -> ()
+        | _ -> buffer.[idx] <- Some (ooz, ch)
+    )
+    let sb = StringBuilder()
+    for row in 0 .. (height - 1) do
+        for col in 0 .. (width - 1) do
+            let idx = col + row * width
+            let ch =
+                match buffer.[idx] with
+                | Some (_, ch) -> ch
+                | None -> backgroundChar
+            sb.Append(ch) |> ignore
+        sb.AppendLine() |> ignore
+    sb.ToString()
+
+#!spiral
+
+inl generate_frame rot =
+    inl updates : seq.seq' (int * (f64 * char)) =
+        inl fn cube : seq.seq' (int * (f64 * char)) =
+            get_cube_points cube rot
+        inl fn = join fn
+        get_cubes ()
+        |> $'Seq.collect !fn '
+    inl none : _ (f64 * char) = None
+    inl width = get_width ()
+    inl height = get_height ()
+    inl buffer = $'Array.create (!width * !height) !none '
+    inl fn idx ((ooz : f64), (ch : char)) =
+        match buffer |> am'.index idx with
+        | Some (prev_ooz, _) when prev_ooz >= ooz => ()
+        | _ =>
+            inl x =
+                (ooz, ch) |> Some
+            $'!buffer.[!idx] <- !x '
+    updates
+    |> $'Seq.iter (fun (struct (idx, ooz, ch)) -> !fn idx (ooz, ch))'
+    inl sb = "" |> sm'.string_builder
+    inl fn1 row =
+        inl fn2 col =
+            inl idx = col + row * width
+            inl ch =
+                match buffer |> am'.index idx with
+                | Some (_, ch) => ch
+                | None => get_background_char ()
+            sb |> sm'.builder_append (ch |> sm'.obj_to_string) |> ignore
+        $'for col in 0 .. (!width - 1) do !fn2 col'
+        sb |> sm'.builder_append_line |> ignore
+    $'for row in 0 .. (!height - 1) do !fn1 row'
+    sb |> sm'.obj_to_string
+    
+
+#!markdown
+
+### main_loop
+
+#!fsharp
+
+let rec mainLoop rot = async {
+    let frame = generateFrame rot
+    // Console.SetCursorPosition(0, 0)
+    Console.Write(frame)
+    let rot' = { a = rot.a + 0.05; b = rot.b + 0.05; c = rot.c + 0.01 }
+    do! Async.Sleep 16
+    return! mainLoop rot'
+}
+
+#!spiral
+
+let rec main_loop rot = async.new_async_unit fun () =>
+    inl rot = join rot
+    inl frame = rot |> generate_frame
+    fun () =>
+        run_target function
+        | Fsharp (Wasm) => fun () => ()
+        | _ => fun () => $'System.Console.SetCursorPosition (0, 0)'
+    |> try_unit' fun _ => $'()'
+    frame |> console.write
+    async.sleep 1 |> async.do
+    inl rot' = { a = rot.a + 0.05; b = rot.b + 0.05; c = rot.c + 0.01 }
+    rot' |> main_loop |> async.return_await'
+
+#!markdown
+
+### main
+
+#!fsharp
+
+// [<EntryPoint>]
+let main argv =
+    // Console.CursorVisible <- false
+    Async.StartImmediate (mainLoop { a = 0.0; b = 0.0; c = 0.0 })
+    System.Threading.Thread.Sleep(1000)
+
+#!spiral
+
+inl main' (argv : ()) : () =
+    fun () =>
+        run_target function
+        | Fsharp (Wasm) => fun () => ()
+        | _ => fun () => $'System.Console.CursorVisible <- false'
+    |> try_unit' fun _ => $'()'
+    main_loop { a = 0.0; b = 0.0; c = 0.0 }
+    |> async.run_with_timeout_async 300
+    |> async.ignore
+    |> async.start_child
+    |> fun x =>
+        run_target_args' x function
+        | Fsharp (Wasm) => fun x =>
+            ()
+        | _ => fun x =>
+            x
+            |> async.run_synchronously
+            |> async.run_synchronously
+
+#!fsharp
+
+// main [||]
+
+#!spiral
+
+main' ()
