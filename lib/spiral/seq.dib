@@ -519,6 +519,19 @@ nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
 
 #!markdown
 
+### new_seq
+
+#!spiral
+
+inl new_seq fn : seq' _ =
+    fun () =>
+        $'seq {'
+        fn |> indent
+        $'}' : ()
+    |> let'
+
+#!markdown
+
 ### of_array'
 
 #!spiral

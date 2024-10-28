@@ -7595,14 +7595,14 @@ a.anchor-link {
 
 <span class="ansi-green-intense-fg ansi-bold">Mode   </span><span class="ansi-green-intense-fg ansi-bold">              LastWriteTime</span> <span class="ansi-green-intense-fg ansi-bold">        Length</span><span class="ansi-green-intense-fg ansi-bold"> Name</span>
 <span class="ansi-green-intense-fg ansi-bold">----   </span> <span class="ansi-green-intense-fg ansi-bold">             -------------</span> <span class="ansi-green-intense-fg ansi-bold">        ------</span> <span class="ansi-green-intense-fg ansi-bold">----</span>
-d----          2023-05-17  3:38 PM                <span class="ansi-blue-bg ansi-bold">6.1.1</span>
-d----          2024-03-12  8:22 PM                <span class="ansi-blue-bg ansi-bold">6.1.4</span>
-d----          2024-01-29  5:12 PM                <span class="ansi-blue-bg ansi-bold">6.1.5</span>
-d----          2024-03-12  8:20 PM                <span class="ansi-blue-bg ansi-bold">6.2.0</span>
-d----          2024-02-23  6:50 PM                <span class="ansi-blue-bg ansi-bold">6.2.1</span>
-d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi-bold">6.2.2</span>
-d----          2024-05-14  8:20 PM                <span class="ansi-blue-bg ansi-bold">6.2.3</span>
-d----          2024-06-06  7:37 PM                <span class="ansi-blue-bg ansi-bold">6.2.4</span>
+d----          2023-05-17  4:38 PM                <span class="ansi-blue-bg ansi-bold">6.1.1</span>
+d----          2024-03-12  9:22 PM                <span class="ansi-blue-bg ansi-bold">6.1.4</span>
+d----          2024-01-29  6:12 PM                <span class="ansi-blue-bg ansi-bold">6.1.5</span>
+d----          2024-03-12  9:20 PM                <span class="ansi-blue-bg ansi-bold">6.2.0</span>
+d----          2024-02-23  7:50 PM                <span class="ansi-blue-bg ansi-bold">6.2.1</span>
+d----          2024-03-12  9:15 PM                <span class="ansi-blue-bg ansi-bold">6.2.2</span>
+d----          2024-05-14  9:20 PM                <span class="ansi-blue-bg ansi-bold">6.2.3</span>
+d----          2024-06-06  8:37 PM                <span class="ansi-blue-bg ansi-bold">6.2.4</span>
 
 </pre>
 </div>
@@ -9104,7 +9104,7 @@ inl x = 2i32
     <span class="n">trace</span> <span class="n">Debug</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"parseDibCode"</span><span class="p">)</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / file: </span><span class="si">{file}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>file<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
+    <span class="n">let</span><span class="err">!</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
     <span class="k">match</span> <span class="n">parse</span> <span class="n">output</span> <span class="nb">input</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Ok</span> <span class="n">blocks</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">blocks</span> <span class="o">|&gt;</span> <span class="n">formatBlocks</span> <span class="n">output</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Error</span> <span class="n">msg</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">failwith</span> <span class="n">msg</span>
@@ -9137,14 +9137,14 @@ inl x = 2i32
     <span class="n">trace</span> <span class="n">Debug</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"writeDibCode"</span><span class="p">)</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>parseDibCode<span class="w"> </span>output<span class="w"> </span>path
+    <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseDibCode</span> <span class="n">output</span> <span class="n">path</span>
     <span class="n">let</span> <span class="n">pathDir</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
     <span class="n">let</span> <span class="n">fileNameWithoutExt</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">output</span><span class="p">,</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">Spir</span><span class="p">,</span> <span class="n">fileNameWithoutExt</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{fileNameWithoutExt}</span><span class="s2">_real"</span>
         <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">fileNameWithoutExt</span> <span class="o">-&gt;</span> <span class="n">fileNameWithoutExt</span>
     <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">pathDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{fileNameWithoutExt}</span><span class="s2">.{output |&gt; string |&gt; SpiralSm.to_lower}"</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>result<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span>outputPath
+    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">outputPath</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -9333,8 +9333,8 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 <span class="ansi-blue-intense-fg">d</span> #1 writeDibCode / output: Fs / path: DibParser.dib
-00:00:07 <span class="ansi-blue-intense-fg">d</span> #2 parseDibCode / output: Fs / file: DibParser.dib
+<pre>00:00:06 <span class="ansi-blue-intense-fg">d</span> #1 writeDibCode / output: Fs / path: DibParser.dib
+00:00:06 <span class="ansi-blue-intense-fg">d</span> #2 parseDibCode / output: Fs / file: DibParser.dib
 </pre>
 </div>
 </div>

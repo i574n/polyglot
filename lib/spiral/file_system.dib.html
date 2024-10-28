@@ -9671,7 +9671,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_5907af2cab94bfda2e5dbb1e645914d8a65ff8ac6b975cf881a267f2c1fb0c27\20241018-1604-0950-8056-0000000904e5" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_6c147aaac2dfc41729e0e2460d4f388076568de28df291fda4449b5f6391dc55\20241027-2316-3868-2804-000000e86c16" / expected: '\\'
 
 </pre>
 </div>
@@ -9680,7 +9680,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241018-1604-0997-9762-90030091a5da" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241027-2316-3957-5754-500300464250" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -10903,7 +10903,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 41L / expected: 41L
+<pre>__assert_eq / actual: 44L / expected: 44L
 </pre>
 </div>
 </div>
@@ -11095,7 +11095,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_ee7b916b419d7e668ad7019e9e930680e58db09abf550d11884b9d99689a5f93\20241018-1605-5846-5359-0000002976f3 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_1e98492a960d1b817562318e578972b31f8865ae98f4b1461dcdaaf8fd2ac5ec\20241027-2317-3857-5678-000000c3c16c }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
 </pre>
@@ -11183,7 +11183,7 @@ __assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
-__assert_between / actual: 124L / expected: struct (50L, 180L)
+__assert_between / actual: 119L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11688,6 +11688,7 @@ __assert_eq / actual: true / expected: true
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="n">inl</span> <span class="n">retry</span> <span class="o">=</span> <span class="n">join</span> <span class="n">retry</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>
@@ -11858,12 +11859,12 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
    at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0125.method61@4306-1.Invoke(Unit unitVar)
+   at FSI_0125._v96@5115-1.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
 00:00:01 <span class="ansi-yellow-intense-fg">w</span> #8 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
    at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0125.method61@4306-1.Invoke(Unit unitVar)
+   at FSI_0125._v96@5115-1.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
@@ -12004,7 +12005,7 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 delete_file_async / { path = test.txt; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
 00:00:01 <span class="ansi-yellow-intense-fg">w</span> #8 delete_file_async / { path = test.txt; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #9 _3
+00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
 __assert_between / actual: 128L / expected: struct (50L, 180L)

@@ -7635,11 +7635,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="p">(</span><span class="mi">3</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
@@ -7656,8 +7656,29 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: 1 / expected: 1
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\dd15b576f5b655c9d65b55a74fee7c4d7f14d92fac83e4e835a81157fc278d70\main.py", line 70, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\dd15b576f5b655c9d65b55a74fee7c4d7f14d92fac83e4e835a81157fc278d70\main.py", line 67, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 1 / expected: 1
@@ -7716,11 +7737,11 @@ __assert_eq / actual: 1 / expected: 1
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="p">(</span><span class="mi">1</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">flip</span> <span class="n">pair</span>
@@ -7737,8 +7758,29 @@ __assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: (2, 1) / expected: (2, 1)
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\90fc36f41e64468572a728d793796180ea6fe2e1688b7f6c7dee930bffceb10e\main.py", line 70, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\90fc36f41e64468572a728d793796180ea6fe2e1688b7f6c7dee930bffceb10e\main.py", line 67, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: (2, 1) / expected: (2, 1)
@@ -7819,11 +7861,11 @@ __assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 <span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
@@ -7841,8 +7883,29 @@ __assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: 15 / expected: 15
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\7320be57e43129587415aec54a480c6af6cf50b163339fb451812bb42d8509ae\main.py", line 93, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\7320be57e43129587415aec54a480c6af6cf50b163339fb451812bb42d8509ae\main.py", line 90, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 15 / expected: 15
@@ -7940,13 +8003,13 @@ mod module_5170bee5 {
                 panic!("{}", v8,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_5170bee5::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
+    Ok(Spiral_builder::method0())
 }
 
 .ts:
@@ -8071,7 +8134,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -8103,8 +8166,13 @@ def method0() -&gt; None:
     else:
         del v10, v16
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -8162,7 +8230,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -8194,8 +8262,13 @@ def method0() -&gt; None:
     else:
         del v10, v16
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -8215,11 +8288,11 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 <span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
@@ -8237,8 +8310,29 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: 15 / expected: 15
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\64d416b32f474bc59c370e32c50284af0bcd64f9b4b3078c5639ca77d16cce0e\main.py", line 98, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\64d416b32f474bc59c370e32c50284af0bcd64f9b4b3078c5639ca77d16cce0e\main.py", line 95, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 15 / expected: 15
@@ -8343,13 +8437,13 @@ mod module_84d7d073 {
                 panic!("{}", v9,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_84d7d073::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
+    Ok(Spiral_builder::method0())
 }
 
 .ts:
@@ -8482,7 +8576,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -8519,8 +8613,13 @@ def method0() -&gt; None:
     else:
         del v11, v17
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -8578,7 +8677,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -8615,8 +8714,13 @@ def method0() -&gt; None:
     else:
         del v11, v17
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -8666,11 +8770,11 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 <span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
@@ -8688,8 +8792,29 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: 15 / expected: 15
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\35e0592a79aebcdb9fe9d6c1a39649e9824c9eeac908e8c53758d1cbbf15f5a8\main.py", line 97, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\35e0592a79aebcdb9fe9d6c1a39649e9824c9eeac908e8c53758d1cbbf15f5a8\main.py", line 94, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 15 / expected: 15
@@ -8793,13 +8918,13 @@ mod module_e782e7b7 {
                 panic!("{}", v8,);
             }
         }
-        on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral_builder::method0());
     }
 }
 pub use module_e782e7b7::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
+    Ok(Spiral_builder::method0())
 }
 
 .ts:
@@ -8932,7 +9057,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -8968,8 +9093,13 @@ def method0() -&gt; None:
     else:
         del v10, v16
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -9027,7 +9157,7 @@ class dynamic_array_list(static_array_list):
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
-i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
 
 def method1() -&gt; i32:
     return 3
@@ -9063,8 +9193,13 @@ def method0() -&gt; None:
     else:
         del v10, v16
         return 
-def main():
+def main_body():
     return method0()
+
+def main():
+    r = main_body()
+    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
@@ -9104,7 +9239,7 @@ __assert_eq / actual: 15 / expected: 15
         <span class="n">then</span> <span class="n">result</span>
         <span class="k">else</span>
             <span class="n">trace</span> <span class="n">Debug</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"common.retry_fn</span><span class="se">\'</span><span class="s1"> / loop"'</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"common.retry_fn</span><span class="se">\'</span><span class="s2"> / loop"</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">is_error</span> <span class="n">retry</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!retry}/{!retries}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">result</span> <span class="p">}</span>
             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">loop</span> <span class="mi">1</span>
@@ -9291,7 +9426,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="return">return<a class="anchor-link" href="#return">¶</a></h3>
+<h3 id="yield">yield<a class="anchor-link" href="#yield">¶</a></h3>
 </div>
 </div>
 </div>
@@ -9303,11 +9438,8 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">return</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'return !x '</span>
-
-<span class="n">inl</span> <span class="k">return</span><span class="s1">' forall t. (x : t) : t =</span>
-    <span class="err">$</span><span class="s1">'return !x '</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">yield</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'yield !x '</span>
 </pre></div>
 </div>
 </div>
@@ -9320,11 +9452,63 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="retry_fn">retry_fn<a class="anchor-link" href="#retry_fn">¶</a></h3>
+<h3 id="return">return<a class="anchor-link" href="#return">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">return</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'return !x '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="return'">return'<a class="anchor-link" href="#return'">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">return</span><span class="s1">' forall t. (x : t) : t =</span>
+    <span class="err">$</span><span class="s1">'return !x '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="retry_fn">retry_fn<a class="anchor-link" href="#retry_fn">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9353,7 +9537,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9362,11 +9546,11 @@ __assert_eq / actual: 15 / expected: 15
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span><span class="nv">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">$"retry: {v0} / ex: %A{v1} / {v2 ()}"</span>
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">v3</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{v0}</span><span class="s2"> / ex: %A</span><span class="si">{v1}</span><span class="s2"> / {v2 ()}"</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -9408,7 +9592,7 @@ __assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9417,11 +9601,11 @@ __assert_eq' / actual: US0_0 1 / expected: US0_0 1
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span><span class="nv">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">$"retry: {v0} / ex: %A{v1} / {v2 ()}"</span>
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">v3</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{v0}</span><span class="s2"> / ex: %A</span><span class="si">{v1}</span><span class="s2"> / {v2 ()}"</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -9475,11 +9659,11 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #1 common.retry_fn / { retry = 0; ex = System.Exception: test
-   at FSI_0031.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0031.method1(Mut0 v0, Int32 v1) }
+   at FSI_0033.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0033.method1(Mut0 v0, Int32 v1) }
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
-   at FSI_0031.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0031.method1(Mut0 v0, Int32 v1) }
+   at FSI_0033.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0033.method1(Mut0 v0, Int32 v1) }
 __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
@@ -9487,7 +9671,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9498,7 +9682,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9508,7 +9692,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9522,7 +9706,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
             <span class="n">failwith</span> <span class="s2">"common.random' / target=Rust(Contract)"</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>min,<span class="w"> </span>max<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"rand::Rng::gen_range(&amp;mut rand::thread_rng(), $0..$1)"'</span><span class="o">)</span>
+            <span class="err">!</span>\\<span class="p">((</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"rand::Rng::gen_range(&amp;mut rand::thread_rng(), $0..$1)"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">random</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">random_next</span> <span class="p">(</span><span class="n">i32</span> <span class="nb">min</span><span class="p">)</span> <span class="p">(</span><span class="n">i32</span> <span class="nb">max</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">convert</span>
 </pre></div>
@@ -9531,7 +9715,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9541,7 +9725,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9572,7 +9756,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9581,11 +9765,11 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>cuda
-<span class="o">///!</span><span class="w"> </span>rust
-<span class="o">///!</span><span class="w"> </span>typescript
-<span class="o">///!</span><span class="w"> </span>python
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">inl</span> <span class="n">new_disposable_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
 <span class="n">new_disposable</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">new_disposable_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">+</span> <span class="mi">1</span>
@@ -9604,8 +9788,29 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
+<pre>
+.py output (Cuda):
 __assert_eq / actual: 1 / expected: 1
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
+
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\fda07887a03693bee210a1e65846c1b26dfa7a3c5e01a8a1ecf27d0d50f43380\main.py", line 112, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\fda07887a03693bee210a1e65846c1b26dfa7a3c5e01a8a1ecf27d0d50f43380\main.py", line 109, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 1 / expected: 1
@@ -9629,7 +9834,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9668,7 +9873,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9706,7 +9911,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9744,7 +9949,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9754,7 +9959,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

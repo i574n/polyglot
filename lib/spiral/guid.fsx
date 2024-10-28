@@ -30,13 +30,18 @@ and method0 (v0 : string) : System.Guid =
     let v70 : System.Guid = System.Guid $"{v56.[0..7]}-{v56.[8..11]}-{v56.[12..15]}-{v56.[16..19]}-{v56.[20..31]}"
     let _v1 = v70 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v73 : string = v0.PadLeft (32, '0')
     let v87 : System.Guid = System.Guid $"{v73.[0..7]}-{v73.[8..11]}-{v73.[12..15]}-{v73.[16..19]}-{v73.[20..31]}"
     let _v1 = v87 
     #endif
-    let v90 : System.Guid = _v1 
-    v90
+#else
+    let v90 : string = v0.PadLeft (32, '0')
+    let v104 : System.Guid = System.Guid $"{v90.[0..7]}-{v90.[8..11]}-{v90.[12..15]}-{v90.[16..19]}-{v90.[20..31]}"
+    let _v1 = v104 
+    #endif
+    let v107 : System.Guid = _v1 
+    v107
 and closure1 () (v0 : string) : System.Guid =
     method0(v0)
 and closure2 () () : System.Guid =

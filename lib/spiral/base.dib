@@ -46,6 +46,18 @@ inl use forall t. (x : t) : t =
 
 #!markdown
 
+## type
+
+#!markdown
+
+### unit
+
+#!spiral
+
+nominal unit = $'unit'
+
+#!markdown
+
 ## target
 
 #!markdown
@@ -93,15 +105,14 @@ union target =
 
 #!markdown
 
-### run_target_args
+### run_target_args'
 
 #!spiral
 
-inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
-    inl args = args () |> dyn
+inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
     backend_switch {
         Fsharp = fun () =>
-            inl result = $'()' : $'unit'
+            inl result = $'()' : unit
             inl emit_result x : () =
                 $'let _!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
@@ -120,6 +131,9 @@ inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
             $'#endif\n#if FABLE_COMPILER_PYTHON'
             inl target = Python Native
             fn target args |> emit_result
+            $'#endif\n#if \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!FABLE_COMPILER_PYTHON'
+            inl target = Fsharp Wasm
+            fn target args |> emit_result
             $'#endif\n#else'
             inl target = Fsharp Native
             fn target args |> emit_result
@@ -129,6 +143,16 @@ inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
             inl target = Cuda Native
             fn target args
     }
+
+#!markdown
+
+### run_target_args
+
+#!spiral
+
+inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
+    inl args = args () |> dyn
+    fn |> run_target_args' args
 
 #!markdown
 
@@ -169,6 +193,41 @@ run_target function
 
 inl eval fn =
     fn ()
+
+#!markdown
+
+### do
+
+#!spiral
+
+inl do (body : () -> ()) : () =
+    !!!!Do (body())
+
+#!markdown
+
+### indent
+
+#!spiral
+
+inl indent (body : () -> ()) : () =
+    inl body =
+        fun () =>
+            body ()
+            $'(*' : ()
+    !!!!Indent (body())
+    $'*)'
+
+#!markdown
+
+### let'
+
+#!spiral
+
+inl let' fn =
+    inl result : unit = $'()'
+    $'let _!result ='
+    fn |> indent
+    $'_!result '
 
 #!markdown
 
@@ -503,14 +562,6 @@ nominal any = $'obj'
 
 #!markdown
 
-### unit
-
-#!spiral
-
-nominal unit = $'unit'
-
-#!markdown
-
 ### null
 
 #!spiral
@@ -545,12 +596,14 @@ nominal choice2' a b = $'Choice<`a, `b>'
 #!spiral
 
 inl choice2_unbox forall t1 t2. (choice : choice2' t1 t2) : choice2 t1 t2 =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args (fun () => choice) function
+        | Fsharp _ => fun choice =>
             inl c1of2 (x : t1) : _ _ t2 = C1of2 x
             inl c2of2 (x : t2) : _ t1 _ = C2of2 x
+            inl c1of2 = join c1of2
+            inl c2of2 = join c2of2
             $'match !choice with Choice1Of2 x -> !c1of2 x | Choice2Of2 x -> !c2of2 x'
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -843,7 +896,7 @@ try
     (fun ex => $'!ex ' |> sm'.format_exception |> Some)
 |> optionm.value
 |> _assert_eq (run_target function
-    | Fsharp => fun () => "System.IndexOutOfRangeException: Index was outside the bounds of the array."
+    | Fsharp => fun () => join "System.IndexOutOfRangeException: Index was outside the bounds of the array."
     | Cuda => fun () => "array index out of range"
     | Rust => fun () => "Exception { message: \"index out of bounds: the len is 1 but the index is 1\" }"
     | TypeScript => fun () => "Error: Index was outside the bounds of the array.\\nParameter name: index"
@@ -861,8 +914,28 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     fn ()
     |> ignore
     $'with ex ->'
-    ex_fn $'ex'
+    fun () =>
+        ex_fn $'ex'
+        |> ignore
+    |> indent
+    $'(*'
+    $'*)'
+
+#!markdown
+
+### try_unit'
+
+#!spiral
+
+inl try_unit' forall t. (ex_fn : exn -> ()) (fn : () -> ()) : t =
+    $'try'
+    fn ()
     |> ignore
+    $'with ex ->'
+    fun () =>
+        ex_fn $'ex'
+        |> ignore
+    |> indent
     $'(*'
     $'*)'
 

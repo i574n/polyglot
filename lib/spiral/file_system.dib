@@ -1926,6 +1926,7 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
         | Fsharp (Native) => fun () =>
             let rec loop (retry : i64) =
                 fun () =>
+                    inl retry = join retry
                     try_unit
                         fun () =>
                             if retry > 0

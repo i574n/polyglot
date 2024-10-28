@@ -149,8 +149,9 @@ pub mod Trace {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US2 {
-        US2_0(Trace::US0),
+        US2_0,
         US2_1,
+        US2_2,
     }
     impl core::fmt::Display for Trace::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -159,10 +160,33 @@ pub mod Trace {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US3 {
-        US3_0(i64),
-        US3_1,
+        US3_0(Trace::US2),
+        US3_1(Trace::US2),
+        US3_2(Trace::US2),
+        US3_3(Trace::US2),
+        US3_4(Trace::US2),
     }
     impl core::fmt::Display for Trace::US3 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US4 {
+        US4_0(Trace::US0),
+        US4_1,
+    }
+    impl core::fmt::Display for Trace::US4 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US5 {
+        US5_0(i64),
+        US5_1,
+    }
+    impl core::fmt::Display for Trace::US5 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -209,19 +233,19 @@ pub mod Trace {
         LrcPtr<Trace::Mut4>,
         Option<i64>,
     ) {
-        let v117: string = string("env!(\"AUTOMATION\")");
-        let v118: &str = env!("AUTOMATION");
-        let v125: std::string::String = String::from(v118);
-        let _v1: (Trace::US2, Trace::US3) = (
-            Trace::US2::US2_1,
-            if fable_library_rust::String_::fromString(v125) != string("True") {
-                Trace::US3::US3_1
+        let v123: string = string("env!(\"AUTOMATION\")");
+        let v124: &str = env!("AUTOMATION");
+        let v131: std::string::String = String::from(v124);
+        let _v1: (Trace::US4, Trace::US5) = (
+            Trace::US4::US4_1,
+            if fable_library_rust::String_::fromString(v131) != string("True") {
+                Trace::US5::US5_1
             } else {
-                Trace::US3::US3_0(near_sdk::env::block_timestamp() as i64)
+                Trace::US5::US5_0(near_sdk::env::block_timestamp() as i64)
             },
         );
-        let v352: Trace::US3 = _v1.1.clone();
-        let v351: Trace::US2 = _v1.0.clone();
+        let v425: Trace::US5 = _v1.1.clone();
+        let v424: Trace::US4 = _v1.0.clone();
         (
             LrcPtr::new(Trace::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -236,17 +260,17 @@ pub mod Trace {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Trace::Mut4 {
-                l0: MutCell::new(match &v351 {
-                    Trace::US2::US2_0(v351_0_0) => match &v351 {
-                        Trace::US2::US2_0(x) => x.clone(),
+                l0: MutCell::new(match &v424 {
+                    Trace::US4::US4_0(v424_0_0) => match &v424 {
+                        Trace::US4::US4_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v352 {
-                Trace::US3::US3_0(v352_0_0) => Some(match &v352 {
-                    Trace::US3::US3_0(x) => x.clone(),
+            match &v425 {
+                Trace::US5::US5_0(v425_0_0) => Some(match &v425 {
+                    Trace::US5::US5_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
                 _ => None::<i64>,
@@ -312,10 +336,10 @@ pub mod Trace {
             )
         }
     }
-    pub fn closure7(unitVar: (), v0_1: i64) -> Trace::US3 {
-        Trace::US3::US3_0(v0_1)
+    pub fn closure7(unitVar: (), v0_1: i64) -> Trace::US5 {
+        Trace::US5::US5_0(v0_1)
     }
-    pub fn method8() -> Func1<i64, Trace::US3> {
+    pub fn method8() -> Func1<i64, Trace::US5> {
         Func1::new(move |v: i64| Trace::closure7((), v))
     }
     pub fn method9() -> string {
@@ -333,11 +357,11 @@ pub mod Trace {
         v5: Option<i64>,
     ) -> string {
         let v130: u64 = near_sdk::env::block_timestamp();
-        let v144: Trace::US3 = defaultValue(Trace::US3::US3_1, map(Trace::method8(), v5));
+        let v144: Trace::US5 = defaultValue(Trace::US5::US5_1, map(Trace::method8(), v5));
         let v154: u64 = match &v144 {
-            Trace::US3::US3_0(v144_0_0) => {
+            Trace::US5::US5_0(v144_0_0) => {
                 v130 - match &v144 {
-                    Trace::US3::US3_0(x) => x.clone(),
+                    Trace::US5::US5_0(x) => x.clone(),
                     _ => unreachable!(),
                 } as u64
             }
@@ -467,17 +491,17 @@ pub mod Trace {
             }),
             0_i32,
         ));
-        let v156: &str = match &v0_1 {
+        let v162: &str = match &v0_1 {
             Trace::US0::US0_1 => inline_colorization::color_bright_blue,
             Trace::US0::US0_2 => inline_colorization::color_bright_green,
             Trace::US0::US0_0 => inline_colorization::color_bright_black,
             Trace::US0::US0_3 => inline_colorization::color_yellow,
             _ => inline_colorization::color_bright_red,
         };
-        let v163: &str = &*v56;
-        let v179: &str = inline_colorization::color_reset;
-        let v181: std::string::String = format!("{}{}{}", v156, v163, v179);
-        fable_library_rust::String_::fromString(v181)
+        let v169: &str = &*v56;
+        let v188: &str = inline_colorization::color_reset;
+        let v190: std::string::String = format!("{}{}{}", v162, v169, v188);
+        fable_library_rust::String_::fromString(v190)
     }
     pub fn method16(v0_1: string) -> string {
         let v2_1: LrcPtr<Trace::Mut3> = LrcPtr::new(Trace::Mut3 {
@@ -560,27 +584,27 @@ pub mod Trace {
             }
         };
         let v60: &str = &*v53.clone();
-        let v76 = v60.chars();
-        let v78 = v76;
-        let v80: Vec<char> = v78.collect::<Vec<_>>();
-        let v82: Vec<Vec<char>> = v80
+        let v79 = v60.chars();
+        let v81 = v79;
+        let v83: Vec<char> = v81.collect::<Vec<_>>();
+        let v85: Vec<Vec<char>> = v83
             .chunks(15000)
             .map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>())
             .collect::<Vec<_>>();
-        let v84: bool = true;
-        let _vec_map: Vec<_> = v82
+        let v87: bool = true;
+        let _vec_map: Vec<_> = v85
             .into_iter()
             .map(|x| {
                 //;
-                let v86: Vec<char> = x;
-                let v88: std::string::String = String::from_iter(v86);
-                let v90: bool = true;
-                v88
+                let v89: Vec<char> = x;
+                let v91: std::string::String = String::from_iter(v89);
+                let v93: bool = true;
+                v91
             })
             .collect::<Vec<_>>();
-        let v92: Vec<std::string::String> = _vec_map;
+        let v95: Vec<std::string::String> = _vec_map;
         if if v0_1.clone() != string("") {
-            v92.clone().len() as i32 <= 1_i32
+            v95.clone().len() as i32 <= 1_i32
         } else {
             false
         } {
@@ -589,14 +613,14 @@ pub mod Trace {
         } else {
             v20.l0.set(string(""));
             {
-                let v104: bool = true;
-                v92.into_iter().for_each(|x| {
+                let v107: bool = true;
+                v95.into_iter().for_each(|x| {
                     //;
-                    let v106: std::string::String = x;
-                    let v108: bool = true;
-                    near_sdk::log!("{}", v106);
-                    let v110: bool = true;
-                    let v112: bool = true;
+                    let v109: std::string::String = x;
+                    let v111: bool = true;
+                    near_sdk::log!("{}", v109);
+                    let v113: bool = true;
+                    let v115: bool = true;
                 }); //;
                 ()
             }

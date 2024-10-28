@@ -1181,8 +1181,8 @@ inl event_data (e : data_received_event_args) : string =
 #!spiral
 
 let execute_with_options_async (options : execution_options) : _ (i32 * string) =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args (fun () => options) function
+        | Fsharp (Native) => fun options =>
             fun () =>
                 inl file_name, arguments = options.command |> split_command |> resultm.get
                 inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
@@ -1206,7 +1206,8 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                 $')'
                 inl start_info : process_start_info = $'start_info'
 
-                (a options.environment_variables : _ i32 _)
+                inl environment_variables = join options.environment_variables
+                (a environment_variables : _ i32 _)
                 |> am.iter fun key, value =>
                     $'!start_info.EnvironmentVariables.[!key] <- !value '
 
@@ -1294,7 +1295,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 (exit_code, output) |> return
             |> async.new_async_unit
-        | _ => fun () =>
+        | _ => fun _ =>
             global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
             null ()
 

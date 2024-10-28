@@ -507,20 +507,20 @@ nominal task t =
 #!spiral
 
 inl new_async_unit forall t. (fn : () -> ()) : async t =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl result : optionm'.option' (async t) = optionm'.none' ()
-            $'let mutable _!result = !result '
-            $'async {'
-            fn ()
-            real
-                typecase t with
-                | () => $'()' : ()
-                | _ => ()
-            $'}'
-            $'|> fun x -> _!result <- Some x'
-            $'match _!result with Some x -> x | None -> failwith "async.new_async_unit / _!result=None"'
-        | _ => fun () => null ()
+    run_target_args' fn function
+        | Fsharp _ => fun fn =>
+            fun () =>
+                $'async {'
+                fun () =>
+                    fn ()
+                    real
+                        typecase t with
+                        | () => $'()' : ()
+                        | _ => ()
+                |> indent
+                $'}' : ()
+            |> let'
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -538,8 +538,8 @@ inl new_async forall t. (fn : () -> t) : async t =
 #!spiral
 
 inl new_task forall t. (fn : () -> t) : task t =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' fn function
+        | Fsharp _ => fun fn =>
             inl result : optionm'.option' (task t) = optionm'.none' ()
             $'let mutable _!result = !result '
             $'task {'
@@ -547,7 +547,7 @@ inl new_task forall t. (fn : () -> t) : task t =
             $'}'
             $'|> fun x -> _!result <- Some x'
             $'match _!result with Some x -> x | None -> failwith "async.new_task / _!result=None"'
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -557,7 +557,7 @@ inl new_task forall t. (fn : () -> t) : task t =
 
 inl await_task forall t. (a : task t) : async t =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.AwaitTask'
         | _ => fun () => null ()
 
@@ -569,7 +569,7 @@ inl await_task forall t. (a : task t) : async t =
 
 inl ignore forall t. (a : async t) : async () =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.Ignore'
         | _ => fun () => null ()
 
@@ -581,7 +581,7 @@ inl ignore forall t. (a : async t) : async () =
 
 inl run_synchronously forall t. (a : async t) : t =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.RunSynchronously'
         | _ => fun () => null ()
 
@@ -593,7 +593,7 @@ inl run_synchronously forall t. (a : async t) : t =
 
 inl start (a : async ()) : () =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.Start'
         | _ => fun () => null ()
 
@@ -605,7 +605,7 @@ inl start (a : async ()) : () =
 
 inl start_child forall t. (a : async t) : async (async t) =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.StartChild'
         | _ => fun () => null ()
 
@@ -617,7 +617,7 @@ inl start_child forall t. (a : async t) : async (async t) =
 
 inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t) =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             $'Async.StartChild (!a, !timeout)'
         | _ => fun () => null ()
 
@@ -629,9 +629,21 @@ inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t
 
 inl start_immediate forall t. (a : async t) : () =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.StartImmediate'
         | _ => fun () => null ()
+
+#!markdown
+
+### start_with_continuations
+
+#!spiral
+
+inl start_with_continuations forall t. (a : async t) : () =
+    run_target_args' a function
+        | Fsharp _ => fun a =>
+            $'Async.StartWithContinuations (!a, ignore, ignore, ignore)'
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -649,7 +661,7 @@ nominal task_canceled_exception = $'System.Threading.Tasks.TaskCanceledException
 
 inl sleep (ms : i32) : async () =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             ms |> $'Async.Sleep'
         | _ => fun () => null ()
 
@@ -710,7 +722,7 @@ inl map forall t u. (fn : t -> u) (a : async t) : async u =
 
 inl catch' forall t e. (a : async t) : async (choice2' t e) =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             a |> $'Async.Catch'
         | _ => fun () => null ()
 
@@ -736,7 +748,7 @@ inl catch forall t e. (a : async t) : async (result t e) =
 
 inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (option t) =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp _ => fun () =>
             fun () =>
                 inl child = fn |> start_child_timeout timeout |> let'
                 child

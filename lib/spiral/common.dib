@@ -235,12 +235,27 @@ inl dispose (disposable : disposable _) : () =
 
 #!markdown
 
+### yield
+
+#!spiral
+
+inl yield forall t. (x : t) : () =
+    $'yield !x '
+
+#!markdown
+
 ### return
 
 #!spiral
 
 inl return forall t. (x : t) : () =
     $'return !x '
+
+#!markdown
+
+### return'
+
+#!spiral
 
 inl return' forall t. (x : t) : t =
     $'return !x '
