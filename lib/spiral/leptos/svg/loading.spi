@@ -2,7 +2,7 @@ open sm'_operators
 open leptos
 open rust
 
-inl render (class : () -> string) : _ svg =
+inl render (class : () -> string) : _ (_ svg) =
     inl class = class |> rust.emit
     svg [
         $'"version=\\\"1.1\\\""'

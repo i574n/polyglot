@@ -2,7 +2,7 @@ open sm'_operators
 open leptos
 open rust
 
-inl render icon (class : () -> sm'.std_string) props : _ button =
+inl render icon (class : () -> sm'.std_string) props : _ (_ button) =
     inl class = class |> rust.emit
     button
         ([

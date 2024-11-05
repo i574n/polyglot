@@ -3,7 +3,7 @@ open rust
 open sm'_operators
 open leptos
 
-inl render href icon label select : _ a' =
+inl render href icon label select : _ (_ a') =
     inl href = href >> sm'.to_std_string
     !\\(href, $'"let !href = $0"')
     inl select_class () : rust.static_ref sm'.str =

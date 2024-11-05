@@ -21,8 +21,7 @@ inl props () : props =
         summary_class = fun () => ""
     }
 
-inl render props_fn children : _ div
-    =
+inl render props_fn children : _ (_ div) =
     inl props : props = props () |> props_fn
     inl right_element' =
         props.right_element

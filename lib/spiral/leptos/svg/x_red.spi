@@ -1,6 +1,6 @@
 open leptos
 
-inl render () : _ svg =
+inl render () : _ (_ svg) =
     svg [
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'
         $'"fill=\\\"none\\\""'

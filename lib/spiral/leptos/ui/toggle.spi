@@ -2,7 +2,7 @@ open rust.rust_operators
 open sm'_operators
 open leptos
 
-inl render (id : () -> string) get_value (on_change : event -> ()) : _ label =
+inl render (id : () -> string) get_value (on_change : event -> ()) : _ (_ label) =
     inl id' = id >> sm'.to_std_string
     !\\(id', $'"let !id' = $0"')
     label [
