@@ -2,7 +2,7 @@ open sm'_operators
 open leptos
 open rust
 
-inl render (class : () -> string) props : _ svg =
+inl render (class : () -> string) props : _ (_ svg) =
     inl class = class |> rust.emit
     svg ([
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'

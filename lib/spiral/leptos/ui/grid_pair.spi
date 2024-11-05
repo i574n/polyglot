@@ -18,7 +18,7 @@ inl props () : props =
         dd_class = fun () => "[overflow:auto]"
     }
 
-inl render props_fn left right : _ dl =
+inl render props_fn left right : _ (_ dl) =
     inl props : props = props () |> props_fn
     inl left = join left
     inl right = join right

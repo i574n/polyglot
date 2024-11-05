@@ -151,8 +151,9 @@ pub mod Trace {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US2 {
-        US2_0(Trace::US0),
+        US2_0,
         US2_1,
+        US2_2,
     }
     impl core::fmt::Display for Trace::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -161,10 +162,33 @@ pub mod Trace {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US3 {
-        US3_0(i64),
-        US3_1,
+        US3_0(Trace::US2),
+        US3_1(Trace::US2),
+        US3_2(Trace::US2),
+        US3_3(Trace::US2),
+        US3_4(Trace::US2),
     }
     impl core::fmt::Display for Trace::US3 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US4 {
+        US4_0(Trace::US0),
+        US4_1,
+    }
+    impl core::fmt::Display for Trace::US4 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US5 {
+        US5_0(i64),
+        US5_1,
+    }
+    impl core::fmt::Display for Trace::US5 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -211,9 +235,9 @@ pub mod Trace {
         LrcPtr<Trace::Mut4>,
         Option<i64>,
     ) {
-        let _v1: (Trace::US2, Trace::US3) = (Trace::US2::US2_1, Trace::US3::US3_1);
-        let v352: Trace::US3 = _v1.1.clone();
-        let v351: Trace::US2 = _v1.0.clone();
+        let _v1: (Trace::US4, Trace::US5) = (Trace::US4::US4_1, Trace::US5::US5_1);
+        let v425: Trace::US5 = _v1.1.clone();
+        let v424: Trace::US4 = _v1.0.clone();
         (
             LrcPtr::new(Trace::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -228,17 +252,17 @@ pub mod Trace {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Trace::Mut4 {
-                l0: MutCell::new(match &v351 {
-                    Trace::US2::US2_0(v351_0_0) => match &v351 {
-                        Trace::US2::US2_0(x) => x.clone(),
+                l0: MutCell::new(match &v424 {
+                    Trace::US4::US4_0(v424_0_0) => match &v424 {
+                        Trace::US4::US4_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v352 {
-                Trace::US3::US3_0(v352_0_0) => Some(match &v352 {
-                    Trace::US3::US3_0(x) => x.clone(),
+            match &v425 {
+                Trace::US5::US5_0(v425_0_0) => Some(match &v425 {
+                    Trace::US5::US5_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
                 _ => None::<i64>,
@@ -304,10 +328,10 @@ pub mod Trace {
             )
         }
     }
-    pub fn closure7(unitVar: (), v0_1: i64) -> Trace::US3 {
-        Trace::US3::US3_0(v0_1)
+    pub fn closure7(unitVar: (), v0_1: i64) -> Trace::US5 {
+        Trace::US5::US5_0(v0_1)
     }
-    pub fn method8() -> Func1<i64, Trace::US3> {
+    pub fn method8() -> Func1<i64, Trace::US5> {
         Func1::new(move |v: i64| Trace::closure7((), v))
     }
     pub fn method9() -> string {
@@ -324,15 +348,15 @@ pub mod Trace {
         v4: LrcPtr<Trace::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v81: Trace::US3 = defaultValue(Trace::US3::US3_1, map(Trace::method8(), v5));
+        let v81: Trace::US5 = defaultValue(Trace::US5::US5_1, map(Trace::method8(), v5));
         let v121: DateTime = match &v81 {
-            Trace::US3::US3_0(v81_0_0) => {
+            Trace::US5::US5_0(v81_0_0) => {
                 let v95: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
                     } - match &v81 {
-                        Trace::US3::US3_0(x) => x.clone(),
+                        Trace::US5::US5_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                 );
@@ -469,17 +493,17 @@ pub mod Trace {
             }),
             0_i32,
         ));
-        let v114: &str = match &v0_1 {
+        let v117: &str = match &v0_1 {
             Trace::US0::US0_1 => inline_colorization::color_bright_blue,
             Trace::US0::US0_2 => inline_colorization::color_bright_green,
             Trace::US0::US0_0 => inline_colorization::color_bright_black,
             Trace::US0::US0_3 => inline_colorization::color_yellow,
             _ => inline_colorization::color_bright_red,
         };
-        let v119: &str = &*v56;
-        let v137: &str = inline_colorization::color_reset;
-        let v139: std::string::String = format!("{}{}{}", v114, v119, v137);
-        fable_library_rust::String_::fromString(v139)
+        let v122: &str = &*v56;
+        let v143: &str = inline_colorization::color_reset;
+        let v145: std::string::String = format!("{}{}{}", v117, v122, v143);
+        fable_library_rust::String_::fromString(v145)
     }
     pub fn method16(v0_1: string) -> string {
         let v2_1: LrcPtr<Trace::Mut3> = LrcPtr::new(Trace::Mut3 {

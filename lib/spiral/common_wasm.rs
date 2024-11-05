@@ -182,8 +182,9 @@ pub mod Common {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US2 {
-        US2_0(Common::US0),
+        US2_0,
         US2_1,
+        US2_2,
     }
     impl core::fmt::Display for Common::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -192,8 +193,11 @@ pub mod Common {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US3 {
-        US3_0(i64),
-        US3_1,
+        US3_0(Common::US2),
+        US3_1(Common::US2),
+        US3_2(Common::US2),
+        US3_3(Common::US2),
+        US3_4(Common::US2),
     }
     impl core::fmt::Display for Common::US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -202,7 +206,7 @@ pub mod Common {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US4 {
-        US4_0,
+        US4_0(Common::US0),
         US4_1,
     }
     impl core::fmt::Display for Common::US4 {
@@ -212,10 +216,30 @@ pub mod Common {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US5 {
-        US5_0(Common::US4),
+        US5_0(i64),
         US5_1,
     }
     impl core::fmt::Display for Common::US5 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US6 {
+        US6_0,
+        US6_1,
+    }
+    impl core::fmt::Display for Common::US6 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US7 {
+        US7_0(Common::US6),
+        US7_1,
+    }
+    impl core::fmt::Display for Common::US7 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -262,9 +286,9 @@ pub mod Common {
         LrcPtr<Common::Mut4>,
         Option<i64>,
     ) {
-        let _v1: (Common::US2, Common::US3) = (Common::US2::US2_1, Common::US3::US3_1);
-        let v352: Common::US3 = _v1.1.clone();
-        let v351: Common::US2 = _v1.0.clone();
+        let _v1: (Common::US4, Common::US5) = (Common::US4::US4_1, Common::US5::US5_1);
+        let v425: Common::US5 = _v1.1.clone();
+        let v424: Common::US4 = _v1.0.clone();
         (
             LrcPtr::new(Common::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -279,17 +303,17 @@ pub mod Common {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Common::Mut4 {
-                l0: MutCell::new(match &v351 {
-                    Common::US2::US2_0(v351_0_0) => match &v351 {
-                        Common::US2::US2_0(x) => x.clone(),
+                l0: MutCell::new(match &v424 {
+                    Common::US4::US4_0(v424_0_0) => match &v424 {
+                        Common::US4::US4_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v352 {
-                Common::US3::US3_0(v352_0_0) => Some(match &v352 {
-                    Common::US3::US3_0(x) => x.clone(),
+            match &v425 {
+                Common::US5::US5_0(v425_0_0) => Some(match &v425 {
+                    Common::US5::US5_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
                 _ => None::<i64>,
@@ -333,15 +357,15 @@ pub mod Common {
             Lrc<dyn IDisposable>,
         )
     }
-    pub fn closure6(unitVar: (), v0_1: Common::US4) -> Common::US5 {
-        Common::US5::US5_0(v0_1)
+    pub fn closure6(unitVar: (), v0_1: Common::US6) -> Common::US7 {
+        Common::US7::US7_0(v0_1)
     }
-    pub fn closure7(v0_1: i32, v1_1: Func0<()>, v2_1: i32, unitVar: ()) -> Common::US4 {
+    pub fn closure7(v0_1: i32, v1_1: Func0<()>, v2_1: i32, unitVar: ()) -> Common::US6 {
         if v2_1 < v0_1 {
             v1_1();
-            Common::US4::US4_0
+            Common::US6::US6_0
         } else {
-            Common::US4::US4_1
+            Common::US6::US6_1
         }
     }
     pub fn method9(v0_1: Common::US0) -> bool {
@@ -382,10 +406,10 @@ pub mod Common {
             )
         }
     }
-    pub fn closure10(unitVar: (), v0_1: i64) -> Common::US3 {
-        Common::US3::US3_0(v0_1)
+    pub fn closure10(unitVar: (), v0_1: i64) -> Common::US5 {
+        Common::US5::US5_0(v0_1)
     }
-    pub fn method11() -> Func1<i64, Common::US3> {
+    pub fn method11() -> Func1<i64, Common::US5> {
         Func1::new(move |v: i64| Common::closure10((), v))
     }
     pub fn method12() -> string {
@@ -402,15 +426,15 @@ pub mod Common {
         v4: LrcPtr<Common::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v81: Common::US3 = defaultValue(Common::US3::US3_1, map(Common::method11(), v5));
+        let v81: Common::US5 = defaultValue(Common::US5::US5_1, map(Common::method11(), v5));
         let v121: DateTime = match &v81 {
-            Common::US3::US3_0(v81_0_0) => {
+            Common::US5::US5_0(v81_0_0) => {
                 let v95: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
                     } - match &v81 {
-                        Common::US3::US3_0(x) => x.clone(),
+                        Common::US5::US5_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                 );
@@ -452,11 +476,11 @@ pub mod Common {
     }
     pub fn method14() -> string {
         let v6: string = Common::method15(getCharAt(toLower(string("Warning")), 0_i32));
-        let v38: &str = inline_colorization::color_yellow;
-        let v43: &str = &*v6;
-        let v61: &str = inline_colorization::color_reset;
-        let v63: std::string::String = format!("{}{}{}", v38, v43, v61);
-        fable_library_rust::String_::fromString(v63)
+        let v41: &str = inline_colorization::color_yellow;
+        let v46: &str = &*v6;
+        let v67: &str = inline_colorization::color_reset;
+        let v69: std::string::String = format!("{}{}{}", v41, v46, v67);
+        fable_library_rust::String_::fromString(v69)
     }
     pub fn method19(v0_1: i32, v1_1: LrcPtr<Exception>) -> string {
         let v3: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
@@ -491,7 +515,7 @@ pub mod Common {
             ()
         };
         let v71: std::string::String = format!("{:#?}", v1_1);
-        let v97: () = {
+        let v100: () = {
             Common::closure11(
                 v3.clone(),
                 sprintf!("{}", fable_library_rust::String_::fromString(v71)),
@@ -499,7 +523,7 @@ pub mod Common {
             );
             ()
         };
-        let v106: () = {
+        let v109: () = {
             Common::closure11(v3.clone(), sprintf!("{}", string(" }")), ());
             ()
         };
@@ -603,20 +627,20 @@ pub mod Common {
             ))
         };
     }
-    pub fn closure8(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US5 {
+    pub fn closure8(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US7 {
         let v4: () = {
             Common::closure9(v0_1, v1_1, ());
             ()
         };
-        Common::US5::US5_1
+        Common::US7::US7_1
     }
-    pub fn method8(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US4 {
+    pub fn method8(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US6 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1_1 = MutCell::new(v1_1.clone());
         let v2_1: MutCell<i32> = MutCell::new(v2_1);
         '_method8: loop {
             break '_method8 ({
-                let result: LrcPtr<MutCell<Common::US5>> = refCell(Common::US5::US5_1);
+                let result: LrcPtr<MutCell<Common::US7>> = refCell(Common::US7::US7_1);
                 try_catch(
                     || {
                         result.set(Common::closure6(
@@ -634,10 +658,10 @@ pub mod Common {
                     },
                 );
                 {
-                    let v7: Common::US5 = result.get().clone();
+                    let v7: Common::US7 = result.get().clone();
                     match &v7 {
-                        Common::US5::US5_0(v7_0_0) => match &v7 {
-                            Common::US5::US5_0(x) => x.clone(),
+                        Common::US7::US7_0(v7_0_0) => match &v7 {
+                            Common::US7::US7_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => {
@@ -655,9 +679,9 @@ pub mod Common {
         }
     }
     pub fn closure5(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3: Common::US4 = Common::method8(v0_1, v1_1, 0_i32);
+        let v3: Common::US6 = Common::method8(v0_1, v1_1, 0_i32);
         match &v3 {
-            Common::US4::US4_0 => Some(()),
+            Common::US6::US6_0 => Some(()),
             _ => None::<()>,
         }
     }

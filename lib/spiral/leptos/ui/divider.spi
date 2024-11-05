@@ -1,7 +1,7 @@
 open sm'_operators
 open leptos
 
-inl render children : _ span =
+inl render children : _ (_ span) =
     inl children = join children
     inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children

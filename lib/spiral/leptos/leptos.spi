@@ -258,8 +258,8 @@ nominal interval_handle =
 /// ### text
 nominal text =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Text\")>]\n#endif\ntype leptos_svg_Text = class end"
-        $'' : $'leptos_svg_Text'
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::tachys::renderer::dom::Text\")>]\n#endif\ntype leptos_dom_Text = class end"
+        $'' : $'leptos_dom_Text'
     )
 
 /// ### transparent
@@ -274,6 +274,13 @@ nominal route =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Route\")>]\n#endif\ntype leptos_router_Route = class end"
         $'' : $'leptos_router_Route'
+    )
+
+/// ### nested_route
+nominal nested_route =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NestedRoute<_, _, _, _>\")>]\n#endif\ntype leptos_router_NestedRoute = class end"
+        $'' : $'leptos_router_NestedRoute'
     )
 
 /// ### route_definition
@@ -432,7 +439,7 @@ inl log_format fn obj =
 
 /// ### mount_to_body
 inl mount_to_body (view_fn : () -> rust.impl into_view) : () =
-    (!\\(view_fn, $'"true; leptos::prelude::mount_to_body(|| $0());"') : bool) |> ignore
+    (!\\(view_fn, $'"true; leptos::prelude::mount_to_body(|| $0()); //"') : bool) |> ignore
 
 /// ### view_vec_to_fragment
 inl view_vec_to_fragment (view : am'.vec view) : fragment =
@@ -443,8 +450,8 @@ inl view_list_to_fragment (view : list view) : fragment =
     view |> am'.new_vec |> view_vec_to_fragment
 
 /// ### element_to_view
-inl element_to_view (view : html_element _) : view =
-    !\\(view, $'"leptos::IntoView::into_view($0)"')
+inl element_to_view (view : view' (html_element _)) : view =
+    !\\(view, $'"leptos::prelude::IntoAny::into_any($0)"')
 
 /// ### view_to_fragment
 inl view_to_fragment (view : view) : fragment =
@@ -452,10 +459,15 @@ inl view_to_fragment (view : view) : fragment =
 
 /// ### fragment_to_view
 inl fragment_to_view (fragment : fragment) : view =
-    !\\(fragment, $'"leptos::IntoView::into_view($0)"')
+    inl fragment = join fragment
+    !\($'"leptos::prelude::AnyView::from(!fragment)"')
+
+/// ### fragment_to_view'
+inl fragment_to_view' (fragment : rust.ref fragment) : view =
+    !\\(fragment, $'"leptos::prelude::AnyView::from(*$0.clone())"')
 
 /// ### element_to_fragment
-inl element_to_fragment (view : html_element _) : fragment =
+inl element_to_fragment (view : view' (html_element _)) : fragment =
     view
     |> element_to_view
     |> view_to_fragment
@@ -464,27 +476,28 @@ inl element_to_fragment (view : html_element _) : fragment =
 instance (~:>) fragment = fun x =>
     real
         typecase t with
-        | array_base (html_element ~el) =>
-            inl x = am'.to_vec `(html_element el) x
-            inl x = am'.vec_map' `(html_element el) `view (element_to_view `el) x
+        | array_base (view' (html_element ~el)) =>
+            inl x = am'.to_vec `(view' (html_element el)) x
+            inl x = am'.vec_map' `(view' (html_element el)) `view (element_to_view `el) x
             inl x : a i32 view = am'.from_vec `i32 `view x
             inl x = am.toList `a `i32 `view x
             view_list_to_fragment x
-        | list (html_element ~el) =>
-            inl x = listm.map `(html_element el) `view (element_to_view `el) x
+        | list (view' (html_element ~el)) =>
+            inl x = listm.map `(view' (html_element el)) `view (element_to_view `el) x
             view_list_to_fragment x
-        | list view => view_list_to_fragment x
+        | list view =>
+            view_list_to_fragment x
         | _ => x
 
 /// ### (~:>) view
 instance (~:>) view = fun x =>
     real
         typecase t with
-        | html_element _ => element_to_view x
+        | view' (html_element _) => element_to_view x
         | _ => x
 
 /// ### view_trait_to_element
-inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
+inl view_trait_to_element (view : rust.impl into_view) : view' (html_element _) =
     $'!view |> unbox'
 
 /// ### view_trait_to_route_definition
@@ -492,7 +505,7 @@ inl view_trait_to_route_definition (view : rust.impl into_view) : route_definiti
     $'!view |> unbox'
 
 /// ### to_element_view
-inl to_element_view (view : html_element _) : rust.impl into_view =
+inl to_element_view (view : view' (html_element _)) : rust.impl into_view =
     $'!view |> unbox'
 
 /// ### to_view_trait
@@ -508,19 +521,19 @@ inl from_fragment_unbox (fragment : fragment) =
     $'!fragment |> unbox'
 
 /// ### element_to_view_trait
-inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.element_to_view_trait"') : bool) |> ignore
+inl element_to_view_trait (macro : view' (html_element _)) : rust.impl into_view =
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
     !\($'"leptos::prelude::view\! { {!macro} }"')
 
 /// ### macro_to_view_trait
 inl macro_to_view_trait (macro : string) : rust.impl into_view =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view_trait"') : bool) |> ignore
-    (!\($'$"true; use leptos::prelude::ClassAttribute; // leptos.macro_to_view_trait"') : bool) |> ignore
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ClassAttribute;\n//\""
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### macro_to_fragment
 inl macro_to_fragment (macro : string) : fragment =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_fragment"') : bool) |> ignore
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### new_transparent
@@ -529,7 +542,7 @@ inl new_transparent x : transparent =
 
 /// ### closure_to_view
 inl closure_to_view (closure : rust.func0 view) : view =
-    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
+    !\($'"leptos::prelude::IntoAny::into_any(move || !closure())"')
 
 /// ### batch
 inl batch (fn : () -> ()) : () =
@@ -537,7 +550,8 @@ inl batch (fn : () -> ()) : () =
 
 /// ### closure_to_fragment
 inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
-    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
+    inl closure = closure |> rust.func0_move
+    !\($'"leptos::prelude::IntoAny::into_any(!closure)"')
     |> view_to_fragment
 
 /// ### array_to_view
@@ -550,32 +564,47 @@ inl to_fragment x : fragment =
     $'!x |> unbox'
 
 /// ### text_to_view
-inl text_to_view (text : text) : view =
-    !\\(text, $'"leptos::IntoView::into_view($0)"')
+inl text_to_view (text : string) : view =
+    inl text = text |> sm'.to_std_string
+    !\\(text, $'"leptos::prelude::IntoAny::into_any(leptos::prelude::IntoView::into_view($0))"')
 
 /// ### text_to_fragment
-inl text_to_fragment (text : text) : fragment =
+inl text_to_fragment (text : string) : fragment =
     text
     |> text_to_view
     |> view_to_fragment
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view"') : bool) |> ignore
-    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    !\($'"leptos::prelude::IntoAny::into_any(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### macro_to_view'
 inl macro_to_view' (macro : string) : view' infer =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view\'"') : bool) |> ignore
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
+
+/// ### macro_to_view''
+inl macro_to_view'' (macro : string) : view' infer =
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    !\($'"leptos::prelude::view\! { " + !macro + " }"')
+
+/// ### macro_to_view'''
+inl macro_to_view''' (macro : string) : view' _ =
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
     !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### into_any_view
 inl into_any_view (view : view' _) : view =
-    !\\(view, $'"&leptos::IntoAny::into_any($0)"')
+    !\\(view, $'"leptos::prelude::IntoAny::into_any($0)"')
+
+/// ### into_any_view'
+inl into_any_view' (view : view' _) : view =
+    !\\(view, $'"&leptos::prelude::IntoAny::into_any($0)"')
 
 /// ### transparent_to_view
 inl transparent_to_view (transparent : transparent) : view =
-    !\\(transparent, $'"leptos::IntoView::into_view($0)"')
+    !\\(transparent, $'"leptos::prelude::IntoAny::into_any($0)"')
 
 /// ### transparent_to_fragment
 inl transparent_to_fragment (transparent : transparent) : fragment =
@@ -584,7 +613,7 @@ inl transparent_to_fragment (transparent : transparent) : fragment =
     |> view_to_fragment
 
 /// ### macro_to_element
-inl macro_to_element (view : string) : html_element _ =
+inl macro_to_element (view : string) : view' (html_element _) =
     view |> macro_to_view_trait |> view_trait_to_element
 
 /// ### transparents_fragment
@@ -602,13 +631,11 @@ inl views_to_view (items : array_base view) : view =
 
 /// ### new_text
 inl new_text (text : string) : text =
-    inl text = text |> sm'.to_std_string
-    !\\(text, $'"leptos::text($0)"')
+    !\\(text, $'"leptos::tachys::renderer::dom::Dom::create_text_node(&*$0)"')
 
 /// ### text_view
 inl text_view (text : string) : view =
     text
-    |> new_text
     |> text_to_view
 
 /// ### text_fragment
@@ -831,17 +858,17 @@ inl move_to_fragment fn =
 
 /// ### tag_raw
 inl tag_raw tag props children =
-    (!\($'$"true; use leptos::prelude::*; // leptos.tag_raw"') : bool) |> ignore
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::*;\n//\""
     inl tag : string = tag
     inl props = props |> concat_props
+    // inl children = children |> rust.move
+    inl children () =
+        children () |> rust.to_ref |> fragment_to_view'
     inl children = join children
-    inl children = fun () => children |> move_to_fragment
-    inl children : () -> fragment = join children
-    $'"<" + !tag + " " + !props + ">{ !children() }</" + !tag + ">"'
+    $'"<" + !tag + " " + !props + ">move || { !children() }</" + !tag + ">"'
 
 /// ### tag_element
-inl tag_element tag props children : html_element _ =
-    inl children = join children
+inl tag_element tag props children : view' (html_element _) =
     tag_raw tag props children
     |> macro_to_element
 
@@ -852,7 +879,7 @@ inl tag_closed_raw tag props =
     $'"<" + !tag + " " + !props + " />"'
 
 /// ### tag_closed
-inl tag_closed tag props : html_element _ =
+inl tag_closed tag props : view' (html_element _) =
     tag_closed_raw tag props
     |> macro_to_element
 
@@ -942,30 +969,27 @@ inl use_url () =
         url_pathname +. url_search
 
 /// ### route
-inl route path view children : view =
+inl route path view children : view' nested_route =
     inl path = path |> sm'.to_std_string
     inl path = join path
-    inl view : () -> fragment = join view
-    inl children : () -> fragment = join children
-    tag_raw
-        "leptos_router::components::Route"
-        [
-            $'"path=!path"'
-            $'"view=move || !view()"'
-        ]
-        children
-    |> macro_to_view'
-    |> into_any_view
+    // inl view = view |> rust.move
+    inl view () =
+        view () |> fragment_to_view
+    inl view = join view
+    tag_closed_raw "leptos_router::components::ParentRoute" [
+        $'"path=leptos_router_macro::path\!(!path)"'
+        $'"view= move || !view()"'
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view'''
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
-    (!\($'$"true; use leptos::prelude::ElementChild; // leptos.macro_to_view"') : bool) |> ignore
-    !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    !\($'"leptos::prelude::IntoAny::into_any(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### router
 inl router children : view =
-    inl children () =
-        children ()
     inl children : () -> fragment = join children
     tag_closed_raw "leptos_router::components::Router" [
         $'"children=Box::new(move || !children())"'
@@ -975,136 +999,138 @@ inl router children : view =
 
 /// ### routes
 inl routes children : view =
-    inl children : () -> fragment = children |> rust.emit
-    tag_closed_raw "leptos_router::Routes" [
-        $'"children=Box::new(move || !children(()))"'
+    inl children : () -> am'.vec (view' nested_route) = join children
+    inl children = join children
+    inl fallback = "leptos.routes / fallback" |> text_view
+    tag_closed_raw "leptos_router::components::Routes" [
+        $'"fallback=move || !fallback"'
+        $'"children=leptos::children::ToChildren::to_children(move || !children())"'
     ]
     |> macro_to_view'
     |> into_any_view
 
 /// ### a'
-inl a' props children : _ a' =
+inl a' props children : _ (_ a') =
     tag_element "a" props children
 
 /// ### button
-inl button props children : _ button =
+inl button props children : _ (_ button) =
     tag_element "button" props children
 
 /// ### details
-inl details props children : _ details =
+inl details props children : _ (_ details) =
     tag_element "details" props children
 
 /// ### div
-inl div props children : _ div =
+inl div props children : _ (_ div) =
     tag_element "div" props children
 
 /// ### footer
-inl footer props children : _ footer =
+inl footer props children : _ (_ footer) =
     tag_element "footer" props children
 
 /// ### header
-inl header props children : _ header =
+inl header props children : _ (_ header) =
     tag_element "header" props children
 
 /// ### label
-inl label props children : _ label =
+inl label props children : _ (_ label) =
     tag_element "label" props children
 
 /// ### main
-inl main props children : _ main =
+inl main props children : _ (_ main) =
     tag_element "main" props children
 
 inl main' () = ()
 
 /// ### nav
-inl nav props children : _ nav =
+inl nav props children : _ (_ nav) =
     tag_element "nav" props children
 
 /// ### option'
-inl option' props children : _ option' =
+inl option' props children : _ (_ option') =
     tag_element "option" props children
 
 /// ### option'
-inl option' select children : _ option' =
-    inl select : () -> bool = join select
+inl option' selected children : _ (_ option') =
+    inl selected : () -> bool = join selected
     option' [
-        $'"select=!select()"'
-
+        $'"selected=!selected()"'
     ] fun () =>
-        children |> new_text |> text_to_fragment
+        children |> text_to_fragment
 
 /// ### pre
-inl pre props children : _ pre =
+inl pre props children : _ (_ pre) =
     tag_element "pre" props children
 
 /// ### select
-inl select props children : _ select =
+inl select props children : _ (_ select) =
     tag_element "select" props children
 
 /// ### span
-inl span props children : _ span =
+inl span props children : _ (_ span) =
     tag_element "span" props children
 
 /// ### summary
-inl summary props children : _ summary =
+inl summary props children : _ (_ summary) =
     tag_element "summary" props children
 
 /// ### table
-inl table props children : _ table =
+inl table props children : _ (_ table) =
     tag_element "table" props children
 
 /// ### thead
-inl thead props children : _ thead =
+inl thead props children : _ (_ thead) =
     tag_element "thead" props children
 
 /// ### tbody
-inl tbody props children : _ tbody =
+inl tbody props children : _ (_ tbody) =
     tag_element "tbody" props children
 
 /// ### tr
-inl tr props children : _ tr =
+inl tr props children : _ (_ tr) =
     tag_element "tr" props children
 
 /// ### th
-inl th props children : _ th =
+inl th props children : _ (_ th) =
     tag_element "th" props children
 
 /// ### td
-inl td props children : _ td =
+inl td props children : _ (_ td) =
     tag_element "td" props children
 
 /// ### svg
-inl svg props children : _ svg =
+inl svg props children : _ (_ svg) =
     tag_element "svg" props children
 
 /// ### path
-inl path props : _ path =
+inl path props : _ (_ path) =
     tag_element "path" props (fun () => [] |> view_list_to_fragment)
 
 /// ### circle
-inl circle props : _ circle =
+inl circle props : _ (_ circle) =
     tag_element "circle" props (fun () => [] |> view_list_to_fragment)
 
 /// ### rect
-inl rect props children : _ rect =
+inl rect props children : _ (_ rect) =
     tag_element "rect" props children
 
 /// ### animate
-inl animate props : _ animate =
+inl animate props : _ (_ animate) =
     tag_element "animate" props (fun () => [] |> view_list_to_fragment)
 
 /// ### input
-inl input props : _ input =
+inl input props : _ (_ input) =
     tag_closed "input" props
 
 /// ### dd
-inl dd props children : _ dd =
+inl dd props children : _ (_ dd) =
     tag_element "dd" props children
 
 /// ### dl
-inl dl props children : _ dl =
+inl dl props children : _ (_ dl) =
     tag_element "dl" props children
 
 /// ### dt
-inl dt props children : _ dt =
+inl dt props children : _ (_ dt) =
     tag_element "dt" props children

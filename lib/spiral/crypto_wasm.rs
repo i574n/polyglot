@@ -181,8 +181,9 @@ pub mod Crypto {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US2 {
-        US2_0(Crypto::US0),
+        US2_0,
         US2_1,
+        US2_2,
     }
     impl core::fmt::Display for Crypto::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -191,10 +192,33 @@ pub mod Crypto {
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US3 {
-        US3_0(i64),
-        US3_1,
+        US3_0(Crypto::US2),
+        US3_1(Crypto::US2),
+        US3_2(Crypto::US2),
+        US3_3(Crypto::US2),
+        US3_4(Crypto::US2),
     }
     impl core::fmt::Display for Crypto::US3 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US4 {
+        US4_0(Crypto::US0),
+        US4_1,
+    }
+    impl core::fmt::Display for Crypto::US4 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US5 {
+        US5_0(i64),
+        US5_1,
+    }
+    impl core::fmt::Display for Crypto::US5 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -202,10 +226,13 @@ pub mod Crypto {
     pub fn method1() -> string {
         string("")
     }
-    pub fn method2(v0_1: i32, v1_1: LrcPtr<Crypto::Mut0>) -> bool {
+    pub fn method2(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method3(v0_1: i32, v1_1: LrcPtr<Crypto::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn method3() -> string {
+    pub fn method4() -> string {
         string("")
     }
     pub fn method0(v0_1: string) -> string {
@@ -214,19 +241,19 @@ pub mod Crypto {
     pub fn closure0(unitVar: (), v0_1: string) -> string {
         Crypto::method0(v0_1)
     }
-    pub fn method6() -> string {
+    pub fn method7() -> string {
         string("TRACE_LEVEL")
     }
-    pub fn method8() -> string {
+    pub fn method9() -> string {
         string("")
     }
     pub fn closure4(unitVar: (), v0_1: string) -> Crypto::US1 {
         Crypto::US1::US1_0(v0_1)
     }
-    pub fn method9() -> Func1<string, Crypto::US1> {
+    pub fn method10() -> Func1<string, Crypto::US1> {
         Func1::new(move |v: string| Crypto::closure4((), v))
     }
-    pub fn method7(v0_1: string) -> string {
+    pub fn method8(v0_1: string) -> string {
         let v18: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
         let v20: bool = true;
         let _result_map_ = v18.map(|x| {
@@ -237,16 +264,16 @@ pub mod Crypto {
             v24
         });
         let v28: Result<string, std::env::VarError> = _result_map_;
-        let v29: string = Crypto::method8();
+        let v29: string = Crypto::method9();
         v28.unwrap_or(v29)
     }
-    pub fn method10() -> string {
+    pub fn method11() -> string {
         string("AUTOMATION")
     }
     pub fn closure5(unitVar: (), v0_1: string) {
         ();
     }
-    pub fn method5(
+    pub fn method6(
         v0_1: Crypto::US0,
     ) -> (
         LrcPtr<Crypto::Mut1>,
@@ -256,9 +283,9 @@ pub mod Crypto {
         LrcPtr<Crypto::Mut5>,
         Option<i64>,
     ) {
-        let _v1: (Crypto::US2, Crypto::US3) = (Crypto::US2::US2_1, Crypto::US3::US3_1);
-        let v352: Crypto::US3 = _v1.1.clone();
-        let v351: Crypto::US2 = _v1.0.clone();
+        let _v1: (Crypto::US4, Crypto::US5) = (Crypto::US4::US4_1, Crypto::US5::US5_1);
+        let v425: Crypto::US5 = _v1.1.clone();
+        let v424: Crypto::US4 = _v1.0.clone();
         (
             LrcPtr::new(Crypto::Mut1 {
                 l0: MutCell::new(1_i64),
@@ -273,17 +300,17 @@ pub mod Crypto {
                 l0: MutCell::new(string("")),
             }),
             LrcPtr::new(Crypto::Mut5 {
-                l0: MutCell::new(match &v351 {
-                    Crypto::US2::US2_0(v351_0_0) => match &v351 {
-                        Crypto::US2::US2_0(x) => x.clone(),
+                l0: MutCell::new(match &v424 {
+                    Crypto::US4::US4_0(v424_0_0) => match &v424 {
+                        Crypto::US4::US4_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => v0_1,
                 }),
             }),
-            match &v352 {
-                Crypto::US3::US3_0(v352_0_0) => Some(match &v352 {
-                    Crypto::US3::US3_0(x) => x.clone(),
+            match &v425 {
+                Crypto::US5::US5_0(v425_0_0) => Some(match &v425 {
+                    Crypto::US5::US5_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
                 _ => None::<i64>,
@@ -299,7 +326,7 @@ pub mod Crypto {
                 LrcPtr<Crypto::Mut4>,
                 LrcPtr<Crypto::Mut5>,
                 Option<i64>,
-            ) = Crypto::method5(Crypto::US0::US0_0);
+            ) = Crypto::method6(Crypto::US0::US0_0);
             Crypto::TraceState::trace_state().set(Some((
                 patternInput.0.clone(),
                 patternInput.1.clone(),
@@ -311,7 +338,7 @@ pub mod Crypto {
             ()
         };
     }
-    pub fn method4(v0_1: Crypto::US0) -> bool {
+    pub fn method5(v0_1: Crypto::US0) -> bool {
         let v3: () = {
             Crypto::closure3((), ());
             ()
@@ -349,19 +376,19 @@ pub mod Crypto {
             )
         }
     }
-    pub fn closure6(unitVar: (), v0_1: i64) -> Crypto::US3 {
-        Crypto::US3::US3_0(v0_1)
+    pub fn closure6(unitVar: (), v0_1: i64) -> Crypto::US5 {
+        Crypto::US5::US5_0(v0_1)
     }
-    pub fn method12() -> Func1<i64, Crypto::US3> {
+    pub fn method13() -> Func1<i64, Crypto::US5> {
         Func1::new(move |v: i64| Crypto::closure6((), v))
     }
-    pub fn method13() -> string {
+    pub fn method14() -> string {
         string("hh:mm:ss")
     }
-    pub fn method14() -> string {
+    pub fn method15() -> string {
         string("HH:mm:ss")
     }
-    pub fn method11(
+    pub fn method12(
         v0_1: LrcPtr<Crypto::Mut1>,
         v1_1: LrcPtr<Crypto::Mut2>,
         v2: LrcPtr<Crypto::Mut3>,
@@ -369,15 +396,15 @@ pub mod Crypto {
         v4: LrcPtr<Crypto::Mut5>,
         v5: Option<i64>,
     ) -> string {
-        let v81: Crypto::US3 = defaultValue(Crypto::US3::US3_1, map(Crypto::method12(), v5));
+        let v81: Crypto::US5 = defaultValue(Crypto::US5::US5_1, map(Crypto::method13(), v5));
         let v121: DateTime = match &v81 {
-            Crypto::US3::US3_0(v81_0_0) => {
+            Crypto::US5::US5_0(v81_0_0) => {
                 let v95: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
                     } - match &v81 {
-                        Crypto::US3::US3_0(x) => x.clone(),
+                        Crypto::US5::US5_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                 );
@@ -393,10 +420,10 @@ pub mod Crypto {
             }
             _ => DateTime::now(),
         };
-        let provider: string = Crypto::method13();
+        let provider: string = Crypto::method14();
         v121.toString(provider)
     }
-    pub fn method17() -> string {
+    pub fn method18() -> string {
         string("")
     }
     pub fn closure7(v0_1: LrcPtr<Crypto::Mut4>, v1_1: string, unitVar: ()) {
@@ -404,9 +431,9 @@ pub mod Crypto {
         v0_1.l0.set(v3);
         ()
     }
-    pub fn method16(v0_1: char) -> string {
+    pub fn method17(v0_1: char) -> string {
         let v2: LrcPtr<Crypto::Mut4> = LrcPtr::new(Crypto::Mut4 {
-            l0: MutCell::new(Crypto::method17()),
+            l0: MutCell::new(Crypto::method18()),
         });
         let v8: () = {
             Crypto::closure7(v2.clone(), sprintf!("{}", v0_1), ());
@@ -414,20 +441,20 @@ pub mod Crypto {
         };
         v2.l0.get().clone()
     }
-    pub fn method18() -> string {
+    pub fn method19() -> string {
         string("\u{001b}[0m")
     }
-    pub fn method15() -> string {
-        let v6: string = Crypto::method16(getCharAt(toLower(string("Verbose")), 0_i32));
-        let v38: &str = inline_colorization::color_bright_black;
-        let v43: &str = &*v6;
-        let v61: &str = inline_colorization::color_reset;
-        let v63: std::string::String = format!("{}{}{}", v38, v43, v61);
-        fable_library_rust::String_::fromString(v63)
+    pub fn method16() -> string {
+        let v6: string = Crypto::method17(getCharAt(toLower(string("Verbose")), 0_i32));
+        let v41: &str = inline_colorization::color_bright_black;
+        let v46: &str = &*v6;
+        let v67: &str = inline_colorization::color_reset;
+        let v69: std::string::String = format!("{}{}{}", v41, v46, v67);
+        fable_library_rust::String_::fromString(v69)
     }
-    pub fn method20(v0_1: i32, v1_1: string, v2: u16) -> string {
+    pub fn method21(v0_1: i32, v1_1: string, v2: u16) -> string {
         let v4: LrcPtr<Crypto::Mut4> = LrcPtr::new(Crypto::Mut4 {
-            l0: MutCell::new(Crypto::method17()),
+            l0: MutCell::new(Crypto::method18()),
         });
         let v11: () = {
             Crypto::closure7(v4.clone(), sprintf!("{}", string("{ ")), ());
@@ -483,13 +510,13 @@ pub mod Crypto {
         };
         v4.l0.get().clone()
     }
-    pub fn method21(v0_1: string) -> string {
+    pub fn method22(v0_1: string) -> string {
         trimEndChars(
             trimStartChars(v0_1, toArray(empty::<char>())),
             toArray(ofArray(new_array(&[' ', '/']))),
         )
     }
-    pub fn method19(
+    pub fn method20(
         v0_1: LrcPtr<Crypto::Mut1>,
         v1_1: LrcPtr<Crypto::Mut2>,
         v2: LrcPtr<Crypto::Mut3>,
@@ -502,8 +529,8 @@ pub mod Crypto {
         v9: string,
         v10: u16,
     ) -> string {
-        let v11: string = Crypto::method20(v8, v9, v10);
-        Crypto::method21(sprintf!(
+        let v11: string = Crypto::method21(v8, v9, v10);
+        Crypto::method22(sprintf!(
             "{} {} #{} {} / {}",
             v6,
             v7,
@@ -527,7 +554,7 @@ pub mod Crypto {
         };
         ()
     }
-    pub fn method22(v0_1: string) {
+    pub fn method23(v0_1: string) {
         let v3: () = {
             Crypto::closure3((), ());
             ()
@@ -549,7 +576,7 @@ pub mod Crypto {
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure2(v0_1: i32, v1_1: string, v2: u16, unitVar: ()) {
-        if Crypto::method4(Crypto::US0::US0_0) {
+        if Crypto::method5(Crypto::US0::US0_0) {
             let v7: () = {
                 Crypto::closure3((), ());
                 ()
@@ -568,15 +595,15 @@ pub mod Crypto {
             let v23: LrcPtr<Crypto::Mut3> = patternInput.2.clone();
             let v22: LrcPtr<Crypto::Mut2> = patternInput.1.clone();
             let v21: LrcPtr<Crypto::Mut1> = patternInput.0.clone();
-            Crypto::method22(Crypto::method19(
+            Crypto::method23(Crypto::method20(
                 v21.clone(),
                 v22.clone(),
                 v23.clone(),
                 v24.clone(),
                 v25.clone(),
                 v26.clone(),
-                Crypto::method11(v21, v22, v23, v24, v25, v26),
-                Crypto::method15(),
+                Crypto::method12(v21, v22, v23, v24, v25, v26),
+                Crypto::method16(),
                 v0_1,
                 v1_1,
                 v2,

@@ -2,7 +2,7 @@ open sm'_operators
 open leptos
 open rust
 
-inl render forall t. (class : () -> string) props getter setter : _ input =
+inl render forall t. (class : () -> string) props getter setter : _ (_ input) =
     inl getter : () -> t = join getter
     inl setter : sm'.std_string -> () = join setter
     inl class = class |> rust.emit
