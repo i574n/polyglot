@@ -1,0 +1,6 @@
+packageDir: ../../../../lib
+packages:
+    |core-
+    spiral-
+modules:
+    cube

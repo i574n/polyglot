@@ -183,7 +183,7 @@ module Eval =
                                     else
                                         trace Debug
                                             (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel")
-                                            (fun () -> $"retry: {retry} / tokens: {tokens}")
+                                            (fun () -> $"retry: {retry} / tokens: %A{tokens}")
                                         do! Async.Sleep 30
                                         return! loop (retry + 1)
                                 }

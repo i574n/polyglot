@@ -8027,7 +8027,7 @@ a.anchor-link {
                                 <span class="k">else</span>
                                     <span class="n">trace</span> <span class="n">Debug</span>
                                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel"</span><span class="p">)</span>
-                                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / tokens: </span><span class="si">{tokens}</span><span class="s2">"</span><span class="p">)</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / tokens: %A</span><span class="si">{tokens}</span><span class="s2">"</span><span class="p">)</span>
                                     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
                                     <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                             <span class="p">}</span>
