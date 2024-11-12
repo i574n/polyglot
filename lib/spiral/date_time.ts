@@ -174,15 +174,15 @@ export function method4(): string {
 }
 
 export function method0(v0_1: string, v1_1: Date): string {
-    const v324: string = toString(v1_1, method3());
-    const v336: any = defaultOf();
-    let v393: number;
+    const v508: string = toString(v1_1, method3());
+    const v520: any = defaultOf();
+    let v604: number;
     throw new Error(`date_time.get_utc_offset / target: ${US3_US3_3(US2_US2_0())}`);
-    const v404: uint8 = (hours(v393) > 0) ? 1 : 0;
-    const v405: string = method4();
-    const v416 = `${v404}${toString_1(v393, "c", {})}`;
-    const v418: string = v0_1;
-    return parse(`${v324}${v416}${v418.slice(v324.length + v416.length, v418.length)}`);
+    const v615: uint8 = (hours(v604) > 0) ? 1 : 0;
+    const v616: string = method4();
+    const v628 = `${v615}${toString_1(v604, "c", {})}`;
+    const v630: string = v0_1;
+    return parse(`${v508}${v628}${v630.slice(v508.length + v628.length, v630.length)}`);
 }
 
 export function closure1(v0_1: string, v1_1: Date): string {

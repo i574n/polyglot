@@ -311,13 +311,13 @@ and closure34 (v0 : UH0) (v1 : string) : string =
     v8
 and closure31 () (v0 : (char [])) : (string -> string) =
     let v1 : char list = v0 |> Array.toList
-    let v2 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v3 : (char -> (UH0 -> UH0)) = method4()
-    let v4 : (char list -> (UH0 -> UH0)) = v2 v3
-    let v5 : (UH0 -> UH0) = v4 v1
-    let v6 : UH0 = UH0_0
-    let v7 : UH0 = v5 v6
-    closure34(v7)
+    let v4 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v5 : (char -> (UH0 -> UH0)) = method4()
+    let v6 : (char list -> (UH0 -> UH0)) = v4 v5
+    let v7 : (UH0 -> UH0) = v6 v1
+    let v8 : UH0 = UH0_0
+    let v9 : UH0 = v7 v8
+    closure34(v9)
 and closure36 (v0 : UH0) (v1 : string) : string =
     let v2 : char list = []
     let v3 : char list = method5(v0, v2)
@@ -327,13 +327,13 @@ and closure36 (v0 : UH0) (v1 : string) : string =
     v8
 and closure35 () (v0 : (char [])) : (string -> string) =
     let v1 : char list = v0 |> Array.toList
-    let v2 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v3 : (char -> (UH0 -> UH0)) = method4()
-    let v4 : (char list -> (UH0 -> UH0)) = v2 v3
-    let v5 : (UH0 -> UH0) = v4 v1
-    let v6 : UH0 = UH0_0
-    let v7 : UH0 = v5 v6
-    closure36(v7)
+    let v4 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v5 : (char -> (UH0 -> UH0)) = method4()
+    let v6 : (char list -> (UH0 -> UH0)) = v4 v5
+    let v7 : (UH0 -> UH0) = v6 v1
+    let v8 : UH0 = UH0_0
+    let v9 : UH0 = v7 v8
+    closure36(v9)
 and closure38 (v0 : int32) (v1 : string) : string =
     let v2 : int32 = v1.Length
     let v3 : bool = v2 <= v0
@@ -342,8 +342,8 @@ and closure38 (v0 : int32) (v1 : string) : string =
     else
         let v4 : int32 = v0 - 1
         let v5 : string = v1.[int 0..int v4]
-        let v6 : string = v5 + "..."
-        v6
+        let v9 : string = v5 + "..."
+        v9
 and closure37 () (v0 : int32) : (string -> string) =
     closure38(v0)
 and method6 (v0 : int64, v1 : string) : string =
@@ -354,27 +354,27 @@ and method6 (v0 : int64, v1 : string) : string =
     else
         let v4 : (int64 -> float) = float
         let v5 : float = v4 v0
-        let v6 : float = v5 / 2.0
-        let v7 : (float -> float) = ceil
-        let v8 : float = v7 v6
-        let v9 : (float -> int64) = int64
-        let v10 : int64 = v9 v8
-        let v11 : (float -> float) = floor
-        let v12 : float = v11 v6
-        let v13 : (float -> int64) = int64
-        let v14 : int64 = v13 v12
-        let v15 : int64 = v10 - 1L
-        let v16 : string = v1.[int 0L..int v15]
-        let v17 : int64 = v2 - v14
-        let v18 : int64 = v2 - 1L
-        let v19 : string = v1.[int v17..int v18]
-        let v20 : string = "..."
-        let v21 : (string []) = [|v16; v20; v19|]
-        let v22 : string seq = v21 |> Seq.ofArray
-        let v25 : (string -> (string seq -> string)) = String.concat
-        let v26 : string = ""
-        let v27 : (string seq -> string) = v25 v26
-        v27 v22
+        let v8 : float = v5 / 2.0
+        let v9 : (float -> float) = ceil
+        let v10 : float = v9 v8
+        let v11 : (float -> int64) = int64
+        let v12 : int64 = v11 v10
+        let v15 : (float -> float) = floor
+        let v16 : float = v15 v8
+        let v17 : (float -> int64) = int64
+        let v18 : int64 = v17 v16
+        let v21 : int64 = v12 - 1L
+        let v22 : string = v1.[int 0L..int v21]
+        let v26 : int64 = v2 - v18
+        let v27 : int64 = v2 - 1L
+        let v28 : string = v1.[int v26..int v27]
+        let v32 : string = "..."
+        let v33 : (string []) = [|v22; v32; v28|]
+        let v34 : string seq = v33 |> Seq.ofArray
+        let v37 : (string -> (string seq -> string)) = String.concat
+        let v38 : string = ""
+        let v39 : (string seq -> string) = v37 v38
+        v39 v34
 and closure40 (v0 : int64) (v1 : string) : string =
     method6(v0, v1)
 and closure39 () (v0 : int64) : (string -> string) =

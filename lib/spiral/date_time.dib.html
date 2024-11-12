@@ -7596,7 +7596,19 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">i64</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">timestamp_python</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">global</span> <span class="s2">"import datetime"</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
+        <span class="p">}</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="n">i64</span>
+    <span class="p">)</span>
+<span class="nb">type</span> <span class="n">timestamp_switch</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="p">:</span> <span class="n">i64</span>
+        <span class="n">Python</span> <span class="p">:</span> <span class="n">timestamp_python</span>
+    <span class="p">}</span>
+<span class="n">nominal</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'backend_switch `(timestamp_switch)'</span>
 </pre></div>
 </div>
 </div>
@@ -7652,7 +7664,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="test_guid">test_guid<a class="anchor-link" href="#test_guid">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7670,7 +7693,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7681,7 +7704,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7691,7 +7714,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7701,9 +7724,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">date_time_python</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
-        <span class="n">backend_switch</span> <span class="p">{</span>
-            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="k">global</span> <span class="s2">"import datetime"</span>
+        <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">global</span> <span class="s2">"import datetime"</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
         <span class="p">}</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'datetime.datetime'</span>
     <span class="p">)</span>
@@ -7719,7 +7741,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7729,7 +7751,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7753,7 +7775,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7763,7 +7785,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7787,36 +7809,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="ticks">ticks<a class="anchor-link" href="#ticks">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ticks</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">timestamp</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Ticks'</span> <span class="p">:</span> <span class="n">timestamp</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!date_time.timestamp()'</span> <span class="p">:</span> <span class="n">timestamp</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7826,7 +7819,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7845,7 +7838,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7855,7 +7848,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7874,7 +7867,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7884,7 +7877,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7903,7 +7896,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7913,7 +7906,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7932,7 +7925,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7942,7 +7935,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7961,7 +7954,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7971,7 +7964,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7990,7 +7983,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8000,7 +7993,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8018,7 +8011,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8028,7 +8021,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8049,7 +8042,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8059,7 +8052,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8067,7 +8060,19 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">time_span</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"backend_switch `({ Fsharp : $"</span><span class="n">System</span><span class="o">.</span><span class="n">TimeSpan</span><span class="s2">"; Python : $"</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="s2">" })"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">time_span_python</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">global</span> <span class="s2">"import datetime"</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
+        <span class="p">}</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'datetime.timedelta'</span>
+    <span class="p">)</span>
+<span class="nb">type</span> <span class="n">time_span_switch</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System.TimeSpan'</span>
+        <span class="n">Python</span> <span class="p">:</span> <span class="n">time_span_python</span>
+    <span class="p">}</span>
+<span class="n">nominal</span> <span class="n">time_span</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'backend_switch `(time_span_switch)'</span>
 
 <span class="n">inl</span> <span class="n">time_span</span> <span class="n">x</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
@@ -8080,7 +8085,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8090,7 +8095,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8106,153 +8111,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="time_span_format">time_span_format<a class="anchor-link" href="#time_span_format">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">time_span_format</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="p">(</span><span class="n">TypeScript</span> <span class="n">_</span> <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!time_span.ToString !format '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="hours">hours<a class="anchor-link" href="#hours">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hours</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Hours'</span> <span class="p">:</span> <span class="n">i32</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.days * 24 + !time_span.seconds // 3600'</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="milliseconds">milliseconds<a class="anchor-link" href="#milliseconds">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">milliseconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Milliseconds'</span> <span class="p">:</span> <span class="n">i32</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.microseconds // 1000'</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="minutes">minutes<a class="anchor-link" href="#minutes">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">minutes</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Minutes'</span> <span class="p">:</span> <span class="n">i32</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.seconds // 60'</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="seconds">seconds<a class="anchor-link" href="#seconds">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Seconds'</span> <span class="p">:</span> <span class="n">i32</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.seconds % 60'</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8262,7 +8121,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8281,7 +8140,459 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="ticks">ticks<a class="anchor-link" href="#ticks">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ticks</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">timestamp</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">run_target</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Ticks'</span>
+            <span class="p">:</span> <span class="n">timestamp</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">min_value</span> <span class="p">())</span> <span class="o">|&gt;</span> <span class="n">total_seconds</span> <span class="o">|&gt;</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">10000000</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="p">:</span> <span class="n">timestamp</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+
+<span class="n">unix_epoch</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">ticks</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (621355968000000000i64 |&gt; convert)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq' / actual: 621355968000000000 / expected: 621355968000000000
+
+.rs output:
+__assert_eq' / actual: 621355968000000000 / expected: 621355968000000000
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq' / actual: 621355968000000000L / expected: 621355968000000000L
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="time_span_format">time_span_format<a class="anchor-link" href="#time_span_format">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">time_span_format</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!time_span.ToString !format '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="hours">hours<a class="anchor-link" href="#hours">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hours</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Hours'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.seconds // 3600'</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="n">join</span> <span class="n">date_time_milliseconds</span> <span class="mi">2002</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">20</span> <span class="mi">22</span> <span class="mi">24</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">date_time_milliseconds</span> <span class="mi">2001</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">hours</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: 10 / expected: 10
+
+.rs output:
+__assert_eq / actual: 10 / expected: 10
+
+.ts output:
+__assert_eq / actual: 10 / expected: 10
+
+.py output:
+__assert_eq / actual: 10 / expected: 10
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: 10 / expected: 10
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="minutes">minutes<a class="anchor-link" href="#minutes">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">minutes</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Minutes'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(!time_span.seconds // 60) % 60'</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="n">join</span> <span class="n">date_time_milliseconds</span> <span class="mi">2002</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">20</span> <span class="mi">22</span> <span class="mi">24</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">date_time_milliseconds</span> <span class="mi">2001</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">minutes</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">11</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: 11 / expected: 11
+
+.rs output:
+__assert_eq / actual: 11 / expected: 11
+
+.ts output:
+__assert_eq / actual: 11 / expected: 11
+
+.py output:
+__assert_eq / actual: 11 / expected: 11
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: 11 / expected: 11
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="seconds">seconds<a class="anchor-link" href="#seconds">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Seconds'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.seconds % 60'</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="n">join</span> <span class="n">date_time_milliseconds</span> <span class="mi">2002</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">20</span> <span class="mi">22</span> <span class="mi">24</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">date_time_milliseconds</span> <span class="mi">2001</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">seconds</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: 12 / expected: 12
+
+.rs output:
+__assert_eq / actual: 12 / expected: 12
+
+.ts output:
+__assert_eq / actual: 12 / expected: 12
+
+.py output:
+__assert_eq / actual: 12 / expected: 12
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: 12 / expected: 12
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="milliseconds">milliseconds<a class="anchor-link" href="#milliseconds">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">milliseconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Milliseconds'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!time_span.microseconds'</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="n">join</span> <span class="n">date_time_milliseconds</span> <span class="mi">2002</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">20</span> <span class="mi">22</span> <span class="mi">24</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">date_time_milliseconds</span> <span class="mi">2001</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">milliseconds</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">13</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: 13 / expected: 13
+
+.rs output:
+__assert_eq / actual: 13 / expected: 13
+
+.ts output:
+__assert_eq / actual: 13 / expected: 13
+
+.py output:
+__assert_eq / actual: 13 / expected: 13
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: 13 / expected: 13
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8291,7 +8602,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8306,7 +8617,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8316,7 +8627,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8332,7 +8643,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8342,7 +8653,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8352,13 +8663,12 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="p">:</span> <span class="n">date_time</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">backend_switch</span> <span class="p">{</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="k">global</span> <span class="s2">"import datetime"</span>
-            <span class="p">}</span>
-            <span class="err">$</span><span class="s1">'datetime.datetime.now()'</span> <span class="p">:</span> <span class="n">date_time</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">run_target</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span>
+            <span class="p">:</span> <span class="n">date_time</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'datetime.datetime.now()'</span> <span class="p">:</span> <span class="n">date_time</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -8366,7 +8676,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8376,7 +8686,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8387,12 +8697,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">utc_now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.UtcNow'</span> <span class="p">:</span> <span class="n">date_time</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">backend_switch</span> <span class="p">{</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="k">global</span> <span class="s2">"import datetime"</span>
-            <span class="p">}</span>
-            <span class="err">$</span><span class="s1">'datetime.datetime.utcnow()'</span> <span class="p">:</span> <span class="n">date_time</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'datetime.datetime.utcnow()'</span> <span class="p">:</span> <span class="n">date_time</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -8400,7 +8705,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8410,7 +8715,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8440,7 +8745,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8455,7 +8760,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=64">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8471,7 +8776,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8482,7 +8787,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8492,7 +8797,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8511,7 +8816,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8521,7 +8826,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8540,7 +8845,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8550,7 +8855,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=71">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8569,7 +8874,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8579,7 +8884,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=73">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8598,7 +8903,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8608,7 +8913,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8627,94 +8932,13 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="naive_utc">naive_utc<a class="anchor-link" href="#naive_utc">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">naive_utc</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' utc) : naive_date_time =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>date_time,<span class="w"> </span><span class="s1">$'"$0.naive_utc()"'</span><span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="to_local">to_local<a class="anchor-link" href="#to_local">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=79">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_local</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' utc) : date_time'</span> <span class="n">local</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">naive_date_time</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">naive_utc</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>naive_date_time,<span class="w"> </span><span class="s1">$'"chrono::offset::TimeZone::from_utc_datetime(&amp;chrono::Local, &amp;$0)"'</span><span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="from_timestamp_micros">from_timestamp_micros<a class="anchor-link" href="#from_timestamp_micros">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=81">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_timestamp_micros</span> <span class="n">forall</span> <span class="n">t</span> <span class="p">{</span><span class="n">number</span><span class="p">;</span> <span class="nb">int</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">timestamp</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
-        <span class="o">!</span><span class="se">\\</span><span class="o">(</span>timestamp,<span class="w"> </span><span class="s1">$'"chrono::DateTime::from_timestamp_micros($0)"'</span><span class="o">)</span>
-    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="format'">format'<a class="anchor-link" href="#format'">¶</a></h3>
+<h3 id="naive_utc">naive_utc<a class="anchor-link" href="#naive_utc">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8726,8 +8950,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">' (format : string) (date_time : date_time'</span> <span class="n">utc</span><span class="p">)</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>date_time,<span class="w"> </span>#format<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.format($1).to_string()"'</span><span class="o">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">naive_utc</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' utc) : naive_date_time =</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">date_time</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.naive_utc()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8740,7 +8964,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="format''">format''<a class="anchor-link" href="#format''">¶</a></h3>
+<h3 id="to_local">to_local<a class="anchor-link" href="#to_local">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8752,8 +8976,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">''</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' _) : sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="o">=</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>date_time,<span class="w"> </span>#format<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.format($1).to_string()"'</span><span class="o">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_local</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' utc) : date_time'</span> <span class="n">local</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">naive_date_time</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">naive_utc</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">naive_date_time</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"chrono::offset::TimeZone::from_utc_datetime(&amp;chrono::Local, &amp;$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8766,11 +8991,91 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="format_timestamp">format_timestamp<a class="anchor-link" href="#format_timestamp">¶</a></h3>
+<h3 id="from_timestamp_micros">from_timestamp_micros<a class="anchor-link" href="#from_timestamp_micros">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=87">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_timestamp_micros</span> <span class="n">forall</span> <span class="n">t</span> <span class="p">{</span><span class="n">number</span><span class="p">;</span> <span class="nb">int</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">timestamp</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
+        <span class="err">!</span>\\<span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"chrono::DateTime::from_timestamp_micros($0)"'</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="format'">format'<a class="anchor-link" href="#format'">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=89">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">' (format : string) (date_time : date_time'</span> <span class="n">utc</span><span class="p">)</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">date_time</span><span class="p">,</span> <span class="c1">#format), $'"$0.format($1).to_string()"')</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="format''">format''<a class="anchor-link" href="#format''">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=91">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">''</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="s1">' _) : sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">date_time</span><span class="p">,</span> <span class="c1">#format), $'"$0.format($1).to_string()"')</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="format_timestamp">format_timestamp<a class="anchor-link" href="#format_timestamp">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8794,7 +9099,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8804,7 +9109,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=89">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8814,14 +9119,14 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">duration_from_millis</span> <span class="p">(</span><span class="n">ms</span> <span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="p">:</span> <span class="n">duration</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ms</span>
-    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::time::Duration::from_millis(!ms)"'</span><span class="o">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::time::Duration::from_millis(!ms)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8832,7 +9137,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8842,7 +9147,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8854,7 +9159,7 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
-            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"0i64.into()"'</span><span class="o">)</span>
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"0i64.into()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.TimeZoneInfo.Local'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8864,7 +9169,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8874,7 +9179,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=94">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8893,7 +9198,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8903,7 +9208,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8927,7 +9232,7 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">to_universal_time</span>
             <span class="n">inl</span> <span class="n">unixticks</span> <span class="o">=</span>
                 <span class="k">match</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">ticks</span><span class="p">,</span> <span class="n">epoch</span> <span class="o">|&gt;</span> <span class="n">ticks</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="n">timestamp</span> <span class="n">date_time</span><span class="p">,</span> <span class="n">timestamp</span> <span class="n">epoch</span> <span class="o">=&gt;</span> <span class="n">date_time</span> <span class="o">-</span> <span class="n">epoch</span>
+                <span class="o">|</span> <span class="n">timestamp</span> <span class="n">date_time</span><span class="p">,</span> <span class="n">timestamp</span> <span class="n">epoch</span> <span class="o">=&gt;</span> <span class="n">convert</span> <span class="n">date_time</span> <span class="o">-</span> <span class="n">convert</span> <span class="n">epoch</span> <span class="p">:</span> <span class="n">i64</span>
             <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span>
                 <span class="n">unixticks</span> <span class="o">/</span> <span class="mi">10</span>
                 <span class="o">|&gt;</span> <span class="n">from_timestamp_micros</span>
@@ -8955,7 +9260,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8964,9 +9269,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
 
-<span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">to_universal_time</span> <span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+<span class="n">unix_epoch</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">to_universal_time</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"19700101-0000-0000-0000-000200543210"</span>
 </pre></div>
 </div>
 </div>
@@ -8979,13 +9288,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240808-2008-4859-5927-500300543210
+<pre>__assert_eq / actual: "19700101-0000-0000-0000-000200543210" / expected: "19700101-0000-0000-0000-000200543210"
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8994,10 +9303,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
 <span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
-<span class="n">now</span> <span class="p">()</span>
+<span class="n">unix_epoch</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">to_universal_time</span>
 <span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
@@ -9014,13 +9323,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq' / actual: "20240808-2008-5819-8948-000000543210" / expected: "20240808-2008-5819-8948-000000543210"
+<pre>__assert_eq' / actual: "19700101-0000-0000-0000-000000543210" / expected: "19700101-0000-0000-0000-000000543210"
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9029,8 +9338,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
 <span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">min_value</span> <span class="p">()</span>
@@ -9066,7 +9375,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9075,7 +9384,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
 
 <span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">max_value</span> <span class="p">()</span>
@@ -9102,7 +9411,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9111,7 +9420,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
 <span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">max_value</span> <span class="p">()</span>
@@ -9138,7 +9447,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9173,7 +9482,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9182,7 +9491,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>chrono
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
 <span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">unix_epoch</span> <span class="p">()</span>
@@ -9210,7 +9519,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=104">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9220,7 +9529,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=105">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9240,7 +9549,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9270,7 +9579,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9300,7 +9609,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9331,7 +9640,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9341,7 +9650,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9358,7 +9667,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=111">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9368,7 +9677,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">0</span><span class="n">i64</span><span class="p">)</span>
+<span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="mi">0</span><span class="n">i64</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")</span>
 </pre></div>
 </div>
@@ -9388,7 +9697,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9398,7 +9707,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">999999999999999999</span><span class="n">i64</span><span class="p">)</span>
+<span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="mi">999999999999999999</span><span class="n">i64</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid $'</span><span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(!test_guid () |&gt; string).[^10..]}"</span><span class="s1">')</span>
 </pre></div>
 </div>
@@ -9419,7 +9728,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9429,7 +9738,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=114">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9445,7 +9754,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=115">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9456,7 +9765,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (0i64 |&gt; convert |&gt; timestamp)</span>
 </pre></div>
 </div>
 </div>
@@ -9469,13 +9778,13 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 0L / expected: 0L
+<pre>__assert_eq' / actual: 0L / expected: 0L
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=116">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9486,7 +9795,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99999999-9999-9999-99{(!test_guid () |&gt; string).[^14..]}"'</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">999999999999999999</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (999999999999999999i64 |&gt; convert |&gt; timestamp)</span>
 </pre></div>
 </div>
 </div>
@@ -9499,14 +9808,14 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 999999999999999999L / expected: 999999999999999999L
+<pre>__assert_eq' / actual: 999999999999999999L / expected: 999999999999999999L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9516,7 +9825,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=118">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9532,7 +9841,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=119">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9566,7 +9875,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=120">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9576,7 +9885,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=121">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9592,7 +9901,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9606,7 +9915,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 <span class="o">|&gt;</span> <span class="n">ticks</span>
 <span class="o">|&gt;</span> <span class="n">new_guid_from_timestamp</span>
 <span class="o">|&gt;</span> <span class="n">timestamp_from_guid</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">timestamp</span> <span class="n">timestamp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">timestamp</span> <span class="o">-</span> <span class="p">(</span><span class="n">utc_now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100000</span><span class="n">i64</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">timestamp</span> <span class="n">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">convert</span> <span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="n">utc_now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">convert</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100000</span><span class="n">i64</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i64</span>
 </pre></div>
 </div>
@@ -9627,7 +9936,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9637,7 +9946,7 @@ __assert_eq' / actual: "00010101-0000-0000-0000-000200543210" / expected: "00010
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=124">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -202,7 +202,7 @@ inl new_io_error (text : string) : io_error =
     run_target_args (fun () => text) function
         | Rust _ => fun text =>
             !\\(text, $'"std::io::Error::new(std::io::ErrorKind::Other, &*$0)"')
-        | _ => fun text => text |> to
+        | _ => fun text => text |> unbox
 
 /// ### buf_reader
 nominal buf_reader t =

@@ -8840,7 +8840,7 @@ __assert_eq / actual: 45 / expected: 45
     <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">)</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span> <span class="o">=&gt;</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::io::Error::new(std::io::ErrorKind::Other, &amp;*$0)"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span> <span class="o">=&gt;</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">to</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">text</span> <span class="o">=&gt;</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
 </div>

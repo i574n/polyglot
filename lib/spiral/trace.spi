@@ -31,17 +31,22 @@ inl read_state () =
                         timestamp |> i64 |> Some
             }
         | _ => fun () =>
-            {
-                trace_level =
-                    (join "TRACE_LEVEL")
-                    |> env.get_environment_variable
-                    |> reflection.union_try_pick
-                repl_start =
-                    inl automation = env.get_environment_variable (join "AUTOMATION")
-                    if automation = "True"
-                    then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
-                    else None
-            }
+            join
+                {
+                    trace_level =
+                        "TRACE_LEVEL"
+                        |> env.get_environment_variable
+                        |> reflection.union_try_pick
+                    repl_start =
+                        inl automation = env.get_environment_variable "AUTOMATION"
+                        if automation <>. "True"
+                        then None
+                        else
+                            date_time.now ()
+                            |> date_time.ticks
+                            |> fun (date_time.timestamp x) => x |> convert
+                            |> Some
+                }
 
 /// ### trace_state
 type trace_state =
@@ -134,8 +139,7 @@ inl trace_raw level fn =
                             |> rust.from_mut
                             |> iter_collect
                             |> am'.vec_chunks 15000
-                            |> am'.vec_map fun x =>
-                                x |> sm'.from_iter
+                            |> am'.vec_map sm'.from_iter
 
                         inl chunks_len = chunks |> am'.vec_len |> i32
 
@@ -179,8 +183,11 @@ inl trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
                         match trace_state.repl_start |> optionm'.unbox with
                         | Some repl_start =>
                             inl t =
-                                (date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x)
-                                - repl_start |> date_time.time_span
+                                date_time.now ()
+                                |> date_time.ticks
+                                |> fun (date_time.timestamp x) => x |> convert
+                                |> flip (-) repl_start
+                                |> date_time.time_span
                             date_time.date_time_milliseconds
                                 1i32 1i32 1i32
                                 (t |> date_time.hours)

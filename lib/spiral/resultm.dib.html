@@ -7710,7 +7710,12 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">e</span><span class="o">.</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">result</span> <span class="n">t</span> <span class="n">e</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="k">match</span> <span class="n">source</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
-    <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"resultm.get / Result value was Error: {!x}"'</span>
+    <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="n">backend_switch</span> <span class="p">{</span>
+            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"resultm.get / Result value was Error: {!x}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"resultm.get / Result value was Error: {!x}"'</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="p">}</span>
+        <span class="o">|&gt;</span> <span class="n">failwith</span>
 </pre></div>
 </div>
 </div>
@@ -7793,7 +7798,12 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap_err</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">u</span> <span class="o">=</span>
     <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"resultm.unwrap_err / x: {!x}"'</span>
+    <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="n">backend_switch</span> <span class="p">{</span>
+            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"resultm.unwrap_err / x: {!x}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"resultm.unwrap_err / x: {!x}"'</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="p">}</span>
+        <span class="o">|&gt;</span> <span class="n">failwith</span>
     <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -7886,6 +7896,8 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unbox</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">result</span><span class="s1">' t u) : result t u =</span>
     <span class="n">inl</span> <span class="n">ok</span> <span class="n">x</span> <span class="p">:</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="n">Ok</span> <span class="n">x</span>
     <span class="n">inl</span> <span class="n">error</span> <span class="n">x</span> <span class="p">:</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="n">Error</span> <span class="n">x</span>
+    <span class="n">inl</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ok</span>
+    <span class="n">inl</span> <span class="n">error</span> <span class="o">=</span> <span class="n">join</span> <span class="n">error</span>
     <span class="n">real</span>
         <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'match !x with Ok () -&gt; !ok () | Error x -&gt; !error x'</span> <span class="p">:</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span>

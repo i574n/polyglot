@@ -355,7 +355,7 @@ let persist_code_project { workspace_root package_dir packages modules name code
 
 inl build_project runtime' output_dir path =
     inl full_path = path |> file_system.get_full_path
-    inl file_dir = full_path |> file_system.get_directory_name
+    inl file_dir = full_path |> file_system.directory_get_parent |> optionm'.default_value' ""
     inl extension = full_path |> file_system.get_extension
 
     trace Debug
@@ -470,7 +470,7 @@ inl persist_file { workspace_root package_dir packages modules path } =
 
 inl build_file { workspace_root runtime packages modules path } =
     inl full_path = path |> file_system.get_full_path
-    inl dir = full_path |> file_system.get_directory_name
+    inl dir = full_path |> file_system.directory_get_parent |> optionm'.default_value' ""
     build_code {
         workspace_root
         runtime
@@ -725,7 +725,8 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                     | Some missing_toml_path =>
                         if missing_toml_path |> file_system.file_exists |> not then
                             missing_toml_path
-                            |> file_system.get_directory_name
+                            |> file_system.directory_get_parent
+                            |> optionm'.default_value' ""
                             |> file_system.create_dir
                             |> ignore
 
@@ -772,6 +773,11 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
             if cached
             then new_code
             else
+                inl runtime_contract =
+                    match runtime with
+                    | Some (Contract _) => true
+                    | _ => false
+
                 new_code'
                 |> sm'.replace
                     ("),)" +. !\($'"\\\";\\\".into()"'))
@@ -820,6 +826,11 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                     else sm'.replace
                             on_startup_text
                             ("// " +. on_startup_text)
+                |> if runtime_contract |> not
+                    then id
+                    else sm'.replace
+                            ("use fable_library_rust::DateTime_::DateTime" +. ";")
+                            "type DateTime = ();"
 
         if not cached then
             new_code
@@ -1092,6 +1103,8 @@ inl process_typescript { fs_path deps trace_level } =
         }
 
     inl lib_path = workspace_root </> "lib/typescript/fable/fable_modules"
+    inl lib_dir_prefix = $'$"fable-library-{!extension}"'
+    inl lib_dir_prefix' = join lib_dir_prefix
 
     inl versions : _ (string * string) =
         lib_path
@@ -1111,9 +1124,13 @@ inl process_typescript { fs_path deps trace_level } =
                         |> file_system.path_buf_display
                         |> sm'.format'
                         |> sm'.from_std_string
-                    if path |> file_system.get_directory_name |> sm'.starts_with "fable-library-ts."
-                    then file_system.Continue
-                    else file_system.IgnoreDir
+                    if path |> file_system.get_directory_name |> sm'.starts_with lib_dir_prefix |> not
+                    then file_system.IgnoreDir
+                    else
+                        match path |> file_system.directory_get_parent |> optionm'.unbox with
+                        | Some parent when parent |> sm'.contains lib_dir_prefix |> not =>
+                            file_system.Continue
+                        | _ => file_system.IgnoreDir
         |> async.stream_filter_map_futures fun (entry : _ _ file_system.async_walkdir_error) =>
             inl entry = entry |> resultm.map_error' sm'.format' |> resultm.unbox
             match entry with
@@ -1125,18 +1142,18 @@ inl process_typescript { fs_path deps trace_level } =
                     |> sm'.format'
                     |> sm'.from_std_string
                 inl version =
-                    $'$"fable-library-{!extension}\\.(?<a>[\\d.]+)$"'
+                    $'$"{!lib_dir_prefix'}\\.(?<a>[\\d.]+)$"'
                     |> sm'.new_regex
                     |> resultm.unwrap'
                     |> sm'.regex_captures path
                     |> am'.from_vec
-                    |> fun x => x : _ i32 _
+                    |> fun x => x : _ int _
                     |> am'.try_item 0
                     |> optionm.map (mapm.get "a" >> optionm'.unbox)
                     |> optionm'.flatten
-                match version with
-                | None => None
-                | Some version => Some (path, version)
+                version
+                |> optionm.map fun version =>
+                    path, version
             | Error error =>
                 trace Critical
                     fun () => "spiral_builder.process_typescript / stream_filter_map"
@@ -1159,16 +1176,21 @@ inl process_typescript { fs_path deps trace_level } =
         fun () => "spiral_builder.process_typescript"
         fun () => { version }
 
-    match version with
-    | None => ()
-    | Some (_path, version) =>
-        inl lib_link_target_path = lib_path </> $'$"fable-library-{!extension}.{!version}"'
-        inl lib_link_path = package_dir </> $'$"fable_modules/fable-library-{!extension}.{!version}"'
 
-        lib_link_path |> file_system.link_directory lib_link_target_path
+    let link_lib () =
+        match version with
+        | Some (_path, version) =>
+            inl lib_link_target_path = lib_path </> $'$"fable-library-{!extension}.{!version}"'
+            inl lib_link_path = package_dir </> $'$"fable_modules/fable-library-{!extension}.{!version}"'
+            lib_link_path |> file_system.link_directory lib_link_target_path
+        | None => failwith $'$"spiral_builder.process_typescript / fable library not found / lib_path: {!lib_path}"'
+
+    link_lib ()
 
     inl exit_code, dotnet_fable_result =
         execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir runtime = None }
+
+    link_lib ()
 
     if exit_code <>. 0 then
         trace Critical
@@ -1481,7 +1503,7 @@ inl process_cuda { py_path env deps } =
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
-    inl package_dir = new_code_path |> file_system.get_directory_name
+    inl package_dir = new_code_path |> file_system.directory_get_parent |> optionm'.default_value' ""
 
     inl manifest_path =
         match env with
@@ -1616,7 +1638,7 @@ inl process_fsharp { spi_path } =
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
     inl supervisor_path = workspace_root </> $"apps/spiral/dist/Supervisor!(platform.get_executable_suffix ())"
-    inl code_dir = new_code_path |> file_system.get_directory_name
+    inl code_dir = new_code_path |> file_system.directory_get_parent |> optionm'.default_value' ""
     inl file_name = new_code_path |> file_system.get_file_name_without_extension
     inl output_path = code_dir </> $'$"{!file_name}.{!extension}"'
     inl command = $'$"{!supervisor_path} --build-file \\\"{!new_code_path}\\\" \\\"{!output_path}\\\""'

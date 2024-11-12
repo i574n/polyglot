@@ -8,8 +8,8 @@ open sm'_real
 /// ### std_string
 type std_string = sm'_real.std_string
 
-/// ### to_string
-inl to_string forall t. (x : t) : std_string =
+/// ### to_string'
+inl to_string' forall t. (x : t) : std_string =
     !\($'$"!x.to_string()"')
 
 /// ### from_std_string
@@ -44,8 +44,11 @@ inl is_empty (input : string) : bool =
     length input = 0i32
 
 /// ### slice
-inl slice from to s : string =
-    sm.slice s { from to }
+inl slice forall t {number; int}. (from : t) (to : t) s : string =
+    backend_switch {
+        Fsharp = fun () => sm.slice s { from to } : string
+        Python = fun () => sm.slice s { from to = if var_is s || var_is to then to + 1 else to } : string
+    }
 
 /// ### format_debug
 inl format_debug forall t. (x : t) : string =
@@ -89,7 +92,10 @@ inl concat_list_heap_trailing separator input =
     inl separator = join separator
     ("", input)
     ||> listm.fold fun acc (x : string) =>
-        $'$"{!acc}{!x}{!separator}"'
+        backend_switch {
+            Fsharp = fun () => $'$"{!acc}{!x}{!separator}"' : string
+            Python = fun () => $'f"{!acc}{!x}{!separator}"' : string
+        }
 
 /// ### ellipsis
 inl ellipsis (max : i32) (s : string) =
@@ -109,7 +115,10 @@ inl last_index_of (search : string) (s : string) : i32 =
 
 /// ### index_of
 inl index_of (search : string) (s : string) : i32 =
-    $'!s.IndexOf !search '
+    backend_switch {
+        Fsharp = fun () => $'!s.IndexOf !search ' : i32
+        Python = fun () => $'!s.find(!search)' : i32
+    }
 
 /// ### replicate
 inl replicate (n : i32) (s : string) : string =
@@ -136,7 +145,22 @@ inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
 
 /// ### pad_right
 inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
-    $'!s.PadRight (!total_width, !padding_char)'
+    backend_switch {
+        Fsharp = fun () => $'!s.PadRight (!total_width, !padding_char)' : string
+        Python = fun () =>
+            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+            s +. padding
+    }
+
+/// ### convert_to_utf32
+inl convert_to_utf32 (c : char) : int =
+    backend_switch {
+        Fsharp = fun () =>
+            run_target_args' c function
+            | Fsharp (Native) => fun c => $'System.Char.ConvertToUtf32 (string !c, 0)' : int
+            | _ => fun c => c |> i32
+        Python = fun () => $'ord(!c)' : int
+    }
 
 /// ### starts_with
 inl starts_with (value : string) (s : string) : bool =
@@ -166,46 +190,98 @@ inl to_upper (input : string) : string =
 
 /// ### char_to_upper
 inl char_to_upper (input : char) : char =
-    $'System.Char.ToUpper !input '
+    backend_switch {
+        Fsharp = fun () => $'System.Char.ToUpper !input ' : char
+        Python = fun () => $'!input.upper()' : char
+    }
 
 /// ### string_builder
-nominal string_builder = $'System.Text.StringBuilder'
+nominal string_builder_python =
+    `(
+        global "import io"
+        $'' : $'io.StringIO'
+    )
+type string_builder_switch =
+    {
+        Fsharp : $'System.Text.StringBuilder'
+        Python : string_builder_python
+    }
+nominal string_builder = $'backend_switch `(string_builder_switch)'
 
 inl string_builder (initial : string) : string_builder =
     inl initial =
         if initial = ""
         then join initial
         else initial
-    initial |> $'`string_builder '
+    
+    backend_switch {
+        Fsharp = fun () => initial |> $'`string_builder ' : string_builder
+        Python = fun () =>
+            global "import io"
+            global "class CustomStringIO(io.StringIO):\n    def __init__(self, init=''):\n        super().__init__()\n        if init != '': self.write(init)\n    def __str__(self): return self.getvalue()\n    def __repr__(self): return self.getvalue()"
+            $'CustomStringIO(!initial)' : string_builder
+    }
 
 /// ### builder_append
 inl builder_append (item : string) (sb : string_builder) : string_builder =
-    ($'!sb.Append' item : string_builder) |> ignore
-    sb
+    backend_switch {
+        Fsharp = fun () =>
+            ($'!sb.Append' item : string_builder) |> ignore
+            sb
+        Python = fun () =>
+            ($'!sb.write(!item)' : int) |> ignore
+            sb
+    }
 
 /// ### builder_append_line
 inl builder_append_line (sb : string_builder) : string_builder =
-    ($'!sb.AppendLine ()' : string_builder) |> ignore
-    sb
+    backend_switch {
+        Fsharp = fun () =>
+            ($'!sb.AppendLine ()' : string_builder) |> ignore
+            sb
+        Python = fun () =>
+            sb |> builder_append "\n"
+    }
 
 /// ### builder_replace
 inl builder_replace (old : string) (new : string) (sb : string_builder) : string_builder =
-    ($'!sb.Replace (!old, !new)' : string_builder) |> ignore
-    sb
+    backend_switch {
+        Fsharp = fun () =>
+            ($'!sb.Replace (!old, !new)' : string_builder) |> ignore
+            sb
+        Python = fun () =>
+            ($'!sb.getvalue().replace(!old, !new)' : string) |> string_builder
+    }
 
 /// ### builder_insert
-inl builder_insert (n : i32) (s : string) (sb : string_builder) : string_builder =
-    ($'!sb.Insert (!n, !s)' : string_builder) |> ignore
-    sb
+inl builder_insert (i : i32) (s : string) (sb : string_builder) : string_builder =
+    backend_switch {
+        Fsharp = fun () =>
+            ($'!sb.Insert (!i, !s)' : string_builder) |> ignore
+            sb
+        Python = fun () =>
+            inl sb = sb |> obj_to_string
+            $'"".join([!sb[:!i], !s, !sb[!i:]])' |> string_builder
+    }
 
 /// ### builder_clear
 inl builder_clear (sb : string_builder) : string_builder =
-    ($'!sb.Clear' () : string_builder) |> ignore
-    sb
+    backend_switch {
+        Fsharp = fun () =>
+            ($'!sb.Clear' () : string_builder) |> ignore
+            sb
+        Python = fun () =>
+            ($'!sb.truncate(0)' : int) |> ignore
+            ($'!sb.seek(0)' : int) |> ignore
+            sb
+    }
 
 /// ### trim
 inl trim (input : string) : string =
-    $'!input.Trim' ()
+    backend_switch {
+        Fsharp = fun () => $'!input.Trim' () : string
+        Python = fun () => $'!input.strip()' : string
+    }
 
 /// ### concat
 inl concat (a : string) (b : seq.seq' string) : string =
@@ -246,11 +322,18 @@ inl trim_start (trim_chars : list char) (input : string) : string =
 
 /// ### length'
 inl length' forall dim. (input : string) : dim =
-    input |> $'String.length'
+    backend_switch {
+        Fsharp = fun () => input |> $'String.length' : dim
+        Python = fun () => $'len(!input)' : dim
+    }
 
 /// ### to_string any
 instance to_string any =
     obj_to_string
+
+/// ### (~$)
+inl (~$) s =
+    s |> obj_to_string
 
 /// ### replace
 inl replace (old_value : string) (new_value : string) (s : string) : string =
@@ -769,13 +852,11 @@ inl format_exception (ex : exn) : string =
 /// ### range
 inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
+        inl len = s |> length'
         match start, end with
-        | Start start, End fn =>
-            start, s |> length' |> fn
-        | End start_fn, End end_fn =>
-            inl len = s |> length'
-            start_fn len, end_fn len
-    s |> slice (start |> i32) (end |> i32)
+        | Start start, End fn => start, len |> fn
+        | End start_fn, End end_fn => start_fn len, end_fn len
+    s |> slice (start |> i32) ((end |> i32) - 1)
 
 /// ### concat_list
 inl concat_list s list =

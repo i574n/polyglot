@@ -85,8 +85,8 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
         fun () => {
             alias
             block_timestamp
-            signer_account_id = signer_account_id |> sm'.to_string
-            predecessor_account_id = predecessor_account_id |> sm'.to_string
+            signer_account_id = signer_account_id |> sm'.to_string'
+            predecessor_account_id = predecessor_account_id |> sm'.to_string'
         }
 
     if alias |> is_valid_alias |> not

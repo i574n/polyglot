@@ -7928,29 +7928,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: 1 / expected: 1
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\9dbd634f2b57be35eb685f57e44d687506aabee76b117fe2b693dbde79f9fc74\main.py", line 85, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\9dbd634f2b57be35eb685f57e44d687506aabee76b117fe2b693dbde79f9fc74\main.py", line 82, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 1 / expected: 1
@@ -8018,11 +7997,37 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="do">do<a class="anchor-link" href="#do">¶</a></h3>
+<h3 id="flip">flip<a class="anchor-link" href="#flip">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">flip</span> <span class="n">fn</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+    <span class="n">fn</span> <span class="n">b</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="do">do<a class="anchor-link" href="#do">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8038,7 +8043,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8048,7 +8053,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8069,7 +8074,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8079,7 +8084,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8098,7 +8103,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8108,7 +8113,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8129,7 +8134,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8139,7 +8144,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8154,7 +8159,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8164,7 +8169,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8197,7 +8202,7 @@ __assert_eq / actual: 1uy / expected: 1uy
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8237,29 +8242,8 @@ __assert_eq / actual: 1uy / expected: 1uy
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: 1 / expected: 1
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\444da12d1616d25e89847523cbc12345feb57a6ce608beed30ac23dc433bc936\main.py", line 156, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\444da12d1616d25e89847523cbc12345feb57a6ce608beed30ac23dc433bc936\main.py", line 153, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: 1 / expected: 1
@@ -8284,7 +8268,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8294,7 +8278,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8303,24 +8287,29 @@ __assert_eq / actual: 1 / expected: 1
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">capture</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">true</span>
-    <span class="err">$</span><span class="s1">'let mutable _!result : `t option = None '</span>
-    <span class="err">$</span><span class="s1">'('</span>
-    <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
-    <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
-    <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
-    <span class="err">$</span><span class="s1">')'</span>
-    <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; x ()'</span>
-    <span class="err">$</span><span class="s1">') () )'</span>
-    <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
-    <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "base.capture / _!result=None"'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">true</span>
+            <span class="err">$</span><span class="s1">'let mutable _!result : `t option = None '</span>
+            <span class="err">$</span><span class="s1">'('</span>
+            <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
+            <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
+            <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">emit_unit</span>
+            <span class="err">$</span><span class="s1">')'</span>
+            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; x ()'</span>
+            <span class="err">$</span><span class="s1">') () )'</span>
+            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
+            <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "base.capture / _!result=None"'</span> <span class="p">:</span> <span class="n">t</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">fn</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8331,7 +8320,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8341,7 +8330,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8356,7 +8345,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8385,29 +8374,8 @@ __assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: -3 / expected: -3
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\cb2dcd64f6c2f8e2e59421451a511b7e133334325ce501e9d636e7d1eafd80bd\main.py", line 88, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\cb2dcd64f6c2f8e2e59421451a511b7e133334325ce501e9d636e7d1eafd80bd\main.py", line 85, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: -3 / expected: -3
@@ -8432,7 +8400,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8442,7 +8410,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8457,7 +8425,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8486,29 +8454,8 @@ __assert_eq / actual: -3 / expected: -3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: -3 / expected: -3
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\75c364d8307ac0d12e7b33ec7a78c9edc8426bacf9221a85a0e49841634ef219\main.py", line 88, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\75c364d8307ac0d12e7b33ec7a78c9edc8426bacf9221a85a0e49841634ef219\main.py", line 85, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: -3 / expected: -3
@@ -8533,7 +8480,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8543,7 +8490,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8558,7 +8505,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8587,29 +8534,8 @@ __assert_eq / actual: -3 / expected: -3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: -3 / expected: -3
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\2a5ee4e1708999cf6408fe21697eb314e2c9193d57bcd112ac092ff3f7906687\main.py", line 88, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\2a5ee4e1708999cf6408fe21697eb314e2c9193d57bcd112ac092ff3f7906687\main.py", line 85, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: -3 / expected: -3
@@ -8634,7 +8560,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8644,7 +8570,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8659,7 +8585,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8688,29 +8614,8 @@ __assert_eq / actual: -3 / expected: -3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: -3.0 / expected: -3
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\29c06d104afd3bd689051c74e42a4f620d943c21c2bdb37728878d38e324e9a5\main.py", line 88, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\29c06d104afd3bd689051c74e42a4f620d943c21c2bdb37728878d38e324e9a5\main.py", line 85, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: -3 / expected: -3
@@ -8735,7 +8640,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8746,7 +8651,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8756,7 +8661,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8774,7 +8679,7 @@ __assert_eq / actual: -3 / expected: -3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8803,29 +8708,8 @@ __assert_eq / actual: -3 / expected: -3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: True / expected: True
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\16ce27d290bb50defca4505e5d552f14aa043236df6d17bbb87fc9b084d98647\main.py", line 86, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\16ce27d290bb50defca4505e5d552f14aa043236df6d17bbb87fc9b084d98647\main.py", line 83, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: true / expected: true
@@ -8850,7 +8734,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8860,7 +8744,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8878,7 +8762,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8907,29 +8791,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: True / expected: True
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\8653524afdfc5d25d61335dfe2ce9bffc32290d678c20c90bef584d9d72f6b18\main.py", line 86, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\8653524afdfc5d25d61335dfe2ce9bffc32290d678c20c90bef584d9d72f6b18\main.py", line 83, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: true / expected: true
@@ -8954,7 +8817,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8964,7 +8827,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8982,7 +8845,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9011,29 +8874,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: True / expected: True
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\97c9365d18ee8c7cece1f17d4d01e843b9e57d4eb0e2f73c03ab8291e759e7b5\main.py", line 98, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\97c9365d18ee8c7cece1f17d4d01e843b9e57d4eb0e2f73c03ab8291e759e7b5\main.py", line 95, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: true / expected: true
@@ -9058,7 +8900,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9069,7 +8911,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9079,7 +8921,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9094,7 +8936,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9104,7 +8946,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=72">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9120,274 +8962,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="application">application<a class="anchor-link" href="#application">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">||&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">arg2</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="n">arg1</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="fix_condition">fix_condition<a class="anchor-link" href="#fix_condition">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fix_condition</span> <span class="n">x</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="p">()</span>
-    <span class="n">then</span> <span class="n">a</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="k">else</span>
-        <span class="err">$</span><span class="s1">'*) else'</span> <span class="p">:</span> <span class="p">()</span>
-        <span class="n">b</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'*)'</span> <span class="p">:</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="type">type<a class="anchor-link" href="#type">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="infer">infer<a class="anchor-link" href="#infer">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">infer</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'_'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="infer'">infer'<a class="anchor-link" href="#infer'">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=82">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">infer</span><span class="s1">' t = $'</span><span class="n">_</span><span class="s1">'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="any">any<a class="anchor-link" href="#any">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=84">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">any</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'obj'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="null">null<a class="anchor-link" href="#null">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=86">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">null</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'null |&gt; unbox&lt;`t&gt;'</span> <span class="p">:</span> <span class="n">t</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'None'</span> <span class="p">:</span> <span class="n">t</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="defaultof">defaultof<a class="anchor-link" href="#defaultof">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=88">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">defaultof</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;`t&gt;'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="choice2'">choice2'<a class="anchor-link" href="#choice2'">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=90">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">choice2</span><span class="s1">' a b = $'</span><span class="n">Choice</span><span class="o">&lt;</span><span class="err">`</span><span class="n">a</span><span class="p">,</span> <span class="err">`</span><span class="n">b</span><span class="o">&gt;</span><span class="s1">'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="choice2_unbox">choice2_unbox<a class="anchor-link" href="#choice2_unbox">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=92">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">choice2_unbox</span> <span class="n">forall</span> <span class="n">t1</span> <span class="n">t2</span><span class="o">.</span> <span class="p">(</span><span class="n">choice</span> <span class="p">:</span> <span class="n">choice2</span><span class="s1">' t1 t2) : choice2 t1 t2 =</span>
-    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">choice</span><span class="p">)</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">choice</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">c1of2</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t1</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">C1of2</span> <span class="n">x</span>
-            <span class="n">inl</span> <span class="n">c2of2</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t2</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t1</span> <span class="n">_</span> <span class="o">=</span> <span class="n">C2of2</span> <span class="n">x</span>
-            <span class="n">inl</span> <span class="n">c1of2</span> <span class="o">=</span> <span class="n">join</span> <span class="n">c1of2</span>
-            <span class="n">inl</span> <span class="n">c2of2</span> <span class="o">=</span> <span class="n">join</span> <span class="n">c2of2</span>
-            <span class="err">$</span><span class="s1">'match !choice with Choice1Of2 x -&gt; !c1of2 x | Choice2Of2 x -&gt; !c2of2 x'</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9398,7 +8973,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9408,7 +8983,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9425,7 +9000,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9454,29 +9029,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: (1, 2) / expected: (1, 2)
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\c3af5773403ce8d003f1c2570d42937203995bd6e5ab2d5c73ffa32807b08bda\main.py", line 70, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\c3af5773403ce8d003f1c2570d42937203995bd6e5ab2d5c73ffa32807b08bda\main.py", line 67, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq / actual: (1, 2) / expected: (1, 2)
@@ -9501,7 +9055,7 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9511,7 +9065,7 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9527,7 +9081,7 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9537,7 +9091,7 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9559,7 +9113,7 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9589,29 +9143,8 @@ __assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq' / actual: ('a', (1, 'b')) / expected: ('a', (1, 'b'))
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\6acf9ea73e216a4a6c8e64b7eddf2cf10cff2d2fec52dfb6e582b19ef47e2a26\main.py", line 95, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "C:\home\git\polyglot\target\spiral_Eval\packages\6acf9ea73e216a4a6c8e64b7eddf2cf10cff2d2fec52dfb6e582b19ef47e2a26\main.py", line 92, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy\cuda\stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends\cuda\api\runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq' / actual: ("a", (1, "b")) / expected: ("a", (1, "b"))
@@ -9636,13 +9169,332 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="ref">ref<a class="anchor-link" href="#ref">¶</a></h2>
+<h2 id="application">application<a class="anchor-link" href="#application">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=86">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">||&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
+    <span class="n">arg2</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="n">arg1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="mi">3</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">||&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: 1 / expected: 1
+
+.rs output:
+__assert_eq / actual: 1 / expected: 1
+
+.ts output:
+__assert_eq / actual: 1 / expected: 1
+
+.py output:
+__assert_eq / actual: 1 / expected: 1
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: 1 / expected: 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+
+<span class="p">(</span><span class="mi">1</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">||&gt;</span> <span class="n">flip</span> <span class="n">pair</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.py output (Cuda):
+__assert_eq / actual: (2, 1) / expected: (2, 1)
+
+.rs output:
+__assert_eq / actual: (2, 1) / expected: (2, 1)
+
+.ts output:
+__assert_eq / actual: 2,1 / expected: 2,1
+
+.py output:
+__assert_eq / actual: (2, 1) / expected: (2, 1)
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="fix_condition">fix_condition<a class="anchor-link" href="#fix_condition">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=91">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fix_condition</span> <span class="n">x</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="p">()</span>
+    <span class="n">then</span> <span class="n">a</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="k">else</span>
+        <span class="err">$</span><span class="s1">'*) else'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">b</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'*)'</span> <span class="p">:</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="type">type<a class="anchor-link" href="#type">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="infer">infer<a class="anchor-link" href="#infer">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=94">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">infer</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'_'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="infer'">infer'<a class="anchor-link" href="#infer'">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=96">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">infer</span><span class="s1">' t = $'</span><span class="n">_</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="any">any<a class="anchor-link" href="#any">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">any</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'obj'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="null">null<a class="anchor-link" href="#null">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=100">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">null</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'null |&gt; unbox&lt;`t&gt;'</span> <span class="p">:</span> <span class="n">t</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'None'</span> <span class="p">:</span> <span class="n">t</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="defaultof">defaultof<a class="anchor-link" href="#defaultof">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=102">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">defaultof</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;`t&gt;'</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -9653,11 +9505,80 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="ref">ref<a class="anchor-link" href="#ref">¶</a></h3>
+<h3 id="choice2'">choice2'<a class="anchor-link" href="#choice2'">¶</a></h3>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=104">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">choice2</span><span class="s1">' a b = $'</span><span class="n">Choice</span><span class="o">&lt;</span><span class="err">`</span><span class="n">a</span><span class="p">,</span> <span class="err">`</span><span class="n">b</span><span class="o">&gt;</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="choice2_unbox">choice2_unbox<a class="anchor-link" href="#choice2_unbox">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=106">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">choice2_unbox</span> <span class="n">forall</span> <span class="n">t1</span> <span class="n">t2</span><span class="o">.</span> <span class="p">(</span><span class="n">choice</span> <span class="p">:</span> <span class="n">choice2</span><span class="s1">' t1 t2) : choice2 t1 t2 =</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">choice</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">choice</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">c1of2</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t1</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">C1of2</span> <span class="n">x</span>
+            <span class="n">inl</span> <span class="n">c2of2</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t2</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t1</span> <span class="n">_</span> <span class="o">=</span> <span class="n">C2of2</span> <span class="n">x</span>
+            <span class="n">inl</span> <span class="n">c1of2</span> <span class="o">=</span> <span class="n">join</span> <span class="n">c1of2</span>
+            <span class="n">inl</span> <span class="n">c2of2</span> <span class="o">=</span> <span class="n">join</span> <span class="n">c2of2</span>
+            <span class="err">$</span><span class="s1">'match !choice with Choice1Of2 x -&gt; !c1of2 x | Choice2Of2 x -&gt; !c2of2 x'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="ref">ref<a class="anchor-link" href="#ref">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="ref">ref<a class="anchor-link" href="#ref">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9672,7 +9593,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9682,7 +9603,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9698,7 +9619,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9708,7 +9629,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9724,7 +9645,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9734,7 +9655,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9751,7 +9672,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9762,7 +9683,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9772,7 +9693,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=113">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9788,7 +9709,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=114">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9798,7 +9719,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=115">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9809,7 +9730,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">convert</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">u</span> <span class="o">=</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!x |&gt; `u '</span> <span class="p">:</span> <span class="n">u</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">u</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'`u(!x)'</span> <span class="p">:</span> <span class="n">u</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -9817,7 +9738,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9827,7 +9748,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=117">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9846,7 +9767,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=118">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9856,7 +9777,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=119">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9865,14 +9786,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">u8</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">u8</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint8'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint8'</span> <span class="p">:</span> <span class="n">u8</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">u8</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=120">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9882,7 +9806,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=121">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9891,14 +9815,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">u16</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">u16</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint16'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint16'</span> <span class="p">:</span> <span class="n">u16</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!x &amp; 0xFFFF'</span> <span class="p">:</span> <span class="n">u16</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=122">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9908,7 +9835,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=123">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9917,14 +9844,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">u64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint64'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'uint64'</span> <span class="p">:</span> <span class="n">u64</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">u64</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=124">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9934,7 +9864,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=125">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9943,14 +9873,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">i32</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'int32'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=126">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=131">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9960,7 +9893,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=127">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=132">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9969,14 +9902,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">i64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'int64'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'int64'</span> <span class="p">:</span> <span class="n">i64</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">i64</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=128">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9986,7 +9922,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=129">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=134">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9995,14 +9931,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">f32</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">f32</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'float32'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'float32'</span> <span class="p">:</span> <span class="n">f32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">f32</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=130">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=135">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10012,7 +9951,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=131">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=136">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10021,14 +9960,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">f64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'float'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'float'</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">f64</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=132">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10038,7 +9980,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=133">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=138">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10053,7 +9995,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=134">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10063,7 +10005,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=135">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=140">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10072,14 +10014,17 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">convert_i32</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Convert.ToInt32'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Convert.ToInt32'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=136">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10089,7 +10034,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=137">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=142">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10098,14 +10043,93 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">convert_i32_base</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">base</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'System.Convert.ToInt32 (!x, !base)'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.Convert.ToInt32 (!x, !base)'</span> <span class="p">:</span> <span class="n">i32</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'int (!x, !base)'</span> <span class="p">:</span> <span class="n">i32</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=138">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=143">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(:%3E)">(:&gt;)<a class="anchor-link" href="#(:%3E)">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=144">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">prototype</span> <span class="p">(</span><span class="o">~</span><span class="p">:</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">r</span> <span class="p">:</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=145">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="to_any">to_any<a class="anchor-link" href="#to_any">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=146">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_any</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">obj</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">any</span> <span class="o">=</span>
+    <span class="n">obj</span> <span class="o">|&gt;</span> <span class="n">to</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=147">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(~:%3E)-any">(~:&gt;) any<a class="anchor-link" href="#(~:%3E)-any">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=148">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">instance</span> <span class="p">(</span><span class="o">~</span><span class="p">:</span><span class="o">&gt;</span><span class="p">)</span> <span class="nb">any</span> <span class="o">=</span> <span class="n">to_any</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=149">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10116,7 +10140,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=150">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10126,7 +10150,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=140">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=151">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10144,7 +10168,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=152">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10154,7 +10178,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=142">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=153">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10163,12 +10187,12 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">try</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">ex_fn</span> <span class="p">:</span> <span class="n">exn</span> <span class="o">-&gt;</span> <span class="n">option</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">some</span> <span class="n">x</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">x</span>
+    <span class="n">inl</span> <span class="n">some</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">some</span>
+    <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">fn</span>
+    <span class="n">inl</span> <span class="n">ex_fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">ex_fn</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">some</span> <span class="n">x</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">x</span>
-            <span class="n">inl</span> <span class="n">some</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">some</span>
-            <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">fn</span>
-            <span class="n">inl</span> <span class="n">ex_fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">ex_fn</span>
             <span class="err">$</span><span class="s1">'let result = ref !(None : option t)'</span>
             <span class="err">$</span><span class="s1">'try'</span>
             <span class="err">$</span><span class="s1">'    result.Value &lt;- !fn () |&gt; !some '</span>
@@ -10180,7 +10204,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
             <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">fn</span>
             <span class="n">inl</span> <span class="n">ex_fn</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">ex_fn</span>
             <span class="err">$</span><span class="s1">'try:'</span>
-            <span class="err">$</span><span class="s1">'    result = !fn()</span><span class="se">\n</span><span class="s1">        </span><span class="se">\'\'\'</span><span class="s1">'</span>
+            <span class="err">$</span><span class="s1">'    result = !some(!fn())</span><span class="se">\n</span><span class="s1">        </span><span class="se">\'\'\'</span><span class="s1">'</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\'\'\'</span><span class="s1">'</span>
             <span class="err">$</span><span class="s1">'except Exception as e:'</span>
             <span class="err">$</span><span class="s1">'    result = !ex_fn(e)'</span>
@@ -10191,7 +10215,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=143">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=154">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10201,7 +10225,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">cudaErrorInsufficientDriver</span><span class="p">:</span> <span class="n">CUDA</span> <span class="n">driver</span> <span class="n">version</span> <span class="ow">is</span> <span class="n">insufficient</span> <span class="k">for</span> <span class="n">CUDA</span> <span class="n">runtime</span> <span class="n">version</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
@@ -10212,7 +10236,7 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">run_target</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">"System.IndexOutOfRangeException: Index was outside the bounds of the array."</span>
-    <span class="o">|</span> <span class="n">Cuda</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"array index out of range"</span>
+    <span class="o">|</span> <span class="n">Cuda</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"index 1 is out of bounds for axis 0 with size 1"</span>
     <span class="o">|</span> <span class="n">Rust</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"Exception { message: </span><span class="se">\"</span><span class="s2">index out of bounds: the len is 1 but the index is 1</span><span class="se">\"</span><span class="s2"> }"</span>
     <span class="o">|</span> <span class="n">TypeScript</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"Error: Index was outside the bounds of the array.</span><span class="se">\\</span><span class="s2">nParameter name: index"</span>
     <span class="o">|</span> <span class="n">Python</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"array index out of range"</span>
@@ -10229,7 +10253,10 @@ __assert_eq' / actual: struct ("a", (1, "b")) / expected: struct ("a", (1, "b"))
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
+<pre>.py output (Cuda):
+__assert_eq / actual: index 1 is out of bounds for axis 0 with size 1 / expected: index 1 is out of bounds for axis 0 with size 1
+
+.rs output:
 __assert_eq / actual: "Exception { message: "index out of bounds: the len is 1 but the index is 1" }" / expected: "Exception { message: "index out of bounds: the len is 1 but the index is 1" }"
 
 .ts output:
@@ -10252,7 +10279,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=144">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=155">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10262,7 +10289,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=145">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=156">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10287,7 +10314,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=146">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=157">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10297,7 +10324,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=147">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=158">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10322,7 +10349,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=148">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=159">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10332,7 +10359,7 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=149">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=160">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -192,28 +192,52 @@ inl list_find_last forall item result. (fn : item -> option result) (target : li
 /// ## fsharp
 
 /// ### seq'
-nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
+nominal seq' t = $"backend_switch `({ Fsharp : $'`t seq'; Python : $'list' })"
+
+/// ### length'
+inl length' forall t. (items : seq' t) : int =
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.length' : int
+        Python = fun () => $'len(!items)' : int
+    }
+
+/// ### to_list'
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.toList' : listm'.list' t
+        Python = fun () => $'!items ' : listm'.list' t
+    }
 
 /// ### new_seq
-inl new_seq fn : seq' _ =
-    fun () =>
-        $'seq {'
-        fn |> indent
-        $'}' : ()
-    |> let'
+inl new_seq forall t. fn : seq' t =
+    backend_switch {
+        Fsharp = fun () =>
+            fun () =>
+                $'seq {'
+                fn |> indent
+                $'}' : ()
+            |> let'
+            |> fun x => x : seq' t
+        Python = fun () =>
+            $'list(!fn())' : seq' t
+    }
 
 /// ### of_array'
 inl of_array' forall dim t. (items : a dim t) : seq' t =
     backend_switch {
-        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
-        Python = fun () => $'!items ' : seq' t
+        Fsharp = fun () =>
+            fun () =>
+                $'for i = 0 to !items.Length - 1 do yield !items.[i]'
+            |> new_seq
+            |> fun x => x : seq' t
+        Python = fun () => $'[item for item in !items]' : seq' t
     }
 
 /// ### of_array
 inl of_array forall dim t. (items : a dim t) : seq' t =
     backend_switch {
         Fsharp = fun () => $'!items |> Seq.ofArray' : seq' t
-        Python = fun () => $'!items ' : seq' t
+        Python = fun () => $'list(iter(!items))' : seq' t
     }
 
 /// ### of_array_base
@@ -226,28 +250,32 @@ inl of_array_base forall t. (items : array_base t) : seq' t =
 inl to_array' forall dim t. (items : seq' t) : a dim t =
     backend_switch {
         Fsharp = fun () => items |> $'Seq.toArray' : a dim t
-        Python = fun () => $'!items ' : a dim t
+        Python = fun () => $'(cp if cuda else np).array(!items)' : a dim t
     }
 
 /// ### of_list'
 inl of_list' forall t. (items : listm'.list' t) : seq' t =
     backend_switch {
-        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
+        Fsharp = fun () =>
+            fun () =>
+                $'for i = 0 to !items.Length - 1 do yield !items.[i]'
+            |> new_seq
+            |> fun x => x : seq' t
         Python = fun () => $'!items ' : seq' t
     }
 
-/// ### to_list'
-inl to_list' forall t. (items : seq' t) : listm'.list' t =
+/// ### cast'
+inl cast' forall t u. (items : u) : seq' t =
     backend_switch {
-        Fsharp = fun () => items |> $'Seq.toList' : listm'.list' t
-        Python = fun () => $'!items ' : listm'.list' t
+        Fsharp = fun () => items |> $'Seq.cast' : seq' t
+        Python = fun () => $'list(!items)' : seq' t
     }
 
 /// ### rev'
-inl rev'' forall t u. (items : t) : seq' u =
+inl rev'' forall t. (items : seq' t) : seq' t =
     backend_switch {
-        Fsharp = fun () => items |> $'Seq.rev' : seq' u
-        Python = fun () => $'reversed(!items)' : seq' u
+        Fsharp = fun () => items |> $'Seq.rev' : seq' t
+        Python = fun () => $'list(reversed(!items))' : seq' t
     }
 
 /// ## rust

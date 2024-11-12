@@ -11,6 +11,7 @@
 mod module_31a2fc18 {
     pub mod Chat_contract {
         use super::*;
+        type DateTime = ();
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::List_::empty;
         use fable_library_rust::List_::ofArray;
@@ -21,6 +22,7 @@ mod module_31a2fc18 {
         use fable_library_rust::Native_::defaultOf;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::referenceEquals;
+        use fable_library_rust::Native_::unbox;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
@@ -153,9 +155,9 @@ mod module_31a2fc18 {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US1 {
-            US1_0(string),
+            US1_0(Chat_contract::US0),
             US1_1,
         }
         impl core::fmt::Display for Chat_contract::US1 {
@@ -165,9 +167,8 @@ mod module_31a2fc18 {
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US2 {
-            US2_0,
+            US2_0(i64),
             US2_1,
-            US2_2,
         }
         impl core::fmt::Display for Chat_contract::US2 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -176,11 +177,9 @@ mod module_31a2fc18 {
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US3 {
-            US3_0(Chat_contract::US2),
-            US3_1(Chat_contract::US2),
-            US3_2(Chat_contract::US2),
-            US3_3(Chat_contract::US2),
-            US3_4(Chat_contract::US2),
+            US3_0,
+            US3_1,
+            US3_2,
         }
         impl core::fmt::Display for Chat_contract::US3 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -189,17 +188,20 @@ mod module_31a2fc18 {
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US4 {
-            US4_0(Chat_contract::US0),
-            US4_1,
+            US4_0(Chat_contract::US3),
+            US4_1(Chat_contract::US3),
+            US4_2(Chat_contract::US3),
+            US4_3(Chat_contract::US3),
+            US4_4(Chat_contract::US3),
         }
         impl core::fmt::Display for Chat_contract::US4 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US5 {
-            US5_0(i64),
+            US5_0(string),
             US5_1,
         }
         impl core::fmt::Display for Chat_contract::US5 {
@@ -224,34 +226,113 @@ mod module_31a2fc18 {
                 v0_1 == '-'
             }
         }
-        pub fn method2() -> string {
-            string("TRACE_LEVEL")
-        }
         pub fn method4() -> string {
             string("")
         }
-        pub fn closure4(unitVar: (), v0_1: string) -> Chat_contract::US1 {
-            Chat_contract::US1::US1_0(v0_1)
+        pub fn closure4(unitVar: (), v0_1: string) -> Chat_contract::US5 {
+            Chat_contract::US5::US5_0(v0_1)
         }
-        pub fn method5() -> Func1<string, Chat_contract::US1> {
+        pub fn method5() -> Func1<string, Chat_contract::US5> {
             Func1::new(move |v: string| Chat_contract::closure4((), v))
         }
         pub fn method3(v0_1: string) -> string {
-            let v33: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
-            let v35: bool = true;
-            let _result_map_ = v33.map(|x| {
-                //;
-                let v37: std::string::String = x;
-                let v39: string = fable_library_rust::String_::fromString(v37);
-                let v41: bool = true;
-                v39
-            });
-            let v43: Result<string, std::env::VarError> = _result_map_;
-            let v44: string = Chat_contract::method4();
-            v43.unwrap_or(v44)
+            panic!(
+                "{}",
+                sprintf!(
+                    "env.get_environment_variable / target: {} / var: {}",
+                    Chat_contract::US4::US4_2(Chat_contract::US3::US3_2),
+                    v0_1
+                ),
+            )
         }
-        pub fn method6() -> string {
-            string("AUTOMATION")
+        pub fn method2() -> (Chat_contract::US1, Chat_contract::US2) {
+            let v1: string = Chat_contract::method3(string("TRACE_LEVEL"));
+            let v6: Chat_contract::US1 = if string("Verbose") == v1.clone() {
+                Chat_contract::US1::US1_0(Chat_contract::US0::US0_0)
+            } else {
+                Chat_contract::US1::US1_1
+            };
+            (
+                match &v6 {
+                    Chat_contract::US1::US1_0(v6_0_0) => Chat_contract::US1::US1_0(match &v6 {
+                        Chat_contract::US1::US1_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => {
+                        let v13: Chat_contract::US1 = if string("Debug") == v1.clone() {
+                            Chat_contract::US1::US1_0(Chat_contract::US0::US0_1)
+                        } else {
+                            Chat_contract::US1::US1_1
+                        };
+                        match &v13 {
+                            Chat_contract::US1::US1_0(v13_0_0) => {
+                                Chat_contract::US1::US1_0(match &v13 {
+                                    Chat_contract::US1::US1_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                })
+                            }
+                            _ => {
+                                let v20: Chat_contract::US1 = if string("Info") == v1.clone() {
+                                    Chat_contract::US1::US1_0(Chat_contract::US0::US0_2)
+                                } else {
+                                    Chat_contract::US1::US1_1
+                                };
+                                match &v20 {
+                                    Chat_contract::US1::US1_0(v20_0_0) => {
+                                        Chat_contract::US1::US1_0(match &v20 {
+                                            Chat_contract::US1::US1_0(x) => x.clone(),
+                                            _ => unreachable!(),
+                                        })
+                                    }
+                                    _ => {
+                                        let v27: Chat_contract::US1 =
+                                            if string("Warning") == v1.clone() {
+                                                Chat_contract::US1::US1_0(Chat_contract::US0::US0_3)
+                                            } else {
+                                                Chat_contract::US1::US1_1
+                                            };
+                                        match &v27 {
+                                            Chat_contract::US1::US1_0(v27_0_0) => {
+                                                Chat_contract::US1::US1_0(match &v27 {
+                                                    Chat_contract::US1::US1_0(x) => x.clone(),
+                                                    _ => unreachable!(),
+                                                })
+                                            }
+                                            _ => {
+                                                let v34: Chat_contract::US1 =
+                                                    if string("Critical") == v1.clone() {
+                                                        Chat_contract::US1::US1_0(
+                                                            Chat_contract::US0::US0_4,
+                                                        )
+                                                    } else {
+                                                        Chat_contract::US1::US1_1
+                                                    };
+                                                match &v34 {
+                                                    Chat_contract::US1::US1_0(v34_0_0) => {
+                                                        Chat_contract::US1::US1_0(match &v34 {
+                                                            Chat_contract::US1::US1_0(x) => {
+                                                                x.clone()
+                                                            }
+                                                            _ => unreachable!(),
+                                                        })
+                                                    }
+                                                    _ => Chat_contract::US1::US1_1,
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                if Chat_contract::method3(string("AUTOMATION")) != string("True") {
+                    Chat_contract::US2::US2_1
+                } else {
+                    let v58: DateTime = unbox::<DateTime>(&defaultOf());
+                    Chat_contract::US2::US2_0(unbox::<i64>(&defaultOf()))
+                },
+            )
         }
         pub fn closure5(unitVar: (), v0_1: string) {
             ();
@@ -266,19 +347,19 @@ mod module_31a2fc18 {
             LrcPtr<Chat_contract::Mut4>,
             Option<i64>,
         ) {
-            let v123: string = string("env!(\"AUTOMATION\")");
-            let v124: &str = env!("AUTOMATION");
-            let v131: std::string::String = String::from(v124);
-            let _v1: (Chat_contract::US4, Chat_contract::US5) = (
-                Chat_contract::US4::US4_1,
-                if fable_library_rust::String_::fromString(v131) != string("True") {
-                    Chat_contract::US5::US5_1
+            let v64: string = string("env!(\"AUTOMATION\")");
+            let v65: &str = env!("AUTOMATION");
+            let v72: std::string::String = String::from(v65);
+            let _v1: (Chat_contract::US1, Chat_contract::US2) = (
+                Chat_contract::US1::US1_1,
+                if fable_library_rust::String_::fromString(v72) != string("True") {
+                    Chat_contract::US2::US2_1
                 } else {
-                    Chat_contract::US5::US5_0(near_sdk::env::block_timestamp() as i64)
+                    Chat_contract::US2::US2_0(near_sdk::env::block_timestamp() as i64)
                 },
             );
-            let v425: Chat_contract::US5 = _v1.1.clone();
-            let v424: Chat_contract::US4 = _v1.0.clone();
+            let v132: Chat_contract::US2 = _v1.1.clone();
+            let v131: Chat_contract::US1 = _v1.0.clone();
             (
                 LrcPtr::new(Chat_contract::Mut0 {
                     l0: MutCell::new(1_i64),
@@ -293,17 +374,17 @@ mod module_31a2fc18 {
                     l0: MutCell::new(string("")),
                 }),
                 LrcPtr::new(Chat_contract::Mut4 {
-                    l0: MutCell::new(match &v424 {
-                        Chat_contract::US4::US4_0(v424_0_0) => match &v424 {
-                            Chat_contract::US4::US4_0(x) => x.clone(),
+                    l0: MutCell::new(match &v131 {
+                        Chat_contract::US1::US1_0(v131_0_0) => match &v131 {
+                            Chat_contract::US1::US1_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v425 {
-                    Chat_contract::US5::US5_0(v425_0_0) => Some(match &v425 {
-                        Chat_contract::US5::US5_0(x) => x.clone(),
+                match &v132 {
+                    Chat_contract::US2::US2_0(v132_0_0) => Some(match &v132 {
+                        Chat_contract::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
@@ -373,19 +454,19 @@ mod module_31a2fc18 {
                 )
             }
         }
-        pub fn closure6(unitVar: (), v0_1: i64) -> Chat_contract::US5 {
-            Chat_contract::US5::US5_0(v0_1)
+        pub fn closure6(unitVar: (), v0_1: i64) -> Chat_contract::US2 {
+            Chat_contract::US2::US2_0(v0_1)
         }
-        pub fn method8() -> Func1<i64, Chat_contract::US5> {
+        pub fn method7() -> Func1<i64, Chat_contract::US2> {
             Func1::new(move |v: i64| Chat_contract::closure6((), v))
         }
-        pub fn method9() -> string {
+        pub fn method8() -> string {
             string("hh:mm:ss")
         }
-        pub fn method10() -> string {
+        pub fn method9() -> string {
             string("HH:mm:ss")
         }
-        pub fn method7(
+        pub fn method6(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -393,25 +474,25 @@ mod module_31a2fc18 {
             v4: LrcPtr<Chat_contract::Mut4>,
             v5: Option<i64>,
         ) -> string {
-            let v130: u64 = near_sdk::env::block_timestamp();
-            let v144: Chat_contract::US5 =
-                defaultValue(Chat_contract::US5::US5_1, map(Chat_contract::method8(), v5));
-            let v154: u64 = match &v144 {
-                Chat_contract::US5::US5_0(v144_0_0) => {
-                    v130 - match &v144 {
-                        Chat_contract::US5::US5_0(x) => x.clone(),
+            let v242: u64 = near_sdk::env::block_timestamp();
+            let v256: Chat_contract::US2 =
+                defaultValue(Chat_contract::US2::US2_1, map(Chat_contract::method7(), v5));
+            let v268: u64 = match &v256 {
+                Chat_contract::US2::US2_0(v256_0_0) => {
+                    v242 - match &v256 {
+                        Chat_contract::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     } as u64
                 }
-                _ => v130,
+                _ => v242,
             } / 1000000000_u64;
-            let v155: u64 = v154 % 60_u64;
-            let v157: u64 = v154 / 60_u64 % 60_u64;
-            let v159: u64 = v154 / 3600_u64 % 24_u64;
-            let v161: std::string::String = format!("{:02}:{:02}:{:02}", v159, v157, v155);
-            fable_library_rust::String_::fromString(v161)
+            let v269: u64 = v268 % 60_u64;
+            let v271: u64 = v268 / 60_u64 % 60_u64;
+            let v273: u64 = v268 / 3600_u64 % 24_u64;
+            let v275: std::string::String = format!("{:02}:{:02}:{:02}", v273, v271, v269);
+            fable_library_rust::String_::fromString(v275)
         }
-        pub fn method13() -> string {
+        pub fn method12() -> string {
             string("")
         }
         pub fn closure7(v0_1: LrcPtr<Chat_contract::Mut3>, v1: string, unitVar: ()) {
@@ -419,9 +500,9 @@ mod module_31a2fc18 {
             v0_1.l0.set(v3);
             ()
         }
-        pub fn method12(v0_1: char) -> string {
+        pub fn method11(v0_1: char) -> string {
             let v2: LrcPtr<Chat_contract::Mut3> = LrcPtr::new(Chat_contract::Mut3 {
-                l0: MutCell::new(Chat_contract::method13()),
+                l0: MutCell::new(Chat_contract::method12()),
             });
             let v8: () = {
                 Chat_contract::closure7(v2.clone(), sprintf!("{}", v0_1), ());
@@ -429,25 +510,25 @@ mod module_31a2fc18 {
             };
             v2.l0.get().clone()
         }
-        pub fn method14() -> string {
+        pub fn method13() -> string {
             string("\u{001b}[0m")
         }
-        pub fn method11() -> string {
-            let v6: string = Chat_contract::method12(getCharAt(toLower(string("Debug")), 0_i32));
+        pub fn method10() -> string {
+            let v6: string = Chat_contract::method11(getCharAt(toLower(string("Debug")), 0_i32));
             let v73: &str = inline_colorization::color_bright_blue;
             let v80: &str = &*v6;
             let v99: &str = inline_colorization::color_reset;
             let v101: std::string::String = format!("{}{}{}", v73, v80, v99);
             fable_library_rust::String_::fromString(v101)
         }
-        pub fn method16(
+        pub fn method15(
             v0_1: std::string::String,
             v1: u64,
             v2: std::string::String,
             v3: std::string::String,
         ) -> string {
             let v5: LrcPtr<Chat_contract::Mut3> = LrcPtr::new(Chat_contract::Mut3 {
-                l0: MutCell::new(Chat_contract::method13()),
+                l0: MutCell::new(Chat_contract::method12()),
             });
             let v12: () = {
                 Chat_contract::closure7(v5.clone(), sprintf!("{}", string("{ ")), ());
@@ -542,13 +623,13 @@ mod module_31a2fc18 {
             };
             v5.l0.get().clone()
         }
-        pub fn method17(v0_1: string) -> string {
+        pub fn method16(v0_1: string) -> string {
             trimEndChars(
                 trimStartChars(v0_1, toArray(empty::<char>())),
                 toArray(ofArray(new_array(&[' ', '/']))),
             )
         }
-        pub fn method15(
+        pub fn method14(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -562,8 +643,8 @@ mod module_31a2fc18 {
             v10: std::string::String,
             v11: std::string::String,
         ) -> string {
-            let v12: string = Chat_contract::method16(v8, v9, v10, v11);
-            Chat_contract::method17(sprintf!(
+            let v12: string = Chat_contract::method15(v8, v9, v10, v11);
+            Chat_contract::method16(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
@@ -587,7 +668,7 @@ mod module_31a2fc18 {
             };
             ()
         }
-        pub fn method18(v0_1: string) {
+        pub fn method17(v0_1: string) {
             let v3: () = {
                 Chat_contract::closure3((), ());
                 ()
@@ -644,14 +725,14 @@ mod module_31a2fc18 {
             } else {
                 v20.l0.set(string(""));
                 {
-                    let v107: bool = true;
+                    let v112: bool = true;
                     v95.into_iter().for_each(|x| {
                         //;
-                        let v109: std::string::String = x;
-                        let v111: bool = true;
-                        near_sdk::log!("{}", v109);
-                        let v113: bool = true;
-                        let v115: bool = true;
+                        let v114: std::string::String = x;
+                        let v116: bool = true;
+                        near_sdk::log!("{}", v114);
+                        let v118: bool = true;
+                        let v120: bool = true;
                     }); //;
                     ()
                 }
@@ -685,15 +766,15 @@ mod module_31a2fc18 {
                 let v24: LrcPtr<Chat_contract::Mut2> = patternInput.2.clone();
                 let v23: LrcPtr<Chat_contract::Mut1> = patternInput.1.clone();
                 let v22: LrcPtr<Chat_contract::Mut0> = patternInput.0.clone();
-                Chat_contract::method18(Chat_contract::method15(
+                Chat_contract::method17(Chat_contract::method14(
                     v22.clone(),
                     v23.clone(),
                     v24.clone(),
                     v25.clone(),
                     v26.clone(),
                     v27.clone(),
-                    Chat_contract::method7(v22, v23, v24, v25, v26, v27),
-                    Chat_contract::method11(),
+                    Chat_contract::method6(v22, v23, v24, v25, v26, v27),
+                    Chat_contract::method10(),
                     v0_1,
                     v3,
                     v1.to_string(),
@@ -704,20 +785,20 @@ mod module_31a2fc18 {
         pub fn closure11(unitVar: (), v0_1: std::string::String) -> Chat_contract::US6 {
             Chat_contract::US6::US6_0(v0_1)
         }
-        pub fn method19() -> Func1<std::string::String, Chat_contract::US6> {
+        pub fn method18() -> Func1<std::string::String, Chat_contract::US6> {
             Func1::new(move |v: std::string::String| Chat_contract::closure11((), v))
         }
-        pub fn method20() -> string {
-            let v6: string = Chat_contract::method12(getCharAt(toLower(string("Warning")), 0_i32));
+        pub fn method19() -> string {
+            let v6: string = Chat_contract::method11(getCharAt(toLower(string("Warning")), 0_i32));
             let v73: &str = inline_colorization::color_yellow;
             let v80: &str = &*v6;
             let v99: &str = inline_colorization::color_reset;
             let v101: std::string::String = format!("{}{}{}", v73, v80, v99);
             fable_library_rust::String_::fromString(v101)
         }
-        pub fn method22(v0_1: string) -> string {
+        pub fn method21(v0_1: string) -> string {
             let v2: LrcPtr<Chat_contract::Mut3> = LrcPtr::new(Chat_contract::Mut3 {
-                l0: MutCell::new(Chat_contract::method13()),
+                l0: MutCell::new(Chat_contract::method12()),
             });
             let v9: () = {
                 Chat_contract::closure7(v2.clone(), sprintf!("{}", string("{ ")), ());
@@ -741,7 +822,7 @@ mod module_31a2fc18 {
             };
             v2.l0.get().clone()
         }
-        pub fn method21(
+        pub fn method20(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -752,8 +833,8 @@ mod module_31a2fc18 {
             v7: string,
             v8: string,
         ) -> string {
-            let v9: string = Chat_contract::method22(v8);
-            Chat_contract::method17(sprintf!(
+            let v9: string = Chat_contract::method21(v8);
+            Chat_contract::method16(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
@@ -782,20 +863,20 @@ mod module_31a2fc18 {
                 let v21: LrcPtr<Chat_contract::Mut2> = patternInput.2.clone();
                 let v20: LrcPtr<Chat_contract::Mut1> = patternInput.1.clone();
                 let v19: LrcPtr<Chat_contract::Mut0> = patternInput.0.clone();
-                Chat_contract::method18(Chat_contract::method21(
+                Chat_contract::method17(Chat_contract::method20(
                     v19.clone(),
                     v20.clone(),
                     v21.clone(),
                     v22.clone(),
                     v23.clone(),
                     v24.clone(),
-                    Chat_contract::method7(v19, v20, v21, v22, v23, v24),
-                    Chat_contract::method20(),
+                    Chat_contract::method6(v19, v20, v21, v22, v23, v24),
+                    Chat_contract::method19(),
                     sprintf!("{:?}", v0_1),
                 ))
             };
         }
-        pub fn method23(
+        pub fn method22(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -806,8 +887,8 @@ mod module_31a2fc18 {
             v7: string,
             v8: string,
         ) -> string {
-            let v9: string = Chat_contract::method22(v8);
-            Chat_contract::method17(sprintf!(
+            let v9: string = Chat_contract::method21(v8);
+            Chat_contract::method16(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
@@ -836,15 +917,15 @@ mod module_31a2fc18 {
                 let v21: LrcPtr<Chat_contract::Mut2> = patternInput.2.clone();
                 let v20: LrcPtr<Chat_contract::Mut1> = patternInput.1.clone();
                 let v19: LrcPtr<Chat_contract::Mut0> = patternInput.0.clone();
-                Chat_contract::method18(Chat_contract::method23(
+                Chat_contract::method17(Chat_contract::method22(
                     v19.clone(),
                     v20.clone(),
                     v21.clone(),
                     v22.clone(),
                     v23.clone(),
                     v24.clone(),
-                    Chat_contract::method7(v19, v20, v21, v22, v23, v24),
-                    Chat_contract::method11(),
+                    Chat_contract::method6(v19, v20, v21, v22, v23, v24),
+                    Chat_contract::method10(),
                     sprintf!("{:?}", v0_1),
                 ))
             };
@@ -852,10 +933,10 @@ mod module_31a2fc18 {
         pub fn closure14(unitVar: (), unitVar_1: ()) {
             ();
         }
-        pub fn method24() -> Func0<()> {
+        pub fn method23() -> Func0<()> {
             Func0::new(move || Chat_contract::closure14((), ()))
         }
-        pub fn method25() {
+        pub fn method24() {
             let v2: () = {
                 Chat_contract::closure3((), ());
                 ()
@@ -900,14 +981,14 @@ mod module_31a2fc18 {
             let v95: Vec<std::string::String> = _vec_map;
             v19.l0.set(string(""));
             {
-                let v106: bool = true;
+                let v111: bool = true;
                 v95.into_iter().for_each(|x| {
                     //;
-                    let v108: std::string::String = x;
-                    let v110: bool = true;
-                    near_sdk::log!("{}", v108);
-                    let v112: bool = true;
-                    let v114: bool = true;
+                    let v113: std::string::String = x;
+                    let v115: bool = true;
+                    near_sdk::log!("{}", v113);
+                    let v117: bool = true;
+                    let v119: bool = true;
                 }); //;
                 ()
             }
@@ -928,7 +1009,7 @@ mod module_31a2fc18 {
                     LrcPtr<Chat_contract::Mut4>,
                     Option<i64>,
                 ) = getValue(Chat_contract::TraceState::trace_state().get().clone());
-                let v37: string = Chat_contract::method7(
+                let v37: string = Chat_contract::method6(
                     patternInput.0.clone(),
                     patternInput.1.clone(),
                     patternInput.2.clone(),
@@ -936,16 +1017,16 @@ mod module_31a2fc18 {
                     patternInput.4.clone(),
                     patternInput.5.clone(),
                 );
-                let v38: string = Chat_contract::method11();
-                Chat_contract::method25()
+                let v38: string = Chat_contract::method10();
+                Chat_contract::method24()
             };
         }
-        pub fn method27(
+        pub fn method26(
             v0_1: near_sdk::AccountId,
             v1: Option<(std::string::String, u64, u32)>,
         ) -> string {
             let v3: LrcPtr<Chat_contract::Mut3> = LrcPtr::new(Chat_contract::Mut3 {
-                l0: MutCell::new(Chat_contract::method13()),
+                l0: MutCell::new(Chat_contract::method12()),
             });
             let v10: () = {
                 Chat_contract::closure7(v3.clone(), sprintf!("{}", string("{ ")), ());
@@ -995,7 +1076,7 @@ mod module_31a2fc18 {
             };
             v3.l0.get().clone()
         }
-        pub fn method26(
+        pub fn method25(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -1007,8 +1088,8 @@ mod module_31a2fc18 {
             v8: near_sdk::AccountId,
             v9: Option<(std::string::String, u64, u32)>,
         ) -> string {
-            let v10: string = Chat_contract::method27(v8, v9);
-            Chat_contract::method17(sprintf!(
+            let v10: string = Chat_contract::method26(v8, v9);
+            Chat_contract::method16(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
@@ -1041,15 +1122,15 @@ mod module_31a2fc18 {
                 let v22: LrcPtr<Chat_contract::Mut2> = patternInput.2.clone();
                 let v21: LrcPtr<Chat_contract::Mut1> = patternInput.1.clone();
                 let v20: LrcPtr<Chat_contract::Mut0> = patternInput.0.clone();
-                Chat_contract::method18(Chat_contract::method26(
+                Chat_contract::method17(Chat_contract::method25(
                     v20.clone(),
                     v21.clone(),
                     v22.clone(),
                     v23.clone(),
                     v24.clone(),
                     v25.clone(),
-                    Chat_contract::method7(v20, v21, v22, v23, v24, v25),
-                    Chat_contract::method11(),
+                    Chat_contract::method6(v20, v21, v22, v23, v24, v25),
+                    Chat_contract::method10(),
                     v0_1,
                     v1,
                 ))
@@ -1069,7 +1150,7 @@ mod module_31a2fc18 {
                     LrcPtr<Chat_contract::Mut4>,
                     Option<i64>,
                 ) = getValue(Chat_contract::TraceState::trace_state().get().clone());
-                let v36: string = Chat_contract::method7(
+                let v36: string = Chat_contract::method6(
                     patternInput.0.clone(),
                     patternInput.1.clone(),
                     patternInput.2.clone(),
@@ -1077,13 +1158,13 @@ mod module_31a2fc18 {
                     patternInput.4.clone(),
                     patternInput.5.clone(),
                 );
-                let v37: string = Chat_contract::method11();
-                Chat_contract::method25()
+                let v37: string = Chat_contract::method10();
+                Chat_contract::method24()
             };
         }
-        pub fn method29(v0_1: std::string::String) -> string {
+        pub fn method28(v0_1: std::string::String) -> string {
             let v2: LrcPtr<Chat_contract::Mut3> = LrcPtr::new(Chat_contract::Mut3 {
-                l0: MutCell::new(Chat_contract::method13()),
+                l0: MutCell::new(Chat_contract::method12()),
             });
             let v9: () = {
                 Chat_contract::closure7(v2.clone(), sprintf!("{}", string("{ ")), ());
@@ -1112,7 +1193,7 @@ mod module_31a2fc18 {
             };
             v2.l0.get().clone()
         }
-        pub fn method28(
+        pub fn method27(
             v0_1: LrcPtr<Chat_contract::Mut0>,
             v1: LrcPtr<Chat_contract::Mut1>,
             v2: LrcPtr<Chat_contract::Mut2>,
@@ -1123,8 +1204,8 @@ mod module_31a2fc18 {
             v7: string,
             v8: std::string::String,
         ) -> string {
-            let v9: string = Chat_contract::method29(v8);
-            Chat_contract::method17(sprintf!(
+            let v9: string = Chat_contract::method28(v8);
+            Chat_contract::method16(sprintf!(
                 "{} {} #{} {} / {}",
                 v6,
                 v7,
@@ -1153,20 +1234,20 @@ mod module_31a2fc18 {
                 let v21: LrcPtr<Chat_contract::Mut2> = patternInput.2.clone();
                 let v20: LrcPtr<Chat_contract::Mut1> = patternInput.1.clone();
                 let v19: LrcPtr<Chat_contract::Mut0> = patternInput.0.clone();
-                Chat_contract::method18(Chat_contract::method28(
+                Chat_contract::method17(Chat_contract::method27(
                     v19.clone(),
                     v20.clone(),
                     v21.clone(),
                     v22.clone(),
                     v23.clone(),
                     v24.clone(),
-                    Chat_contract::method7(v19, v20, v21, v22, v23, v24),
-                    Chat_contract::method11(),
+                    Chat_contract::method6(v19, v20, v21, v22, v23, v24),
+                    Chat_contract::method10(),
                     v0_1,
                 ))
             };
         }
-        pub fn method30() -> Func0<()> {
+        pub fn method29() -> Func0<()> {
             Func0::new(move || Chat_contract::closure14((), ()))
         }
         pub fn closure19(v0_1: Func0<()>, unitVar: ()) {
@@ -1183,7 +1264,7 @@ mod module_31a2fc18 {
                     LrcPtr<Chat_contract::Mut4>,
                     Option<i64>,
                 ) = getValue(Chat_contract::TraceState::trace_state().get().clone());
-                let v37: string = Chat_contract::method7(
+                let v37: string = Chat_contract::method6(
                     patternInput.0.clone(),
                     patternInput.1.clone(),
                     patternInput.2.clone(),
@@ -1191,8 +1272,8 @@ mod module_31a2fc18 {
                     patternInput.4.clone(),
                     patternInput.5.clone(),
                 );
-                let v38: string = Chat_contract::method11();
-                Chat_contract::method25()
+                let v38: string = Chat_contract::method10();
+                Chat_contract::method24()
             };
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {} //;
@@ -1458,7 +1539,7 @@ mod module_31a2fc18 {
                     let v285: Option<std::string::String> = v283.cloned();
                     let v299: Chat_contract::US6 = defaultValue(
                         Chat_contract::US6::US6_1,
-                        map(Chat_contract::method19(), v285.clone()),
+                        map(Chat_contract::method18(), v285.clone()),
                     );
                     if let Chat_contract::US6::US6_0(v299_0_0) = &v299 {
                         let v303: std::string::String = match &v299 {
@@ -1557,7 +1638,7 @@ mod module_31a2fc18 {
                     }
                     {
                         let v501: () = {
-                            Chat_contract::closure15(Chat_contract::method24(), ());
+                            Chat_contract::closure15(Chat_contract::method23(), ());
                             ()
                         };
                     } //;
@@ -1652,7 +1733,7 @@ mod module_31a2fc18 {
                         ()
                     };
                     let v717: () = {
-                        Chat_contract::closure19(Chat_contract::method30(), ());
+                        Chat_contract::closure19(Chat_contract::method29(), ());
                         ()
                     };
                     v669.get(&v671).cloned() //;

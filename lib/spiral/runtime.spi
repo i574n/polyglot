@@ -12,7 +12,7 @@ let split_args (args : string) : result (array_base string) string =
     inl quotes = [ '"' ]
     inl special = esc ++ quotes
     inl p_esc_char c =
-        p_char c >>. any_char () |>> fun c' => $'$"{!c}{!c'}"'
+        p_char c >>. any_char () |>> fun c' => $c +. $c'
     inl p_word = special |> none_of |>> sm'.obj_to_string
     inl p_plain = special ++ [ ' ' ] |> none_of |> many1_chars
     inl p_text = p_word |> many1_strings
@@ -569,13 +569,14 @@ inl process_exit_code (process : process) : i32 =
 
 /// ### process_id
 inl process_id (process : process) : i32 =
-    $'!process.Id'
+    run_target function
+        | Fsharp (Native) => fun () => $'!process.Id'
+        | _ => fun () => null ()
 
 /// ### process_has_exited
 inl process_has_exited (process : process) : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!process.HasExited'
+        | Fsharp (Native) => fun () => $'!process.HasExited'
         | _ => fun () => null ()
 
 /// ### process_kill
@@ -607,7 +608,9 @@ inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : p
 
 /// ### event_data
 inl event_data (e : data_received_event_args) : string =
-    $'!e.Data'
+    run_target function
+        | Fsharp (Native) => fun () => $'!e.Data'
+        | _ => fun () => null ()
 
 /// ### execute_with_options_async
 let execute_with_options_async (options : execution_options) : _ (i32 * string) =
@@ -715,6 +718,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 inl output =
                     output
+                    |> seq.cast'
                     |> seq.rev''
                     |> fun x => x : seq.seq' string
                     |> sm'.concat "\n"

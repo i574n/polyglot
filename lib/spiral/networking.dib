@@ -165,7 +165,11 @@ inl response_text (response : reqwest_response) : async.future_pin (resultm.resu
 
 #!spiral
 
-nominal tcp_client = $'System.Net.Sockets.TcpClient'
+nominal tcp_client =
+    `(
+        global "#if FABLE_COMPILER\n\ntype System_Net_Sockets_TcpClient = System.IDisposable\n#else\ntype System_Net_Sockets_TcpClient = System.Net.Sockets.TcpClient\n#endif\n"
+        $'' : $'System_Net_Sockets_TcpClient'
+    )
 
 #!markdown
 
@@ -174,7 +178,9 @@ nominal tcp_client = $'System.Net.Sockets.TcpClient'
 #!spiral
 
 inl new_tcp_client () : tcp_client =
-    $'new `tcp_client ()'
+    run_target function
+        | Fsharp (Native) => fun () => $'new `tcp_client ()'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -241,7 +247,9 @@ inl client_connect_async
     (client : tcp_client)
     : async.value_task
     =
-    $'!client.ConnectAsync (!host, !port, !ct)'
+    run_target function
+        | Fsharp (Native) => fun () => $'!client.ConnectAsync (!host, !port, !ct)'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -249,7 +257,7 @@ inl client_connect_async
 
 #!spiral
 
-inl test_port_open host port : _ bool = async.new_async fun () =>
+let test_port_open host port : _ bool = async.new_async fun () =>
     inl ct = async.cancellation_token () |> async.let'
     inl client = new_tcp_client () |> use
     try_unit
@@ -277,7 +285,7 @@ test_port_open "127.0.0.1" 65536
 
 #!spiral
 
-inl test_port_open_timeout timeout host port : _ bool = async.new_async_unit fun () =>
+let test_port_open_timeout timeout host port : _ bool = async.new_async_unit fun () =>
     test_port_open host port
     |> async.run_with_timeout_async timeout
     |> async.let'
@@ -300,7 +308,7 @@ test_port_open_timeout 120 "127.0.0.1" 65535
 
 #!spiral
 
-inl wait_for_port_access timeout status host port : _ i64 =
+let wait_for_port_access timeout status host port : _ i64 =
     let rec loop retry : _ i64 = async.new_async_unit fun () =>
         inl isPortOpen =
             match timeout |> optionm'.unbox with
@@ -426,7 +434,7 @@ fun () =>
 
 #!spiral
 
-inl get_available_port timeout host initial_port : _ i32 =
+let get_available_port timeout host initial_port : _ i32 =
     let rec loop port = async.new_async_unit fun () =>
         inl is_port_open =
             match timeout |> optionm'.unbox with

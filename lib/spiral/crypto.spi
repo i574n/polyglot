@@ -190,7 +190,7 @@ let hash_text (~input : string) =
 
 /// ### hash_to_port
 inl hash_to_port (text : string) : u16 =
-    inl first_letter_code = text |> sm'.index 0i32 |> i32
+    inl first_letter_code = text |> sm'.index 0i32 |> sm'.convert_to_utf32
     inl hash_part = text |> sm'.slice 0i32 7
     inl combined_value = convert_i32_base 16 hash_part + first_letter_code |> u16
     trace Verbose

@@ -246,7 +246,9 @@ inl channel_send forall t. (line : t) (sender : rust.ref (channel_sender t)) : r
 /// ### sleep'
 inl sleep' (n : i32) : () =
     run_target function
-        | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
+        | Fsharp (Native)
+        | Rust _
+        | Python _ => fun () => $'System.Threading.Thread.Sleep' n
         | _ => fun () => ()
 
 /// ### thread
@@ -281,7 +283,9 @@ nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>
 
 /// ### concurrent_stack_push
 inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : () =
-    $'!stack.Push' item
+    run_target function
+        | Fsharp (Native) => fun () => $'!stack.Push' item
+        | _ => fun () => ()
 
 /// ### token_none
 inl token_none () : cancellation_token =

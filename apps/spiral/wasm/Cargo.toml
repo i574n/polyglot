@@ -14,12 +14,12 @@ path = "spiral_wasm.rs"
 fable_library_rust = { workspace = true, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
 inline_colorization = { workspace = true }
 chrono = { workspace = true }
-clap = { workspace = true }
 regex = { workspace = true }
+sha2 = { workspace = true }
 serde_json = { workspace = true }
+clap = { workspace = true }
 tokio = { version = "1.40", features = ["full"] }
 anyhow = "1.0"
-sha2 = "~0.11.0-pre.4"
 near-workspaces = { version = "=0.11.1", features = ["experimental", "unstable"] }
 near-sandbox-utils = { version = ">=0.11,<1", features = ["global_install"] }
 near-token = ">=0.3,<1"

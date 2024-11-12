@@ -73,7 +73,12 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
 inl get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
-    | Error x => failwith $'$"resultm.get / Result value was Error: {!x}"'
+    | Error x =>
+        backend_switch {
+            Fsharp = fun () => $'$"resultm.get / Result value was Error: {!x}"' : string
+            Python = fun () => $'f"resultm.get / Result value was Error: {!x}"' : string
+        }
+        |> failwith
 
 #!markdown
 
@@ -105,7 +110,12 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
 
 inl unwrap_err forall t u. (x : result t u) : u =
     match x with
-    | Ok x => failwith $'$"resultm.unwrap_err / x: {!x}"'
+    | Ok x =>
+        backend_switch {
+            Fsharp = fun () => $'$"resultm.unwrap_err / x: {!x}"' : string
+            Python = fun () => $'f"resultm.unwrap_err / x: {!x}"' : string
+        }
+        |> failwith
     | Error x => x
 
 #!markdown
@@ -140,6 +150,8 @@ nominal result' t u = $'Result<`t, `u>'
 inl unbox forall t u. (x : result' t u) : result t u =
     inl ok x : result t u = Ok x
     inl error x : result t u = Error x
+    inl ok = join ok
+    inl error = join error
     real
         typecase t with
         | () => $'match !x with Ok () -> !ok () | Error x -> !error x' : result t u

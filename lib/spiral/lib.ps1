@@ -66,12 +66,6 @@ function CopyTarget {
         $text = $text `
             -replace "`r`n", "`n"
 
-        if ($Language -eq "ts") {
-            $text = $text `
-                -replace "this\$.tag", "(this$ as any)['tag']" `
-                -replace "../../../../../../../../", "../../" `
-                | FixTypeScript
-        }
         if ($Language -eq "rs") {
             $text = $text `
                 | FixRust
@@ -88,9 +82,9 @@ function CopyTarget {
                 $text = $text `
                     -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()"
             }
-            if ($name -in @("file_system") -and $Runtime -eq "contract") {
+            if ($Runtime -eq "contract") {
                 $text = $text `
-                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
+                    -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();"
             }
             if ($name -in @("file_system") -and $Runtime -ne "contract") {
                 $text = $text `
@@ -105,9 +99,20 @@ function CopyTarget {
                     -replace "chrono::Utc", "()" `
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
-                    -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
+                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>()," `
                     -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
+        }
+        if ($Language -eq "ts") {
+            $text = $text `
+                -replace "this\$.tag", "(this$ as any)['tag']" `
+                -replace "../../../../../../../../", "../../" `
+                -replace "from `"../../../../../../../lib", "from `"../../../../../polyglot/lib" `
+                | FixTypeScript
+        }
+        if ($Language -eq "py") {
+            $text = $text `
+                -replace "from .....lib", "from ........polyglot.lib"
         }
 
         $text | Set-Content $to

@@ -218,8 +218,10 @@ inl init_series start end inc : array_base _ =
 ///! typescript
 ///! python
 
-init_series 0 4 2
-|> _assert_eq' ;[ 0i32; 2; 4 ]
+init_series 0i32 6 2
+|> a
+|> fun x => x : _ int _
+|> _assert_eq (a ;[ 0i32; 2; 4; 6 ])
 
 #!markdown
 
@@ -884,27 +886,30 @@ inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
 
 #!markdown
 
-### to_list'
-
-#!spiral
-
-inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
-    $'!items |> Array.toList'
-
-#!markdown
-
 ### to_list_base'
 
 #!spiral
 
 inl to_list_base' forall t. (items : array_base t) : listm'.list' t =
-    $'!items |> Array.toList'
+    backend_switch {
+        Fsharp = fun () => $'!items |> Array.toList' : listm'.list' t
+        Python = fun () => items |> to : listm'.list' t
+    }
+
+#!markdown
+
+### to_list'
+
+#!spiral
+
+inl to_list' forall dim {int} t. (items : a dim t) : listm'.list' t =
+    items |> base |> to_list_base'
 
 #!spiral
 
 //// test
 ///! fsharp
-////! cuda //
+///! cuda
 ///! rust
 ///! typescript
 ///! python
