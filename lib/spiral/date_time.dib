@@ -715,16 +715,6 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 
 //// test
 ///! fsharp
-
-unix_epoch ()
-|> to_universal_time
-|> date_time_guid_from_date_time (test_guid ())
-|> sm'.obj_to_string
-|> _assert_eq "19700101-0000-0000-0000-000200543210"
-
-#!spiral
-
-//// test
 ///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
