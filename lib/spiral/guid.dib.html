@@ -7680,9 +7680,11 @@ a.anchor-link {
             <span class="n">inl</span> <span class="nb">hash</span> <span class="o">=</span> <span class="nb">hash</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_left 32i32 '</span><span class="mi">0</span><span class="s1">'</span>
             <span class="n">backend_switch</span> <span class="p">{</span>
                 <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="err">$</span><span class="s1">'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'</span> <span class="p">:</span> <span class="n">hash_guid</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"'</span> <span class="p">:</span> <span class="n">hash_guid</span>
+                    <span class="err">$</span><span class="s1">'$"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"'</span> <span class="p">:</span> <span class="n">string</span>
             <span class="p">}</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="o">|&gt;</span> <span class="n">convert</span>
 </pre></div>
 </div>
 </div>
@@ -7725,27 +7727,7 @@ a.anchor-link {
 <pre>
 .py output (Cuda):
 __assert_eq' / actual: 00000000-0000-0000-0000-000000000000 / expected: 00000000-0000-0000-0000-000000000000
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
 __assert_eq' / actual: 12345678-9012-3456-7890-123456789012 / expected: 12345678-9012-3456-7890-123456789012
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2a624d9e41158d1eaf1cae26c62273d35a36788b40f4a6aaa020223dfd3e93b6/main.py", line 125, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2a624d9e41158d1eaf1cae26c62273d35a36788b40f4a6aaa020223dfd3e93b6/main.py", line 122, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 
 .rs output:

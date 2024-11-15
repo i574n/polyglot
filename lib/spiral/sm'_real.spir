@@ -14,7 +14,7 @@ nominal std_string =
         $'' : $'std_string_String'
     )
 
-/// ### to_string
+/// ### to_string'
 
 /// ### from_std_string
 inl from_std_string (str : std_string) : string =
@@ -152,6 +152,8 @@ let format_real forall t. (x : t) : string =
 
 /// ### pad_right
 
+/// ### convert_to_utf32
+
 /// ### starts_with
 
 /// ### is_white_space
@@ -187,6 +189,8 @@ let format_real forall t. (x : t) : string =
 /// ### length'
 
 /// ### to_string any
+
+/// ### (~$)
 
 /// ### replace
 

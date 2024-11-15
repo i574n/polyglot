@@ -27,7 +27,19 @@ open testing
 
 #!spiral
 
-nominal timestamp = i64
+nominal timestamp_python =
+    `(
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
+        }
+        $'' : i64
+    )
+type timestamp_switch =
+    {
+        Fsharp : i64
+        Python : timestamp_python
+    }
+nominal timestamp = $'backend_switch `(timestamp_switch)'
 
 #!markdown
 
@@ -44,6 +56,10 @@ type timestamp_guid = guid.guid
 #!spiral
 
 type date_time_guid = guid.guid
+
+#!markdown
+
+### test_guid
 
 #!spiral
 
@@ -64,9 +80,8 @@ inl test_guid () =
 
 nominal date_time_python =
     `(
-        backend_switch {
-            Python = fun () =>
-                global "import datetime"
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
         }
         $'' : $'datetime.datetime'
     )
@@ -109,18 +124,6 @@ inl date_time_utc
             $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)' : date_time
         Python = fun () =>
             $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, tzinfo=datetime.timezone.utc)' : date_time
-    }
-
-#!markdown
-
-### ticks
-
-#!spiral
-
-inl ticks (date_time : date_time) : timestamp =
-    backend_switch {
-        Fsharp = fun () => date_time |> $'_.Ticks' : timestamp
-        Python = fun () => $'!date_time.timestamp()' : timestamp
     }
 
 #!markdown
@@ -226,7 +229,19 @@ inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_tim
 
 #!spiral
 
-nominal time_span = $"backend_switch `({ Fsharp : $"System.TimeSpan"; Python : $"datetime.timedelta" })"
+nominal time_span_python =
+    `(
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
+        }
+        $'' : $'datetime.timedelta'
+    )
+type time_span_switch =
+    {
+        Fsharp : $'System.TimeSpan'
+        Python : time_span_python
+    }
+nominal time_span = $'backend_switch `(time_span_switch)'
 
 inl time_span x : time_span =
     backend_switch {
@@ -245,13 +260,54 @@ inl new_time_span (a : date_time) (b : date_time) : time_span =
 
 #!markdown
 
+### total_seconds
+
+#!spiral
+
+inl total_seconds (time_span : time_span) : f64 =
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.TotalSeconds' : f64
+        Python = fun () => $'!time_span.total_seconds()' : f64
+    }
+
+#!markdown
+
+### ticks
+
+#!spiral
+
+inl ticks (date_time : date_time) : timestamp =
+    backend_switch {
+        Fsharp = fun () =>
+            run_target function
+                | Rust (Contract) => fun () => null ()
+                | _ => fun () => date_time |> $'_.Ticks'
+            : timestamp
+        Python = fun () =>
+            date_time |> new_time_span (min_value ()) |> total_seconds |> ((*) 10000000) |> convert : timestamp
+    }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+
+unix_epoch ()
+|> ticks
+|> _assert_eq' (621355968000000000i64 |> convert)
+
+#!markdown
+
 ### time_span_format
 
 #!spiral
 
 inl time_span_format (format : string) (time_span : time_span) : string =
     run_target function
-        | (TypeScript _ | Python _) => fun () =>
+        | TypeScript _
+        | Python _ => fun () =>
             $'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'
         | _ => fun () =>
             $'!time_span.ToString !format '
@@ -265,20 +321,22 @@ inl time_span_format (format : string) (time_span : time_span) : string =
 inl hours (time_span : time_span) : i32 =
     backend_switch {
         Fsharp = fun () => time_span |> $'_.Hours' : i32
-        Python = fun () => $'!time_span.days * 24 + !time_span.seconds // 3600' : i32
+        Python = fun () => $'!time_span.seconds // 3600' : i32
     }
-
-#!markdown
-
-### milliseconds
 
 #!spiral
 
-inl milliseconds (time_span : time_span) : i32 =
-    backend_switch {
-        Fsharp = fun () => time_span |> $'_.Milliseconds' : i32
-        Python = fun () => $'!time_span.microseconds // 1000' : i32
-    }
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(join date_time_milliseconds 2002 2 2 20 22 24 26)
+|> new_time_span (date_time_milliseconds 2001 1 1 10 11 12 13)
+|> hours
+|> _assert_eq 10
 
 #!markdown
 
@@ -289,8 +347,22 @@ inl milliseconds (time_span : time_span) : i32 =
 inl minutes (time_span : time_span) : i32 =
     backend_switch {
         Fsharp = fun () => time_span |> $'_.Minutes' : i32
-        Python = fun () => $'!time_span.seconds // 60' : i32
+        Python = fun () => $'(!time_span.seconds // 60) % 60' : i32
     }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(join date_time_milliseconds 2002 2 2 20 22 24 26)
+|> new_time_span (date_time_milliseconds 2001 1 1 10 11 12 13)
+|> minutes
+|> _assert_eq 11
 
 #!markdown
 
@@ -304,17 +376,45 @@ inl seconds (time_span : time_span) : i32 =
         Python = fun () => $'!time_span.seconds % 60' : i32
     }
 
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(join date_time_milliseconds 2002 2 2 20 22 24 26)
+|> new_time_span (date_time_milliseconds 2001 1 1 10 11 12 13)
+|> seconds
+|> _assert_eq 12
+
 #!markdown
 
-### total_seconds
+### milliseconds
 
 #!spiral
 
-inl total_seconds (time_span : time_span) : f64 =
+inl milliseconds (time_span : time_span) : i32 =
     backend_switch {
-        Fsharp = fun () => time_span |> $'_.TotalSeconds' : f64
-        Python = fun () => $'!time_span.total_seconds()' : f64
+        Fsharp = fun () => time_span |> $'_.Milliseconds' : i32
+        Python = fun () => $'!time_span.microseconds' : i32
     }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(join date_time_milliseconds 2002 2 2 20 22 24 26)
+|> new_time_span (date_time_milliseconds 2001 1 1 10 11 12 13)
+|> milliseconds
+|> _assert_eq 13
 
 #!markdown
 
@@ -341,13 +441,12 @@ inl add_days (days : i32) (date_time : date_time) : date_time =
 
 inl now () : date_time =
     backend_switch {
-        Fsharp = fun () => $'System.DateTime.Now' : date_time
-        Python = fun () =>
-            backend_switch {
-                Python = fun () =>
-                    global "import datetime"
-            }
-            $'datetime.datetime.now()' : date_time
+        Fsharp = fun () =>
+            run_target function
+                | Rust (Contract) => fun () => null ()
+                | _ => fun () => $'System.DateTime.Now'
+            : date_time
+        Python = fun () => $'datetime.datetime.now()' : date_time
     }
 
 #!markdown
@@ -359,12 +458,7 @@ inl now () : date_time =
 inl utc_now () : date_time =
     backend_switch {
         Fsharp = fun () => $'System.DateTime.UtcNow' : date_time
-        Python = fun () =>
-            backend_switch {
-                Python = fun () =>
-                    global "import datetime"
-            }
-            $'datetime.datetime.utcnow()' : date_time
+        Python = fun () => $'datetime.datetime.utcnow()' : date_time
     }
 
 #!markdown
@@ -593,7 +687,7 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
                 |> to_universal_time
             inl unixticks =
                 match date_time |> ticks, epoch |> ticks with
-                | timestamp date_time, timestamp epoch => date_time - epoch
+                | timestamp date_time, timestamp epoch => convert date_time - convert epoch : i64
             inl prefix =
                 unixticks / 10
                 |> from_timestamp_micros
@@ -620,17 +714,11 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 #!spiral
 
 //// test
-
-now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
-|> console.write_line
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
-now ()
+unix_epoch ()
 |> to_universal_time
 |> date_time_guid_from_date_time (test_guid ())
 |> sm'.obj_to_string
@@ -750,14 +838,14 @@ inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : t
 
 //// test
 
-timestamp_guid_from_timestamp (test_guid ()) (timestamp 0i64)
+timestamp_guid_from_timestamp (test_guid ()) (0i64 |> convert |> timestamp)
 |> _assert_eq' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
 
 #!spiral
 
 //// test
 
-timestamp_guid_from_timestamp (test_guid ()) (timestamp 999999999999999999i64)
+timestamp_guid_from_timestamp (test_guid ()) (999999999999999999i64 |> convert |> timestamp)
 |> _assert_eq' (guid.new_guid $'$"99999999-9999-9999-99dc-b{(!test_guid () |> string).[^10..]}"')
 
 #!markdown
@@ -775,14 +863,14 @@ inl timestamp_from_guid (guid : date_time_guid) : timestamp =
 //// test
 
 timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
-|> _assert_eq (timestamp 0)
+|> _assert_eq' (0i64 |> convert |> timestamp)
 
 #!spiral
 
 //// test
 
 timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
-|> _assert_eq (timestamp 999999999999999999)
+|> _assert_eq' (999999999999999999i64 |> convert |> timestamp)
 
 #!markdown
 
@@ -822,7 +910,7 @@ utc_now ()
 |> ticks
 |> new_guid_from_timestamp
 |> timestamp_from_guid
-|> fun (timestamp timestamp) => (timestamp - (utc_now () |> ticks |> fun (timestamp x) => x)) / 100000i64
+|> fun (timestamp t) => (convert t - (utc_now () |> ticks |> fun (timestamp x) => convert x)) / 100000i64
 |> _assert_eq 0i64
 
 #!markdown

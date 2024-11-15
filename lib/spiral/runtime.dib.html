@@ -7604,7 +7604,7 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">quotes</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'"'</span> <span class="p">]</span>
     <span class="n">inl</span> <span class="n">special</span> <span class="o">=</span> <span class="n">esc</span> <span class="o">++</span> <span class="n">quotes</span>
     <span class="n">inl</span> <span class="n">p_esc_char</span> <span class="n">c</span> <span class="o">=</span>
-        <span class="n">p_char</span> <span class="n">c</span> <span class="o">&gt;&gt;.</span> <span class="n">any_char</span> <span class="p">()</span> <span class="o">|&gt;&gt;</span> <span class="n">fun</span> <span class="n">c</span><span class="s1">' =&gt; $'</span><span class="err">$</span><span class="s2">"{!c}{!c'}"</span><span class="s1">'</span>
+        <span class="n">p_char</span> <span class="n">c</span> <span class="o">&gt;&gt;.</span> <span class="n">any_char</span> <span class="p">()</span> <span class="o">|&gt;&gt;</span> <span class="n">fun</span> <span class="n">c</span><span class="s1">' =&gt; $c +. $c'</span>
     <span class="n">inl</span> <span class="n">p_word</span> <span class="o">=</span> <span class="n">special</span> <span class="o">|&gt;</span> <span class="n">none_of</span> <span class="o">|&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
     <span class="n">inl</span> <span class="n">p_plain</span> <span class="o">=</span> <span class="n">special</span> <span class="o">++</span> <span class="p">[</span> <span class="s1">' '</span> <span class="p">]</span> <span class="o">|&gt;</span> <span class="n">none_of</span> <span class="o">|&gt;</span> <span class="n">many1_chars</span>
     <span class="n">inl</span> <span class="n">p_text</span> <span class="o">=</span> <span class="n">p_word</span> <span class="o">|&gt;</span> <span class="n">many1_strings</span>
@@ -7632,7 +7632,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">stack</span> <span class="n">allocated</span> <span class="n">primitive</span> <span class="n">types</span> <span class="p">(</span><span class="n">i8</span><span class="p">,</span><span class="n">i16</span><span class="p">,</span><span class="n">i32</span><span class="p">,</span><span class="n">i64</span> <span class="ow">and</span> <span class="n">u8</span><span class="p">,</span><span class="n">u16</span><span class="p">,</span><span class="n">u32</span><span class="p">,</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">f32</span><span class="p">,</span><span class="n">f64</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">are</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">CuPy</span> <span class="n">arrays</span><span class="o">.</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
@@ -7656,19 +7656,19 @@ a.anchor-link {
     <span class="s2">"r -s </span><span class="se">\"</span><span class="s2">t </span><span class="se">\\\"</span><span class="s2">u</span><span class="se">\\\"\"</span><span class="s2">"</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"r"</span><span class="p">;</span> <span class="s2">"-s"</span><span class="p">;</span> <span class="s2">"t </span><span class="se">\\\"</span><span class="s2">u</span><span class="se">\\\"</span><span class="s2">"</span> <span class="p">]</span>
 
-    <span class="err">$</span><span class="s1">'$"x -y </span><span class="se">\\\"</span><span class="s1">$z -a </span><span class="se">\'</span><span class="s1">(b=</span><span class="se">\\\\\\</span><span class="s1">"c-id=)[a-fA-F0-9]{{8}}</span><span class="se">\'</span><span class="s1">, {{ \`$_[1] + \`$d++ }}</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
+    <span class="err">$</span><span class="s1">'"x -y </span><span class="se">\\\"</span><span class="s1">$z -a </span><span class="se">\'</span><span class="s1">(b=</span><span class="se">\\\\\\</span><span class="s1">"c-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="se">\'</span><span class="s1">, { \`$_[1] + \`$d++ }</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"x"</span><span class="p">;</span> <span class="s2">"-y"</span><span class="p">;</span> <span class="s2">"$z -a '(b=</span><span class="se">\\\"</span><span class="s2">c-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$d++ }"</span> <span class="p">]</span>
 
     <span class="s2">"e -f </span><span class="se">\"</span><span class="s2">$g -h '(i=`</span><span class="se">\"</span><span class="s2">j-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$k++ }</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"e"</span><span class="p">;</span> <span class="s2">"-f"</span><span class="p">;</span> <span class="s2">"$g -h '(i=`</span><span class="se">\"</span><span class="s2">j-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$k++ }"</span> <span class="p">]</span>
 
-    <span class="err">$</span><span class="s1">'$"--l </span><span class="se">\\\\\\</span><span class="s1">"</span><span class="se">\'\'\'</span><span class="s1"> m </span><span class="se">\'\'\'\\\\\\</span><span class="s1">" "'</span><span class="p">,</span>
+    <span class="err">$</span><span class="s1">'"--l </span><span class="se">\\\\\\</span><span class="s1">"</span><span class="se">\'\'\'</span><span class="s1"> m </span><span class="se">\'\'\'\\\\\\</span><span class="s1">" "'</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"--l"</span><span class="p">;</span> <span class="s2">"''' m '''"</span> <span class="p">]</span>
 
-    <span class="err">$</span><span class="s1">'$"n --o --p q --r </span><span class="se">\\\"</span><span class="s1">s:/t u/v.w</span><span class="se">\\\"</span><span class="s1"> --x </span><span class="se">\\\"</span><span class="s1">y:/z.a</span><span class="se">\\\"</span><span class="s1"> --b c.d </span><span class="se">\\\"\\\\</span><span class="s1">e{{f-g}}</span><span class="se">\\\"</span><span class="s1"> h.i </span><span class="se">\\\"</span><span class="s1">j (k)</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
+    <span class="err">$</span><span class="s1">'"n --o --p q --r </span><span class="se">\\\"</span><span class="s1">s:/t u/v.w</span><span class="se">\\\"</span><span class="s1"> --x </span><span class="se">\\\"</span><span class="s1">y:/z.a</span><span class="se">\\\"</span><span class="s1"> --b c.d </span><span class="se">\\\"\\\\</span><span class="s1">e{f-g}</span><span class="se">\\\"</span><span class="s1"> h.i </span><span class="se">\\\"</span><span class="s1">j (k)</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"n"</span><span class="p">;</span> <span class="s2">"--o"</span><span class="p">;</span> <span class="s2">"--p"</span><span class="p">;</span> <span class="s2">"q"</span><span class="p">;</span> <span class="s2">"--r"</span><span class="p">;</span> <span class="s2">"s:/t u/v.w"</span><span class="p">;</span> <span class="s2">"--x"</span><span class="p">;</span> <span class="s2">"y:/z.a"</span><span class="p">;</span> <span class="s2">"--b"</span><span class="p">;</span> <span class="s2">"c.d"</span><span class="p">;</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">e{f-g}"</span><span class="p">;</span> <span class="s2">"h.i"</span><span class="p">;</span> <span class="s2">"j (k)"</span> <span class="p">]</span>
 
-    <span class="err">$</span><span class="s1">'\@$"l ""m n:</span><span class="se">\\</span><span class="s1">o.p"""'</span><span class="p">,</span>
+    <span class="err">$</span><span class="s1">'"l </span><span class="se">\\\"</span><span class="s1">m n:</span><span class="se">\\\\</span><span class="s1">o.p</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
     <span class="p">;[</span> <span class="s2">"l"</span><span class="p">;</span> <span class="s2">"m n:</span><span class="se">\\</span><span class="s2">o.p"</span> <span class="p">]</span>
 <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">_assert_fn</span> <span class="n">split_args</span>
@@ -7685,40 +7685,78 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
+.py output (Cuda):
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input = a b c }
+__assert_eq' / actual: ['a' 'b' 'c'] / expected: ['a' 'b' 'c']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = e f "g h" i }
+__assert_eq' / actual: ['e' 'f' 'g h' 'i'] / expected: ['e' 'f' 'g h' 'i']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = "j k" "l" "m" }
+__assert_eq' / actual: ['j k' 'l' 'm'] / expected: ['j k' 'l' 'm']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
+__assert_eq' / actual: ['s' '-t' 'u `"v`" w'] / expected: ['s' '-t' 'u `"v`" w']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
+__assert_eq' / actual: ['n' '-o' 'p \\"q\\" r'] / expected: ['n' '-o' 'p \\"q\\" r']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = r -s "t \"u\"" }
+__assert_eq' / actual: ['r' '-s' 't \\"u\\"'] / expected: ['r' '-s' 't \\"u\\"']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
+__assert_eq' / actual: ['x' '-y' '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }'] / expected: ['x' '-y' '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
+__assert_eq' / actual: ['e' '-f' '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }'] / expected: ['e' '-f' '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
+__assert_eq' / actual: ['--l' "''' m '''"] / expected: ['--l' "''' m '''"]
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
+__assert_eq' / actual: ['n' '--o' '--p' 'q' '--r' 's:/t u/v.w' '--x' 'y:/z.a' '--b' 'c.d'
+ '\\e{f-g}' 'h.i' 'j (k)'] / expected: ['n' '--o' '--p' 'q' '--r' 's:/t u/v.w' '--x' 'y:/z.a' '--b' 'c.d'
+ '\\e{f-g}' 'h.i' 'j (k)']
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #11 _assert_fn / { input = l "m n:\o.p" }
+__assert_eq' / actual: ['l' 'm n:\\o.p'] / expected: ['l' 'm n:\\o.p']
+
+
 .rs output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input = a b c }
-__assert_eq' / actual: Array(MutCell(["a", "b", "c"])) / expected: Array(MutCell(["a", "b", "c"]))
+__assert_eq' / actual: "Array(MutCell(["a", "b", "c"]))" / expected: "Array(MutCell(["a", "b", "c"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = e f "g h" i }
-__assert_eq' / actual: Array(MutCell(["e", "f", "g h", "i"])) / expected: Array(MutCell(["e", "f", "g h", "i"]))
+__assert_eq' / actual: "Array(MutCell(["e", "f", "g h", "i"]))" / expected: "Array(MutCell(["e", "f", "g h", "i"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = "j k" "l" "m" }
-__assert_eq' / actual: Array(MutCell(["j k", "l", "m"])) / expected: Array(MutCell(["j k", "l", "m"]))
+__assert_eq' / actual: "Array(MutCell(["j k", "l", "m"]))" / expected: "Array(MutCell(["j k", "l", "m"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
-__assert_eq' / actual: Array(MutCell(["s", "-t", "u `"v`" w"])) / expected: Array(MutCell(["s", "-t", "u `"v`" w"]))
+__assert_eq' / actual: "Array(MutCell(["s", "-t", "u `"v`" w"]))" / expected: "Array(MutCell(["s", "-t", "u `"v`" w"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
-__assert_eq' / actual: Array(MutCell(["n", "-o", "p \"q\" r"])) / expected: Array(MutCell(["n", "-o", "p \"q\" r"]))
+__assert_eq' / actual: "Array(MutCell(["n", "-o", "p \"q\" r"]))" / expected: "Array(MutCell(["n", "-o", "p \"q\" r"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = r -s "t \"u\"" }
-__assert_eq' / actual: Array(MutCell(["r", "-s", "t \"u\""])) / expected: Array(MutCell(["r", "-s", "t \"u\""]))
+__assert_eq' / actual: "Array(MutCell(["r", "-s", "t \"u\""]))" / expected: "Array(MutCell(["r", "-s", "t \"u\""]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-__assert_eq' / actual: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"])) / expected: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))
+__assert_eq' / actual: "Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))" / expected: "Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-__assert_eq' / actual: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"])) / expected: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))
+__assert_eq' / actual: "Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))" / expected: "Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
-__assert_eq' / actual: Array(MutCell(["--l", "''' m '''"])) / expected: Array(MutCell(["--l", "''' m '''"]))
+__assert_eq' / actual: "Array(MutCell(["--l", "''' m '''"]))" / expected: "Array(MutCell(["--l", "''' m '''"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-__assert_eq' / actual: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"])) / expected: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))
+__assert_eq' / actual: "Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))" / expected: "Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #11 _assert_fn / { input = l "m n:\o.p" }
-__assert_eq' / actual: Array(MutCell(["l", "m n:\o.p"])) / expected: Array(MutCell(["l", "m n:\o.p"]))
+__assert_eq' / actual: "Array(MutCell(["l", "m n:\o.p"]))" / expected: "Array(MutCell(["l", "m n:\o.p"]))"
 
 
 .ts output:
@@ -7802,39 +7840,39 @@ __assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
 <pre>.fsx output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input = a b c }
-__assert_eq' / actual: [|"a"; "b"; "c"|] / expected: [|"a"; "b"; "c"|]
+__assert_eq' / actual: "[|"a"; "b"; "c"|]" / expected: "[|"a"; "b"; "c"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = e f "g h" i }
-__assert_eq' / actual: [|"e"; "f"; "g h"; "i"|] / expected: [|"e"; "f"; "g h"; "i"|]
+__assert_eq' / actual: "[|"e"; "f"; "g h"; "i"|]" / expected: "[|"e"; "f"; "g h"; "i"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = "j k" "l" "m" }
-__assert_eq' / actual: [|"j k"; "l"; "m"|] / expected: [|"j k"; "l"; "m"|]
+__assert_eq' / actual: "[|"j k"; "l"; "m"|]" / expected: "[|"j k"; "l"; "m"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = s -t "u `"v`" w" }
-__assert_eq' / actual: [|"s"; "-t"; "u `"v`" w"|] / expected: [|"s"; "-t"; "u `"v`" w"|]
+__assert_eq' / actual: "[|"s"; "-t"; "u `"v`" w"|]" / expected: "[|"s"; "-t"; "u `"v`" w"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = n -o "p \"q\" r" }
-__assert_eq' / actual: [|"n"; "-o"; "p \"q\" r"|] / expected: [|"n"; "-o"; "p \"q\" r"|]
+__assert_eq' / actual: "[|"n"; "-o"; "p \"q\" r"|]" / expected: "[|"n"; "-o"; "p \"q\" r"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = r -s "t \"u\"" }
-__assert_eq' / actual: [|"r"; "-s"; "t \"u\""|] / expected: [|"r"; "-s"; "t \"u\""|]
+__assert_eq' / actual: "[|"r"; "-s"; "t \"u\""|]" / expected: "[|"r"; "-s"; "t \"u\""|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" }
-__assert_eq' / actual: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|] / expected: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]
+__assert_eq' / actual: "[|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]" / expected: "[|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" }
-__assert_eq' / actual: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|] / expected: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]
+__assert_eq' / actual: "[|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]" / expected: "[|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 _assert_fn / { input = --l \"''' m '''\"  }
-__assert_eq' / actual: [|"--l"; "''' m '''"|] / expected: [|"--l"; "''' m '''"|]
+__assert_eq' / actual: "[|"--l"; "''' m '''"|]" / expected: "[|"--l"; "''' m '''"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #10 _assert_fn / { input = n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)" }
-__assert_eq' / actual: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
-  "\e{f-g}"; "h.i"; "j (k)"|] / expected: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
-  "\e{f-g}"; "h.i"; "j (k)"|]
+__assert_eq' / actual: "[|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
+  "\e{f-g}"; "h.i"; "j (k)"|]" / expected: "[|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
+  "\e{f-g}"; "h.i"; "j (k)"|]"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #11 _assert_fn / { input = l "m n:\o.p" }
-__assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
+__assert_eq' / actual: "[|"l"; "m n:\o.p"|]" / expected: "[|"l"; "m n:\o.p"|]"
 </pre>
 </div>
 </div>
@@ -7887,7 +7925,7 @@ __assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">stack</span> <span class="n">allocated</span> <span class="n">primitive</span> <span class="n">types</span> <span class="p">(</span><span class="n">i8</span><span class="p">,</span><span class="n">i16</span><span class="p">,</span><span class="n">i32</span><span class="p">,</span><span class="n">i64</span> <span class="ow">and</span> <span class="n">u8</span><span class="p">,</span><span class="n">u16</span><span class="p">,</span><span class="n">u32</span><span class="p">,</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">f32</span><span class="p">,</span><span class="n">f64</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">are</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">CuPy</span> <span class="n">arrays</span><span class="o">.</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
@@ -7902,20 +7940,20 @@ __assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
     <span class="s2">"d e.f"</span><span class="p">,</span>
     <span class="p">(</span><span class="s2">"d"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"e.f"</span><span class="p">)</span>
 
-    <span class="err">$</span><span class="s1">'"""..</span><span class="se">\\</span><span class="s1">..</span><span class="se">\\</span><span class="s1">g.h i.j k.l"""'</span><span class="p">,</span>
+    <span class="s2">"..</span><span class="se">\\</span><span class="s2">..</span><span class="se">\\</span><span class="s2">g.h i.j k.l"</span><span class="p">,</span>
     <span class="p">(</span><span class="s2">"../../g.h"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"i.j k.l"</span><span class="p">)</span>
 
-    <span class="err">$</span><span class="s1">'\@"m:</span><span class="se">\\</span><span class="s1">n</span><span class="se">\\</span><span class="s1">o.p ""q.r s.t"""'</span><span class="p">,</span>
-    <span class="p">(</span><span class="s2">"m:/n/o.p"</span><span class="p">,</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'\@"""q.r s.t"""'</span><span class="p">)</span>
+    <span class="s2">"m:</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">o.p </span><span class="se">\"</span><span class="s2">q.r s.t</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">(</span><span class="s2">"m:/n/o.p"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">q.r s.t</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="err">$</span><span class="s1">'\@"""..</span><span class="se">\\</span><span class="s1">..</span><span class="se">\\</span><span class="s1">u v</span><span class="se">\\</span><span class="s1">w.x"" ""y z.a"" b.c"'</span><span class="p">,</span>
-    <span class="p">(</span><span class="s2">"../../u v/w.x"</span><span class="p">,</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'\@"""y z.a"" b.c"'</span><span class="p">)</span>
+    <span class="s2">"</span><span class="se">\"</span><span class="s2">..</span><span class="se">\\</span><span class="s2">..</span><span class="se">\\</span><span class="s2">u v</span><span class="se">\\</span><span class="s2">w.x</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">y z.a</span><span class="se">\"</span><span class="s2"> b.c"</span><span class="p">,</span>
+    <span class="p">(</span><span class="s2">"../../u v/w.x"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">y z.a</span><span class="se">\"</span><span class="s2"> b.c"</span><span class="p">)</span>
 
-    <span class="err">$</span><span class="s1">'\@"""..</span><span class="se">\\</span><span class="s1">..</span><span class="se">\\</span><span class="s1">d e.f"" -g </span><span class="se">\\\\</span><span class="s1">""h i</span><span class="se">\\\\</span><span class="s1">"""'</span><span class="p">,</span>
-    <span class="p">(</span><span class="s2">"../../d e.f"</span><span class="p">,</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'\@"-g </span><span class="se">\\\\</span><span class="s1">""h i</span><span class="se">\\\\</span><span class="s1">"""'</span><span class="p">)</span>
+    <span class="s2">"</span><span class="se">\"</span><span class="s2">..</span><span class="se">\\</span><span class="s2">..</span><span class="se">\\</span><span class="s2">d e.f</span><span class="se">\"</span><span class="s2"> -g </span><span class="se">\\\\\"</span><span class="s2">h i</span><span class="se">\\\\\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">(</span><span class="s2">"../../d e.f"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"-g </span><span class="se">\\\\\"</span><span class="s2">h i</span><span class="se">\\\\\"</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="err">$</span><span class="s1">'\@"..</span><span class="se">\\</span><span class="s1">..</span><span class="se">\\</span><span class="s1">j k.l -m </span><span class="se">\\\\</span><span class="s1">""n o</span><span class="se">\\\\</span><span class="s1">"""'</span><span class="p">,</span>
-    <span class="p">(</span><span class="s2">"../../j"</span><span class="p">,</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'\@"k.l -m </span><span class="se">\\\\</span><span class="s1">""n o</span><span class="se">\\\\</span><span class="s1">"""'</span><span class="p">)</span>
+    <span class="s2">"..</span><span class="se">\\</span><span class="s2">..</span><span class="se">\\</span><span class="s2">j k.l -m </span><span class="se">\\\\\"</span><span class="s2">n o</span><span class="se">\\\\\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">(</span><span class="s2">"../../j"</span><span class="p">,</span> <span class="n">Some</span> <span class="s2">"k.l -m </span><span class="se">\\\\\"</span><span class="s2">n o</span><span class="se">\\\\\"</span><span class="s2">"</span><span class="p">)</span>
 <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">_assert_fn</span> <span class="n">split_command</span>
 </pre></div>
@@ -7931,85 +7969,112 @@ __assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
+.py output (Cuda):
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input =  }
+__assert_eq' / actual: , US1_1() / expected: , US1_1()
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = /a/b/c }
+__assert_eq' / actual: /a/b/c, US1_1() / expected: /a/b/c, US1_1()
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = d e.f }
+__assert_eq' / actual: d, US1_0(v0='e.f') / expected: d, US1_0(v0='e.f')
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
+__assert_eq' / actual: ../../g.h, US1_0(v0='i.j k.l') / expected: ../../g.h, US1_0(v0='i.j k.l')
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
+__assert_eq' / actual: m:/n/o.p, US1_0(v0='"q.r s.t"') / expected: m:/n/o.p, US1_0(v0='"q.r s.t"')
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
+__assert_eq' / actual: ../../u v/w.x, US1_0(v0='"y z.a" b.c') / expected: ../../u v/w.x, US1_0(v0='"y z.a" b.c')
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
+__assert_eq' / actual: ../../d e.f, US1_0(v0='-g \\\\"h i\\\\"') / expected: ../../d e.f, US1_0(v0='-g \\\\"h i\\\\"')
+
+00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
+__assert_eq' / actual: ../../j, US1_0(v0='k.l -m \\\\"n o\\\\"') / expected: ../../j, US1_0(v0='k.l -m \\\\"n o\\\\"')
+
+
 .rs output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input =  }
-__assert_eq' / actual: ("", US1_1) / expected: ("", US1_1)
+__assert_eq' / actual: ", US1_1" / expected: ", US1_1"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = /a/b/c }
-__assert_eq' / actual: ("/a/b/c", US1_1) / expected: ("/a/b/c", US1_1)
+__assert_eq' / actual: "/a/b/c, US1_1" / expected: "/a/b/c, US1_1"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = d e.f }
-__assert_eq' / actual: ("d", US1_0("e.f")) / expected: ("d", US1_0("e.f"))
+__assert_eq' / actual: "d, US1_0("e.f")" / expected: "d, US1_0("e.f")"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
-__assert_eq' / actual: ("../../g.h", US1_0("i.j k.l")) / expected: ("../../g.h", US1_0("i.j k.l"))
+__assert_eq' / actual: "../../g.h, US1_0("i.j k.l")" / expected: "../../g.h, US1_0("i.j k.l")"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
-__assert_eq' / actual: ("m:/n/o.p", US1_0(""q.r s.t"")) / expected: ("m:/n/o.p", US1_0(""q.r s.t""))
+__assert_eq' / actual: "m:/n/o.p, US1_0(""q.r s.t"")" / expected: "m:/n/o.p, US1_0(""q.r s.t"")"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-__assert_eq' / actual: ("../../u v/w.x", US1_0(""y z.a" b.c")) / expected: ("../../u v/w.x", US1_0(""y z.a" b.c"))
+__assert_eq' / actual: "../../u v/w.x, US1_0(""y z.a" b.c")" / expected: "../../u v/w.x, US1_0(""y z.a" b.c")"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-__assert_eq' / actual: ("../../d e.f", US1_0("-g \\"h i\\"")) / expected: ("../../d e.f", US1_0("-g \\"h i\\""))
+__assert_eq' / actual: "../../d e.f, US1_0("-g \\"h i\\"")" / expected: "../../d e.f, US1_0("-g \\"h i\\"")"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-__assert_eq' / actual: ("../../j", US1_0("k.l -m \\"n o\\"")) / expected: ("../../j", US1_0("k.l -m \\"n o\\""))
+__assert_eq' / actual: "../../j, US1_0("k.l -m \\"n o\\"")" / expected: "../../j, US1_0("k.l -m \\"n o\\"")"
 
 
 .ts output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input =  }
-__assert_eq' / actual: ,US1_1 / expected: ,US1_1
+__assert_eq' / actual: , US1_1 / expected: , US1_1
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = /a/b/c }
-__assert_eq' / actual: /a/b/c,US1_1 / expected: /a/b/c,US1_1
+__assert_eq' / actual: /a/b/c, US1_1 / expected: /a/b/c, US1_1
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = d e.f }
-__assert_eq' / actual: d,US1_0 e.f / expected: d,US1_0 e.f
+__assert_eq' / actual: d, US1_0 e.f / expected: d, US1_0 e.f
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
-__assert_eq' / actual: ../../g.h,US1_0 (i.j k.l) / expected: ../../g.h,US1_0 (i.j k.l)
+__assert_eq' / actual: ../../g.h, US1_0 (i.j k.l) / expected: ../../g.h, US1_0 (i.j k.l)
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
-__assert_eq' / actual: m:/n/o.p,US1_0 ("q.r s.t") / expected: m:/n/o.p,US1_0 ("q.r s.t")
+__assert_eq' / actual: m:/n/o.p, US1_0 ("q.r s.t") / expected: m:/n/o.p, US1_0 ("q.r s.t")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-__assert_eq' / actual: ../../u v/w.x,US1_0 ("y z.a" b.c) / expected: ../../u v/w.x,US1_0 ("y z.a" b.c)
+__assert_eq' / actual: ../../u v/w.x, US1_0 ("y z.a" b.c) / expected: ../../u v/w.x, US1_0 ("y z.a" b.c)
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-__assert_eq' / actual: ../../d e.f,US1_0 (-g \\"h i\\") / expected: ../../d e.f,US1_0 (-g \\"h i\\")
+__assert_eq' / actual: ../../d e.f, US1_0 (-g \\"h i\\") / expected: ../../d e.f, US1_0 (-g \\"h i\\")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-__assert_eq' / actual: ../../j,US1_0 (k.l -m \\"n o\\") / expected: ../../j,US1_0 (k.l -m \\"n o\\")
+__assert_eq' / actual: ../../j, US1_0 (k.l -m \\"n o\\") / expected: ../../j, US1_0 (k.l -m \\"n o\\")
 
 
 .py output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input =  }
-__assert_eq' / actual: ('', US1_1) / expected: ('', US1_1)
+__assert_eq' / actual: , US1_1 / expected: , US1_1
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = /a/b/c }
-__assert_eq' / actual: ('/a/b/c', US1_1) / expected: ('/a/b/c', US1_1)
+__assert_eq' / actual: /a/b/c, US1_1 / expected: /a/b/c, US1_1
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = d e.f }
-__assert_eq' / actual: ('d', US1_0 "e.f") / expected: ('d', US1_0 "e.f")
+__assert_eq' / actual: d, US1_0 "e.f" / expected: d, US1_0 "e.f"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
-__assert_eq' / actual: ('../../g.h', US1_0 ("i.j k.l")) / expected: ('../../g.h', US1_0 ("i.j k.l"))
+__assert_eq' / actual: ../../g.h, US1_0 ("i.j k.l") / expected: ../../g.h, US1_0 ("i.j k.l")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
-__assert_eq' / actual: ('m:/n/o.p', US1_0 (""q.r s.t"")) / expected: ('m:/n/o.p', US1_0 (""q.r s.t""))
+__assert_eq' / actual: m:/n/o.p, US1_0 (""q.r s.t"") / expected: m:/n/o.p, US1_0 (""q.r s.t"")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-__assert_eq' / actual: ('../../u v/w.x', US1_0 (""y z.a" b.c")) / expected: ('../../u v/w.x', US1_0 (""y z.a" b.c"))
+__assert_eq' / actual: ../../u v/w.x, US1_0 (""y z.a" b.c") / expected: ../../u v/w.x, US1_0 (""y z.a" b.c")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-__assert_eq' / actual: ('../../d e.f', US1_0 ("-g \\"h i\\"")) / expected: ('../../d e.f', US1_0 ("-g \\"h i\\""))
+__assert_eq' / actual: ../../d e.f, US1_0 ("-g \\"h i\\"") / expected: ../../d e.f, US1_0 ("-g \\"h i\\"")
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-__assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../../j', US1_0 ("k.l -m \\"n o\\""))
+__assert_eq' / actual: ../../j, US1_0 ("k.l -m \\"n o\\"") / expected: ../../j, US1_0 ("k.l -m \\"n o\\"")
 
 
 </pre>
@@ -8021,28 +8086,28 @@ __assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../
 <pre>.fsx output:
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 _assert_fn / { input =  }
-__assert_eq' / actual: struct ("", US1_1) / expected: struct ("", US1_1)
+__assert_eq' / actual: ", US1_1" / expected: ", US1_1"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 _assert_fn / { input = /a/b/c }
-__assert_eq' / actual: struct ("/a/b/c", US1_1) / expected: struct ("/a/b/c", US1_1)
+__assert_eq' / actual: "/a/b/c, US1_1" / expected: "/a/b/c, US1_1"
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 _assert_fn / { input = d e.f }
-__assert_eq' / actual: struct ("d", US1_0 "e.f") / expected: struct ("d", US1_0 "e.f")
+__assert_eq' / actual: "d, US1_0 "e.f"" / expected: "d, US1_0 "e.f""
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 _assert_fn / { input = ..\..\g.h i.j k.l }
-__assert_eq' / actual: struct ("../../g.h", US1_0 "i.j k.l") / expected: struct ("../../g.h", US1_0 "i.j k.l")
+__assert_eq' / actual: "../../g.h, US1_0 "i.j k.l"" / expected: "../../g.h, US1_0 "i.j k.l""
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 _assert_fn / { input = m:\n\o.p "q.r s.t" }
-__assert_eq' / actual: struct ("m:/n/o.p", US1_0 ""q.r s.t"") / expected: struct ("m:/n/o.p", US1_0 ""q.r s.t"")
+__assert_eq' / actual: "m:/n/o.p, US1_0 ""q.r s.t""" / expected: "m:/n/o.p, US1_0 ""q.r s.t"""
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 _assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-__assert_eq' / actual: struct ("../../u v/w.x", US1_0 ""y z.a" b.c") / expected: struct ("../../u v/w.x", US1_0 ""y z.a" b.c")
+__assert_eq' / actual: "../../u v/w.x, US1_0 ""y z.a" b.c"" / expected: "../../u v/w.x, US1_0 ""y z.a" b.c""
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 _assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-__assert_eq' / actual: struct ("../../d e.f", US1_0 "-g \\"h i\\"") / expected: struct ("../../d e.f", US1_0 "-g \\"h i\\"")
+__assert_eq' / actual: "../../d e.f, US1_0 "-g \\"h i\\""" / expected: "../../d e.f, US1_0 "-g \\"h i\\"""
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 _assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-__assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: struct ("../../j", US1_0 "k.l -m \\"n o\\"")
+__assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j, US1_0 "k.l -m \\"n o\\"""
 </pre>
 </div>
 </div>
@@ -10428,7 +10493,9 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_id</span> <span class="p">(</span><span class="n">process</span> <span class="p">:</span> <span class="n">process</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!process.Id'</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!process.Id'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10455,8 +10522,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_has_exited</span> <span class="p">(</span><span class="n">process</span> <span class="p">:</span> <span class="n">process</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!process.HasExited'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!process.HasExited'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10642,7 +10708,9 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">event_data</span> <span class="p">(</span><span class="n">e</span> <span class="p">:</span> <span class="n">data_received_event_args</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!e.Data'</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!e.Data'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10772,6 +10840,7 @@ __assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: 
 
                 <span class="n">inl</span> <span class="n">output</span> <span class="o">=</span>
                     <span class="n">output</span>
+                    <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">cast</span><span class="s1">'</span>
                     <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">rev</span><span class="s1">''</span>
                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="s1">' string</span>
                     <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat "</span><span class="se">\n</span><span class="s1">"</span>
@@ -10894,7 +10963,7 @@ __assert / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #7 runtime.execute_with_options_async / { file_name = pwsh; arguments = US2_0
   "-c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt""; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9" } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
 __assert_eq / actual: 0 / expected: 0
 __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 __assert_eq / actual: true / expected: true
@@ -11383,19 +11452,19 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 283 }
 __assert_eq / actual: 1 / expected: 1
-__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>"
+__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>"
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "/tmp/!create_temp_path_/spiral_builder_c46958ffc87f3f2efb369498e1af5b7c2a41ff41a817f350eb6eb426a4d8f338/9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "/tmp/!create_temp_path_/spiral_builder_467031bd1000c66c97737936059f3d8c2fec8bf901ba9f185bd320e209b9d643/9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }

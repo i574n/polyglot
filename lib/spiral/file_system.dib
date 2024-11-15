@@ -111,14 +111,13 @@ inl file_stream (path : string) mode access share : file_stream' =
 
 nominal file_info =
     `(
-        global "#if FABLE_COMPILER\ntype file_info = unit\n#else\ntype file_info = System.IO.FileInfo\n#endif\n"
-        $'' : $'file_info'
+        global "#if FABLE_COMPILER\ntype System_IO_FileInfo = unit\n#else\ntype System_IO_FileInfo = System.IO.FileInfo\n#endif\n"
+        $'' : $'System_IO_FileInfo'
     )
 
 inl file_info (path : string) : file_info =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'`file_info '
+        | Fsharp (Native) => fun () => path |> $'`file_info '
         | _ => fun () => null ()
 
 #!markdown
@@ -127,10 +126,16 @@ inl file_info (path : string) : file_info =
 
 #!spiral
 
-nominal directory_info = $'System.IO.DirectoryInfo'
+nominal directory_info =
+    `(
+        global "#if FABLE_COMPILER\ntype System_IO_DirectoryInfo = unit\n#else\ntype System_IO_DirectoryInfo = System.IO.DirectoryInfo\n#endif\n"
+        $'' : $'System_IO_DirectoryInfo'
+    )
 
 inl directory_info (path : string) : directory_info =
-    path |> $'`directory_info '
+    run_target function
+        | Fsharp (Native) => fun () => path |> $'`directory_info '
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -140,8 +145,7 @@ inl directory_info (path : string) : directory_info =
 
 inl directory_info_exists (info : directory_info) : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.Exists'
+        | Fsharp (Native) => fun () => $'!info.Exists'
         | _ => fun () => null ()
 
 #!markdown
@@ -152,8 +156,7 @@ inl directory_info_exists (info : directory_info) : bool =
 
 inl directory_info_creation_time (info : directory_info) : date_time.date_time =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.CreationTime'
+        | Fsharp (Native) => fun () => $'!info.CreationTime'
         | _ => fun () => null ()
 
 #!markdown
@@ -164,8 +167,7 @@ inl directory_info_creation_time (info : directory_info) : date_time.date_time =
 
 inl directory_info_name (info : directory_info) : string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.Name'
+        | Fsharp (Native) => fun () => $'!info.Name'
         | _ => fun () => null ()
 
 #!markdown
@@ -176,8 +178,7 @@ inl directory_info_name (info : directory_info) : string =
 
 inl directory_info_full_name (info : directory_info) : string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.FullName'
+        | Fsharp (Native) => fun () => $'!info.FullName'
         | _ => fun () => null ()
 
 #!markdown
@@ -196,8 +197,7 @@ nominal file_attributes = $'System.IO.FileAttributes'
 
 inl directory_info_attributes (info : directory_info) : file_attributes =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.Attributes'
+        | Fsharp (Native) => fun () => $'!info.Attributes'
         | _ => fun () => null ()
 
 #!markdown
@@ -208,8 +208,7 @@ inl directory_info_attributes (info : directory_info) : file_attributes =
 
 inl file_attributes_reparse_point () : file_attributes =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'`file_attributes.ReparsePoint'
+        | Fsharp (Native) => fun () => $'`file_attributes.ReparsePoint'
         | _ => fun () => null ()
 
 #!markdown
@@ -220,8 +219,7 @@ inl file_attributes_reparse_point () : file_attributes =
 
 inl file_attributes_has_flag (flag : file_attributes) (file_attributes : file_attributes) : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!file_attributes.HasFlag !flag '
+        | Fsharp (Native) => fun () => $'!file_attributes.HasFlag !flag '
         | _ => fun () => null ()
 
 #!markdown
@@ -232,8 +230,7 @@ inl file_attributes_has_flag (flag : file_attributes) (file_attributes : file_at
 
 inl create_directory (path : string) : directory_info =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.Directory.CreateDirectory'
+        | Fsharp (Native) => fun () => path |> $'System.IO.Directory.CreateDirectory'
         | _ => fun () => null ()
 
 #!markdown
@@ -244,8 +241,7 @@ inl create_directory (path : string) : directory_info =
 
 inl directory_get_files (path : string) : array_base string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.Directory.GetFiles'
+        | Fsharp (Native) => fun () => path |> $'System.IO.Directory.GetFiles'
         | _ => fun () => null ()
 
 #!markdown
@@ -256,8 +252,7 @@ inl directory_get_files (path : string) : array_base string =
 
 inl file_move (new_path : string) (old_path : string) : () =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.IO.File.Move (!old_path, !new_path)'
+        | Fsharp (Native) => fun () => $'System.IO.File.Move (!old_path, !new_path)'
         | _ => fun () => ()
 
 #!markdown
@@ -268,8 +263,7 @@ inl file_move (new_path : string) (old_path : string) : () =
 
 inl read_all_text_async (path : string) : _ string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.File.ReadAllTextAsync' |> async.await_task
+        | Fsharp (Native) => fun () => path |> $'System.IO.File.ReadAllTextAsync' |> async.await_task
         | _ => fun () => null ()
 
 #!markdown
@@ -280,8 +274,7 @@ inl read_all_text_async (path : string) : _ string =
 
 inl write_all_text_async (path : string) (text : string) : _ () =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.IO.File.WriteAllTextAsync (!path, !text)' |> async.await_task
+        | Fsharp (Native) => fun () => $'System.IO.File.WriteAllTextAsync (!path, !text)' |> async.await_task
         | _ => fun () => null ()
 
 #!markdown
@@ -359,7 +352,7 @@ nominal path_buf =
 inl new_path_buf (path : sm'.std_string) : path_buf =
     run_target function
         | Rust _ => fun () => !\\(path, $'"std::path::PathBuf::from($0)"')
-        | _ => fun () => path |> convert
+        | _ => fun () => path |> unbox
 
 #!markdown
 
@@ -547,7 +540,7 @@ inl walk_dir_filter (fn : dir_entry -> async.future_pin_send filtering) (walk_di
             | IgnoreDir => !\($'"async_walkdir::Filtering::IgnoreDir"')
             | Continue => !\($'"async_walkdir::Filtering::Continue"')
         filtering
-    !\\((walk_dir, fn), $'"async_walkdir::WalkDir::filter($0, |x| $1(x))"')
+    !\\((walk_dir, fn), $'"async_walkdir::WalkDir::filter($0, move |x| $1(x))"')
 
 #!markdown
 
@@ -719,7 +712,8 @@ let get_temp_path () : string =
 
 let get_file_name (path : string) : string =
     run_target function
-        | Rust (Contract) => fun () => null ()
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Path.GetFileName'
         | Rust (Native) => fun () =>
             path
             |> sm'.to_std_string
@@ -728,8 +722,7 @@ let get_file_name (path : string) : string =
             |> optionm'.map' sm'.from_os_str_ref
             |> optionm'.unbox
             |> optionm'.default_value ""
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.Path.GetFileName'
+        | Rust (Contract) => fun () => null ()
         | target => fun () => failwith $'$"file_system.get_file_name / target: {!target} / path: {!path}"'
 
 #!markdown
@@ -758,14 +751,16 @@ let get_file_name_without_extension (path : string) : string =
 
 let get_directory_name (path : string) : string =
     run_target function
-        | Rust (Native) => fun () =>
-            inl path_buf = path |> sm'.to_std_string |> new_path_buf
-            inl parent = path_buf |> path_buf_parent
-            parent
-            |> optionm'.map' (path_buf_display >> sm'.format' >> sm'.from_std_string)
-            |> optionm'.default_value' ""
         | Fsharp _ => fun () =>
             path |> $'System.IO.Path.GetDirectoryName'
+        | Rust (Native) => fun () =>
+            path
+            |> sm'.to_std_string
+            |> new_path_buf
+            |> path_buf_file_name
+            |> optionm'.map' sm'.from_os_str_ref
+            |> optionm'.unbox
+            |> optionm'.default_value ""
         | _ => fun () => null ()
 
 #!markdown
@@ -858,17 +853,18 @@ let directory_get_parent (path : string) : optionm'.option' string =
             if parent =. null ()
             then None
             else parent |> directory_info_full_name |> Some
+            |> optionm'.box
         | Rust (Native) => fun () =>
-            path
-            |> get_directory_name
-            |> Some
+            inl path_buf = path |> sm'.to_std_string |> new_path_buf
+            inl parent = path_buf |> path_buf_parent
+            parent
+            |> optionm'.map' (path_buf_display >> sm'.format' >> sm'.from_std_string)
         | TypeScript _ => fun () =>
             open typescript_operators
             global "type IPathDirname = abstract dirname: path: string -> string"
             inl fs : $'IPathDirname' = typescript.import_all "path"
-            !\\(path, $'"!fs.dirname($0)"') |> Some
+            !\\(path, $'"!fs.dirname($0)"') |> Some |> optionm'.box
         | _ => fun () => null ()
-    |> optionm'.box
 
 #!markdown
 
@@ -1186,10 +1182,11 @@ inl file_delete (path : string) : () =
 
 #!spiral
 
-inl read_link (path : string) : resultm.result' path_buf stream.io_error =
-    inl run loop n error path' =
+let read_link (path : string) : resultm.result' path_buf stream.io_error =
+    let run loop n error path' =
         inl name = path' |> get_file_name
         inl parent = path' |> directory_get_parent |> optionm'.unbox
+        inl error'' = error |> sm'.format
         match parent with
         | _ when n >= 11 =>
             ($'$"file_system.read_link / path: {!path} / n: {!n} / path\': {!path'} / name: {!name}"' : string)
@@ -1203,28 +1200,32 @@ inl read_link (path : string) : resultm.result' path_buf stream.io_error =
                 |> new_path_buf
                 |> resultm.ok''
             | Error error' =>
-                ($'$"file_system.read_link / error\': {!error'} / error: {!error} / name: {!name}"' : string)
+                ($'$"file_system.read_link / error\': {!error'} / error: {!error''} / name: {!name}"' : string)
                 |> stream.new_io_error
                 |> resultm.err
         | _ =>
-            ($'$"file_system.read_link / run / The file or directory is not a reparse point. / path: {!path} / error: {!error} / path\': {!path'} / name: {!name}"' : string)
+            ($'$"file_system.read_link / run / The file or directory is not a reparse point. / path: {!path} / error: {!error''} / path\': {!path'} / name: {!name}"' : string)
             |> stream.new_io_error
             |> resultm.err
+
     run_target function
         | Rust _ => fun () =>
             if path |> directory_exists
             then !\\(path, $'"std::fs::read_link(&*$0)"')
             else
-                inl rec loop n path' =
-                    inl result : _ _ stream.io_error = !\\(path', $'"std::fs::read_link(&*$0)"')
-                    inl result = result |> resultm.map_error' sm'.format |> resultm.unbox
-                    match result with
-                    | Ok x => x |> resultm.ok''
-                    | Error error => path' |> run loop n error
+                let rec loop n path' =
+                    run_target function
+                        | Rust _ => fun () =>
+                            inl result : _ _ stream.io_error = !\\(path', $'"std::fs::read_link(&*$0)"')
+                            inl result = result |> resultm.map_error' sm'.format |> resultm.unbox
+                            match result with
+                            | Ok x => x |> resultm.ok''
+                            | Error error => path' |> run loop n error
+                        | _ => fun () => null ()
                 path |> loop 0u8
         | TypeScript _ => fun () => null ()
         | Fsharp _ => fun () =>
-            inl rec loop n path' =
+            let rec loop n path' =
                 inl result =
                     path'
                     |> directory_info
@@ -1234,7 +1235,7 @@ inl read_link (path : string) : resultm.result' path_buf stream.io_error =
                     path'
                     |> file_info
                     |> file_info_link_target
-                    |> convert
+                    |> unbox
                     |> resultm.ok''
                 else
                     inl error = ($'$"file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: {!path} / result: {!result} / path\': {!path'} / n: {!n}"' : string)
@@ -1662,7 +1663,7 @@ let link_directory target_path path =
     if target_path |> directory_exists |> not
     then target_path |> create_dir |> ignore
 
-    inl lib_dir_path = path |> get_directory_name
+    inl lib_dir_path = path |> directory_get_parent |> optionm'.default_value' ""
     if lib_dir_path |> directory_exists |> not
     then lib_dir_path |> create_dir |> ignore
 
@@ -1797,7 +1798,7 @@ let file_exists_content path content : bool =
 let write_all_text_exists path contents =
     inl exists' = contents |> file_exists_content path
     if not exists' then
-        inl dir = path |> get_directory_name
+        inl dir = path |> directory_get_parent |> optionm'.default_value' ""
         if dir |> directory_exists |> not
         then dir |> create_dir |> ignore
         contents |> write_all_text path

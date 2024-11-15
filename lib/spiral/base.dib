@@ -196,6 +196,15 @@ inl eval fn =
 
 #!markdown
 
+### flip
+
+#!spiral
+
+inl flip fn a b =
+    fn b a
+
+#!markdown
+
 ### do
 
 #!spiral
@@ -308,17 +317,22 @@ add () |> ignore
 #!spiral
 
 inl capture forall t. (fn : () -> t) : t =
-    inl result = dyn true
-    $'let mutable _!result : `t option = None '
-    $'('
-    $'(fun () ->'
-    $'(fun () ->'
-    fn () |> emit_unit
-    $')'
-    $'|> fun x -> x ()'
-    $') () )'
-    $'|> fun x -> _!result <- Some x'
-    $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"'
+    backend_switch {
+        Fsharp = fun () =>
+            inl result = dyn true
+            $'let mutable _!result : `t option = None '
+            $'('
+            $'(fun () ->'
+            $'(fun () ->'
+            fn () |> emit_unit
+            $')'
+            $'|> fun x -> x ()'
+            $') () )'
+            $'|> fun x -> _!result <- Some x'
+            $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"' : t
+        Python = fun () =>
+            fn ()
+    }
 
 #!markdown
 
@@ -507,6 +521,71 @@ inl (++) a b =
 
 #!markdown
 
+## pair
+
+#!markdown
+
+### pair
+
+#!spiral
+
+nominal pair a b = $'(`a * `b)'
+
+inl pair x y =
+    x, y
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+pair 1i32 2i32
+|> _assert_eq (1, 2)
+
+#!markdown
+
+### new_pair
+
+#!spiral
+
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $'!a, !b '
+
+#!markdown
+
+### from_pair
+
+#!spiral
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    backend_switch {
+        Fsharp = fun () =>
+            $'let (a, b) = !pair '
+            ($'a' : a), ($'b' : b)
+        Python = fun () =>
+            $'a, b = !pair '
+            ($'a' : a), ($'b' : b)
+    }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+new_pair "a" (new_pair 1i32 "b")
+|> from_pair
+|> _assert_eq' ("a", (new_pair 1i32 "b"))
+
+#!markdown
+
 ## application
 
 #!markdown
@@ -517,6 +596,36 @@ inl (++) a b =
 
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
+
+#!markdown
+
+### (||>)
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(3i32, 2i32)
+||> fun a b => a - b
+|> _assert_eq 1
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+(1i32, 2i32)
+||> flip pair
+|> _assert_eq (2, 1)
 
 #!markdown
 
@@ -607,71 +716,6 @@ inl choice2_unbox forall t1 t2. (choice : choice2' t1 t2) : choice2 t1 t2 =
 
 #!markdown
 
-## pair
-
-#!markdown
-
-### pair
-
-#!spiral
-
-nominal pair a b = $'(`a * `b)'
-
-inl pair x y =
-    x, y
-
-#!spiral
-
-//// test
-///! fsharp
-///! cuda
-///! rust
-///! typescript
-///! python
-
-pair 1i32 2i32
-|> _assert_eq (1, 2)
-
-#!markdown
-
-### new_pair
-
-#!spiral
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $'!a, !b '
-
-#!markdown
-
-### from_pair
-
-#!spiral
-
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    backend_switch {
-        Fsharp = fun () =>
-            $'let (a, b) = !pair '
-            ($'a' : a), ($'b' : b)
-        Python = fun () =>
-            $'a, b = !pair '
-            ($'a' : a), ($'b' : b)
-    }
-
-#!spiral
-
-//// test
-///! fsharp
-///! cuda
-///! rust
-///! typescript
-///! python
-
-new_pair "a" (new_pair 1i32 "b")
-|> from_pair
-|> _assert_eq' ("a", (new_pair 1i32 "b"))
-
-#!markdown
-
 ## ref
 
 #!markdown
@@ -732,7 +776,7 @@ inl to forall t u. (x : t) : u =
 inl convert forall t u. (x : t) : u =
     backend_switch {
         Fsharp = fun () => $'!x |> `u ' : u
-        Python = fun () => x |> to : u
+        Python = fun () => $'`u(!x)' : u
     }
 
 #!markdown
@@ -754,7 +798,10 @@ inl unbox forall t u. (x : t) : u =
 #!spiral
 
 inl u8 forall t. (x : t) : u8 =
-    x |> $'uint8'
+    backend_switch {
+        Fsharp = fun () => x |> $'uint8' : u8
+        Python = fun () => x |> to : u8
+    }
 
 #!markdown
 
@@ -763,7 +810,10 @@ inl u8 forall t. (x : t) : u8 =
 #!spiral
 
 inl u16 forall t. (x : t) : u16 =
-    x |> $'uint16'
+    backend_switch {
+        Fsharp = fun () => x |> $'uint16' : u16
+        Python = fun () => $'!x & 0xFFFF' : u16
+    }
 
 #!markdown
 
@@ -772,7 +822,10 @@ inl u16 forall t. (x : t) : u16 =
 #!spiral
 
 inl u64 forall t. (x : t) : u64 =
-    x |> $'uint64'
+    backend_switch {
+        Fsharp = fun () => x |> $'uint64' : u64
+        Python = fun () => x |> to : u64
+    }
 
 #!markdown
 
@@ -781,7 +834,10 @@ inl u64 forall t. (x : t) : u64 =
 #!spiral
 
 inl i32 forall t. (x : t) : i32 =
-    x |> $'int32'
+    backend_switch {
+        Fsharp = fun () => x |> convert : i32
+        Python = fun () => x |> convert : i32
+    }
 
 #!markdown
 
@@ -790,7 +846,10 @@ inl i32 forall t. (x : t) : i32 =
 #!spiral
 
 inl i64 forall t. (x : t) : i64 =
-    x |> $'int64'
+    backend_switch {
+        Fsharp = fun () => x |> $'int64' : i64
+        Python = fun () => x |> to : i64
+    }
 
 #!markdown
 
@@ -799,7 +858,10 @@ inl i64 forall t. (x : t) : i64 =
 #!spiral
 
 inl f32 forall t. (x : t) : f32 =
-    x |> $'float32'
+    backend_switch {
+        Fsharp = fun () => x |> $'float32' : f32
+        Python = fun () => x |> to : f32
+    }
 
 #!markdown
 
@@ -808,7 +870,10 @@ inl f32 forall t. (x : t) : f32 =
 #!spiral
 
 inl f64 forall t. (x : t) : f64 =
-    x |> $'float'
+    backend_switch {
+        Fsharp = fun () => x |> $'float' : f64
+        Python = fun () => x |> to : f64
+    }
 
 #!markdown
 
@@ -825,7 +890,10 @@ nominal unativeint = $'unativeint'
 #!spiral
 
 inl convert_i32 forall t. (x : t) : i32 =
-    x |> $'System.Convert.ToInt32'
+    backend_switch {
+        Fsharp = fun () => x |> $'System.Convert.ToInt32' : i32
+        Python = fun () => x |> to : i32
+    }
 
 #!markdown
 
@@ -834,7 +902,35 @@ inl convert_i32 forall t. (x : t) : i32 =
 #!spiral
 
 inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
-    $'System.Convert.ToInt32 (!x, !base)'
+    backend_switch {
+        Fsharp = fun () => $'System.Convert.ToInt32 (!x, !base)' : i32
+        Python = fun () => $'int (!x, !base)' : i32
+    }
+
+#!markdown
+
+### (:>)
+
+#!spiral
+
+prototype (~:>) r : forall t. t -> r
+
+#!markdown
+
+### to_any
+
+#!spiral
+
+inl to_any forall t. (obj : t) : any =
+    obj |> to
+
+#!markdown
+
+### (~:>) any
+
+#!spiral
+
+instance (~:>) any = to_any
 
 #!markdown
 
@@ -858,12 +954,12 @@ inl exn x =
 #!spiral
 
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
+    inl some x : option t = Some x
+    inl some = dyn some
+    inl fn = dyn fn
+    inl ex_fn = dyn ex_fn
     backend_switch {
         Fsharp = fun () =>
-            inl some x : option t = Some x
-            inl some = dyn some
-            inl fn = dyn fn
-            inl ex_fn = dyn ex_fn
             $'let result = ref !(None : option t)'
             $'try'
             $'    result.Value <- !fn () |> !some '
@@ -875,7 +971,7 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
             inl fn = dyn fn
             inl ex_fn = dyn ex_fn
             $'try:'
-            $'    result = !fn()\n        \'\'\''
+            $'    result = !some(!fn())\n        \'\'\''
             $'\'\'\''
             $'except Exception as e:'
             $'    result = !ex_fn(e)'
@@ -886,7 +982,7 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
 
 //// test
 ///! fsharp
-////! cuda // cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version
+///! cuda
 ///! rust
 ///! typescript
 ///! python
@@ -897,7 +993,7 @@ try
 |> optionm.value
 |> _assert_eq (run_target function
     | Fsharp => fun () => join "System.IndexOutOfRangeException: Index was outside the bounds of the array."
-    | Cuda => fun () => "array index out of range"
+    | Cuda => fun () => "index 1 is out of bounds for axis 0 with size 1"
     | Rust => fun () => "Exception { message: \"index out of bounds: the len is 1 but the index is 1\" }"
     | TypeScript => fun () => "Error: Index was outside the bounds of the array.\\nParameter name: index"
     | Python => fun () => "array index out of range"

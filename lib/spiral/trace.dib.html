@@ -7631,17 +7631,22 @@ a.anchor-link {
                         <span class="n">timestamp</span> <span class="o">|&gt;</span> <span class="n">i64</span> <span class="o">|&gt;</span> <span class="n">Some</span>
             <span class="p">}</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="p">{</span>
-                <span class="n">trace_level</span> <span class="o">=</span>
-                    <span class="p">(</span><span class="n">join</span> <span class="s2">"TRACE_LEVEL"</span><span class="p">)</span>
-                    <span class="o">|&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span>
-                    <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_try_pick</span>
-                <span class="n">repl_start</span> <span class="o">=</span>
-                    <span class="n">inl</span> <span class="n">automation</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"AUTOMATION"</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">automation</span> <span class="o">=</span> <span class="s2">"True"</span>
-                    <span class="n">then</span> <span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">Some</span>
-                    <span class="k">else</span> <span class="kc">None</span>
-            <span class="p">}</span>
+            <span class="n">join</span>
+                <span class="p">{</span>
+                    <span class="n">trace_level</span> <span class="o">=</span>
+                        <span class="s2">"TRACE_LEVEL"</span>
+                        <span class="o">|&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span>
+                        <span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_try_pick</span>
+                    <span class="n">repl_start</span> <span class="o">=</span>
+                        <span class="n">inl</span> <span class="n">automation</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span> <span class="s2">"AUTOMATION"</span>
+                        <span class="k">if</span> <span class="n">automation</span> <span class="o">&lt;&gt;.</span> <span class="s2">"True"</span>
+                        <span class="n">then</span> <span class="kc">None</span>
+                        <span class="k">else</span>
+                            <span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span>
+                            <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span>
+                            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">convert</span>
+                            <span class="o">|&gt;</span> <span class="n">Some</span>
+                <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7857,30 +7862,10 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
 __assert_eq / actual: True / expected: True
 __assert_eq / actual: True / expected: True
 __assert_eq / actual: False / expected: False
 __assert_eq / actual: True / expected: True
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/03a7406b51d78841acde6ff8562f7a4d5088450297422e9e6d6ea6039b0d1fc4/main.py", line 392, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/03a7406b51d78841acde6ff8562f7a4d5088450297422e9e6d6ea6039b0d1fc4/main.py", line 389, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 
 .rs output:
@@ -7966,8 +7951,7 @@ __assert_eq / actual: true / expected: true
                             <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">from_mut</span>
                             <span class="o">|&gt;</span> <span class="n">iter_collect</span>
                             <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_chunks 15000</span>
-                            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map fun x =&gt;</span>
-                                <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_iter</span>
+                            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map sm'</span><span class="o">.</span><span class="n">from_iter</span>
 
                         <span class="n">inl</span> <span class="n">chunks_len</span> <span class="o">=</span> <span class="n">chunks</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_len |&gt; i32</span>
 
@@ -8033,8 +8017,11 @@ __assert_eq / actual: true / expected: true
                         <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
                         <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span>
                             <span class="n">inl</span> <span class="n">t</span> <span class="o">=</span>
-                                <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">)</span>
-                                <span class="o">-</span> <span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">time_span</span>
+                                <span class="n">date_time</span><span class="o">.</span><span class="n">now</span> <span class="p">()</span>
+                                <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">ticks</span>
+                                <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">timestamp</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">convert</span>
+                                <span class="o">|&gt;</span> <span class="n">flip</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="n">repl_start</span>
+                                <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">time_span</span>
                             <span class="n">date_time</span><span class="o">.</span><span class="n">date_time_milliseconds</span>
                                 <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1</span><span class="n">i32</span>
                                 <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">hours</span><span class="p">)</span>
@@ -8141,29 +8128,9 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-00:00:02 <span class="ansi-blue-intense-fg">d</span> #1 test1
-00:00:07 <span class="ansi-blue-intense-fg">d</span> #2 test2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 test1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 test2
 __assert_eq / actual: 3 / expected: 3
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/59d715fbdb56f5ae6905a7bc6a98f84776d6fedb59914a263540ad6bae0b4aea/main.py", line 530, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/59d715fbdb56f5ae6905a7bc6a98f84776d6fedb59914a263540ad6bae0b4aea/main.py", line 527, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 
 .rs output:

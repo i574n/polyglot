@@ -8279,14 +8279,12 @@ a.anchor-link {
         <span class="n">then</span> <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / props: {props |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / {fn ()}"</span><span class="p">)</span> <span class="n">_locals</span>
         <span class="k">else</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span>
 
-    <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span> <span class="n">then</span>
+    <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span> <span class="o">&amp;&amp;</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">&lt;&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Cuda</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">outputPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
         <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{ext}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{props.code}</span><span class="se">\n</span><span class="s2">"</span> <span class="k">else</span> <span class="n">props</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 
     <span class="n">let</span> <span class="n">workspaceRootExternal</span> <span class="o">=</span>
-        <span class="n">let</span> <span class="n">currentDir</span> <span class="o">=</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetCurrentDirectory</span> <span class="p">()</span>
-            <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">to_lower</span>
+        <span class="n">let</span> <span class="n">currentDir</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetCurrentDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">to_lower</span>
         <span class="n">let</span> <span class="n">workspaceRoot</span> <span class="o">=</span> <span class="n">workspaceRoot</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">to_lower</span>
         <span class="k">if</span> <span class="n">currentDir</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">workspaceRoot</span>
         <span class="n">then</span> <span class="kc">None</span>
@@ -8316,7 +8314,7 @@ a.anchor-link {
                 <span class="n">builderCommand</span><span class="p">,</span> <span class="n">commands</span>
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">commands</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">commands</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">builderCommand</span><span class="p">,</span> <span class="n">commands</span><span class="p">)</span> <span class="o">-&gt;</span>
+            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">builderCommand</span><span class="p">,</span> <span class="n">commands</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">commands</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">command</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
@@ -8341,7 +8339,6 @@ a.anchor-link {
                         <span class="k">else</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">Error</span>
                 <span class="p">})</span>
             <span class="p">)</span>
-            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span>
 
     <span class="n">let</span> <span class="n">hasEval</span> <span class="o">=</span>
@@ -8420,10 +8417,17 @@ a.anchor-link {
                             <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="s2">"builderCommand"</span>
                             <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">""</span>
 
+                        <span class="n">let</span> <span class="n">backendInfo</span> <span class="o">=</span>
+                            <span class="k">match</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span><span class="p">,</span> <span class="n">builderCommand</span> <span class="k">with</span>
+                            <span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span><span class="p">,</span> <span class="n">builderCommand</span>
+                                <span class="n">when</span> <span class="n">builderCommand</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">" "</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">" (</span><span class="si">{builderCommand}</span><span class="s2">)"</span>
+                            <span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
+                            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">" (</span><span class="si">{props.backend}</span><span class="s2">)"</span>
+
                         <span class="n">let</span> <span class="nb">eval</span> <span class="o">=</span> <span class="n">output</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">&amp;&amp;</span> <span class="n">extension</span> <span class="o">=</span> <span class="s2">"fsx"</span>
 
                         <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span> <span class="o">&amp;&amp;</span> <span class="ow">not</span> <span class="nb">eval</span>
-                        <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">""".</span><span class="si">{extension}</span><span class="s2">:{'</span><span class="se">\n</span><span class="s2">'}</span><span class="si">{code}</span><span class="s2">"""</span><span class="p">)</span>
+                        <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">""".</span><span class="si">{extension}{backendInfo}</span><span class="s2">:{'</span><span class="se">\n</span><span class="s2">'}</span><span class="si">{code}</span><span class="s2">"""</span><span class="p">)</span>
 
                         <span class="n">trace</span> <span class="n">Debug</span>
                             <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / result"</span><span class="p">)</span>
@@ -8434,19 +8438,10 @@ a.anchor-link {
                                 <span class="o">||</span> <span class="n">spiralResults</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">1</span>
                                 <span class="o">||</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">1</span>
                             <span class="n">then</span>
-                                <span class="k">if</span> <span class="nb">eval</span> <span class="n">then</span>
-                                    <span class="n">code</span>
+                                <span class="k">if</span> <span class="nb">eval</span>
+                                <span class="n">then</span> <span class="n">code</span>
                                 <span class="k">else</span>
-                                    <span class="n">let</span> <span class="n">header</span> <span class="o">=</span>
-                                        <span class="n">let</span> <span class="n">info</span> <span class="o">=</span>
-                                            <span class="k">match</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span><span class="p">,</span> <span class="n">builderCommand</span> <span class="k">with</span>
-                                            <span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span><span class="p">,</span> <span class="n">builderCommand</span>
-                                                <span class="n">when</span> <span class="n">builderCommand</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">" "</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">" (</span><span class="si">{builderCommand}</span><span class="s2">)"</span>
-                                            <span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
-                                            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">" (</span><span class="si">{props.backend}</span><span class="s2">)"</span>
-                                        <span class="k">if</span> <span class="n">info</span> <span class="o">=</span> <span class="s2">""</span>
-                                        <span class="n">then</span> <span class="err">$</span><span class="s2">".</span><span class="si">{extension}</span><span class="s2"> output:</span><span class="se">\n</span><span class="s2">"</span>
-                                        <span class="k">else</span> <span class="err">$</span><span class="s2">".</span><span class="si">{extension}</span><span class="s2"> output</span><span class="si">{info}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span>
+                                    <span class="n">let</span> <span class="n">header</span> <span class="o">=</span> <span class="err">$</span><span class="s2">".</span><span class="si">{extension}</span><span class="s2"> output</span><span class="si">{backendInfo}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span>
                                     <span class="err">$</span><span class="s2">"""{if output |&gt; SpiralSm.contains "</span><span class="se">\n</span><span class="s2">" then "</span><span class="se">\n</span><span class="s2">" else ""}</span><span class="si">{header}{output}</span><span class="s2">"""</span>
                             <span class="k">elif</span> <span class="nb">eval</span>
                             <span class="n">then</span> <span class="n">code</span>
@@ -8534,11 +8529,271 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="eval">eval<a class="anchor-link" href="#eval">¶</a></h2>
+<h2 id="evalAsync">evalAsync<a class="anchor-link" href="#evalAsync">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">evalAsync</span>
+    <span class="n">retry</span>
+    <span class="p">(</span><span class="n">props</span> <span class="p">:</span> <span class="p">{</span><span class="o">|</span>
+        <span class="n">rawCellCode</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">lines</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">isReal</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">builderCommands</span><span class="p">:</span> <span class="n">_</span> <span class="n">array</span>
+        <span class="n">isCache</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">cancellationToken</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">printCode</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">traceLevel</span><span class="p">:</span> <span class="n">_</span>
+        <span class="n">fsi_eval</span><span class="p">:</span> <span class="n">_</span>
+    <span class="o">|</span><span class="p">})</span>
+    <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="k">try</span>
+        <span class="n">let</span> <span class="n">cellCode</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="n">prepareSpiral</span> <span class="n">props</span><span class="o">.</span><span class="n">rawCellCode</span> <span class="n">props</span><span class="o">.</span><span class="n">lines</span>
+        <span class="n">let</span> <span class="n">newAllCode</span> <span class="o">=</span>
+            <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">isReal</span>
+            <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{allCodeReal}</span><span class="se">\n\n</span><span class="si">{cellCode}</span><span class="s2">"</span>
+            <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="si">{allCode}</span><span class="se">\n\n</span><span class="si">{cellCode}</span><span class="s2">"</span>
+
+        <span class="n">let</span> <span class="n">buildBackends</span> <span class="o">=</span>
+            <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">then</span> <span class="p">[</span><span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span> <span class="o">|</span><span class="p">]</span>
+            <span class="k">else</span>
+                <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span>
+                <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                    <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"cuda"</span>
+                    <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Cuda</span>
+                    <span class="k">else</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
+                <span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">distinct</span>
+
+        <span class="n">trace</span> <span class="n">Verbose</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval"</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"lastTopLevelIndex: </span><span class="si">{lastTopLevelIndex}</span><span class="s2"> / builderCommands: %A</span><span class="si">{props.builderCommands}</span><span class="s2"> / buildBackends: %A</span><span class="si">{buildBackends}</span><span class="s2"> / isReal: </span><span class="si">{props.isReal}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
+
+        <span class="n">let</span><span class="err">!</span> <span class="n">buildCodeResults</span> <span class="o">=</span>
+            <span class="n">buildBackends</span>
+            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">backend</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
+                    <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">isReal</span>
+                    <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spir</span> <span class="n">newAllCode</span>
+                    <span class="k">else</span>
+                        <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spi</span>
+                            <span class="p">(</span><span class="n">newAllCode</span><span class="p">,</span> <span class="k">if</span> <span class="n">allCodeReal</span> <span class="o">=</span> <span class="s2">""</span> <span class="n">then</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Some</span> <span class="n">allCodeReal</span><span class="p">)</span>
+                    <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">buildCode</span> <span class="n">backend</span> <span class="n">allPackages</span> <span class="n">props</span><span class="o">.</span><span class="n">isCache</span> <span class="n">props</span><span class="o">.</span><span class="n">timeout</span> <span class="n">props</span><span class="o">.</span><span class="n">cancellationToken</span>
+                <span class="k">return</span> <span class="n">backend</span><span class="p">,</span> <span class="n">result</span>
+            <span class="p">})</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">catch</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="n">props</span><span class="o">.</span><span class="n">timeout</span>
+
+        <span class="k">match</span> <span class="n">buildCodeResults</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">buildCodeResults</span><span class="p">)</span> <span class="o">-&gt;</span>
+            <span class="n">let</span><span class="err">!</span> <span class="n">result</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
+                <span class="p">((</span><span class="n">Ok</span> <span class="p">[],</span> <span class="p">[</span><span class="o">||</span><span class="p">]),</span> <span class="n">buildCodeResults</span><span class="p">)</span>
+                <span class="o">||&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">buildCodeResult</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
+                    <span class="k">match</span> <span class="n">buildCodeResult</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="n">backend</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="p">),</span> <span class="n">spiralErrors</span><span class="p">)</span> <span class="o">-&gt;</span>
+                        <span class="n">let</span> <span class="n">spiralErrors</span> <span class="o">=</span>
+                            <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
+                        <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
+                            <span class="n">processSpiralOutput</span>
+                                <span class="p">{</span><span class="o">|</span>
+                                    <span class="n">printCode</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
+                                    <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">traceLevel</span>
+                                    <span class="n">builderCommands</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span>
+                                    <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="n">lastTopLevelIndex</span>
+                                    <span class="n">backend</span> <span class="o">=</span> <span class="n">backend</span>
+                                    <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">cancellationToken</span>
+                                    <span class="n">spiralErrors</span> <span class="o">=</span> <span class="n">spiralErrors</span>
+                                    <span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+                                    <span class="n">outputPath</span> <span class="o">=</span> <span class="n">outputPath</span>
+                                    <span class="n">isReal</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">isReal</span>
+                                <span class="o">|</span><span class="p">}</span>
+                        <span class="k">match</span> <span class="n">result</span><span class="p">,</span> <span class="n">acc</span> <span class="k">with</span>
+                        <span class="o">|</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span><span class="p">),</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">acc_code</span><span class="p">,</span> <span class="n">acc_errors</span><span class="p">)</span> <span class="o">-&gt;</span>
+                            <span class="k">return</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">acc_code</span> <span class="o">@</span> <span class="n">code</span><span class="p">),</span> <span class="n">acc_errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
+                        <span class="o">|</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span><span class="p">),</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span>
+                            <span class="k">return</span>
+                                <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / processSpiralOutput / Exception / buildCodeResult: %A{buildCodeResult |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">),</span>
+                                <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
+                    <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="n">when</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
+                        <span class="k">return</span> <span class="n">errors</span><span class="o">.</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="ne">Exception</span> <span class="o">|&gt;</span> <span class="n">Error</span><span class="p">,</span>
+                        <span class="n">mapErrors</span> <span class="p">(</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">acc</span>
+                <span class="p">})</span>
+            <span class="n">let</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">defaultArg</span> <span class="n">props</span><span class="o">.</span><span class="n">cancellationToken</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
+            <span class="k">match</span> <span class="n">result</span><span class="p">,</span> <span class="n">errors</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span>
+                <span class="n">let</span> <span class="n">code</span><span class="p">,</span> <span class="nb">eval</span> <span class="o">=</span>
+                    <span class="n">code</span>
+                    <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span>
+                        <span class="k">if</span> <span class="n">code</span><span class="o">.</span><span class="n">eval</span>
+                        <span class="n">then</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="o">.</span><span class="n">code</span>
+                        <span class="k">else</span> <span class="n">Some</span> <span class="n">code</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span>
+                    <span class="p">)</span>
+                    <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">unzip</span>
+                <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">choose</span> <span class="nb">id</span>
+                <span class="n">let</span> <span class="nb">eval</span> <span class="o">=</span> <span class="nb">eval</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">choose</span> <span class="nb">id</span>
+
+                <span class="n">trace</span> <span class="n">Debug</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval"</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"eval: {eval |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / code: {code |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / {_locals ()}"</span><span class="p">)</span>
+
+                <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
+                    <span class="k">match</span> <span class="nb">eval</span><span class="p">,</span> <span class="n">code</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="p">[],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
+                        <span class="n">Choice2Of2</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / eval=[] / code=[] / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / code: %A</span><span class="si">{code}</span><span class="s2">"</span><span class="p">),</span> <span class="n">errors</span>
+                    <span class="o">|</span> <span class="p">[</span> <span class="nb">eval</span> <span class="p">],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
+                        <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
+                        <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
+                            <span class="n">errors2</span>
+                            <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
+                            <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                            <span class="o">//</span> <span class="p">)</span>
+                            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
+                        <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
+                    <span class="o">|</span> <span class="p">[],</span> <span class="n">_</span> <span class="o">-&gt;</span>
+                        <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+                        <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                            <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
+                            <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\"\"\"</span><span class="s2">"</span>
+                            <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
+                        <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
+                        <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
+                            <span class="n">errors2</span>
+                            <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
+                            <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                            <span class="o">//</span> <span class="p">)</span>
+                            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
+                        <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
+                        <span class="n">let</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
+                            <span class="p">((</span><span class="n">Ok</span> <span class="p">(</span><span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span><span class="p">),</span> <span class="p">[</span><span class="o">||</span><span class="p">]),</span> <span class="nb">eval</span><span class="p">)</span>
+                            <span class="o">||&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">acc_errors</span><span class="p">)</span> <span class="nb">eval</span> <span class="o">-&gt;</span>
+                                <span class="k">match</span> <span class="n">acc</span> <span class="k">with</span>
+                                <span class="o">|</span> <span class="n">Error</span> <span class="n">ch</span> <span class="o">-&gt;</span> <span class="n">Error</span> <span class="n">ch</span><span class="p">,</span> <span class="n">acc_errors</span>
+                                <span class="o">|</span> <span class="n">Ok</span> <span class="n">acc</span> <span class="o">-&gt;</span>
+                                    <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
+                                    <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
+                                        <span class="n">errors</span>
+                                        <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
+                                        <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                                        <span class="o">//</span> <span class="p">)</span>
+                                        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">acc_errors</span>
+                                    <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
+                                    <span class="o">|</span> <span class="n">Choice1Of2</span> <span class="n">v</span> <span class="o">-&gt;</span>
+                                        <span class="n">let</span> <span class="n">v</span> <span class="o">=</span>
+                                            <span class="n">v</span>
+                                            <span class="o">|&gt;</span> <span class="n">tryGetPropertyValue</span> <span class="s2">"ReflectionValue"</span>
+                                            <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"%A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span>
+                                            <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">""</span>
+                                        <span class="n">Ok</span> <span class="p">(</span><span class="n">v</span> <span class="p">::</span> <span class="n">acc</span><span class="p">),</span> <span class="n">errors</span>
+                                    <span class="o">|</span> <span class="n">Choice2Of2</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+                                        <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / fsi_eval fold Choice error / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
+                                        <span class="n">Error</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
+                            <span class="p">)</span>
+                        <span class="k">match</span> <span class="n">code</span> <span class="k">with</span>
+                        <span class="o">|</span> <span class="n">Error</span> <span class="n">ch</span> <span class="o">-&gt;</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
+                        <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span> <span class="o">-&gt;</span>
+                            <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                                <span class="n">code</span>
+                                <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="p">((</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="s2">""</span><span class="p">)</span>
+                                <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+
+                            <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                                <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">eval</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mi">0</span>
+                                <span class="n">then</span> <span class="n">code</span>
+                                <span class="k">elif</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span>
+                                <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="se">\n\n</span><span class="s2">"</span>
+                                <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="se">\n</span><span class="s2">"</span>
+
+                            <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                                <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
+                                <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\n\"\"\"</span><span class="s2">"</span>
+                                <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
+                            <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
+                            <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
+                                <span class="n">errors2</span>
+                                <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
+                                <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                                <span class="o">//</span> <span class="p">)</span>
+                                <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
+                            <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
+                <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
+                <span class="o">|</span> <span class="n">Choice1Of2</span> <span class="n">v</span> <span class="o">-&gt;</span>
+                    <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">isReal</span>
+                    <span class="n">then</span> <span class="n">allCodeReal</span> <span class="o">&lt;-</span> <span class="n">newAllCode</span>
+                    <span class="k">else</span> <span class="n">allCode</span> <span class="o">&lt;-</span> <span class="n">newAllCode</span>
+                    <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">errors</span>
+                <span class="o">|</span> <span class="n">Choice2Of2</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+                    <span class="k">return</span>
+                        <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / -2 / Exception / ex: {ex |&gt; SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400}"</span><span class="p">),</span>
+                        <span class="n">errors</span>
+            <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span> <span class="o">-&gt;</span>
+                <span class="k">return</span>
+                    <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="s2">"Eval.evalAsync / errors / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / code: %A</span><span class="si">{code}</span><span class="s2">"</span><span class="p">),</span>
+                    <span class="n">errors</span>
+            <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span> <span class="o">-&gt;</span>
+                <span class="n">let</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span>
+                <span class="k">if</span> <span class="n">retry</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"Expected one of: inl, let, union, nominal, prototype, type, instance, and, open"</span>
+                <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">evalAsync</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">props</span>
+                <span class="k">else</span>
+                    <span class="k">return</span>
+                        <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / -1 / Exception / ex: </span><span class="si">{ex}</span><span class="s2"> / buildCodeResults: {buildCodeResults |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 1500}"</span><span class="p">),</span>
+                        <span class="n">errors</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
+            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / buildCodeResults Error / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
+            <span class="k">return</span>
+                <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / buildCodeResults Error / Exception / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">),</span>
+                <span class="p">[</span><span class="o">|</span>
+                    <span class="p">(</span>
+                        <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / buildCodeResults Error / errors[0] / ex: {ex |&gt; SpiralSm.format_exception} / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                    <span class="p">)</span>
+                <span class="o">|</span><span class="p">]</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
+            <span class="k">return</span>
+                <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / buildCodeResults / Exception / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">),</span>
+                <span class="p">[</span><span class="o">|</span>
+                    <span class="p">(</span>
+                        <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / buildCodeResults / errors[0] / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                    <span class="p">)</span>
+                <span class="o">|</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+        <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / try 1 ex / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{props.lines}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+        <span class="k">return</span>
+            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / try 1 ex / Exception / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{props.lines}</span><span class="s2">"</span><span class="p">),</span>
+            <span class="p">[</span><span class="o">|</span>
+                <span class="p">(</span>
+                    <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / try 1 ex / errors[0] / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{props.lines}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="p">)</span>
+            <span class="o">|</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="eval">eval<a class="anchor-link" href="#eval">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8632,224 +8887,19 @@ a.anchor-link {
             <span class="n">oldLevel</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
         <span class="p">))</span>
 
-        <span class="k">async</span> <span class="p">{</span>
-            <span class="k">try</span>
-                <span class="n">let</span> <span class="n">cellCode</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="n">prepareSpiral</span> <span class="n">rawCellCode</span> <span class="n">lines</span>
-                <span class="n">let</span> <span class="n">newAllCode</span> <span class="o">=</span>
-                    <span class="k">if</span> <span class="n">isReal</span>
-                    <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{allCodeReal}</span><span class="se">\n\n</span><span class="si">{cellCode}</span><span class="s2">"</span>
-                    <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="si">{allCode}</span><span class="se">\n\n</span><span class="si">{cellCode}</span><span class="s2">"</span>
-
-                <span class="n">let</span> <span class="n">buildBackends</span> <span class="o">=</span>
-                    <span class="k">if</span> <span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="n">then</span> <span class="p">[</span><span class="o">|</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span> <span class="o">|</span><span class="p">]</span>
-                    <span class="k">else</span>
-                        <span class="n">builderCommands</span>
-                        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
-                            <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"cuda"</span>
-                            <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Cuda</span>
-                            <span class="k">else</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
-                        <span class="p">)</span>
-                        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">distinct</span>
-
-                <span class="n">trace</span> <span class="n">Verbose</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval"</span><span class="p">)</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"lastTopLevelIndex: </span><span class="si">{lastTopLevelIndex}</span><span class="s2"> / builderCommands: %A</span><span class="si">{builderCommands}</span><span class="s2"> / buildBackends: %A</span><span class="si">{buildBackends}</span><span class="s2"> / isReal: </span><span class="si">{isReal}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-
-                <span class="n">let</span><span class="err">!</span> <span class="n">buildCodeResults</span> <span class="o">=</span>
-                    <span class="n">buildBackends</span>
-                    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">backend</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                        <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
-                            <span class="k">if</span> <span class="n">isReal</span>
-                            <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spir</span> <span class="n">newAllCode</span>
-                            <span class="k">else</span>
-                                <span class="n">Supervisor</span><span class="o">.</span><span class="n">Spi</span>
-                                    <span class="p">(</span><span class="n">newAllCode</span><span class="p">,</span> <span class="k">if</span> <span class="n">allCodeReal</span> <span class="o">=</span> <span class="s2">""</span> <span class="n">then</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Some</span> <span class="n">allCodeReal</span><span class="p">)</span>
-                            <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">buildCode</span> <span class="n">backend</span> <span class="n">allPackages</span> <span class="n">isCache</span> <span class="n">timeout</span> <span class="n">cancellationToken</span>
-                        <span class="k">return</span> <span class="n">backend</span><span class="p">,</span> <span class="n">result</span>
-                    <span class="p">})</span>
-                    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span>
-                    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">catch</span>
-                    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="n">timeout</span>
-
-                <span class="k">match</span> <span class="n">buildCodeResults</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">buildCodeResults</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">let</span><span class="err">!</span> <span class="n">result</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
-                        <span class="p">((</span><span class="n">Ok</span> <span class="p">[],</span> <span class="p">[</span><span class="o">||</span><span class="p">]),</span> <span class="n">buildCodeResults</span><span class="p">)</span>
-                        <span class="o">||&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">buildCodeResult</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                            <span class="k">match</span> <span class="n">buildCodeResult</span> <span class="k">with</span>
-                            <span class="o">|</span> <span class="n">backend</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="p">),</span> <span class="n">spiralErrors</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                <span class="n">let</span> <span class="n">spiralErrors</span> <span class="o">=</span>
-                                    <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
-                                <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
-                                    <span class="n">processSpiralOutput</span>
-                                        <span class="p">{</span><span class="o">|</span>
-                                            <span class="n">printCode</span> <span class="o">=</span> <span class="n">printCode</span>
-                                            <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">traceLevel</span>
-                                            <span class="n">builderCommands</span> <span class="o">=</span> <span class="n">builderCommands</span>
-                                            <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="n">lastTopLevelIndex</span>
-                                            <span class="n">backend</span> <span class="o">=</span> <span class="n">backend</span>
-                                            <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">cancellationToken</span>
-                                            <span class="n">spiralErrors</span> <span class="o">=</span> <span class="n">spiralErrors</span>
-                                            <span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
-                                            <span class="n">outputPath</span> <span class="o">=</span> <span class="n">outputPath</span>
-                                            <span class="n">isReal</span> <span class="o">=</span> <span class="n">isReal</span>
-                                        <span class="o">|</span><span class="p">}</span>
-                                <span class="k">match</span> <span class="n">result</span><span class="p">,</span> <span class="n">acc</span> <span class="k">with</span>
-                                <span class="o">|</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span><span class="p">),</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">acc_code</span><span class="p">,</span> <span class="n">acc_errors</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                    <span class="k">return</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">acc_code</span> <span class="o">@</span> <span class="n">code</span><span class="p">),</span> <span class="n">acc_errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
-                                <span class="o">|</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span><span class="p">),</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                    <span class="k">return</span>
-                                        <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / processSpiralOutput / Exception / buildCodeResult: %A{buildCodeResult |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">),</span>
-                                        <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
-                            <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="n">when</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
-                                <span class="k">return</span> <span class="n">errors</span><span class="o">.</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="ne">Exception</span> <span class="o">|&gt;</span> <span class="n">Error</span><span class="p">,</span>
-                                <span class="n">mapErrors</span> <span class="p">(</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
-                            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">acc</span>
-                        <span class="p">})</span>
-                    <span class="n">let</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">defaultArg</span> <span class="n">cancellationToken</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
-                    <span class="k">match</span> <span class="n">result</span><span class="p">,</span> <span class="n">errors</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span>
-                        <span class="n">let</span> <span class="n">code</span><span class="p">,</span> <span class="nb">eval</span> <span class="o">=</span>
-                            <span class="n">code</span>
-                            <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span>
-                                <span class="k">if</span> <span class="n">code</span><span class="o">.</span><span class="n">eval</span>
-                                <span class="n">then</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="o">.</span><span class="n">code</span>
-                                <span class="k">else</span> <span class="n">Some</span> <span class="n">code</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span>
-                            <span class="p">)</span>
-                            <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">unzip</span>
-                        <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">choose</span> <span class="nb">id</span>
-                        <span class="n">let</span> <span class="nb">eval</span> <span class="o">=</span> <span class="nb">eval</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">choose</span> <span class="nb">id</span>
-
-                        <span class="n">trace</span> <span class="n">Debug</span>
-                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval"</span><span class="p">)</span>
-                            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"eval: {eval |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / code: {code |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400} / {_locals ()}"</span><span class="p">)</span>
-
-                        <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
-                            <span class="k">match</span> <span class="nb">eval</span><span class="p">,</span> <span class="n">code</span> <span class="k">with</span>
-                            <span class="o">|</span> <span class="p">[],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
-                                <span class="n">Choice2Of2</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / eval=[] / code=[] / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / code: %A</span><span class="si">{code}</span><span class="s2">"</span><span class="p">),</span> <span class="n">errors</span>
-                            <span class="o">|</span> <span class="p">[</span> <span class="nb">eval</span> <span class="p">],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
-                                <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
-                                <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
-                                    <span class="n">errors2</span>
-                                    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                    <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
-                                    <span class="o">//</span> <span class="p">)</span>
-                                    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
-                                <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
-                            <span class="o">|</span> <span class="p">[],</span> <span class="n">_</span> <span class="o">-&gt;</span>
-                                <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
-                                <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
-                                    <span class="k">if</span> <span class="n">printCode</span>
-                                    <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\"\"\"</span><span class="s2">"</span>
-                                    <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
-                                <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
-                                <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
-                                    <span class="n">errors2</span>
-                                    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                    <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
-                                    <span class="o">//</span> <span class="p">)</span>
-                                    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
-                                <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
-                            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
-                                <span class="n">let</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
-                                    <span class="p">((</span><span class="n">Ok</span> <span class="p">(</span><span class="n">code</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span><span class="p">),</span> <span class="p">[</span><span class="o">||</span><span class="p">]),</span> <span class="nb">eval</span><span class="p">)</span>
-                                    <span class="o">||&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">acc_errors</span><span class="p">)</span> <span class="nb">eval</span> <span class="o">-&gt;</span>
-                                        <span class="k">match</span> <span class="n">acc</span> <span class="k">with</span>
-                                        <span class="o">|</span> <span class="n">Error</span> <span class="n">ch</span> <span class="o">-&gt;</span> <span class="n">Error</span> <span class="n">ch</span><span class="p">,</span> <span class="n">acc_errors</span>
-                                        <span class="o">|</span> <span class="n">Ok</span> <span class="n">acc</span> <span class="o">-&gt;</span>
-                                            <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
-                                            <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
-                                                <span class="n">errors</span>
-                                                <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                                <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
-                                                <span class="o">//</span> <span class="p">)</span>
-                                                <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">acc_errors</span>
-                                            <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
-                                            <span class="o">|</span> <span class="n">Choice1Of2</span> <span class="n">v</span> <span class="o">-&gt;</span>
-                                                <span class="n">let</span> <span class="n">v</span> <span class="o">=</span>
-                                                    <span class="n">v</span>
-                                                    <span class="o">|&gt;</span> <span class="n">tryGetPropertyValue</span> <span class="s2">"ReflectionValue"</span>
-                                                    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"%A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span>
-                                                    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">""</span>
-                                                <span class="n">Ok</span> <span class="p">(</span><span class="n">v</span> <span class="p">::</span> <span class="n">acc</span><span class="p">),</span> <span class="n">errors</span>
-                                            <span class="o">|</span> <span class="n">Choice2Of2</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                                                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / fsi_eval fold Choice error / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
-                                                <span class="n">Error</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
-                                    <span class="p">)</span>
-                                <span class="k">match</span> <span class="n">code</span> <span class="k">with</span>
-                                <span class="o">|</span> <span class="n">Error</span> <span class="n">ch</span> <span class="o">-&gt;</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
-                                <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span> <span class="o">-&gt;</span>
-                                    <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
-                                        <span class="n">code</span>
-                                        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="p">((</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="s2">""</span><span class="p">)</span>
-                                        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
-
-                                    <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
-                                        <span class="k">if</span> <span class="n">builderCommands</span><span class="o">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">eval</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mi">0</span>
-                                        <span class="n">then</span> <span class="n">code</span>
-                                        <span class="k">elif</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span>
-                                        <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="se">\n\n</span><span class="s2">"</span>
-                                        <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="se">\n</span><span class="s2">"</span>
-
-                                    <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
-                                        <span class="k">if</span> <span class="n">printCode</span>
-                                        <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\n\"\"\"</span><span class="s2">"</span>
-                                        <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
-                                    <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
-                                    <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
-                                        <span class="n">errors2</span>
-                                        <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                                        <span class="o">//</span>     <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
-                                        <span class="o">//</span> <span class="p">)</span>
-                                        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
-                                    <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span>
-                        <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
-                        <span class="o">|</span> <span class="n">Choice1Of2</span> <span class="n">v</span> <span class="o">-&gt;</span>
-                            <span class="k">if</span> <span class="n">isReal</span>
-                            <span class="n">then</span> <span class="n">allCodeReal</span> <span class="o">&lt;-</span> <span class="n">newAllCode</span>
-                            <span class="k">else</span> <span class="n">allCode</span> <span class="o">&lt;-</span> <span class="n">newAllCode</span>
-                            <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">errors</span>
-                        <span class="o">|</span> <span class="n">Choice2Of2</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                            <span class="k">return</span>
-                                <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / -2 / Exception / ex: {ex |&gt; SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 400}"</span><span class="p">),</span>
-                                <span class="n">errors</span>
-                    <span class="o">|</span> <span class="n">Ok</span> <span class="n">code</span><span class="p">,</span> <span class="n">errors</span> <span class="o">-&gt;</span>
-                        <span class="k">return</span>
-                            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="s2">"Eval.eval / errors / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / code: %A</span><span class="si">{code}</span><span class="s2">"</span><span class="p">),</span>
-                            <span class="n">errors</span>
-                    <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span><span class="p">,</span> <span class="n">errors</span> <span class="o">-&gt;</span>
-                        <span class="k">return</span>
-                            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / -1 / Exception / ex: {ex |&gt; SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |&gt; FSharp.Json.Json.serialize |&gt; SpiralSm.ellipsis_end 1500}"</span><span class="p">),</span>
-                            <span class="n">errors</span>
-                <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / buildCodeResults Error / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
-                    <span class="k">return</span>
-                        <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / buildCodeResults Error / Exception / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">),</span>
-                        <span class="p">[</span><span class="o">|</span>
-                            <span class="p">(</span>
-                                <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.eval / buildCodeResults Error / errors[0] / ex: {ex |&gt; SpiralSm.format_exception} / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-                            <span class="p">)</span>
-                        <span class="o">|</span><span class="p">]</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
-                    <span class="k">return</span>
-                        <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / buildCodeResults / Exception / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">),</span>
-                        <span class="p">[</span><span class="o">|</span>
-                            <span class="p">(</span>
-                                <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.eval / buildCodeResults / errors[0] / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-                            <span class="p">)</span>
-                        <span class="o">|</span><span class="p">]</span>
-            <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / try 1 ex / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
-                <span class="k">return</span>
-                    <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / try 1 ex / Exception / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">),</span>
-                    <span class="p">[</span><span class="o">|</span>
-                        <span class="p">(</span>
-                            <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.eval / try 1 ex / errors[0] / ex: {ex |&gt; SpiralSm.format_exception} / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-                        <span class="p">)</span>
-                    <span class="o">|</span><span class="p">]</span>
-        <span class="p">}</span>
+        <span class="n">evalAsync</span> <span class="mi">1</span>
+            <span class="p">{</span><span class="o">|</span>
+                <span class="n">rawCellCode</span> <span class="o">=</span> <span class="n">rawCellCode</span>
+                <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span>
+                <span class="n">isReal</span> <span class="o">=</span> <span class="n">isReal</span>
+                <span class="n">builderCommands</span> <span class="o">=</span> <span class="n">builderCommands</span>
+                <span class="n">isCache</span> <span class="o">=</span> <span class="n">isCache</span>
+                <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+                <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">cancellationToken</span>
+                <span class="n">printCode</span> <span class="o">=</span> <span class="n">printCode</span>
+                <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">traceLevel</span>
+                <span class="n">fsi_eval</span> <span class="o">=</span> <span class="n">fsi_eval</span>
+            <span class="o">|</span><span class="p">}</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="n">timeout</span>
         <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span>
             <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / Async.runWithTimeout / Exception / timeout: </span><span class="si">{timeout}</span><span class="s2"> / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">),</span>

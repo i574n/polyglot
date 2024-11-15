@@ -515,7 +515,31 @@ inl list_find_last forall item result. (fn : item -> option result) (target : li
 
 #!spiral
 
-nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
+nominal seq' t = $"backend_switch `({ Fsharp : $'`t seq'; Python : $'list' })"
+
+#!markdown
+
+### length'
+
+#!spiral
+
+inl length' forall t. (items : seq' t) : int =
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.length' : int
+        Python = fun () => $'len(!items)' : int
+    }
+
+#!markdown
+
+### to_list'
+
+#!spiral
+
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.toList' : listm'.list' t
+        Python = fun () => $'!items ' : listm'.list' t
+    }
 
 #!markdown
 
@@ -523,12 +547,32 @@ nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
 
 #!spiral
 
-inl new_seq fn : seq' _ =
-    fun () =>
-        $'seq {'
-        fn |> indent
-        $'}' : ()
-    |> let'
+inl new_seq forall t. fn : seq' t =
+    backend_switch {
+        Fsharp = fun () =>
+            fun () =>
+                $'seq {'
+                fn |> indent
+                $'}' : ()
+            |> let'
+            |> fun x => x : seq' t
+        Python = fun () =>
+            $'list(!fn())' : seq' t
+    }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+
+fun () =>
+    "a" |> yield
+    "b" |> yield
+|> new_seq
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 
@@ -538,16 +582,28 @@ inl new_seq fn : seq' _ =
 
 inl of_array' forall dim t. (items : a dim t) : seq' t =
     backend_switch {
-        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
-        Python = fun () => $'!items ' : seq' t
+        Fsharp = fun () =>
+            fun () =>
+                $'for i = 0 to !items.Length - 1 do yield !items.[i]'
+            |> new_seq
+            |> fun x => x : seq' t
+        Python = fun () => $'[item for item in !items]' : seq' t
     }
 
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
-(a ;[ "a"; "b" ] : _ i32 _)
+(a ;[ "a"; "b" ] : _ int _)
 |> of_array'
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 
@@ -558,15 +614,23 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 inl of_array forall dim t. (items : a dim t) : seq' t =
     backend_switch {
         Fsharp = fun () => $'!items |> Seq.ofArray' : seq' t
-        Python = fun () => $'!items ' : seq' t
+        Python = fun () => $'list(iter(!items))' : seq' t
     }
 
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
-(a ;[ "a"; "b" ] : _ i32 _)
+(a ;[ "a"; "b" ] : _ int _)
 |> of_array
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 
@@ -582,9 +646,17 @@ inl of_array_base forall t. (items : array_base t) : seq' t =
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
 ;[ "a"; "b" ]
 |> of_array_base
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 
@@ -595,17 +667,25 @@ inl of_array_base forall t. (items : array_base t) : seq' t =
 inl to_array' forall dim t. (items : seq' t) : a dim t =
     backend_switch {
         Fsharp = fun () => items |> $'Seq.toArray' : a dim t
-        Python = fun () => $'!items ' : a dim t
+        Python = fun () => $'(cp if cuda else np).array(!items)' : a dim t
     }
 
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array'
+;[ "a"; "b" ]
+|> of_array_base
 |> to_array'
-|> _assert_eq' (a ;[ "a"; "b" ] : _ i32 _)
+|> fun x => x : _ int _
+|> am'.to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 
@@ -615,31 +695,25 @@ inl to_array' forall dim t. (items : seq' t) : a dim t =
 
 inl of_list' forall t. (items : listm'.list' t) : seq' t =
     backend_switch {
-        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
+        Fsharp = fun () =>
+            fun () =>
+                $'for i = 0 to !items.Length - 1 do yield !items.[i]'
+            |> new_seq
+            |> fun x => x : seq' t
         Python = fun () => $'!items ' : seq' t
     }
 
 #!markdown
 
-### to_list'
+### cast'
 
 #!spiral
 
-inl to_list' forall t. (items : seq' t) : listm'.list' t =
+inl cast' forall t u. (items : u) : seq' t =
     backend_switch {
-        Fsharp = fun () => items |> $'Seq.toList' : listm'.list' t
-        Python = fun () => $'!items ' : listm'.list' t
+        Fsharp = fun () => items |> $'Seq.cast' : seq' t
+        Python = fun () => $'list(!items)' : seq' t
     }
-
-#!spiral
-
-//// test
-
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array
-|> to_list'
-|> listm'.unbox
-|> _assert_eq ([ "a"; "b" ])
 
 #!markdown
 
@@ -647,11 +721,28 @@ inl to_list' forall t. (items : seq' t) : listm'.list' t =
 
 #!spiral
 
-inl rev'' forall t u. (items : t) : seq' u =
+inl rev'' forall t. (items : seq' t) : seq' t =
     backend_switch {
-        Fsharp = fun () => items |> $'Seq.rev' : seq' u
-        Python = fun () => $'reversed(!items)' : seq' u
+        Fsharp = fun () => items |> $'Seq.rev' : seq' t
+        Python = fun () => $'list(reversed(!items))' : seq' t
     }
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+[ "a"; "b" ]
+|> listm'.box
+|> of_list'
+|> rev''
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "b"; "a" ]
 
 #!markdown
 

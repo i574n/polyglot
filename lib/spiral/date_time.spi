@@ -5,7 +5,19 @@ open sm'_operators
 /// ## date_time
 
 /// ### timestamp
-nominal timestamp = i64
+nominal timestamp_python =
+    `(
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
+        }
+        $'' : i64
+    )
+type timestamp_switch =
+    {
+        Fsharp : i64
+        Python : timestamp_python
+    }
+nominal timestamp = $'backend_switch `(timestamp_switch)'
 
 /// ### timestamp_guid
 type timestamp_guid = guid.guid
@@ -13,14 +25,15 @@ type timestamp_guid = guid.guid
 /// ### date_time_guid
 type date_time_guid = guid.guid
 
+/// ### test_guid
+
 /// ## fsharp
 
 /// ### date_time
 nominal date_time_python =
     `(
-        backend_switch {
-            Python = fun () =>
-                global "import datetime"
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
         }
         $'' : $'datetime.datetime'
     )
@@ -53,13 +66,6 @@ inl date_time_utc
             $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)' : date_time
         Python = fun () =>
             $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, tzinfo=datetime.timezone.utc)' : date_time
-    }
-
-/// ### ticks
-inl ticks (date_time : date_time) : timestamp =
-    backend_switch {
-        Fsharp = fun () => date_time |> $'_.Ticks' : timestamp
-        Python = fun () => $'!date_time.timestamp()' : timestamp
     }
 
 /// ### format
@@ -120,7 +126,19 @@ inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_tim
     $'System.DateTime.SpecifyKind (!date_time, !kind)'
 
 /// ### time_span
-nominal time_span = $"backend_switch `({ Fsharp : $"System.TimeSpan"; Python : $"datetime.timedelta" })"
+nominal time_span_python =
+    `(
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import datetime") : () -> ()
+        }
+        $'' : $'datetime.timedelta'
+    )
+type time_span_switch =
+    {
+        Fsharp : $'System.TimeSpan'
+        Python : time_span_python
+    }
+nominal time_span = $'backend_switch `(time_span_switch)'
 
 inl time_span x : time_span =
     backend_switch {
@@ -132,10 +150,30 @@ inl time_span x : time_span =
 inl new_time_span (a : date_time) (b : date_time) : time_span =
     $'!b - !a '
 
+/// ### total_seconds
+inl total_seconds (time_span : time_span) : f64 =
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.TotalSeconds' : f64
+        Python = fun () => $'!time_span.total_seconds()' : f64
+    }
+
+/// ### ticks
+inl ticks (date_time : date_time) : timestamp =
+    backend_switch {
+        Fsharp = fun () =>
+            run_target function
+                | Rust (Contract) => fun () => null ()
+                | _ => fun () => date_time |> $'_.Ticks'
+            : timestamp
+        Python = fun () =>
+            date_time |> new_time_span (min_value ()) |> total_seconds |> ((*) 10000000) |> convert : timestamp
+    }
+
 /// ### time_span_format
 inl time_span_format (format : string) (time_span : time_span) : string =
     run_target function
-        | (TypeScript _ | Python _) => fun () =>
+        | TypeScript _
+        | Python _ => fun () =>
             $'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'
         | _ => fun () =>
             $'!time_span.ToString !format '
@@ -144,21 +182,14 @@ inl time_span_format (format : string) (time_span : time_span) : string =
 inl hours (time_span : time_span) : i32 =
     backend_switch {
         Fsharp = fun () => time_span |> $'_.Hours' : i32
-        Python = fun () => $'!time_span.days * 24 + !time_span.seconds // 3600' : i32
-    }
-
-/// ### milliseconds
-inl milliseconds (time_span : time_span) : i32 =
-    backend_switch {
-        Fsharp = fun () => time_span |> $'_.Milliseconds' : i32
-        Python = fun () => $'!time_span.microseconds // 1000' : i32
+        Python = fun () => $'!time_span.seconds // 3600' : i32
     }
 
 /// ### minutes
 inl minutes (time_span : time_span) : i32 =
     backend_switch {
         Fsharp = fun () => time_span |> $'_.Minutes' : i32
-        Python = fun () => $'!time_span.seconds // 60' : i32
+        Python = fun () => $'(!time_span.seconds // 60) % 60' : i32
     }
 
 /// ### seconds
@@ -168,11 +199,11 @@ inl seconds (time_span : time_span) : i32 =
         Python = fun () => $'!time_span.seconds % 60' : i32
     }
 
-/// ### total_seconds
-inl total_seconds (time_span : time_span) : f64 =
+/// ### milliseconds
+inl milliseconds (time_span : time_span) : i32 =
     backend_switch {
-        Fsharp = fun () => time_span |> $'_.TotalSeconds' : f64
-        Python = fun () => $'!time_span.total_seconds()' : f64
+        Fsharp = fun () => time_span |> $'_.Milliseconds' : i32
+        Python = fun () => $'!time_span.microseconds' : i32
     }
 
 /// ### time_zone_info
@@ -185,25 +216,19 @@ inl add_days (days : i32) (date_time : date_time) : date_time =
 /// ### now
 inl now () : date_time =
     backend_switch {
-        Fsharp = fun () => $'System.DateTime.Now' : date_time
-        Python = fun () =>
-            backend_switch {
-                Python = fun () =>
-                    global "import datetime"
-            }
-            $'datetime.datetime.now()' : date_time
+        Fsharp = fun () =>
+            run_target function
+                | Rust (Contract) => fun () => null ()
+                | _ => fun () => $'System.DateTime.Now'
+            : date_time
+        Python = fun () => $'datetime.datetime.now()' : date_time
     }
 
 /// ### utc_now
 inl utc_now () : date_time =
     backend_switch {
         Fsharp = fun () => $'System.DateTime.UtcNow' : date_time
-        Python = fun () =>
-            backend_switch {
-                Python = fun () =>
-                    global "import datetime"
-            }
-            $'datetime.datetime.utcnow()' : date_time
+        Python = fun () => $'datetime.datetime.utcnow()' : date_time
     }
 
 /// ### stopwatch
@@ -344,7 +369,7 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
                 |> to_universal_time
             inl unixticks =
                 match date_time |> ticks, epoch |> ticks with
-                | timestamp date_time, timestamp epoch => date_time - epoch
+                | timestamp date_time, timestamp epoch => convert date_time - convert epoch : i64
             inl prefix =
                 unixticks / 10
                 |> from_timestamp_micros

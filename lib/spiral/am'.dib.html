@@ -7822,36 +7822,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/68b9bb09c502ee0e564185d4d3fcabb90047190021dd0f7720e2e9dc1b639e8e/main.py", line 164, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/68b9bb09c502ee0e564185d4d3fcabb90047190021dd0f7720e2e9dc1b639e8e/main.py", line 160, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/68b9bb09c502ee0e564185d4d3fcabb90047190021dd0f7720e2e9dc1b639e8e/main.py", line 157, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/68b9bb09c502ee0e564185d4d3fcabb90047190021dd0f7720e2e9dc1b639e8e/main.py", line 96, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.array([-1, 0],dtype=cp.int64)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/from_data.py", line 53, in array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return _core.array(obj, dtype, copy, order, subok, ndmin, blocking)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2408, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2435, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2578, in cupy._core.core._array_default</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: [-1  0  1  2] / expected: [-1  0  1  2]
 
 .rs output:
 __assert_eq / actual: Array(MutCell([-1, 0, 1, 2])) / expected: Array(MutCell([-1, 0, 1, 2]))
@@ -8021,33 +7993,8 @@ __assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9d4ad739531a383d55562d2d54e83a808122db5c2290b3d9af7adfba08f40e71/main.py", line 245, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9d4ad739531a383d55562d2d54e83a808122db5c2290b3d9af7adfba08f40e71/main.py", line 241, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9d4ad739531a383d55562d2d54e83a808122db5c2290b3d9af7adfba08f40e71/main.py", line 238, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9d4ad739531a383d55562d2d54e83a808122db5c2290b3d9af7adfba08f40e71/main.py", line 155, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: [0 2 4 6 8] / expected: [0 2 4 6 8]
 
 .ts output:
 __assert_eq / actual: 0,2,4,6,8 / expected: 0,2,4,6,8
@@ -8126,33 +8073,8 @@ __assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/d2ff92bc98ea55b61391a67d3568f034e4f65522e461ab8b56245677d24c8308/main.py", line 129, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/d2ff92bc98ea55b61391a67d3568f034e4f65522e461ab8b56245677d24c8308/main.py", line 125, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/d2ff92bc98ea55b61391a67d3568f034e4f65522e461ab8b56245677d24c8308/main.py", line 122, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/d2ff92bc98ea55b61391a67d3568f034e4f65522e461ab8b56245677d24c8308/main.py", line 77, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: 45 / expected: 45
 
 .rs output:
 __assert_eq / actual: 45 / expected: 45
@@ -8219,8 +8141,10 @@ __assert_eq / actual: 45 / expected: 45
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
-<span class="n">init_series</span> <span class="mi">0</span> <span class="mi">4</span> <span class="mi">2</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ 0i32; 2; 4 ]</span>
+<span class="n">init_series</span> <span class="mi">0</span><span class="n">i32</span> <span class="mi">6</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">a</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="mi">0</span><span class="n">i32</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">6</span> <span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -8233,42 +8157,17 @@ __assert_eq / actual: 45 / expected: 45
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/cc6bc9f685a23ff0387e2d5adeefc74ebf5530960aa10194948f6cbeed681926/main.py", line 106, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/cc6bc9f685a23ff0387e2d5adeefc74ebf5530960aa10194948f6cbeed681926/main.py", line 102, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/cc6bc9f685a23ff0387e2d5adeefc74ebf5530960aa10194948f6cbeed681926/main.py", line 99, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/cc6bc9f685a23ff0387e2d5adeefc74ebf5530960aa10194948f6cbeed681926/main.py", line 67, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(3,dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: [0 2 4 6] / expected: [0 2 4 6]
 
 .rs output:
-__assert_eq' / actual: Array(MutCell([0, 2, 4])) / expected: Array(MutCell([0, 2, 4]))
+__assert_eq / actual: Array(MutCell([0, 2, 4, 6])) / expected: Array(MutCell([0, 2, 4, 6]))
 
 .ts output:
-__assert_eq' / actual: 0,2,4 / expected: 0,2,4
+__assert_eq / actual: 0,2,4,6 / expected: 0,2,4,6
 
 .py output:
-__assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
+__assert_eq / actual: [0, 2, 4, 6] / expected: array('l', [0, 2, 4, 6])
 
 </pre>
 </div>
@@ -8277,7 +8176,7 @@ __assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
+__assert_eq / actual: [|0; 2; 4; 6|] / expected: [|0; 2; 4; 6|]
 </pre>
 </div>
 </div>
@@ -8372,33 +8271,8 @@ __assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/ed1d249488022df51e5f876496d2021ed16162ab1f9734f72e17cda34328ce10/main.py", line 108, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/ed1d249488022df51e5f876496d2021ed16162ab1f9734f72e17cda34328ce10/main.py", line 104, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/ed1d249488022df51e5f876496d2021ed16162ab1f9734f72e17cda34328ce10/main.py", line 101, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/ed1d249488022df51e5f876496d2021ed16162ab1f9734f72e17cda34328ce10/main.py", line 67, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: 9 / expected: 9
 
 .rs output:
 __assert_eq / actual: 9 / expected: 9
@@ -8484,33 +8358,8 @@ __assert_eq / actual: 9 / expected: 9
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/f574f6aa78dd2d474cc9a15e9816e77781ab6f25f1c539d19fe6f862f7ac5433/main.py", line 162, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/f574f6aa78dd2d474cc9a15e9816e77781ab6f25f1c539d19fe6f862f7ac5433/main.py", line 158, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/f574f6aa78dd2d474cc9a15e9816e77781ab6f25f1c539d19fe6f862f7ac5433/main.py", line 155, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/f574f6aa78dd2d474cc9a15e9816e77781ab6f25f1c539d19fe6f862f7ac5433/main.py", line 83, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+<pre>.py output (Cuda):
+__assert_eq / actual: US0_0(v0=5) / expected: US0_0(v0=5)
 
 .ts output:
 __assert_eq / actual: US0_0 5 / expected: US0_0 5
@@ -8676,34 +8525,12 @@ __assert_eq' / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expecte
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a8adc9f979fb0d14587fb26fafe8b2f1cddc6a9cfe0d328177faf8a154a65c7b/main.py", line 372, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a8adc9f979fb0d14587fb26fafe8b2f1cddc6a9cfe0d328177faf8a154a65c7b/main.py", line 368, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    r = main_body()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">        ^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a8adc9f979fb0d14587fb26fafe8b2f1cddc6a9cfe0d328177faf8a154a65c7b/main.py", line 365, in main_body</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a8adc9f979fb0d14587fb26fafe8b2f1cddc6a9cfe0d328177faf8a154a65c7b/main.py", line 108, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.array([1, 2, 3],dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/cupy/_creation/from_data.py", line 53, in array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return _core.array(obj, dtype, copy, order, subok, ndmin, blocking)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2408, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2435, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2578, in cupy._core.core._array_default</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 137, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 225, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
+__assert_eq / actual: [] / expected: []
+__assert_eq / actual: [1] / expected: [1]
+__assert_eq / actual: [] / expected: []
+__assert_eq / actual: [2] / expected: [2]
+__assert_eq / actual: [] / expected: []
+__assert_eq / actual: [1 2] / expected: [1 2]
 
 
 .rs output:
@@ -10102,7 +9929,7 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="to_list'">to_list'<a class="anchor-link" href="#to_list'">¶</a></h3>
+<h3 id="to_list_base'">to_list_base'<a class="anchor-link" href="#to_list_base'">¶</a></h3>
 </div>
 </div>
 </div>
@@ -10114,8 +9941,11 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span><span class="s1">' forall dim t. (items : a dim t) : listm'</span><span class="o">.</span><span class="n">list</span><span class="s1">' t =</span>
-    <span class="err">$</span><span class="s1">'!items |&gt; Array.toList'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list_base</span><span class="s1">' forall t. (items : array_base t) : listm'</span><span class="o">.</span><span class="n">list</span><span class="s1">' t =</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!items |&gt; Array.toList'</span> <span class="p">:</span> <span class="n">listm</span><span class="s1">'.list'</span> <span class="n">t</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">items</span> <span class="o">|&gt;</span> <span class="n">to</span> <span class="p">:</span> <span class="n">listm</span><span class="s1">'.list'</span> <span class="n">t</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -10128,7 +9958,7 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="to_list_base'">to_list_base'<a class="anchor-link" href="#to_list_base'">¶</a></h3>
+<h3 id="to_list'">to_list'<a class="anchor-link" href="#to_list'">¶</a></h3>
 </div>
 </div>
 </div>
@@ -10140,8 +9970,8 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list_base</span><span class="s1">' forall t. (items : array_base t) : listm'</span><span class="o">.</span><span class="n">list</span><span class="s1">' t =</span>
-    <span class="err">$</span><span class="s1">'!items |&gt; Array.toList'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span><span class="s1">' forall dim </span><span class="si">{int}</span><span class="s1"> t. (items : a dim t) : listm'</span><span class="o">.</span><span class="n">list</span><span class="s1">' t =</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="n">base</span> <span class="o">|&gt;</span> <span class="n">to_list_base</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -10157,7 +9987,7 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
@@ -10178,7 +10008,10 @@ __assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
+<pre>.py output (Cuda):
+__assert_eq / actual: UH0_1(v0=np.int32(-3), v1=UH0_1(v0=np.int32(6), v1=UH0_0())) / expected: UH0_1(v0=-3, v1=UH0_1(v0=6, v1=UH0_0()))
+
+.rs output:
 __assert_eq / actual: UH0_1(-3, UH0_1(6, UH0_0)) / expected: UH0_1(-3, UH0_1(6, UH0_0))
 
 .ts output:

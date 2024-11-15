@@ -8832,7 +8832,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_async_unit</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">run_target_args</span><span class="s1">' fn function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">//</span> <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="err">$</span><span class="s1">'async {'</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -8932,7 +8935,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">await_task</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">task</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.AwaitTask'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -8961,7 +8967,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ignore</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">//</span> <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.Ignore'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -8990,7 +8999,9 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_synchronously</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">//</span> <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.RunSynchronously'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9019,7 +9030,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">start</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="p">())</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.Start'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9048,7 +9062,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">start_child</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.StartChild'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9077,7 +9094,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">start_child_timeout</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'Async.StartChild (!a, !timeout)'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9106,7 +9126,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">start_immediate</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">//</span> <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.StartImmediate'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9135,7 +9158,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">start_with_continuations</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target_args</span><span class="s1">' a function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'Async.StartWithContinuations (!a, ignore, ignore, ignore)'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9189,7 +9215,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sleep</span> <span class="p">(</span><span class="n">ms</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">ms</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.Sleep'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9352,7 +9381,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">catch</span><span class="s1">' forall t e. (a : async t) : async (choice2'</span> <span class="n">t</span> <span class="n">e</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Async.Catch'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9410,9 +9442,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_with_timeout_async</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="n">option</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">run_with_timeout_async</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="n">option</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span>
+        <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">inl</span> <span class="n">child</span> <span class="o">=</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">start_child_timeout</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">let</span><span class="s1">'</span>
                 <span class="n">child</span>
@@ -9622,7 +9657,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">value_task_as_task</span> <span class="p">(</span><span class="n">task</span> <span class="p">:</span> <span class="n">value_task</span><span class="p">)</span> <span class="p">:</span> <span class="n">task</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!task.AsTask'</span> <span class="p">()</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!task.AsTask'</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

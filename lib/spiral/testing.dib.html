@@ -7685,29 +7685,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_approx_eq / actual: 12.345 / expected: 12.345
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/dc3b4e2f265902631ddd73339121bef29bfd86135cf1fd8aca6422d96bf02394/main.py", line 70, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/dc3b4e2f265902631ddd73339121bef29bfd86135cf1fd8aca6422d96bf02394/main.py", line 67, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_approx_eq / actual: 12.345 / expected: 12.345
@@ -8101,7 +8080,18 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="_assert_fn">_assert_fn<a class="anchor-link" href="#_assert_fn">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8126,32 +8116,25 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">name</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nb">input</span> <span class="p">}</span>
                     <span class="n">x</span>
-                    <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' expected'</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
+                    <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (expected'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format)</span>
                     <span class="n">true</span>
                 <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                     <span class="n">trace</span> <span class="n">Critical</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                            <span class="err">$</span><span class="s1">'$"{!name} / error"'</span>
+                            <span class="n">backend_switch</span> <span class="p">{</span>
+                                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!name} / error"'</span> <span class="p">:</span> <span class="n">string</span>
+                                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!name} / error"'</span> <span class="p">:</span> <span class="n">string</span>
+                            <span class="p">}</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">ex</span> <span class="n">expected</span> <span class="p">}</span>
                     <span class="n">Some</span> <span class="n">false</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.filter not</span>
     <span class="o">|&gt;</span> <span class="n">function</span>
         <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"{!x}"'</span>
+        <span class="o">|</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug |&gt; failwith</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fsharp">fsharp<a class="anchor-link" href="#fsharp">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8162,11 +8145,22 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="fsharp">fsharp<a class="anchor-link" href="#fsharp">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="__assert_contains">__assert_contains<a class="anchor-link" href="#__assert_contains">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8199,7 +8193,7 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8229,7 +8223,7 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8260,7 +8254,7 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8270,7 +8264,7 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8281,14 +8275,24 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">_throws</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">none</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
     <span class="n">inl</span> <span class="n">some</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">exn</span><span class="p">)</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">s</span>
-    <span class="err">$</span><span class="s1">'try !fn (); !none with ex -&gt; ex |&gt; !some '</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'try !fn (); !none with ex -&gt; ex |&gt; !some '</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'fn = !fn '</span>
+            <span class="err">$</span><span class="s1">'none = !none '</span>
+            <span class="err">$</span><span class="s1">'some = !some '</span>
+            <span class="err">$</span><span class="s1">'try: fn(); x = none '</span>
+            <span class="err">$</span><span class="s1">'except Exception as ex: x = some(ex)'</span>
+            <span class="err">$</span><span class="s1">'x'</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8298,7 +8302,7 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8308,7 +8312,10 @@ __assert_approx_eq / actual: 1.0 / expected: 2.0
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">print_and_return</span> <span class="n">x</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">name</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">print_and_return</span> <span class="p">}</span>
-    <span class="err">$</span><span class="s1">'printfn $"{!name} / x: {!x}"'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'printfn $"{!name} / x: {!x}"'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'print(f"{!name} / x: {!x}")'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
     <span class="n">x</span>
 </pre></div>
 </div>

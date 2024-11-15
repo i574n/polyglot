@@ -8226,29 +8226,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq' / actual: (US0_0(v0=3), US0_1()) / expected: (US0_0(v0=3), US0_1())
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/33071e8a9aed69b590a7c8a3b37faf173efb338a11cfbe98c0100d2cd5c17b67/main.py", line 143, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/33071e8a9aed69b590a7c8a3b37faf173efb338a11cfbe98c0100d2cd5c17b67/main.py", line 140, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq' / actual: (US0_0(3), US0_1) / expected: (US0_0(3), US0_1)
@@ -8341,29 +8320,8 @@ __assert_eq' / actual: struct (US0_0 3, US0_1) / expected: struct (US0_0 3, US0_
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq / actual: US0_1() / expected: US0_1()
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/578ff8ae93ec188d76d3eed20357c354e07a649064c8ef623b0219badebba98d/main.py", line 115, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/578ff8ae93ec188d76d3eed20357c354e07a649064c8ef623b0219badebba98d/main.py", line 112, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .ts output:
 __assert_eq / actual: US0_1 / expected: US0_1
@@ -8415,29 +8373,8 @@ __assert_eq / actual: US0_1 / expected: US0_1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
+<pre>.py output (Cuda):
 __assert_eq' / actual: US0_0(v0='') / expected: US0_0(v0='')
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 36, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">AttributeError: '_thread._local' object has no attribute 'tls'</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">During handling of the above exception, another exception occurred:</span>
-
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/bebe2d4d8e18efe578332d5740dbf6f473005414e428b5f20c9124c7a386aa08/main.py", line 113, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/bebe2d4d8e18efe578332d5740dbf6f473005414e428b5f20c9124c7a386aa08/main.py", line 110, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 87, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 96, in cupy.cuda.stream.get_current_stream</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 38, in cupy.cuda.stream._ThreadLocal.get</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/stream.pyx", line 24, in cupy.cuda.stream._ThreadLocal.__init__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 393, in cupy_backends.cuda.api.runtime.getDeviceCount</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
 __assert_eq' / actual: US0_0("") / expected: US0_0("")

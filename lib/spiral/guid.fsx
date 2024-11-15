@@ -8,40 +8,46 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = v0.PadLeft (32, '0')
-    let v16 : System.Guid = System.Guid $"{v2.[0..7]}-{v2.[8..11]}-{v2.[12..15]}-{v2.[16..19]}-{v2.[20..31]}"
-    let _v1 = v16 
+    let v16 : string = $"{v2.[0..7]}-{v2.[8..11]}-{v2.[12..15]}-{v2.[16..19]}-{v2.[20..31]}"
+    let v19 : System.Guid = v16 |> System.Guid 
+    let _v1 = v19 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v19 : string = v0.PadLeft (32, '0')
-    let v33 : System.Guid = System.Guid $"{v19.[0..7]}-{v19.[8..11]}-{v19.[12..15]}-{v19.[16..19]}-{v19.[20..31]}"
-    let _v1 = v33 
+    let v22 : string = v0.PadLeft (32, '0')
+    let v36 : string = $"{v22.[0..7]}-{v22.[8..11]}-{v22.[12..15]}-{v22.[16..19]}-{v22.[20..31]}"
+    let v39 : System.Guid = v36 |> System.Guid 
+    let _v1 = v39 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v36 : System.Guid = null |> unbox<System.Guid>
-    let _v1 = v36 
+    let v42 : System.Guid = null |> unbox<System.Guid>
+    let _v1 = v42 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v39 : string = v0.PadLeft (32, '0')
-    let v53 : System.Guid = System.Guid $"{v39.[0..7]}-{v39.[8..11]}-{v39.[12..15]}-{v39.[16..19]}-{v39.[20..31]}"
-    let _v1 = v53 
+    let v45 : string = v0.PadLeft (32, '0')
+    let v59 : string = $"{v45.[0..7]}-{v45.[8..11]}-{v45.[12..15]}-{v45.[16..19]}-{v45.[20..31]}"
+    let v62 : System.Guid = v59 |> System.Guid 
+    let _v1 = v62 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v56 : string = v0.PadLeft (32, '0')
-    let v70 : System.Guid = System.Guid $"{v56.[0..7]}-{v56.[8..11]}-{v56.[12..15]}-{v56.[16..19]}-{v56.[20..31]}"
-    let _v1 = v70 
+    let v65 : string = v0.PadLeft (32, '0')
+    let v79 : string = $"{v65.[0..7]}-{v65.[8..11]}-{v65.[12..15]}-{v65.[16..19]}-{v65.[20..31]}"
+    let v82 : System.Guid = v79 |> System.Guid 
+    let _v1 = v82 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v73 : string = v0.PadLeft (32, '0')
-    let v87 : System.Guid = System.Guid $"{v73.[0..7]}-{v73.[8..11]}-{v73.[12..15]}-{v73.[16..19]}-{v73.[20..31]}"
-    let _v1 = v87 
+    let v85 : string = v0.PadLeft (32, '0')
+    let v99 : string = $"{v85.[0..7]}-{v85.[8..11]}-{v85.[12..15]}-{v85.[16..19]}-{v85.[20..31]}"
+    let v102 : System.Guid = v99 |> System.Guid 
+    let _v1 = v102 
     #endif
 #else
-    let v90 : string = v0.PadLeft (32, '0')
-    let v104 : System.Guid = System.Guid $"{v90.[0..7]}-{v90.[8..11]}-{v90.[12..15]}-{v90.[16..19]}-{v90.[20..31]}"
-    let _v1 = v104 
+    let v105 : string = v0.PadLeft (32, '0')
+    let v119 : string = $"{v105.[0..7]}-{v105.[8..11]}-{v105.[12..15]}-{v105.[16..19]}-{v105.[20..31]}"
+    let v122 : System.Guid = v119 |> System.Guid 
+    let _v1 = v122 
     #endif
-    let v107 : System.Guid = _v1 
-    v107
+    let v125 : System.Guid = _v1 
+    v125
 and closure1 () (v0 : string) : System.Guid =
     method0(v0)
 and closure2 () () : System.Guid =

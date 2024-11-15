@@ -34,7 +34,6 @@ if (!$SkipPreBuild) {
 
     $path = "$targetDir/target/rs/polyglot/target/Builder/$projectName/$projectName.rs"
     if (!(Test-Path $path)) {
-        { ls } | Invoke-Block -Location $targetDir/target
         $path = "$targetDir/target/rs/$projectName.rs"
     }
     (Get-Content $path) `

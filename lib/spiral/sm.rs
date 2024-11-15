@@ -285,14 +285,14 @@ pub mod Sm {
     }
     pub fn closure31(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
         let v1_1: List<char> = ofArray_1(v0_1);
-        let v7_1: LrcPtr<Sm::UH0> = foldBack(
+        let v9_1: LrcPtr<Sm::UH0> = foldBack(
             Func2::new(move |b0: char, b1: LrcPtr<Sm::UH0>| (Sm::method4())(b0)(b1)),
             v1_1,
             LrcPtr::new(Sm::UH0::UH0_0),
         );
         Func1::new({
-            let v7_1 = v7_1.clone();
-            move |v: string| Sm::closure34(v7_1.clone(), v)
+            let v9_1 = v9_1.clone();
+            move |v: string| Sm::closure34(v9_1.clone(), v)
         })
     }
     pub fn closure36(v0_1: LrcPtr<Sm::UH0>, v1_1: string) -> string {
@@ -300,14 +300,14 @@ pub mod Sm {
     }
     pub fn closure35(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
         let v1_1: List<char> = ofArray_1(v0_1);
-        let v7_1: LrcPtr<Sm::UH0> = foldBack(
+        let v9_1: LrcPtr<Sm::UH0> = foldBack(
             Func2::new(move |b0: char, b1: LrcPtr<Sm::UH0>| (Sm::method4())(b0)(b1)),
             v1_1,
             LrcPtr::new(Sm::UH0::UH0_0),
         );
         Func1::new({
-            let v7_1 = v7_1.clone();
-            move |v: string| Sm::closure36(v7_1.clone(), v)
+            let v9_1 = v9_1.clone();
+            move |v: string| Sm::closure36(v9_1.clone(), v)
         })
     }
     pub fn closure38(v0_1: i32, v1_1: string) -> string {
@@ -331,21 +331,21 @@ pub mod Sm {
         if v2_1 <= v0_1 {
             v1_1.clone()
         } else {
-            let v6_1: f64 = v0_1 as f64 / 2.0_f64;
-            let v10_1: i64 = v6_1.ceil() as i64;
-            let v14_1: i64 = v6_1.floor() as i64;
+            let v8_1: f64 = v0_1 as f64 / 2.0_f64;
+            let v12_1: i64 = v8_1.ceil() as i64;
+            let v18_1: i64 = v8_1.floor() as i64;
             join(
                 string(""),
                 toArray(ofArray(new_array(&[
                     getSlice(
                         v1_1.clone(),
                         Some(0_i64 as i32),
-                        Some((v10_1 - 1_i64) as i32),
+                        Some((v12_1 - 1_i64) as i32),
                     ),
                     string("..."),
                     getSlice(
                         v1_1,
-                        Some((v2_1 - v14_1) as i32),
+                        Some((v2_1 - v18_1) as i32),
                         Some((v2_1 - 1_i64) as i32),
                     ),
                 ]))),

@@ -415,13 +415,16 @@ inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
 inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
     $'!a |> Array.skipWhile !fn '
 
-/// ### to_list'
-inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
-    $'!items |> Array.toList'
-
 /// ### to_list_base'
 inl to_list_base' forall t. (items : array_base t) : listm'.list' t =
-    $'!items |> Array.toList'
+    backend_switch {
+        Fsharp = fun () => $'!items |> Array.toList' : listm'.list' t
+        Python = fun () => items |> to : listm'.list' t
+    }
+
+/// ### to_list'
+inl to_list' forall dim {int} t. (items : a dim t) : listm'.list' t =
+    items |> base |> to_list_base'
 
 /// ### parallel_map
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =

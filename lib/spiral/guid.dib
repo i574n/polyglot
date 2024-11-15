@@ -70,9 +70,11 @@ let hash_guid (~hash : string) : hash_guid =
             inl hash = hash |> sm'.pad_left 32i32 '0'
             backend_switch {
                 Fsharp = fun () =>
-                    $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : hash_guid
-                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : hash_guid
+                    $'$"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : string
+                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : string
             }
+            |> fun x => x : string
+            |> convert
 
 #!spiral
 

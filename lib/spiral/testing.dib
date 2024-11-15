@@ -209,6 +209,10 @@ inl rec __assert_between trace a b actual =
 inl _assert_between a b actual =
     __assert_between Console a b actual
 
+#!markdown
+
+### _assert_fn
+
 #!spiral
 
 inl rec _assert_fn fn list =
@@ -228,19 +232,23 @@ inl rec _assert_fn fn list =
                         fun () => name
                         fun () => { input }
                     x
-                    |> _assert_eq' expected'
+                    |> sm'.format
+                    |> _assert_eq' (expected' |> sm'.format)
                     true
                 fun ex =>
                     trace Critical
                         fun () =>
-                            $'$"{!name} / error"'
+                            backend_switch {
+                                Fsharp = fun () => $'$"{!name} / error"' : string
+                                Python = fun () => $'f"{!name} / error"' : string
+                            }
                         fun () => { ex expected }
                     Some false
             |> optionm.value
     |> listm'.filter not
     |> function
         | [] => ()
-        | x => failwith $'$"{!x}"'
+        | x => x |> sm'.format_debug |> failwith
 
 #!markdown
 
@@ -296,7 +304,17 @@ inl _assert_contains b a =
 inl _throws (fn : () -> ()) : option exn =
     inl none = None : option exn
     inl some (s : exn) = Some s
-    $'try !fn (); !none with ex -> ex |> !some '
+    backend_switch {
+        Fsharp = fun () =>
+            $'try !fn (); !none with ex -> ex |> !some ' : option exn
+        Python = fun () =>
+            $'fn = !fn '
+            $'none = !none '
+            $'some = !some '
+            $'try: fn(); x = none '
+            $'except Exception as ex: x = some(ex)'
+            $'x' : option exn
+    }
 
 #!markdown
 
@@ -306,5 +324,8 @@ inl _throws (fn : () -> ()) : option exn =
 
 inl rec print_and_return x =
     inl name = reflection.nameof { print_and_return }
-    $'printfn $"{!name} / x: {!x}"'
+    backend_switch {
+        Fsharp = fun () => $'printfn $"{!name} / x: {!x}"' : ()
+        Python = fun () => $'print(f"{!name} / x: {!x}")' : ()
+    }
     x

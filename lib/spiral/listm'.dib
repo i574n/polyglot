@@ -535,12 +535,20 @@ inl exists' f x =
 
 #!spiral
 
-nominal list' t = $"backend_switch `({ Fsharp : $'`t list'; Python : $'List[`t]' })"
+nominal list' t = $"backend_switch `({ Fsharp : $'`t list'; Python : $'list' })"
+
+#!markdown
+
+### empty'
 
 #!spiral
 
 inl empty' forall t. () : list' t =
     $'[]'
+
+#!markdown
+
+### cons'
 
 #!spiral
 
@@ -550,6 +558,18 @@ inl cons' forall t. (head : t) (tail : list' t) : list' t =
         Python = fun () =>
             $'!tail.insert(0, !head)'
             $'!tail ' : list' t
+    }
+
+#!markdown
+
+### rev'
+
+#!spiral
+
+inl rev' forall t. (items : list' t) : list' t =
+    backend_switch {
+        Fsharp = fun () => items |> $'List.rev' : list' t
+        Python = fun () => $'list(reversed(!items))' : list' t
     }
 
 #!markdown
@@ -576,9 +596,15 @@ inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
             ||> $'List.fold' join fun acc x => Cons (fn x, acc)
             : list u
         Python = fun () =>
-            $'x = !init '
-            $'for x in !list: x = !fn(x)'
-            $'x' : list u
+            inl init = init |> box
+            $'r = !init '
+            inl list = list |> rev'
+            $'for x in !list: r = [!fn(x)] + r'
+            inl init : list u = Nil
+            inl cons (a : u) b = Cons (a, b)
+            $'r_ = !init '
+            $'for x in r: r_ = !cons (x)(r_)'
+            $'r_' : list u
     }
 
 #!markdown
@@ -594,9 +620,9 @@ inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list
             ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
             : list u
         Python = fun () =>
-            $'x = !init '
-            $'for x in reversed(!list): x = !fn(x)'
-            $'x' : list u
+            list
+            |> rev'
+            |> fold' fn init
     }
 
 #!markdown
@@ -639,15 +665,21 @@ inl unbox forall t. (list : list' t) : list t =
 
 #!spiral
 
+// preserve order
 inl distinct' forall t. (list : list' t) : list' t =
     backend_switch {
         Fsharp = fun () => list |> $'List.distinct' : list' t
-        Python = fun () => $'list(set(!list))' : list' t
+        Python = fun () =>
+            $'x = list(set(!list))'
+            $'x.sort(key=!list.index)'
+            $'x' : list' t
     }
 
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
 
 [ "1"; "2"; "2"; "3" ]
 |> box
@@ -664,5 +696,5 @@ inl distinct' forall t. (list : list' t) : list' t =
 inl to_array' forall t. (items : list' t) : array_base t =
     backend_switch {
         Fsharp = fun () => items |> $'List.toArray' : array_base t
-        Python = fun () => $'cp.array(!items)' : array_base t
+        Python = fun () => $'(cp if cuda else np).array(!items)' : array_base t
     }

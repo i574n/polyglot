@@ -2,21 +2,6 @@
 
 /// ## common
 
-/// ### (:>)
-prototype (~:>) r : forall t. t -> r
-
-/// ### to_any
-inl to_any forall t. (obj : t) : any =
-    $'!obj '
-
-instance (~:>) any = to_any
-
-/// ### (||>)
-
-/// ### flip
-inl flip fn a b =
-    fn b a
-
 /// ### join_body
 inl join_body body acc x =
     if var_is x |> not
