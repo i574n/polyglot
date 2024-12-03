@@ -609,9 +609,9 @@ mod module_fb49c4a9 {
         ) -> string {
             let v20: Spiral_wasm::US4 =
                 defaultValue(Spiral_wasm::US4::US4_1, map(Spiral_wasm::method10(), v5));
-            let v116: DateTime = match &v20 {
+            let v117: DateTime = match &v20 {
                 Spiral_wasm::US4::US4_0(v20_0_0) => {
-                    let v78: TimeSpan = TimeSpan::new_ticks(
+                    let v77: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
@@ -624,16 +624,16 @@ mod module_fb49c4a9 {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v78.hours(),
-                        v78.minutes(),
-                        v78.seconds(),
-                        v78.milliseconds(),
+                        v77.hours(),
+                        v77.minutes(),
+                        v77.seconds(),
+                        v77.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
             let provider: string = Spiral_wasm::method11();
-            v116.toString(provider)
+            v117.toString(provider)
         }
         pub fn method15() -> string {
             string("")
