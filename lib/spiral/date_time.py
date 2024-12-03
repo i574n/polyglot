@@ -106,14 +106,14 @@ def method4(__unit: None=None) -> str:
 
 
 def method0(v0_1: str, v1_1: Any) -> str:
-    v636: str = to_string(v1_1, method3())
-    v732: Any
+    v639: str = to_string(v1_1, method3())
+    v738: Any
     raise Exception(("date_time.get_utc_offset / target: " + str(US3(4, US2(0)))) + "")
-    v743: uint8 = uint8(1) if (hours(v732) > 0) else uint8(0)
-    v744: str = method4()
-    v756: str = ((("" + str(v743)) + "") + to_string_1(v732, "c", {})) + ""
-    v758: str = str(v0_1)
-    return parse(((((("" + v636) + "") + v756) + "") + v758[len(v636) + len(v756):len(v758)]) + "")
+    v749: uint8 = uint8(1) if (hours(v738) > 0) else uint8(0)
+    v750: str = method4()
+    v762: str = ((("" + str(v749)) + "") + to_string_1(v738, "c", {})) + ""
+    v764: str = str(v0_1)
+    return parse(((((("" + v639) + "") + v762) + "") + v764[len(v639) + len(v762):len(v764)]) + "")
 
 
 def closure1(v0_1: str, v1_1: Any) -> str:

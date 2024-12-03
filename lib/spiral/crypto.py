@@ -365,12 +365,12 @@ def method14(__unit: None=None) -> str:
 
 
 def method11(v0_1: Mut1, v1_1: Mut2, v2: Mut3, v3: Mut4, v4: Mut5, v5: int64 | None=None) -> str:
-    v408: US2 = default_arg(map(method12(), v5), US2(1))
+    v417: US2 = default_arg(map(method12(), v5), US2(1))
     def _arrow105(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2: Any=v2, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
-        v466: Any = create(op_subtraction(from_value(ticks_1(now()), False), v408.fields[0]))
-        return create_1(1, 1, 1, hours(v466), minutes(v466), seconds(v466), milliseconds(v466))
+        v475: Any = create(op_subtraction(from_value(ticks_1(now()), False), v417.fields[0]))
+        return create_1(1, 1, 1, hours(v475), minutes(v475), seconds(v475), milliseconds(v475))
 
-    return to_string(_arrow105() if (v408.tag == 0) else now(), method14())
+    return to_string(_arrow105() if (v417.tag == 0) else now(), method14())
 
 
 def method17(__unit: None=None) -> str:

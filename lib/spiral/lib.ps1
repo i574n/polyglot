@@ -99,7 +99,7 @@ function CopyTarget {
                     -replace "chrono::Utc", "()" `
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
-                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>()," `
+                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>()," `
                     -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
         }

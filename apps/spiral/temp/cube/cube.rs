@@ -13,7 +13,6 @@ use fable_library_rust::String_::fromString;
 mod module_62c167ba {
     pub mod Cube {
         use super::*;
-        use fable_library_rust::Async_::startChild;
         use fable_library_rust::Async_::Async;
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::List_::ofArray;
@@ -420,13 +419,14 @@ mod module_62c167ba {
                 ()
             }
             {
-                let v83: Arc<Async<Arc<Async<()>>>> = startChild(Cube::method4(
+                let v79: Arc<Async<()>> = Cube::method4(
                     if v56 { -1_i32 } else { 50_i32 },
                     1_i32,
                     0.0_f64,
                     0.0_f64,
                     0.0_f64,
-                ));
+                );
+                let v82: Arc<Async<Arc<Async<()>>>> = defaultOf();
                 ();
                 ()
             }
@@ -447,43 +447,43 @@ mod module_62c167ba {
     }
 }
 pub use module_62c167ba::*;
-#[path = "../../../../lib/fsharp/Common.rs"]
+#[path = "./lib/fsharp/Common.rs"]
 mod module_ad43931;
 pub use module_ad43931::*;
-#[path = "../../../../lib/spiral/async_.rs"]
+#[path = "./lib/spiral/async_.rs"]
 mod module_67c461a2;
 pub use module_67c461a2::*;
-#[path = "../../../../lib/spiral/common.rs"]
+#[path = "./lib/spiral/common.rs"]
 mod module_181b15d6;
 pub use module_181b15d6::*;
-#[path = "../../../../lib/spiral/crypto.rs"]
+#[path = "./lib/spiral/crypto.rs"]
 mod module_90d9c778;
 pub use module_90d9c778::*;
-#[path = "../../../../lib/spiral/date_time.rs"]
+#[path = "./lib/spiral/date_time.rs"]
 mod module_e43a8385;
 pub use module_e43a8385::*;
-#[path = "../../../../lib/spiral/file_system.rs"]
+#[path = "./lib/spiral/file_system.rs"]
 mod module_a7db9b47;
 pub use module_a7db9b47::*;
-#[path = "../../../../lib/spiral/lib.rs"]
+#[path = "./lib/spiral/lib.rs"]
 mod module_98e448fc;
 pub use module_98e448fc::*;
-#[path = "../../../../lib/spiral/networking.rs"]
+#[path = "./lib/spiral/networking.rs"]
 mod module_268024e5;
 pub use module_268024e5::*;
-#[path = "../../../../lib/spiral/platform.rs"]
+#[path = "./lib/spiral/platform.rs"]
 mod module_7d8ad484;
 pub use module_7d8ad484::*;
-#[path = "../../../../lib/spiral/runtime.rs"]
+#[path = "./lib/spiral/runtime.rs"]
 mod module_485aae07;
 pub use module_485aae07::*;
-#[path = "../../../../lib/spiral/sm.rs"]
+#[path = "./lib/spiral/sm.rs"]
 mod module_582b4305;
 pub use module_582b4305::*;
-#[path = "../../../../lib/spiral/threading.rs"]
+#[path = "./lib/spiral/threading.rs"]
 mod module_d5afb6f5;
 pub use module_d5afb6f5::*;
-#[path = "../../../../lib/spiral/trace.rs"]
+#[path = "./lib/spiral/trace.rs"]
 mod module_9e77af3a;
 pub use module_9e77af3a::*;
 pub mod Polyglot {

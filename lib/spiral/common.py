@@ -276,7 +276,7 @@ def method2(v0_1: str) -> str:
 def method1(__unit: None=None) -> tuple[US1, US2]:
     v1_1: str = method2("TRACE_LEVEL")
     v6: US1 = US1(0, US0(0)) if ("Verbose" == v1_1) else US1(1)
-    def _arrow40(__unit: None=None) -> US1:
+    def _arrow37(__unit: None=None) -> US1:
         v13: US1 = US1(0, US0(1)) if ("Debug" == v1_1) else US1(1)
         if v13.tag == 0:
             return US1(0, v13.fields[0])
@@ -298,7 +298,7 @@ def method1(__unit: None=None) -> tuple[US1, US2]:
 
 
 
-    return (US1(0, v6.fields[0]) if (v6.tag == 0) else _arrow40(), US2(1) if (method2("AUTOMATION") != "True") else US2(0, from_value(ticks_1(now()), False)))
+    return (US1(0, v6.fields[0]) if (v6.tag == 0) else _arrow37(), US2(1) if (method2("AUTOMATION") != "True") else US2(0, from_value(ticks_1(now()), False)))
 
 
 def closure2(unit_var: None, v0_1: str) -> None:
@@ -333,11 +333,11 @@ def method6(v0_1: Callable[[], None]) -> Callable[[], None]:
 
 def closure3(unit_var: None, v0_1: Callable[[], None]) -> IDisposable:
     v10: Callable[[], None] = method6(v0_1)
-    class ObjectExpr46(IDisposable):
+    class ObjectExpr43(IDisposable):
         def Dispose(self, __unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
             v10(None)
 
-    return ObjectExpr46()
+    return ObjectExpr43()
 
 
 def closure6(unit_var: None, v0_1: US6) -> US7:
@@ -364,17 +364,17 @@ def method8(v0_1: US0) -> bool:
         return False
 
     else: 
-        class ObjectExpr59:
+        class ObjectExpr52:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        class ObjectExpr62:
+        class ObjectExpr56:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr59())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62()))
+        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr52())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr56()))
 
 
 
@@ -383,10 +383,10 @@ def closure10(unit_var: None, v0_1: int64) -> US2:
 
 
 def method10(__unit: None=None) -> Callable[[int64], US2]:
-    def _arrow65(v: int64) -> US2:
+    def _arrow58(v: int64) -> US2:
         return closure10(None, v)
 
-    return _arrow65
+    return _arrow58
 
 
 def method11(__unit: None=None) -> str:
@@ -398,12 +398,12 @@ def method12(__unit: None=None) -> str:
 
 
 def method9(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
-    v408: US2 = default_arg(map(method10(), v5), US2(1))
-    def _arrow71(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
-        v466: Any = create(op_subtraction(from_value(ticks_1(now()), False), v408.fields[0]))
-        return create_1(1, 1, 1, hours(v466), minutes(v466), seconds(v466), milliseconds(v466))
+    v417: US2 = default_arg(map(method10(), v5), US2(1))
+    def _arrow65(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> Any:
+        v475: Any = create(op_subtraction(from_value(ticks_1(now()), False), v417.fields[0]))
+        return create_1(1, 1, 1, hours(v475), minutes(v475), seconds(v475), milliseconds(v475))
 
-    return to_string(_arrow71() if (v408.tag == 0) else now(), method12())
+    return to_string(_arrow65() if (v417.tag == 0) else now(), method12())
 
 
 def method15(__unit: None=None) -> str:

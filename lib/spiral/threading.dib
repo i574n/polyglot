@@ -96,7 +96,9 @@ inl join' forall t.
 
 nominal arc t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
+        backend_switch `(()) `({}) {
+            Fsharp = (fun () => global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end") : () -> ()
+        }
         $'' : $'std_sync_Arc<`t>'
     )
 

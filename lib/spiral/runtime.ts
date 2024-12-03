@@ -899,9 +899,9 @@ export function method9(): string {
 }
 
 export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    let v295: int64, v349: number;
-    const v291: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
-    return toString((v291.tag === /* US2_0 */ 0) ? ((v295 = v291.fields[0], (v349 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v295))), create(1, 1, 1, hours(v349), minutes(v349), seconds(v349), milliseconds(v349))))) : now(), method9());
+    let v301: int64, v355: number;
+    const v297: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
+    return toString((v297.tag === /* US2_0 */ 0) ? ((v301 = v297.fields[0], (v355 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v301))), create(1, 1, 1, hours(v355), minutes(v355), seconds(v355), milliseconds(v355))))) : now(), method9());
 }
 
 export function method12(): string {

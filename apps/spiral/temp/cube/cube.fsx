@@ -1074,328 +1074,313 @@ and closure0 () (v0 : (string [])) : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v82 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v83 : Async<Async<unit>> = v82 v79
-    let _v81 = v83 
+    let v82 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v81 = v82 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v84 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v85 : Async<Async<unit>> = v84 v79
+    let v85 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
     let _v81 = v85 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v86 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v87 : Async<Async<unit>> = v86 v79
-    let _v81 = v87 
+    let v88 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v81 = v88 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v88 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v89 : Async<Async<unit>> = v88 v79
-    let _v81 = v89 
+    let v91 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v92 : Async<Async<unit>> = v91 v79
+    let _v81 = v92 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v90 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v91 : Async<Async<unit>> = v90 v79
-    let _v81 = v91 
+    let v93 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v94 : Async<Async<unit>> = v93 v79
+    let _v81 = v94 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v92 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v93 : Async<Async<unit>> = v92 v79
-    let _v81 = v93 
+    let v95 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v96 : Async<Async<unit>> = v95 v79
+    let _v81 = v96 
     #endif
 #else
-    let v94 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v95 : Async<Async<unit>> = v94 v79
-    let _v81 = v95 
+    let v97 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v98 : Async<Async<unit>> = v97 v79
+    let _v81 = v98 
     #endif
-    let v96 : Async<Async<unit>> = _v81 
+    let v99 : Async<Async<unit>> = _v81 
     let _v80 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v101 : unit = ()
+    let v104 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v102 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v103 : Async<Async<unit>> = v102 v79
-    let _v101 = v103 
+    let v105 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v104 = v105 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v104 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v105 : Async<Async<unit>> = v104 v79
-    let _v101 = v105 
+    let v108 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v104 = v108 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v106 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v107 : Async<Async<unit>> = v106 v79
-    let _v101 = v107 
+    let v111 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v104 = v111 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v108 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v109 : Async<Async<unit>> = v108 v79
-    let _v101 = v109 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v110 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v111 : Async<Async<unit>> = v110 v79
-    let _v101 = v111 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v112 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v113 : Async<Async<unit>> = v112 v79
-    let _v101 = v113 
-    #endif
-#else
     let v114 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
     let v115 : Async<Async<unit>> = v114 v79
-    let _v101 = v115 
+    let _v104 = v115 
     #endif
-    let v116 : Async<Async<unit>> = _v101 
+#if FABLE_COMPILER_PYTHON
+    let v116 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v117 : Async<Async<unit>> = v116 v79
+    let _v104 = v117 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v118 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v119 : Async<Async<unit>> = v118 v79
+    let _v104 = v119 
+    #endif
+#else
+    let v120 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v121 : Async<Async<unit>> = v120 v79
+    let _v104 = v121 
+    #endif
+    let v122 : Async<Async<unit>> = _v104 
     let _v80 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v121 : unit = ()
+    let v127 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v122 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v123 : Async<Async<unit>> = v122 v79
-    let _v121 = v123 
+    let v128 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v127 = v128 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v124 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v125 : Async<Async<unit>> = v124 v79
-    let _v121 = v125 
+    let v131 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v127 = v131 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v126 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v127 : Async<Async<unit>> = v126 v79
-    let _v121 = v127 
+    let v134 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v127 = v134 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v128 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v129 : Async<Async<unit>> = v128 v79
-    let _v121 = v129 
+    let v137 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v138 : Async<Async<unit>> = v137 v79
+    let _v127 = v138 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v130 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v131 : Async<Async<unit>> = v130 v79
-    let _v121 = v131 
+    let v139 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v140 : Async<Async<unit>> = v139 v79
+    let _v127 = v140 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v132 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v133 : Async<Async<unit>> = v132 v79
-    let _v121 = v133 
+    let v141 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v142 : Async<Async<unit>> = v141 v79
+    let _v127 = v142 
     #endif
 #else
-    let v134 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v135 : Async<Async<unit>> = v134 v79
-    let _v121 = v135 
+    let v143 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v144 : Async<Async<unit>> = v143 v79
+    let _v127 = v144 
     #endif
-    let v136 : Async<Async<unit>> = _v121 
+    let v145 : Async<Async<unit>> = _v127 
     let _v80 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v141 : unit = ()
+    let v150 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v142 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v143 : Async<Async<unit>> = v142 v79
-    let _v141 = v143 
+    let v151 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v150 = v151 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v144 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v145 : Async<Async<unit>> = v144 v79
-    let _v141 = v145 
+    let v154 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v150 = v154 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v146 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v147 : Async<Async<unit>> = v146 v79
-    let _v141 = v147 
+    let v157 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v150 = v157 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v148 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v149 : Async<Async<unit>> = v148 v79
-    let _v141 = v149 
+    let v160 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v161 : Async<Async<unit>> = v160 v79
+    let _v150 = v161 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v150 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v151 : Async<Async<unit>> = v150 v79
-    let _v141 = v151 
+    let v162 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v163 : Async<Async<unit>> = v162 v79
+    let _v150 = v163 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v152 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v153 : Async<Async<unit>> = v152 v79
-    let _v141 = v153 
+    let v164 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v165 : Async<Async<unit>> = v164 v79
+    let _v150 = v165 
     #endif
 #else
-    let v154 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v155 : Async<Async<unit>> = v154 v79
-    let _v141 = v155 
+    let v166 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v167 : Async<Async<unit>> = v166 v79
+    let _v150 = v167 
     #endif
-    let v156 : Async<Async<unit>> = _v141 
+    let v168 : Async<Async<unit>> = _v150 
     let _v80 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v161 : unit = ()
+    let v173 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v161 = () 
+    let _v173 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v161 = () 
+    let _v173 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v161 = () 
+    let _v173 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v162 : (Async<unit> -> unit) = Async.StartImmediate
-    v162 v79
-    let _v161 = () 
+    let v174 : (Async<unit> -> unit) = Async.StartImmediate
+    v174 v79
+    let _v173 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v163 : (Async<unit> -> unit) = Async.StartImmediate
-    v163 v79
-    let _v161 = () 
+    let v175 : (Async<unit> -> unit) = Async.StartImmediate
+    v175 v79
+    let _v173 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v164 : (Async<unit> -> unit) = Async.StartImmediate
-    v164 v79
-    let _v161 = () 
+    let v176 : (Async<unit> -> unit) = Async.StartImmediate
+    v176 v79
+    let _v173 = () 
     #endif
 #else
-    let v165 : (Async<unit> -> unit) = Async.StartImmediate
-    v165 v79
-    let _v161 = () 
+    let v177 : (Async<unit> -> unit) = Async.StartImmediate
+    v177 v79
+    let _v173 = () 
     #endif
-    _v161 
-    let v166 : unit = ()
+    _v173 
+    let v178 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v167 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v167 2000
-    let _v166 = () 
+    let v179 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v179 2000
+    let _v178 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v168 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v168 2000
-    let _v166 = () 
+    let v180 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v180 2000
+    let _v178 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v169 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v169 2000
-    let _v166 = () 
+    let v181 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v181 2000
+    let _v178 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _v166 = () 
+    let _v178 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v170 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v170 2000
-    let _v166 = () 
+    let v182 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v182 2000
+    let _v178 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _v166 = () 
+    let _v178 = () 
     #endif
 #else
-    let v171 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v171 2000
-    let _v166 = () 
+    let v183 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v183 2000
+    let _v178 = () 
     #endif
-    _v166 
+    _v178 
     let _v80 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v172 : unit = ()
+    let v184 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v173 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v174 : Async<Async<unit>> = v173 v79
-    let _v172 = v174 
+    let v185 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v184 = v185 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v175 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v176 : Async<Async<unit>> = v175 v79
-    let _v172 = v176 
+    let v188 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v184 = v188 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v177 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v178 : Async<Async<unit>> = v177 v79
-    let _v172 = v178 
+    let v191 : Async<Async<unit>> = null |> unbox<Async<Async<unit>>>
+    let _v184 = v191 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v179 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v180 : Async<Async<unit>> = v179 v79
-    let _v172 = v180 
+    let v194 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v195 : Async<Async<unit>> = v194 v79
+    let _v184 = v195 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v181 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v182 : Async<Async<unit>> = v181 v79
-    let _v172 = v182 
+    let v196 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v197 : Async<Async<unit>> = v196 v79
+    let _v184 = v197 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v183 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v184 : Async<Async<unit>> = v183 v79
-    let _v172 = v184 
+    let v198 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v199 : Async<Async<unit>> = v198 v79
+    let _v184 = v199 
     #endif
 #else
-    let v185 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
-    let v186 : Async<Async<unit>> = v185 v79
-    let _v172 = v186 
+    let v200 : (Async<unit> -> Async<Async<unit>>) = Async.StartChild
+    let v201 : Async<Async<unit>> = v200 v79
+    let _v184 = v201 
     #endif
-    let v187 : Async<Async<unit>> = _v172 
+    let v202 : Async<Async<unit>> = _v184 
     let _v80 = () 
     #endif
 #else
-    let v192 : unit = ()
+    let v207 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v192 = () 
+    let _v207 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v192 = () 
+    let _v207 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v192 = () 
+    let _v207 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     null |> unbox<unit>
-    let _v192 = () 
+    let _v207 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v193 : (Async<unit> -> unit) = Async.RunSynchronously
-    v193 v79
-    let _v192 = () 
+    let v208 : (Async<unit> -> unit) = Async.RunSynchronously
+    v208 v79
+    let _v207 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v194 : (Async<unit> -> unit) = Async.RunSynchronously
-    v194 v79
-    let _v192 = () 
+    let v209 : (Async<unit> -> unit) = Async.RunSynchronously
+    v209 v79
+    let _v207 = () 
     #endif
 #else
-    let v195 : (Async<unit> -> unit) = Async.RunSynchronously
-    v195 v79
-    let _v192 = () 
+    let v210 : (Async<unit> -> unit) = Async.RunSynchronously
+    v210 v79
+    let _v207 = () 
     #endif
-    _v192 
+    _v207 
     let _v80 = () 
     #endif
     _v80 

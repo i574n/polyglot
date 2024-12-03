@@ -30,10 +30,10 @@ modules:
     parsing
     platform
     env
-    date_time
     rust/
         testing
         near
+    date_time
     trace-
     common-
     threading

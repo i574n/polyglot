@@ -306,8 +306,8 @@ pub mod Trace {
         LrcPtr<Trace::Mut4>,
         Option<i64>,
     ) {
-        let v64: string = string("env!(\"AUTOMATION\")");
-        let v65: &str = env!("AUTOMATION");
+        let v64: string = string("option_env!(\"AUTOMATION\").unwrap_or(\"\")");
+        let v65: &str = option_env!("AUTOMATION").unwrap_or("");
         let v72: std::string::String = String::from(v65);
         let _v1: (Trace::US1, Trace::US2) = (
             Trace::US1::US1_1,
@@ -429,22 +429,22 @@ pub mod Trace {
         v4: LrcPtr<Trace::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v242: u64 = near_sdk::env::block_timestamp();
-        let v256: Trace::US2 = defaultValue(Trace::US2::US2_1, map(Trace::method7(), v5));
-        let v268: u64 = match &v256 {
-            Trace::US2::US2_0(v256_0_0) => {
-                v242 - match &v256 {
+        let v248: u64 = near_sdk::env::block_timestamp();
+        let v262: Trace::US2 = defaultValue(Trace::US2::US2_1, map(Trace::method7(), v5));
+        let v274: u64 = match &v262 {
+            Trace::US2::US2_0(v262_0_0) => {
+                v248 - match &v262 {
                     Trace::US2::US2_0(x) => x.clone(),
                     _ => unreachable!(),
                 } as u64
             }
-            _ => v242,
+            _ => v248,
         } / 1000000000_u64;
-        let v269: u64 = v268 % 60_u64;
-        let v271: u64 = v268 / 60_u64 % 60_u64;
-        let v273: u64 = v268 / 3600_u64 % 24_u64;
-        let v275: std::string::String = format!("{:02}:{:02}:{:02}", v273, v271, v269);
-        fable_library_rust::String_::fromString(v275)
+        let v275: u64 = v274 % 60_u64;
+        let v277: u64 = v274 / 60_u64 % 60_u64;
+        let v279: u64 = v274 / 3600_u64 % 24_u64;
+        let v281: std::string::String = format!("{:02}:{:02}:{:02}", v279, v277, v275);
+        fable_library_rust::String_::fromString(v281)
     }
     pub fn method12() -> string {
         string("")

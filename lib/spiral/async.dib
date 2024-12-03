@@ -620,7 +620,6 @@ inl start (a : async ()) : () =
 inl start_child forall t. (a : async t) : async (async t) =
     run_target function
         | Fsharp _
-        | Rust _
         | TypeScript _
         | Python _ => fun () =>
             a |> $'Async.StartChild'
@@ -635,7 +634,6 @@ inl start_child forall t. (a : async t) : async (async t) =
 inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t) =
     run_target function
         | Fsharp _
-        | Rust _
         | TypeScript _
         | Python _ => fun () =>
             $'Async.StartChild (!a, !timeout)'
