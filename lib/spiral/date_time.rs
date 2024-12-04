@@ -219,7 +219,7 @@ pub mod Date_time {
     }
     pub fn closure11(v0_1: string, v1_1: DateTime) -> string {
         let provider: string = if v0_1.clone() == string("") {
-            string("M-d-yyyy hh:mm:ss tt")
+            string("M-d-y hh:mm:ss tt")
         } else {
             v0_1
         };

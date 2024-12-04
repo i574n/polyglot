@@ -2103,18 +2103,18 @@ and closure14 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
             let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method25(v53, v1, v2, v3)
             US7_0(v9, v30, v75, v76, v77)
         else
-            let v79 : (string -> int32) = String.length
-            let v80 : int32 = v79 v0
-            let v83 : string = "\n"
-            let v84 : int32 = v0.IndexOf v83 
-            let v87 : int32 = v84 - 1
-            let v88 : bool = -2 = v87
+            let v79 : string = "\n"
+            let v80 : int32 = v0.IndexOf v79 
+            let v83 : int32 = v80 - 1
+            let v84 : bool = -2 = v83
             let v91 : int32 =
-                if v88 then
-                    let v89 : int32 = v80 + 1
+                if v84 then
+                    let v85 : (string -> int32) = String.length
+                    let v86 : int32 = v85 v0
+                    let v89 : int32 = v86 + 1
                     v89
                 else
-                    let v90 : int32 = v87 + 1
+                    let v90 : int32 = v83 + 1
                     v90
             let v92 : int32 = 0 |> int32 
             let v99 : int32 = v91 |> int32 
@@ -2170,18 +2170,18 @@ and closure17 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
             let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method25(v53, v1, v2, v3)
             US7_0(v9, v30, v75, v76, v77)
         else
-            let v79 : (string -> int32) = String.length
-            let v80 : int32 = v79 v0
-            let v83 : string = "\n"
-            let v84 : int32 = v0.IndexOf v83 
-            let v87 : int32 = v84 - 1
-            let v88 : bool = -2 = v87
+            let v79 : string = "\n"
+            let v80 : int32 = v0.IndexOf v79 
+            let v83 : int32 = v80 - 1
+            let v84 : bool = -2 = v83
             let v91 : int32 =
-                if v88 then
-                    let v89 : int32 = v80 + 1
+                if v84 then
+                    let v85 : (string -> int32) = String.length
+                    let v86 : int32 = v85 v0
+                    let v89 : int32 = v86 + 1
                     v89
                 else
-                    let v90 : int32 = v87 + 1
+                    let v90 : int32 = v83 + 1
                     v90
             let v92 : int32 = 0 |> int32 
             let v99 : int32 = v91 |> int32 
@@ -2763,18 +2763,18 @@ and method21 (v0 : string) : US6 =
                         let struct (v491 : System.Text.StringBuilder, v492 : int32, v493 : int32) = method25(v469, v417, v418, v419)
                         US7_0(v425, v446, v491, v492, v493)
                     else
-                        let v495 : (string -> int32) = String.length
-                        let v496 : int32 = v495 v416
-                        let v499 : string = "\n"
-                        let v500 : int32 = v416.IndexOf v499 
-                        let v503 : int32 = v500 - 1
-                        let v504 : bool = -2 = v503
+                        let v495 : string = "\n"
+                        let v496 : int32 = v416.IndexOf v495 
+                        let v499 : int32 = v496 - 1
+                        let v500 : bool = -2 = v499
                         let v507 : int32 =
-                            if v504 then
-                                let v505 : int32 = v496 + 1
+                            if v500 then
+                                let v501 : (string -> int32) = String.length
+                                let v502 : int32 = v501 v416
+                                let v505 : int32 = v502 + 1
                                 v505
                             else
-                                let v506 : int32 = v503 + 1
+                                let v506 : int32 = v499 + 1
                                 v506
                         let v508 : int32 = 0 |> int32 
                         let v515 : int32 = v507 |> int32 
@@ -8553,18 +8553,18 @@ and closure30 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method25(v53, v1, v2, v3)
                 US7_0(v9, v30, v75, v76, v77)
             else
-                let v79 : (string -> int32) = String.length
-                let v80 : int32 = v79 v0
-                let v83 : string = "\n"
-                let v84 : int32 = v0.IndexOf v83 
-                let v87 : int32 = v84 - 1
-                let v88 : bool = -2 = v87
+                let v79 : string = "\n"
+                let v80 : int32 = v0.IndexOf v79 
+                let v83 : int32 = v80 - 1
+                let v84 : bool = -2 = v83
                 let v91 : int32 =
-                    if v88 then
-                        let v89 : int32 = v80 + 1
+                    if v84 then
+                        let v85 : (string -> int32) = String.length
+                        let v86 : int32 = v85 v0
+                        let v89 : int32 = v86 + 1
                         v89
                     else
-                        let v90 : int32 = v87 + 1
+                        let v90 : int32 = v83 + 1
                         v90
                 let v92 : int32 = 0 |> int32 
                 let v99 : int32 = v91 |> int32 
@@ -8669,18 +8669,18 @@ and closure31 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method25(v53, v1, v2, v3)
                 US7_0(v9, v30, v75, v76, v77)
             else
-                let v79 : (string -> int32) = String.length
-                let v80 : int32 = v79 v0
-                let v83 : string = "\n"
-                let v84 : int32 = v0.IndexOf v83 
-                let v87 : int32 = v84 - 1
-                let v88 : bool = -2 = v87
+                let v79 : string = "\n"
+                let v80 : int32 = v0.IndexOf v79 
+                let v83 : int32 = v80 - 1
+                let v84 : bool = -2 = v83
                 let v91 : int32 =
-                    if v88 then
-                        let v89 : int32 = v80 + 1
+                    if v84 then
+                        let v85 : (string -> int32) = String.length
+                        let v86 : int32 = v85 v0
+                        let v89 : int32 = v86 + 1
                         v89
                     else
-                        let v90 : int32 = v87 + 1
+                        let v90 : int32 = v83 + 1
                         v90
                 let v92 : int32 = 0 |> int32 
                 let v99 : int32 = v91 |> int32 
@@ -9029,18 +9029,18 @@ and method48 (v0 : UH2, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                         let struct (v217 : System.Text.StringBuilder, v218 : int32, v219 : int32) = method25(v195, v2, v3, v4)
                         US7_0(v151, v172, v217, v218, v219)
                     else
-                        let v221 : (string -> int32) = String.length
-                        let v222 : int32 = v221 v1
-                        let v225 : string = "\n"
-                        let v226 : int32 = v1.IndexOf v225 
-                        let v229 : int32 = v226 - 1
-                        let v230 : bool = -2 = v229
+                        let v221 : string = "\n"
+                        let v222 : int32 = v1.IndexOf v221 
+                        let v225 : int32 = v222 - 1
+                        let v226 : bool = -2 = v225
                         let v233 : int32 =
-                            if v230 then
-                                let v231 : int32 = v222 + 1
+                            if v226 then
+                                let v227 : (string -> int32) = String.length
+                                let v228 : int32 = v227 v1
+                                let v231 : int32 = v228 + 1
                                 v231
                             else
-                                let v232 : int32 = v229 + 1
+                                let v232 : int32 = v225 + 1
                                 v232
                         let v234 : int32 = 0 |> int32 
                         let v241 : int32 = v233 |> int32 
@@ -9132,18 +9132,18 @@ and method48 (v0 : UH2, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                                     let struct (v379 : System.Text.StringBuilder, v380 : int32, v381 : int32) = method25(v357, v305, v306, v307)
                                     US7_0(v313, v334, v379, v380, v381)
                                 else
-                                    let v383 : (string -> int32) = String.length
-                                    let v384 : int32 = v383 v304
-                                    let v387 : string = "\n"
-                                    let v388 : int32 = v304.IndexOf v387 
-                                    let v391 : int32 = v388 - 1
-                                    let v392 : bool = -2 = v391
+                                    let v383 : string = "\n"
+                                    let v384 : int32 = v304.IndexOf v383 
+                                    let v387 : int32 = v384 - 1
+                                    let v388 : bool = -2 = v387
                                     let v395 : int32 =
-                                        if v392 then
-                                            let v393 : int32 = v384 + 1
+                                        if v388 then
+                                            let v389 : (string -> int32) = String.length
+                                            let v390 : int32 = v389 v304
+                                            let v393 : int32 = v390 + 1
                                             v393
                                         else
-                                            let v394 : int32 = v391 + 1
+                                            let v394 : int32 = v387 + 1
                                             v394
                                     let v396 : int32 = 0 |> int32 
                                     let v403 : int32 = v395 |> int32 

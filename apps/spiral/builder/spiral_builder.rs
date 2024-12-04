@@ -914,245 +914,245 @@ mod module_7e2cd9e0 {
             let v149: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
             let v150: usize = 1_i32 as usize;
             let v153: usize = 0_i32 as usize;
-            let v164: clap::builder::ValueRange = if v153 == v153 {
+            let v167: clap::builder::ValueRange = if v153 == 0_i32 as usize {
                 clap::builder::ValueRange::new(v150..)
             } else {
-                let v162: string = string("clap::builder::ValueRange::new($0..$1)");
+                let v165: string = string("clap::builder::ValueRange::new($0..$1)");
                 clap::builder::ValueRange::new(v150..v153)
             };
-            let v166: string = string("r#\"deps\"#");
-            let v167: &'static str = r#"deps"#;
-            let v169: clap::Arg = clap::Arg::new(v167);
-            let v171: clap::Arg = v169.short('d');
-            let v172: string = string("r#\"deps\"#");
-            let v173: &'static str = r#"deps"#;
-            let v175: clap::Arg = v171.long(v173);
-            let v177: Vec<&'static str> = v149.to_vec();
-            let v179: clap::Arg = v175.value_names(v177);
-            let v181: clap::Arg = v179.num_args(v164);
-            let v183: clap::ArgAction = clap::ArgAction::Append;
-            let v185: clap::Arg = v181.action(v183);
-            let v187: clap::Command = clap::Command::arg(v142, v185);
-            let v189: clap::Command = clap::Command::subcommand(v28, v187);
-            let v191: string = string("r#\"fable\"#");
-            let v192: &'static str = r#"fable"#;
-            let v194: clap::Command = clap::Command::new(v192);
-            let v196: string = string("r#\"fs-path\"#");
-            let v197: &'static str = r#"fs-path"#;
-            let v199: clap::Arg = clap::Arg::new(v197);
-            let v201: clap::Arg = v199.short('f');
-            let v202: string = string("r#\"fs-path\"#");
-            let v203: &'static str = r#"fs-path"#;
-            let v205: clap::Arg = v201.long(v203);
-            let v207: clap::Arg = v205.required(true);
-            let v209: clap::Command = clap::Command::arg(v194, v207);
-            let v210: string = string("r#\"command\"#");
-            let v211: &'static str = r#"command"#;
-            let v213: clap::Arg = clap::Arg::new(v211);
-            let v215: clap::Arg = v213.short('c');
-            let v216: string = string("r#\"command\"#");
-            let v217: &'static str = r#"command"#;
-            let v219: clap::Arg = v215.long(v217);
-            let v221: clap::Command = clap::Command::arg(v209, v219);
-            let v223: clap::Command = clap::Command::subcommand(v189, v221);
-            let v225: string = string("r#\"rust\"#");
-            let v226: &'static str = r#"rust"#;
-            let v228: clap::Command = clap::Command::new(v226);
-            let v229: string = string("r#\"fs-path\"#");
-            let v230: &'static str = r#"fs-path"#;
-            let v232: clap::Arg = clap::Arg::new(v230);
-            let v234: clap::Arg = v232.short('f');
-            let v235: string = string("r#\"fs-path\"#");
-            let v236: &'static str = r#"fs-path"#;
-            let v238: clap::Arg = v234.long(v236);
-            let v240: clap::Arg = v238.required(true);
-            let v242: clap::Command = clap::Command::arg(v228, v240);
-            let v243: string = string("r#\"NAME\"#");
-            let v245: string = string("r#\"VERSION\"#");
-            let v247: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
-            let v248: usize = 1_i32 as usize;
-            let v251: usize = 0_i32 as usize;
-            let v262: clap::builder::ValueRange = if v251 == v251 {
-                clap::builder::ValueRange::new(v248..)
+            let v169: string = string("r#\"deps\"#");
+            let v170: &'static str = r#"deps"#;
+            let v172: clap::Arg = clap::Arg::new(v170);
+            let v174: clap::Arg = v172.short('d');
+            let v175: string = string("r#\"deps\"#");
+            let v176: &'static str = r#"deps"#;
+            let v178: clap::Arg = v174.long(v176);
+            let v180: Vec<&'static str> = v149.to_vec();
+            let v182: clap::Arg = v178.value_names(v180);
+            let v184: clap::Arg = v182.num_args(v167);
+            let v186: clap::ArgAction = clap::ArgAction::Append;
+            let v188: clap::Arg = v184.action(v186);
+            let v190: clap::Command = clap::Command::arg(v142, v188);
+            let v192: clap::Command = clap::Command::subcommand(v28, v190);
+            let v194: string = string("r#\"fable\"#");
+            let v195: &'static str = r#"fable"#;
+            let v197: clap::Command = clap::Command::new(v195);
+            let v199: string = string("r#\"fs-path\"#");
+            let v200: &'static str = r#"fs-path"#;
+            let v202: clap::Arg = clap::Arg::new(v200);
+            let v204: clap::Arg = v202.short('f');
+            let v205: string = string("r#\"fs-path\"#");
+            let v206: &'static str = r#"fs-path"#;
+            let v208: clap::Arg = v204.long(v206);
+            let v210: clap::Arg = v208.required(true);
+            let v212: clap::Command = clap::Command::arg(v197, v210);
+            let v213: string = string("r#\"command\"#");
+            let v214: &'static str = r#"command"#;
+            let v216: clap::Arg = clap::Arg::new(v214);
+            let v218: clap::Arg = v216.short('c');
+            let v219: string = string("r#\"command\"#");
+            let v220: &'static str = r#"command"#;
+            let v222: clap::Arg = v218.long(v220);
+            let v224: clap::Command = clap::Command::arg(v212, v222);
+            let v226: clap::Command = clap::Command::subcommand(v192, v224);
+            let v228: string = string("r#\"rust\"#");
+            let v229: &'static str = r#"rust"#;
+            let v231: clap::Command = clap::Command::new(v229);
+            let v232: string = string("r#\"fs-path\"#");
+            let v233: &'static str = r#"fs-path"#;
+            let v235: clap::Arg = clap::Arg::new(v233);
+            let v237: clap::Arg = v235.short('f');
+            let v238: string = string("r#\"fs-path\"#");
+            let v239: &'static str = r#"fs-path"#;
+            let v241: clap::Arg = v237.long(v239);
+            let v243: clap::Arg = v241.required(true);
+            let v245: clap::Command = clap::Command::arg(v231, v243);
+            let v246: string = string("r#\"NAME\"#");
+            let v248: string = string("r#\"VERSION\"#");
+            let v250: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
+            let v251: usize = 1_i32 as usize;
+            let v254: usize = 0_i32 as usize;
+            let v268: clap::builder::ValueRange = if v254 == 0_i32 as usize {
+                clap::builder::ValueRange::new(v251..)
             } else {
-                let v260: string = string("clap::builder::ValueRange::new($0..$1)");
-                clap::builder::ValueRange::new(v248..v251)
+                let v266: string = string("clap::builder::ValueRange::new($0..$1)");
+                clap::builder::ValueRange::new(v251..v254)
             };
-            let v263: string = string("r#\"deps\"#");
-            let v264: &'static str = r#"deps"#;
-            let v266: clap::Arg = clap::Arg::new(v264);
-            let v268: clap::Arg = v266.short('d');
             let v269: string = string("r#\"deps\"#");
             let v270: &'static str = r#"deps"#;
-            let v272: clap::Arg = v268.long(v270);
-            let v274: Vec<&'static str> = v247.to_vec();
-            let v276: clap::Arg = v272.value_names(v274);
-            let v278: clap::Arg = v276.num_args(v262);
-            let v280: clap::ArgAction = clap::ArgAction::Append;
-            let v282: clap::Arg = v278.action(v280);
-            let v284: clap::Command = clap::Command::arg(v242, v282);
-            let v285: usize = 0_i32 as usize;
-            let v288: usize = 1_i32 as usize;
-            let v299: clap::builder::ValueRange = if v288 == v285 {
-                clap::builder::ValueRange::new(v285..)
+            let v272: clap::Arg = clap::Arg::new(v270);
+            let v274: clap::Arg = v272.short('d');
+            let v275: string = string("r#\"deps\"#");
+            let v276: &'static str = r#"deps"#;
+            let v278: clap::Arg = v274.long(v276);
+            let v280: Vec<&'static str> = v250.to_vec();
+            let v282: clap::Arg = v278.value_names(v280);
+            let v284: clap::Arg = v282.num_args(v268);
+            let v286: clap::ArgAction = clap::ArgAction::Append;
+            let v288: clap::Arg = v284.action(v286);
+            let v290: clap::Command = clap::Command::arg(v245, v288);
+            let v291: usize = 0_i32 as usize;
+            let v294: usize = 1_i32 as usize;
+            let v308: clap::builder::ValueRange = if v294 == 0_i32 as usize {
+                clap::builder::ValueRange::new(v291..)
             } else {
-                let v297: string = string("clap::builder::ValueRange::new($0..=$1)");
-                clap::builder::ValueRange::new(v285..=v288)
+                let v306: string = string("clap::builder::ValueRange::new($0..=$1)");
+                clap::builder::ValueRange::new(v291..=v294)
             };
-            let v301: string = string("r#\"wasm\"#");
-            let v302: &'static str = r#"wasm"#;
-            let v304: clap::Arg = clap::Arg::new(v302);
-            let v306: clap::Arg = v304.short('w');
-            let v307: string = string("r#\"wasm\"#");
-            let v308: &'static str = r#"wasm"#;
-            let v310: clap::Arg = v306.long(v308);
-            let v312: clap::Arg = v310.num_args(v299);
-            let v314: clap::Arg = v312.require_equals(true);
-            let v316: string = string("r#\"\"#");
-            let v317: &str = r#""#;
-            let v319: clap::Arg = v314.default_missing_value(v317);
-            let v321: clap::Command = clap::Command::arg(v284, v319);
-            let v322: usize = 0_i32 as usize;
-            let v325: usize = 1_i32 as usize;
-            let v336: clap::builder::ValueRange = if v325 == v322 {
-                clap::builder::ValueRange::new(v322..)
+            let v310: string = string("r#\"wasm\"#");
+            let v311: &'static str = r#"wasm"#;
+            let v313: clap::Arg = clap::Arg::new(v311);
+            let v315: clap::Arg = v313.short('w');
+            let v316: string = string("r#\"wasm\"#");
+            let v317: &'static str = r#"wasm"#;
+            let v319: clap::Arg = v315.long(v317);
+            let v321: clap::Arg = v319.num_args(v308);
+            let v323: clap::Arg = v321.require_equals(true);
+            let v325: string = string("r#\"\"#");
+            let v326: &str = r#""#;
+            let v328: clap::Arg = v323.default_missing_value(v326);
+            let v330: clap::Command = clap::Command::arg(v290, v328);
+            let v331: usize = 0_i32 as usize;
+            let v334: usize = 1_i32 as usize;
+            let v348: clap::builder::ValueRange = if v334 == 0_i32 as usize {
+                clap::builder::ValueRange::new(v331..)
             } else {
-                let v334: string = string("clap::builder::ValueRange::new($0..=$1)");
-                clap::builder::ValueRange::new(v322..=v325)
+                let v346: string = string("clap::builder::ValueRange::new($0..=$1)");
+                clap::builder::ValueRange::new(v331..=v334)
             };
-            let v338: string = string("r#\"contract\"#");
-            let v339: &'static str = r#"contract"#;
-            let v341: clap::Arg = clap::Arg::new(v339);
-            let v343: clap::Arg = v341.short('c');
-            let v344: string = string("r#\"contract\"#");
-            let v345: &'static str = r#"contract"#;
-            let v347: clap::Arg = v343.long(v345);
-            let v349: clap::Arg = v347.num_args(v336);
-            let v351: clap::Arg = v349.require_equals(true);
-            let v352: string = string("r#\"\"#");
-            let v353: &str = r#""#;
-            let v355: clap::Arg = v351.default_missing_value(v353);
-            let v357: clap::Command = clap::Command::arg(v321, v355);
-            let v359: string = string("r#\"cleanup\"#");
-            let v360: &'static str = r#"cleanup"#;
-            let v362: clap::Arg = clap::Arg::new(v360);
-            let v364: clap::Arg = v362.short('l');
-            let v365: string = string("r#\"cleanup\"#");
-            let v366: &'static str = r#"cleanup"#;
-            let v368: clap::Arg = v364.long(v366);
-            let v370: string = string("r#\"true\"#");
-            let v371: &str = r#"true"#;
-            let v373: clap::Arg = v368.default_value(v371);
-            let v375: clap::ArgAction = clap::ArgAction::SetFalse;
-            let v377: clap::Arg = v373.action(v375);
-            let v379: clap::Command = clap::Command::arg(v357, v377);
-            let v381: clap::Command = clap::Command::subcommand(v223, v379);
-            let v383: string = string("r#\"typescript\"#");
-            let v384: &'static str = r#"typescript"#;
-            let v386: clap::Command = clap::Command::new(v384);
-            let v387: string = string("r#\"fs-path\"#");
-            let v388: &'static str = r#"fs-path"#;
-            let v390: clap::Arg = clap::Arg::new(v388);
-            let v392: clap::Arg = v390.short('f');
-            let v393: string = string("r#\"fs-path\"#");
-            let v394: &'static str = r#"fs-path"#;
-            let v396: clap::Arg = v392.long(v394);
-            let v398: clap::Arg = v396.required(true);
-            let v400: clap::Command = clap::Command::arg(v386, v398);
-            let v401: string = string("r#\"NAME\"#");
-            let v403: string = string("r#\"VERSION\"#");
-            let v405: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
-            let v406: usize = 1_i32 as usize;
-            let v409: usize = 0_i32 as usize;
-            let v419: clap::builder::ValueRange = if v409 == v409 {
-                clap::builder::ValueRange::new(v406..)
+            let v350: string = string("r#\"contract\"#");
+            let v351: &'static str = r#"contract"#;
+            let v353: clap::Arg = clap::Arg::new(v351);
+            let v355: clap::Arg = v353.short('c');
+            let v356: string = string("r#\"contract\"#");
+            let v357: &'static str = r#"contract"#;
+            let v359: clap::Arg = v355.long(v357);
+            let v361: clap::Arg = v359.num_args(v348);
+            let v363: clap::Arg = v361.require_equals(true);
+            let v364: string = string("r#\"\"#");
+            let v365: &str = r#""#;
+            let v367: clap::Arg = v363.default_missing_value(v365);
+            let v369: clap::Command = clap::Command::arg(v330, v367);
+            let v371: string = string("r#\"cleanup\"#");
+            let v372: &'static str = r#"cleanup"#;
+            let v374: clap::Arg = clap::Arg::new(v372);
+            let v376: clap::Arg = v374.short('l');
+            let v377: string = string("r#\"cleanup\"#");
+            let v378: &'static str = r#"cleanup"#;
+            let v380: clap::Arg = v376.long(v378);
+            let v382: string = string("r#\"true\"#");
+            let v383: &str = r#"true"#;
+            let v385: clap::Arg = v380.default_value(v383);
+            let v387: clap::ArgAction = clap::ArgAction::SetFalse;
+            let v389: clap::Arg = v385.action(v387);
+            let v391: clap::Command = clap::Command::arg(v369, v389);
+            let v393: clap::Command = clap::Command::subcommand(v226, v391);
+            let v395: string = string("r#\"typescript\"#");
+            let v396: &'static str = r#"typescript"#;
+            let v398: clap::Command = clap::Command::new(v396);
+            let v399: string = string("r#\"fs-path\"#");
+            let v400: &'static str = r#"fs-path"#;
+            let v402: clap::Arg = clap::Arg::new(v400);
+            let v404: clap::Arg = v402.short('f');
+            let v405: string = string("r#\"fs-path\"#");
+            let v406: &'static str = r#"fs-path"#;
+            let v408: clap::Arg = v404.long(v406);
+            let v410: clap::Arg = v408.required(true);
+            let v412: clap::Command = clap::Command::arg(v398, v410);
+            let v413: string = string("r#\"NAME\"#");
+            let v415: string = string("r#\"VERSION\"#");
+            let v417: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
+            let v418: usize = 1_i32 as usize;
+            let v421: usize = 0_i32 as usize;
+            let v434: clap::builder::ValueRange = if v421 == 0_i32 as usize {
+                clap::builder::ValueRange::new(v418..)
             } else {
-                let v417: string = string("clap::builder::ValueRange::new($0..$1)");
-                clap::builder::ValueRange::new(v406..v409)
+                let v432: string = string("clap::builder::ValueRange::new($0..$1)");
+                clap::builder::ValueRange::new(v418..v421)
             };
-            let v420: string = string("r#\"deps\"#");
-            let v421: &'static str = r#"deps"#;
-            let v423: clap::Arg = clap::Arg::new(v421);
-            let v425: clap::Arg = v423.short('d');
-            let v426: string = string("r#\"deps\"#");
-            let v427: &'static str = r#"deps"#;
-            let v429: clap::Arg = v425.long(v427);
-            let v431: Vec<&'static str> = v405.to_vec();
-            let v433: clap::Arg = v429.value_names(v431);
-            let v435: clap::Arg = v433.num_args(v419);
-            let v437: clap::ArgAction = clap::ArgAction::Append;
-            let v439: clap::Arg = v435.action(v437);
-            let v441: clap::Command = clap::Command::arg(v400, v439);
-            let v443: clap::Command = clap::Command::subcommand(v381, v441);
-            let v445: string = string("r#\"python\"#");
-            let v446: &'static str = r#"python"#;
-            let v448: clap::Command = clap::Command::new(v446);
-            let v449: string = string("r#\"fs-path\"#");
-            let v450: &'static str = r#"fs-path"#;
-            let v452: clap::Arg = clap::Arg::new(v450);
-            let v454: clap::Arg = v452.short('f');
-            let v455: string = string("r#\"fs-path\"#");
-            let v456: &'static str = r#"fs-path"#;
-            let v458: clap::Arg = v454.long(v456);
-            let v460: clap::Arg = v458.required(true);
-            let v462: clap::Command = clap::Command::arg(v448, v460);
-            let v463: string = string("r#\"NAME\"#");
-            let v465: string = string("r#\"VERSION\"#");
-            let v467: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
-            let v468: usize = 1_i32 as usize;
-            let v471: usize = 0_i32 as usize;
-            let v481: clap::builder::ValueRange = if v471 == v471 {
-                clap::builder::ValueRange::new(v468..)
+            let v435: string = string("r#\"deps\"#");
+            let v436: &'static str = r#"deps"#;
+            let v438: clap::Arg = clap::Arg::new(v436);
+            let v440: clap::Arg = v438.short('d');
+            let v441: string = string("r#\"deps\"#");
+            let v442: &'static str = r#"deps"#;
+            let v444: clap::Arg = v440.long(v442);
+            let v446: Vec<&'static str> = v417.to_vec();
+            let v448: clap::Arg = v444.value_names(v446);
+            let v450: clap::Arg = v448.num_args(v434);
+            let v452: clap::ArgAction = clap::ArgAction::Append;
+            let v454: clap::Arg = v450.action(v452);
+            let v456: clap::Command = clap::Command::arg(v412, v454);
+            let v458: clap::Command = clap::Command::subcommand(v393, v456);
+            let v460: string = string("r#\"python\"#");
+            let v461: &'static str = r#"python"#;
+            let v463: clap::Command = clap::Command::new(v461);
+            let v464: string = string("r#\"fs-path\"#");
+            let v465: &'static str = r#"fs-path"#;
+            let v467: clap::Arg = clap::Arg::new(v465);
+            let v469: clap::Arg = v467.short('f');
+            let v470: string = string("r#\"fs-path\"#");
+            let v471: &'static str = r#"fs-path"#;
+            let v473: clap::Arg = v469.long(v471);
+            let v475: clap::Arg = v473.required(true);
+            let v477: clap::Command = clap::Command::arg(v463, v475);
+            let v478: string = string("r#\"NAME\"#");
+            let v480: string = string("r#\"VERSION\"#");
+            let v482: Array<&'static str> = new_array(&[r#"NAME"#, r#"VERSION"#]);
+            let v483: usize = 1_i32 as usize;
+            let v486: usize = 0_i32 as usize;
+            let v499: clap::builder::ValueRange = if v486 == 0_i32 as usize {
+                clap::builder::ValueRange::new(v483..)
             } else {
-                let v479: string = string("clap::builder::ValueRange::new($0..$1)");
-                clap::builder::ValueRange::new(v468..v471)
+                let v497: string = string("clap::builder::ValueRange::new($0..$1)");
+                clap::builder::ValueRange::new(v483..v486)
             };
-            let v482: string = string("r#\"deps\"#");
-            let v483: &'static str = r#"deps"#;
-            let v485: clap::Arg = clap::Arg::new(v483);
-            let v487: clap::Arg = v485.short('d');
-            let v488: string = string("r#\"deps\"#");
-            let v489: &'static str = r#"deps"#;
-            let v491: clap::Arg = v487.long(v489);
-            let v493: Vec<&'static str> = v467.to_vec();
-            let v495: clap::Arg = v491.value_names(v493);
-            let v497: clap::Arg = v495.num_args(v481);
-            let v499: clap::ArgAction = clap::ArgAction::Append;
-            let v501: clap::Arg = v497.action(v499);
-            let v503: clap::Command = clap::Command::arg(v462, v501);
-            let v505: clap::Command = clap::Command::subcommand(v443, v503);
-            let v507: string = string("r#\"dib\"#");
-            let v508: &'static str = r#"dib"#;
-            let v510: clap::Command = clap::Command::new(v508);
-            let v512: string = string("r#\"path\"#");
-            let v513: &'static str = r#"path"#;
-            let v515: clap::Arg = clap::Arg::new(v513);
-            let v517: clap::Arg = v515.short('p');
-            let v518: string = string("r#\"path\"#");
-            let v519: &'static str = r#"path"#;
-            let v521: clap::Arg = v517.long(v519);
-            let v523: clap::Arg = v521.required(true);
-            let v525: clap::Command = clap::Command::arg(v510, v523);
-            let v527: string = string("clap::value_parser!(u8).into()");
-            let v528: clap::builder::ValueParser = clap::value_parser!(u8).into();
-            let v530: string = string("r#\"retries\"#");
-            let v531: &'static str = r#"retries"#;
+            let v500: string = string("r#\"deps\"#");
+            let v501: &'static str = r#"deps"#;
+            let v503: clap::Arg = clap::Arg::new(v501);
+            let v505: clap::Arg = v503.short('d');
+            let v506: string = string("r#\"deps\"#");
+            let v507: &'static str = r#"deps"#;
+            let v509: clap::Arg = v505.long(v507);
+            let v511: Vec<&'static str> = v482.to_vec();
+            let v513: clap::Arg = v509.value_names(v511);
+            let v515: clap::Arg = v513.num_args(v499);
+            let v517: clap::ArgAction = clap::ArgAction::Append;
+            let v519: clap::Arg = v515.action(v517);
+            let v521: clap::Command = clap::Command::arg(v477, v519);
+            let v523: clap::Command = clap::Command::subcommand(v458, v521);
+            let v525: string = string("r#\"dib\"#");
+            let v526: &'static str = r#"dib"#;
+            let v528: clap::Command = clap::Command::new(v526);
+            let v530: string = string("r#\"path\"#");
+            let v531: &'static str = r#"path"#;
             let v533: clap::Arg = clap::Arg::new(v531);
-            let v535: clap::Arg = v533.short('r');
-            let v536: string = string("r#\"retries\"#");
-            let v537: &'static str = r#"retries"#;
+            let v535: clap::Arg = v533.short('p');
+            let v536: string = string("r#\"path\"#");
+            let v537: &'static str = r#"path"#;
             let v539: clap::Arg = v535.long(v537);
-            let v541: clap::Arg = v539.value_parser(v528);
-            let v543: clap::Command = clap::Command::arg(v525, v541);
-            let v545: string = string("r#\"working-directory\"#");
-            let v546: &'static str = r#"working-directory"#;
-            let v548: clap::Arg = clap::Arg::new(v546);
-            let v550: clap::Arg = v548.short('w');
-            let v551: string = string("r#\"working-directory\"#");
-            let v552: &'static str = r#"working-directory"#;
-            let v554: clap::Arg = v550.long(v552);
-            let v556: clap::Command = clap::Command::arg(v543, v554);
-            clap::Command::subcommand(v505, v556)
+            let v541: clap::Arg = v539.required(true);
+            let v543: clap::Command = clap::Command::arg(v528, v541);
+            let v545: string = string("clap::value_parser!(u8).into()");
+            let v546: clap::builder::ValueParser = clap::value_parser!(u8).into();
+            let v548: string = string("r#\"retries\"#");
+            let v549: &'static str = r#"retries"#;
+            let v551: clap::Arg = clap::Arg::new(v549);
+            let v553: clap::Arg = v551.short('r');
+            let v554: string = string("r#\"retries\"#");
+            let v555: &'static str = r#"retries"#;
+            let v557: clap::Arg = v553.long(v555);
+            let v559: clap::Arg = v557.value_parser(v546);
+            let v561: clap::Command = clap::Command::arg(v543, v559);
+            let v563: string = string("r#\"working-directory\"#");
+            let v564: &'static str = r#"working-directory"#;
+            let v566: clap::Arg = clap::Arg::new(v564);
+            let v568: clap::Arg = v566.short('w');
+            let v569: string = string("r#\"working-directory\"#");
+            let v570: &'static str = r#"working-directory"#;
+            let v572: clap::Arg = v568.long(v570);
+            let v574: clap::Command = clap::Command::arg(v561, v572);
+            clap::Command::subcommand(v523, v574)
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
             let v1_1: bool = true;
@@ -1446,7 +1446,12 @@ mod module_7e2cd9e0 {
                 }
                 _ => DateTime::now(),
             };
-            let provider: string = Spiral_builder::method9();
+            let v118: string = Spiral_builder::method9();
+            let provider: string = if v118.clone() == string("") {
+                string("M-d-y hh:mm:ss tt")
+            } else {
+                v118
+            };
             v117.toString(provider)
         }
         pub fn method13() -> string {
@@ -2589,8 +2594,7 @@ mod module_7e2cd9e0 {
                         )
                     }
                 } else {
-                    let v80: i32 = length(v0_1.clone());
-                    let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                    let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                     Spiral_builder::US15::US15_1(sprintf!(
                         "{}\n{}\n",
                         sprintf!(
@@ -2600,13 +2604,13 @@ mod module_7e2cd9e0 {
                             v3,
                             v1_1,
                             getSlice(
-                                v0_1,
+                                v0_1.clone(),
                                 Some(0_i32),
                                 Some(
-                                    if -2_i32 == v87 {
-                                        v80 + 1_i32
+                                    if -2_i32 == v83 {
+                                        length(v0_1) + 1_i32
                                     } else {
-                                        v87 + 1_i32
+                                        v83 + 1_i32
                                     } - 1_i32
                                 )
                             )
@@ -2678,8 +2682,7 @@ mod module_7e2cd9e0 {
                         )
                     }
                 } else {
-                    let v80: i32 = length(v0_1.clone());
-                    let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                    let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                     Spiral_builder::US15::US15_1(sprintf!(
                         "{}\n{}\n",
                         sprintf!(
@@ -2689,13 +2692,13 @@ mod module_7e2cd9e0 {
                             v3,
                             v1_1,
                             getSlice(
-                                v0_1,
+                                v0_1.clone(),
                                 Some(0_i32),
                                 Some(
-                                    if -2_i32 == v87 {
-                                        v80 + 1_i32
+                                    if -2_i32 == v83 {
+                                        length(v0_1) + 1_i32
                                     } else {
-                                        v87 + 1_i32
+                                        v83 + 1_i32
                                     } - 1_i32
                                 )
                             )
@@ -3785,8 +3788,7 @@ mod module_7e2cd9e0 {
                                     )
                                 }
                             } else {
-                                let v496: i32 = length(v416.clone());
-                                let v503: i32 = indexOf(v416.clone(), string("\n")) - 1_i32;
+                                let v499: i32 = indexOf(v416.clone(), string("\n")) - 1_i32;
                                 Spiral_builder::US15::US15_1(sprintf!("{}\n{}\n",
                                                                               sprintf!("parsing.p_char / expected: \'{}\' / line: {} / col: {}\n{}{}",
                                                                                        ' ',
@@ -3797,13 +3799,13 @@ mod module_7e2cd9e0 {
                                                                                                 Some(0_i32),
                                                                                                 Some(if -2_i32
                                                                                                             ==
-                                                                                                            v503
+                                                                                                            v499
                                                                                                         {
-                                                                                                         v496
+                                                                                                         length(v416.clone())
                                                                                                              +
                                                                                                              1_i32
                                                                                                      } else {
-                                                                                                         v503
+                                                                                                         v499
                                                                                                              +
                                                                                                              1_i32
                                                                                                      }
@@ -4267,8 +4269,7 @@ mod module_7e2cd9e0 {
                         )
                     }
                 } else {
-                    let v80: i32 = length(v0_1.clone());
-                    let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                    let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                     Spiral_builder::US15::US15_1(sprintf!(
                         "{}\n{}\n",
                         sprintf!(
@@ -4278,13 +4279,13 @@ mod module_7e2cd9e0 {
                             v3,
                             v1_1,
                             getSlice(
-                                v0_1,
+                                v0_1.clone(),
                                 Some(0_i32),
                                 Some(
-                                    if -2_i32 == v87 {
-                                        v80 + 1_i32
+                                    if -2_i32 == v83 {
+                                        length(v0_1) + 1_i32
                                     } else {
-                                        v87 + 1_i32
+                                        v83 + 1_i32
                                     } - 1_i32
                                 )
                             )
@@ -4433,8 +4434,7 @@ mod module_7e2cd9e0 {
                         )
                     }
                 } else {
-                    let v80: i32 = length(v0_1.clone());
-                    let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                    let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                     Spiral_builder::US15::US15_1(sprintf!(
                         "{}\n{}\n",
                         sprintf!(
@@ -4444,13 +4444,13 @@ mod module_7e2cd9e0 {
                             v3,
                             v1_1,
                             getSlice(
-                                v0_1,
+                                v0_1.clone(),
                                 Some(0_i32),
                                 Some(
-                                    if -2_i32 == v87 {
-                                        v80 + 1_i32
+                                    if -2_i32 == v83 {
+                                        length(v0_1) + 1_i32
                                     } else {
-                                        v87 + 1_i32
+                                        v83 + 1_i32
                                     } - 1_i32
                                 )
                             )
@@ -5116,8 +5116,7 @@ mod module_7e2cd9e0 {
                                         )
                                     }
                                 } else {
-                                    let v222: i32 = length(v1_1.get().clone());
-                                    let v229: i32 =
+                                    let v225: i32 =
                                         indexOf(v1_1.get().clone(), string("\n")) - 1_i32;
                                     Spiral_builder::US15::US15_1(sprintf!("{}\n{}\n",
                                                                                            sprintf!("parsing.p_char / expected: \'{}\' / line: {} / col: {}\n{}{}",
@@ -5129,13 +5128,13 @@ mod module_7e2cd9e0 {
                                                                                                              Some(0_i32),
                                                                                                              Some(if -2_i32
                                                                                                                          ==
-                                                                                                                         v229
+                                                                                                                         v225
                                                                                                                      {
-                                                                                                                      v222
+                                                                                                                      length(v1_1.get().clone())
                                                                                                                           +
                                                                                                                           1_i32
                                                                                                                   } else {
-                                                                                                                      v229
+                                                                                                                      v225
                                                                                                                           +
                                                                                                                           1_i32
                                                                                                                   }
@@ -5288,8 +5287,7 @@ mod module_7e2cd9e0 {
                                                         )
                                                     }
                                                 } else {
-                                                    let v384: i32 = length(v304.clone());
-                                                    let v391: i32 =
+                                                    let v387: i32 =
                                                         indexOf(v304.clone(), string("\n")) - 1_i32;
                                                     Spiral_builder::US15::US15_1(sprintf!("{}\n{}\n",
                                                                                                                sprintf!("parsing.p_char / expected: \'{}\' / line: {} / col: {}\n{}{}",
@@ -5301,13 +5299,13 @@ mod module_7e2cd9e0 {
                                                                                                                                  Some(0_i32),
                                                                                                                                  Some(if -2_i32
                                                                                                                                              ==
-                                                                                                                                             v391
+                                                                                                                                             v387
                                                                                                                                          {
-                                                                                                                                          v384
+                                                                                                                                          length(v304.clone())
                                                                                                                                               +
                                                                                                                                               1_i32
                                                                                                                                       } else {
-                                                                                                                                          v391
+                                                                                                                                          v387
                                                                                                                                               +
                                                                                                                                               1_i32
                                                                                                                                       }
@@ -9873,66 +9871,64 @@ mod module_7e2cd9e0 {
                         ()
                     }
                     {
-                        let v50: usize = v23.len();
-                        let v51: u8 = v50 as u8;
-                        let v54: usize = v41;
-                        let v67: &_ = if v54 == v50 {
+                        let v49: usize = v41;
+                        let v64: &_ = if v49 == v23.len() {
                             &v23[v19..]
                         } else {
-                            &v23[v19..v54]
+                            &v23[v19..v49]
                         };
-                        sha2::Digest::update(&mut v16, v67);
+                        sha2::Digest::update(&mut v16, v64);
                         {
-                            let v70: bool = true;
+                            let v67: bool = true;
                         } // rust.loop;
-                        let v72: bool = true;
+                        let v69: bool = true;
                     } // rust.loop;
-                    let v74: bool = true;
+                    let v71: bool = true;
                 } // rust.loop;
-                let v76: bool = true;
+                let v73: bool = true;
                 {
                     // rust.loop;
-                    let v78: bool = true;
+                    let v75: bool = true;
                     {
                         // rust.loop;
-                        let v80: &[u8] = &sha2::Digest::finalize(v16);
-                        let v82: Vec<u8> = v80.iter().map(|x| *x).collect::<Vec<_>>();
-                        let v84: bool = true;
-                        let _vec_map: Vec<_> = v82
+                        let v77: &[u8] = &sha2::Digest::finalize(v16);
+                        let v79: Vec<u8> = v77.iter().map(|x| *x).collect::<Vec<_>>();
+                        let v81: bool = true;
+                        let _vec_map: Vec<_> = v79
                             .into_iter()
                             .map(|x| {
                                 //;
-                                let v86: u8 = x;
-                                let v88: std::string::String = format!("{:02x}", v86);
-                                let v90: string = fable_library_rust::String_::fromString(v88);
-                                let v92: bool = true;
-                                v90
+                                let v83: u8 = x;
+                                let v85: std::string::String = format!("{:02x}", v83);
+                                let v87: string = fable_library_rust::String_::fromString(v85);
+                                let v89: bool = true;
+                                v87
                             })
                             .collect::<Vec<_>>();
-                        let v94: Vec<string> = _vec_map;
-                        let v96: Array<string> = fable_library_rust::NativeArray_::array_from(v94);
-                        let _v97: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
-                            let v96 = v96.clone();
+                        let v91: Vec<string> = _vec_map;
+                        let v93: Array<string> = fable_library_rust::NativeArray_::array_from(v91);
+                        let _v94: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
+                            let v93 = v93.clone();
                             move || {
                                 map_1(
                                     Func1::new({
-                                        let v96 = v96.clone();
-                                        move |i: i32| v96[i].clone()
+                                        let v93 = v93.clone();
+                                        move |i: i32| v93[i].clone()
                                     }),
-                                    rangeNumeric(0_i32, 1_i32, count_2(v96.clone()) - 1_i32),
+                                    rangeNumeric(0_i32, 1_i32, count_2(v93.clone()) - 1_i32),
                                 )
                             }
                         }));
-                        let v104: string = Spiral_builder::method183();
-                        let v110: string = join(
-                            if v104.clone() == string("\n") {
-                                Spiral_builder::method166(v104.clone())
+                        let v101: string = Spiral_builder::method183();
+                        let v107: string = join(
+                            if v101.clone() == string("\n") {
+                                Spiral_builder::method166(v101.clone())
                             } else {
-                                v104
+                                v101
                             },
-                            toArray_1(_v97),
+                            toArray_1(_v94),
                         );
-                        Ok::<string, std::io::Error>(v110).unwrap()
+                        Ok::<string, std::io::Error>(v107).unwrap()
                     }
                 }
             }

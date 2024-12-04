@@ -683,7 +683,7 @@ pub mod Runtime {
         };
         let v118: string = Runtime::method8();
         let provider: string = if v118.clone() == string("") {
-            string("M-d-yyyy hh:mm:ss tt")
+            string("M-d-y hh:mm:ss tt")
         } else {
             v118
         };
@@ -1057,8 +1057,7 @@ pub mod Runtime {
                     )
                 }
             } else {
-                let v80: i32 = length(v0_1.clone());
-                let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                 Runtime::US7::US7_1(sprintf!(
                     "{}\n{}\n",
                     sprintf!(
@@ -1068,13 +1067,13 @@ pub mod Runtime {
                         v3,
                         v1_1,
                         getSlice(
-                            v0_1,
+                            v0_1.clone(),
                             Some(0_i32),
                             Some(
-                                if -2_i32 == v87 {
-                                    v80 + 1_i32
+                                if -2_i32 == v83 {
+                                    length(v0_1) + 1_i32
                                 } else {
-                                    v87 + 1_i32
+                                    v83 + 1_i32
                                 } - 1_i32
                             )
                         )
@@ -1142,8 +1141,7 @@ pub mod Runtime {
                     )
                 }
             } else {
-                let v80: i32 = length(v0_1.clone());
-                let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                 Runtime::US7::US7_1(sprintf!(
                     "{}\n{}\n",
                     sprintf!(
@@ -1153,13 +1151,13 @@ pub mod Runtime {
                         v3,
                         v1_1,
                         getSlice(
-                            v0_1,
+                            v0_1.clone(),
                             Some(0_i32),
                             Some(
-                                if -2_i32 == v87 {
-                                    v80 + 1_i32
+                                if -2_i32 == v83 {
+                                    length(v0_1) + 1_i32
                                 } else {
-                                    v87 + 1_i32
+                                    v83 + 1_i32
                                 } - 1_i32
                             )
                         )
@@ -2088,8 +2086,7 @@ pub mod Runtime {
                                 )
                             }
                         } else {
-                            let v496: i32 = length(v416.clone());
-                            let v503: i32 = indexOf(v416.clone(), string("\n")) - 1_i32;
+                            let v499: i32 = indexOf(v416.clone(), string("\n")) - 1_i32;
                             Runtime::US7::US7_1(sprintf!(
                                 "{}\n{}\n",
                                 sprintf!(
@@ -2102,10 +2099,10 @@ pub mod Runtime {
                                         v416.clone(),
                                         Some(0_i32),
                                         Some(
-                                            if -2_i32 == v503 {
-                                                v496 + 1_i32
+                                            if -2_i32 == v499 {
+                                                length(v416.clone()) + 1_i32
                                             } else {
-                                                v503 + 1_i32
+                                                v499 + 1_i32
                                             } - 1_i32
                                         )
                                     )
@@ -3210,8 +3207,7 @@ pub mod Runtime {
                     )
                 }
             } else {
-                let v80: i32 = length(v0_1.clone());
-                let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                 Runtime::US7::US7_1(sprintf!(
                     "{}\n{}\n",
                     sprintf!(
@@ -3221,13 +3217,13 @@ pub mod Runtime {
                         v3,
                         v1_1,
                         getSlice(
-                            v0_1,
+                            v0_1.clone(),
                             Some(0_i32),
                             Some(
-                                if -2_i32 == v87 {
-                                    v80 + 1_i32
+                                if -2_i32 == v83 {
+                                    length(v0_1) + 1_i32
                                 } else {
-                                    v87 + 1_i32
+                                    v83 + 1_i32
                                 } - 1_i32
                             )
                         )
@@ -3364,8 +3360,7 @@ pub mod Runtime {
                     )
                 }
             } else {
-                let v80: i32 = length(v0_1.clone());
-                let v87: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
+                let v83: i32 = indexOf(v0_1.clone(), string("\n")) - 1_i32;
                 Runtime::US7::US7_1(sprintf!(
                     "{}\n{}\n",
                     sprintf!(
@@ -3375,13 +3370,13 @@ pub mod Runtime {
                         v3,
                         v1_1,
                         getSlice(
-                            v0_1,
+                            v0_1.clone(),
                             Some(0_i32),
                             Some(
-                                if -2_i32 == v87 {
-                                    v80 + 1_i32
+                                if -2_i32 == v83 {
+                                    length(v0_1) + 1_i32
                                 } else {
-                                    v87 + 1_i32
+                                    v83 + 1_i32
                                 } - 1_i32
                             )
                         )
@@ -3970,8 +3965,7 @@ pub mod Runtime {
                                     )
                                 }
                             } else {
-                                let v222: i32 = length(v1_1.get().clone());
-                                let v229: i32 = indexOf(v1_1.get().clone(), string("\n")) - 1_i32;
+                                let v225: i32 = indexOf(v1_1.get().clone(), string("\n")) - 1_i32;
                                 Runtime::US7::US7_1(sprintf!("{}\n{}\n",
                                                                               sprintf!("parsing.p_char / expected: \'{}\' / line: {} / col: {}\n{}{}",
                                                                                        '\"',
@@ -3982,13 +3976,13 @@ pub mod Runtime {
                                                                                                 Some(0_i32),
                                                                                                 Some(if -2_i32
                                                                                                             ==
-                                                                                                            v229
+                                                                                                            v225
                                                                                                         {
-                                                                                                         v222
+                                                                                                         length(v1_1.get().clone())
                                                                                                              +
                                                                                                              1_i32
                                                                                                      } else {
-                                                                                                         v229
+                                                                                                         v225
                                                                                                              +
                                                                                                              1_i32
                                                                                                      }
@@ -4129,8 +4123,7 @@ pub mod Runtime {
                                                     )
                                                 }
                                             } else {
-                                                let v384: i32 = length(v304.clone());
-                                                let v391: i32 =
+                                                let v387: i32 =
                                                     indexOf(v304.clone(), string("\n")) - 1_i32;
                                                 Runtime::US7::US7_1(sprintf!("{}\n{}\n",
                                                                                                   sprintf!("parsing.p_char / expected: \'{}\' / line: {} / col: {}\n{}{}",
@@ -4142,13 +4135,13 @@ pub mod Runtime {
                                                                                                                     Some(0_i32),
                                                                                                                     Some(if -2_i32
                                                                                                                                 ==
-                                                                                                                                v391
+                                                                                                                                v387
                                                                                                                             {
-                                                                                                                             v384
+                                                                                                                             length(v304.clone())
                                                                                                                                  +
                                                                                                                                  1_i32
                                                                                                                          } else {
-                                                                                                                             v391
+                                                                                                                             v387
                                                                                                                                  +
                                                                                                                                  1_i32
                                                                                                                          }

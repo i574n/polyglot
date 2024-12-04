@@ -662,7 +662,7 @@ pub mod File_system {
         };
         let v118: string = File_system::method12();
         let provider: string = if v118.clone() == string("") {
-            string("M-d-yyyy hh:mm:ss tt")
+            string("M-d-y hh:mm:ss tt")
         } else {
             v118
         };
@@ -2154,11 +2154,11 @@ pub mod File_system {
         let v2_1: string = padLeft(v0_1, 32_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}-{}",
-            getSlice(v2_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v2_1.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v2_1.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v2_1.clone(), Some(16_i32), Some(19_i32)),
-            getSlice(v2_1, Some(20_i32), Some(31_i32))
+            getSlice(v2_1.clone(), Some(0_i32), Some(8_i32 - 1_i32)),
+            getSlice(v2_1.clone(), Some(8_i32), Some(12_i32 - 1_i32)),
+            getSlice(v2_1.clone(), Some(12_i32), Some(16_i32 - 1_i32)),
+            getSlice(v2_1.clone(), Some(16_i32), Some(20_i32 - 1_i32)),
+            getSlice(v2_1, Some(20_i32), Some(32_i32 - 1_i32))
         ))
     }
     pub fn closure43(unitVar: (), v0_1: string) -> (string, LrcPtr<dyn IDisposable>) {

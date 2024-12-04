@@ -347,13 +347,14 @@ inl slice_length forall t dim. (x : slice' t dim) : unativeint =
 
 /// ### slice_range
 inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref (slice' t dim) =
-    inl len = s |> slice_length
+    inl len () =
+        s |> slice_length
     inl start, (end : unativeint) =
         match start, end with
-        | Start start, End fn => start, len |> convert |> fn |> convert
-        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> convert
+        | Start start, End fn => start, (len >> convert) |> fn |> convert
+        | End start_fn, End end_fn => (len >> convert) |> start_fn, (len >> convert) |> end_fn |> convert
     match start, end with
-    | start, end when unbox end =. len => !\($'"&!s[!start..]"')
+    | start, end when unbox end =. len () => !\($'"&!s[!start..]"')
     | start, end => !\\((start, end), $'"&!s[$0..$1]"')
 
 /// ### new_slice

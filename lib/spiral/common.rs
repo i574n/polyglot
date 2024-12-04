@@ -529,7 +529,7 @@ pub mod Common {
         };
         let v118: string = Common::method11();
         let provider: string = if v118.clone() == string("") {
-            string("M-d-yyyy hh:mm:ss tt")
+            string("M-d-y hh:mm:ss tt")
         } else {
             v118
         };

@@ -504,7 +504,7 @@ pub mod Networking {
         };
         let v118: string = Networking::method9();
         let provider: string = if v118.clone() == string("") {
-            string("M-d-yyyy hh:mm:ss tt")
+            string("M-d-y hh:mm:ss tt")
         } else {
             v118
         };

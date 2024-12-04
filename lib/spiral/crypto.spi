@@ -75,7 +75,7 @@ inl hash_read data : resultm.result' string stream.io_error =
                 (
                     am'.slice_range `u8 `@size
                         (am'.Start `unativeint zero)
-                        (am'.End `unativeint ((fun _ => count) : unativeint -> unativeint))
+                        (am'.End `unativeint ((fun _ => count) : (() -> unativeint) -> unativeint))
                         buffer
                 )
                 hasher
