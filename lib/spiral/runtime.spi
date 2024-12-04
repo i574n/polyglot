@@ -357,7 +357,8 @@ nominal value_range =
 
 /// ### new_value_range
 inl new_value_range inclusive start end : value_range =
-    inl len = 0i32 |> convert
+    inl len () =
+        0i32 |> convert
     inl start, end =
         open am'
         match start, end with

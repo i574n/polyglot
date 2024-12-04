@@ -790,7 +790,9 @@ module Eval =
                         errors
                 | Error ex, errors ->
                     let ex = ex |> SpiralSm.format_exception
-                    if retry <= 3 && ex |> SpiralSm.contains "Expected one of: inl, let, union, nominal, prototype, type, instance, and, open"
+                    if retry <= 3 &&
+                        (ex |> SpiralSm.contains "Expected one of: inl, let, union, nominal, prototype, type, instance, and, open")
+                        || (ex |> SpiralSm.contains "Unexpected end of block past this token.")
                     then return! evalAsync (retry + 1) props
                     else
                         return

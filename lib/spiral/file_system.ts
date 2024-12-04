@@ -3,7 +3,7 @@ import { map, defaultArg, value as value_9, Option } from "../../deps/Fable/src/
 import { compare as compare_1, op_Modulus, equals, op_Addition, op_Subtraction, fromInt64, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { toString as toString_2, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import * as fs from "fs";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { uint8, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
@@ -749,9 +749,18 @@ export function method13(): string {
 }
 
 export function method10(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    let v301: int64, v355: number;
-    const v297: US2_$union = defaultArg(map<int64, US2_$union>(method11(), v5), US2_US2_1());
-    return toString((v297.tag === /* US2_0 */ 0) ? ((v301 = v297.fields[0], (v355 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v301))), create(1, 1, 1, hours(v355), minutes(v355), seconds(v355), milliseconds(v355))))) : now(), method13());
+    const v305: US2_$union = defaultArg(map<int64, US2_$union>(method11(), v5), US2_US2_1());
+    let v402: Date;
+    if (v305.tag === /* US2_0 */ 0) {
+        const v309: int64 = v305.fields[0];
+        const v362: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v309)));
+        v402 = create(1, 1, 1, hours(v362), minutes(v362), seconds(v362), milliseconds(v362));
+    }
+    else {
+        v402 = now();
+    }
+    const v403: string = method13();
+    return toString(v402, (v403 === "") ? "M-d-yyyy hh:mm:ss tt" : v403);
 }
 
 export function method16(): string {
@@ -1492,15 +1501,18 @@ export function method55(): string {
 }
 
 export function method51(v0_1: string, v1_1: Date): string {
-    const v508: string = toString(v1_1, method54());
-    const v523: any = defaultOf();
-    let v607: number;
+    const v824: string = method54();
+    const v829: string = toString(v1_1, (v824 === "") ? "M-d-yyyy hh:mm:ss tt" : v824);
+    const v844: any = defaultOf();
+    let v1040: number;
     throw new Error(`date_time.get_utc_offset / target: ${US4_US4_3(US3_US3_0())}`);
-    const v618: uint8 = (hours(v607) > 0) ? 1 : 0;
-    const v619: string = method55();
-    const v631 = `${v618}${toString_1(v607, "c", {})}`;
-    const v633: string = v0_1;
-    return parse(`${v508}${v631}${v633.slice(v508.length + v631.length, v633.length)}`);
+    const v1053: uint8 = (hours(v1040) > 0) ? 1 : 0;
+    const v1054: string = method55();
+    const v1078 = `${v1053}${toString_1(v1040, "c", {})}`;
+    const v1082: string = v0_1;
+    const v1092: int32 = (v829.length + v1078.length) | 0;
+    const v1106: int32 = (v1082.length - 1) | 0;
+    return parse(`${v829}${v1078}${v1082.slice(v1092, v1106 + 1)}`);
 }
 
 export function method57(): string {

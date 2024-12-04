@@ -44,15 +44,29 @@ type date_time_switch =
     }
 nominal date_time = $'backend_switch `(date_time_switch)'
 
+/// ### year
+inl year (date_time : date_time) : i32 =
+    backend_switch {
+        Fsharp = fun () => date_time |> $'_.Year' : i32
+        Python = fun () => $'!date_time.year' : i32
+    }
+
 /// ### format
 inl format (format : string) (date_time : date_time) : string =
     backend_switch {
-        Fsharp = fun () => $'!date_time.ToString' format : string
+        Fsharp = fun () =>
+            inl format =
+                if format = ""
+                then "M-d-y hh:mm:ss tt"
+                else format
+            $'!date_time.ToString' format : string
         Python = fun () =>
             inl date_time = join date_time
-            if format = ""
-            then $'\'{dt.month}/{dt.day}/{dt:%Y} {dt:%I}:{dt:%M}:{dt:%S} {dt:%p}\'.format(dt=!date_time)' : string
-            else $'!date_time.strftime(!format)' : string
+            if format <> ""
+            then $'!date_time.strftime(!format)' : string
+            elif year date_time < 1000
+            then $'\'{dt.month}-{dt.day}-{dt.year} {dt:%I}:{dt:%M}:{dt:%S} {dt:%p}\'.format(dt=!date_time)' : string
+            else $'\'{dt.month}-{dt.day}-{dt:%y} {dt:%I}:{dt:%M}:{dt:%S} {dt:%p}\'.format(dt=!date_time)' : string
     }
 
 /// ### format_iso8601
@@ -257,7 +271,7 @@ nominal stopwatch = $'backend_switch `(stopwatch_switch)'
 
 inl stopwatch () : stopwatch =
     backend_switch {
-        Fsharp = fun () => $'`stopwatch ' () : stopwatch
+        Fsharp = fun () => () |> convert : stopwatch
         Python = fun () => $'`stopwatch ' : stopwatch
     }
 
@@ -384,13 +398,8 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
             |> sm'.obj_to_string
             |> sm'.range
                 (am'.Start ((prefix |> sm'.length |> fun x => x : i32) + (time_zone |> sm'.length)))
-                (am'.End id)
-        backend_switch {
-            Fsharp = fun () => $'$"{!prefix}{!time_zone}{!guid_range}"' : string
-            Python = fun () => $'f"{!prefix}{!time_zone}{!guid_range}"' : string
-        }
-        |> fun x => x : string
-        |> convert
+                (am'.End eval)
+        ($'$"{!prefix}{!time_zone}{!guid_range}"' : string) |> convert
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native | Wasm) => fun () =>
@@ -417,18 +426,14 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
             inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
             inl time_zone_value = time_zone |> time_span_format (join "hh:mm")
-            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"'
             create prefix time_zone
         | target => fun () =>
             inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
             inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
             inl time_zone_value = time_zone |> time_span_format (join "hhmm")
-            inl time_zone : string =
-                backend_switch {
-                    Fsharp = fun () => $'$"{!time_zone_signal}{!time_zone_value}"' : string
-                    Python = fun () => $'f"{!time_zone_signal}{!time_zone_value}"' : string
-                }
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"'
             create prefix time_zone
 
 /// ### date_time_from_guid

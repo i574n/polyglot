@@ -474,23 +474,23 @@ mod module_31a2fc18 {
             v4: LrcPtr<Chat_contract::Mut4>,
             v5: Option<i64>,
         ) -> string {
-            let v252: u64 = near_sdk::env::block_timestamp();
-            let v266: Chat_contract::US2 =
+            let v256: u64 = near_sdk::env::block_timestamp();
+            let v270: Chat_contract::US2 =
                 defaultValue(Chat_contract::US2::US2_1, map(Chat_contract::method7(), v5));
-            let v278: u64 = match &v266 {
-                Chat_contract::US2::US2_0(v266_0_0) => {
-                    v252 - match &v266 {
+            let v282: u64 = match &v270 {
+                Chat_contract::US2::US2_0(v270_0_0) => {
+                    v256 - match &v270 {
                         Chat_contract::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     } as u64
                 }
-                _ => v252,
+                _ => v256,
             } / 1000000000_u64;
-            let v279: u64 = v278 % 60_u64;
-            let v281: u64 = v278 / 60_u64 % 60_u64;
-            let v283: u64 = v278 / 3600_u64 % 24_u64;
-            let v285: std::string::String = format!("{:02}:{:02}:{:02}", v283, v281, v279);
-            fable_library_rust::String_::fromString(v285)
+            let v283: u64 = v282 % 60_u64;
+            let v285: u64 = v282 / 60_u64 % 60_u64;
+            let v287: u64 = v282 / 3600_u64 % 24_u64;
+            let v289: std::string::String = format!("{:02}:{:02}:{:02}", v287, v285, v283);
+            fable_library_rust::String_::fromString(v289)
         }
         pub fn method12() -> string {
             string("")

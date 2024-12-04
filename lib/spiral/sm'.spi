@@ -852,7 +852,8 @@ inl format_exception (ex : exn) : string =
 /// ### range
 inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
-        inl len = s |> length'
+        inl len () =
+            s |> length'
         match start, end with
         | Start start, End fn => start, len |> fn
         | End start_fn, End end_fn => start_fn len, end_fn len

@@ -507,22 +507,22 @@ pub mod Common {
         v4: LrcPtr<Common::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v248: u64 = near_sdk::env::block_timestamp();
-        let v262: Common::US2 = defaultValue(Common::US2::US2_1, map(Common::method10(), v5));
-        let v274: u64 = match &v262 {
-            Common::US2::US2_0(v262_0_0) => {
-                v248 - match &v262 {
+        let v256: u64 = near_sdk::env::block_timestamp();
+        let v270: Common::US2 = defaultValue(Common::US2::US2_1, map(Common::method10(), v5));
+        let v282: u64 = match &v270 {
+            Common::US2::US2_0(v270_0_0) => {
+                v256 - match &v270 {
                     Common::US2::US2_0(x) => x.clone(),
                     _ => unreachable!(),
                 } as u64
             }
-            _ => v248,
+            _ => v256,
         } / 1000000000_u64;
-        let v275: u64 = v274 % 60_u64;
-        let v277: u64 = v274 / 60_u64 % 60_u64;
-        let v279: u64 = v274 / 3600_u64 % 24_u64;
-        let v281: std::string::String = format!("{:02}:{:02}:{:02}", v279, v277, v275);
-        fable_library_rust::String_::fromString(v281)
+        let v283: u64 = v282 % 60_u64;
+        let v285: u64 = v282 / 60_u64 % 60_u64;
+        let v287: u64 = v282 / 3600_u64 % 24_u64;
+        let v289: std::string::String = format!("{:02}:{:02}:{:02}", v287, v285, v283);
+        fable_library_rust::String_::fromString(v289)
     }
     pub fn method15() -> string {
         string("")

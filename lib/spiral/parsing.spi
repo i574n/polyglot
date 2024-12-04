@@ -65,7 +65,7 @@ inl any_char () : parser char = function
         inl first_char = x |> sm'.index 0i32
         Ok (
             first_char,
-            x |> sm'.range (am'.Start 1i32) (am'.End id),
+            x |> sm'.range (am'.Start 1i32) (am'.End eval),
             s |> update (first_char |> sm'.obj_to_string)
         )
 
@@ -82,7 +82,7 @@ inl p_char (c : char) : parser char = function
         if first_char = c then
             Ok (
                 first_char,
-                input |> sm'.range (am'.Start 1i32) (am'.End id),
+                input |> sm'.range (am'.Start 1i32) (am'.End eval),
                 s' |> update (first_char |> sm'.obj_to_string)
             )
         else
@@ -93,7 +93,7 @@ inl p_char (c : char) : parser char = function
                         (am'.Start 0i32)
                         (am'.End fun l =>
                             match (input |> sm'.index_of "\n") - 1 with
-                            | -2 => l + 1
+                            | -2 => l () + 1
                             | i => i + 1
                         )
                 backend_switch {
@@ -119,7 +119,7 @@ inl any_string length : parser string = fun input, s =>
         inl result = input |> sm'.range (am'.Start 0i32) (am'.End fun _ => length)
         Ok (
             result,
-            input |> sm'.range (am'.Start length) (am'.End id),
+            input |> sm'.range (am'.Start length) (am'.End eval),
             s |> update result
         )
 
@@ -134,7 +134,7 @@ inl skip_any_string length : parser () = fun input, s =>
     else
         Ok (
             (),
-            input |> sm'.range (am'.Start length) (am'.End id),
+            input |> sm'.range (am'.Start length) (am'.End eval),
             s |> update (input |> sm'.range (am'.Start 0i32) (am'.End fun _ => length))
         )
 
@@ -181,7 +181,7 @@ inl none_of (chars : list char) : parser char = function
         if chars |> listm'.exists' ((=) first_char) |> not then
             Ok (
                 first_char,
-                x |> sm'.range (am'.Start 1i32) (am'.End id),
+                x |> sm'.range (am'.Start 1i32) (am'.End eval),
                 s |> update (first_char |> sm'.obj_to_string)
             )
         else
@@ -310,20 +310,20 @@ inl span pred str =
 inl spaces1 () : parser () = fun input, s =>
     match input |> span ((=) ' ') with
     | 0i32 => Error "parsing.spaces1 / expected at least one space"
-    | n => Ok ((), input |> sm'.range (am'.Start n) (am'.End id), s)
+    | n => Ok ((), input |> sm'.range (am'.Start n) (am'.End eval), s)
 
 /// ### spaces
 inl spaces () : parser () = fun input, s =>
     input
     |> span ((=) ' ')
     |> fun (n : i32) =>
-        Ok ((), input |> sm'.range (am'.Start n) (am'.End id), s)
+        Ok ((), input |> sm'.range (am'.Start n) (am'.End eval), s)
 
 /// ### p_digit
 inl p_digit () : parser char = fun input, s =>
     match input |> sm'.index 0i32 with
     | ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') as c =>
-        Ok (c, input |> sm'.range (am'.Start 1i32) (am'.End id), s)
+        Ok (c, input |> sm'.range (am'.Start 1i32) (am'.End eval), s)
     | c =>
         backend_switch {
             Fsharp = fun () => $'$"parsing.p_digit / unexpected char: {!c}"' : string
@@ -340,7 +340,7 @@ inl opt p : parser (option _) = fun input, s =>
 /// ### rest_of_line
 inl rest_of_line () : parser string = fun input, s =>
     inl i : i32 = input |> span ((<>) '\n')
-    inl result = input |> sm'.range (am'.Start i) (am'.End id)
+    inl result = input |> sm'.range (am'.Start i) (am'.End eval)
     Ok (result, result, s)
 
 /// ### eof

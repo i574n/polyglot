@@ -1887,7 +1887,8 @@ fun () => failwith "test"
 
 inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
-        inl len = s |> length'
+        inl len () =
+            s |> length'
         match start, end with
         | Start start, End fn => start, len |> fn
         | End start_fn, End end_fn => start_fn len, end_fn len
@@ -1900,11 +1901,11 @@ inl range forall t. (start : am'.range t) (end : am'.range t) s =
 ///! cuda
 
 "abcde"
-|> range (am'.Start 1i32) (am'.End id)
+|> range (am'.Start 1i32) (am'.End eval)
 |> _assert_eq "bcde"
 
 "abcde"
-|> range (am'.End fun x => x - 4i32) (am'.End fun x => x - 1)
+|> range (am'.End fun x => x () - 4i32) (am'.End fun x => x () - 1)
 |> _assert_eq "bcd"
 
 #!markdown

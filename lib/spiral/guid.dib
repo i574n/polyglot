@@ -68,11 +68,12 @@ let hash_guid (~hash : string) : hash_guid =
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
             inl hash = hash |> sm'.pad_left 32i32 '0'
-            backend_switch {
-                Fsharp = fun () =>
-                    $'$"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : string
-                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : string
-            }
+            inl a = hash |> sm'.range (am'.Start 0i32) (am'.End fun _ => 8)
+            inl b = hash |> sm'.range (am'.Start 8i32) (am'.End fun _ => 12)
+            inl c = hash |> sm'.range (am'.Start 12i32) (am'.End fun _ => 16)
+            inl d = hash |> sm'.range (am'.Start 16i32) (am'.End fun _ => 20)
+            inl e = hash |> sm'.range (am'.Start 20i32) (am'.End fun _ => 32)
+            $'$"{!a}-{!b}-{!c}-{!d}-{!e}"' : string
             |> fun x => x : string
             |> convert
 

@@ -426,9 +426,9 @@ pub mod Trace {
         v5: Option<i64>,
     ) -> string {
         let v20: Trace::US2 = defaultValue(Trace::US2::US2_1, map(Trace::method7(), v5));
-        let v116: DateTime = match &v20 {
+        let v117: DateTime = match &v20 {
             Trace::US2::US2_0(v20_0_0) => {
-                let v78: TimeSpan = TimeSpan::new_ticks(
+                let v77: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
@@ -441,16 +441,21 @@ pub mod Trace {
                     1_i32,
                     1_i32,
                     1_i32,
-                    v78.hours(),
-                    v78.minutes(),
-                    v78.seconds(),
-                    v78.milliseconds(),
+                    v77.hours(),
+                    v77.minutes(),
+                    v77.seconds(),
+                    v77.milliseconds(),
                 )
             }
             _ => DateTime::now(),
         };
-        let provider: string = Trace::method8();
-        v116.toString(provider)
+        let v118: string = Trace::method8();
+        let provider: string = if v118.clone() == string("") {
+            string("M-d-yyyy hh:mm:ss tt")
+        } else {
+            v118
+        };
+        v117.toString(provider)
     }
     pub fn method12() -> string {
         string("")

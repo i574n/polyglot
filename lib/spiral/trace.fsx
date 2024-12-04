@@ -589,43 +589,43 @@ and method6 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v8 : US2 option = v5 |> Option.map v7 
     let v19 : US2 = US2_1
     let v20 : US2 = v8 |> Option.defaultValue v19 
-    let v116 : System.DateTime =
+    let v117 : System.DateTime =
         match v20 with
         | US2_1 -> (* None *)
-            let v100 : unit = ()
+            let v101 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v101 : System.DateTime = System.DateTime.Now
-            let _v100 = v101 
+            let v102 : System.DateTime = System.DateTime.Now
+            let _v101 = v102 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v102 : System.DateTime = System.DateTime.Now
-            let _v100 = v102 
+            let v103 : System.DateTime = System.DateTime.Now
+            let _v101 = v103 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v103 : System.DateTime = null |> unbox<System.DateTime>
-            let _v100 = v103 
+            let v104 : System.DateTime = null |> unbox<System.DateTime>
+            let _v101 = v104 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v106 : System.DateTime = System.DateTime.Now
-            let _v100 = v106 
+            let v107 : System.DateTime = System.DateTime.Now
+            let _v101 = v107 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v107 : System.DateTime = System.DateTime.Now
-            let _v100 = v107 
+            let v108 : System.DateTime = System.DateTime.Now
+            let _v101 = v108 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v108 : System.DateTime = System.DateTime.Now
-            let _v100 = v108 
+            let v109 : System.DateTime = System.DateTime.Now
+            let _v101 = v109 
             #endif
 #else
-            let v109 : System.DateTime = System.DateTime.Now
-            let _v100 = v109 
+            let v110 : System.DateTime = System.DateTime.Now
+            let _v101 = v110 
             #endif
-            let v110 : System.DateTime = _v100 
-            v110
+            let v111 : System.DateTime = _v101 
+            v111
         | US2_0(v24) -> (* Some *)
             let v25 : unit = ()
             
@@ -701,723 +701,759 @@ and method6 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v56 : int64 = _v40 
             let v73 : int64 = v56 |> int64 
             let v76 : int64 = v73 - v24
-            let v77 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v78 : System.TimeSpan = v77 v76
-            let v81 : (System.TimeSpan -> int32) = _.Hours
-            let v82 : int32 = v81 v78
-            let v85 : (System.TimeSpan -> int32) = _.Minutes
-            let v86 : int32 = v85 v78
-            let v89 : (System.TimeSpan -> int32) = _.Seconds
-            let v90 : int32 = v89 v78
-            let v93 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v94 : int32 = v93 v78
-            let v97 : System.DateTime = System.DateTime (1, 1, 1, v82, v86, v90, v94)
-            v97
-    let v117 : string = method8()
-    let v120 : (string -> string) = v116.ToString
-    let v121 : string = v120 v117
-    let _v6 = v121 
+            let v77 : System.TimeSpan = v76 |> System.TimeSpan 
+            let v82 : (System.TimeSpan -> int32) = _.Hours
+            let v83 : int32 = v82 v77
+            let v86 : (System.TimeSpan -> int32) = _.Minutes
+            let v87 : int32 = v86 v77
+            let v90 : (System.TimeSpan -> int32) = _.Seconds
+            let v91 : int32 = v90 v77
+            let v94 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v95 : int32 = v94 v77
+            let v98 : System.DateTime = System.DateTime (1, 1, 1, v83, v87, v91, v95)
+            v98
+    let v118 : string = method8()
+    let v121 : bool = v118 = ""
+    let v123 : string =
+        if v121 then
+            let v122 : string = "M-d-y hh:mm:ss tt"
+            v122
+        else
+            v118
+    let v124 : (string -> string) = v117.ToString
+    let v125 : string = v124 v123
+    let _v6 = v125 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v127 : (int64 -> US2) = method7()
-    let v128 : US2 option = v5 |> Option.map v127 
-    let v139 : US2 = US2_1
-    let v140 : US2 = v128 |> Option.defaultValue v139 
-    let v236 : System.DateTime =
-        match v140 with
+    let v139 : (int64 -> US2) = method7()
+    let v140 : US2 option = v5 |> Option.map v139 
+    let v151 : US2 = US2_1
+    let v152 : US2 = v140 |> Option.defaultValue v151 
+    let v249 : System.DateTime =
+        match v152 with
         | US2_1 -> (* None *)
-            let v220 : unit = ()
+            let v233 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v221 : System.DateTime = System.DateTime.Now
-            let _v220 = v221 
+            let v234 : System.DateTime = System.DateTime.Now
+            let _v233 = v234 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v222 : System.DateTime = System.DateTime.Now
-            let _v220 = v222 
+            let v235 : System.DateTime = System.DateTime.Now
+            let _v233 = v235 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v223 : System.DateTime = null |> unbox<System.DateTime>
-            let _v220 = v223 
+            let v236 : System.DateTime = null |> unbox<System.DateTime>
+            let _v233 = v236 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v226 : System.DateTime = System.DateTime.Now
-            let _v220 = v226 
+            let v239 : System.DateTime = System.DateTime.Now
+            let _v233 = v239 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v227 : System.DateTime = System.DateTime.Now
-            let _v220 = v227 
+            let v240 : System.DateTime = System.DateTime.Now
+            let _v233 = v240 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v228 : System.DateTime = System.DateTime.Now
-            let _v220 = v228 
+            let v241 : System.DateTime = System.DateTime.Now
+            let _v233 = v241 
             #endif
 #else
-            let v229 : System.DateTime = System.DateTime.Now
-            let _v220 = v229 
+            let v242 : System.DateTime = System.DateTime.Now
+            let _v233 = v242 
             #endif
-            let v230 : System.DateTime = _v220 
+            let v243 : System.DateTime = _v233 
+            v243
+        | US2_0(v156) -> (* Some *)
+            let v157 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v158 : System.DateTime = System.DateTime.Now
+            let _v157 = v158 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v159 : System.DateTime = System.DateTime.Now
+            let _v157 = v159 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v160 : System.DateTime = null |> unbox<System.DateTime>
+            let _v157 = v160 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v163 : System.DateTime = System.DateTime.Now
+            let _v157 = v163 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v164 : System.DateTime = System.DateTime.Now
+            let _v157 = v164 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v165 : System.DateTime = System.DateTime.Now
+            let _v157 = v165 
+            #endif
+#else
+            let v166 : System.DateTime = System.DateTime.Now
+            let _v157 = v166 
+            #endif
+            let v167 : System.DateTime = _v157 
+            let v172 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v173 : (System.DateTime -> int64) = _.Ticks
+            let v174 : int64 = v173 v167
+            let _v172 = v174 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v175 : (System.DateTime -> int64) = _.Ticks
+            let v176 : int64 = v175 v167
+            let _v172 = v176 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v177 : int64 = null |> unbox<int64>
+            let _v172 = v177 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v180 : (System.DateTime -> int64) = _.Ticks
+            let v181 : int64 = v180 v167
+            let _v172 = v181 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v182 : (System.DateTime -> int64) = _.Ticks
+            let v183 : int64 = v182 v167
+            let _v172 = v183 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v184 : (System.DateTime -> int64) = _.Ticks
+            let v185 : int64 = v184 v167
+            let _v172 = v185 
+            #endif
+#else
+            let v186 : (System.DateTime -> int64) = _.Ticks
+            let v187 : int64 = v186 v167
+            let _v172 = v187 
+            #endif
+            let v188 : int64 = _v172 
+            let v205 : int64 = v188 |> int64 
+            let v208 : int64 = v205 - v156
+            let v209 : System.TimeSpan = v208 |> System.TimeSpan 
+            let v214 : (System.TimeSpan -> int32) = _.Hours
+            let v215 : int32 = v214 v209
+            let v218 : (System.TimeSpan -> int32) = _.Minutes
+            let v219 : int32 = v218 v209
+            let v222 : (System.TimeSpan -> int32) = _.Seconds
+            let v223 : int32 = v222 v209
+            let v226 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v227 : int32 = v226 v209
+            let v230 : System.DateTime = System.DateTime (1, 1, 1, v215, v219, v223, v227)
             v230
-        | US2_0(v144) -> (* Some *)
-            let v145 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v146 : System.DateTime = System.DateTime.Now
-            let _v145 = v146 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v147 : System.DateTime = System.DateTime.Now
-            let _v145 = v147 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v148 : System.DateTime = null |> unbox<System.DateTime>
-            let _v145 = v148 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v151 : System.DateTime = System.DateTime.Now
-            let _v145 = v151 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v152 : System.DateTime = System.DateTime.Now
-            let _v145 = v152 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v153 : System.DateTime = System.DateTime.Now
-            let _v145 = v153 
-            #endif
-#else
-            let v154 : System.DateTime = System.DateTime.Now
-            let _v145 = v154 
-            #endif
-            let v155 : System.DateTime = _v145 
-            let v160 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v161 : (System.DateTime -> int64) = _.Ticks
-            let v162 : int64 = v161 v155
-            let _v160 = v162 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v163 : (System.DateTime -> int64) = _.Ticks
-            let v164 : int64 = v163 v155
-            let _v160 = v164 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v165 : int64 = null |> unbox<int64>
-            let _v160 = v165 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v168 : (System.DateTime -> int64) = _.Ticks
-            let v169 : int64 = v168 v155
-            let _v160 = v169 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v170 : (System.DateTime -> int64) = _.Ticks
-            let v171 : int64 = v170 v155
-            let _v160 = v171 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v172 : (System.DateTime -> int64) = _.Ticks
-            let v173 : int64 = v172 v155
-            let _v160 = v173 
-            #endif
-#else
-            let v174 : (System.DateTime -> int64) = _.Ticks
-            let v175 : int64 = v174 v155
-            let _v160 = v175 
-            #endif
-            let v176 : int64 = _v160 
-            let v193 : int64 = v176 |> int64 
-            let v196 : int64 = v193 - v144
-            let v197 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v198 : System.TimeSpan = v197 v196
-            let v201 : (System.TimeSpan -> int32) = _.Hours
-            let v202 : int32 = v201 v198
-            let v205 : (System.TimeSpan -> int32) = _.Minutes
-            let v206 : int32 = v205 v198
-            let v209 : (System.TimeSpan -> int32) = _.Seconds
-            let v210 : int32 = v209 v198
-            let v213 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v214 : int32 = v213 v198
-            let v217 : System.DateTime = System.DateTime (1, 1, 1, v202, v206, v210, v214)
-            v217
-    let v237 : string = method8()
-    let v240 : (string -> string) = v236.ToString
-    let v241 : string = v240 v237
-    let _v6 = v241 
+    let v250 : string = method8()
+    let v253 : bool = v250 = ""
+    let v255 : string =
+        if v253 then
+            let v254 : string = "M-d-y hh:mm:ss tt"
+            v254
+        else
+            v250
+    let v256 : (string -> string) = v249.ToString
+    let v257 : string = v256 v255
+    let _v6 = v257 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v247 : string = $"near_sdk::env::block_timestamp()"
-    let v248 : uint64 = Fable.Core.RustInterop.emitRustExpr () v247 
-    let v249 : (int64 -> US2) = method7()
-    let v250 : US2 option = v5 |> Option.map v249 
-    let v261 : US2 = US2_1
-    let v262 : US2 = v250 |> Option.defaultValue v261 
-    let v273 : uint64 =
-        match v262 with
+    let v271 : string = $"near_sdk::env::block_timestamp()"
+    let v272 : uint64 = Fable.Core.RustInterop.emitRustExpr () v271 
+    let v273 : (int64 -> US2) = method7()
+    let v274 : US2 option = v5 |> Option.map v273 
+    let v285 : US2 = US2_1
+    let v286 : US2 = v274 |> Option.defaultValue v285 
+    let v297 : uint64 =
+        match v286 with
         | US2_1 -> (* None *)
-            v248
-        | US2_0(v266) -> (* Some *)
-            let v267 : (int64 -> uint64) = uint64
-            let v268 : uint64 = v267 v266
-            let v271 : uint64 = v248 - v268
-            v271
-    let v274 : uint64 = v273 / 1000000000UL
-    let v275 : uint64 = v274 % 60UL
-    let v276 : uint64 = v274 / 60UL
-    let v277 : uint64 = v276 % 60UL
-    let v278 : uint64 = v274 / 3600UL
-    let v279 : uint64 = v278 % 24UL
-    let v280 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
-    let v281 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v279, v277, v275) v280 
-    let v282 : string = "fable_library_rust::String_::fromString($0)"
-    let v283 : string = Fable.Core.RustInterop.emitRustExpr v281 v282 
-    let _v6 = v283 
+            v272
+        | US2_0(v290) -> (* Some *)
+            let v291 : (int64 -> uint64) = uint64
+            let v292 : uint64 = v291 v290
+            let v295 : uint64 = v272 - v292
+            v295
+    let v298 : uint64 = v297 / 1000000000UL
+    let v299 : uint64 = v298 % 60UL
+    let v300 : uint64 = v298 / 60UL
+    let v301 : uint64 = v300 % 60UL
+    let v302 : uint64 = v298 / 3600UL
+    let v303 : uint64 = v302 % 24UL
+    let v304 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v305 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v303, v301, v299) v304 
+    let v306 : string = "fable_library_rust::String_::fromString($0)"
+    let v307 : string = Fable.Core.RustInterop.emitRustExpr v305 v306 
+    let _v6 = v307 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v284 : (int64 -> US2) = method7()
-    let v285 : US2 option = v5 |> Option.map v284 
-    let v296 : US2 = US2_1
-    let v297 : US2 = v285 |> Option.defaultValue v296 
-    let v393 : System.DateTime =
-        match v297 with
+    let v308 : (int64 -> US2) = method7()
+    let v309 : US2 option = v5 |> Option.map v308 
+    let v320 : US2 = US2_1
+    let v321 : US2 = v309 |> Option.defaultValue v320 
+    let v418 : System.DateTime =
+        match v321 with
         | US2_1 -> (* None *)
-            let v377 : unit = ()
+            let v402 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v378 : System.DateTime = System.DateTime.Now
-            let _v377 = v378 
+            let v403 : System.DateTime = System.DateTime.Now
+            let _v402 = v403 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v379 : System.DateTime = System.DateTime.Now
-            let _v377 = v379 
+            let v404 : System.DateTime = System.DateTime.Now
+            let _v402 = v404 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v380 : System.DateTime = null |> unbox<System.DateTime>
-            let _v377 = v380 
+            let v405 : System.DateTime = null |> unbox<System.DateTime>
+            let _v402 = v405 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v383 : System.DateTime = System.DateTime.Now
-            let _v377 = v383 
+            let v408 : System.DateTime = System.DateTime.Now
+            let _v402 = v408 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v384 : System.DateTime = System.DateTime.Now
-            let _v377 = v384 
+            let v409 : System.DateTime = System.DateTime.Now
+            let _v402 = v409 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v385 : System.DateTime = System.DateTime.Now
-            let _v377 = v385 
+            let v410 : System.DateTime = System.DateTime.Now
+            let _v402 = v410 
             #endif
 #else
-            let v386 : System.DateTime = System.DateTime.Now
-            let _v377 = v386 
+            let v411 : System.DateTime = System.DateTime.Now
+            let _v402 = v411 
             #endif
-            let v387 : System.DateTime = _v377 
-            v387
-        | US2_0(v301) -> (* Some *)
-            let v302 : unit = ()
+            let v412 : System.DateTime = _v402 
+            v412
+        | US2_0(v325) -> (* Some *)
+            let v326 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v303 : System.DateTime = System.DateTime.Now
-            let _v302 = v303 
+            let v327 : System.DateTime = System.DateTime.Now
+            let _v326 = v327 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v304 : System.DateTime = System.DateTime.Now
-            let _v302 = v304 
+            let v328 : System.DateTime = System.DateTime.Now
+            let _v326 = v328 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v305 : System.DateTime = null |> unbox<System.DateTime>
-            let _v302 = v305 
+            let v329 : System.DateTime = null |> unbox<System.DateTime>
+            let _v326 = v329 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v308 : System.DateTime = System.DateTime.Now
-            let _v302 = v308 
+            let v332 : System.DateTime = System.DateTime.Now
+            let _v326 = v332 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v309 : System.DateTime = System.DateTime.Now
-            let _v302 = v309 
+            let v333 : System.DateTime = System.DateTime.Now
+            let _v326 = v333 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v310 : System.DateTime = System.DateTime.Now
-            let _v302 = v310 
+            let v334 : System.DateTime = System.DateTime.Now
+            let _v326 = v334 
             #endif
 #else
-            let v311 : System.DateTime = System.DateTime.Now
-            let _v302 = v311 
+            let v335 : System.DateTime = System.DateTime.Now
+            let _v326 = v335 
             #endif
-            let v312 : System.DateTime = _v302 
-            let v317 : unit = ()
+            let v336 : System.DateTime = _v326 
+            let v341 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v318 : (System.DateTime -> int64) = _.Ticks
-            let v319 : int64 = v318 v312
-            let _v317 = v319 
+            let v342 : (System.DateTime -> int64) = _.Ticks
+            let v343 : int64 = v342 v336
+            let _v341 = v343 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v320 : (System.DateTime -> int64) = _.Ticks
-            let v321 : int64 = v320 v312
-            let _v317 = v321 
+            let v344 : (System.DateTime -> int64) = _.Ticks
+            let v345 : int64 = v344 v336
+            let _v341 = v345 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v322 : int64 = null |> unbox<int64>
-            let _v317 = v322 
+            let v346 : int64 = null |> unbox<int64>
+            let _v341 = v346 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v325 : (System.DateTime -> int64) = _.Ticks
-            let v326 : int64 = v325 v312
-            let _v317 = v326 
+            let v349 : (System.DateTime -> int64) = _.Ticks
+            let v350 : int64 = v349 v336
+            let _v341 = v350 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v327 : (System.DateTime -> int64) = _.Ticks
-            let v328 : int64 = v327 v312
-            let _v317 = v328 
+            let v351 : (System.DateTime -> int64) = _.Ticks
+            let v352 : int64 = v351 v336
+            let _v341 = v352 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v329 : (System.DateTime -> int64) = _.Ticks
-            let v330 : int64 = v329 v312
-            let _v317 = v330 
+            let v353 : (System.DateTime -> int64) = _.Ticks
+            let v354 : int64 = v353 v336
+            let _v341 = v354 
             #endif
 #else
-            let v331 : (System.DateTime -> int64) = _.Ticks
-            let v332 : int64 = v331 v312
-            let _v317 = v332 
+            let v355 : (System.DateTime -> int64) = _.Ticks
+            let v356 : int64 = v355 v336
+            let _v341 = v356 
             #endif
-            let v333 : int64 = _v317 
-            let v350 : int64 = v333 |> int64 
-            let v353 : int64 = v350 - v301
-            let v354 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v355 : System.TimeSpan = v354 v353
-            let v358 : (System.TimeSpan -> int32) = _.Hours
-            let v359 : int32 = v358 v355
-            let v362 : (System.TimeSpan -> int32) = _.Minutes
-            let v363 : int32 = v362 v355
-            let v366 : (System.TimeSpan -> int32) = _.Seconds
-            let v367 : int32 = v366 v355
-            let v370 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v371 : int32 = v370 v355
-            let v374 : System.DateTime = System.DateTime (1, 1, 1, v359, v363, v367, v371)
-            v374
-    let v394 : string = method9()
-    let v397 : (string -> string) = v393.ToString
-    let v398 : string = v397 v394
-    let _v6 = v398 
+            let v357 : int64 = _v341 
+            let v374 : int64 = v357 |> int64 
+            let v377 : int64 = v374 - v325
+            let v378 : System.TimeSpan = v377 |> System.TimeSpan 
+            let v383 : (System.TimeSpan -> int32) = _.Hours
+            let v384 : int32 = v383 v378
+            let v387 : (System.TimeSpan -> int32) = _.Minutes
+            let v388 : int32 = v387 v378
+            let v391 : (System.TimeSpan -> int32) = _.Seconds
+            let v392 : int32 = v391 v378
+            let v395 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v396 : int32 = v395 v378
+            let v399 : System.DateTime = System.DateTime (1, 1, 1, v384, v388, v392, v396)
+            v399
+    let v419 : string = method9()
+    let v422 : bool = v419 = ""
+    let v424 : string =
+        if v422 then
+            let v423 : string = "M-d-y hh:mm:ss tt"
+            v423
+        else
+            v419
+    let v425 : (string -> string) = v418.ToString
+    let v426 : string = v425 v424
+    let _v6 = v426 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v404 : (int64 -> US2) = method7()
-    let v405 : US2 option = v5 |> Option.map v404 
-    let v416 : US2 = US2_1
-    let v417 : US2 = v405 |> Option.defaultValue v416 
-    let v513 : System.DateTime =
-        match v417 with
+    let v440 : (int64 -> US2) = method7()
+    let v441 : US2 option = v5 |> Option.map v440 
+    let v452 : US2 = US2_1
+    let v453 : US2 = v441 |> Option.defaultValue v452 
+    let v550 : System.DateTime =
+        match v453 with
         | US2_1 -> (* None *)
-            let v497 : unit = ()
+            let v534 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v498 : System.DateTime = System.DateTime.Now
-            let _v497 = v498 
+            let v535 : System.DateTime = System.DateTime.Now
+            let _v534 = v535 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v499 : System.DateTime = System.DateTime.Now
-            let _v497 = v499 
+            let v536 : System.DateTime = System.DateTime.Now
+            let _v534 = v536 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v500 : System.DateTime = null |> unbox<System.DateTime>
-            let _v497 = v500 
+            let v537 : System.DateTime = null |> unbox<System.DateTime>
+            let _v534 = v537 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v503 : System.DateTime = System.DateTime.Now
-            let _v497 = v503 
+            let v540 : System.DateTime = System.DateTime.Now
+            let _v534 = v540 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v504 : System.DateTime = System.DateTime.Now
-            let _v497 = v504 
+            let v541 : System.DateTime = System.DateTime.Now
+            let _v534 = v541 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v505 : System.DateTime = System.DateTime.Now
-            let _v497 = v505 
+            let v542 : System.DateTime = System.DateTime.Now
+            let _v534 = v542 
             #endif
 #else
-            let v506 : System.DateTime = System.DateTime.Now
-            let _v497 = v506 
-            #endif
-            let v507 : System.DateTime = _v497 
-            v507
-        | US2_0(v421) -> (* Some *)
-            let v422 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v423 : System.DateTime = System.DateTime.Now
-            let _v422 = v423 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v424 : System.DateTime = System.DateTime.Now
-            let _v422 = v424 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v425 : System.DateTime = null |> unbox<System.DateTime>
-            let _v422 = v425 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v428 : System.DateTime = System.DateTime.Now
-            let _v422 = v428 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v429 : System.DateTime = System.DateTime.Now
-            let _v422 = v429 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v430 : System.DateTime = System.DateTime.Now
-            let _v422 = v430 
-            #endif
-#else
-            let v431 : System.DateTime = System.DateTime.Now
-            let _v422 = v431 
-            #endif
-            let v432 : System.DateTime = _v422 
-            let v437 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v438 : (System.DateTime -> int64) = _.Ticks
-            let v439 : int64 = v438 v432
-            let _v437 = v439 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v440 : (System.DateTime -> int64) = _.Ticks
-            let v441 : int64 = v440 v432
-            let _v437 = v441 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v442 : int64 = null |> unbox<int64>
-            let _v437 = v442 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v445 : (System.DateTime -> int64) = _.Ticks
-            let v446 : int64 = v445 v432
-            let _v437 = v446 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v447 : (System.DateTime -> int64) = _.Ticks
-            let v448 : int64 = v447 v432
-            let _v437 = v448 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v449 : (System.DateTime -> int64) = _.Ticks
-            let v450 : int64 = v449 v432
-            let _v437 = v450 
-            #endif
-#else
-            let v451 : (System.DateTime -> int64) = _.Ticks
-            let v452 : int64 = v451 v432
-            let _v437 = v452 
-            #endif
-            let v453 : int64 = _v437 
-            let v470 : int64 = v453 |> int64 
-            let v473 : int64 = v470 - v421
-            let v474 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v475 : System.TimeSpan = v474 v473
-            let v478 : (System.TimeSpan -> int32) = _.Hours
-            let v479 : int32 = v478 v475
-            let v482 : (System.TimeSpan -> int32) = _.Minutes
-            let v483 : int32 = v482 v475
-            let v486 : (System.TimeSpan -> int32) = _.Seconds
-            let v487 : int32 = v486 v475
-            let v490 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v491 : int32 = v490 v475
-            let v494 : System.DateTime = System.DateTime (1, 1, 1, v479, v483, v487, v491)
-            v494
-    let v514 : string = method9()
-    let v517 : (string -> string) = v513.ToString
-    let v518 : string = v517 v514
-    let _v6 = v518 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v524 : (int64 -> US2) = method7()
-    let v525 : US2 option = v5 |> Option.map v524 
-    let v536 : US2 = US2_1
-    let v537 : US2 = v525 |> Option.defaultValue v536 
-    let v633 : System.DateTime =
-        match v537 with
-        | US2_1 -> (* None *)
-            let v617 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v618 : System.DateTime = System.DateTime.Now
-            let _v617 = v618 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v619 : System.DateTime = System.DateTime.Now
-            let _v617 = v619 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v620 : System.DateTime = null |> unbox<System.DateTime>
-            let _v617 = v620 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v623 : System.DateTime = System.DateTime.Now
-            let _v617 = v623 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v624 : System.DateTime = System.DateTime.Now
-            let _v617 = v624 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v625 : System.DateTime = System.DateTime.Now
-            let _v617 = v625 
-            #endif
-#else
-            let v626 : System.DateTime = System.DateTime.Now
-            let _v617 = v626 
-            #endif
-            let v627 : System.DateTime = _v617 
-            v627
-        | US2_0(v541) -> (* Some *)
-            let v542 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v543 : System.DateTime = System.DateTime.Now
-            let _v542 = v543 
+            let _v534 = v543 
             #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v544 : System.DateTime = System.DateTime.Now
-            let _v542 = v544 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v545 : System.DateTime = null |> unbox<System.DateTime>
-            let _v542 = v545 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v548 : System.DateTime = System.DateTime.Now
-            let _v542 = v548 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v549 : System.DateTime = System.DateTime.Now
-            let _v542 = v549 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v550 : System.DateTime = System.DateTime.Now
-            let _v542 = v550 
-            #endif
-#else
-            let v551 : System.DateTime = System.DateTime.Now
-            let _v542 = v551 
-            #endif
-            let v552 : System.DateTime = _v542 
-            let v557 : unit = ()
+            let v544 : System.DateTime = _v534 
+            v544
+        | US2_0(v457) -> (* Some *)
+            let v458 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v558 : (System.DateTime -> int64) = _.Ticks
-            let v559 : int64 = v558 v552
-            let _v557 = v559 
+            let v459 : System.DateTime = System.DateTime.Now
+            let _v458 = v459 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v560 : (System.DateTime -> int64) = _.Ticks
-            let v561 : int64 = v560 v552
-            let _v557 = v561 
+            let v460 : System.DateTime = System.DateTime.Now
+            let _v458 = v460 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v562 : int64 = null |> unbox<int64>
-            let _v557 = v562 
+            let v461 : System.DateTime = null |> unbox<System.DateTime>
+            let _v458 = v461 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v565 : (System.DateTime -> int64) = _.Ticks
-            let v566 : int64 = v565 v552
-            let _v557 = v566 
+            let v464 : System.DateTime = System.DateTime.Now
+            let _v458 = v464 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v567 : (System.DateTime -> int64) = _.Ticks
-            let v568 : int64 = v567 v552
-            let _v557 = v568 
+            let v465 : System.DateTime = System.DateTime.Now
+            let _v458 = v465 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v569 : (System.DateTime -> int64) = _.Ticks
-            let v570 : int64 = v569 v552
-            let _v557 = v570 
+            let v466 : System.DateTime = System.DateTime.Now
+            let _v458 = v466 
             #endif
 #else
-            let v571 : (System.DateTime -> int64) = _.Ticks
-            let v572 : int64 = v571 v552
-            let _v557 = v572 
+            let v467 : System.DateTime = System.DateTime.Now
+            let _v458 = v467 
             #endif
-            let v573 : int64 = _v557 
-            let v590 : int64 = v573 |> int64 
-            let v593 : int64 = v590 - v541
-            let v594 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v595 : System.TimeSpan = v594 v593
-            let v598 : (System.TimeSpan -> int32) = _.Hours
-            let v599 : int32 = v598 v595
-            let v602 : (System.TimeSpan -> int32) = _.Minutes
-            let v603 : int32 = v602 v595
-            let v606 : (System.TimeSpan -> int32) = _.Seconds
-            let v607 : int32 = v606 v595
-            let v610 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v611 : int32 = v610 v595
-            let v614 : System.DateTime = System.DateTime (1, 1, 1, v599, v603, v607, v611)
-            v614
-    let v634 : string = method9()
-    let v637 : (string -> string) = v633.ToString
-    let v638 : string = v637 v634
-    let _v6 = v638 
+            let v468 : System.DateTime = _v458 
+            let v473 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v474 : (System.DateTime -> int64) = _.Ticks
+            let v475 : int64 = v474 v468
+            let _v473 = v475 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v476 : (System.DateTime -> int64) = _.Ticks
+            let v477 : int64 = v476 v468
+            let _v473 = v477 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v478 : int64 = null |> unbox<int64>
+            let _v473 = v478 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v481 : (System.DateTime -> int64) = _.Ticks
+            let v482 : int64 = v481 v468
+            let _v473 = v482 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v483 : (System.DateTime -> int64) = _.Ticks
+            let v484 : int64 = v483 v468
+            let _v473 = v484 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v485 : (System.DateTime -> int64) = _.Ticks
+            let v486 : int64 = v485 v468
+            let _v473 = v486 
+            #endif
+#else
+            let v487 : (System.DateTime -> int64) = _.Ticks
+            let v488 : int64 = v487 v468
+            let _v473 = v488 
+            #endif
+            let v489 : int64 = _v473 
+            let v506 : int64 = v489 |> int64 
+            let v509 : int64 = v506 - v457
+            let v510 : System.TimeSpan = v509 |> System.TimeSpan 
+            let v515 : (System.TimeSpan -> int32) = _.Hours
+            let v516 : int32 = v515 v510
+            let v519 : (System.TimeSpan -> int32) = _.Minutes
+            let v520 : int32 = v519 v510
+            let v523 : (System.TimeSpan -> int32) = _.Seconds
+            let v524 : int32 = v523 v510
+            let v527 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v528 : int32 = v527 v510
+            let v531 : System.DateTime = System.DateTime (1, 1, 1, v516, v520, v524, v528)
+            v531
+    let v551 : string = method9()
+    let v554 : bool = v551 = ""
+    let v556 : string =
+        if v554 then
+            let v555 : string = "M-d-y hh:mm:ss tt"
+            v555
+        else
+            v551
+    let v557 : (string -> string) = v550.ToString
+    let v558 : string = v557 v556
+    let _v6 = v558 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v572 : (int64 -> US2) = method7()
+    let v573 : US2 option = v5 |> Option.map v572 
+    let v584 : US2 = US2_1
+    let v585 : US2 = v573 |> Option.defaultValue v584 
+    let v682 : System.DateTime =
+        match v585 with
+        | US2_1 -> (* None *)
+            let v666 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v667 : System.DateTime = System.DateTime.Now
+            let _v666 = v667 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v668 : System.DateTime = System.DateTime.Now
+            let _v666 = v668 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v669 : System.DateTime = null |> unbox<System.DateTime>
+            let _v666 = v669 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v672 : System.DateTime = System.DateTime.Now
+            let _v666 = v672 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v673 : System.DateTime = System.DateTime.Now
+            let _v666 = v673 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v674 : System.DateTime = System.DateTime.Now
+            let _v666 = v674 
+            #endif
+#else
+            let v675 : System.DateTime = System.DateTime.Now
+            let _v666 = v675 
+            #endif
+            let v676 : System.DateTime = _v666 
+            v676
+        | US2_0(v589) -> (* Some *)
+            let v590 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v591 : System.DateTime = System.DateTime.Now
+            let _v590 = v591 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v592 : System.DateTime = System.DateTime.Now
+            let _v590 = v592 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v593 : System.DateTime = null |> unbox<System.DateTime>
+            let _v590 = v593 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v596 : System.DateTime = System.DateTime.Now
+            let _v590 = v596 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v597 : System.DateTime = System.DateTime.Now
+            let _v590 = v597 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v598 : System.DateTime = System.DateTime.Now
+            let _v590 = v598 
+            #endif
+#else
+            let v599 : System.DateTime = System.DateTime.Now
+            let _v590 = v599 
+            #endif
+            let v600 : System.DateTime = _v590 
+            let v605 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v606 : (System.DateTime -> int64) = _.Ticks
+            let v607 : int64 = v606 v600
+            let _v605 = v607 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v608 : (System.DateTime -> int64) = _.Ticks
+            let v609 : int64 = v608 v600
+            let _v605 = v609 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v610 : int64 = null |> unbox<int64>
+            let _v605 = v610 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v613 : (System.DateTime -> int64) = _.Ticks
+            let v614 : int64 = v613 v600
+            let _v605 = v614 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v615 : (System.DateTime -> int64) = _.Ticks
+            let v616 : int64 = v615 v600
+            let _v605 = v616 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v617 : (System.DateTime -> int64) = _.Ticks
+            let v618 : int64 = v617 v600
+            let _v605 = v618 
+            #endif
+#else
+            let v619 : (System.DateTime -> int64) = _.Ticks
+            let v620 : int64 = v619 v600
+            let _v605 = v620 
+            #endif
+            let v621 : int64 = _v605 
+            let v638 : int64 = v621 |> int64 
+            let v641 : int64 = v638 - v589
+            let v642 : System.TimeSpan = v641 |> System.TimeSpan 
+            let v647 : (System.TimeSpan -> int32) = _.Hours
+            let v648 : int32 = v647 v642
+            let v651 : (System.TimeSpan -> int32) = _.Minutes
+            let v652 : int32 = v651 v642
+            let v655 : (System.TimeSpan -> int32) = _.Seconds
+            let v656 : int32 = v655 v642
+            let v659 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v660 : int32 = v659 v642
+            let v663 : System.DateTime = System.DateTime (1, 1, 1, v648, v652, v656, v660)
+            v663
+    let v683 : string = method9()
+    let v686 : bool = v683 = ""
+    let v688 : string =
+        if v686 then
+            let v687 : string = "M-d-y hh:mm:ss tt"
+            v687
+        else
+            v683
+    let v689 : (string -> string) = v682.ToString
+    let v690 : string = v689 v688
+    let _v6 = v690 
     #endif
 #else
-    let v644 : (int64 -> US2) = method7()
-    let v645 : US2 option = v5 |> Option.map v644 
-    let v656 : US2 = US2_1
-    let v657 : US2 = v645 |> Option.defaultValue v656 
-    let v753 : System.DateTime =
-        match v657 with
+    let v704 : (int64 -> US2) = method7()
+    let v705 : US2 option = v5 |> Option.map v704 
+    let v716 : US2 = US2_1
+    let v717 : US2 = v705 |> Option.defaultValue v716 
+    let v814 : System.DateTime =
+        match v717 with
         | US2_1 -> (* None *)
+            let v798 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v799 : System.DateTime = System.DateTime.Now
+            let _v798 = v799 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v800 : System.DateTime = System.DateTime.Now
+            let _v798 = v800 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v801 : System.DateTime = null |> unbox<System.DateTime>
+            let _v798 = v801 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v804 : System.DateTime = System.DateTime.Now
+            let _v798 = v804 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v805 : System.DateTime = System.DateTime.Now
+            let _v798 = v805 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v806 : System.DateTime = System.DateTime.Now
+            let _v798 = v806 
+            #endif
+#else
+            let v807 : System.DateTime = System.DateTime.Now
+            let _v798 = v807 
+            #endif
+            let v808 : System.DateTime = _v798 
+            v808
+        | US2_0(v721) -> (* Some *)
+            let v722 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v723 : System.DateTime = System.DateTime.Now
+            let _v722 = v723 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v724 : System.DateTime = System.DateTime.Now
+            let _v722 = v724 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v725 : System.DateTime = null |> unbox<System.DateTime>
+            let _v722 = v725 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v728 : System.DateTime = System.DateTime.Now
+            let _v722 = v728 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v729 : System.DateTime = System.DateTime.Now
+            let _v722 = v729 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v730 : System.DateTime = System.DateTime.Now
+            let _v722 = v730 
+            #endif
+#else
+            let v731 : System.DateTime = System.DateTime.Now
+            let _v722 = v731 
+            #endif
+            let v732 : System.DateTime = _v722 
             let v737 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v738 : System.DateTime = System.DateTime.Now
-            let _v737 = v738 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v739 : System.DateTime = System.DateTime.Now
+            let v738 : (System.DateTime -> int64) = _.Ticks
+            let v739 : int64 = v738 v732
             let _v737 = v739 
             #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v740 : (System.DateTime -> int64) = _.Ticks
+            let v741 : int64 = v740 v732
+            let _v737 = v741 
+            #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v740 : System.DateTime = null |> unbox<System.DateTime>
-            let _v737 = v740 
+            let v742 : int64 = null |> unbox<int64>
+            let _v737 = v742 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v743 : System.DateTime = System.DateTime.Now
-            let _v737 = v743 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v744 : System.DateTime = System.DateTime.Now
-            let _v737 = v744 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v745 : System.DateTime = System.DateTime.Now
-            let _v737 = v745 
-            #endif
-#else
-            let v746 : System.DateTime = System.DateTime.Now
+            let v745 : (System.DateTime -> int64) = _.Ticks
+            let v746 : int64 = v745 v732
             let _v737 = v746 
             #endif
-            let v747 : System.DateTime = _v737 
-            v747
-        | US2_0(v661) -> (* Some *)
-            let v662 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v663 : System.DateTime = System.DateTime.Now
-            let _v662 = v663 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v664 : System.DateTime = System.DateTime.Now
-            let _v662 = v664 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v665 : System.DateTime = null |> unbox<System.DateTime>
-            let _v662 = v665 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v668 : System.DateTime = System.DateTime.Now
-            let _v662 = v668 
-            #endif
 #if FABLE_COMPILER_PYTHON
-            let v669 : System.DateTime = System.DateTime.Now
-            let _v662 = v669 
+            let v747 : (System.DateTime -> int64) = _.Ticks
+            let v748 : int64 = v747 v732
+            let _v737 = v748 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v670 : System.DateTime = System.DateTime.Now
-            let _v662 = v670 
+            let v749 : (System.DateTime -> int64) = _.Ticks
+            let v750 : int64 = v749 v732
+            let _v737 = v750 
             #endif
 #else
-            let v671 : System.DateTime = System.DateTime.Now
-            let _v662 = v671 
+            let v751 : (System.DateTime -> int64) = _.Ticks
+            let v752 : int64 = v751 v732
+            let _v737 = v752 
             #endif
-            let v672 : System.DateTime = _v662 
-            let v677 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v678 : (System.DateTime -> int64) = _.Ticks
-            let v679 : int64 = v678 v672
-            let _v677 = v679 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v680 : (System.DateTime -> int64) = _.Ticks
-            let v681 : int64 = v680 v672
-            let _v677 = v681 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v682 : int64 = null |> unbox<int64>
-            let _v677 = v682 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v685 : (System.DateTime -> int64) = _.Ticks
-            let v686 : int64 = v685 v672
-            let _v677 = v686 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v687 : (System.DateTime -> int64) = _.Ticks
-            let v688 : int64 = v687 v672
-            let _v677 = v688 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v689 : (System.DateTime -> int64) = _.Ticks
-            let v690 : int64 = v689 v672
-            let _v677 = v690 
-            #endif
-#else
-            let v691 : (System.DateTime -> int64) = _.Ticks
-            let v692 : int64 = v691 v672
-            let _v677 = v692 
-            #endif
-            let v693 : int64 = _v677 
-            let v710 : int64 = v693 |> int64 
-            let v713 : int64 = v710 - v661
-            let v714 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v715 : System.TimeSpan = v714 v713
-            let v718 : (System.TimeSpan -> int32) = _.Hours
-            let v719 : int32 = v718 v715
-            let v722 : (System.TimeSpan -> int32) = _.Minutes
-            let v723 : int32 = v722 v715
-            let v726 : (System.TimeSpan -> int32) = _.Seconds
-            let v727 : int32 = v726 v715
-            let v730 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v731 : int32 = v730 v715
-            let v734 : System.DateTime = System.DateTime (1, 1, 1, v719, v723, v727, v731)
-            v734
-    let v754 : string = method9()
-    let v757 : (string -> string) = v753.ToString
-    let v758 : string = v757 v754
-    let _v6 = v758 
+            let v753 : int64 = _v737 
+            let v770 : int64 = v753 |> int64 
+            let v773 : int64 = v770 - v721
+            let v774 : System.TimeSpan = v773 |> System.TimeSpan 
+            let v779 : (System.TimeSpan -> int32) = _.Hours
+            let v780 : int32 = v779 v774
+            let v783 : (System.TimeSpan -> int32) = _.Minutes
+            let v784 : int32 = v783 v774
+            let v787 : (System.TimeSpan -> int32) = _.Seconds
+            let v788 : int32 = v787 v774
+            let v791 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v792 : int32 = v791 v774
+            let v795 : System.DateTime = System.DateTime (1, 1, 1, v780, v784, v788, v792)
+            v795
+    let v815 : string = method9()
+    let v818 : bool = v815 = ""
+    let v820 : string =
+        if v818 then
+            let v819 : string = "M-d-y hh:mm:ss tt"
+            v819
+        else
+            v815
+    let v821 : (string -> string) = v814.ToString
+    let v822 : string = v821 v820
+    let _v6 = v822 
     #endif
-    let v764 : string = _v6 
-    v764
+    let v836 : string = _v6 
+    v836
 and method12 () : string =
     let v0 : string = ""
     v0

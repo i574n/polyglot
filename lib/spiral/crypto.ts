@@ -5,7 +5,7 @@ import { Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { parse, uint16, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { bool_type, lambda_type, unit_type, string_type, int64_type, union_type, record_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import * as crypto from "crypto";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
@@ -423,9 +423,18 @@ export function method14(): string {
 }
 
 export function method11(v0_1: Mut1, v1_1: Mut2, v2: Mut3, v3: Mut4, v4: Mut5, v5: Option<int64>): string {
-    let v301: int64, v355: number;
-    const v297: US2_$union = defaultArg(map<int64, US2_$union>(method12(), v5), US2_US2_1());
-    return toString((v297.tag === /* US2_0 */ 0) ? ((v301 = v297.fields[0], (v355 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v301))), create(1, 1, 1, hours(v355), minutes(v355), seconds(v355), milliseconds(v355))))) : now(), method14());
+    const v305: US2_$union = defaultArg(map<int64, US2_$union>(method12(), v5), US2_US2_1());
+    let v402: Date;
+    if (v305.tag === /* US2_0 */ 0) {
+        const v309: int64 = v305.fields[0];
+        const v362: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v309)));
+        v402 = create(1, 1, 1, hours(v362), minutes(v362), seconds(v362), milliseconds(v362));
+    }
+    else {
+        v402 = now();
+    }
+    const v403: string = method14();
+    return toString(v402, (v403 === "") ? "M-d-yyyy hh:mm:ss tt" : v403);
 }
 
 export function method17(): string {

@@ -3,7 +3,7 @@ import { union_type, string_type, TypeInfo } from "../../deps/Fable/src/fable-li
 import { parse as parse_1, toString } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { toString as toString_1, hours } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { uint8 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { int32, uint8 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
 import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
@@ -174,15 +174,18 @@ export function method4(): string {
 }
 
 export function method0(v0_1: string, v1_1: Date): string {
-    const v508: string = toString(v1_1, method3());
-    const v523: any = defaultOf();
-    let v607: number;
+    const v824: string = method3();
+    const v829: string = toString(v1_1, (v824 === "") ? "M-d-yyyy hh:mm:ss tt" : v824);
+    const v844: any = defaultOf();
+    let v1040: number;
     throw new Error(`date_time.get_utc_offset / target: ${US3_US3_3(US2_US2_0())}`);
-    const v618: uint8 = (hours(v607) > 0) ? 1 : 0;
-    const v619: string = method4();
-    const v631 = `${v618}${toString_1(v607, "c", {})}`;
-    const v633: string = v0_1;
-    return parse(`${v508}${v631}${v633.slice(v508.length + v631.length, v633.length)}`);
+    const v1053: uint8 = (hours(v1040) > 0) ? 1 : 0;
+    const v1054: string = method4();
+    const v1078 = `${v1053}${toString_1(v1040, "c", {})}`;
+    const v1082: string = v0_1;
+    const v1092: int32 = (v829.length + v1078.length) | 0;
+    const v1106: int32 = (v1082.length - 1) | 0;
+    return parse(`${v829}${v1078}${v1082.slice(v1092, v1106 + 1)}`);
 }
 
 export function closure1(v0_1: string, v1_1: Date): string {
@@ -227,7 +230,7 @@ export function closure9(unitVar: void, v0_1: int64): string {
 }
 
 export function closure11(v0_1: string, v1_1: Date): string {
-    return toString(v1_1, v0_1);
+    return toString(v1_1, (v0_1 === "") ? "M-d-yyyy hh:mm:ss tt" : v0_1);
 }
 
 export function closure10(unitVar: void, v0_1: string): ((arg0: Date) => string) {

@@ -350,15 +350,16 @@ x |> slice 0 2 |> _assert_eq (a ;[ 1; 2 ])
 
 union range dim =
     | Start : dim
-    | End : dim -> dim
+    | End : (() -> dim) -> dim
 
 inl range start end s =
     inl start, end =
+        inl len () =
+            s |> length |> conv
         match start, end with
         | Start start, End fn =>
-            start, s |> length |> conv |> fn
+            start, fn len
         | End start_fn, End end_fn =>
-            inl len = s |> length |> conv
             start_fn len, end_fn len
     s |> slice (start |> unbox) (end |> unbox)
 
