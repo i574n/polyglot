@@ -76,7 +76,7 @@ inl format forall t. (x : t) : string =
     real format_real `t x
 
 /// ### concat_array_trailing
-inl concat_array_trailing (separator : string) (input : a i32 string) =
+inl concat_array_trailing (separator : string) (input : a int string) =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'

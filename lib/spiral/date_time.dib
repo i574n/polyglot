@@ -791,7 +791,7 @@ inl time_zone_local () : time_zone_info =
 inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : time_span =
     run_target function
         | Fsharp _ => fun () => date_time |> $'_.GetUtcOffset' (time_zone_local ())
-        | Rust _ => fun () =>
+        | Rust (Native | Wasm) => fun () =>
             open rust.rust_operators
             inl ticks = date_time |> ticks
             inl ticks = ticks |> rust.rust.emit
@@ -809,15 +809,15 @@ inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : t
 
 #!spiral
 
-let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
+let date_time_guid_from_date_time (guid' : guid.guid) (date_time : date_time) =
     inl create prefix time_zone : date_time_guid =
         inl guid_range =
-            guid
+            guid'
             |> sm'.obj_to_string
             |> sm'.range
                 (am'.Start ((prefix |> sm'.length |> fun x => x : i32) + (time_zone |> sm'.length)))
                 (am'.End eval)
-        ($'$"{!prefix}{!time_zone}{!guid_range}"' : string) |> convert
+        ($'$"{!prefix}{!time_zone}{!guid_range}"' : string) |> guid.new_guid
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native | Wasm) => fun () =>

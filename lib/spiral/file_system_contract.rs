@@ -614,23 +614,23 @@ pub mod File_system {
         v4: LrcPtr<File_system::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v256: u64 = near_sdk::env::block_timestamp();
-        let v270: File_system::US2 =
+        let v272: u64 = near_sdk::env::block_timestamp();
+        let v286: File_system::US2 =
             defaultValue(File_system::US2::US2_1, map(File_system::method11(), v5));
-        let v282: u64 = match &v270 {
-            File_system::US2::US2_0(v270_0_0) => {
-                v256 - match &v270 {
+        let v298: u64 = match &v286 {
+            File_system::US2::US2_0(v286_0_0) => {
+                v272 - match &v286 {
                     File_system::US2::US2_0(x) => x.clone(),
                     _ => unreachable!(),
                 } as u64
             }
-            _ => v256,
+            _ => v272,
         } / 1000000000_u64;
-        let v283: u64 = v282 % 60_u64;
-        let v285: u64 = v282 / 60_u64 % 60_u64;
-        let v287: u64 = v282 / 3600_u64 % 24_u64;
-        let v289: std::string::String = format!("{:02}:{:02}:{:02}", v287, v285, v283);
-        fable_library_rust::String_::fromString(v289)
+        let v299: u64 = v298 % 60_u64;
+        let v301: u64 = v298 / 60_u64 % 60_u64;
+        let v303: u64 = v298 / 3600_u64 % 24_u64;
+        let v305: std::string::String = format!("{:02}:{:02}:{:02}", v303, v301, v299);
+        fable_library_rust::String_::fromString(v305)
     }
     pub fn method16() -> string {
         string("")

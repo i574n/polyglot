@@ -509,9 +509,9 @@ let directory_get_parent (path : string) : optionm'.option' string =
 
 /// ### create_temp_path'
 let create_temp_path' (guid : guid.guid) =
-    run_target function
-        | Rust (Contract) => fun () => null ()
-        | _ => fun () =>
+    run_target_args (fun () => guid) function
+        | Rust (Contract) => fun _ => null ()
+        | _ => fun guid =>
             get_temp_path ()
             </> (join "!create_temp_path_")
             </> (env.get_entry_assembly_name ())
