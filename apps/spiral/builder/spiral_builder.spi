@@ -73,7 +73,7 @@ let get_command () =
                 runtime.new_value_range
                     false
                     (am'.Start (1i32 |> convert : unativeint))
-                    (am'.End id)
+                    (am'.End eval)
             )
             >> runtime.arg_action runtime.Append
         )
@@ -100,7 +100,7 @@ let get_command () =
                 runtime.new_value_range
                     false
                     (am'.Start (1i32 |> convert : unativeint))
-                    (am'.End id)
+                    (am'.End eval)
             )
             >> runtime.arg_action runtime.Append
         )
@@ -108,7 +108,7 @@ let get_command () =
             runtime.arg_num_args_range (
                 runtime.new_value_range
                     true
-                    (am'.End id)
+                    (am'.End eval)
                     (am'.End fun _ => (1i32 |> convert : unativeint))
             )
             >> runtime.arg_require_equals true
@@ -118,7 +118,7 @@ let get_command () =
             runtime.arg_num_args_range (
                 runtime.new_value_range
                     true
-                    (am'.End id)
+                    (am'.End eval)
                     (am'.End fun _ => (1i32 |> convert : unativeint))
             )
             >> runtime.arg_require_equals true
@@ -141,7 +141,7 @@ let get_command () =
                 runtime.new_value_range
                     false
                     (am'.Start (1i32 |> convert : unativeint))
-                    (am'.End id)
+                    (am'.End eval)
             )
             >> runtime.arg_action runtime.Append
         )
@@ -158,7 +158,7 @@ let get_command () =
                 runtime.new_value_range
                     false
                     (am'.Start (1i32 |> convert : unativeint))
-                    (am'.End id)
+                    (am'.End eval)
             )
             >> runtime.arg_action runtime.Append
         )

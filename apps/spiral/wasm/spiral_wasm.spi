@@ -22,7 +22,7 @@ let get_command () =
         runtime.arg_num_args_range (
             runtime.new_value_range
                 true
-                (am'.End id)
+                (am'.End eval)
                 (am'.End fun _ => (1i32 |> convert : unativeint))
         )
         >> runtime.arg_require_equals true

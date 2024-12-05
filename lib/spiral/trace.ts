@@ -3,7 +3,7 @@ import { map, defaultArg, value as value_1, Option } from "../../deps/Fable/src/
 import { op_Addition, op_Subtraction, fromInt64, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
@@ -375,9 +375,18 @@ export function method9(): string {
 }
 
 export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    let v295: int64, v349: number;
-    const v291: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
-    return toString((v291.tag === /* US2_0 */ 0) ? ((v295 = v291.fields[0], (v349 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v295))), create(1, 1, 1, hours(v349), minutes(v349), seconds(v349), milliseconds(v349))))) : now(), method9());
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
+    let v418: Date;
+    if (v321.tag === /* US2_0 */ 0) {
+        const v325: int64 = v321.fields[0];
+        const v378: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v325)));
+        v418 = create(1, 1, 1, hours(v378), minutes(v378), seconds(v378), milliseconds(v378));
+    }
+    else {
+        v418 = now();
+    }
+    const v419: string = method9();
+    return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
 export function method12(): string {

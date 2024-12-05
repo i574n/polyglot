@@ -4,7 +4,7 @@ import { op_Modulus, equals, op_Addition, op_Subtraction, fromInt64, toInt64, in
 import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { int32_type, class_type, bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { interpolate, toText, trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
@@ -498,9 +498,18 @@ export function method10(): string {
 }
 
 export function method7(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    let v295: int64, v349: number;
-    const v291: US2_$union = defaultArg(map<int64, US2_$union>(method8(), v5), US2_US2_1());
-    return toString((v291.tag === /* US2_0 */ 0) ? ((v295 = v291.fields[0], (v349 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v295))), create(1, 1, 1, hours(v349), minutes(v349), seconds(v349), milliseconds(v349))))) : now(), method10());
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method8(), v5), US2_US2_1());
+    let v418: Date;
+    if (v321.tag === /* US2_0 */ 0) {
+        const v325: int64 = v321.fields[0];
+        const v378: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v325)));
+        v418 = create(1, 1, 1, hours(v378), minutes(v378), seconds(v378), milliseconds(v378));
+    }
+    else {
+        v418 = now();
+    }
+    const v419: string = method10();
+    return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
 export function method13(): string {
@@ -757,43 +766,43 @@ export function closure17(v0_1: int32, v1_1: Error, unitVar: void): void {
 
 export function method20(v0_1: int32, v1_1: any): any {
     return singleton.Delay<US6_$union>((): any => {
-        const v9003: any = startChild<boolean>(v1_1, v0_1);
-        return singleton.Bind<any, US6_$union>(v9003, (_arg: any): any => {
-            const v9021: any = catchAsync<boolean>(_arg);
-            const _v9043: any = singleton.Delay<US7_$union>((): any => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v9021, (_arg_1: FSharpChoice$2_$union<boolean, Error>): any => {
-                const v9055: US7_$union = defaultOf();
-                return singleton.Return<US7_$union>(v9055);
+        const v9081: any = startChild<boolean>(v1_1, v0_1);
+        return singleton.Bind<any, US6_$union>(v9081, (_arg: any): any => {
+            const v9099: any = catchAsync<boolean>(_arg);
+            const _v9121: any = singleton.Delay<US7_$union>((): any => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v9099, (_arg_1: FSharpChoice$2_$union<boolean, Error>): any => {
+                const v9133: US7_$union = defaultOf();
+                return singleton.Return<US7_$union>(v9133);
             }));
-            const _v9178: any = singleton.Delay<US8_$union>((): any => singleton.Bind<US7_$union, US8_$union>(_v9043, (_arg_2: US7_$union): any => {
-                const v9179: US7_$union = _arg_2;
-                const v9185: US8_$union = (v9179.tag === /* US7_1 */ 1) ? US8_US8_1(v9179.fields[0]) : US8_US8_0(v9179.fields[0]);
-                return singleton.Return<US8_$union>(v9185);
+            const _v9256: any = singleton.Delay<US8_$union>((): any => singleton.Bind<US7_$union, US8_$union>(_v9121, (_arg_2: US7_$union): any => {
+                const v9257: US7_$union = _arg_2;
+                const v9263: US8_$union = (v9257.tag === /* US7_1 */ 1) ? US8_US8_1(v9257.fields[0]) : US8_US8_0(v9257.fields[0]);
+                return singleton.Return<US8_$union>(v9263);
             }));
-            const _v9229: any = singleton.Delay<US6_$union>((): any => singleton.Bind<US8_$union, US6_$union>(_v9178, (_arg_3: US8_$union): any => {
-                const v9230: US8_$union = _arg_3;
-                let v9354: US6_$union;
-                if (v9230.tag === /* US8_0 */ 0) {
-                    v9354 = US6_US6_0(v9230.fields[0]);
+            const _v9307: any = singleton.Delay<US6_$union>((): any => singleton.Bind<US8_$union, US6_$union>(_v9256, (_arg_3: US8_$union): any => {
+                const v9308: US8_$union = _arg_3;
+                let v9432: US6_$union;
+                if (v9308.tag === /* US8_0 */ 0) {
+                    v9432 = US6_US6_0(v9308.fields[0]);
                 }
                 else {
-                    const v9233: Error = v9230.fields[0];
-                    const v9234: string = toText(interpolate("%A%P()", [v9233]));
-                    if (v9234.indexOf("System.TimeoutException") >= 0) {
-                        let v9243: any;
+                    const v9311: Error = v9308.fields[0];
+                    const v9312: string = toText(interpolate("%A%P()", [v9311]));
+                    if (v9312.indexOf("System.TimeoutException") >= 0) {
+                        let v9321: any;
                         closure16(v0_1, undefined);
-                        v9243 = undefined;
-                        v9354 = US6_US6_1();
+                        v9321 = undefined;
+                        v9432 = US6_US6_1();
                     }
                     else {
-                        let v9286: any;
-                        closure17(v0_1, v9233, undefined);
-                        v9286 = undefined;
-                        v9354 = US6_US6_1();
+                        let v9364: any;
+                        closure17(v0_1, v9311, undefined);
+                        v9364 = undefined;
+                        v9432 = US6_US6_1();
                     }
                 }
-                return singleton.Return<US6_$union>(v9354);
+                return singleton.Return<US6_$union>(v9432);
             }));
-            return singleton.ReturnFrom<US6_$union>(_v9229);
+            return singleton.ReturnFrom<US6_$union>(_v9307);
         });
     });
 }

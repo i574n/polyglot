@@ -694,402 +694,408 @@ let rec method0 () : clap_Command =
     let v149 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v145; v148|]
     let v150 : unativeint = 1 |> unativeint 
     let v153 : unativeint = 0 |> unativeint 
-    let v156 : bool = v153 = v153 
-    let v164 : clap_builder_ValueRange =
-        if v156 then
-            let v159 : string = "clap::builder::ValueRange::new($0..)"
-            let v160 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v150 v159 
-            v160
-        else
-            let v161 : string = ""
-            let v162 : string = "clap::builder::ValueRange::new($0.." + v161 + "$1)"
-            let v163 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v150, v153) v162 
+    let v156 : unativeint = 0 |> unativeint 
+    let v159 : bool = v153 = v156 
+    let v167 : clap_builder_ValueRange =
+        if v159 then
+            let v162 : string = "clap::builder::ValueRange::new($0..)"
+            let v163 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v150 v162 
             v163
-    let v165 : string = "deps"
-    let v166 : string = "r#\"" + v165 + "\"#"
-    let v167 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v166 
-    let v168 : string = "clap::Arg::new($0)"
-    let v169 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v167 v168 
-    let v170 : string = "$0.short($1)"
-    let v171 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v169, 'd') v170 
-    let v172 : string = "r#\"" + v165 + "\"#"
-    let v173 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v172 
-    let v174 : string = "$0.long($1)"
-    let v175 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v171, v173) v174 
-    let v176 : string = "$0.to_vec()"
-    let v177 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v149 v176 
-    let v178 : string = "$0.value_names($1)"
-    let v179 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v175, v177) v178 
-    let v180 : string = "$0.num_args($1)"
-    let v181 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v179, v164) v180 
-    let v182 : string = "clap::ArgAction::Append"
-    let v183 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v182 
-    let v184 : string = "$0.action($1)"
-    let v185 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v181, v183) v184 
-    let v186 : string = "clap::Command::arg($0, $1)"
-    let v187 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v142, v185) v186 
-    let v188 : string = "clap::Command::subcommand($0, v187)"
-    let v189 : clap_Command = Fable.Core.RustInterop.emitRustExpr v28 v188 
-    let v190 : string = "fable"
-    let v191 : string = "r#\"" + v190 + "\"#"
-    let v192 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v191 
-    let v193 : string = "clap::Command::new($0)"
-    let v194 : clap_Command = Fable.Core.RustInterop.emitRustExpr v192 v193 
-    let v195 : string = "fs-path"
-    let v196 : string = "r#\"" + v195 + "\"#"
-    let v197 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v196 
-    let v198 : string = "clap::Arg::new($0)"
-    let v199 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v197 v198 
-    let v200 : string = "$0.short($1)"
-    let v201 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v199, 'f') v200 
-    let v202 : string = "r#\"" + v195 + "\"#"
-    let v203 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v202 
-    let v204 : string = "$0.long($1)"
-    let v205 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v201, v203) v204 
-    let v206 : string = "$0.required($1)"
-    let v207 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v205, true) v206 
-    let v208 : string = "clap::Command::arg($0, $1)"
-    let v209 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v194, v207) v208 
-    let v210 : string = "r#\"" + v0 + "\"#"
-    let v211 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v210 
-    let v212 : string = "clap::Arg::new($0)"
-    let v213 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v211 v212 
-    let v214 : string = "$0.short($1)"
-    let v215 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v213, 'c') v214 
-    let v216 : string = "r#\"" + v0 + "\"#"
-    let v217 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v216 
-    let v218 : string = "$0.long($1)"
-    let v219 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v215, v217) v218 
-    let v220 : string = "clap::Command::arg($0, $1)"
-    let v221 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v209, v219) v220 
-    let v222 : string = "clap::Command::subcommand($0, v221)"
-    let v223 : clap_Command = Fable.Core.RustInterop.emitRustExpr v189 v222 
-    let v224 : string = "rust"
-    let v225 : string = "r#\"" + v224 + "\"#"
-    let v226 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v225 
-    let v227 : string = "clap::Command::new($0)"
-    let v228 : clap_Command = Fable.Core.RustInterop.emitRustExpr v226 v227 
-    let v229 : string = "r#\"" + v195 + "\"#"
-    let v230 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v229 
-    let v231 : string = "clap::Arg::new($0)"
-    let v232 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v230 v231 
-    let v233 : string = "$0.short($1)"
-    let v234 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v232, 'f') v233 
-    let v235 : string = "r#\"" + v195 + "\"#"
-    let v236 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v235 
-    let v237 : string = "$0.long($1)"
-    let v238 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v234, v236) v237 
-    let v239 : string = "$0.required($1)"
-    let v240 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v238, true) v239 
-    let v241 : string = "clap::Command::arg($0, $1)"
-    let v242 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v228, v240) v241 
-    let v243 : string = "r#\"" + v143 + "\"#"
-    let v244 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v243 
-    let v245 : string = "r#\"" + v146 + "\"#"
-    let v246 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v245 
-    let v247 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v244; v246|]
-    let v248 : unativeint = 1 |> unativeint 
-    let v251 : unativeint = 0 |> unativeint 
-    let v254 : bool = v251 = v251 
-    let v262 : clap_builder_ValueRange =
-        if v254 then
-            let v257 : string = "clap::builder::ValueRange::new($0..)"
-            let v258 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v248 v257 
-            v258
         else
-            let v259 : string = ""
-            let v260 : string = "clap::builder::ValueRange::new($0.." + v259 + "$1)"
-            let v261 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v248, v251) v260 
-            v261
-    let v263 : string = "r#\"" + v165 + "\"#"
-    let v264 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v263 
-    let v265 : string = "clap::Arg::new($0)"
-    let v266 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v264 v265 
-    let v267 : string = "$0.short($1)"
-    let v268 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v266, 'd') v267 
-    let v269 : string = "r#\"" + v165 + "\"#"
+            let v164 : string = ""
+            let v165 : string = "clap::builder::ValueRange::new($0.." + v164 + "$1)"
+            let v166 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v150, v153) v165 
+            v166
+    let v168 : string = "deps"
+    let v169 : string = "r#\"" + v168 + "\"#"
+    let v170 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v169 
+    let v171 : string = "clap::Arg::new($0)"
+    let v172 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v170 v171 
+    let v173 : string = "$0.short($1)"
+    let v174 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v172, 'd') v173 
+    let v175 : string = "r#\"" + v168 + "\"#"
+    let v176 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v175 
+    let v177 : string = "$0.long($1)"
+    let v178 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v174, v176) v177 
+    let v179 : string = "$0.to_vec()"
+    let v180 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v149 v179 
+    let v181 : string = "$0.value_names($1)"
+    let v182 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v178, v180) v181 
+    let v183 : string = "$0.num_args($1)"
+    let v184 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v182, v167) v183 
+    let v185 : string = "clap::ArgAction::Append"
+    let v186 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v185 
+    let v187 : string = "$0.action($1)"
+    let v188 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v184, v186) v187 
+    let v189 : string = "clap::Command::arg($0, $1)"
+    let v190 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v142, v188) v189 
+    let v191 : string = "clap::Command::subcommand($0, v190)"
+    let v192 : clap_Command = Fable.Core.RustInterop.emitRustExpr v28 v191 
+    let v193 : string = "fable"
+    let v194 : string = "r#\"" + v193 + "\"#"
+    let v195 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v194 
+    let v196 : string = "clap::Command::new($0)"
+    let v197 : clap_Command = Fable.Core.RustInterop.emitRustExpr v195 v196 
+    let v198 : string = "fs-path"
+    let v199 : string = "r#\"" + v198 + "\"#"
+    let v200 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v199 
+    let v201 : string = "clap::Arg::new($0)"
+    let v202 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v200 v201 
+    let v203 : string = "$0.short($1)"
+    let v204 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v202, 'f') v203 
+    let v205 : string = "r#\"" + v198 + "\"#"
+    let v206 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v205 
+    let v207 : string = "$0.long($1)"
+    let v208 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v204, v206) v207 
+    let v209 : string = "$0.required($1)"
+    let v210 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v208, true) v209 
+    let v211 : string = "clap::Command::arg($0, $1)"
+    let v212 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v197, v210) v211 
+    let v213 : string = "r#\"" + v0 + "\"#"
+    let v214 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v213 
+    let v215 : string = "clap::Arg::new($0)"
+    let v216 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v214 v215 
+    let v217 : string = "$0.short($1)"
+    let v218 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v216, 'c') v217 
+    let v219 : string = "r#\"" + v0 + "\"#"
+    let v220 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v219 
+    let v221 : string = "$0.long($1)"
+    let v222 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v218, v220) v221 
+    let v223 : string = "clap::Command::arg($0, $1)"
+    let v224 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v212, v222) v223 
+    let v225 : string = "clap::Command::subcommand($0, v224)"
+    let v226 : clap_Command = Fable.Core.RustInterop.emitRustExpr v192 v225 
+    let v227 : string = "rust"
+    let v228 : string = "r#\"" + v227 + "\"#"
+    let v229 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v228 
+    let v230 : string = "clap::Command::new($0)"
+    let v231 : clap_Command = Fable.Core.RustInterop.emitRustExpr v229 v230 
+    let v232 : string = "r#\"" + v198 + "\"#"
+    let v233 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v232 
+    let v234 : string = "clap::Arg::new($0)"
+    let v235 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v233 v234 
+    let v236 : string = "$0.short($1)"
+    let v237 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v235, 'f') v236 
+    let v238 : string = "r#\"" + v198 + "\"#"
+    let v239 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v238 
+    let v240 : string = "$0.long($1)"
+    let v241 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v237, v239) v240 
+    let v242 : string = "$0.required($1)"
+    let v243 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v241, true) v242 
+    let v244 : string = "clap::Command::arg($0, $1)"
+    let v245 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v231, v243) v244 
+    let v246 : string = "r#\"" + v143 + "\"#"
+    let v247 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v246 
+    let v248 : string = "r#\"" + v146 + "\"#"
+    let v249 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v248 
+    let v250 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v247; v249|]
+    let v251 : unativeint = 1 |> unativeint 
+    let v254 : unativeint = 0 |> unativeint 
+    let v257 : unativeint = 0 |> unativeint 
+    let v260 : bool = v254 = v257 
+    let v268 : clap_builder_ValueRange =
+        if v260 then
+            let v263 : string = "clap::builder::ValueRange::new($0..)"
+            let v264 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v251 v263 
+            v264
+        else
+            let v265 : string = ""
+            let v266 : string = "clap::builder::ValueRange::new($0.." + v265 + "$1)"
+            let v267 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v251, v254) v266 
+            v267
+    let v269 : string = "r#\"" + v168 + "\"#"
     let v270 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v269 
-    let v271 : string = "$0.long($1)"
-    let v272 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v268, v270) v271 
-    let v273 : string = "$0.to_vec()"
-    let v274 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v247 v273 
-    let v275 : string = "$0.value_names($1)"
-    let v276 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v272, v274) v275 
-    let v277 : string = "$0.num_args($1)"
-    let v278 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v276, v262) v277 
-    let v279 : string = "clap::ArgAction::Append"
-    let v280 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v279 
-    let v281 : string = "$0.action($1)"
+    let v271 : string = "clap::Arg::new($0)"
+    let v272 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v270 v271 
+    let v273 : string = "$0.short($1)"
+    let v274 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v272, 'd') v273 
+    let v275 : string = "r#\"" + v168 + "\"#"
+    let v276 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v275 
+    let v277 : string = "$0.long($1)"
+    let v278 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v274, v276) v277 
+    let v279 : string = "$0.to_vec()"
+    let v280 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v250 v279 
+    let v281 : string = "$0.value_names($1)"
     let v282 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v278, v280) v281 
-    let v283 : string = "clap::Command::arg($0, $1)"
-    let v284 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v242, v282) v283 
-    let v285 : unativeint = 0 |> unativeint 
-    let v288 : unativeint = 1 |> unativeint 
-    let v291 : bool = v288 = v285 
-    let v299 : clap_builder_ValueRange =
-        if v291 then
-            let v294 : string = "clap::builder::ValueRange::new($0..)"
-            let v295 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v285 v294 
-            v295
+    let v283 : string = "$0.num_args($1)"
+    let v284 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v282, v268) v283 
+    let v285 : string = "clap::ArgAction::Append"
+    let v286 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v285 
+    let v287 : string = "$0.action($1)"
+    let v288 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v284, v286) v287 
+    let v289 : string = "clap::Command::arg($0, $1)"
+    let v290 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v245, v288) v289 
+    let v291 : unativeint = 0 |> unativeint 
+    let v294 : unativeint = 1 |> unativeint 
+    let v297 : unativeint = 0 |> unativeint 
+    let v300 : bool = v294 = v297 
+    let v308 : clap_builder_ValueRange =
+        if v300 then
+            let v303 : string = "clap::builder::ValueRange::new($0..)"
+            let v304 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v291 v303 
+            v304
         else
-            let v296 : string = "="
-            let v297 : string = "clap::builder::ValueRange::new($0.." + v296 + "$1)"
-            let v298 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v285, v288) v297 
-            v298
-    let v300 : string = "wasm"
-    let v301 : string = "r#\"" + v300 + "\"#"
-    let v302 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v301 
-    let v303 : string = "clap::Arg::new($0)"
-    let v304 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v302 v303 
-    let v305 : string = "$0.short($1)"
-    let v306 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v304, 'w') v305 
-    let v307 : string = "r#\"" + v300 + "\"#"
-    let v308 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v307 
-    let v309 : string = "$0.long($1)"
-    let v310 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v306, v308) v309 
-    let v311 : string = "$0.num_args($1)"
-    let v312 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v310, v299) v311 
-    let v313 : string = "$0.require_equals($1)"
-    let v314 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v312, true) v313 
-    let v315 : string = ""
-    let v316 : string = "r#\"" + v315 + "\"#"
-    let v317 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v316 
-    let v318 : string = "$0.default_missing_value($1)"
-    let v319 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v314, v317) v318 
-    let v320 : string = "clap::Command::arg($0, $1)"
-    let v321 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v284, v319) v320 
-    let v322 : unativeint = 0 |> unativeint 
-    let v325 : unativeint = 1 |> unativeint 
-    let v328 : bool = v325 = v322 
-    let v336 : clap_builder_ValueRange =
-        if v328 then
-            let v331 : string = "clap::builder::ValueRange::new($0..)"
-            let v332 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v322 v331 
-            v332
+            let v305 : string = "="
+            let v306 : string = "clap::builder::ValueRange::new($0.." + v305 + "$1)"
+            let v307 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v291, v294) v306 
+            v307
+    let v309 : string = "wasm"
+    let v310 : string = "r#\"" + v309 + "\"#"
+    let v311 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v310 
+    let v312 : string = "clap::Arg::new($0)"
+    let v313 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v311 v312 
+    let v314 : string = "$0.short($1)"
+    let v315 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v313, 'w') v314 
+    let v316 : string = "r#\"" + v309 + "\"#"
+    let v317 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v316 
+    let v318 : string = "$0.long($1)"
+    let v319 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v315, v317) v318 
+    let v320 : string = "$0.num_args($1)"
+    let v321 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v319, v308) v320 
+    let v322 : string = "$0.require_equals($1)"
+    let v323 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v321, true) v322 
+    let v324 : string = ""
+    let v325 : string = "r#\"" + v324 + "\"#"
+    let v326 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v325 
+    let v327 : string = "$0.default_missing_value($1)"
+    let v328 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v323, v326) v327 
+    let v329 : string = "clap::Command::arg($0, $1)"
+    let v330 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v290, v328) v329 
+    let v331 : unativeint = 0 |> unativeint 
+    let v334 : unativeint = 1 |> unativeint 
+    let v337 : unativeint = 0 |> unativeint 
+    let v340 : bool = v334 = v337 
+    let v348 : clap_builder_ValueRange =
+        if v340 then
+            let v343 : string = "clap::builder::ValueRange::new($0..)"
+            let v344 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v331 v343 
+            v344
         else
-            let v333 : string = "="
-            let v334 : string = "clap::builder::ValueRange::new($0.." + v333 + "$1)"
-            let v335 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v322, v325) v334 
-            v335
-    let v337 : string = "contract"
-    let v338 : string = "r#\"" + v337 + "\"#"
-    let v339 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v338 
-    let v340 : string = "clap::Arg::new($0)"
-    let v341 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v339 v340 
-    let v342 : string = "$0.short($1)"
-    let v343 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v341, 'c') v342 
-    let v344 : string = "r#\"" + v337 + "\"#"
-    let v345 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v344 
-    let v346 : string = "$0.long($1)"
-    let v347 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v343, v345) v346 
-    let v348 : string = "$0.num_args($1)"
-    let v349 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v347, v336) v348 
-    let v350 : string = "$0.require_equals($1)"
-    let v351 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v349, true) v350 
-    let v352 : string = "r#\"" + v315 + "\"#"
-    let v353 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v352 
-    let v354 : string = "$0.default_missing_value($1)"
-    let v355 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v351, v353) v354 
-    let v356 : string = "clap::Command::arg($0, $1)"
-    let v357 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v321, v355) v356 
-    let v358 : string = "cleanup"
-    let v359 : string = "r#\"" + v358 + "\"#"
-    let v360 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v359 
-    let v361 : string = "clap::Arg::new($0)"
-    let v362 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v360 v361 
-    let v363 : string = "$0.short($1)"
-    let v364 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v362, 'l') v363 
-    let v365 : string = "r#\"" + v358 + "\"#"
-    let v366 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v365 
-    let v367 : string = "$0.long($1)"
-    let v368 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v364, v366) v367 
-    let v369 : string = "true"
-    let v370 : string = "r#\"" + v369 + "\"#"
-    let v371 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v370 
-    let v372 : string = "$0.default_value($1)"
-    let v373 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v368, v371) v372 
-    let v374 : string = "clap::ArgAction::SetFalse"
-    let v375 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v374 
-    let v376 : string = "$0.action($1)"
-    let v377 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v373, v375) v376 
-    let v378 : string = "clap::Command::arg($0, $1)"
-    let v379 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v357, v377) v378 
-    let v380 : string = "clap::Command::subcommand($0, v379)"
-    let v381 : clap_Command = Fable.Core.RustInterop.emitRustExpr v223 v380 
-    let v382 : string = "typescript"
-    let v383 : string = "r#\"" + v382 + "\"#"
-    let v384 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v383 
-    let v385 : string = "clap::Command::new($0)"
-    let v386 : clap_Command = Fable.Core.RustInterop.emitRustExpr v384 v385 
-    let v387 : string = "r#\"" + v195 + "\"#"
-    let v388 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v387 
-    let v389 : string = "clap::Arg::new($0)"
-    let v390 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v388 v389 
-    let v391 : string = "$0.short($1)"
-    let v392 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v390, 'f') v391 
-    let v393 : string = "r#\"" + v195 + "\"#"
-    let v394 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v393 
-    let v395 : string = "$0.long($1)"
-    let v396 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v392, v394) v395 
-    let v397 : string = "$0.required($1)"
-    let v398 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v396, true) v397 
-    let v399 : string = "clap::Command::arg($0, $1)"
-    let v400 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v386, v398) v399 
-    let v401 : string = "r#\"" + v143 + "\"#"
-    let v402 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v401 
-    let v403 : string = "r#\"" + v146 + "\"#"
-    let v404 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v403 
-    let v405 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v402; v404|]
-    let v406 : unativeint = 1 |> unativeint 
-    let v409 : unativeint = 0 |> unativeint 
-    let v412 : bool = v409 = v409 
-    let v419 : clap_builder_ValueRange =
-        if v412 then
-            let v415 : string = "clap::builder::ValueRange::new($0..)"
-            let v416 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v406 v415 
-            v416
+            let v345 : string = "="
+            let v346 : string = "clap::builder::ValueRange::new($0.." + v345 + "$1)"
+            let v347 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v331, v334) v346 
+            v347
+    let v349 : string = "contract"
+    let v350 : string = "r#\"" + v349 + "\"#"
+    let v351 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v350 
+    let v352 : string = "clap::Arg::new($0)"
+    let v353 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v351 v352 
+    let v354 : string = "$0.short($1)"
+    let v355 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v353, 'c') v354 
+    let v356 : string = "r#\"" + v349 + "\"#"
+    let v357 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v356 
+    let v358 : string = "$0.long($1)"
+    let v359 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v355, v357) v358 
+    let v360 : string = "$0.num_args($1)"
+    let v361 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v359, v348) v360 
+    let v362 : string = "$0.require_equals($1)"
+    let v363 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v361, true) v362 
+    let v364 : string = "r#\"" + v324 + "\"#"
+    let v365 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v364 
+    let v366 : string = "$0.default_missing_value($1)"
+    let v367 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v363, v365) v366 
+    let v368 : string = "clap::Command::arg($0, $1)"
+    let v369 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v330, v367) v368 
+    let v370 : string = "cleanup"
+    let v371 : string = "r#\"" + v370 + "\"#"
+    let v372 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v371 
+    let v373 : string = "clap::Arg::new($0)"
+    let v374 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v372 v373 
+    let v375 : string = "$0.short($1)"
+    let v376 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v374, 'l') v375 
+    let v377 : string = "r#\"" + v370 + "\"#"
+    let v378 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v377 
+    let v379 : string = "$0.long($1)"
+    let v380 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v376, v378) v379 
+    let v381 : string = "true"
+    let v382 : string = "r#\"" + v381 + "\"#"
+    let v383 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v382 
+    let v384 : string = "$0.default_value($1)"
+    let v385 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v380, v383) v384 
+    let v386 : string = "clap::ArgAction::SetFalse"
+    let v387 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v386 
+    let v388 : string = "$0.action($1)"
+    let v389 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v385, v387) v388 
+    let v390 : string = "clap::Command::arg($0, $1)"
+    let v391 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v369, v389) v390 
+    let v392 : string = "clap::Command::subcommand($0, v391)"
+    let v393 : clap_Command = Fable.Core.RustInterop.emitRustExpr v226 v392 
+    let v394 : string = "typescript"
+    let v395 : string = "r#\"" + v394 + "\"#"
+    let v396 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v395 
+    let v397 : string = "clap::Command::new($0)"
+    let v398 : clap_Command = Fable.Core.RustInterop.emitRustExpr v396 v397 
+    let v399 : string = "r#\"" + v198 + "\"#"
+    let v400 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v399 
+    let v401 : string = "clap::Arg::new($0)"
+    let v402 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v400 v401 
+    let v403 : string = "$0.short($1)"
+    let v404 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v402, 'f') v403 
+    let v405 : string = "r#\"" + v198 + "\"#"
+    let v406 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v405 
+    let v407 : string = "$0.long($1)"
+    let v408 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v404, v406) v407 
+    let v409 : string = "$0.required($1)"
+    let v410 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v408, true) v409 
+    let v411 : string = "clap::Command::arg($0, $1)"
+    let v412 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v398, v410) v411 
+    let v413 : string = "r#\"" + v143 + "\"#"
+    let v414 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v413 
+    let v415 : string = "r#\"" + v146 + "\"#"
+    let v416 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v415 
+    let v417 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v414; v416|]
+    let v418 : unativeint = 1 |> unativeint 
+    let v421 : unativeint = 0 |> unativeint 
+    let v424 : unativeint = 0 |> unativeint 
+    let v427 : bool = v421 = v424 
+    let v434 : clap_builder_ValueRange =
+        if v427 then
+            let v430 : string = "clap::builder::ValueRange::new($0..)"
+            let v431 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v418 v430 
+            v431
         else
-            let v417 : string = "clap::builder::ValueRange::new($0.." + v315 + "$1)"
-            let v418 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v406, v409) v417 
-            v418
-    let v420 : string = "r#\"" + v165 + "\"#"
-    let v421 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v420 
-    let v422 : string = "clap::Arg::new($0)"
-    let v423 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v421 v422 
-    let v424 : string = "$0.short($1)"
-    let v425 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v423, 'd') v424 
-    let v426 : string = "r#\"" + v165 + "\"#"
-    let v427 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v426 
-    let v428 : string = "$0.long($1)"
-    let v429 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v425, v427) v428 
-    let v430 : string = "$0.to_vec()"
-    let v431 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v405 v430 
-    let v432 : string = "$0.value_names($1)"
-    let v433 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v429, v431) v432 
-    let v434 : string = "$0.num_args($1)"
-    let v435 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v433, v419) v434 
-    let v436 : string = "clap::ArgAction::Append"
-    let v437 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v436 
-    let v438 : string = "$0.action($1)"
-    let v439 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v435, v437) v438 
-    let v440 : string = "clap::Command::arg($0, $1)"
-    let v441 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v400, v439) v440 
-    let v442 : string = "clap::Command::subcommand($0, v441)"
-    let v443 : clap_Command = Fable.Core.RustInterop.emitRustExpr v381 v442 
-    let v444 : string = "python"
-    let v445 : string = "r#\"" + v444 + "\"#"
-    let v446 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v445 
-    let v447 : string = "clap::Command::new($0)"
-    let v448 : clap_Command = Fable.Core.RustInterop.emitRustExpr v446 v447 
-    let v449 : string = "r#\"" + v195 + "\"#"
-    let v450 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v449 
-    let v451 : string = "clap::Arg::new($0)"
-    let v452 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v450 v451 
-    let v453 : string = "$0.short($1)"
-    let v454 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v452, 'f') v453 
-    let v455 : string = "r#\"" + v195 + "\"#"
-    let v456 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v455 
-    let v457 : string = "$0.long($1)"
-    let v458 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v454, v456) v457 
-    let v459 : string = "$0.required($1)"
-    let v460 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v458, true) v459 
-    let v461 : string = "clap::Command::arg($0, $1)"
-    let v462 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v448, v460) v461 
-    let v463 : string = "r#\"" + v143 + "\"#"
-    let v464 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v463 
-    let v465 : string = "r#\"" + v146 + "\"#"
-    let v466 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v465 
-    let v467 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v464; v466|]
-    let v468 : unativeint = 1 |> unativeint 
-    let v471 : unativeint = 0 |> unativeint 
-    let v474 : bool = v471 = v471 
-    let v481 : clap_builder_ValueRange =
-        if v474 then
-            let v477 : string = "clap::builder::ValueRange::new($0..)"
-            let v478 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v468 v477 
-            v478
+            let v432 : string = "clap::builder::ValueRange::new($0.." + v324 + "$1)"
+            let v433 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v418, v421) v432 
+            v433
+    let v435 : string = "r#\"" + v168 + "\"#"
+    let v436 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v435 
+    let v437 : string = "clap::Arg::new($0)"
+    let v438 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v436 v437 
+    let v439 : string = "$0.short($1)"
+    let v440 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v438, 'd') v439 
+    let v441 : string = "r#\"" + v168 + "\"#"
+    let v442 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v441 
+    let v443 : string = "$0.long($1)"
+    let v444 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v440, v442) v443 
+    let v445 : string = "$0.to_vec()"
+    let v446 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v417 v445 
+    let v447 : string = "$0.value_names($1)"
+    let v448 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v444, v446) v447 
+    let v449 : string = "$0.num_args($1)"
+    let v450 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v448, v434) v449 
+    let v451 : string = "clap::ArgAction::Append"
+    let v452 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v451 
+    let v453 : string = "$0.action($1)"
+    let v454 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v450, v452) v453 
+    let v455 : string = "clap::Command::arg($0, $1)"
+    let v456 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v412, v454) v455 
+    let v457 : string = "clap::Command::subcommand($0, v456)"
+    let v458 : clap_Command = Fable.Core.RustInterop.emitRustExpr v393 v457 
+    let v459 : string = "python"
+    let v460 : string = "r#\"" + v459 + "\"#"
+    let v461 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v460 
+    let v462 : string = "clap::Command::new($0)"
+    let v463 : clap_Command = Fable.Core.RustInterop.emitRustExpr v461 v462 
+    let v464 : string = "r#\"" + v198 + "\"#"
+    let v465 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v464 
+    let v466 : string = "clap::Arg::new($0)"
+    let v467 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v465 v466 
+    let v468 : string = "$0.short($1)"
+    let v469 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v467, 'f') v468 
+    let v470 : string = "r#\"" + v198 + "\"#"
+    let v471 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v470 
+    let v472 : string = "$0.long($1)"
+    let v473 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v469, v471) v472 
+    let v474 : string = "$0.required($1)"
+    let v475 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v473, true) v474 
+    let v476 : string = "clap::Command::arg($0, $1)"
+    let v477 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v463, v475) v476 
+    let v478 : string = "r#\"" + v143 + "\"#"
+    let v479 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v478 
+    let v480 : string = "r#\"" + v146 + "\"#"
+    let v481 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v480 
+    let v482 : (Ref<Lifetime<StaticLifetime, Str>> []) = [|v479; v481|]
+    let v483 : unativeint = 1 |> unativeint 
+    let v486 : unativeint = 0 |> unativeint 
+    let v489 : unativeint = 0 |> unativeint 
+    let v492 : bool = v486 = v489 
+    let v499 : clap_builder_ValueRange =
+        if v492 then
+            let v495 : string = "clap::builder::ValueRange::new($0..)"
+            let v496 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr v483 v495 
+            v496
         else
-            let v479 : string = "clap::builder::ValueRange::new($0.." + v315 + "$1)"
-            let v480 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v468, v471) v479 
-            v480
-    let v482 : string = "r#\"" + v165 + "\"#"
-    let v483 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v482 
-    let v484 : string = "clap::Arg::new($0)"
-    let v485 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v483 v484 
-    let v486 : string = "$0.short($1)"
-    let v487 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v485, 'd') v486 
-    let v488 : string = "r#\"" + v165 + "\"#"
-    let v489 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v488 
-    let v490 : string = "$0.long($1)"
-    let v491 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v487, v489) v490 
-    let v492 : string = "$0.to_vec()"
-    let v493 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v467 v492 
-    let v494 : string = "$0.value_names($1)"
-    let v495 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v491, v493) v494 
-    let v496 : string = "$0.num_args($1)"
-    let v497 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v495, v481) v496 
-    let v498 : string = "clap::ArgAction::Append"
-    let v499 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v498 
-    let v500 : string = "$0.action($1)"
-    let v501 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v497, v499) v500 
-    let v502 : string = "clap::Command::arg($0, $1)"
-    let v503 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v462, v501) v502 
-    let v504 : string = "clap::Command::subcommand($0, v503)"
-    let v505 : clap_Command = Fable.Core.RustInterop.emitRustExpr v443 v504 
-    let v506 : string = "dib"
-    let v507 : string = "r#\"" + v506 + "\"#"
-    let v508 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v507 
-    let v509 : string = "clap::Command::new($0)"
-    let v510 : clap_Command = Fable.Core.RustInterop.emitRustExpr v508 v509 
-    let v511 : string = "path"
-    let v512 : string = "r#\"" + v511 + "\"#"
-    let v513 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v512 
-    let v514 : string = "clap::Arg::new($0)"
-    let v515 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v513 v514 
-    let v516 : string = "$0.short($1)"
-    let v517 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v515, 'p') v516 
-    let v518 : string = "r#\"" + v511 + "\"#"
-    let v519 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v518 
-    let v520 : string = "$0.long($1)"
-    let v521 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v517, v519) v520 
-    let v522 : string = "$0.required($1)"
-    let v523 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v521, true) v522 
-    let v524 : string = "clap::Command::arg($0, $1)"
-    let v525 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v510, v523) v524 
-    let v526 : string = "u8"
-    let v527 : string = "clap::value_parser!(" + v526 + ").into()"
-    let v528 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr () v527 
-    let v529 : string = "retries"
+            let v497 : string = "clap::builder::ValueRange::new($0.." + v324 + "$1)"
+            let v498 : clap_builder_ValueRange = Fable.Core.RustInterop.emitRustExpr struct (v483, v486) v497 
+            v498
+    let v500 : string = "r#\"" + v168 + "\"#"
+    let v501 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v500 
+    let v502 : string = "clap::Arg::new($0)"
+    let v503 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v501 v502 
+    let v504 : string = "$0.short($1)"
+    let v505 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v503, 'd') v504 
+    let v506 : string = "r#\"" + v168 + "\"#"
+    let v507 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v506 
+    let v508 : string = "$0.long($1)"
+    let v509 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v505, v507) v508 
+    let v510 : string = "$0.to_vec()"
+    let v511 : Vec<Ref<Lifetime<StaticLifetime, Str>>> = Fable.Core.RustInterop.emitRustExpr v482 v510 
+    let v512 : string = "$0.value_names($1)"
+    let v513 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v509, v511) v512 
+    let v514 : string = "$0.num_args($1)"
+    let v515 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v513, v499) v514 
+    let v516 : string = "clap::ArgAction::Append"
+    let v517 : clap_ArgAction = Fable.Core.RustInterop.emitRustExpr () v516 
+    let v518 : string = "$0.action($1)"
+    let v519 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v515, v517) v518 
+    let v520 : string = "clap::Command::arg($0, $1)"
+    let v521 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v477, v519) v520 
+    let v522 : string = "clap::Command::subcommand($0, v521)"
+    let v523 : clap_Command = Fable.Core.RustInterop.emitRustExpr v458 v522 
+    let v524 : string = "dib"
+    let v525 : string = "r#\"" + v524 + "\"#"
+    let v526 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v525 
+    let v527 : string = "clap::Command::new($0)"
+    let v528 : clap_Command = Fable.Core.RustInterop.emitRustExpr v526 v527 
+    let v529 : string = "path"
     let v530 : string = "r#\"" + v529 + "\"#"
     let v531 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v530 
     let v532 : string = "clap::Arg::new($0)"
     let v533 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v531 v532 
     let v534 : string = "$0.short($1)"
-    let v535 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v533, 'r') v534 
+    let v535 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v533, 'p') v534 
     let v536 : string = "r#\"" + v529 + "\"#"
     let v537 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v536 
     let v538 : string = "$0.long($1)"
     let v539 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v535, v537) v538 
-    let v540 : string = "$0.value_parser($1)"
-    let v541 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v539, v528) v540 
+    let v540 : string = "$0.required($1)"
+    let v541 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v539, true) v540 
     let v542 : string = "clap::Command::arg($0, $1)"
-    let v543 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v525, v541) v542 
-    let v544 : string = "working-directory"
-    let v545 : string = "r#\"" + v544 + "\"#"
-    let v546 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v545 
-    let v547 : string = "clap::Arg::new($0)"
-    let v548 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v546 v547 
-    let v549 : string = "$0.short($1)"
-    let v550 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v548, 'w') v549 
-    let v551 : string = "r#\"" + v544 + "\"#"
-    let v552 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v551 
-    let v553 : string = "$0.long($1)"
-    let v554 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v550, v552) v553 
-    let v555 : string = "clap::Command::arg($0, $1)"
-    let v556 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v543, v554) v555 
-    let v557 : string = "clap::Command::subcommand($0, v556)"
-    let v558 : clap_Command = Fable.Core.RustInterop.emitRustExpr v505 v557 
-    v558
+    let v543 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v528, v541) v542 
+    let v544 : string = "u8"
+    let v545 : string = "clap::value_parser!(" + v544 + ").into()"
+    let v546 : clap_builder_ValueParser = Fable.Core.RustInterop.emitRustExpr () v545 
+    let v547 : string = "retries"
+    let v548 : string = "r#\"" + v547 + "\"#"
+    let v549 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v548 
+    let v550 : string = "clap::Arg::new($0)"
+    let v551 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v549 v550 
+    let v552 : string = "$0.short($1)"
+    let v553 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v551, 'r') v552 
+    let v554 : string = "r#\"" + v547 + "\"#"
+    let v555 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v554 
+    let v556 : string = "$0.long($1)"
+    let v557 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v553, v555) v556 
+    let v558 : string = "$0.value_parser($1)"
+    let v559 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v557, v546) v558 
+    let v560 : string = "clap::Command::arg($0, $1)"
+    let v561 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v543, v559) v560 
+    let v562 : string = "working-directory"
+    let v563 : string = "r#\"" + v562 + "\"#"
+    let v564 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v563 
+    let v565 : string = "clap::Arg::new($0)"
+    let v566 : clap_Arg = Fable.Core.RustInterop.emitRustExpr v564 v565 
+    let v567 : string = "$0.short($1)"
+    let v568 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v566, 'w') v567 
+    let v569 : string = "r#\"" + v562 + "\"#"
+    let v570 : Ref<Lifetime<StaticLifetime, Str>> = Fable.Core.RustInterop.emitRustExpr () v569 
+    let v571 : string = "$0.long($1)"
+    let v572 : clap_Arg = Fable.Core.RustInterop.emitRustExpr struct (v568, v570) v571 
+    let v573 : string = "clap::Command::arg($0, $1)"
+    let v574 : clap_Command = Fable.Core.RustInterop.emitRustExpr struct (v561, v572) v573 
+    let v575 : string = "clap::Command::subcommand($0, v574)"
+    let v576 : clap_Command = Fable.Core.RustInterop.emitRustExpr v523 v575 
+    v576
 and closure0 () () : unit =
     let v0 : string = "true; () //"
     let v1 : bool = Fable.Core.RustInterop.emitRustExpr () v0 
@@ -1389,7 +1395,7 @@ and method1 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = "env!(\"" + v6 + "\")"
+    let v8 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v8 
     let v10 : unit = ()
     
@@ -1432,7 +1438,7 @@ and method1 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
     let _v7 = v35 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v36 : string = "env!(\"" + v6 + "\")"
+    let v36 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v37 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v36 
     let v38 : unit = ()
     
@@ -1475,7 +1481,7 @@ and method1 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
     let _v7 = v63 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v64 : string = "env!(\"" + v6 + "\")"
+    let v64 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v65 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v64 
     let v66 : unit = ()
     
@@ -1630,43 +1636,43 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v8 : US2 option = v5 |> Option.map v7 
     let v19 : US2 = US2_1
     let v20 : US2 = v8 |> Option.defaultValue v19 
-    let v116 : System.DateTime =
+    let v117 : System.DateTime =
         match v20 with
         | US2_1 -> (* None *)
-            let v100 : unit = ()
+            let v101 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v101 : System.DateTime = System.DateTime.Now
-            let _v100 = v101 
+            let v102 : System.DateTime = System.DateTime.Now
+            let _v101 = v102 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v102 : System.DateTime = System.DateTime.Now
-            let _v100 = v102 
+            let v103 : System.DateTime = System.DateTime.Now
+            let _v101 = v103 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v103 : System.DateTime = null |> unbox<System.DateTime>
-            let _v100 = v103 
+            let v104 : System.DateTime = null |> unbox<System.DateTime>
+            let _v101 = v104 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v106 : System.DateTime = System.DateTime.Now
-            let _v100 = v106 
+            let v107 : System.DateTime = System.DateTime.Now
+            let _v101 = v107 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v107 : System.DateTime = System.DateTime.Now
-            let _v100 = v107 
+            let v108 : System.DateTime = System.DateTime.Now
+            let _v101 = v108 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v108 : System.DateTime = System.DateTime.Now
-            let _v100 = v108 
+            let v109 : System.DateTime = System.DateTime.Now
+            let _v101 = v109 
             #endif
 #else
-            let v109 : System.DateTime = System.DateTime.Now
-            let _v100 = v109 
+            let v110 : System.DateTime = System.DateTime.Now
+            let _v101 = v110 
             #endif
-            let v110 : System.DateTime = _v100 
-            v110
+            let v111 : System.DateTime = _v101 
+            v111
         | US2_0(v24) -> (* Some *)
             let v25 : unit = ()
             
@@ -1742,595 +1748,660 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v56 : int64 = _v40 
             let v73 : int64 = v56 |> int64 
             let v76 : int64 = v73 - v24
-            let v77 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v78 : System.TimeSpan = v77 v76
-            let v81 : (System.TimeSpan -> int32) = _.Hours
-            let v82 : int32 = v81 v78
-            let v85 : (System.TimeSpan -> int32) = _.Minutes
-            let v86 : int32 = v85 v78
-            let v89 : (System.TimeSpan -> int32) = _.Seconds
-            let v90 : int32 = v89 v78
-            let v93 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v94 : int32 = v93 v78
-            let v97 : System.DateTime = System.DateTime (1, 1, 1, v82, v86, v90, v94)
-            v97
-    let v117 : string = method9()
-    let v120 : (string -> string) = v116.ToString
-    let v121 : string = v120 v117
-    let _v6 = v121 
+            let v77 : System.TimeSpan = v76 |> System.TimeSpan 
+            let v82 : (System.TimeSpan -> int32) = _.Hours
+            let v83 : int32 = v82 v77
+            let v86 : (System.TimeSpan -> int32) = _.Minutes
+            let v87 : int32 = v86 v77
+            let v90 : (System.TimeSpan -> int32) = _.Seconds
+            let v91 : int32 = v90 v77
+            let v94 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v95 : int32 = v94 v77
+            let v98 : System.DateTime = System.DateTime (1, 1, 1, v83, v87, v91, v95)
+            v98
+    let v118 : string = method9()
+    let v121 : bool = v118 = ""
+    let v123 : string =
+        if v121 then
+            let v122 : string = "M-d-y hh:mm:ss tt"
+            v122
+        else
+            v118
+    let v124 : (string -> string) = v117.ToString
+    let v125 : string = v124 v123
+    let _v6 = v125 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v124 : (int64 -> US2) = method8()
-    let v125 : US2 option = v5 |> Option.map v124 
-    let v136 : US2 = US2_1
-    let v137 : US2 = v125 |> Option.defaultValue v136 
-    let v233 : System.DateTime =
-        match v137 with
+    let v139 : (int64 -> US2) = method8()
+    let v140 : US2 option = v5 |> Option.map v139 
+    let v151 : US2 = US2_1
+    let v152 : US2 = v140 |> Option.defaultValue v151 
+    let v249 : System.DateTime =
+        match v152 with
         | US2_1 -> (* None *)
-            let v217 : unit = ()
+            let v233 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v218 : System.DateTime = System.DateTime.Now
-            let _v217 = v218 
+            let v234 : System.DateTime = System.DateTime.Now
+            let _v233 = v234 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v219 : System.DateTime = System.DateTime.Now
-            let _v217 = v219 
+            let v235 : System.DateTime = System.DateTime.Now
+            let _v233 = v235 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v220 : System.DateTime = null |> unbox<System.DateTime>
-            let _v217 = v220 
+            let v236 : System.DateTime = null |> unbox<System.DateTime>
+            let _v233 = v236 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v223 : System.DateTime = System.DateTime.Now
-            let _v217 = v223 
+            let v239 : System.DateTime = System.DateTime.Now
+            let _v233 = v239 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v224 : System.DateTime = System.DateTime.Now
-            let _v217 = v224 
+            let v240 : System.DateTime = System.DateTime.Now
+            let _v233 = v240 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v225 : System.DateTime = System.DateTime.Now
-            let _v217 = v225 
+            let v241 : System.DateTime = System.DateTime.Now
+            let _v233 = v241 
             #endif
 #else
-            let v226 : System.DateTime = System.DateTime.Now
-            let _v217 = v226 
+            let v242 : System.DateTime = System.DateTime.Now
+            let _v233 = v242 
             #endif
-            let v227 : System.DateTime = _v217 
-            v227
-        | US2_0(v141) -> (* Some *)
-            let v142 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v143 : System.DateTime = System.DateTime.Now
-            let _v142 = v143 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v144 : System.DateTime = System.DateTime.Now
-            let _v142 = v144 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v145 : System.DateTime = null |> unbox<System.DateTime>
-            let _v142 = v145 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v148 : System.DateTime = System.DateTime.Now
-            let _v142 = v148 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v149 : System.DateTime = System.DateTime.Now
-            let _v142 = v149 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v150 : System.DateTime = System.DateTime.Now
-            let _v142 = v150 
-            #endif
-#else
-            let v151 : System.DateTime = System.DateTime.Now
-            let _v142 = v151 
-            #endif
-            let v152 : System.DateTime = _v142 
+            let v243 : System.DateTime = _v233 
+            v243
+        | US2_0(v156) -> (* Some *)
             let v157 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v158 : (System.DateTime -> int64) = _.Ticks
-            let v159 : int64 = v158 v152
+            let v158 : System.DateTime = System.DateTime.Now
+            let _v157 = v158 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v159 : System.DateTime = System.DateTime.Now
             let _v157 = v159 
             #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v160 : (System.DateTime -> int64) = _.Ticks
-            let v161 : int64 = v160 v152
-            let _v157 = v161 
-            #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v162 : int64 = null |> unbox<int64>
-            let _v157 = v162 
+            let v160 : System.DateTime = null |> unbox<System.DateTime>
+            let _v157 = v160 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v165 : (System.DateTime -> int64) = _.Ticks
-            let v166 : int64 = v165 v152
+            let v163 : System.DateTime = System.DateTime.Now
+            let _v157 = v163 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v164 : System.DateTime = System.DateTime.Now
+            let _v157 = v164 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v165 : System.DateTime = System.DateTime.Now
+            let _v157 = v165 
+            #endif
+#else
+            let v166 : System.DateTime = System.DateTime.Now
             let _v157 = v166 
             #endif
+            let v167 : System.DateTime = _v157 
+            let v172 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v173 : (System.DateTime -> int64) = _.Ticks
+            let v174 : int64 = v173 v167
+            let _v172 = v174 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v175 : (System.DateTime -> int64) = _.Ticks
+            let v176 : int64 = v175 v167
+            let _v172 = v176 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v177 : int64 = null |> unbox<int64>
+            let _v172 = v177 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v180 : (System.DateTime -> int64) = _.Ticks
+            let v181 : int64 = v180 v167
+            let _v172 = v181 
+            #endif
 #if FABLE_COMPILER_PYTHON
-            let v167 : (System.DateTime -> int64) = _.Ticks
-            let v168 : int64 = v167 v152
-            let _v157 = v168 
+            let v182 : (System.DateTime -> int64) = _.Ticks
+            let v183 : int64 = v182 v167
+            let _v172 = v183 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v169 : (System.DateTime -> int64) = _.Ticks
-            let v170 : int64 = v169 v152
-            let _v157 = v170 
+            let v184 : (System.DateTime -> int64) = _.Ticks
+            let v185 : int64 = v184 v167
+            let _v172 = v185 
             #endif
 #else
-            let v171 : (System.DateTime -> int64) = _.Ticks
-            let v172 : int64 = v171 v152
-            let _v157 = v172 
+            let v186 : (System.DateTime -> int64) = _.Ticks
+            let v187 : int64 = v186 v167
+            let _v172 = v187 
             #endif
-            let v173 : int64 = _v157 
-            let v190 : int64 = v173 |> int64 
-            let v193 : int64 = v190 - v141
-            let v194 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v195 : System.TimeSpan = v194 v193
-            let v198 : (System.TimeSpan -> int32) = _.Hours
-            let v199 : int32 = v198 v195
-            let v202 : (System.TimeSpan -> int32) = _.Minutes
-            let v203 : int32 = v202 v195
-            let v206 : (System.TimeSpan -> int32) = _.Seconds
-            let v207 : int32 = v206 v195
-            let v210 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v211 : int32 = v210 v195
-            let v214 : System.DateTime = System.DateTime (1, 1, 1, v199, v203, v207, v211)
-            v214
-    let v234 : string = method9()
-    let v237 : (string -> string) = v233.ToString
-    let v238 : string = v237 v234
-    let _v6 = v238 
+            let v188 : int64 = _v172 
+            let v205 : int64 = v188 |> int64 
+            let v208 : int64 = v205 - v156
+            let v209 : System.TimeSpan = v208 |> System.TimeSpan 
+            let v214 : (System.TimeSpan -> int32) = _.Hours
+            let v215 : int32 = v214 v209
+            let v218 : (System.TimeSpan -> int32) = _.Minutes
+            let v219 : int32 = v218 v209
+            let v222 : (System.TimeSpan -> int32) = _.Seconds
+            let v223 : int32 = v222 v209
+            let v226 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v227 : int32 = v226 v209
+            let v230 : System.DateTime = System.DateTime (1, 1, 1, v215, v219, v223, v227)
+            v230
+    let v250 : string = method9()
+    let v253 : bool = v250 = ""
+    let v255 : string =
+        if v253 then
+            let v254 : string = "M-d-y hh:mm:ss tt"
+            v254
+        else
+            v250
+    let v256 : (string -> string) = v249.ToString
+    let v257 : string = v256 v255
+    let _v6 = v257 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v241 : string = $"near_sdk::env::block_timestamp()"
-    let v242 : uint64 = Fable.Core.RustInterop.emitRustExpr () v241 
-    let v243 : (int64 -> US2) = method8()
-    let v244 : US2 option = v5 |> Option.map v243 
-    let v255 : US2 = US2_1
-    let v256 : US2 = v244 |> Option.defaultValue v255 
-    let v267 : uint64 =
-        match v256 with
+    let v271 : string = $"near_sdk::env::block_timestamp()"
+    let v272 : uint64 = Fable.Core.RustInterop.emitRustExpr () v271 
+    let v273 : (int64 -> US2) = method8()
+    let v274 : US2 option = v5 |> Option.map v273 
+    let v285 : US2 = US2_1
+    let v286 : US2 = v274 |> Option.defaultValue v285 
+    let v297 : uint64 =
+        match v286 with
         | US2_1 -> (* None *)
-            v242
-        | US2_0(v260) -> (* Some *)
-            let v261 : (int64 -> uint64) = uint64
-            let v262 : uint64 = v261 v260
-            let v265 : uint64 = v242 - v262
-            v265
-    let v268 : uint64 = v267 / 1000000000UL
-    let v269 : uint64 = v268 % 60UL
-    let v270 : uint64 = v268 / 60UL
-    let v271 : uint64 = v270 % 60UL
-    let v272 : uint64 = v268 / 3600UL
-    let v273 : uint64 = v272 % 24UL
-    let v274 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
-    let v275 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v273, v271, v269) v274 
-    let v276 : string = "fable_library_rust::String_::fromString($0)"
-    let v277 : string = Fable.Core.RustInterop.emitRustExpr v275 v276 
-    let _v6 = v277 
+            v272
+        | US2_0(v290) -> (* Some *)
+            let v291 : (int64 -> uint64) = uint64
+            let v292 : uint64 = v291 v290
+            let v295 : uint64 = v272 - v292
+            v295
+    let v298 : uint64 = v297 / 1000000000UL
+    let v299 : uint64 = v298 % 60UL
+    let v300 : uint64 = v298 / 60UL
+    let v301 : uint64 = v300 % 60UL
+    let v302 : uint64 = v298 / 3600UL
+    let v303 : uint64 = v302 % 24UL
+    let v304 : string = $"format!(\"{{:02}}:{{:02}}:{{:02}}\", $0, $1, $2)"
+    let v305 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v303, v301, v299) v304 
+    let v306 : string = "fable_library_rust::String_::fromString($0)"
+    let v307 : string = Fable.Core.RustInterop.emitRustExpr v305 v306 
+    let _v6 = v307 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v278 : (int64 -> US2) = method8()
-    let v279 : US2 option = v5 |> Option.map v278 
-    let v290 : US2 = US2_1
-    let v291 : US2 = v279 |> Option.defaultValue v290 
-    let v387 : System.DateTime =
-        match v291 with
+    let v308 : (int64 -> US2) = method8()
+    let v309 : US2 option = v5 |> Option.map v308 
+    let v320 : US2 = US2_1
+    let v321 : US2 = v309 |> Option.defaultValue v320 
+    let v418 : System.DateTime =
+        match v321 with
         | US2_1 -> (* None *)
-            let v371 : unit = ()
+            let v402 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v372 : System.DateTime = System.DateTime.Now
-            let _v371 = v372 
+            let v403 : System.DateTime = System.DateTime.Now
+            let _v402 = v403 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v373 : System.DateTime = System.DateTime.Now
-            let _v371 = v373 
+            let v404 : System.DateTime = System.DateTime.Now
+            let _v402 = v404 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v374 : System.DateTime = null |> unbox<System.DateTime>
-            let _v371 = v374 
+            let v405 : System.DateTime = null |> unbox<System.DateTime>
+            let _v402 = v405 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v377 : System.DateTime = System.DateTime.Now
-            let _v371 = v377 
+            let v408 : System.DateTime = System.DateTime.Now
+            let _v402 = v408 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v378 : System.DateTime = System.DateTime.Now
-            let _v371 = v378 
+            let v409 : System.DateTime = System.DateTime.Now
+            let _v402 = v409 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v379 : System.DateTime = System.DateTime.Now
-            let _v371 = v379 
+            let v410 : System.DateTime = System.DateTime.Now
+            let _v402 = v410 
             #endif
 #else
-            let v380 : System.DateTime = System.DateTime.Now
-            let _v371 = v380 
+            let v411 : System.DateTime = System.DateTime.Now
+            let _v402 = v411 
             #endif
-            let v381 : System.DateTime = _v371 
-            v381
-        | US2_0(v295) -> (* Some *)
-            let v296 : unit = ()
+            let v412 : System.DateTime = _v402 
+            v412
+        | US2_0(v325) -> (* Some *)
+            let v326 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v297 : System.DateTime = System.DateTime.Now
-            let _v296 = v297 
+            let v327 : System.DateTime = System.DateTime.Now
+            let _v326 = v327 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v298 : System.DateTime = System.DateTime.Now
-            let _v296 = v298 
+            let v328 : System.DateTime = System.DateTime.Now
+            let _v326 = v328 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v299 : System.DateTime = null |> unbox<System.DateTime>
-            let _v296 = v299 
+            let v329 : System.DateTime = null |> unbox<System.DateTime>
+            let _v326 = v329 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v302 : System.DateTime = System.DateTime.Now
-            let _v296 = v302 
+            let v332 : System.DateTime = System.DateTime.Now
+            let _v326 = v332 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v303 : System.DateTime = System.DateTime.Now
-            let _v296 = v303 
+            let v333 : System.DateTime = System.DateTime.Now
+            let _v326 = v333 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v304 : System.DateTime = System.DateTime.Now
-            let _v296 = v304 
+            let v334 : System.DateTime = System.DateTime.Now
+            let _v326 = v334 
             #endif
 #else
-            let v305 : System.DateTime = System.DateTime.Now
-            let _v296 = v305 
+            let v335 : System.DateTime = System.DateTime.Now
+            let _v326 = v335 
             #endif
-            let v306 : System.DateTime = _v296 
-            let v311 : unit = ()
+            let v336 : System.DateTime = _v326 
+            let v341 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v312 : (System.DateTime -> int64) = _.Ticks
-            let v313 : int64 = v312 v306
-            let _v311 = v313 
+            let v342 : (System.DateTime -> int64) = _.Ticks
+            let v343 : int64 = v342 v336
+            let _v341 = v343 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v314 : (System.DateTime -> int64) = _.Ticks
-            let v315 : int64 = v314 v306
-            let _v311 = v315 
+            let v344 : (System.DateTime -> int64) = _.Ticks
+            let v345 : int64 = v344 v336
+            let _v341 = v345 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v316 : int64 = null |> unbox<int64>
-            let _v311 = v316 
+            let v346 : int64 = null |> unbox<int64>
+            let _v341 = v346 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v319 : (System.DateTime -> int64) = _.Ticks
-            let v320 : int64 = v319 v306
-            let _v311 = v320 
+            let v349 : (System.DateTime -> int64) = _.Ticks
+            let v350 : int64 = v349 v336
+            let _v341 = v350 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v321 : (System.DateTime -> int64) = _.Ticks
-            let v322 : int64 = v321 v306
-            let _v311 = v322 
+            let v351 : (System.DateTime -> int64) = _.Ticks
+            let v352 : int64 = v351 v336
+            let _v341 = v352 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v323 : (System.DateTime -> int64) = _.Ticks
-            let v324 : int64 = v323 v306
-            let _v311 = v324 
+            let v353 : (System.DateTime -> int64) = _.Ticks
+            let v354 : int64 = v353 v336
+            let _v341 = v354 
             #endif
 #else
-            let v325 : (System.DateTime -> int64) = _.Ticks
-            let v326 : int64 = v325 v306
-            let _v311 = v326 
+            let v355 : (System.DateTime -> int64) = _.Ticks
+            let v356 : int64 = v355 v336
+            let _v341 = v356 
             #endif
-            let v327 : int64 = _v311 
-            let v344 : int64 = v327 |> int64 
-            let v347 : int64 = v344 - v295
-            let v348 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v349 : System.TimeSpan = v348 v347
-            let v352 : (System.TimeSpan -> int32) = _.Hours
-            let v353 : int32 = v352 v349
-            let v356 : (System.TimeSpan -> int32) = _.Minutes
-            let v357 : int32 = v356 v349
-            let v360 : (System.TimeSpan -> int32) = _.Seconds
-            let v361 : int32 = v360 v349
-            let v364 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v365 : int32 = v364 v349
-            let v368 : System.DateTime = System.DateTime (1, 1, 1, v353, v357, v361, v365)
-            v368
-    let v388 : string = method10()
-    let v391 : (string -> string) = v387.ToString
-    let v392 : string = v391 v388
-    let _v6 = v392 
+            let v357 : int64 = _v341 
+            let v374 : int64 = v357 |> int64 
+            let v377 : int64 = v374 - v325
+            let v378 : System.TimeSpan = v377 |> System.TimeSpan 
+            let v383 : (System.TimeSpan -> int32) = _.Hours
+            let v384 : int32 = v383 v378
+            let v387 : (System.TimeSpan -> int32) = _.Minutes
+            let v388 : int32 = v387 v378
+            let v391 : (System.TimeSpan -> int32) = _.Seconds
+            let v392 : int32 = v391 v378
+            let v395 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v396 : int32 = v395 v378
+            let v399 : System.DateTime = System.DateTime (1, 1, 1, v384, v388, v392, v396)
+            v399
+    let v419 : string = method10()
+    let v422 : bool = v419 = ""
+    let v424 : string =
+        if v422 then
+            let v423 : string = "M-d-y hh:mm:ss tt"
+            v423
+        else
+            v419
+    let v425 : (string -> string) = v418.ToString
+    let v426 : string = v425 v424
+    let _v6 = v426 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v395 : (int64 -> US2) = method8()
-    let v396 : US2 option = v5 |> Option.map v395 
-    let v407 : US2 = US2_1
-    let v408 : US2 = v396 |> Option.defaultValue v407 
-    let v504 : System.DateTime =
-        match v408 with
+    let v440 : (int64 -> US2) = method8()
+    let v441 : US2 option = v5 |> Option.map v440 
+    let v452 : US2 = US2_1
+    let v453 : US2 = v441 |> Option.defaultValue v452 
+    let v550 : System.DateTime =
+        match v453 with
         | US2_1 -> (* None *)
-            let v488 : unit = ()
+            let v534 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v489 : System.DateTime = System.DateTime.Now
-            let _v488 = v489 
+            let v535 : System.DateTime = System.DateTime.Now
+            let _v534 = v535 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v490 : System.DateTime = System.DateTime.Now
-            let _v488 = v490 
+            let v536 : System.DateTime = System.DateTime.Now
+            let _v534 = v536 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v491 : System.DateTime = null |> unbox<System.DateTime>
-            let _v488 = v491 
+            let v537 : System.DateTime = null |> unbox<System.DateTime>
+            let _v534 = v537 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v494 : System.DateTime = System.DateTime.Now
-            let _v488 = v494 
+            let v540 : System.DateTime = System.DateTime.Now
+            let _v534 = v540 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v495 : System.DateTime = System.DateTime.Now
-            let _v488 = v495 
+            let v541 : System.DateTime = System.DateTime.Now
+            let _v534 = v541 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v496 : System.DateTime = System.DateTime.Now
-            let _v488 = v496 
+            let v542 : System.DateTime = System.DateTime.Now
+            let _v534 = v542 
             #endif
 #else
-            let v497 : System.DateTime = System.DateTime.Now
-            let _v488 = v497 
+            let v543 : System.DateTime = System.DateTime.Now
+            let _v534 = v543 
             #endif
-            let v498 : System.DateTime = _v488 
-            v498
-        | US2_0(v412) -> (* Some *)
-            let v413 : unit = ()
+            let v544 : System.DateTime = _v534 
+            v544
+        | US2_0(v457) -> (* Some *)
+            let v458 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v414 : System.DateTime = System.DateTime.Now
-            let _v413 = v414 
+            let v459 : System.DateTime = System.DateTime.Now
+            let _v458 = v459 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v415 : System.DateTime = System.DateTime.Now
-            let _v413 = v415 
+            let v460 : System.DateTime = System.DateTime.Now
+            let _v458 = v460 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v416 : System.DateTime = null |> unbox<System.DateTime>
-            let _v413 = v416 
+            let v461 : System.DateTime = null |> unbox<System.DateTime>
+            let _v458 = v461 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v419 : System.DateTime = System.DateTime.Now
-            let _v413 = v419 
+            let v464 : System.DateTime = System.DateTime.Now
+            let _v458 = v464 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v420 : System.DateTime = System.DateTime.Now
-            let _v413 = v420 
+            let v465 : System.DateTime = System.DateTime.Now
+            let _v458 = v465 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v421 : System.DateTime = System.DateTime.Now
-            let _v413 = v421 
+            let v466 : System.DateTime = System.DateTime.Now
+            let _v458 = v466 
             #endif
 #else
-            let v422 : System.DateTime = System.DateTime.Now
-            let _v413 = v422 
+            let v467 : System.DateTime = System.DateTime.Now
+            let _v458 = v467 
             #endif
-            let v423 : System.DateTime = _v413 
-            let v428 : unit = ()
+            let v468 : System.DateTime = _v458 
+            let v473 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v429 : (System.DateTime -> int64) = _.Ticks
-            let v430 : int64 = v429 v423
-            let _v428 = v430 
+            let v474 : (System.DateTime -> int64) = _.Ticks
+            let v475 : int64 = v474 v468
+            let _v473 = v475 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v431 : (System.DateTime -> int64) = _.Ticks
-            let v432 : int64 = v431 v423
-            let _v428 = v432 
+            let v476 : (System.DateTime -> int64) = _.Ticks
+            let v477 : int64 = v476 v468
+            let _v473 = v477 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v433 : int64 = null |> unbox<int64>
-            let _v428 = v433 
+            let v478 : int64 = null |> unbox<int64>
+            let _v473 = v478 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v436 : (System.DateTime -> int64) = _.Ticks
-            let v437 : int64 = v436 v423
-            let _v428 = v437 
+            let v481 : (System.DateTime -> int64) = _.Ticks
+            let v482 : int64 = v481 v468
+            let _v473 = v482 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v438 : (System.DateTime -> int64) = _.Ticks
-            let v439 : int64 = v438 v423
-            let _v428 = v439 
+            let v483 : (System.DateTime -> int64) = _.Ticks
+            let v484 : int64 = v483 v468
+            let _v473 = v484 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v440 : (System.DateTime -> int64) = _.Ticks
-            let v441 : int64 = v440 v423
-            let _v428 = v441 
+            let v485 : (System.DateTime -> int64) = _.Ticks
+            let v486 : int64 = v485 v468
+            let _v473 = v486 
             #endif
 #else
-            let v442 : (System.DateTime -> int64) = _.Ticks
-            let v443 : int64 = v442 v423
-            let _v428 = v443 
+            let v487 : (System.DateTime -> int64) = _.Ticks
+            let v488 : int64 = v487 v468
+            let _v473 = v488 
             #endif
-            let v444 : int64 = _v428 
-            let v461 : int64 = v444 |> int64 
-            let v464 : int64 = v461 - v412
-            let v465 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v466 : System.TimeSpan = v465 v464
-            let v469 : (System.TimeSpan -> int32) = _.Hours
-            let v470 : int32 = v469 v466
-            let v473 : (System.TimeSpan -> int32) = _.Minutes
-            let v474 : int32 = v473 v466
-            let v477 : (System.TimeSpan -> int32) = _.Seconds
-            let v478 : int32 = v477 v466
-            let v481 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v482 : int32 = v481 v466
-            let v485 : System.DateTime = System.DateTime (1, 1, 1, v470, v474, v478, v482)
-            v485
-    let v505 : string = method10()
-    let v508 : (string -> string) = v504.ToString
-    let v509 : string = v508 v505
-    let _v6 = v509 
+            let v489 : int64 = _v473 
+            let v506 : int64 = v489 |> int64 
+            let v509 : int64 = v506 - v457
+            let v510 : System.TimeSpan = v509 |> System.TimeSpan 
+            let v515 : (System.TimeSpan -> int32) = _.Hours
+            let v516 : int32 = v515 v510
+            let v519 : (System.TimeSpan -> int32) = _.Minutes
+            let v520 : int32 = v519 v510
+            let v523 : (System.TimeSpan -> int32) = _.Seconds
+            let v524 : int32 = v523 v510
+            let v527 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v528 : int32 = v527 v510
+            let v531 : System.DateTime = System.DateTime (1, 1, 1, v516, v520, v524, v528)
+            v531
+    let v551 : string = method10()
+    let v554 : bool = v551 = ""
+    let v556 : string =
+        if v554 then
+            let v555 : string = "M-d-y hh:mm:ss tt"
+            v555
+        else
+            v551
+    let v557 : (string -> string) = v550.ToString
+    let v558 : string = v557 v556
+    let _v6 = v558 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v512 : (int64 -> US2) = method8()
-    let v513 : US2 option = v5 |> Option.map v512 
-    let v524 : US2 = US2_1
-    let v525 : US2 = v513 |> Option.defaultValue v524 
-    let v621 : System.DateTime =
-        match v525 with
+    let v572 : (int64 -> US2) = method8()
+    let v573 : US2 option = v5 |> Option.map v572 
+    let v584 : US2 = US2_1
+    let v585 : US2 = v573 |> Option.defaultValue v584 
+    let v682 : System.DateTime =
+        match v585 with
         | US2_1 -> (* None *)
+            let v666 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v667 : System.DateTime = System.DateTime.Now
+            let _v666 = v667 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v668 : System.DateTime = System.DateTime.Now
+            let _v666 = v668 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v669 : System.DateTime = null |> unbox<System.DateTime>
+            let _v666 = v669 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v672 : System.DateTime = System.DateTime.Now
+            let _v666 = v672 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v673 : System.DateTime = System.DateTime.Now
+            let _v666 = v673 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v674 : System.DateTime = System.DateTime.Now
+            let _v666 = v674 
+            #endif
+#else
+            let v675 : System.DateTime = System.DateTime.Now
+            let _v666 = v675 
+            #endif
+            let v676 : System.DateTime = _v666 
+            v676
+        | US2_0(v589) -> (* Some *)
+            let v590 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v591 : System.DateTime = System.DateTime.Now
+            let _v590 = v591 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v592 : System.DateTime = System.DateTime.Now
+            let _v590 = v592 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v593 : System.DateTime = null |> unbox<System.DateTime>
+            let _v590 = v593 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v596 : System.DateTime = System.DateTime.Now
+            let _v590 = v596 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v597 : System.DateTime = System.DateTime.Now
+            let _v590 = v597 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v598 : System.DateTime = System.DateTime.Now
+            let _v590 = v598 
+            #endif
+#else
+            let v599 : System.DateTime = System.DateTime.Now
+            let _v590 = v599 
+            #endif
+            let v600 : System.DateTime = _v590 
             let v605 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v606 : System.DateTime = System.DateTime.Now
-            let _v605 = v606 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v607 : System.DateTime = System.DateTime.Now
+            let v606 : (System.DateTime -> int64) = _.Ticks
+            let v607 : int64 = v606 v600
             let _v605 = v607 
             #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v608 : (System.DateTime -> int64) = _.Ticks
+            let v609 : int64 = v608 v600
+            let _v605 = v609 
+            #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v608 : System.DateTime = null |> unbox<System.DateTime>
-            let _v605 = v608 
+            let v610 : int64 = null |> unbox<int64>
+            let _v605 = v610 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v611 : System.DateTime = System.DateTime.Now
-            let _v605 = v611 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v612 : System.DateTime = System.DateTime.Now
-            let _v605 = v612 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v613 : System.DateTime = System.DateTime.Now
-            let _v605 = v613 
-            #endif
-#else
-            let v614 : System.DateTime = System.DateTime.Now
+            let v613 : (System.DateTime -> int64) = _.Ticks
+            let v614 : int64 = v613 v600
             let _v605 = v614 
             #endif
-            let v615 : System.DateTime = _v605 
-            v615
-        | US2_0(v529) -> (* Some *)
-            let v530 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v531 : System.DateTime = System.DateTime.Now
-            let _v530 = v531 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v532 : System.DateTime = System.DateTime.Now
-            let _v530 = v532 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v533 : System.DateTime = null |> unbox<System.DateTime>
-            let _v530 = v533 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v536 : System.DateTime = System.DateTime.Now
-            let _v530 = v536 
-            #endif
 #if FABLE_COMPILER_PYTHON
-            let v537 : System.DateTime = System.DateTime.Now
-            let _v530 = v537 
+            let v615 : (System.DateTime -> int64) = _.Ticks
+            let v616 : int64 = v615 v600
+            let _v605 = v616 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v538 : System.DateTime = System.DateTime.Now
-            let _v530 = v538 
+            let v617 : (System.DateTime -> int64) = _.Ticks
+            let v618 : int64 = v617 v600
+            let _v605 = v618 
             #endif
 #else
-            let v539 : System.DateTime = System.DateTime.Now
-            let _v530 = v539 
+            let v619 : (System.DateTime -> int64) = _.Ticks
+            let v620 : int64 = v619 v600
+            let _v605 = v620 
             #endif
-            let v540 : System.DateTime = _v530 
-            let v545 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v546 : (System.DateTime -> int64) = _.Ticks
-            let v547 : int64 = v546 v540
-            let _v545 = v547 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v548 : (System.DateTime -> int64) = _.Ticks
-            let v549 : int64 = v548 v540
-            let _v545 = v549 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v550 : int64 = null |> unbox<int64>
-            let _v545 = v550 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v553 : (System.DateTime -> int64) = _.Ticks
-            let v554 : int64 = v553 v540
-            let _v545 = v554 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v555 : (System.DateTime -> int64) = _.Ticks
-            let v556 : int64 = v555 v540
-            let _v545 = v556 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v557 : (System.DateTime -> int64) = _.Ticks
-            let v558 : int64 = v557 v540
-            let _v545 = v558 
-            #endif
-#else
-            let v559 : (System.DateTime -> int64) = _.Ticks
-            let v560 : int64 = v559 v540
-            let _v545 = v560 
-            #endif
-            let v561 : int64 = _v545 
-            let v578 : int64 = v561 |> int64 
-            let v581 : int64 = v578 - v529
-            let v582 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v583 : System.TimeSpan = v582 v581
-            let v586 : (System.TimeSpan -> int32) = _.Hours
-            let v587 : int32 = v586 v583
-            let v590 : (System.TimeSpan -> int32) = _.Minutes
-            let v591 : int32 = v590 v583
-            let v594 : (System.TimeSpan -> int32) = _.Seconds
-            let v595 : int32 = v594 v583
-            let v598 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v599 : int32 = v598 v583
-            let v602 : System.DateTime = System.DateTime (1, 1, 1, v587, v591, v595, v599)
-            v602
-    let v622 : string = method10()
-    let v625 : (string -> string) = v621.ToString
-    let v626 : string = v625 v622
-    let _v6 = v626 
+            let v621 : int64 = _v605 
+            let v638 : int64 = v621 |> int64 
+            let v641 : int64 = v638 - v589
+            let v642 : System.TimeSpan = v641 |> System.TimeSpan 
+            let v647 : (System.TimeSpan -> int32) = _.Hours
+            let v648 : int32 = v647 v642
+            let v651 : (System.TimeSpan -> int32) = _.Minutes
+            let v652 : int32 = v651 v642
+            let v655 : (System.TimeSpan -> int32) = _.Seconds
+            let v656 : int32 = v655 v642
+            let v659 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v660 : int32 = v659 v642
+            let v663 : System.DateTime = System.DateTime (1, 1, 1, v648, v652, v656, v660)
+            v663
+    let v683 : string = method10()
+    let v686 : bool = v683 = ""
+    let v688 : string =
+        if v686 then
+            let v687 : string = "M-d-y hh:mm:ss tt"
+            v687
+        else
+            v683
+    let v689 : (string -> string) = v682.ToString
+    let v690 : string = v689 v688
+    let _v6 = v690 
     #endif
 #else
-    let v629 : (int64 -> US2) = method8()
-    let v630 : US2 option = v5 |> Option.map v629 
-    let v641 : US2 = US2_1
-    let v642 : US2 = v630 |> Option.defaultValue v641 
-    let v738 : System.DateTime =
-        match v642 with
+    let v704 : (int64 -> US2) = method8()
+    let v705 : US2 option = v5 |> Option.map v704 
+    let v716 : US2 = US2_1
+    let v717 : US2 = v705 |> Option.defaultValue v716 
+    let v814 : System.DateTime =
+        match v717 with
         | US2_1 -> (* None *)
+            let v798 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v799 : System.DateTime = System.DateTime.Now
+            let _v798 = v799 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v800 : System.DateTime = System.DateTime.Now
+            let _v798 = v800 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v801 : System.DateTime = null |> unbox<System.DateTime>
+            let _v798 = v801 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v804 : System.DateTime = System.DateTime.Now
+            let _v798 = v804 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v805 : System.DateTime = System.DateTime.Now
+            let _v798 = v805 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v806 : System.DateTime = System.DateTime.Now
+            let _v798 = v806 
+            #endif
+#else
+            let v807 : System.DateTime = System.DateTime.Now
+            let _v798 = v807 
+            #endif
+            let v808 : System.DateTime = _v798 
+            v808
+        | US2_0(v721) -> (* Some *)
             let v722 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -2364,101 +2435,72 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _v722 = v731 
             #endif
             let v732 : System.DateTime = _v722 
-            v732
-        | US2_0(v646) -> (* Some *)
-            let v647 : unit = ()
+            let v737 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v648 : System.DateTime = System.DateTime.Now
-            let _v647 = v648 
+            let v738 : (System.DateTime -> int64) = _.Ticks
+            let v739 : int64 = v738 v732
+            let _v737 = v739 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v649 : System.DateTime = System.DateTime.Now
-            let _v647 = v649 
+            let v740 : (System.DateTime -> int64) = _.Ticks
+            let v741 : int64 = v740 v732
+            let _v737 = v741 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v650 : System.DateTime = null |> unbox<System.DateTime>
-            let _v647 = v650 
+            let v742 : int64 = null |> unbox<int64>
+            let _v737 = v742 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v653 : System.DateTime = System.DateTime.Now
-            let _v647 = v653 
+            let v745 : (System.DateTime -> int64) = _.Ticks
+            let v746 : int64 = v745 v732
+            let _v737 = v746 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v654 : System.DateTime = System.DateTime.Now
-            let _v647 = v654 
+            let v747 : (System.DateTime -> int64) = _.Ticks
+            let v748 : int64 = v747 v732
+            let _v737 = v748 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v655 : System.DateTime = System.DateTime.Now
-            let _v647 = v655 
+            let v749 : (System.DateTime -> int64) = _.Ticks
+            let v750 : int64 = v749 v732
+            let _v737 = v750 
             #endif
 #else
-            let v656 : System.DateTime = System.DateTime.Now
-            let _v647 = v656 
+            let v751 : (System.DateTime -> int64) = _.Ticks
+            let v752 : int64 = v751 v732
+            let _v737 = v752 
             #endif
-            let v657 : System.DateTime = _v647 
-            let v662 : unit = ()
-            
-#if FABLE_COMPILER || WASM || CONTRACT
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v663 : (System.DateTime -> int64) = _.Ticks
-            let v664 : int64 = v663 v657
-            let _v662 = v664 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
-            let v665 : (System.DateTime -> int64) = _.Ticks
-            let v666 : int64 = v665 v657
-            let _v662 = v666 
-            #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v667 : int64 = null |> unbox<int64>
-            let _v662 = v667 
-            #endif
-#if FABLE_COMPILER_TYPESCRIPT
-            let v670 : (System.DateTime -> int64) = _.Ticks
-            let v671 : int64 = v670 v657
-            let _v662 = v671 
-            #endif
-#if FABLE_COMPILER_PYTHON
-            let v672 : (System.DateTime -> int64) = _.Ticks
-            let v673 : int64 = v672 v657
-            let _v662 = v673 
-            #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v674 : (System.DateTime -> int64) = _.Ticks
-            let v675 : int64 = v674 v657
-            let _v662 = v675 
-            #endif
-#else
-            let v676 : (System.DateTime -> int64) = _.Ticks
-            let v677 : int64 = v676 v657
-            let _v662 = v677 
-            #endif
-            let v678 : int64 = _v662 
-            let v695 : int64 = v678 |> int64 
-            let v698 : int64 = v695 - v646
-            let v699 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v700 : System.TimeSpan = v699 v698
-            let v703 : (System.TimeSpan -> int32) = _.Hours
-            let v704 : int32 = v703 v700
-            let v707 : (System.TimeSpan -> int32) = _.Minutes
-            let v708 : int32 = v707 v700
-            let v711 : (System.TimeSpan -> int32) = _.Seconds
-            let v712 : int32 = v711 v700
-            let v715 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v716 : int32 = v715 v700
-            let v719 : System.DateTime = System.DateTime (1, 1, 1, v704, v708, v712, v716)
-            v719
-    let v739 : string = method10()
-    let v742 : (string -> string) = v738.ToString
-    let v743 : string = v742 v739
-    let _v6 = v743 
+            let v753 : int64 = _v737 
+            let v770 : int64 = v753 |> int64 
+            let v773 : int64 = v770 - v721
+            let v774 : System.TimeSpan = v773 |> System.TimeSpan 
+            let v779 : (System.TimeSpan -> int32) = _.Hours
+            let v780 : int32 = v779 v774
+            let v783 : (System.TimeSpan -> int32) = _.Minutes
+            let v784 : int32 = v783 v774
+            let v787 : (System.TimeSpan -> int32) = _.Seconds
+            let v788 : int32 = v787 v774
+            let v791 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v792 : int32 = v791 v774
+            let v795 : System.DateTime = System.DateTime (1, 1, 1, v780, v784, v788, v792)
+            v795
+    let v815 : string = method10()
+    let v818 : bool = v815 = ""
+    let v820 : string =
+        if v818 then
+            let v819 : string = "M-d-y hh:mm:ss tt"
+            v819
+        else
+            v815
+    let v821 : (string -> string) = v814.ToString
+    let v822 : string = v821 v820
+    let _v6 = v822 
     #endif
-    let v746 : string = _v6 
-    v746
+    let v836 : string = _v6 
+    v836
 and method13 () : string =
     let v0 : string = ""
     v0
@@ -6830,18 +6872,18 @@ and closure26 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
             let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method73(v53, v1, v2, v3)
             US15_0(v9, v30, v75, v76, v77)
         else
-            let v79 : (string -> int32) = String.length
-            let v80 : int32 = v79 v0
-            let v83 : string = "\n"
-            let v84 : int32 = v0.IndexOf v83 
-            let v87 : int32 = v84 - 1
-            let v88 : bool = -2 = v87
+            let v79 : string = "\n"
+            let v80 : int32 = v0.IndexOf v79 
+            let v83 : int32 = v80 - 1
+            let v84 : bool = -2 = v83
             let v91 : int32 =
-                if v88 then
-                    let v89 : int32 = v80 + 1
+                if v84 then
+                    let v85 : (string -> int32) = String.length
+                    let v86 : int32 = v85 v0
+                    let v89 : int32 = v86 + 1
                     v89
                 else
-                    let v90 : int32 = v87 + 1
+                    let v90 : int32 = v83 + 1
                     v90
             let v92 : int32 = 0 |> int32 
             let v99 : int32 = v91 |> int32 
@@ -6897,18 +6939,18 @@ and closure29 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
             let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method73(v53, v1, v2, v3)
             US15_0(v9, v30, v75, v76, v77)
         else
-            let v79 : (string -> int32) = String.length
-            let v80 : int32 = v79 v0
-            let v83 : string = "\n"
-            let v84 : int32 = v0.IndexOf v83 
-            let v87 : int32 = v84 - 1
-            let v88 : bool = -2 = v87
+            let v79 : string = "\n"
+            let v80 : int32 = v0.IndexOf v79 
+            let v83 : int32 = v80 - 1
+            let v84 : bool = -2 = v83
             let v91 : int32 =
-                if v88 then
-                    let v89 : int32 = v80 + 1
+                if v84 then
+                    let v85 : (string -> int32) = String.length
+                    let v86 : int32 = v85 v0
+                    let v89 : int32 = v86 + 1
                     v89
                 else
-                    let v90 : int32 = v87 + 1
+                    let v90 : int32 = v83 + 1
                     v90
             let v92 : int32 = 0 |> int32 
             let v99 : int32 = v91 |> int32 
@@ -7490,18 +7532,18 @@ and method69 (v0 : string) : US14 =
                         let struct (v491 : System.Text.StringBuilder, v492 : int32, v493 : int32) = method73(v469, v417, v418, v419)
                         US15_0(v425, v446, v491, v492, v493)
                     else
-                        let v495 : (string -> int32) = String.length
-                        let v496 : int32 = v495 v416
-                        let v499 : string = "\n"
-                        let v500 : int32 = v416.IndexOf v499 
-                        let v503 : int32 = v500 - 1
-                        let v504 : bool = -2 = v503
+                        let v495 : string = "\n"
+                        let v496 : int32 = v416.IndexOf v495 
+                        let v499 : int32 = v496 - 1
+                        let v500 : bool = -2 = v499
                         let v507 : int32 =
-                            if v504 then
-                                let v505 : int32 = v496 + 1
+                            if v500 then
+                                let v501 : (string -> int32) = String.length
+                                let v502 : int32 = v501 v416
+                                let v505 : int32 = v502 + 1
                                 v505
                             else
-                                let v506 : int32 = v503 + 1
+                                let v506 : int32 = v499 + 1
                                 v506
                         let v508 : int32 = 0 |> int32 
                         let v515 : int32 = v507 |> int32 
@@ -7768,18 +7810,18 @@ and closure30 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method73(v53, v1, v2, v3)
                 US15_0(v9, v30, v75, v76, v77)
             else
-                let v79 : (string -> int32) = String.length
-                let v80 : int32 = v79 v0
-                let v83 : string = "\n"
-                let v84 : int32 = v0.IndexOf v83 
-                let v87 : int32 = v84 - 1
-                let v88 : bool = -2 = v87
+                let v79 : string = "\n"
+                let v80 : int32 = v0.IndexOf v79 
+                let v83 : int32 = v80 - 1
+                let v84 : bool = -2 = v83
                 let v91 : int32 =
-                    if v88 then
-                        let v89 : int32 = v80 + 1
+                    if v84 then
+                        let v85 : (string -> int32) = String.length
+                        let v86 : int32 = v85 v0
+                        let v89 : int32 = v86 + 1
                         v89
                     else
-                        let v90 : int32 = v87 + 1
+                        let v90 : int32 = v83 + 1
                         v90
                 let v92 : int32 = 0 |> int32 
                 let v99 : int32 = v91 |> int32 
@@ -7884,18 +7926,18 @@ and closure31 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let struct (v75 : System.Text.StringBuilder, v76 : int32, v77 : int32) = method73(v53, v1, v2, v3)
                 US15_0(v9, v30, v75, v76, v77)
             else
-                let v79 : (string -> int32) = String.length
-                let v80 : int32 = v79 v0
-                let v83 : string = "\n"
-                let v84 : int32 = v0.IndexOf v83 
-                let v87 : int32 = v84 - 1
-                let v88 : bool = -2 = v87
+                let v79 : string = "\n"
+                let v80 : int32 = v0.IndexOf v79 
+                let v83 : int32 = v80 - 1
+                let v84 : bool = -2 = v83
                 let v91 : int32 =
-                    if v88 then
-                        let v89 : int32 = v80 + 1
+                    if v84 then
+                        let v85 : (string -> int32) = String.length
+                        let v86 : int32 = v85 v0
+                        let v89 : int32 = v86 + 1
                         v89
                     else
-                        let v90 : int32 = v87 + 1
+                        let v90 : int32 = v83 + 1
                         v90
                 let v92 : int32 = 0 |> int32 
                 let v99 : int32 = v91 |> int32 
@@ -8244,18 +8286,18 @@ and method83 (v0 : UH2, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                         let struct (v217 : System.Text.StringBuilder, v218 : int32, v219 : int32) = method73(v195, v2, v3, v4)
                         US15_0(v151, v172, v217, v218, v219)
                     else
-                        let v221 : (string -> int32) = String.length
-                        let v222 : int32 = v221 v1
-                        let v225 : string = "\n"
-                        let v226 : int32 = v1.IndexOf v225 
-                        let v229 : int32 = v226 - 1
-                        let v230 : bool = -2 = v229
+                        let v221 : string = "\n"
+                        let v222 : int32 = v1.IndexOf v221 
+                        let v225 : int32 = v222 - 1
+                        let v226 : bool = -2 = v225
                         let v233 : int32 =
-                            if v230 then
-                                let v231 : int32 = v222 + 1
+                            if v226 then
+                                let v227 : (string -> int32) = String.length
+                                let v228 : int32 = v227 v1
+                                let v231 : int32 = v228 + 1
                                 v231
                             else
-                                let v232 : int32 = v229 + 1
+                                let v232 : int32 = v225 + 1
                                 v232
                         let v234 : int32 = 0 |> int32 
                         let v241 : int32 = v233 |> int32 
@@ -8347,18 +8389,18 @@ and method83 (v0 : UH2, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                                     let struct (v379 : System.Text.StringBuilder, v380 : int32, v381 : int32) = method73(v357, v305, v306, v307)
                                     US15_0(v313, v334, v379, v380, v381)
                                 else
-                                    let v383 : (string -> int32) = String.length
-                                    let v384 : int32 = v383 v304
-                                    let v387 : string = "\n"
-                                    let v388 : int32 = v304.IndexOf v387 
-                                    let v391 : int32 = v388 - 1
-                                    let v392 : bool = -2 = v391
+                                    let v383 : string = "\n"
+                                    let v384 : int32 = v304.IndexOf v383 
+                                    let v387 : int32 = v384 - 1
+                                    let v388 : bool = -2 = v387
                                     let v395 : int32 =
-                                        if v392 then
-                                            let v393 : int32 = v384 + 1
+                                        if v388 then
+                                            let v389 : (string -> int32) = String.length
+                                            let v390 : int32 = v389 v304
+                                            let v393 : int32 = v390 + 1
                                             v393
                                         else
-                                            let v394 : int32 = v391 + 1
+                                            let v394 : int32 = v387 + 1
                                             v394
                                     let v396 : int32 = 0 |> int32 
                                     let v403 : int32 = v395 |> int32 
@@ -21270,55 +21312,54 @@ and method182 (v0 : string) : string =
         let v47 : string = "true; break"
         let v48 : bool = Fable.Core.RustInterop.emitRustExpr () v47 
         ()
-    let v49 : string = "v23.len()"
-    let v50 : unativeint = Fable.Core.RustInterop.emitRustExpr () v49 
-    let v51 : uint8 = v50 |> uint8 
-    let v54 : unativeint = v41 |> unativeint 
-    let v57 : unativeint = v54 |> unbox<unativeint>
-    let v60 : bool = v57 = v50 
-    let v67 : Ref<Slice'<uint8>> =
-        if v60 then
-            let v63 : string = "&v23[v19..]"
-            let v64 : Ref<Slice'<uint8>> = Fable.Core.RustInterop.emitRustExpr () v63 
-            v64
+    let v49 : unativeint = v41 |> unativeint 
+    let v52 : unativeint = v49 |> unbox<unativeint>
+    let v55 : string = "v23.len()"
+    let v56 : unativeint = Fable.Core.RustInterop.emitRustExpr () v55 
+    let v57 : bool = v52 = v56 
+    let v64 : Ref<Slice'<uint8>> =
+        if v57 then
+            let v60 : string = "&v23[v19..]"
+            let v61 : Ref<Slice'<uint8>> = Fable.Core.RustInterop.emitRustExpr () v60 
+            v61
         else
-            let v65 : string = "&v23[$0..$1]"
-            let v66 : Ref<Slice'<uint8>> = Fable.Core.RustInterop.emitRustExpr struct (v19, v54) v65 
-            v66
-    let v68 : string = "sha2::Digest::update(&mut v16, v67)"
-    Fable.Core.RustInterop.emitRustExpr () v68 
-    let v69 : string = "true; } // rust.loop"
-    let v70 : bool = Fable.Core.RustInterop.emitRustExpr () v69 
-    let v71 : string = "true; } // rust.loop"
-    let v72 : bool = Fable.Core.RustInterop.emitRustExpr () v71 
-    let v73 : string = "true; } // rust.loop"
-    let v74 : bool = Fable.Core.RustInterop.emitRustExpr () v73 
-    let v75 : string = "true; { // rust.loop"
-    let v76 : bool = Fable.Core.RustInterop.emitRustExpr () v75 
-    let v77 : string = "true; { // rust.loop"
-    let v78 : bool = Fable.Core.RustInterop.emitRustExpr () v77 
-    let v79 : string = "&sha2::Digest::finalize(v16)"
-    let v80 : Ref<Slice<uint8>> = Fable.Core.RustInterop.emitRustExpr () v79 
-    let v81 : string = "$0.iter().map(|x| *x).collect::<Vec<_>>()"
-    let v82 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v80 v81 
-    let v83 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
-    let v84 : bool = Fable.Core.RustInterop.emitRustExpr v82 v83 
-    let v85 : string = "x"
-    let v86 : uint8 = Fable.Core.RustInterop.emitRustExpr () v85 
-    let v87 : string = "format!(\"{:02x}\", $0)"
-    let v88 : std_string_String = Fable.Core.RustInterop.emitRustExpr v86 v87 
-    let v89 : string = "fable_library_rust::String_::fromString($0)"
-    let v90 : string = Fable.Core.RustInterop.emitRustExpr v88 v89 
-    let v91 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v92 : bool = Fable.Core.RustInterop.emitRustExpr v90 v91 
-    let v93 : string = "_vec_map"
-    let v94 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v93 
-    let v95 : string = "fable_library_rust::NativeArray_::array_from($0)"
-    let v96 : (string []) = Fable.Core.RustInterop.emitRustExpr v94 v95 
-    let v97 : unit = ()
-    let _v97 =
+            let v62 : string = "&v23[$0..$1]"
+            let v63 : Ref<Slice'<uint8>> = Fable.Core.RustInterop.emitRustExpr struct (v19, v49) v62 
+            v63
+    let v65 : string = "sha2::Digest::update(&mut v16, v64)"
+    Fable.Core.RustInterop.emitRustExpr () v65 
+    let v66 : string = "true; } // rust.loop"
+    let v67 : bool = Fable.Core.RustInterop.emitRustExpr () v66 
+    let v68 : string = "true; } // rust.loop"
+    let v69 : bool = Fable.Core.RustInterop.emitRustExpr () v68 
+    let v70 : string = "true; } // rust.loop"
+    let v71 : bool = Fable.Core.RustInterop.emitRustExpr () v70 
+    let v72 : string = "true; { // rust.loop"
+    let v73 : bool = Fable.Core.RustInterop.emitRustExpr () v72 
+    let v74 : string = "true; { // rust.loop"
+    let v75 : bool = Fable.Core.RustInterop.emitRustExpr () v74 
+    let v76 : string = "&sha2::Digest::finalize(v16)"
+    let v77 : Ref<Slice<uint8>> = Fable.Core.RustInterop.emitRustExpr () v76 
+    let v78 : string = "$0.iter().map(|x| *x).collect::<Vec<_>>()"
+    let v79 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v77 v78 
+    let v80 : string = "true; let _vec_map : Vec<_> = $0.into_iter().map(|x| { //"
+    let v81 : bool = Fable.Core.RustInterop.emitRustExpr v79 v80 
+    let v82 : string = "x"
+    let v83 : uint8 = Fable.Core.RustInterop.emitRustExpr () v82 
+    let v84 : string = "format!(\"{:02x}\", $0)"
+    let v85 : std_string_String = Fable.Core.RustInterop.emitRustExpr v83 v84 
+    let v86 : string = "fable_library_rust::String_::fromString($0)"
+    let v87 : string = Fable.Core.RustInterop.emitRustExpr v85 v86 
+    let v88 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v89 : bool = Fable.Core.RustInterop.emitRustExpr v87 v88 
+    let v90 : string = "_vec_map"
+    let v91 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v90 
+    let v92 : string = "fable_library_rust::NativeArray_::array_from($0)"
+    let v93 : (string []) = Fable.Core.RustInterop.emitRustExpr v91 v92 
+    let v94 : unit = ()
+    let _v94 =
         seq {
-            for i = 0 to v96.Length - 1 do yield v96.[i]
+            for i = 0 to v93.Length - 1 do yield v93.[i]
             (*
             ()
         *)
@@ -21326,123 +21367,123 @@ and method182 (v0 : string) : string =
         (*
         ()
     *)
-    let v98 : string seq = _v97 
-    let v104 : string = method183()
-    let v105 : bool = v104 = "\n"
-    let v107 : string =
-        if v105 then
-            method166(v104)
+    let v95 : string seq = _v94 
+    let v101 : string = method183()
+    let v102 : bool = v101 = "\n"
+    let v104 : string =
+        if v102 then
+            method166(v101)
         else
-            v104
-    let v108 : (string -> (string seq -> string)) = String.concat
-    let v109 : (string seq -> string) = v108 v107
-    let v110 : string = v109 v98
-    let v113 : Result<string, std_io_Error> = Ok v110 
-    let v114 : unit = ()
+            v101
+    let v105 : (string -> (string seq -> string)) = String.concat
+    let v106 : (string seq -> string) = v105 v104
+    let v107 : string = v106 v95
+    let v110 : Result<string, std_io_Error> = Ok v107 
+    let v111 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v115 : string = "$0.unwrap()"
-    let v116 : string = Fable.Core.RustInterop.emitRustExpr v113 v115 
-    let _v114 = v116 
+    let v112 : string = "$0.unwrap()"
+    let v113 : string = Fable.Core.RustInterop.emitRustExpr v110 v112 
+    let _v111 = v113 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v117 : string = "$0.unwrap()"
-    let v118 : string = Fable.Core.RustInterop.emitRustExpr v113 v117 
-    let _v114 = v118 
+    let v114 : string = "$0.unwrap()"
+    let v115 : string = Fable.Core.RustInterop.emitRustExpr v110 v114 
+    let _v111 = v115 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v119 : string = "$0.unwrap()"
-    let v120 : string = Fable.Core.RustInterop.emitRustExpr v113 v119 
-    let _v114 = v120 
+    let v116 : string = "$0.unwrap()"
+    let v117 : string = Fable.Core.RustInterop.emitRustExpr v110 v116 
+    let _v111 = v117 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v121 : string = match v113 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v114 = v121 
+    let v118 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v111 = v118 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v122 : string = match v113 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v114 = v122 
+    let v119 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v111 = v119 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v123 : string = match v113 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v114 = v123 
+    let v120 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v111 = v120 
     #endif
 #else
-    let v124 : string = match v113 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v114 = v124 
+    let v121 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v111 = v121 
     #endif
-    let v125 : string = _v114 
-    let _v1 = v125 
+    let v122 : string = _v111 
+    let _v1 = v122 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    let v125 : string = null |> unbox<string>
+    let _v1 = v125 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
     let v128 : string = null |> unbox<string>
     let _v1 = v128 
     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v131 : string = null |> unbox<string>
-    let _v1 = v131 
-    #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v134 : string = "crypto"
-    let v135 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v134 
-    let v136 : string = "v135.createHash($0)"
-    let v137 : string = "sha256"
-    let v138 : obj = Fable.Core.JsInterop.emitJsExpr v137 v136 
-    let v139 : string = "$0.update($1, 'utf8')"
-    let v140 : obj = Fable.Core.JsInterop.emitJsExpr struct (v138, v0) v139 
-    let v141 : string = "$0.digest($1)"
-    let v142 : string = "hex"
-    let v143 : string = Fable.Core.JsInterop.emitJsExpr struct (v140, v142) v141 
-    let _v1 = v143 
+    let v131 : string = "crypto"
+    let v132 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v131 
+    let v133 : string = "v132.createHash($0)"
+    let v134 : string = "sha256"
+    let v135 : obj = Fable.Core.JsInterop.emitJsExpr v134 v133 
+    let v136 : string = "$0.update($1, 'utf8')"
+    let v137 : obj = Fable.Core.JsInterop.emitJsExpr struct (v135, v0) v136 
+    let v138 : string = "$0.digest($1)"
+    let v139 : string = "hex"
+    let v140 : string = Fable.Core.JsInterop.emitJsExpr struct (v137, v139) v138 
+    let _v1 = v140 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v144 : string = "hashlib"
-    let v145 : IHashlibSha256 = Fable.Core.PyInterop.importAll v144 
-    let v146 : string = "v145.sha256()"
-    let v147 : obj = Fable.Core.PyInterop.emitPyExpr () v146 
-    let v150 : string = "$0.encode($1)"
-    let v151 : string = "utf-8"
-    let v152 : string = Fable.Core.PyInterop.emitPyExpr struct (v0, v151) v150 
-    let v155 : string = "v147.update($0)"
-    Fable.Core.PyInterop.emitPyExpr v152 v155 
-    let v156 : string = "v147.hexdigest()"
-    let v157 : string = Fable.Core.PyInterop.emitPyExpr () v156 
-    let _v1 = v157 
+    let v141 : string = "hashlib"
+    let v142 : IHashlibSha256 = Fable.Core.PyInterop.importAll v141 
+    let v143 : string = "v142.sha256()"
+    let v144 : obj = Fable.Core.PyInterop.emitPyExpr () v143 
+    let v147 : string = "$0.encode($1)"
+    let v148 : string = "utf-8"
+    let v149 : string = Fable.Core.PyInterop.emitPyExpr struct (v0, v148) v147 
+    let v152 : string = "v144.update($0)"
+    Fable.Core.PyInterop.emitPyExpr v149 v152 
+    let v153 : string = "v144.hexdigest()"
+    let v154 : string = Fable.Core.PyInterop.emitPyExpr () v153 
+    let _v1 = v154 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v160 : string = null |> unbox<string>
-    let _v1 = v160 
+    let v157 : string = null |> unbox<string>
+    let _v1 = v157 
     #endif
 #else
-    let v163 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v164 : System.Security.Cryptography.SHA256 = v163 ()
-    use v164 = v164 
-    let v165 : System.Security.Cryptography.SHA256 = v164 
-    let v166 : System.Text.Encoding = System.Text.Encoding.UTF8
-    let v167 : (System.Text.Encoding -> (string -> (uint8 []))) = _.GetBytes
-    let v168 : (string -> (uint8 [])) = v167 v166
-    let v169 : (uint8 []) = v168 v0
-    let v170 : ((uint8 []) -> (uint8 [])) = v165.ComputeHash
-    let v171 : (uint8 []) = v170 v169
-    let v172 : int32 = v171.Length
-    let v173 : (string []) = Array.zeroCreate<string> (v172)
-    let v174 : Mut5 = {l0 = 0} : Mut5
-    while method71(v172, v174) do
-        let v176 : int32 = v174.l0
-        let v177 : uint8 = v171.[int v176]
-        let v178 : (string -> string) = v177.ToString
-        let v179 : string = "x2"
-        let v180 : string = v178 v179
-        v173.[int v176] <- v180
-        let v181 : int32 = v176 + 1
-        v174.l0 <- v181
+    let v160 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v161 : System.Security.Cryptography.SHA256 = v160 ()
+    use v161 = v161 
+    let v162 : System.Security.Cryptography.SHA256 = v161 
+    let v163 : System.Text.Encoding = System.Text.Encoding.UTF8
+    let v164 : (System.Text.Encoding -> (string -> (uint8 []))) = _.GetBytes
+    let v165 : (string -> (uint8 [])) = v164 v163
+    let v166 : (uint8 []) = v165 v0
+    let v167 : ((uint8 []) -> (uint8 [])) = v162.ComputeHash
+    let v168 : (uint8 []) = v167 v166
+    let v169 : int32 = v168.Length
+    let v170 : (string []) = Array.zeroCreate<string> (v169)
+    let v171 : Mut5 = {l0 = 0} : Mut5
+    while method71(v169, v171) do
+        let v173 : int32 = v171.l0
+        let v174 : uint8 = v168.[int v173]
+        let v175 : (string -> string) = v174.ToString
+        let v176 : string = "x2"
+        let v177 : string = v175 v176
+        v170.[int v173] <- v177
+        let v178 : int32 = v173 + 1
+        v171.l0 <- v178
         ()
-    let v182 : unit = ()
-    let _v182 =
+    let v179 : unit = ()
+    let _v179 =
         seq {
-            for i = 0 to v173.Length - 1 do yield v173.[i]
+            for i = 0 to v170.Length - 1 do yield v170.[i]
             (*
             ()
         *)
@@ -21450,21 +21491,21 @@ and method182 (v0 : string) : string =
         (*
         ()
     *)
-    let v183 : string seq = _v182 
-    let v189 : string = method184()
-    let v190 : bool = v189 = "\n"
-    let v192 : string =
-        if v190 then
-            method166(v189)
+    let v180 : string seq = _v179 
+    let v186 : string = method184()
+    let v187 : bool = v186 = "\n"
+    let v189 : string =
+        if v187 then
+            method166(v186)
         else
-            v189
-    let v193 : (string -> (string seq -> string)) = String.concat
-    let v194 : (string seq -> string) = v193 v192
-    let v195 : string = v194 v183
-    let _v1 = v195 
+            v186
+    let v190 : (string -> (string seq -> string)) = String.concat
+    let v191 : (string seq -> string) = v190 v189
+    let v192 : string = v191 v180
+    let _v1 = v192 
     #endif
-    let v198 : string = _v1 
-    v198
+    let v195 : string = _v1 
+    v195
 and method185 (v0 : US5, v1 : string, v2 : US38, v3 : string) : string =
     let v4 : string = "target/spiral_builder"
     let v5 : string = method27(v3, v4)
@@ -21724,1445 +21765,2241 @@ and method189 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : System.DateTime = System.DateTime (1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc)
+    let v3 : System.DateTime = System.DateTime.UnixEpoch
     let v6 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
     let v7 : System.DateTime = v6 v3
     let v10 : System.DateTimeKind = System.DateTimeKind.Local
     let v11 : System.DateTime = System.DateTime.SpecifyKind (v1, v10)
-    let v12 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
-    let v13 : System.DateTime = v12 v11
-    let v16 : unit = ()
+    let v14 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
+    let v15 : System.DateTime = v14 v11
+    let v18 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : (System.DateTime -> int64) = _.Ticks
-    let v18 : int64 = v17 v13
-    let _v16 = v18 
+    let v19 : (System.DateTime -> int64) = _.Ticks
+    let v20 : int64 = v19 v15
+    let _v18 = v20 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v19 : (System.DateTime -> int64) = _.Ticks
-    let v20 : int64 = v19 v13
-    let _v16 = v20 
+    let v21 : (System.DateTime -> int64) = _.Ticks
+    let v22 : int64 = v21 v15
+    let _v18 = v22 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v21 : int64 = null |> unbox<int64>
-    let _v16 = v21 
+    let v23 : int64 = null |> unbox<int64>
+    let _v18 = v23 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v24 : (System.DateTime -> int64) = _.Ticks
-    let v25 : int64 = v24 v13
-    let _v16 = v25 
+    let v26 : (System.DateTime -> int64) = _.Ticks
+    let v27 : int64 = v26 v15
+    let _v18 = v27 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v26 : (System.DateTime -> int64) = _.Ticks
-    let v27 : int64 = v26 v13
-    let _v16 = v27 
+    let v28 : (System.DateTime -> int64) = _.Ticks
+    let v29 : int64 = v28 v15
+    let _v18 = v29 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v28 : (System.DateTime -> int64) = _.Ticks
-    let v29 : int64 = v28 v13
-    let _v16 = v29 
+    let v30 : (System.DateTime -> int64) = _.Ticks
+    let v31 : int64 = v30 v15
+    let _v18 = v31 
     #endif
 #else
-    let v30 : (System.DateTime -> int64) = _.Ticks
-    let v31 : int64 = v30 v13
-    let _v16 = v31 
+    let v32 : (System.DateTime -> int64) = _.Ticks
+    let v33 : int64 = v32 v15
+    let _v18 = v33 
     #endif
-    let v32 : int64 = _v16 
-    let v49 : unit = ()
+    let v34 : int64 = _v18 
+    let v51 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v50 : (System.DateTime -> int64) = _.Ticks
-    let v51 : int64 = v50 v7
-    let _v49 = v51 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
     let v52 : (System.DateTime -> int64) = _.Ticks
     let v53 : int64 = v52 v7
-    let _v49 = v53 
+    let _v51 = v53 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v54 : (System.DateTime -> int64) = _.Ticks
+    let v55 : int64 = v54 v7
+    let _v51 = v55 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v54 : int64 = null |> unbox<int64>
-    let _v49 = v54 
+    let v56 : int64 = null |> unbox<int64>
+    let _v51 = v56 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v57 : (System.DateTime -> int64) = _.Ticks
-    let v58 : int64 = v57 v7
-    let _v49 = v58 
-    #endif
-#if FABLE_COMPILER_PYTHON
     let v59 : (System.DateTime -> int64) = _.Ticks
     let v60 : int64 = v59 v7
-    let _v49 = v60 
+    let _v51 = v60 
     #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_PYTHON
     let v61 : (System.DateTime -> int64) = _.Ticks
     let v62 : int64 = v61 v7
-    let _v49 = v62 
+    let _v51 = v62 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v63 : (System.DateTime -> int64) = _.Ticks
     let v64 : int64 = v63 v7
-    let _v49 = v64 
+    let _v51 = v64 
     #endif
-    let v65 : int64 = _v49 
-    let v82 : int64 = v32 |> int64 
-    let v85 : int64 = v65 |> int64 
-    let v88 : int64 = v82 - v85
-    let v89 : int64 = v88 / 10L
-    let v90 : string = "chrono::DateTime::from_timestamp_micros($0)"
-    let v91 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v89 v90 
-    let v92 : (chrono_DateTime<chrono_Utc> -> US39) = method190()
-    let v93 : US39 option = v91 |> Option.map v92 
-    let v104 : US39 = US39_1
-    let v105 : US39 = v93 |> Option.defaultValue v104 
-    let v125 : US5 =
-        match v105 with
+#else
+    let v65 : (System.DateTime -> int64) = _.Ticks
+    let v66 : int64 = v65 v7
+    let _v51 = v66 
+    #endif
+    let v67 : int64 = _v51 
+    let v84 : int64 = v34 |> int64 
+    let v87 : int64 = v67 |> int64 
+    let v90 : int64 = v84 - v87
+    let v91 : int64 = v90 / 10L
+    let v92 : string = "chrono::DateTime::from_timestamp_micros($0)"
+    let v93 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v91 v92 
+    let v94 : (chrono_DateTime<chrono_Utc> -> US39) = method190()
+    let v95 : US39 option = v93 |> Option.map v94 
+    let v106 : US39 = US39_1
+    let v107 : US39 = v95 |> Option.defaultValue v106 
+    let v127 : US5 =
+        match v107 with
         | US39_1 -> (* None *)
             US5_1
-        | US39_0(v109) -> (* Some *)
-            let v110 : string = "$0.naive_utc()"
-            let v111 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr v109 v110 
-            let v112 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"
-            let v113 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr v111 v112 
-            let v114 : string = "%Y%m%d-%H%M-%S%f"
-            let v115 : string = "r#\"" + v114 + "\"#"
-            let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115 
-            let v117 : string = "$0.format($1).to_string()"
-            let v118 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v113, v116) v117 
-            let v119 : string = "fable_library_rust::String_::fromString($0)"
-            let v120 : string = Fable.Core.RustInterop.emitRustExpr v118 v119 
-            let v121 : string = $"{v120.[0..17]}-{v120.[18..21]}-{v120.[22]}"
-            US5_0(v121)
-    let v129 : string =
-        match v125 with
+        | US39_0(v111) -> (* Some *)
+            let v112 : string = "$0.naive_utc()"
+            let v113 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr v111 v112 
+            let v114 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"
+            let v115 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr v113 v114 
+            let v116 : string = "%Y%m%d-%H%M-%S%f"
+            let v117 : string = "r#\"" + v116 + "\"#"
+            let v118 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v117 
+            let v119 : string = "$0.format($1).to_string()"
+            let v120 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v115, v118) v119 
+            let v121 : string = "fable_library_rust::String_::fromString($0)"
+            let v122 : string = Fable.Core.RustInterop.emitRustExpr v120 v121 
+            let v123 : string = $"{v122.[0..17]}-{v122.[18..21]}-{v122.[22]}"
+            US5_0(v123)
+    let v131 : string =
+        match v127 with
         | US5_1 -> (* None *)
-            let v127 : string = ""
-            v127
-        | US5_0(v126) -> (* Some *)
-            v126
-    let v130 : unit = ()
+            let v129 : string = ""
+            v129
+        | US5_0(v128) -> (* Some *)
+            v128
+    let v132 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v131 : string = "0i64.into()"
-    let v132 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v131 
-    let _v130 = v132 
+    let v133 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v134 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v133 
+    let _v132 = v134 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v133 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v130 = v133 
+    let v135 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v132 = v135 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v136 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v130 = v136 
+    let v138 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v132 = v138 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v139 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v130 = v139 
+    let v141 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v132 = v141 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v142 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v130 = v142 
+    let v144 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v132 = v144 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v145 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v130 = v145 
+    let v147 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v132 = v147 
     #endif
 #else
-    let v146 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v130 = v146 
+    let v148 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v132 = v148 
     #endif
-    let v147 : System.TimeZoneInfo = _v130 
-    let v152 : unit = ()
+    let v149 : System.TimeZoneInfo = _v132 
+    let v154 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v153 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v154 : System.TimeSpan = v153 ()
-    let _v152 = v154 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v157 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v158 : System.TimeSpan = v157 ()
-    let _v152 = v158 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v161 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v162 : System.TimeSpan = v161 ()
-    let _v152 = v162 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v165 : US3 = US3_0
-    let v166 : US4 = US4_3(v165)
-    let v167 : string = $"date_time.get_utc_offset / target: {v166}"
-    let v168 : System.TimeSpan = failwith<System.TimeSpan> v167
-    let _v152 = v168 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v169 : US3 = US3_0
-    let v170 : US4 = US4_4(v169)
-    let v171 : string = $"date_time.get_utc_offset / target: {v170}"
-    let v172 : System.TimeSpan = failwith<System.TimeSpan> v171
-    let _v152 = v172 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v173 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v174 : unit = ()
+    let v155 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v175 : string = "0i64.into()"
-    let v176 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v175 
-    let _v174 = v176 
+    let v156 : (System.DateTime -> int64) = _.Ticks
+    let v157 : int64 = v156 v15
+    let _v155 = v157 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v177 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v174 = v177 
+    let v158 : (System.DateTime -> int64) = _.Ticks
+    let v159 : int64 = v158 v15
+    let _v155 = v159 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v180 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v174 = v180 
+    let v160 : int64 = null |> unbox<int64>
+    let _v155 = v160 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v183 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v174 = v183 
+    let v163 : (System.DateTime -> int64) = _.Ticks
+    let v164 : int64 = v163 v15
+    let _v155 = v164 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v186 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v174 = v186 
+    let v165 : (System.DateTime -> int64) = _.Ticks
+    let v166 : int64 = v165 v15
+    let _v155 = v166 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v189 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v174 = v189 
+    let v167 : (System.DateTime -> int64) = _.Ticks
+    let v168 : int64 = v167 v15
+    let _v155 = v168 
     #endif
 #else
-    let v190 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v174 = v190 
+    let v169 : (System.DateTime -> int64) = _.Ticks
+    let v170 : int64 = v169 v15
+    let _v155 = v170 
     #endif
-    let v191 : System.TimeZoneInfo = _v174 
-    let v196 : (System.DateTime -> System.TimeSpan) = v173 v191
-    let v197 : System.TimeSpan = v196 v13
-    let _v152 = v197 
+    let v171 : int64 = _v155 
+    let v188 : string = "$0"
+    let v189 : int64 = Fable.Core.RustInterop.emitRustExpr v171 v188 
+    let v190 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v189))))"
+    let v191 : int32 = Fable.Core.RustInterop.emitRustExpr v15 v190 
+    let v192 : System.TimeSpan = v191 |> System.TimeSpan 
+    let _v154 = v192 
     #endif
-#else
-    let v198 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v199 : unit = ()
+#if FABLE_COMPILER_RUST && WASM
+    let v195 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v200 : string = "0i64.into()"
-    let v201 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v200 
-    let _v199 = v201 
+    let v196 : (System.DateTime -> int64) = _.Ticks
+    let v197 : int64 = v196 v15
+    let _v195 = v197 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v202 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v199 = v202 
+    let v198 : (System.DateTime -> int64) = _.Ticks
+    let v199 : int64 = v198 v15
+    let _v195 = v199 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v205 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v199 = v205 
+    let v200 : int64 = null |> unbox<int64>
+    let _v195 = v200 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v208 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v199 = v208 
+    let v203 : (System.DateTime -> int64) = _.Ticks
+    let v204 : int64 = v203 v15
+    let _v195 = v204 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v211 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v199 = v211 
+    let v205 : (System.DateTime -> int64) = _.Ticks
+    let v206 : int64 = v205 v15
+    let _v195 = v206 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v214 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v199 = v214 
+    let v207 : (System.DateTime -> int64) = _.Ticks
+    let v208 : int64 = v207 v15
+    let _v195 = v208 
     #endif
 #else
-    let v215 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v199 = v215 
+    let v209 : (System.DateTime -> int64) = _.Ticks
+    let v210 : int64 = v209 v15
+    let _v195 = v210 
     #endif
-    let v216 : System.TimeZoneInfo = _v199 
-    let v221 : (System.DateTime -> System.TimeSpan) = v198 v216
-    let v222 : System.TimeSpan = v221 v13
-    let _v152 = v222 
+    let v211 : int64 = _v195 
+    let v228 : string = "$0"
+    let v229 : int64 = Fable.Core.RustInterop.emitRustExpr v211 v228 
+    let v230 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v229))))"
+    let v231 : int32 = Fable.Core.RustInterop.emitRustExpr v15 v230 
+    let v232 : System.TimeSpan = v231 |> System.TimeSpan 
+    let _v154 = v232 
     #endif
-    let v223 : System.TimeSpan = _v152 
-    let v229 : (System.TimeSpan -> int32) = _.Hours
-    let v230 : int32 = v229 v223
-    let v233 : bool = v230 > 0
-    let v234 : uint8 =
-        if v233 then
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v235 : US3 = US3_2
+    let v236 : US4 = US4_2(v235)
+    let v237 : string = $"date_time.get_utc_offset / target: {v236}"
+    let v238 : System.TimeSpan = failwith<System.TimeSpan> v237
+    let _v154 = v238 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v241 : US3 = US3_0
+    let v242 : US4 = US4_3(v241)
+    let v243 : string = $"date_time.get_utc_offset / target: {v242}"
+    let v244 : System.TimeSpan = failwith<System.TimeSpan> v243
+    let _v154 = v244 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v247 : US3 = US3_0
+    let v248 : US4 = US4_4(v247)
+    let v249 : string = $"date_time.get_utc_offset / target: {v248}"
+    let v250 : System.TimeSpan = failwith<System.TimeSpan> v249
+    let _v154 = v250 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v253 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v254 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v255 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v256 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v255 
+    let _v254 = v256 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v257 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v254 = v257 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v260 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v254 = v260 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v263 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v254 = v263 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v266 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v254 = v266 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v269 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v254 = v269 
+    #endif
+#else
+    let v270 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v254 = v270 
+    #endif
+    let v271 : System.TimeZoneInfo = _v254 
+    let v276 : (System.DateTime -> System.TimeSpan) = v253 v271
+    let v277 : System.TimeSpan = v276 v15
+    let _v154 = v277 
+    #endif
+#else
+    let v278 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v279 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v280 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v281 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v280 
+    let _v279 = v281 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v282 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v279 = v282 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v285 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v279 = v285 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v288 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v279 = v288 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v291 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v279 = v291 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v294 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v279 = v294 
+    #endif
+#else
+    let v295 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v279 = v295 
+    #endif
+    let v296 : System.TimeZoneInfo = _v279 
+    let v301 : (System.DateTime -> System.TimeSpan) = v278 v296
+    let v302 : System.TimeSpan = v301 v15
+    let _v154 = v302 
+    #endif
+    let v303 : System.TimeSpan = _v154 
+    let v311 : (System.TimeSpan -> int32) = _.Hours
+    let v312 : int32 = v311 v303
+    let v315 : bool = v312 > 0
+    let v316 : uint8 =
+        if v315 then
             1uy
         else
             0uy
-    let v235 : string = method191()
-    let v236 : unit = ()
+    let v317 : string = method191()
+    let v318 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v237 : string = v223.ToString v235 
-    let _v236 = v237 
+    let v319 : string = v303.ToString v317 
+    let _v318 = v319 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v238 : string = v223.ToString v235 
-    let _v236 = v238 
+    let v322 : string = v303.ToString v317 
+    let _v318 = v322 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v239 : string = v223.ToString v235 
-    let _v236 = v239 
+    let v325 : string = v303.ToString v317 
+    let _v318 = v325 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v240 : string = v223.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v236 = v240 
+    let v328 : string = v303.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v318 = v328 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v241 : string = v223.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v236 = v241 
+    let v329 : string = v303.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v318 = v329 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v242 : string = v223.ToString v235 
-    let _v236 = v242 
+    let v330 : string = v303.ToString v317 
+    let _v318 = v330 
     #endif
 #else
-    let v243 : string = v223.ToString v235 
-    let _v236 = v243 
+    let v333 : string = v303.ToString v317 
+    let _v318 = v333 
     #endif
-    let v244 : string = _v236 
-    let v247 : string = $"{v234}{v244.[0..1]}{v244.[3..4]}"
-    let v248 : (System.Guid -> string) = _.ToString()
-    let v249 : string = v248 v0
-    let v252 : System.Guid = System.Guid $"{v129}{v247}{v249.[v129.Length + v247.Length..]}"
-    let _v2 = v252 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v253 : System.DateTime = System.DateTime (1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc)
-    let v256 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
-    let v257 : System.DateTime = v256 v253
-    let v260 : System.DateTimeKind = System.DateTimeKind.Local
-    let v261 : System.DateTime = System.DateTime.SpecifyKind (v1, v260)
-    let v262 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
-    let v263 : System.DateTime = v262 v261
-    let v266 : unit = ()
+    let v336 : string = _v318 
+    let v341 : string = $"{v316}{v336.[0..1]}{v336.[3..4]}"
+    let v342 : (System.Guid -> string) = _.ToString()
+    let v343 : string = v342 v0
+    let v346 : int32 = v131.Length
+    let v347 : int32 = v341.Length
+    let v348 : int32 = v346 + v347
+    let v349 : (string -> int32) = String.length
+    let v350 : int32 = v349 v343
+    let v353 : int32 = v348 |> int32 
+    let v360 : int32 = v350 |> int32 
+    let v367 : int32 = v360 - 1
+    let v368 : string = v343.[int v353..int v367]
+    let v372 : string = $"{v131}{v341}{v368}"
+    let v373 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v267 : (System.DateTime -> int64) = _.Ticks
-    let v268 : int64 = v267 v263
-    let _v266 = v268 
+    let v374 : System.Guid = v372 |> System.Guid 
+    let _v373 = v374 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v269 : (System.DateTime -> int64) = _.Ticks
-    let v270 : int64 = v269 v263
-    let _v266 = v270 
+    let v377 : System.Guid = v372 |> System.Guid 
+    let _v373 = v377 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v271 : int64 = null |> unbox<int64>
-    let _v266 = v271 
+    let v380 : System.Guid = null |> unbox<System.Guid>
+    let _v373 = v380 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v274 : (System.DateTime -> int64) = _.Ticks
-    let v275 : int64 = v274 v263
-    let _v266 = v275 
+    let v383 : System.Guid = v372 |> System.Guid 
+    let _v373 = v383 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v276 : (System.DateTime -> int64) = _.Ticks
-    let v277 : int64 = v276 v263
-    let _v266 = v277 
+    let v386 : System.Guid = v372 |> System.Guid 
+    let _v373 = v386 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v278 : (System.DateTime -> int64) = _.Ticks
-    let v279 : int64 = v278 v263
-    let _v266 = v279 
+    let v389 : System.Guid = v372 |> System.Guid 
+    let _v373 = v389 
     #endif
 #else
-    let v280 : (System.DateTime -> int64) = _.Ticks
-    let v281 : int64 = v280 v263
-    let _v266 = v281 
+    let v392 : System.Guid = v372 |> System.Guid 
+    let _v373 = v392 
     #endif
-    let v282 : int64 = _v266 
-    let v299 : unit = ()
+    let v395 : System.Guid = _v373 
+    let _v2 = v395 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v400 : System.DateTime = System.DateTime.UnixEpoch
+    let v403 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
+    let v404 : System.DateTime = v403 v400
+    let v407 : System.DateTimeKind = System.DateTimeKind.Local
+    let v408 : System.DateTime = System.DateTime.SpecifyKind (v1, v407)
+    let v411 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
+    let v412 : System.DateTime = v411 v408
+    let v415 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v300 : (System.DateTime -> int64) = _.Ticks
-    let v301 : int64 = v300 v257
-    let _v299 = v301 
+    let v416 : (System.DateTime -> int64) = _.Ticks
+    let v417 : int64 = v416 v412
+    let _v415 = v417 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v302 : (System.DateTime -> int64) = _.Ticks
-    let v303 : int64 = v302 v257
-    let _v299 = v303 
+    let v418 : (System.DateTime -> int64) = _.Ticks
+    let v419 : int64 = v418 v412
+    let _v415 = v419 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v304 : int64 = null |> unbox<int64>
-    let _v299 = v304 
+    let v420 : int64 = null |> unbox<int64>
+    let _v415 = v420 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v307 : (System.DateTime -> int64) = _.Ticks
-    let v308 : int64 = v307 v257
-    let _v299 = v308 
+    let v423 : (System.DateTime -> int64) = _.Ticks
+    let v424 : int64 = v423 v412
+    let _v415 = v424 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v309 : (System.DateTime -> int64) = _.Ticks
-    let v310 : int64 = v309 v257
-    let _v299 = v310 
+    let v425 : (System.DateTime -> int64) = _.Ticks
+    let v426 : int64 = v425 v412
+    let _v415 = v426 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v311 : (System.DateTime -> int64) = _.Ticks
-    let v312 : int64 = v311 v257
-    let _v299 = v312 
+    let v427 : (System.DateTime -> int64) = _.Ticks
+    let v428 : int64 = v427 v412
+    let _v415 = v428 
     #endif
 #else
-    let v313 : (System.DateTime -> int64) = _.Ticks
-    let v314 : int64 = v313 v257
-    let _v299 = v314 
+    let v429 : (System.DateTime -> int64) = _.Ticks
+    let v430 : int64 = v429 v412
+    let _v415 = v430 
     #endif
-    let v315 : int64 = _v299 
-    let v332 : int64 = v282 |> int64 
-    let v335 : int64 = v315 |> int64 
-    let v338 : int64 = v332 - v335
-    let v339 : int64 = v338 / 10L
-    let v340 : string = "chrono::DateTime::from_timestamp_micros($0)"
-    let v341 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v339 v340 
-    let v342 : (chrono_DateTime<chrono_Utc> -> US39) = method190()
-    let v343 : US39 option = v341 |> Option.map v342 
-    let v354 : US39 = US39_1
-    let v355 : US39 = v343 |> Option.defaultValue v354 
-    let v375 : US5 =
-        match v355 with
+    let v431 : int64 = _v415 
+    let v448 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v449 : (System.DateTime -> int64) = _.Ticks
+    let v450 : int64 = v449 v404
+    let _v448 = v450 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v451 : (System.DateTime -> int64) = _.Ticks
+    let v452 : int64 = v451 v404
+    let _v448 = v452 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v453 : int64 = null |> unbox<int64>
+    let _v448 = v453 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v456 : (System.DateTime -> int64) = _.Ticks
+    let v457 : int64 = v456 v404
+    let _v448 = v457 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v458 : (System.DateTime -> int64) = _.Ticks
+    let v459 : int64 = v458 v404
+    let _v448 = v459 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v460 : (System.DateTime -> int64) = _.Ticks
+    let v461 : int64 = v460 v404
+    let _v448 = v461 
+    #endif
+#else
+    let v462 : (System.DateTime -> int64) = _.Ticks
+    let v463 : int64 = v462 v404
+    let _v448 = v463 
+    #endif
+    let v464 : int64 = _v448 
+    let v481 : int64 = v431 |> int64 
+    let v484 : int64 = v464 |> int64 
+    let v487 : int64 = v481 - v484
+    let v488 : int64 = v487 / 10L
+    let v489 : string = "chrono::DateTime::from_timestamp_micros($0)"
+    let v490 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v488 v489 
+    let v491 : (chrono_DateTime<chrono_Utc> -> US39) = method190()
+    let v492 : US39 option = v490 |> Option.map v491 
+    let v503 : US39 = US39_1
+    let v504 : US39 = v492 |> Option.defaultValue v503 
+    let v524 : US5 =
+        match v504 with
         | US39_1 -> (* None *)
             US5_1
-        | US39_0(v359) -> (* Some *)
-            let v360 : string = "$0.naive_utc()"
-            let v361 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr v359 v360 
-            let v362 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"
-            let v363 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr v361 v362 
-            let v364 : string = "%Y%m%d-%H%M-%S%f"
-            let v365 : string = "r#\"" + v364 + "\"#"
-            let v366 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v365 
-            let v367 : string = "$0.format($1).to_string()"
-            let v368 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v363, v366) v367 
-            let v369 : string = "fable_library_rust::String_::fromString($0)"
-            let v370 : string = Fable.Core.RustInterop.emitRustExpr v368 v369 
-            let v371 : string = $"{v370.[0..17]}-{v370.[18..21]}-{v370.[22]}"
-            US5_0(v371)
-    let v379 : string =
-        match v375 with
+        | US39_0(v508) -> (* Some *)
+            let v509 : string = "$0.naive_utc()"
+            let v510 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr v508 v509 
+            let v511 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"
+            let v512 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr v510 v511 
+            let v513 : string = "%Y%m%d-%H%M-%S%f"
+            let v514 : string = "r#\"" + v513 + "\"#"
+            let v515 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v514 
+            let v516 : string = "$0.format($1).to_string()"
+            let v517 : std_string_String = Fable.Core.RustInterop.emitRustExpr struct (v512, v515) v516 
+            let v518 : string = "fable_library_rust::String_::fromString($0)"
+            let v519 : string = Fable.Core.RustInterop.emitRustExpr v517 v518 
+            let v520 : string = $"{v519.[0..17]}-{v519.[18..21]}-{v519.[22]}"
+            US5_0(v520)
+    let v528 : string =
+        match v524 with
         | US5_1 -> (* None *)
-            let v377 : string = ""
-            v377
-        | US5_0(v376) -> (* Some *)
-            v376
-    let v380 : unit = ()
+            let v526 : string = ""
+            v526
+        | US5_0(v525) -> (* Some *)
+            v525
+    let v529 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v381 : string = "0i64.into()"
-    let v382 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v381 
-    let _v380 = v382 
+    let v530 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v531 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v530 
+    let _v529 = v531 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v383 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v380 = v383 
+    let v532 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v529 = v532 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v386 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v380 = v386 
+    let v535 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v529 = v535 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v389 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v380 = v389 
+    let v538 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v529 = v538 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v392 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v380 = v392 
+    let v541 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v529 = v541 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v395 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v380 = v395 
+    let v544 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v529 = v544 
     #endif
 #else
-    let v396 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v380 = v396 
+    let v545 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v529 = v545 
     #endif
-    let v397 : System.TimeZoneInfo = _v380 
-    let v402 : unit = ()
+    let v546 : System.TimeZoneInfo = _v529 
+    let v551 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v403 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v404 : System.TimeSpan = v403 ()
-    let _v402 = v404 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v407 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v408 : System.TimeSpan = v407 ()
-    let _v402 = v408 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v411 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v412 : System.TimeSpan = v411 ()
-    let _v402 = v412 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v415 : US3 = US3_0
-    let v416 : US4 = US4_3(v415)
-    let v417 : string = $"date_time.get_utc_offset / target: {v416}"
-    let v418 : System.TimeSpan = failwith<System.TimeSpan> v417
-    let _v402 = v418 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v419 : US3 = US3_0
-    let v420 : US4 = US4_4(v419)
-    let v421 : string = $"date_time.get_utc_offset / target: {v420}"
-    let v422 : System.TimeSpan = failwith<System.TimeSpan> v421
-    let _v402 = v422 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v423 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v424 : unit = ()
+    let v552 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v425 : string = "0i64.into()"
-    let v426 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v425 
-    let _v424 = v426 
+    let v553 : (System.DateTime -> int64) = _.Ticks
+    let v554 : int64 = v553 v412
+    let _v552 = v554 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v427 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v424 = v427 
+    let v555 : (System.DateTime -> int64) = _.Ticks
+    let v556 : int64 = v555 v412
+    let _v552 = v556 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v430 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v424 = v430 
+    let v557 : int64 = null |> unbox<int64>
+    let _v552 = v557 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v433 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v424 = v433 
+    let v560 : (System.DateTime -> int64) = _.Ticks
+    let v561 : int64 = v560 v412
+    let _v552 = v561 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v436 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v424 = v436 
+    let v562 : (System.DateTime -> int64) = _.Ticks
+    let v563 : int64 = v562 v412
+    let _v552 = v563 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v439 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v424 = v439 
+    let v564 : (System.DateTime -> int64) = _.Ticks
+    let v565 : int64 = v564 v412
+    let _v552 = v565 
     #endif
 #else
-    let v440 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v424 = v440 
+    let v566 : (System.DateTime -> int64) = _.Ticks
+    let v567 : int64 = v566 v412
+    let _v552 = v567 
     #endif
-    let v441 : System.TimeZoneInfo = _v424 
-    let v446 : (System.DateTime -> System.TimeSpan) = v423 v441
-    let v447 : System.TimeSpan = v446 v263
-    let _v402 = v447 
+    let v568 : int64 = _v552 
+    let v585 : string = "$0"
+    let v586 : int64 = Fable.Core.RustInterop.emitRustExpr v568 v585 
+    let v587 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v586))))"
+    let v588 : int32 = Fable.Core.RustInterop.emitRustExpr v412 v587 
+    let v589 : System.TimeSpan = v588 |> System.TimeSpan 
+    let _v551 = v589 
     #endif
-#else
-    let v448 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v449 : unit = ()
+#if FABLE_COMPILER_RUST && WASM
+    let v592 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v450 : string = "0i64.into()"
-    let v451 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v450 
-    let _v449 = v451 
+    let v593 : (System.DateTime -> int64) = _.Ticks
+    let v594 : int64 = v593 v412
+    let _v592 = v594 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v452 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v449 = v452 
+    let v595 : (System.DateTime -> int64) = _.Ticks
+    let v596 : int64 = v595 v412
+    let _v592 = v596 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v455 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v449 = v455 
+    let v597 : int64 = null |> unbox<int64>
+    let _v592 = v597 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v458 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v449 = v458 
+    let v600 : (System.DateTime -> int64) = _.Ticks
+    let v601 : int64 = v600 v412
+    let _v592 = v601 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v461 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v449 = v461 
+    let v602 : (System.DateTime -> int64) = _.Ticks
+    let v603 : int64 = v602 v412
+    let _v592 = v603 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v464 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v449 = v464 
+    let v604 : (System.DateTime -> int64) = _.Ticks
+    let v605 : int64 = v604 v412
+    let _v592 = v605 
     #endif
 #else
-    let v465 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v449 = v465 
+    let v606 : (System.DateTime -> int64) = _.Ticks
+    let v607 : int64 = v606 v412
+    let _v592 = v607 
     #endif
-    let v466 : System.TimeZoneInfo = _v449 
-    let v471 : (System.DateTime -> System.TimeSpan) = v448 v466
-    let v472 : System.TimeSpan = v471 v263
-    let _v402 = v472 
+    let v608 : int64 = _v592 
+    let v625 : string = "$0"
+    let v626 : int64 = Fable.Core.RustInterop.emitRustExpr v608 v625 
+    let v627 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v626))))"
+    let v628 : int32 = Fable.Core.RustInterop.emitRustExpr v412 v627 
+    let v629 : System.TimeSpan = v628 |> System.TimeSpan 
+    let _v551 = v629 
     #endif
-    let v473 : System.TimeSpan = _v402 
-    let v479 : (System.TimeSpan -> int32) = _.Hours
-    let v480 : int32 = v479 v473
-    let v483 : bool = v480 > 0
-    let v484 : uint8 =
-        if v483 then
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v632 : US3 = US3_2
+    let v633 : US4 = US4_2(v632)
+    let v634 : string = $"date_time.get_utc_offset / target: {v633}"
+    let v635 : System.TimeSpan = failwith<System.TimeSpan> v634
+    let _v551 = v635 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v638 : US3 = US3_0
+    let v639 : US4 = US4_3(v638)
+    let v640 : string = $"date_time.get_utc_offset / target: {v639}"
+    let v641 : System.TimeSpan = failwith<System.TimeSpan> v640
+    let _v551 = v641 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v644 : US3 = US3_0
+    let v645 : US4 = US4_4(v644)
+    let v646 : string = $"date_time.get_utc_offset / target: {v645}"
+    let v647 : System.TimeSpan = failwith<System.TimeSpan> v646
+    let _v551 = v647 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v650 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v651 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v652 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v653 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v652 
+    let _v651 = v653 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v654 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v651 = v654 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v657 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v651 = v657 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v660 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v651 = v660 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v663 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v651 = v663 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v666 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v651 = v666 
+    #endif
+#else
+    let v667 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v651 = v667 
+    #endif
+    let v668 : System.TimeZoneInfo = _v651 
+    let v673 : (System.DateTime -> System.TimeSpan) = v650 v668
+    let v674 : System.TimeSpan = v673 v412
+    let _v551 = v674 
+    #endif
+#else
+    let v675 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v676 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v677 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v678 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v677 
+    let _v676 = v678 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v679 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v676 = v679 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v682 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v676 = v682 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v685 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v676 = v685 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v688 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v676 = v688 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v691 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v676 = v691 
+    #endif
+#else
+    let v692 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v676 = v692 
+    #endif
+    let v693 : System.TimeZoneInfo = _v676 
+    let v698 : (System.DateTime -> System.TimeSpan) = v675 v693
+    let v699 : System.TimeSpan = v698 v412
+    let _v551 = v699 
+    #endif
+    let v700 : System.TimeSpan = _v551 
+    let v708 : (System.TimeSpan -> int32) = _.Hours
+    let v709 : int32 = v708 v700
+    let v712 : bool = v709 > 0
+    let v713 : uint8 =
+        if v712 then
             1uy
         else
             0uy
-    let v485 : string = method191()
-    let v486 : unit = ()
+    let v714 : string = method191()
+    let v715 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v487 : string = v473.ToString v485 
-    let _v486 = v487 
+    let v716 : string = v700.ToString v714 
+    let _v715 = v716 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v488 : string = v473.ToString v485 
-    let _v486 = v488 
+    let v719 : string = v700.ToString v714 
+    let _v715 = v719 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v489 : string = v473.ToString v485 
-    let _v486 = v489 
+    let v722 : string = v700.ToString v714 
+    let _v715 = v722 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v490 : string = v473.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v486 = v490 
+    let v725 : string = v700.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v715 = v725 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v491 : string = v473.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v486 = v491 
+    let v726 : string = v700.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v715 = v726 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v492 : string = v473.ToString v485 
-    let _v486 = v492 
+    let v727 : string = v700.ToString v714 
+    let _v715 = v727 
     #endif
 #else
-    let v493 : string = v473.ToString v485 
-    let _v486 = v493 
+    let v730 : string = v700.ToString v714 
+    let _v715 = v730 
     #endif
-    let v494 : string = _v486 
-    let v497 : string = $"{v484}{v494.[0..1]}{v494.[3..4]}"
-    let v498 : (System.Guid -> string) = _.ToString()
-    let v499 : string = v498 v0
-    let v502 : System.Guid = System.Guid $"{v379}{v497}{v499.[v379.Length + v497.Length..]}"
-    let _v2 = v502 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v503 : System.Guid = null |> unbox<System.Guid>
-    let _v2 = v503 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v506 : string = method192()
-    let v507 : (string -> string) = v1.ToString
-    let v508 : string = v507 v506
-    let v511 : unit = ()
+    let v733 : string = _v715 
+    let v738 : string = $"{v713}{v733.[0..1]}{v733.[3..4]}"
+    let v739 : (System.Guid -> string) = _.ToString()
+    let v740 : string = v739 v0
+    let v743 : int32 = v528.Length
+    let v744 : int32 = v738.Length
+    let v745 : int32 = v743 + v744
+    let v746 : (string -> int32) = String.length
+    let v747 : int32 = v746 v740
+    let v750 : int32 = v745 |> int32 
+    let v757 : int32 = v747 |> int32 
+    let v764 : int32 = v757 - 1
+    let v765 : string = v740.[int v750..int v764]
+    let v769 : string = $"{v528}{v738}{v765}"
+    let v770 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v512 : string = "0i64.into()"
-    let v513 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v512 
-    let _v511 = v513 
+    let v771 : System.Guid = v769 |> System.Guid 
+    let _v770 = v771 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v514 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v511 = v514 
+    let v774 : System.Guid = v769 |> System.Guid 
+    let _v770 = v774 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v517 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v511 = v517 
+    let v777 : System.Guid = null |> unbox<System.Guid>
+    let _v770 = v777 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v520 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v511 = v520 
+    let v780 : System.Guid = v769 |> System.Guid 
+    let _v770 = v780 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v523 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v511 = v523 
+    let v783 : System.Guid = v769 |> System.Guid 
+    let _v770 = v783 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v526 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v511 = v526 
+    let v786 : System.Guid = v769 |> System.Guid 
+    let _v770 = v786 
     #endif
 #else
-    let v527 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v511 = v527 
+    let v789 : System.Guid = v769 |> System.Guid 
+    let _v770 = v789 
     #endif
-    let v528 : System.TimeZoneInfo = _v511 
-    let v533 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v534 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v535 : System.TimeSpan = v534 ()
-    let _v533 = v535 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v538 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v539 : System.TimeSpan = v538 ()
-    let _v533 = v539 
+    let v792 : System.Guid = _v770 
+    let _v2 = v792 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v542 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v543 : System.TimeSpan = v542 ()
-    let _v533 = v543 
+    let v797 : System.Guid = null |> unbox<System.Guid>
+    let _v2 = v797 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v546 : US3 = US3_0
-    let v547 : US4 = US4_3(v546)
-    let v548 : string = $"date_time.get_utc_offset / target: {v547}"
-    let v549 : System.TimeSpan = failwith<System.TimeSpan> v548
-    let _v533 = v549 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v550 : US3 = US3_0
-    let v551 : US4 = US4_4(v550)
-    let v552 : string = $"date_time.get_utc_offset / target: {v551}"
-    let v553 : System.TimeSpan = failwith<System.TimeSpan> v552
-    let _v533 = v553 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v554 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v555 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v556 : string = "0i64.into()"
-    let v557 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v556 
-    let _v555 = v557 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v558 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v555 = v558 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v561 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v555 = v561 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v564 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v555 = v564 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v567 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v555 = v567 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v570 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v555 = v570 
-    #endif
-#else
-    let v571 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v555 = v571 
-    #endif
-    let v572 : System.TimeZoneInfo = _v555 
-    let v577 : (System.DateTime -> System.TimeSpan) = v554 v572
-    let v578 : System.TimeSpan = v577 v1
-    let _v533 = v578 
-    #endif
-#else
-    let v579 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v580 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v581 : string = "0i64.into()"
-    let v582 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v581 
-    let _v580 = v582 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v583 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v580 = v583 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v586 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v580 = v586 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v589 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v580 = v589 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v592 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v580 = v592 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v595 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v580 = v595 
-    #endif
-#else
-    let v596 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v580 = v596 
-    #endif
-    let v597 : System.TimeZoneInfo = _v580 
-    let v602 : (System.DateTime -> System.TimeSpan) = v579 v597
-    let v603 : System.TimeSpan = v602 v1
-    let _v533 = v603 
-    #endif
-    let v604 : System.TimeSpan = _v533 
-    let v610 : (System.TimeSpan -> int32) = _.Hours
-    let v611 : int32 = v610 v604
-    let v614 : bool = v611 > 0
-    let v615 : uint8 =
-        if v614 then
-            1uy
+    let v800 : string = method192()
+    let v801 : bool = v800 = ""
+    let v803 : string =
+        if v801 then
+            let v802 : string = "M-d-y hh:mm:ss tt"
+            v802
         else
-            0uy
-    let v616 : string = method193()
-    let v617 : unit = ()
+            v800
+    let v804 : (string -> string) = v1.ToString
+    let v805 : string = v804 v803
+    let v819 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v618 : string = v604.ToString v616 
-    let _v617 = v618 
+    let v820 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v821 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v820 
+    let _v819 = v821 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v619 : string = v604.ToString v616 
-    let _v617 = v619 
+    let v822 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v819 = v822 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v620 : string = v604.ToString v616 
-    let _v617 = v620 
+    let v825 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v819 = v825 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v621 : string = v604.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v617 = v621 
+    let v828 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v819 = v828 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v622 : string = v604.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v617 = v622 
+    let v831 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v819 = v831 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v623 : string = v604.ToString v616 
-    let _v617 = v623 
+    let v834 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v819 = v834 
     #endif
 #else
-    let v624 : string = v604.ToString v616 
-    let _v617 = v624 
+    let v835 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v819 = v835 
     #endif
-    let v625 : string = _v617 
-    let v628 : string = $"{v615}{v625}"
-    let v629 : (System.Guid -> string) = _.ToString()
-    let v630 : string = v629 v0
-    let v633 : System.Guid = System.Guid $"{v508}{v628}{v630.[v508.Length + v628.Length..]}"
-    let _v2 = v633 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v634 : string = method192()
-    let v635 : (string -> string) = v1.ToString
-    let v636 : string = v635 v634
-    let v639 : unit = ()
+    let v836 : System.TimeZoneInfo = _v819 
+    let v841 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v640 : string = "0i64.into()"
-    let v641 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v640 
-    let _v639 = v641 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v642 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v639 = v642 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v645 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v639 = v645 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v648 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v639 = v648 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v651 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v639 = v651 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v654 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v639 = v654 
-    #endif
-#else
-    let v655 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v639 = v655 
-    #endif
-    let v656 : System.TimeZoneInfo = _v639 
-    let v661 : unit = ()
+    let v842 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v662 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v663 : System.TimeSpan = v662 ()
-    let _v661 = v663 
+    let v843 : (System.DateTime -> int64) = _.Ticks
+    let v844 : int64 = v843 v1
+    let _v842 = v844 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v666 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v667 : System.TimeSpan = v666 ()
-    let _v661 = v667 
+    let v845 : (System.DateTime -> int64) = _.Ticks
+    let v846 : int64 = v845 v1
+    let _v842 = v846 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v670 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v671 : System.TimeSpan = v670 ()
-    let _v661 = v671 
+    let v847 : int64 = null |> unbox<int64>
+    let _v842 = v847 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v674 : US3 = US3_0
-    let v675 : US4 = US4_3(v674)
-    let v676 : string = $"date_time.get_utc_offset / target: {v675}"
-    let v677 : System.TimeSpan = failwith<System.TimeSpan> v676
-    let _v661 = v677 
+    let v850 : (System.DateTime -> int64) = _.Ticks
+    let v851 : int64 = v850 v1
+    let _v842 = v851 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v678 : US3 = US3_0
-    let v679 : US4 = US4_4(v678)
-    let v680 : string = $"date_time.get_utc_offset / target: {v679}"
-    let v681 : System.TimeSpan = failwith<System.TimeSpan> v680
-    let _v661 = v681 
+    let v852 : (System.DateTime -> int64) = _.Ticks
+    let v853 : int64 = v852 v1
+    let _v842 = v853 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v682 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v683 : unit = ()
+    let v854 : (System.DateTime -> int64) = _.Ticks
+    let v855 : int64 = v854 v1
+    let _v842 = v855 
+    #endif
+#else
+    let v856 : (System.DateTime -> int64) = _.Ticks
+    let v857 : int64 = v856 v1
+    let _v842 = v857 
+    #endif
+    let v858 : int64 = _v842 
+    let v875 : string = "$0"
+    let v876 : int64 = Fable.Core.RustInterop.emitRustExpr v858 v875 
+    let v877 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v876))))"
+    let v878 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v877 
+    let v879 : System.TimeSpan = v878 |> System.TimeSpan 
+    let _v841 = v879 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v882 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v684 : string = "0i64.into()"
-    let v685 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v684 
-    let _v683 = v685 
+    let v883 : (System.DateTime -> int64) = _.Ticks
+    let v884 : int64 = v883 v1
+    let _v882 = v884 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v686 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v683 = v686 
+    let v885 : (System.DateTime -> int64) = _.Ticks
+    let v886 : int64 = v885 v1
+    let _v882 = v886 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v689 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v683 = v689 
+    let v887 : int64 = null |> unbox<int64>
+    let _v882 = v887 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v692 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v683 = v692 
+    let v890 : (System.DateTime -> int64) = _.Ticks
+    let v891 : int64 = v890 v1
+    let _v882 = v891 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v695 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v683 = v695 
+    let v892 : (System.DateTime -> int64) = _.Ticks
+    let v893 : int64 = v892 v1
+    let _v882 = v893 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v698 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v683 = v698 
+    let v894 : (System.DateTime -> int64) = _.Ticks
+    let v895 : int64 = v894 v1
+    let _v882 = v895 
     #endif
 #else
-    let v699 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v683 = v699 
+    let v896 : (System.DateTime -> int64) = _.Ticks
+    let v897 : int64 = v896 v1
+    let _v882 = v897 
     #endif
-    let v700 : System.TimeZoneInfo = _v683 
-    let v705 : (System.DateTime -> System.TimeSpan) = v682 v700
-    let v706 : System.TimeSpan = v705 v1
-    let _v661 = v706 
-    #endif
-#else
-    let v707 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v708 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v709 : string = "0i64.into()"
-    let v710 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v709 
-    let _v708 = v710 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v711 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v708 = v711 
+    let v898 : int64 = _v882 
+    let v915 : string = "$0"
+    let v916 : int64 = Fable.Core.RustInterop.emitRustExpr v898 v915 
+    let v917 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v916))))"
+    let v918 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v917 
+    let v919 : System.TimeSpan = v918 |> System.TimeSpan 
+    let _v841 = v919 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v714 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v708 = v714 
+    let v922 : US3 = US3_2
+    let v923 : US4 = US4_2(v922)
+    let v924 : string = $"date_time.get_utc_offset / target: {v923}"
+    let v925 : System.TimeSpan = failwith<System.TimeSpan> v924
+    let _v841 = v925 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v717 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v708 = v717 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v720 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v708 = v720 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v723 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v708 = v723 
-    #endif
-#else
-    let v724 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v708 = v724 
-    #endif
-    let v725 : System.TimeZoneInfo = _v708 
-    let v730 : (System.DateTime -> System.TimeSpan) = v707 v725
-    let v731 : System.TimeSpan = v730 v1
-    let _v661 = v731 
-    #endif
-    let v732 : System.TimeSpan = _v661 
-    let v738 : (System.TimeSpan -> int32) = _.Hours
-    let v739 : int32 = v738 v732
-    let v742 : bool = v739 > 0
-    let v743 : uint8 =
-        if v742 then
-            1uy
-        else
-            0uy
-    let v744 : string = method193()
-    let v745 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v746 : string = v732.ToString v744 
-    let _v745 = v746 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v747 : string = v732.ToString v744 
-    let _v745 = v747 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v748 : string = v732.ToString v744 
-    let _v745 = v748 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v749 : string = v732.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v745 = v749 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v750 : string = v732.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v745 = v750 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v751 : string = v732.ToString v744 
-    let _v745 = v751 
-    #endif
-#else
-    let v752 : string = v732.ToString v744 
-    let _v745 = v752 
-    #endif
-    let v753 : string = _v745 
-    let v756 : string = $"{v743}{v753}"
-    let v757 : (System.Guid -> string) = _.ToString()
-    let v758 : string = v757 v0
-    let v761 : System.Guid = System.Guid $"{v636}{v756}{v758.[v636.Length + v756.Length..]}"
-    let _v2 = v761 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v762 : string = method192()
-    let v763 : (string -> string) = v1.ToString
-    let v764 : string = v763 v762
-    let v767 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v768 : string = "0i64.into()"
-    let v769 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v768 
-    let _v767 = v769 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v770 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v767 = v770 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v773 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v767 = v773 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v776 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v767 = v776 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v779 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v767 = v779 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v782 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v767 = v782 
-    #endif
-#else
-    let v783 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v767 = v783 
-    #endif
-    let v784 : System.TimeZoneInfo = _v767 
-    let v789 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v790 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v791 : System.TimeSpan = v790 ()
-    let _v789 = v791 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v794 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v795 : System.TimeSpan = v794 ()
-    let _v789 = v795 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v798 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v799 : System.TimeSpan = v798 ()
-    let _v789 = v799 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v802 : US3 = US3_0
-    let v803 : US4 = US4_3(v802)
-    let v804 : string = $"date_time.get_utc_offset / target: {v803}"
-    let v805 : System.TimeSpan = failwith<System.TimeSpan> v804
-    let _v789 = v805 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v806 : US3 = US3_0
-    let v807 : US4 = US4_4(v806)
-    let v808 : string = $"date_time.get_utc_offset / target: {v807}"
-    let v809 : System.TimeSpan = failwith<System.TimeSpan> v808
-    let _v789 = v809 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v810 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v811 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v812 : string = "0i64.into()"
-    let v813 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v812 
-    let _v811 = v813 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v814 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v811 = v814 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v817 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v811 = v817 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v820 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v811 = v820 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v823 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v811 = v823 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v826 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v811 = v826 
-    #endif
-#else
-    let v827 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v811 = v827 
-    #endif
-    let v828 : System.TimeZoneInfo = _v811 
-    let v833 : (System.DateTime -> System.TimeSpan) = v810 v828
-    let v834 : System.TimeSpan = v833 v1
-    let _v789 = v834 
-    #endif
-#else
-    let v835 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v836 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v837 : string = "0i64.into()"
-    let v838 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v837 
-    let _v836 = v838 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v839 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v836 = v839 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v842 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v836 = v842 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v845 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v836 = v845 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v848 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v836 = v848 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v851 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v836 = v851 
-    #endif
-#else
-    let v852 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v836 = v852 
-    #endif
-    let v853 : System.TimeZoneInfo = _v836 
-    let v858 : (System.DateTime -> System.TimeSpan) = v835 v853
-    let v859 : System.TimeSpan = v858 v1
-    let _v789 = v859 
-    #endif
-    let v860 : System.TimeSpan = _v789 
-    let v866 : (System.TimeSpan -> int32) = _.Hours
-    let v867 : int32 = v866 v860
-    let v870 : bool = v867 > 0
-    let v871 : uint8 =
-        if v870 then
-            1uy
-        else
-            0uy
-    let v872 : string = method193()
-    let v873 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v874 : string = v860.ToString v872 
-    let _v873 = v874 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v875 : string = v860.ToString v872 
-    let _v873 = v875 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v876 : string = v860.ToString v872 
-    let _v873 = v876 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v877 : string = v860.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v873 = v877 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v878 : string = v860.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v873 = v878 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v879 : string = v860.ToString v872 
-    let _v873 = v879 
-    #endif
-#else
-    let v880 : string = v860.ToString v872 
-    let _v873 = v880 
-    #endif
-    let v881 : string = _v873 
-    let v884 : string = $"{v871}{v881}"
-    let v885 : (System.Guid -> string) = _.ToString()
-    let v886 : string = v885 v0
-    let v889 : System.Guid = System.Guid $"{v764}{v884}{v886.[v764.Length + v884.Length..]}"
-    let _v2 = v889 
-    #endif
-#else
-    let v890 : string = method192()
-    let v891 : (string -> string) = v1.ToString
-    let v892 : string = v891 v890
-    let v895 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v896 : string = "0i64.into()"
-    let v897 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v896 
-    let _v895 = v897 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v898 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v895 = v898 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v901 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v895 = v901 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v904 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v895 = v904 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v907 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v895 = v907 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v910 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v895 = v910 
-    #endif
-#else
-    let v911 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v895 = v911 
-    #endif
-    let v912 : System.TimeZoneInfo = _v895 
-    let v917 : unit = ()
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v918 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v919 : System.TimeSpan = v918 ()
-    let _v917 = v919 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v922 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v923 : System.TimeSpan = v922 ()
-    let _v917 = v923 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v926 : (unit -> System.TimeSpan) = System.TimeSpan 
-    let v927 : System.TimeSpan = v926 ()
-    let _v917 = v927 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v930 : US3 = US3_0
-    let v931 : US4 = US4_3(v930)
-    let v932 : string = $"date_time.get_utc_offset / target: {v931}"
-    let v933 : System.TimeSpan = failwith<System.TimeSpan> v932
-    let _v917 = v933 
+    let v928 : US3 = US3_0
+    let v929 : US4 = US4_3(v928)
+    let v930 : string = $"date_time.get_utc_offset / target: {v929}"
+    let v931 : System.TimeSpan = failwith<System.TimeSpan> v930
+    let _v841 = v931 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v934 : US3 = US3_0
     let v935 : US4 = US4_4(v934)
     let v936 : string = $"date_time.get_utc_offset / target: {v935}"
     let v937 : System.TimeSpan = failwith<System.TimeSpan> v936
-    let _v917 = v937 
+    let _v841 = v937 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v938 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v939 : unit = ()
+    let v940 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v941 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v940 : string = "0i64.into()"
-    let v941 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v940 
-    let _v939 = v941 
+    let v942 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v943 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v942 
+    let _v941 = v943 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v942 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v939 = v942 
+    let v944 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v941 = v944 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v945 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v939 = v945 
+    let v947 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v941 = v947 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v948 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v939 = v948 
+    let v950 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v941 = v950 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v951 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v939 = v951 
+    let v953 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v941 = v953 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v954 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v939 = v954 
+    let v956 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v941 = v956 
     #endif
 #else
-    let v955 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v939 = v955 
+    let v957 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v941 = v957 
     #endif
-    let v956 : System.TimeZoneInfo = _v939 
-    let v961 : (System.DateTime -> System.TimeSpan) = v938 v956
-    let v962 : System.TimeSpan = v961 v1
-    let _v917 = v962 
+    let v958 : System.TimeZoneInfo = _v941 
+    let v963 : (System.DateTime -> System.TimeSpan) = v940 v958
+    let v964 : System.TimeSpan = v963 v1
+    let _v841 = v964 
     #endif
 #else
-    let v963 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v964 : unit = ()
+    let v965 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v966 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v965 : string = "0i64.into()"
-    let v966 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v965 
-    let _v964 = v966 
+    let v967 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v968 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v967 
+    let _v966 = v968 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v967 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v964 = v967 
+    let v969 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v966 = v969 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v970 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v964 = v970 
+    let v972 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v966 = v972 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v973 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v964 = v973 
+    let v975 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v966 = v975 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v976 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    let _v964 = v976 
+    let v978 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v966 = v978 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v979 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v964 = v979 
+    let v981 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v966 = v981 
     #endif
 #else
-    let v980 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    let _v964 = v980 
+    let v982 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v966 = v982 
     #endif
-    let v981 : System.TimeZoneInfo = _v964 
-    let v986 : (System.DateTime -> System.TimeSpan) = v963 v981
-    let v987 : System.TimeSpan = v986 v1
-    let _v917 = v987 
+    let v983 : System.TimeZoneInfo = _v966 
+    let v988 : (System.DateTime -> System.TimeSpan) = v965 v983
+    let v989 : System.TimeSpan = v988 v1
+    let _v841 = v989 
     #endif
-    let v988 : System.TimeSpan = _v917 
-    let v994 : (System.TimeSpan -> int32) = _.Hours
-    let v995 : int32 = v994 v988
-    let v998 : bool = v995 > 0
-    let v999 : uint8 =
-        if v998 then
+    let v990 : System.TimeSpan = _v841 
+    let v998 : (System.TimeSpan -> int32) = _.Hours
+    let v999 : int32 = v998 v990
+    let v1002 : bool = v999 > 0
+    let v1003 : uint8 =
+        if v1002 then
             1uy
         else
             0uy
-    let v1000 : string = method193()
-    let v1001 : unit = ()
+    let v1004 : string = method193()
+    let v1005 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1002 : string = v988.ToString v1000 
-    let _v1001 = v1002 
+    let v1006 : string = v990.ToString v1004 
+    let _v1005 = v1006 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v1003 : string = v988.ToString v1000 
-    let _v1001 = v1003 
+    let v1009 : string = v990.ToString v1004 
+    let _v1005 = v1009 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v1004 : string = v988.ToString v1000 
-    let _v1001 = v1004 
+    let v1012 : string = v990.ToString v1004 
+    let _v1005 = v1012 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v1005 : string = v988.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v1001 = v1005 
+    let v1015 : string = v990.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1005 = v1015 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v1006 : string = v988.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
-    let _v1001 = v1006 
+    let v1016 : string = v990.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1005 = v1016 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v1007 : string = v988.ToString v1000 
-    let _v1001 = v1007 
+    let v1017 : string = v990.ToString v1004 
+    let _v1005 = v1017 
     #endif
 #else
-    let v1008 : string = v988.ToString v1000 
-    let _v1001 = v1008 
+    let v1020 : string = v990.ToString v1004 
+    let _v1005 = v1020 
     #endif
-    let v1009 : string = _v1001 
-    let v1012 : string = $"{v999}{v1009}"
-    let v1013 : (System.Guid -> string) = _.ToString()
-    let v1014 : string = v1013 v0
-    let v1017 : System.Guid = System.Guid $"{v892}{v1012}{v1014.[v892.Length + v1012.Length..]}"
-    let _v2 = v1017 
+    let v1023 : string = _v1005 
+    let v1028 : string = $"{v1003}{v1023}"
+    let v1029 : (System.Guid -> string) = _.ToString()
+    let v1030 : string = v1029 v0
+    let v1033 : int32 = v805.Length
+    let v1034 : int32 = v1028.Length
+    let v1035 : int32 = v1033 + v1034
+    let v1036 : (string -> int32) = String.length
+    let v1037 : int32 = v1036 v1030
+    let v1040 : int32 = v1035 |> int32 
+    let v1047 : int32 = v1037 |> int32 
+    let v1054 : int32 = v1047 - 1
+    let v1055 : string = v1030.[int v1040..int v1054]
+    let v1059 : string = $"{v805}{v1028}{v1055}"
+    let v1060 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1061 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1061 
     #endif
-    let v1018 : System.Guid = _v2 
-    v1018
+#if FABLE_COMPILER_RUST && WASM
+    let v1064 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1064 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1067 : System.Guid = null |> unbox<System.Guid>
+    let _v1060 = v1067 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1070 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1070 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1073 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1073 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1076 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1076 
+    #endif
+#else
+    let v1079 : System.Guid = v1059 |> System.Guid 
+    let _v1060 = v1079 
+    #endif
+    let v1082 : System.Guid = _v1060 
+    let _v2 = v1082 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1087 : string = method192()
+    let v1088 : bool = v1087 = ""
+    let v1090 : string =
+        if v1088 then
+            let v1089 : string = "M-d-y hh:mm:ss tt"
+            v1089
+        else
+            v1087
+    let v1091 : (string -> string) = v1.ToString
+    let v1092 : string = v1091 v1090
+    let v1106 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1107 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1108 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1107 
+    let _v1106 = v1108 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1109 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1106 = v1109 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1112 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1106 = v1112 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1115 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1106 = v1115 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1118 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1106 = v1118 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1121 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1106 = v1121 
+    #endif
+#else
+    let v1122 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1106 = v1122 
+    #endif
+    let v1123 : System.TimeZoneInfo = _v1106 
+    let v1128 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1129 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1130 : (System.DateTime -> int64) = _.Ticks
+    let v1131 : int64 = v1130 v1
+    let _v1129 = v1131 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1132 : (System.DateTime -> int64) = _.Ticks
+    let v1133 : int64 = v1132 v1
+    let _v1129 = v1133 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1134 : int64 = null |> unbox<int64>
+    let _v1129 = v1134 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1137 : (System.DateTime -> int64) = _.Ticks
+    let v1138 : int64 = v1137 v1
+    let _v1129 = v1138 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1139 : (System.DateTime -> int64) = _.Ticks
+    let v1140 : int64 = v1139 v1
+    let _v1129 = v1140 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1141 : (System.DateTime -> int64) = _.Ticks
+    let v1142 : int64 = v1141 v1
+    let _v1129 = v1142 
+    #endif
+#else
+    let v1143 : (System.DateTime -> int64) = _.Ticks
+    let v1144 : int64 = v1143 v1
+    let _v1129 = v1144 
+    #endif
+    let v1145 : int64 = _v1129 
+    let v1162 : string = "$0"
+    let v1163 : int64 = Fable.Core.RustInterop.emitRustExpr v1145 v1162 
+    let v1164 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1163))))"
+    let v1165 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1164 
+    let v1166 : System.TimeSpan = v1165 |> System.TimeSpan 
+    let _v1128 = v1166 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1169 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1170 : (System.DateTime -> int64) = _.Ticks
+    let v1171 : int64 = v1170 v1
+    let _v1169 = v1171 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1172 : (System.DateTime -> int64) = _.Ticks
+    let v1173 : int64 = v1172 v1
+    let _v1169 = v1173 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1174 : int64 = null |> unbox<int64>
+    let _v1169 = v1174 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1177 : (System.DateTime -> int64) = _.Ticks
+    let v1178 : int64 = v1177 v1
+    let _v1169 = v1178 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1179 : (System.DateTime -> int64) = _.Ticks
+    let v1180 : int64 = v1179 v1
+    let _v1169 = v1180 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1181 : (System.DateTime -> int64) = _.Ticks
+    let v1182 : int64 = v1181 v1
+    let _v1169 = v1182 
+    #endif
+#else
+    let v1183 : (System.DateTime -> int64) = _.Ticks
+    let v1184 : int64 = v1183 v1
+    let _v1169 = v1184 
+    #endif
+    let v1185 : int64 = _v1169 
+    let v1202 : string = "$0"
+    let v1203 : int64 = Fable.Core.RustInterop.emitRustExpr v1185 v1202 
+    let v1204 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1203))))"
+    let v1205 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1204 
+    let v1206 : System.TimeSpan = v1205 |> System.TimeSpan 
+    let _v1128 = v1206 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1209 : US3 = US3_2
+    let v1210 : US4 = US4_2(v1209)
+    let v1211 : string = $"date_time.get_utc_offset / target: {v1210}"
+    let v1212 : System.TimeSpan = failwith<System.TimeSpan> v1211
+    let _v1128 = v1212 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1215 : US3 = US3_0
+    let v1216 : US4 = US4_3(v1215)
+    let v1217 : string = $"date_time.get_utc_offset / target: {v1216}"
+    let v1218 : System.TimeSpan = failwith<System.TimeSpan> v1217
+    let _v1128 = v1218 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1221 : US3 = US3_0
+    let v1222 : US4 = US4_4(v1221)
+    let v1223 : string = $"date_time.get_utc_offset / target: {v1222}"
+    let v1224 : System.TimeSpan = failwith<System.TimeSpan> v1223
+    let _v1128 = v1224 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1227 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1228 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1229 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1230 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1229 
+    let _v1228 = v1230 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1231 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1228 = v1231 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1234 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1228 = v1234 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1237 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1228 = v1237 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1240 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1228 = v1240 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1243 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1228 = v1243 
+    #endif
+#else
+    let v1244 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1228 = v1244 
+    #endif
+    let v1245 : System.TimeZoneInfo = _v1228 
+    let v1250 : (System.DateTime -> System.TimeSpan) = v1227 v1245
+    let v1251 : System.TimeSpan = v1250 v1
+    let _v1128 = v1251 
+    #endif
+#else
+    let v1252 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1253 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1254 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1255 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1254 
+    let _v1253 = v1255 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1256 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1253 = v1256 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1259 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1253 = v1259 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1262 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1253 = v1262 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1265 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1253 = v1265 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1268 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1253 = v1268 
+    #endif
+#else
+    let v1269 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1253 = v1269 
+    #endif
+    let v1270 : System.TimeZoneInfo = _v1253 
+    let v1275 : (System.DateTime -> System.TimeSpan) = v1252 v1270
+    let v1276 : System.TimeSpan = v1275 v1
+    let _v1128 = v1276 
+    #endif
+    let v1277 : System.TimeSpan = _v1128 
+    let v1285 : (System.TimeSpan -> int32) = _.Hours
+    let v1286 : int32 = v1285 v1277
+    let v1289 : bool = v1286 > 0
+    let v1290 : uint8 =
+        if v1289 then
+            1uy
+        else
+            0uy
+    let v1291 : string = method193()
+    let v1292 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1293 : string = v1277.ToString v1291 
+    let _v1292 = v1293 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1296 : string = v1277.ToString v1291 
+    let _v1292 = v1296 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1299 : string = v1277.ToString v1291 
+    let _v1292 = v1299 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1302 : string = v1277.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1292 = v1302 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1303 : string = v1277.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1292 = v1303 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1304 : string = v1277.ToString v1291 
+    let _v1292 = v1304 
+    #endif
+#else
+    let v1307 : string = v1277.ToString v1291 
+    let _v1292 = v1307 
+    #endif
+    let v1310 : string = _v1292 
+    let v1315 : string = $"{v1290}{v1310}"
+    let v1316 : (System.Guid -> string) = _.ToString()
+    let v1317 : string = v1316 v0
+    let v1320 : int32 = v1092.Length
+    let v1321 : int32 = v1315.Length
+    let v1322 : int32 = v1320 + v1321
+    let v1323 : (string -> int32) = String.length
+    let v1324 : int32 = v1323 v1317
+    let v1327 : int32 = v1322 |> int32 
+    let v1334 : int32 = v1324 |> int32 
+    let v1341 : int32 = v1334 - 1
+    let v1342 : string = v1317.[int v1327..int v1341]
+    let v1346 : string = $"{v1092}{v1315}{v1342}"
+    let v1347 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1348 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1348 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1351 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1351 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1354 : System.Guid = null |> unbox<System.Guid>
+    let _v1347 = v1354 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1357 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1357 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1360 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1360 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1363 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1363 
+    #endif
+#else
+    let v1366 : System.Guid = v1346 |> System.Guid 
+    let _v1347 = v1366 
+    #endif
+    let v1369 : System.Guid = _v1347 
+    let _v2 = v1369 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1374 : string = method192()
+    let v1375 : bool = v1374 = ""
+    let v1377 : string =
+        if v1375 then
+            let v1376 : string = "M-d-y hh:mm:ss tt"
+            v1376
+        else
+            v1374
+    let v1378 : (string -> string) = v1.ToString
+    let v1379 : string = v1378 v1377
+    let v1393 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1394 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1395 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1394 
+    let _v1393 = v1395 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1396 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1393 = v1396 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1399 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1393 = v1399 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1402 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1393 = v1402 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1405 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1393 = v1405 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1408 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1393 = v1408 
+    #endif
+#else
+    let v1409 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1393 = v1409 
+    #endif
+    let v1410 : System.TimeZoneInfo = _v1393 
+    let v1415 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1416 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1417 : (System.DateTime -> int64) = _.Ticks
+    let v1418 : int64 = v1417 v1
+    let _v1416 = v1418 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1419 : (System.DateTime -> int64) = _.Ticks
+    let v1420 : int64 = v1419 v1
+    let _v1416 = v1420 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1421 : int64 = null |> unbox<int64>
+    let _v1416 = v1421 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1424 : (System.DateTime -> int64) = _.Ticks
+    let v1425 : int64 = v1424 v1
+    let _v1416 = v1425 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1426 : (System.DateTime -> int64) = _.Ticks
+    let v1427 : int64 = v1426 v1
+    let _v1416 = v1427 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1428 : (System.DateTime -> int64) = _.Ticks
+    let v1429 : int64 = v1428 v1
+    let _v1416 = v1429 
+    #endif
+#else
+    let v1430 : (System.DateTime -> int64) = _.Ticks
+    let v1431 : int64 = v1430 v1
+    let _v1416 = v1431 
+    #endif
+    let v1432 : int64 = _v1416 
+    let v1449 : string = "$0"
+    let v1450 : int64 = Fable.Core.RustInterop.emitRustExpr v1432 v1449 
+    let v1451 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1450))))"
+    let v1452 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1451 
+    let v1453 : System.TimeSpan = v1452 |> System.TimeSpan 
+    let _v1415 = v1453 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1456 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1457 : (System.DateTime -> int64) = _.Ticks
+    let v1458 : int64 = v1457 v1
+    let _v1456 = v1458 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1459 : (System.DateTime -> int64) = _.Ticks
+    let v1460 : int64 = v1459 v1
+    let _v1456 = v1460 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1461 : int64 = null |> unbox<int64>
+    let _v1456 = v1461 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1464 : (System.DateTime -> int64) = _.Ticks
+    let v1465 : int64 = v1464 v1
+    let _v1456 = v1465 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1466 : (System.DateTime -> int64) = _.Ticks
+    let v1467 : int64 = v1466 v1
+    let _v1456 = v1467 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1468 : (System.DateTime -> int64) = _.Ticks
+    let v1469 : int64 = v1468 v1
+    let _v1456 = v1469 
+    #endif
+#else
+    let v1470 : (System.DateTime -> int64) = _.Ticks
+    let v1471 : int64 = v1470 v1
+    let _v1456 = v1471 
+    #endif
+    let v1472 : int64 = _v1456 
+    let v1489 : string = "$0"
+    let v1490 : int64 = Fable.Core.RustInterop.emitRustExpr v1472 v1489 
+    let v1491 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1490))))"
+    let v1492 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1491 
+    let v1493 : System.TimeSpan = v1492 |> System.TimeSpan 
+    let _v1415 = v1493 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1496 : US3 = US3_2
+    let v1497 : US4 = US4_2(v1496)
+    let v1498 : string = $"date_time.get_utc_offset / target: {v1497}"
+    let v1499 : System.TimeSpan = failwith<System.TimeSpan> v1498
+    let _v1415 = v1499 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1502 : US3 = US3_0
+    let v1503 : US4 = US4_3(v1502)
+    let v1504 : string = $"date_time.get_utc_offset / target: {v1503}"
+    let v1505 : System.TimeSpan = failwith<System.TimeSpan> v1504
+    let _v1415 = v1505 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1508 : US3 = US3_0
+    let v1509 : US4 = US4_4(v1508)
+    let v1510 : string = $"date_time.get_utc_offset / target: {v1509}"
+    let v1511 : System.TimeSpan = failwith<System.TimeSpan> v1510
+    let _v1415 = v1511 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1514 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1515 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1516 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1517 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1516 
+    let _v1515 = v1517 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1518 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1515 = v1518 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1521 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1515 = v1521 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1524 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1515 = v1524 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1527 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1515 = v1527 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1530 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1515 = v1530 
+    #endif
+#else
+    let v1531 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1515 = v1531 
+    #endif
+    let v1532 : System.TimeZoneInfo = _v1515 
+    let v1537 : (System.DateTime -> System.TimeSpan) = v1514 v1532
+    let v1538 : System.TimeSpan = v1537 v1
+    let _v1415 = v1538 
+    #endif
+#else
+    let v1539 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1540 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1541 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1542 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1541 
+    let _v1540 = v1542 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1543 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1540 = v1543 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1546 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1540 = v1546 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1549 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1540 = v1549 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1552 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1540 = v1552 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1555 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1540 = v1555 
+    #endif
+#else
+    let v1556 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1540 = v1556 
+    #endif
+    let v1557 : System.TimeZoneInfo = _v1540 
+    let v1562 : (System.DateTime -> System.TimeSpan) = v1539 v1557
+    let v1563 : System.TimeSpan = v1562 v1
+    let _v1415 = v1563 
+    #endif
+    let v1564 : System.TimeSpan = _v1415 
+    let v1572 : (System.TimeSpan -> int32) = _.Hours
+    let v1573 : int32 = v1572 v1564
+    let v1576 : bool = v1573 > 0
+    let v1577 : uint8 =
+        if v1576 then
+            1uy
+        else
+            0uy
+    let v1578 : string = method193()
+    let v1579 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1580 : string = v1564.ToString v1578 
+    let _v1579 = v1580 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1583 : string = v1564.ToString v1578 
+    let _v1579 = v1583 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1586 : string = v1564.ToString v1578 
+    let _v1579 = v1586 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1589 : string = v1564.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1579 = v1589 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1590 : string = v1564.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1579 = v1590 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1591 : string = v1564.ToString v1578 
+    let _v1579 = v1591 
+    #endif
+#else
+    let v1594 : string = v1564.ToString v1578 
+    let _v1579 = v1594 
+    #endif
+    let v1597 : string = _v1579 
+    let v1602 : string = $"{v1577}{v1597}"
+    let v1603 : (System.Guid -> string) = _.ToString()
+    let v1604 : string = v1603 v0
+    let v1607 : int32 = v1379.Length
+    let v1608 : int32 = v1602.Length
+    let v1609 : int32 = v1607 + v1608
+    let v1610 : (string -> int32) = String.length
+    let v1611 : int32 = v1610 v1604
+    let v1614 : int32 = v1609 |> int32 
+    let v1621 : int32 = v1611 |> int32 
+    let v1628 : int32 = v1621 - 1
+    let v1629 : string = v1604.[int v1614..int v1628]
+    let v1633 : string = $"{v1379}{v1602}{v1629}"
+    let v1634 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1635 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1635 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1638 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1638 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1641 : System.Guid = null |> unbox<System.Guid>
+    let _v1634 = v1641 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1644 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1644 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1647 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1647 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1650 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1650 
+    #endif
+#else
+    let v1653 : System.Guid = v1633 |> System.Guid 
+    let _v1634 = v1653 
+    #endif
+    let v1656 : System.Guid = _v1634 
+    let _v2 = v1656 
+    #endif
+#else
+    let v1661 : string = method192()
+    let v1662 : bool = v1661 = ""
+    let v1664 : string =
+        if v1662 then
+            let v1663 : string = "M-d-y hh:mm:ss tt"
+            v1663
+        else
+            v1661
+    let v1665 : (string -> string) = v1.ToString
+    let v1666 : string = v1665 v1664
+    let v1680 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1681 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1682 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1681 
+    let _v1680 = v1682 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1683 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1680 = v1683 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1686 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1680 = v1686 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1689 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1680 = v1689 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1692 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1680 = v1692 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1695 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1680 = v1695 
+    #endif
+#else
+    let v1696 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1680 = v1696 
+    #endif
+    let v1697 : System.TimeZoneInfo = _v1680 
+    let v1702 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1703 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1704 : (System.DateTime -> int64) = _.Ticks
+    let v1705 : int64 = v1704 v1
+    let _v1703 = v1705 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1706 : (System.DateTime -> int64) = _.Ticks
+    let v1707 : int64 = v1706 v1
+    let _v1703 = v1707 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1708 : int64 = null |> unbox<int64>
+    let _v1703 = v1708 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1711 : (System.DateTime -> int64) = _.Ticks
+    let v1712 : int64 = v1711 v1
+    let _v1703 = v1712 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1713 : (System.DateTime -> int64) = _.Ticks
+    let v1714 : int64 = v1713 v1
+    let _v1703 = v1714 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1715 : (System.DateTime -> int64) = _.Ticks
+    let v1716 : int64 = v1715 v1
+    let _v1703 = v1716 
+    #endif
+#else
+    let v1717 : (System.DateTime -> int64) = _.Ticks
+    let v1718 : int64 = v1717 v1
+    let _v1703 = v1718 
+    #endif
+    let v1719 : int64 = _v1703 
+    let v1736 : string = "$0"
+    let v1737 : int64 = Fable.Core.RustInterop.emitRustExpr v1719 v1736 
+    let v1738 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1737))))"
+    let v1739 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1738 
+    let v1740 : System.TimeSpan = v1739 |> System.TimeSpan 
+    let _v1702 = v1740 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1743 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1744 : (System.DateTime -> int64) = _.Ticks
+    let v1745 : int64 = v1744 v1
+    let _v1743 = v1745 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1746 : (System.DateTime -> int64) = _.Ticks
+    let v1747 : int64 = v1746 v1
+    let _v1743 = v1747 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1748 : int64 = null |> unbox<int64>
+    let _v1743 = v1748 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1751 : (System.DateTime -> int64) = _.Ticks
+    let v1752 : int64 = v1751 v1
+    let _v1743 = v1752 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1753 : (System.DateTime -> int64) = _.Ticks
+    let v1754 : int64 = v1753 v1
+    let _v1743 = v1754 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1755 : (System.DateTime -> int64) = _.Ticks
+    let v1756 : int64 = v1755 v1
+    let _v1743 = v1756 
+    #endif
+#else
+    let v1757 : (System.DateTime -> int64) = _.Ticks
+    let v1758 : int64 = v1757 v1
+    let _v1743 = v1758 
+    #endif
+    let v1759 : int64 = _v1743 
+    let v1776 : string = "$0"
+    let v1777 : int64 = Fable.Core.RustInterop.emitRustExpr v1759 v1776 
+    let v1778 : string = "chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(v1777))))"
+    let v1779 : int32 = Fable.Core.RustInterop.emitRustExpr v1 v1778 
+    let v1780 : System.TimeSpan = v1779 |> System.TimeSpan 
+    let _v1702 = v1780 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1783 : US3 = US3_2
+    let v1784 : US4 = US4_2(v1783)
+    let v1785 : string = $"date_time.get_utc_offset / target: {v1784}"
+    let v1786 : System.TimeSpan = failwith<System.TimeSpan> v1785
+    let _v1702 = v1786 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1789 : US3 = US3_0
+    let v1790 : US4 = US4_3(v1789)
+    let v1791 : string = $"date_time.get_utc_offset / target: {v1790}"
+    let v1792 : System.TimeSpan = failwith<System.TimeSpan> v1791
+    let _v1702 = v1792 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1795 : US3 = US3_0
+    let v1796 : US4 = US4_4(v1795)
+    let v1797 : string = $"date_time.get_utc_offset / target: {v1796}"
+    let v1798 : System.TimeSpan = failwith<System.TimeSpan> v1797
+    let _v1702 = v1798 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1801 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1802 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1803 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1804 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1803 
+    let _v1802 = v1804 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1805 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1802 = v1805 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1808 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1802 = v1808 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1811 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1802 = v1811 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1814 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1802 = v1814 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1817 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1802 = v1817 
+    #endif
+#else
+    let v1818 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1802 = v1818 
+    #endif
+    let v1819 : System.TimeZoneInfo = _v1802 
+    let v1824 : (System.DateTime -> System.TimeSpan) = v1801 v1819
+    let v1825 : System.TimeSpan = v1824 v1
+    let _v1702 = v1825 
+    #endif
+#else
+    let v1826 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    let v1827 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1828 : string = "std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"
+    let v1829 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v1828 
+    let _v1827 = v1829 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1830 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1827 = v1830 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1833 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1827 = v1833 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1836 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1827 = v1836 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1839 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
+    let _v1827 = v1839 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1842 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1827 = v1842 
+    #endif
+#else
+    let v1843 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    let _v1827 = v1843 
+    #endif
+    let v1844 : System.TimeZoneInfo = _v1827 
+    let v1849 : (System.DateTime -> System.TimeSpan) = v1826 v1844
+    let v1850 : System.TimeSpan = v1849 v1
+    let _v1702 = v1850 
+    #endif
+    let v1851 : System.TimeSpan = _v1702 
+    let v1859 : (System.TimeSpan -> int32) = _.Hours
+    let v1860 : int32 = v1859 v1851
+    let v1863 : bool = v1860 > 0
+    let v1864 : uint8 =
+        if v1863 then
+            1uy
+        else
+            0uy
+    let v1865 : string = method193()
+    let v1866 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1867 : string = v1851.ToString v1865 
+    let _v1866 = v1867 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1870 : string = v1851.ToString v1865 
+    let _v1866 = v1870 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1873 : string = v1851.ToString v1865 
+    let _v1866 = v1873 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1876 : string = v1851.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1866 = v1876 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1877 : string = v1851.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)
+    let _v1866 = v1877 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1878 : string = v1851.ToString v1865 
+    let _v1866 = v1878 
+    #endif
+#else
+    let v1881 : string = v1851.ToString v1865 
+    let _v1866 = v1881 
+    #endif
+    let v1884 : string = _v1866 
+    let v1889 : string = $"{v1864}{v1884}"
+    let v1890 : (System.Guid -> string) = _.ToString()
+    let v1891 : string = v1890 v0
+    let v1894 : int32 = v1666.Length
+    let v1895 : int32 = v1889.Length
+    let v1896 : int32 = v1894 + v1895
+    let v1897 : (string -> int32) = String.length
+    let v1898 : int32 = v1897 v1891
+    let v1901 : int32 = v1896 |> int32 
+    let v1908 : int32 = v1898 |> int32 
+    let v1915 : int32 = v1908 - 1
+    let v1916 : string = v1891.[int v1901..int v1915]
+    let v1920 : string = $"{v1666}{v1889}{v1916}"
+    let v1921 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1922 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1922 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v1925 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1925 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v1928 : System.Guid = null |> unbox<System.Guid>
+    let _v1921 = v1928 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v1931 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1931 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v1934 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1934 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v1937 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1937 
+    #endif
+#else
+    let v1940 : System.Guid = v1920 |> System.Guid 
+    let _v1921 = v1940 
+    #endif
+    let v1943 : System.Guid = _v1921 
+    let _v2 = v1943 
+    #endif
+    let v1948 : System.Guid = _v2 
+    v1948
 and method194 (v0 : string, v1 : string) : unit =
     let v2 : bool = method31(v0)
     let v3 : bool = v2 = false

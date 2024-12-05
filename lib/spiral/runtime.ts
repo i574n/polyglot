@@ -4,7 +4,7 @@ import { equals, compare as compare_1, op_Addition, op_Subtraction, fromInt64, t
 import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { array_type, option_type, tuple_type, int32_type, class_type, char_type, bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { join, replicate, interpolate, toText, trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
@@ -899,9 +899,18 @@ export function method9(): string {
 }
 
 export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    let v295: int64, v349: number;
-    const v291: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
-    return toString((v291.tag === /* US2_0 */ 0) ? ((v295 = v291.fields[0], (v349 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v295))), create(1, 1, 1, hours(v349), minutes(v349), seconds(v349), milliseconds(v349))))) : now(), method9());
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
+    let v418: Date;
+    if (v321.tag === /* US2_0 */ 0) {
+        const v325: int64 = v321.fields[0];
+        const v378: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v325)));
+        v418 = create(1, 1, 1, hours(v378), minutes(v378), seconds(v378), milliseconds(v378));
+    }
+    else {
+        v418 = now();
+    }
+    const v419: string = method9();
+    return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
 export function method12(): string {
@@ -1107,10 +1116,9 @@ export function closure14(unitVar: void, _arg: [string, any, int32, int32]): US7
             return US7_US7_0(v9, v30, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
-            const v80: int32 = v0_1.length | 0;
-            const v87: int32 = (v0_1.indexOf("\n") - 1) | 0;
+            const v83: int32 = (v0_1.indexOf("\n") - 1) | 0;
             const v92 = 0;
-            const v106: int32 = (((-2 === v87) ? (v80 + 1) : (v87 + 1)) - 1) | 0;
+            const v106: int32 = (((-2 === v83) ? (v0_1.length + 1) : (v83 + 1)) - 1) | 0;
             return US7_US7_1(`${`parsing.p_char / expected: '${"\""}' / line: ${v2_1} / col: ${v3}
 ${v1_1}${v0_1.slice(v92, v106 + 1)}`}
 ${replicate(v3 - 1, " ") + "^"}
@@ -1149,10 +1157,9 @@ export function closure17(unitVar: void, _arg: [string, any, int32, int32]): US7
             return US7_US7_0(v9, v30, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
-            const v80: int32 = v0_1.length | 0;
-            const v87: int32 = (v0_1.indexOf("\n") - 1) | 0;
+            const v83: int32 = (v0_1.indexOf("\n") - 1) | 0;
             const v92 = 0;
-            const v106: int32 = (((-2 === v87) ? (v80 + 1) : (v87 + 1)) - 1) | 0;
+            const v106: int32 = (((-2 === v83) ? (v0_1.length + 1) : (v83 + 1)) - 1) | 0;
             return US7_US7_1(`${`parsing.p_char / expected: '${"\'"}' / line: ${v2_1} / col: ${v3}
 ${v1_1}${v0_1.slice(v92, v106 + 1)}`}
 ${replicate(v3 - 1, " ") + "^"}
@@ -1689,10 +1696,9 @@ export function method21(v0_1: string): US6_$union {
                 v544 = US7_US7_0(v425, v446, patternInput_4[0], patternInput_4[1], patternInput_4[2]);
             }
             else {
-                const v496: int32 = v416.length | 0;
-                const v503: int32 = (v416.indexOf("\n") - 1) | 0;
+                const v499: int32 = (v416.indexOf("\n") - 1) | 0;
                 const v508 = 0;
-                const v522: int32 = (((-2 === v503) ? (v496 + 1) : (v503 + 1)) - 1) | 0;
+                const v522: int32 = (((-2 === v499) ? (v416.length + 1) : (v499 + 1)) - 1) | 0;
                 v544 = US7_US7_1(`${`parsing.p_char / expected: '${" "}' / line: ${v418} / col: ${v419}
 ${v417}${v416.slice(v508, v522 + 1)}`}
 ${replicate(v419 - 1, " ") + "^"}
@@ -2306,10 +2312,9 @@ export function closure30(unitVar: void, _arg: [string, any, int32, int32]): US8
             v128 = US7_US7_0(v9, v30, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
-            const v80: int32 = v0_1.length | 0;
-            const v87: int32 = (v0_1.indexOf("\n") - 1) | 0;
+            const v83: int32 = (v0_1.indexOf("\n") - 1) | 0;
             const v92 = 0;
-            const v106: int32 = (((-2 === v87) ? (v80 + 1) : (v87 + 1)) - 1) | 0;
+            const v106: int32 = (((-2 === v83) ? (v0_1.length + 1) : (v83 + 1)) - 1) | 0;
             v128 = US7_US7_1(`${`parsing.p_char / expected: '${"\\"}' / line: ${v2_1} / col: ${v3}
 ${v1_1}${v0_1.slice(v92, v106 + 1)}`}
 ${replicate(v3 - 1, " ") + "^"}
@@ -2389,10 +2394,9 @@ export function closure31(unitVar: void, _arg: [string, any, int32, int32]): US8
             v128 = US7_US7_0(v9, v30, patternInput[0], patternInput[1], patternInput[2]);
         }
         else {
-            const v80: int32 = v0_1.length | 0;
-            const v87: int32 = (v0_1.indexOf("\n") - 1) | 0;
+            const v83: int32 = (v0_1.indexOf("\n") - 1) | 0;
             const v92 = 0;
-            const v106: int32 = (((-2 === v87) ? (v80 + 1) : (v87 + 1)) - 1) | 0;
+            const v106: int32 = (((-2 === v83) ? (v0_1.length + 1) : (v83 + 1)) - 1) | 0;
             v128 = US7_US7_1(`${`parsing.p_char / expected: '${"`"}' / line: ${v2_1} / col: ${v3}
 ${v1_1}${v0_1.slice(v92, v106 + 1)}`}
 ${replicate(v3 - 1, " ") + "^"}
@@ -2690,10 +2694,9 @@ export function method48(v0_1_mut: UH2_$union, v1_1_mut: string, v2_1_mut: any, 
                     v270 = US7_US7_0(v151, v172, patternInput_2[0], patternInput_2[1], patternInput_2[2]);
                 }
                 else {
-                    const v222: int32 = v1_1.length | 0;
-                    const v229: int32 = (v1_1.indexOf("\n") - 1) | 0;
+                    const v225: int32 = (v1_1.indexOf("\n") - 1) | 0;
                     const v234 = 0;
-                    const v248: int32 = (((-2 === v229) ? (v222 + 1) : (v229 + 1)) - 1) | 0;
+                    const v248: int32 = (((-2 === v225) ? (v1_1.length + 1) : (v225 + 1)) - 1) | 0;
                     v270 = US7_US7_1(`${`parsing.p_char / expected: '${"\""}' / line: ${v3} / col: ${v4}
 ${v2_1}${v1_1.slice(v234, v248 + 1)}`}
 ${replicate(v4 - 1, " ") + "^"}
@@ -2752,10 +2755,9 @@ ${replicate(v4 - 1, " ") + "^"}
                             v432 = US7_US7_0(v313, v334, patternInput_3[0], patternInput_3[1], patternInput_3[2]);
                         }
                         else {
-                            const v384: int32 = v304.length | 0;
-                            const v391: int32 = (v304.indexOf("\n") - 1) | 0;
+                            const v387: int32 = (v304.indexOf("\n") - 1) | 0;
                             const v396 = 0;
-                            const v410: int32 = (((-2 === v391) ? (v384 + 1) : (v391 + 1)) - 1) | 0;
+                            const v410: int32 = (((-2 === v387) ? (v304.length + 1) : (v387 + 1)) - 1) | 0;
                             v432 = US7_US7_1(`${`parsing.p_char / expected: '${"\""}' / line: ${v306} / col: ${v307}
 ${v305}${v304.slice(v396, v410 + 1)}`}
 ${replicate(v307 - 1, " ") + "^"}

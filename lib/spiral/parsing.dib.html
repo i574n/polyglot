@@ -8194,7 +8194,7 @@ __assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
         <span class="n">inl</span> <span class="n">first_char</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.index 0i32</span>
         <span class="n">Ok</span> <span class="p">(</span>
             <span class="n">first_char</span><span class="p">,</span>
-            <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id),</span>
+            <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval),</span>
             <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">update</span> <span class="p">(</span><span class="n">first_char</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
         <span class="p">)</span>
 </pre></div>
@@ -8318,7 +8318,7 @@ __assert_eq / actual: "struct ('a', "bc", a, 1, 2)" / expected: "struct ('a', "b
         <span class="k">if</span> <span class="n">first_char</span> <span class="o">=</span> <span class="n">c</span> <span class="n">then</span>
             <span class="n">Ok</span> <span class="p">(</span>
                 <span class="n">first_char</span><span class="p">,</span>
-                <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id),</span>
+                <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval),</span>
                 <span class="n">s</span><span class="s1">' |&gt; update (first_char |&gt; sm'</span><span class="o">.</span><span class="n">obj_to_string</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">else</span>
@@ -8329,7 +8329,7 @@ __assert_eq / actual: "struct ('a', "bc", a, 1, 2)" / expected: "struct ('a', "b
                         <span class="p">(</span><span class="n">am</span><span class="s1">'.Start 0i32)</span>
                         <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun l =&gt;</span>
                             <span class="k">match</span> <span class="p">(</span><span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.index_of "</span><span class="se">\n</span><span class="s1">") - 1 with</span>
-                            <span class="o">|</span> <span class="o">-</span><span class="mi">2</span> <span class="o">=&gt;</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span>
+                            <span class="o">|</span> <span class="o">-</span><span class="mi">2</span> <span class="o">=&gt;</span> <span class="n">l</span> <span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
                             <span class="o">|</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
                         <span class="p">)</span>
                 <span class="n">backend_switch</span> <span class="p">{</span>
@@ -8462,7 +8462,7 @@ __assert_eq / actual: "struct ('a', "bc", a, 1, 2)" / expected: "struct ('a', "b
         <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">0</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun _ =&gt; length)</span>
         <span class="n">Ok</span> <span class="p">(</span>
             <span class="n">result</span><span class="p">,</span>
-            <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">length</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id),</span>
+            <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">length</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval),</span>
             <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">update</span> <span class="n">result</span>
         <span class="p">)</span>
 </pre></div>
@@ -8584,7 +8584,7 @@ __assert_eq / actual: "struct ("abc", "def", abc, 1, 4)" / expected: "struct ("a
     <span class="k">else</span>
         <span class="n">Ok</span> <span class="p">(</span>
             <span class="p">(),</span>
-            <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">length</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id),</span>
+            <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">length</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval),</span>
             <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">update</span> <span class="p">(</span><span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">0</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun _ =&gt; length))</span>
         <span class="p">)</span>
 </pre></div>
@@ -8946,7 +8946,7 @@ Expecting: 'a'
         <span class="k">if</span> <span class="n">chars</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.exists'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">first_char</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
             <span class="n">Ok</span> <span class="p">(</span>
                 <span class="n">first_char</span><span class="p">,</span>
-                <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id),</span>
+                <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval),</span>
                 <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">update</span> <span class="p">(</span><span class="n">first_char</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
             <span class="p">)</span>
         <span class="k">else</span>
@@ -10063,7 +10063,7 @@ __assert_eq / actual: ""parsing.between / expected closing delimiter / e: "parsi
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">spaces1</span> <span class="p">()</span> <span class="p">:</span> <span class="n">parser</span> <span class="p">()</span> <span class="o">=</span> <span class="n">fun</span> <span class="nb">input</span><span class="p">,</span> <span class="n">s</span> <span class="o">=&gt;</span>
     <span class="k">match</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">span</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s1">' '</span><span class="p">)</span> <span class="k">with</span>
     <span class="o">|</span> <span class="mi">0</span><span class="n">i32</span> <span class="o">=&gt;</span> <span class="n">Error</span> <span class="s2">"parsing.spaces1 / expected at least one space"</span>
-    <span class="o">|</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">Ok</span> <span class="p">((),</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">n</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id), s)</span>
+    <span class="o">|</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">Ok</span> <span class="p">((),</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">n</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval), s)</span>
 </pre></div>
 </div>
 </div>
@@ -10092,7 +10092,7 @@ __assert_eq / actual: ""parsing.between / expected closing delimiter / e: "parsi
     <span class="nb">input</span>
     <span class="o">|&gt;</span> <span class="n">span</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s1">' '</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="n">Ok</span> <span class="p">((),</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">n</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id), s)</span>
+        <span class="n">Ok</span> <span class="p">((),</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">n</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval), s)</span>
 </pre></div>
 </div>
 </div>
@@ -10120,7 +10120,7 @@ __assert_eq / actual: ""parsing.between / expected closing delimiter / e: "parsi
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">p_digit</span> <span class="p">()</span> <span class="p">:</span> <span class="n">parser</span> <span class="n">char</span> <span class="o">=</span> <span class="n">fun</span> <span class="nb">input</span><span class="p">,</span> <span class="n">s</span> <span class="o">=&gt;</span>
     <span class="k">match</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.index 0i32 with</span>
     <span class="o">|</span> <span class="p">(</span><span class="s1">'0'</span> <span class="o">|</span> <span class="s1">'1'</span> <span class="o">|</span> <span class="s1">'2'</span> <span class="o">|</span> <span class="s1">'3'</span> <span class="o">|</span> <span class="s1">'4'</span> <span class="o">|</span> <span class="s1">'5'</span> <span class="o">|</span> <span class="s1">'6'</span> <span class="o">|</span> <span class="s1">'7'</span> <span class="o">|</span> <span class="s1">'8'</span> <span class="o">|</span> <span class="s1">'9'</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span> <span class="o">=&gt;</span>
-        <span class="n">Ok</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id), s)</span>
+        <span class="n">Ok</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval), s)</span>
     <span class="o">|</span> <span class="n">c</span> <span class="o">=&gt;</span>
         <span class="n">backend_switch</span> <span class="p">{</span>
             <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"parsing.p_digit / unexpected char: {!c}"'</span> <span class="p">:</span> <span class="n">string</span>
@@ -10285,7 +10285,7 @@ __assert_eq / actual: "struct (UH0_1 ('1', UH0_0), "a 2", , 1, 1)" / expected: "
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rest_of_line</span> <span class="p">()</span> <span class="p">:</span> <span class="n">parser</span> <span class="n">string</span> <span class="o">=</span> <span class="n">fun</span> <span class="nb">input</span><span class="p">,</span> <span class="n">s</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">i</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">span</span> <span class="p">((</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">i</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End id)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="n">i</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End eval)</span>
     <span class="n">Ok</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>

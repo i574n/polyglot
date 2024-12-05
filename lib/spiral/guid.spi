@@ -17,7 +17,9 @@ nominal guid = $'backend_switch `(guid_switch)'
 
 /// ### new_guid
 inl new_guid (x : string) : guid =
-    x |> convert
+    run_target_args (fun () => x) function
+        | Rust (Contract) => fun _ => null ()
+        | _ => fun x => x |> convert
 
 /// ### new_raw_guid
 inl new_raw_guid () : guid =
@@ -29,18 +31,17 @@ inl new_raw_guid () : guid =
 /// ### hash_guid
 type hash_guid = guid
 
-let hash_guid (~hash : string) : hash_guid =
-    run_target function
-        | Rust (Contract) => fun () => null ()
-        | _ => fun () =>
+let hash_guid (hash : string) : hash_guid =
+    run_target_args (fun () => hash) function
+        | Rust (Contract) => fun _ => null ()
+        | _ => fun hash =>
             inl hash = hash |> sm'.pad_left 32i32 '0'
-            backend_switch {
-                Fsharp = fun () =>
-                    $'$"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : string
-                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : string
-            }
-            |> fun x => x : string
-            |> convert
+            inl a = hash |> sm'.range (am'.Start 0i32) (am'.End fun _ => 8)
+            inl b = hash |> sm'.range (am'.Start 8i32) (am'.End fun _ => 12)
+            inl c = hash |> sm'.range (am'.Start 12i32) (am'.End fun _ => 16)
+            inl d = hash |> sm'.range (am'.Start 16i32) (am'.End fun _ => 20)
+            inl e = hash |> sm'.range (am'.Start 20i32) (am'.End fun _ => 32)
+            $'$"{!a}-{!b}-{!c}-{!d}-{!e}"' |> new_guid
 
 /// ## main
 inl main () =

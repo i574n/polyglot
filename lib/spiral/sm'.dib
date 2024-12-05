@@ -404,7 +404,7 @@ inl format forall t. (x : t) : string =
 
 #!spiral
 
-inl concat_array_trailing (separator : string) (input : a i32 string) =
+inl concat_array_trailing (separator : string) (input : a int string) =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
@@ -413,6 +413,7 @@ inl concat_array_trailing (separator : string) (input : a i32 string) =
 
 //// test
 ///! fsharp
+////! cuda // AttributeError: 'str' object has no attribute 'item'
 ///! rust
 ///! typescript
 ///! python
@@ -423,7 +424,7 @@ inl concat_array_trailing (separator : string) (input : a i32 string) =
     "3"
 ]
 |> fun x =>
-    inl code = (a x : _ i32 _) |> concat_array_trailing "\n"
+    inl code = (a x : _ int _) |> concat_array_trailing "\n"
     code
     |> _assert_eq "1\n2\n3\n"
 
@@ -1887,7 +1888,8 @@ fun () => failwith "test"
 
 inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
-        inl len = s |> length'
+        inl len () =
+            s |> length'
         match start, end with
         | Start start, End fn => start, len |> fn
         | End start_fn, End end_fn => start_fn len, end_fn len
@@ -1900,11 +1902,11 @@ inl range forall t. (start : am'.range t) (end : am'.range t) s =
 ///! cuda
 
 "abcde"
-|> range (am'.Start 1i32) (am'.End id)
+|> range (am'.Start 1i32) (am'.End eval)
 |> _assert_eq "bcde"
 
 "abcde"
-|> range (am'.End fun x => x - 4i32) (am'.End fun x => x - 1)
+|> range (am'.End fun x => x () - 4i32) (am'.End fun x => x () - 1)
 |> _assert_eq "bcd"
 
 #!markdown

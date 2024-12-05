@@ -76,7 +76,7 @@ inl format forall t. (x : t) : string =
     real format_real `t x
 
 /// ### concat_array_trailing
-inl concat_array_trailing (separator : string) (input : a i32 string) =
+inl concat_array_trailing (separator : string) (input : a int string) =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
@@ -852,7 +852,8 @@ inl format_exception (ex : exn) : string =
 /// ### range
 inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
-        inl len = s |> length'
+        inl len () =
+            s |> length'
         match start, end with
         | Start start, End fn => start, len |> fn
         | End start_fn, End end_fn => start_fn len, end_fn len

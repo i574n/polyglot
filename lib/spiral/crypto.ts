@@ -5,7 +5,7 @@ import { Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { parse, uint16, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { bool_type, lambda_type, unit_type, string_type, int64_type, union_type, record_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import * as crypto from "crypto";
-import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString, create, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
@@ -335,10 +335,10 @@ export function method4(): string {
 }
 
 export function method0(v0_1: string): string {
-    const v135: ICryptoCreateHash = crypto;
-    const v138: any = v135.createHash("sha256");
-    const v140: any = v138.update(v0_1, 'utf8');
-    return v140.digest("hex");
+    const v132: ICryptoCreateHash = crypto;
+    const v135: any = v132.createHash("sha256");
+    const v137: any = v135.update(v0_1, 'utf8');
+    return v137.digest("hex");
 }
 
 export function closure0(unitVar: void, v0_1: string): string {
@@ -423,9 +423,18 @@ export function method14(): string {
 }
 
 export function method11(v0_1: Mut1, v1_1: Mut2, v2: Mut3, v3: Mut4, v4: Mut5, v5: Option<int64>): string {
-    let v295: int64, v349: number;
-    const v291: US2_$union = defaultArg(map<int64, US2_$union>(method12(), v5), US2_US2_1());
-    return toString((v291.tag === /* US2_0 */ 0) ? ((v295 = v291.fields[0], (v349 = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v295))), create(1, 1, 1, hours(v349), minutes(v349), seconds(v349), milliseconds(v349))))) : now(), method14());
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method12(), v5), US2_US2_1());
+    let v418: Date;
+    if (v321.tag === /* US2_0 */ 0) {
+        const v325: int64 = v321.fields[0];
+        const v378: number = fromTicks(toInt64(op_Subtraction(toInt64(fromInt64(getTicks(now()))), v325)));
+        v418 = create(1, 1, 1, hours(v378), minutes(v378), seconds(v378), milliseconds(v378));
+    }
+    else {
+        v418 = now();
+    }
+    const v419: string = method14();
+    return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
 export function method17(): string {

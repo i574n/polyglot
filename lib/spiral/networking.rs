@@ -479,9 +479,9 @@ pub mod Networking {
     ) -> string {
         let v20: Networking::US2 =
             defaultValue(Networking::US2::US2_1, map(Networking::method8(), v5));
-        let v116: DateTime = match &v20 {
+        let v117: DateTime = match &v20 {
             Networking::US2::US2_0(v20_0_0) => {
-                let v78: TimeSpan = TimeSpan::new_ticks(
+                let v77: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
@@ -494,16 +494,21 @@ pub mod Networking {
                     1_i32,
                     1_i32,
                     1_i32,
-                    v78.hours(),
-                    v78.minutes(),
-                    v78.seconds(),
-                    v78.milliseconds(),
+                    v77.hours(),
+                    v77.minutes(),
+                    v77.seconds(),
+                    v77.milliseconds(),
                 )
             }
             _ => DateTime::now(),
         };
-        let provider: string = Networking::method9();
-        v116.toString(provider)
+        let v118: string = Networking::method9();
+        let provider: string = if v118.clone() == string("") {
+            string("M-d-y hh:mm:ss tt")
+        } else {
+            v118
+        };
+        v117.toString(provider)
     }
     pub fn method13() -> string {
         string("")

@@ -17,5 +17,7 @@ paket-files/
 .paket/
 .history/
 
-apps/lib
 apps/LICENSE
+
+apps/chat/contract/lib
+apps/spiral/temp/cube/lib

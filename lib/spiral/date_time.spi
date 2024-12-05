@@ -44,35 +44,29 @@ type date_time_switch =
     }
 nominal date_time = $'backend_switch `(date_time_switch)'
 
-/// ### date_time_milliseconds
-inl date_time_milliseconds
-    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
-    : date_time
-    =
+/// ### year
+inl year (date_time : date_time) : i32 =
     backend_switch {
-        Fsharp = fun () =>
-            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
-        Python = fun () =>
-            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
-    }
-
-/// ### date_time_utc
-inl date_time_utc
-    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int)
-    : date_time
-    =
-    backend_switch {
-        Fsharp = fun () =>
-            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)' : date_time
-        Python = fun () =>
-            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, tzinfo=datetime.timezone.utc)' : date_time
+        Fsharp = fun () => date_time |> $'_.Year' : i32
+        Python = fun () => $'!date_time.year' : i32
     }
 
 /// ### format
 inl format (format : string) (date_time : date_time) : string =
     backend_switch {
-        Fsharp = fun () => $'!date_time.ToString' format : string
-        Python = fun () => $'!date_time.strftime(!format)' : string
+        Fsharp = fun () =>
+            inl format =
+                if format = ""
+                then "M-d-y hh:mm:ss tt"
+                else format
+            $'!date_time.ToString' format : string
+        Python = fun () =>
+            inl date_time = join date_time
+            if format <> ""
+            then $'!date_time.strftime(!format)' : string
+            elif year date_time < 1000
+            then $'\'{dt.month}-{dt.day}-{dt.year} {dt:%I}:{dt:%M}:{dt:%S} {dt:%p}\'.format(dt=!date_time)' : string
+            else $'\'{dt.month}-{dt.day}-{dt:%y} {dt:%I}:{dt:%M}:{dt:%S} {dt:%p}\'.format(dt=!date_time)' : string
     }
 
 /// ### format_iso8601
@@ -103,11 +97,28 @@ inl unix_epoch () : date_time =
         Python = fun () => $'datetime.datetime(1970, 1, 1)' : date_time
     }
 
-/// ### to_universal_time
-inl to_universal_time (date_time : date_time) : date_time =
+/// ### date_time_milliseconds
+inl date_time_milliseconds
+    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
+    : date_time
+    =
     backend_switch {
-        Fsharp = fun () => date_time |> $'_.ToUniversalTime()' : date_time
-        Python = fun () => $'!date_time.astimezone(datetime.timezone.utc)' : date_time
+        Fsharp = fun () =>
+            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
+        Python = fun () =>
+            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
+    }
+
+/// ### date_time_utc
+inl date_time_utc
+    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int)
+    : date_time
+    =
+    backend_switch {
+        Fsharp = fun () =>
+            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)' : date_time
+        Python = fun () =>
+            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, tzinfo=datetime.timezone.utc)' : date_time
     }
 
 /// ### date_time_kind
@@ -118,12 +129,23 @@ union date_time_kind =
 
 /// ### specify_date_kind
 inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_time =
-    inl kind : $'System.DateTimeKind' =
-        match kind with
-        | Unspecified => $'System.DateTimeKind.Unspecified'
-        | Utc => $'System.DateTimeKind.Utc'
-        | Local => $'System.DateTimeKind.Local'
-    $'System.DateTime.SpecifyKind (!date_time, !kind)'
+    backend_switch {
+        Fsharp = fun () =>
+            inl kind : $'System.DateTimeKind' =
+                match kind with
+                | Unspecified => $'System.DateTimeKind.Unspecified'
+                | Utc => $'System.DateTimeKind.Utc'
+                | Local => $'System.DateTimeKind.Local'
+            $'System.DateTime.SpecifyKind (!date_time, !kind)' : date_time
+        Python = fun () => $'!date_time.replace(tzinfo=None)' : date_time
+    }
+
+/// ### to_universal_time
+inl to_universal_time (date_time : date_time) : date_time =
+    backend_switch {
+        Fsharp = fun () => date_time |> $'_.ToUniversalTime()' : date_time
+        Python = fun () => $'!date_time.replace(tzinfo=datetime.timezone.utc)' : date_time
+    }
 
 /// ### time_span
 nominal time_span_python =
@@ -142,7 +164,7 @@ nominal time_span = $'backend_switch `(time_span_switch)'
 
 inl time_span x : time_span =
     backend_switch {
-        Fsharp = fun () => x |> $'`time_span ' : time_span
+        Fsharp = fun () => x |> convert : time_span
         Python = fun () => $'datetime.timedelta(!x)' : time_span
     }
 
@@ -176,7 +198,10 @@ inl time_span_format (format : string) (time_span : time_span) : string =
         | Python _ => fun () =>
             $'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'
         | _ => fun () =>
-            $'!time_span.ToString !format '
+            backend_switch {
+                Fsharp = fun () => $'!time_span.ToString !format ' : string
+                Python = fun () => $'!time_span ' : string
+            }
 
 /// ### hours
 inl hours (time_span : time_span) : i32 =
@@ -246,7 +271,7 @@ nominal stopwatch = $'backend_switch `(stopwatch_switch)'
 
 inl stopwatch () : stopwatch =
     backend_switch {
-        Fsharp = fun () => $'`stopwatch ' () : stopwatch
+        Fsharp = fun () => () |> convert : stopwatch
         Python = fun () => $'`stopwatch ' : stopwatch
     }
 
@@ -268,7 +293,9 @@ nominal duration =
 /// ### date_time'
 nominal date_time' t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
+        backend_switch `(()) `({}) {
+            Fsharp = (fun () => global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end") : () -> ()
+        }
         $'' : $'chrono_DateTime<`t>'
     )
 
@@ -282,7 +309,9 @@ nominal local =
 /// ### naive_date_time
 nominal naive_date_time =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
+        backend_switch `(()) `({}) {
+            Fsharp = (fun () => global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end") : () -> ()
+        }
         $'' : $'chrono_NaiveDateTime'
     )
 
@@ -338,30 +367,44 @@ inl duration_from_millis (ms : u64) : duration =
 /// ### time_zone_local
 inl time_zone_local () : time_zone_info =
     run_target function
-        | Rust (Native) => fun () =>
-            open rust.rust_operators
-            !\($'"0i64.into()"')
         | Fsharp _ => fun () =>
             $'System.TimeZoneInfo.Local'
+        | Rust (Native) => fun () =>
+            open rust.rust_operators
+            !\($'"std::sync::Arc::new(chrono::FixedOffset::local_minus_utc(chrono::Local::now().offset()) as i64)"')
         | _ => fun () => null ()
 
 /// ### get_utc_offset
 inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : time_span =
     run_target function
-        | Rust _ => fun () => time_span ()
         | Fsharp _ => fun () => date_time |> $'_.GetUtcOffset' (time_zone_local ())
-        | target => fun () => failwith $'$"date_time.get_utc_offset / target: {!target}"'
+        | Rust (Native | Wasm) => fun () =>
+            open rust.rust_operators
+            inl ticks = date_time |> ticks
+            inl ticks = ticks |> rust.rust.emit
+            (!\\(date_time, $'"chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(!ticks))))"') : i32)
+            |> convert
+        | target => fun () =>
+            backend_switch {
+                Fsharp = fun () => failwith $'$"date_time.get_utc_offset / target: {!target}"' : time_span
+                Python = fun () => $'!date_time.utcoffset()' : time_span
+            }
 
 /// ### date_time_guid_from_date_time
-let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
+let date_time_guid_from_date_time (guid' : guid.guid) (date_time : date_time) =
     inl create prefix time_zone : date_time_guid =
-        inl guid = guid |> sm'.obj_to_string
-        $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"'
+        inl guid_range =
+            guid'
+            |> sm'.obj_to_string
+            |> sm'.range
+                (am'.Start ((prefix |> sm'.length |> fun x => x : i32) + (time_zone |> sm'.length)))
+                (am'.End eval)
+        ($'$"{!prefix}{!time_zone}{!guid_range}"' : string) |> guid.new_guid
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native | Wasm) => fun () =>
             inl epoch =
-                date_time_utc 1970 1 1 0 0 0
+                unix_epoch ()
                 |> to_universal_time
             inl date_time =
                 date_time
@@ -383,14 +426,14 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
             inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
             inl time_zone_value = time_zone |> time_span_format (join "hh:mm")
-            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"'
             create prefix time_zone
         | target => fun () =>
             inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
             inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
             inl time_zone_value = time_zone |> time_span_format (join "hhmm")
-            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"'
             create prefix time_zone
 
 /// ### date_time_from_guid

@@ -264,71 +264,71 @@ mod module_fb49c4a9 {
             let v6: clap::Command = clap::Command::args_override_self(v4, true);
             let v7: usize = 0_i32 as usize;
             let v10: usize = 1_i32 as usize;
-            let v21: clap::builder::ValueRange = if v10 == v7 {
+            let v24: clap::builder::ValueRange = if v10 == 0_i32 as usize {
                 clap::builder::ValueRange::new(v7..)
             } else {
-                let v19: string = string("clap::builder::ValueRange::new($0..=$1)");
+                let v22: string = string("clap::builder::ValueRange::new($0..=$1)");
                 clap::builder::ValueRange::new(v7..=v10)
             };
-            let v23: string = string("r#\"exception\"#");
-            let v24: &'static str = r#"exception"#;
-            let v26: clap::Arg = clap::Arg::new(v24);
-            let v28: clap::Arg = v26.short('e');
-            let v29: string = string("r#\"exception\"#");
-            let v30: &'static str = r#"exception"#;
-            let v32: clap::Arg = v28.long(v30);
-            let v34: clap::Arg = v32.num_args(v21);
-            let v36: clap::Arg = v34.require_equals(true);
-            let v38: string = string("r#\"\"#");
-            let v39: &str = r#""#;
-            let v41: clap::Arg = v36.default_missing_value(v39);
-            let v43: clap::Command = clap::Command::arg(v6, v41);
-            let v45: string = string("r#\"trace_level\"#");
-            let v46: &'static str = r#"trace_level"#;
-            let v48: clap::Arg = clap::Arg::new(v46);
-            let v50: clap::Arg = v48.short('t');
-            let v51: string = string("r#\"trace_level\"#");
-            let v52: &'static str = r#"trace_level"#;
-            let v54: clap::Arg = v50.long(v52);
-            let v77: Array<string> = toArray(ofArray(new_array(&[
+            let v26: string = string("r#\"exception\"#");
+            let v27: &'static str = r#"exception"#;
+            let v29: clap::Arg = clap::Arg::new(v27);
+            let v31: clap::Arg = v29.short('e');
+            let v32: string = string("r#\"exception\"#");
+            let v33: &'static str = r#"exception"#;
+            let v35: clap::Arg = v31.long(v33);
+            let v37: clap::Arg = v35.num_args(v24);
+            let v39: clap::Arg = v37.require_equals(true);
+            let v41: string = string("r#\"\"#");
+            let v42: &str = r#""#;
+            let v44: clap::Arg = v39.default_missing_value(v42);
+            let v46: clap::Command = clap::Command::arg(v6, v44);
+            let v48: string = string("r#\"trace_level\"#");
+            let v49: &'static str = r#"trace_level"#;
+            let v51: clap::Arg = clap::Arg::new(v49);
+            let v53: clap::Arg = v51.short('t');
+            let v54: string = string("r#\"trace_level\"#");
+            let v55: &'static str = r#"trace_level"#;
+            let v57: clap::Arg = v53.long(v55);
+            let v80: Array<string> = toArray(ofArray(new_array(&[
                 string("Verbose"),
                 string("Debug"),
                 string("Info"),
                 string("Warning"),
                 string("Critical"),
             ])));
-            let v81: Vec<string> = v77.to_vec();
-            let v83: bool = true;
-            let _vec_map: Vec<_> = v81
+            let v84: Vec<string> = v80.to_vec();
+            let v86: bool = true;
+            let _vec_map: Vec<_> = v84
                 .into_iter()
                 .map(|x| {
                     //;
-                    let v85: string = x;
-                    let v88: &str = &*v85;
-                    let v112: std::string::String = String::from(v88);
-                    let v135: Box<std::string::String> = Box::new(v112);
-                    let v137: &'static mut std::string::String = Box::leak(v135);
-                    let v139: clap::builder::PossibleValue =
-                        clap::builder::PossibleValue::new(&**v137);
-                    let v141: bool = true;
-                    v139
+                    let v88: string = x;
+                    let v91: &str = &*v88;
+                    let v115: std::string::String = String::from(v91);
+                    let v138: Box<std::string::String> = Box::new(v115);
+                    let v140: &'static mut std::string::String = Box::leak(v138);
+                    let v142: clap::builder::PossibleValue =
+                        clap::builder::PossibleValue::new(&**v140);
+                    let v144: bool = true;
+                    v142
                 })
                 .collect::<Vec<_>>();
-            let v143: Vec<clap::builder::PossibleValue> = _vec_map;
-            let v145: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
-                clap::builder::PossibleValuesParser::new(v143),
+            let v146: Vec<clap::builder::PossibleValue> = _vec_map;
+            let v148: clap::builder::ValueParser = Into::<clap::builder::ValueParser>::into(
+                clap::builder::PossibleValuesParser::new(v146),
             );
-            let v147: clap::Arg = v54.value_parser(v145);
-            let v149: clap::Command = clap::Command::arg(v43, v147);
-            let v151: string = string("r#\"wasm\"#");
-            let v152: &'static str = r#"wasm"#;
-            let v154: clap::Arg = clap::Arg::new(v152);
-            let v156: clap::Arg = v154.short('w');
-            let v157: string = string("r#\"wasm\"#");
-            let v158: &'static str = r#"wasm"#;
-            let v160: clap::Arg = v156.long(v158);
-            let v162: clap::Arg = v160.required(true);
-            clap::Command::arg(v149, v162)
+            let v150: clap::Arg = v57.value_parser(v148);
+            let v152: clap::Command = clap::Command::arg(v46, v150);
+            let v154: string = string("r#\"wasm\"#");
+            let v155: &'static str = r#"wasm"#;
+            let v157: clap::Arg = clap::Arg::new(v155);
+            let v159: clap::Arg = v157.short('w');
+            let v160: string = string("r#\"wasm\"#");
+            let v161: &'static str = r#"wasm"#;
+            let v163: clap::Arg = v159.long(v161);
+            let v165: clap::Arg = v163.required(true);
+            clap::Command::arg(v152, v165)
         }
         pub fn method1() -> string {
             string("trace_level")
@@ -609,9 +609,9 @@ mod module_fb49c4a9 {
         ) -> string {
             let v20: Spiral_wasm::US4 =
                 defaultValue(Spiral_wasm::US4::US4_1, map(Spiral_wasm::method10(), v5));
-            let v116: DateTime = match &v20 {
+            let v117: DateTime = match &v20 {
                 Spiral_wasm::US4::US4_0(v20_0_0) => {
-                    let v78: TimeSpan = TimeSpan::new_ticks(
+                    let v77: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
@@ -624,16 +624,21 @@ mod module_fb49c4a9 {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v78.hours(),
-                        v78.minutes(),
-                        v78.seconds(),
-                        v78.milliseconds(),
+                        v77.hours(),
+                        v77.minutes(),
+                        v77.seconds(),
+                        v77.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
-            let provider: string = Spiral_wasm::method11();
-            v116.toString(provider)
+            let v118: string = Spiral_wasm::method11();
+            let provider: string = if v118.clone() == string("") {
+                string("M-d-y hh:mm:ss tt")
+            } else {
+                v118
+            };
+            v117.toString(provider)
         }
         pub fn method15() -> string {
             string("")

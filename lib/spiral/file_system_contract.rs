@@ -477,8 +477,8 @@ pub mod File_system {
         LrcPtr<File_system::Mut4>,
         Option<i64>,
     ) {
-        let v64: string = string("env!(\"AUTOMATION\")");
-        let v65: &str = env!("AUTOMATION");
+        let v64: string = string("option_env!(\"AUTOMATION\").unwrap_or(\"\")");
+        let v65: &str = option_env!("AUTOMATION").unwrap_or("");
         let v72: std::string::String = String::from(v65);
         let _v1: (File_system::US1, File_system::US2) = (
             File_system::US1::US1_1,
@@ -614,23 +614,23 @@ pub mod File_system {
         v4: LrcPtr<File_system::Mut4>,
         v5: Option<i64>,
     ) -> string {
-        let v242: u64 = near_sdk::env::block_timestamp();
-        let v256: File_system::US2 =
+        let v272: u64 = near_sdk::env::block_timestamp();
+        let v286: File_system::US2 =
             defaultValue(File_system::US2::US2_1, map(File_system::method11(), v5));
-        let v268: u64 = match &v256 {
-            File_system::US2::US2_0(v256_0_0) => {
-                v242 - match &v256 {
+        let v298: u64 = match &v286 {
+            File_system::US2::US2_0(v286_0_0) => {
+                v272 - match &v286 {
                     File_system::US2::US2_0(x) => x.clone(),
                     _ => unreachable!(),
                 } as u64
             }
-            _ => v242,
+            _ => v272,
         } / 1000000000_u64;
-        let v269: u64 = v268 % 60_u64;
-        let v271: u64 = v268 / 60_u64 % 60_u64;
-        let v273: u64 = v268 / 3600_u64 % 24_u64;
-        let v275: std::string::String = format!("{:02}:{:02}:{:02}", v273, v271, v269);
-        fable_library_rust::String_::fromString(v275)
+        let v299: u64 = v298 % 60_u64;
+        let v301: u64 = v298 / 60_u64 % 60_u64;
+        let v303: u64 = v298 / 3600_u64 % 24_u64;
+        let v305: std::string::String = format!("{:02}:{:02}:{:02}", v303, v301, v299);
+        fable_library_rust::String_::fromString(v305)
     }
     pub fn method16() -> string {
         string("")
@@ -1986,7 +1986,7 @@ pub mod File_system {
     }
     pub fn method64(v0_1: string) -> LrcPtr<dyn IDisposable> {
         interface_cast!(
-            defaultOf::<std::rc::Rc<dyn IDisposable>>(),
+            defaultOf::<std::sync::Arc<dyn IDisposable>>(),
             Lrc<dyn IDisposable>,
         )
     }

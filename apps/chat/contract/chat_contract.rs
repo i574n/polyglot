@@ -347,8 +347,8 @@ mod module_31a2fc18 {
             LrcPtr<Chat_contract::Mut4>,
             Option<i64>,
         ) {
-            let v64: string = string("env!(\"AUTOMATION\")");
-            let v65: &str = env!("AUTOMATION");
+            let v64: string = string("option_env!(\"AUTOMATION\").unwrap_or(\"\")");
+            let v65: &str = option_env!("AUTOMATION").unwrap_or("");
             let v72: std::string::String = String::from(v65);
             let _v1: (Chat_contract::US1, Chat_contract::US2) = (
                 Chat_contract::US1::US1_1,
@@ -474,23 +474,23 @@ mod module_31a2fc18 {
             v4: LrcPtr<Chat_contract::Mut4>,
             v5: Option<i64>,
         ) -> string {
-            let v242: u64 = near_sdk::env::block_timestamp();
-            let v256: Chat_contract::US2 =
+            let v272: u64 = near_sdk::env::block_timestamp();
+            let v286: Chat_contract::US2 =
                 defaultValue(Chat_contract::US2::US2_1, map(Chat_contract::method7(), v5));
-            let v268: u64 = match &v256 {
-                Chat_contract::US2::US2_0(v256_0_0) => {
-                    v242 - match &v256 {
+            let v298: u64 = match &v286 {
+                Chat_contract::US2::US2_0(v286_0_0) => {
+                    v272 - match &v286 {
                         Chat_contract::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     } as u64
                 }
-                _ => v242,
+                _ => v272,
             } / 1000000000_u64;
-            let v269: u64 = v268 % 60_u64;
-            let v271: u64 = v268 / 60_u64 % 60_u64;
-            let v273: u64 = v268 / 3600_u64 % 24_u64;
-            let v275: std::string::String = format!("{:02}:{:02}:{:02}", v273, v271, v269);
-            fable_library_rust::String_::fromString(v275)
+            let v299: u64 = v298 % 60_u64;
+            let v301: u64 = v298 / 60_u64 % 60_u64;
+            let v303: u64 = v298 / 3600_u64 % 24_u64;
+            let v305: std::string::String = format!("{:02}:{:02}:{:02}", v303, v301, v299);
+            fable_library_rust::String_::fromString(v305)
         }
         pub fn method12() -> string {
             string("")
@@ -1849,43 +1849,43 @@ mod module_31a2fc18 {
     }
 }
 pub use module_31a2fc18::*;
-#[path = "../../../lib/fsharp/Common_contract.rs"]
+#[path = "./lib/fsharp/Common_contract.rs"]
 mod module_ad43931;
 pub use module_ad43931::*;
-#[path = "../../../lib/spiral/async__contract.rs"]
+#[path = "./lib/spiral/async__contract.rs"]
 mod module_67c461a2;
 pub use module_67c461a2::*;
-#[path = "../../../lib/spiral/common_contract.rs"]
+#[path = "./lib/spiral/common_contract.rs"]
 mod module_181b15d6;
 pub use module_181b15d6::*;
-#[path = "../../../lib/spiral/crypto_contract.rs"]
+#[path = "./lib/spiral/crypto_contract.rs"]
 mod module_90d9c778;
 pub use module_90d9c778::*;
-#[path = "../../../lib/spiral/date_time_contract.rs"]
+#[path = "./lib/spiral/date_time_contract.rs"]
 mod module_e43a8385;
 pub use module_e43a8385::*;
-#[path = "../../../lib/spiral/file_system_contract.rs"]
+#[path = "./lib/spiral/file_system_contract.rs"]
 mod module_a7db9b47;
 pub use module_a7db9b47::*;
-#[path = "../../../lib/spiral/lib_contract.rs"]
+#[path = "./lib/spiral/lib_contract.rs"]
 mod module_98e448fc;
 pub use module_98e448fc::*;
-#[path = "../../../lib/spiral/networking_contract.rs"]
+#[path = "./lib/spiral/networking_contract.rs"]
 mod module_268024e5;
 pub use module_268024e5::*;
-#[path = "../../../lib/spiral/platform_contract.rs"]
+#[path = "./lib/spiral/platform_contract.rs"]
 mod module_7d8ad484;
 pub use module_7d8ad484::*;
-#[path = "../../../lib/spiral/runtime_contract.rs"]
+#[path = "./lib/spiral/runtime_contract.rs"]
 mod module_485aae07;
 pub use module_485aae07::*;
-#[path = "../../../lib/spiral/sm_contract.rs"]
+#[path = "./lib/spiral/sm_contract.rs"]
 mod module_582b4305;
 pub use module_582b4305::*;
-#[path = "../../../lib/spiral/threading_contract.rs"]
+#[path = "./lib/spiral/threading_contract.rs"]
 mod module_d5afb6f5;
 pub use module_d5afb6f5::*;
-#[path = "../../../lib/spiral/trace_contract.rs"]
+#[path = "./lib/spiral/trace_contract.rs"]
 mod module_9e77af3a;
 pub use module_9e77af3a::*;
 pub mod Polyglot {

@@ -273,66 +273,64 @@ pub mod Crypto {
                     ()
                 }
                 {
-                    let v50: usize = v23.len();
-                    let v51: u8 = v50 as u8;
-                    let v54: usize = v41;
-                    let v67: &_ = if v54 == v50 {
+                    let v49: usize = v41;
+                    let v64: &_ = if v49 == v23.len() {
                         &v23[v19..]
                     } else {
-                        &v23[v19..v54]
+                        &v23[v19..v49]
                     };
-                    sha2::Digest::update(&mut v16, v67);
+                    sha2::Digest::update(&mut v16, v64);
                     {
-                        let v70: bool = true;
+                        let v67: bool = true;
                     } // rust.loop;
-                    let v72: bool = true;
+                    let v69: bool = true;
                 } // rust.loop;
-                let v74: bool = true;
+                let v71: bool = true;
             } // rust.loop;
-            let v76: bool = true;
+            let v73: bool = true;
             {
                 // rust.loop;
-                let v78: bool = true;
+                let v75: bool = true;
                 {
                     // rust.loop;
-                    let v80: &[u8] = &sha2::Digest::finalize(v16);
-                    let v82: Vec<u8> = v80.iter().map(|x| *x).collect::<Vec<_>>();
-                    let v84: bool = true;
-                    let _vec_map: Vec<_> = v82
+                    let v77: &[u8] = &sha2::Digest::finalize(v16);
+                    let v79: Vec<u8> = v77.iter().map(|x| *x).collect::<Vec<_>>();
+                    let v81: bool = true;
+                    let _vec_map: Vec<_> = v79
                         .into_iter()
                         .map(|x| {
                             //;
-                            let v86: u8 = x;
-                            let v88: std::string::String = format!("{:02x}", v86);
-                            let v90: string = fable_library_rust::String_::fromString(v88);
-                            let v92: bool = true;
-                            v90
+                            let v83: u8 = x;
+                            let v85: std::string::String = format!("{:02x}", v83);
+                            let v87: string = fable_library_rust::String_::fromString(v85);
+                            let v89: bool = true;
+                            v87
                         })
                         .collect::<Vec<_>>();
-                    let v94: Vec<string> = _vec_map;
-                    let v96: Array<string> = fable_library_rust::NativeArray_::array_from(v94);
-                    let _v97: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
-                        let v96 = v96.clone();
+                    let v91: Vec<string> = _vec_map;
+                    let v93: Array<string> = fable_library_rust::NativeArray_::array_from(v91);
+                    let _v94: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
+                        let v93 = v93.clone();
                         move || {
                             map(
                                 Func1::new({
-                                    let v96 = v96.clone();
-                                    move |i: i32| v96[i].clone()
+                                    let v93 = v93.clone();
+                                    move |i: i32| v93[i].clone()
                                 }),
-                                rangeNumeric(0_i32, 1_i32, count(v96.clone()) - 1_i32),
+                                rangeNumeric(0_i32, 1_i32, count(v93.clone()) - 1_i32),
                             )
                         }
                     }));
-                    let v104: string = Crypto::method1();
-                    let v110: string = join(
-                        if v104.clone() == string("\n") {
-                            Crypto::method2(v104.clone())
+                    let v101: string = Crypto::method1();
+                    let v107: string = join(
+                        if v101.clone() == string("\n") {
+                            Crypto::method2(v101.clone())
                         } else {
-                            v104
+                            v101
                         },
-                        toArray(_v97),
+                        toArray(_v94),
                     );
-                    Ok::<string, std::io::Error>(v110).unwrap()
+                    Ok::<string, std::io::Error>(v107).unwrap()
                 }
             }
         }
@@ -573,9 +571,9 @@ pub mod Crypto {
         v5: Option<i64>,
     ) -> string {
         let v20: Crypto::US2 = defaultValue(Crypto::US2::US2_1, map_1(Crypto::method12(), v5));
-        let v116: DateTime = match &v20 {
+        let v117: DateTime = match &v20 {
             Crypto::US2::US2_0(v20_0_0) => {
-                let v78: TimeSpan = TimeSpan::new_ticks(
+                let v77: TimeSpan = TimeSpan::new_ticks(
                     {
                         let _arg: DateTime = DateTime::now();
                         _arg.ticks()
@@ -588,16 +586,21 @@ pub mod Crypto {
                     1_i32,
                     1_i32,
                     1_i32,
-                    v78.hours(),
-                    v78.minutes(),
-                    v78.seconds(),
-                    v78.milliseconds(),
+                    v77.hours(),
+                    v77.minutes(),
+                    v77.seconds(),
+                    v77.milliseconds(),
                 )
             }
             _ => DateTime::now(),
         };
-        let provider: string = Crypto::method13();
-        v116.toString(provider)
+        let v118: string = Crypto::method13();
+        let provider: string = if v118.clone() == string("") {
+            string("M-d-y hh:mm:ss tt")
+        } else {
+            v118
+        };
+        v117.toString(provider)
     }
     pub fn method17() -> string {
         string("")

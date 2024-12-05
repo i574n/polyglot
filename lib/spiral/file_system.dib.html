@@ -9597,9 +9597,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">create_temp_path</span><span class="s1">' (guid : guid.guid) =</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">guid</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">guid</span> <span class="o">=&gt;</span>
             <span class="n">get_temp_path</span> <span class="p">()</span>
             <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"!create_temp_path_"</span><span class="p">)</span>
             <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_entry_assembly_name</span> <span class="p">())</span>
@@ -9667,7 +9667,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_64cd7924ee821ed3ac033138eae9a037347cfa5a67719bc946436c0cc6ae1b20/20241115-0545-1098-6221-00000015948e" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_49283bc8b90d7ea8bda9d5889245f0ad96d0edc3273cd9a2f87175e688eb4851/20241205-0537-0427-0686-00000037fb7e" / expected: '/'
 
 </pre>
 </div>
@@ -9676,7 +9676,7 @@ __assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_64cd7924ee82
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241115-0545-1147-4712-400000b706b0" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241205-0537-0471-7122-700000c28ba9" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10904,7 +10904,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 1L / expected: 1L
+<pre>__assert_eq / actual: 2L / expected: 2L
 </pre>
 </div>
 </div>
@@ -11096,7 +11096,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ff5588c3ec9961dead495c95ebd0903541edaeadcae151ae889015a57b46005a/20241115-0546-0131-8444-000000407626 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_7dbc587c479d9c919c2973ae6ed30d9f633826237bc76c7da7bf7ec8407fb174/20241205-0537-2850-4094-000000cdda91 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
 </pre>

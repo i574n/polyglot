@@ -402,7 +402,7 @@ export function closure0(unitVar: void, v0_1: string[]): void {
     if (v56) {
         process.stdout.write('\u001B[?25l');
     }
-    const v149: any = startChild<void>(method4(v56 ? -1 : 50, 1, 0, 0, 0));
+    const v161: any = startChild<void>(method4(v56 ? -1 : 50, 1, 0, 0, 0));
 }
 
 export const v0 = (v: string[]): void => {

@@ -356,8 +356,9 @@ nominal value_range =
     )
 
 /// ### new_value_range
-inl new_value_range inclusive start end : value_range =
-    inl len = 0i32 |> convert
+inl new_value_range forall t. inclusive (start : _ t) (end : _ t) : value_range =
+    inl len () =
+        0i32 |> convert
     inl start, end =
         open am'
         match start, end with
@@ -370,7 +371,7 @@ inl new_value_range inclusive start end : value_range =
         then "="
         else ""
     match start, end with
-    | start, end when end =. len => !\\(start, $'"clap::builder::ValueRange::new($0..)"')
+    | start, end when end =. len () => !\\(start, $'"clap::builder::ValueRange::new($0..)"')
     | start, end => !\\((start, end), $'"clap::builder::ValueRange::new($0.." + !inclusive + "$1)"')
 
 /// ### arg_num_args_range
