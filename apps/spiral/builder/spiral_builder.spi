@@ -652,6 +652,9 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                 |> sm'.replace_regex
                     "\\s\\sdefaultOf\\(\\);"
                     " defaultOf::<()>();"
+                |> sm'.replace_regex
+                    "\\s\\sgetZero\\(\\);"
+                    " getZero::<()>();"
                 |> sm'.replace
                     "::Slice'_"
                     "::Slice__"

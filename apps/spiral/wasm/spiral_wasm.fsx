@@ -395,8 +395,8 @@ and method5 (v0 : string) : string =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = method6(v0)
-    let v3 : string = "std::env::var(&*v2)"
-    let v4 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v3 
+    let v3 : string = "std::env::var(&*$0)"
+    let v4 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v2 v3 
     let v5 : string = "true; let _result_map_ = $0.map(|x| { //"
     let v6 : bool = Fable.Core.RustInterop.emitRustExpr v4 v5 
     let v7 : string = "x"
