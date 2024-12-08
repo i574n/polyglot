@@ -35,7 +35,7 @@ function FixTypeScript {
     )
     process {
         $text `
-            -replace "\./fable_modules/fable-library-ts\.[\d\.]+/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "\./fable_modules/fable-library-ts\.[\-\d\w\.]+/", "./deps/Fable/src/fable-library-ts/" `
             -replace "from `"\./deps/", "from `"../../polyglot/deps/" `
             -replace "from `"\.\./\.\./\.\./deps/", "from `"../../deps/"
     }
@@ -103,6 +103,7 @@ function CopyTarget {
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
                     -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>()," `
+                    -replace "getZero\(\),", "getZero::<std::sync::Arc<dyn IDisposable>>()," `
                     -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
         }

@@ -2,7 +2,7 @@ import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { record_type, string_type, int32_type, union_type, char_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { uncurry2, defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { interpolate, toText, trimStart, trimEnd, substring as substring_1, startsWith, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
 import { foldBack, ofArray as ofArray_1, empty, toArray, FSharpList, cons } from "../../deps/Fable/src/fable-library-ts/List.js";
 import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
@@ -73,7 +73,7 @@ export function closure0(unitVar: void, v0_1: string): ((arg0: string) => boolea
 }
 
 export function closure3(v0_1: string, v1_1: string): boolean {
-    return v1_1.endsWith(v0_1);
+    return endsWith(v1_1, v0_1, false);
 }
 
 export function closure2(unitVar: void, v0_1: string): ((arg0: string) => boolean) {
@@ -175,7 +175,7 @@ export function closure21(unitVar: void, v0_1: string[]): ((arg0: string) => str
 }
 
 export function closure24(v0_1: string, v1_1: string): boolean {
-    return v1_1.startsWith(v0_1);
+    return startsWith(v1_1, v0_1, false);
 }
 
 export function closure23(unitVar: void, v0_1: string): ((arg0: string) => boolean) {

@@ -662,6 +662,9 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                     ("defaultOf()" +. !\($'"\\\",\\\".into()"'))
                     "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
                 |> sm'.replace
+                    ("__self" +. !\($'"\\\"__.\\\".into()"'))
+                    "self."
+                |> sm'.replace
                     ("_self" +. !\($'"\\\"_.\\\".into()"'))
                     "self."
                 |> sm'.replace
@@ -992,7 +995,7 @@ inl process_typescript { fs_path deps trace_level } =
                     |> sm'.format'
                     |> sm'.from_std_string
                 inl version =
-                    $'$"{!lib_dir_prefix'}\\.(?<a>[\\d.]+)$"'
+                    $'$"{!lib_dir_prefix'}\\.(?<a>[-\\d\\w.]+)$"'
                     |> sm'.new_regex
                     |> resultm.unwrap'
                     |> sm'.regex_captures path

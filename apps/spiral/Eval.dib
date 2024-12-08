@@ -986,7 +986,7 @@ let inline eval
                 then line |> SpiralSm.split "=" |> Array.skip 1 |> SpiralSm.concat "" |> Some
                 else None
             )
-        
+
         allPackages <- packages |> Array.append allPackages |> Array.distinct
 
         let timeout =

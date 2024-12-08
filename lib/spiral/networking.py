@@ -255,7 +255,11 @@ class US9(Union):
 
 US9_reflection = _expr141
 
-def method3(__unit: None=None) -> str:
+def method3(v0_1: str) -> str:
+    return v0_1
+
+
+def method4(__unit: None=None) -> str:
     return ""
 
 
@@ -263,7 +267,7 @@ def closure1(unit_var: None, v0_1: str) -> US5:
     return US5(0, v0_1)
 
 
-def method4(__unit: None=None) -> Callable[[str], US5]:
+def method5(__unit: None=None) -> Callable[[str], US5]:
     def _arrow142(v: str) -> US5:
         return closure1(None, v)
 
@@ -271,21 +275,21 @@ def method4(__unit: None=None) -> Callable[[str], US5]:
 
 
 def method2(v0_1: str) -> str:
-    v28: IOsEnviron = os
-    v30: Any = v28.environ
-    _v34: (str | None) | None = None
-    x: str | None = v30.get(v0_1)
-    _v34 = some(x)
-    v39: str | None
-    if _v34 is None:
-        raise Exception("optionm\'.of_obj / _v34=None")
+    v29: IOsEnviron = os
+    v31: Any = v29.environ
+    _v35: (str | None) | None = None
+    x: str | None = v31.get(v0_1)
+    _v35 = some(x)
+    v40: str | None
+    if _v35 is None:
+        raise Exception("optionm\'.of_obj / _v35=None")
 
     else: 
-        v39 = value_3(_v34)
+        v40 = value_3(_v35)
 
-    v55: US5 = default_arg(map(method4(), v39), US5(1))
-    if v55.tag == 0:
-        return v55.fields[0]
+    v56: US5 = default_arg(map(method5(), v40), US5(1))
+    if v56.tag == 0:
+        return v56.fields[0]
 
     else: 
         return ""
@@ -342,7 +346,7 @@ def closure0(unit_var: None, unit_var_1: None) -> None:
 
 
 
-def method6(v0_1: US0) -> bool:
+def method7(v0_1: US0) -> bool:
     v3: None
     closure0(None, None)
     v3 = None
@@ -370,36 +374,36 @@ def closure6(unit_var: None, v0_1: int64) -> US2:
     return US2(0, v0_1)
 
 
-def method8(__unit: None=None) -> Callable[[int64], US2]:
+def method9(__unit: None=None) -> Callable[[int64], US2]:
     def _arrow146(v: int64) -> US2:
         return closure6(None, v)
 
     return _arrow146
 
 
-def method9(__unit: None=None) -> str:
+def method10(__unit: None=None) -> str:
     return "hh:mm:ss"
 
 
-def method10(__unit: None=None) -> str:
+def method11(__unit: None=None) -> str:
     return "HH:mm:ss"
 
 
-def method7(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
-    v429: US2 = default_arg(map(method8(), v5), US2(1))
-    v526: Any
-    if v429.tag == 0:
-        v486: Any = create(op_subtraction(from_value(ticks_1(now()), False), v429.fields[0]))
-        v526 = create_1(1, 1, 1, hours(v486), minutes(v486), seconds(v486), milliseconds(v486))
+def method8(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None=None) -> str:
+    v453: US2 = default_arg(map(method9(), v5), US2(1))
+    v550: Any
+    if v453.tag == 0:
+        v510: Any = create(op_subtraction(from_value(ticks_1(now()), False), v453.fields[0]))
+        v550 = create_1(1, 1, 1, hours(v510), minutes(v510), seconds(v510), milliseconds(v510))
 
     else: 
-        v526 = now()
+        v550 = now()
 
-    v527: str = method10()
-    return to_string(v526, "M-d-yyyy hh:mm:ss tt" if (v527 == "") else v527)
+    v551: str = method11()
+    return to_string(v550, "M-d-y hh:mm:ss tt" if (v551 == "") else v551)
 
 
-def method13(__unit: None=None) -> str:
+def method14(__unit: None=None) -> str:
     return ""
 
 
@@ -408,62 +412,62 @@ def closure7(v0_1: Mut3, v1_1: str, unit_var: None) -> None:
     v0_1.l0 = v3
 
 
-def method12(v0_1: str) -> str:
-    v2_1: Mut3 = Mut3(method13())
+def method13(v0_1: str) -> str:
+    v2_1: Mut3 = Mut3(method14())
     v8: None
     closure7(v2_1, ("" + str(v0_1)) + "", None)
     v8 = None
     return v2_1.l0
 
 
-def method14(__unit: None=None) -> str:
+def method15(__unit: None=None) -> str:
     return "\u001b[0m"
 
 
-def method11(__unit: None=None) -> str:
+def method12(__unit: None=None) -> str:
     v2_1: str = "Verbose".lower()
-    return ("\u001b[90m" + method12(v2_1[0])) + method14()
+    return ("\u001b[90m" + method13(v2_1[0])) + method15()
 
 
-def method16(v0_1: int, v1_1: str) -> str:
-    v3: Mut3 = Mut3(method13())
+def method17(v0_1: int, v1_1: str) -> str:
+    v3: Mut3 = Mut3(method14())
     v10: None
-    closure7(v3, ("" + "{ ") + "", None)
+    closure7(v3, "{ ", None)
     v10 = None
     v19_1: None
-    closure7(v3, ("" + "port") + "", None)
+    closure7(v3, "port", None)
     v19_1 = None
     v28: None
-    closure7(v3, ("" + " = ") + "", None)
+    closure7(v3, " = ", None)
     v28 = None
     v36: None
     closure7(v3, ("" + str(v0_1)) + "", None)
     v36 = None
     v45: None
-    closure7(v3, ("" + "; ") + "", None)
+    closure7(v3, "; ", None)
     v45 = None
     v54: None
-    closure7(v3, ("" + "ex") + "", None)
+    closure7(v3, "ex", None)
     v54 = None
     v62: None
-    closure7(v3, ("" + " = ") + "", None)
+    closure7(v3, " = ", None)
     v62 = None
     v70: None
-    closure7(v3, ("" + v1_1) + "", None)
+    closure7(v3, v1_1, None)
     v70 = None
     v79: None
-    closure7(v3, ("" + " }") + "", None)
+    closure7(v3, " }", None)
     v79 = None
     return v3.l0
 
 
-def method17(v0_1: str) -> str:
+def method18(v0_1: str) -> str:
     return trim_end(trim_start(v0_1, *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method15(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: str) -> str:
-    v10: str = method16(v8, v9)
-    return method17(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "networking.test_port_open") + " / ") + v10) + "")
+def method16(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: str) -> str:
+    v10: str = method17(v8, v9)
+    return method18(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "networking.test_port_open") + " / ") + v10) + "")
 
 
 def closure8(v0_1: Mut0, unit_var: None) -> None:
@@ -481,7 +485,7 @@ def closure9(unit_var: None, v0_1: str) -> None:
     v3 = None
 
 
-def method18(v0_1: str) -> None:
+def method19(v0_1: str) -> None:
     v3: None
     closure0(None, None)
     v3 = None
@@ -494,7 +498,7 @@ def method18(v0_1: str) -> None:
 
 
 def closure5(v0_1: int, v1_1: str, unit_var: None) -> None:
-    if method6(US0(0)):
+    if method7(US0(0)):
         v6: None
         closure0(None, None)
         v6 = None
@@ -505,11 +509,11 @@ def closure5(v0_1: int, v1_1: str, unit_var: None) -> None:
         v22: Mut2 = pattern_input[2]
         v21: Mut1 = pattern_input[1]
         v20: Mut0 = pattern_input[0]
-        method18(method15(v20, v21, v22, v23, v24, v25, method7(v20, v21, v22, v23, v24, v25), method11(), v0_1, v1_1))
+        method19(method16(v20, v21, v22, v23, v24, v25, method8(v20, v21, v22, v23, v24, v25), method12(), v0_1, v1_1))
 
 
 
-def method5(v0_1: str, v1_1: int) -> Async[bool]:
+def method6(v0_1: str, v1_1: int) -> Async[bool]:
     def _arrow152(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[bool]:
         v183: Async[CancellationToken] = cancellation_token()
         def _arrow151(_arg: CancellationToken) -> Async[bool]:
@@ -537,7 +541,7 @@ def method5(v0_1: str, v1_1: int) -> Async[bool]:
 
 
 def closure4(v0_1: str, v1_1: int) -> Async[bool]:
-    return method5(v0_1, v1_1)
+    return method6(v0_1, v1_1)
 
 
 def closure3(unit_var: None, v0_1: str) -> Callable[[int], Async[bool]]:
@@ -551,7 +555,7 @@ def closure14(unit_var: None, v0_1: bool) -> US7:
     return US7(0, v0_1)
 
 
-def method21(__unit: None=None) -> Callable[[bool], US7]:
+def method22(__unit: None=None) -> Callable[[bool], US7]:
     def _arrow154(v: bool) -> US7:
         return closure14(None, v)
 
@@ -562,40 +566,40 @@ def closure15(unit_var: None, v0_1: Exception) -> US7:
     return US7(1, v0_1)
 
 
-def method22(__unit: None=None) -> Callable[[Exception], US7]:
+def method23(__unit: None=None) -> Callable[[Exception], US7]:
     def _arrow155(v: Exception) -> US7:
         return closure15(None, v)
 
     return _arrow155
 
 
-def method24(v0_1: int) -> str:
-    v2_1: Mut3 = Mut3(method13())
+def method25(v0_1: int) -> str:
+    v2_1: Mut3 = Mut3(method14())
     v9: None
-    closure7(v2_1, ("" + "{ ") + "", None)
+    closure7(v2_1, "{ ", None)
     v9 = None
     v18_1: None
-    closure7(v2_1, ("" + "timeout") + "", None)
+    closure7(v2_1, "timeout", None)
     v18_1 = None
     v27: None
-    closure7(v2_1, ("" + " = ") + "", None)
+    closure7(v2_1, " = ", None)
     v27 = None
     v35: None
     closure7(v2_1, ("" + str(v0_1)) + "", None)
     v35 = None
     v44: None
-    closure7(v2_1, ("" + " }") + "", None)
+    closure7(v2_1, " }", None)
     v44 = None
     return v2_1.l0
 
 
-def method23(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int) -> str:
-    v9: str = method24(v8)
-    return method17(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "async.run_with_timeout_async") + " / ") + v9) + "")
+def method24(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int) -> str:
+    v9: str = method25(v8)
+    return method18(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "async.run_with_timeout_async") + " / ") + v9) + "")
 
 
 def closure16(v0_1: int, unit_var: None) -> None:
-    if method6(US0(0)):
+    if method7(US0(0)):
         v5: None
         closure0(None, None)
         v5 = None
@@ -606,54 +610,54 @@ def closure16(v0_1: int, unit_var: None) -> None:
         v21: Mut2 = pattern_input[2]
         v20: Mut1 = pattern_input[1]
         v19_1: Mut0 = pattern_input[0]
-        method18(method23(v19_1, v20, v21, v22, v23, v24, method7(v19_1, v20, v21, v22, v23, v24), method11(), v0_1))
+        method19(method24(v19_1, v20, v21, v22, v23, v24, method8(v19_1, v20, v21, v22, v23, v24), method12(), v0_1))
 
 
 
-def method25(__unit: None=None) -> str:
+def method26(__unit: None=None) -> str:
     v2_1: str = "Critical".lower()
-    return ("\u001b[91m" + method12(v2_1[0])) + method14()
+    return ("\u001b[91m" + method13(v2_1[0])) + method15()
 
 
-def method27(v0_1: int, v1_1: str) -> str:
-    v3: Mut3 = Mut3(method13())
+def method28(v0_1: int, v1_1: str) -> str:
+    v3: Mut3 = Mut3(method14())
     v10: None
-    closure7(v3, ("" + "{ ") + "", None)
+    closure7(v3, "{ ", None)
     v10 = None
     v19_1: None
-    closure7(v3, ("" + "timeout") + "", None)
+    closure7(v3, "timeout", None)
     v19_1 = None
     v28: None
-    closure7(v3, ("" + " = ") + "", None)
+    closure7(v3, " = ", None)
     v28 = None
     v36: None
     closure7(v3, ("" + str(v0_1)) + "", None)
     v36 = None
     v45: None
-    closure7(v3, ("" + "; ") + "", None)
+    closure7(v3, "; ", None)
     v45 = None
     v54: None
-    closure7(v3, ("" + "ex") + "", None)
+    closure7(v3, "ex", None)
     v54 = None
     v62: None
-    closure7(v3, ("" + " = ") + "", None)
+    closure7(v3, " = ", None)
     v62 = None
     v70: None
-    closure7(v3, ("" + v1_1) + "", None)
+    closure7(v3, v1_1, None)
     v70 = None
     v79: None
-    closure7(v3, ("" + " }") + "", None)
+    closure7(v3, " }", None)
     v79 = None
     return v3.l0
 
 
-def method26(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: str) -> str:
-    v10: str = method27(v8, v9)
-    return method17(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "async.run_with_timeout_async**") + " / ") + v10) + "")
+def method27(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: str) -> str:
+    v10: str = method28(v8, v9)
+    return method18(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "async.run_with_timeout_async**") + " / ") + v10) + "")
 
 
 def closure17(v0_1: int, v1_1: Exception, unit_var: None) -> None:
-    if method6(US0(4)):
+    if method7(US0(4)):
         v6: None
         closure0(None, None)
         v6 = None
@@ -664,11 +668,11 @@ def closure17(v0_1: int, v1_1: Exception, unit_var: None) -> None:
         v22: Mut2 = pattern_input[2]
         v21: Mut1 = pattern_input[1]
         v20: Mut0 = pattern_input[0]
-        method18(method26(v20, v21, v22, v23, v24, v25, method7(v20, v21, v22, v23, v24, v25), method25(), v0_1, to_text(interpolate("%A%P()", [v1_1]))))
+        method19(method27(v20, v21, v22, v23, v24, v25, method8(v20, v21, v22, v23, v24, v25), method26(), v0_1, to_text(interpolate("%A%P()", [v1_1]))))
 
 
 
-def method20(v0_1: int, v1_1: Async[bool]) -> Async[US6]:
+def method21(v0_1: int, v1_1: Async[bool]) -> Async[US6]:
     def _arrow163(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[US6]:
         v12852: Async[Async[bool]] = start_child(v1_1, v0_1)
         def _arrow162(_arg: Async[bool]) -> Async[US6]:
@@ -724,9 +728,9 @@ def method20(v0_1: int, v1_1: Async[bool]) -> Async[US6]:
     return singleton.Delay(_arrow163)
 
 
-def method19(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
+def method20(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
     def _arrow165(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> Async[bool]:
-        v23: Async[US6] = method20(v0_1, method5(v1_1, v2_1))
+        v23: Async[US6] = method21(v0_1, method6(v1_1, v2_1))
         def _arrow164(_arg: US6) -> Async[bool]:
             v24: US6 = _arg
             v27: bool = v24.fields[0] if (v24.tag == 0) else False
@@ -738,7 +742,7 @@ def method19(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
 
 
 def closure13(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
-    return method19(v0_1, v1_1, v2_1)
+    return method20(v0_1, v1_1, v2_1)
 
 
 def closure12(v0_1: int, v1_1: str) -> Callable[[int], Async[bool]]:
@@ -759,76 +763,76 @@ def closure22(unit_var: None, v0_1: int) -> US9:
     return US9(0, v0_1)
 
 
-def method30(__unit: None=None) -> Callable[[int], US9]:
+def method31(__unit: None=None) -> Callable[[int], US9]:
     def _arrow168(v: int) -> US9:
         return closure22(None, v)
 
     return _arrow168
 
 
-def method32(v0_1: int, v1_1: int64, v2_1: int | None, v3: bool) -> str:
-    v5: Mut3 = Mut3(method13())
+def method33(v0_1: int, v1_1: int64, v2_1: int | None, v3: bool) -> str:
+    v5: Mut3 = Mut3(method14())
     v12: None
-    closure7(v5, ("" + "{ ") + "", None)
+    closure7(v5, "{ ", None)
     v12 = None
     v21: None
-    closure7(v5, ("" + "port") + "", None)
+    closure7(v5, "port", None)
     v21 = None
     v30: None
-    closure7(v5, ("" + " = ") + "", None)
+    closure7(v5, " = ", None)
     v30 = None
     v38: None
     closure7(v5, ("" + str(v0_1)) + "", None)
     v38 = None
     v47: None
-    closure7(v5, ("" + "; ") + "", None)
+    closure7(v5, "; ", None)
     v47 = None
     v56: None
-    closure7(v5, ("" + "retry") + "", None)
+    closure7(v5, "retry", None)
     v56 = None
     v64: None
-    closure7(v5, ("" + " = ") + "", None)
+    closure7(v5, " = ", None)
     v64 = None
     v72: None
     closure7(v5, ("" + str(v1_1)) + "", None)
     v72 = None
     v80: None
-    closure7(v5, ("" + "; ") + "", None)
+    closure7(v5, "; ", None)
     v80 = None
     v89: None
-    closure7(v5, ("" + "timeout") + "", None)
+    closure7(v5, "timeout", None)
     v89 = None
     v97: None
-    closure7(v5, ("" + " = ") + "", None)
+    closure7(v5, " = ", None)
     v97 = None
     v135: None
-    closure7(v5, ("" + to_text(interpolate("%A%P()", [v2_1]))) + "", None)
+    closure7(v5, to_text(interpolate("%A%P()", [v2_1])), None)
     v135 = None
     v143: None
-    closure7(v5, ("" + "; ") + "", None)
+    closure7(v5, "; ", None)
     v143 = None
     v152: None
-    closure7(v5, ("" + "status") + "", None)
+    closure7(v5, "status", None)
     v152 = None
     v160: None
-    closure7(v5, ("" + " = ") + "", None)
+    closure7(v5, " = ", None)
     v160 = None
     v171: None
-    closure7(v5, ("" + ("true" if v3 else "false")) + "", None)
+    closure7(v5, "true" if v3 else "false", None)
     v171 = None
     v180: None
-    closure7(v5, ("" + " }") + "", None)
+    closure7(v5, " }", None)
     v180 = None
     return v5.l0
 
 
-def method31(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: int64, v10: int | None, v11: bool) -> str:
-    v12: str = method32(v8, v9, v10, v11)
-    return method17(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "networking.wait_for_port_access") + " / ") + v12) + "")
+def method32(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: int64 | None, v6: str, v7: str, v8: int, v9: int64, v10: int | None, v11: bool) -> str:
+    v12: str = method33(v8, v9, v10, v11)
+    return method18(((((((((("" + v6) + " ") + v7) + " #") + str(v0_1.l0)) + " ") + "networking.wait_for_port_access") + " / ") + v12) + "")
 
 
 def closure23(v0_1: int | None, v1_1: bool, v2_1: int, v3: int64, unit_var: None) -> None:
-    if method6(US0(0)):
+    if method7(US0(0)):
         v8: None
         closure0(None, None)
         v8 = None
@@ -839,14 +843,14 @@ def closure23(v0_1: int | None, v1_1: bool, v2_1: int, v3: int64, unit_var: None
         v24: Mut2 = pattern_input[2]
         v23: Mut1 = pattern_input[1]
         v22: Mut0 = pattern_input[0]
-        method18(method31(v22, v23, v24, v25, v26, v27, method7(v22, v23, v24, v25, v26, v27), method11(), v2_1, v3, v0_1, v1_1))
+        method19(method32(v22, v23, v24, v25, v26, v27, method8(v22, v23, v24, v25, v26, v27), method12(), v2_1, v3, v0_1, v1_1))
 
 
 
-def method29(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Async[int64]:
+def method30(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Async[int64]:
     def _arrow173(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> Async[int64]:
-        v121: US9 = default_arg(map(method30(), v0_1), US9(1))
-        v129: Async[bool] = method19(v121.fields[0], v2_1, v3) if (v121.tag == 0) else method5(v2_1, v3)
+        v121: US9 = default_arg(map(method31(), v0_1), US9(1))
+        v129: Async[bool] = method20(v121.fields[0], v2_1, v3) if (v121.tag == 0) else method6(v2_1, v3)
         def _arrow172(_arg: bool) -> Async[int64]:
             if _arg == v1_1:
                 return singleton.Return(v4)
@@ -862,7 +866,7 @@ def method29(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Asy
                 def _arrow171(__unit: None=None) -> Async[int64]:
                     v186: Async[None] = sleep(10)
                     def _arrow170(__unit: None=None) -> Async[int64]:
-                        v197: Async[int64] = method29(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
+                        v197: Async[int64] = method30(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
                         return singleton.ReturnFrom(v197)
 
                     return singleton.Bind(v186, _arrow170)
@@ -875,12 +879,12 @@ def method29(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Asy
     return singleton.Delay(_arrow173)
 
 
-def method28(v0_1: int | None, v1_1: bool, v2_1: str, v3: int) -> Async[int64]:
-    return method29(v0_1, v1_1, v2_1, v3, int64(1))
+def method29(v0_1: int | None, v1_1: bool, v2_1: str, v3: int) -> Async[int64]:
+    return method30(v0_1, v1_1, v2_1, v3, int64(1))
 
 
 def closure21(v0_1: int | None, v1_1: bool, v2_1: str, v3: int) -> Async[int64]:
-    return method28(v0_1, v1_1, v2_1, v3)
+    return method29(v0_1, v1_1, v2_1, v3)
 
 
 def closure20(v0_1: int | None, v1_1: bool, v2_1: str) -> Callable[[int], Async[int64]]:
@@ -904,16 +908,16 @@ def closure18(unit_var: None, v0_1: int | None=None) -> Callable[[bool, str, int
     return _arrow176
 
 
-def method34(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
+def method35(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
     def _arrow178(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> Async[int]:
-        v55: US9 = default_arg(map(method30(), v0_1), US9(1))
-        v63: Async[bool] = method19(v55.fields[0], v1_1, v2_1) if (v55.tag == 0) else method5(v1_1, v2_1)
+        v55: US9 = default_arg(map(method31(), v0_1), US9(1))
+        v63: Async[bool] = method20(v55.fields[0], v1_1, v2_1) if (v55.tag == 0) else method6(v1_1, v2_1)
         def _arrow177(_arg: bool) -> Async[int]:
             if _arg == False:
                 return singleton.Return(v2_1)
 
             else: 
-                v67: Async[int] = method34(v0_1, v1_1, v2_1 + 1)
+                v67: Async[int] = method35(v0_1, v1_1, v2_1 + 1)
                 return singleton.ReturnFrom(v67)
 
 
@@ -922,12 +926,12 @@ def method34(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
     return singleton.Delay(_arrow178)
 
 
-def method33(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
-    return method34(v0_1, v1_1, v2_1)
+def method34(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
+    return method35(v0_1, v1_1, v2_1)
 
 
 def closure26(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
-    return method33(v0_1, v1_1, v2_1)
+    return method34(v0_1, v1_1, v2_1)
 
 
 def closure25(v0_1: int | None, v1_1: str) -> Callable[[int], Async[int]]:

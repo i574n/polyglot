@@ -420,7 +420,7 @@ let inline buildFile backend timeout port cancellationToken path =
                     (None, []), 0
                 | _ -> (None, []), 0
             )
-        
+
         match result with
         | None, _ when typeErrorCount > 0 && retry = 0 ->
             return! loop (retry + 1)
@@ -456,7 +456,7 @@ let inline persistCode (input: {| backend : Backend option; input: SpiralInput; 
     let targetDir = workspaceRoot </> "target/spiral_Eval"
 
     let packagesDir = targetDir </> "packages"
-    
+
     let hashHex = $"%A{input.backend}%A{input.input}" |> SpiralCrypto.hash_text
 
     let packageDir = packagesDir </> hashHex
@@ -475,7 +475,7 @@ let inline persistCode (input: {| backend : Backend option; input: SpiralInput; 
 
     let libLinkTargetPath = workspaceRoot </> "lib/spiral"
     let libLinkPath = packageDir </> "spiral"
-    
+
     let packagesModule =
         input.packages
         |> Array.map (fun package ->
@@ -795,7 +795,7 @@ class static_array():
     def __getitem__(self, index):
         assert 0 <= index < len(self.ptr), ""The get index needs to be in range.""
         return self.ptr[index]
-    
+
     def __setitem__(self, index, value):
         assert 0 <= index < len(self.ptr), ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -808,7 +808,7 @@ class static_array_list(static_array):
     def __getitem__(self, index):
         assert 0 <= index < self.length, ""The get index needs to be in range.""
         return self.ptr[index]
-    
+
     def __setitem__(self, index, value):
         assert 0 <= index < self.length, ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -827,7 +827,7 @@ class static_array_list(static_array):
         assert 0 <= i <= len(self.ptr), ""The new length has to be in range.""
         self.length = i
 
-class dynamic_array(static_array): 
+class dynamic_array(static_array):
     pass
 
 class dynamic_array_list(static_array_list):

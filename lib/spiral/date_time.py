@@ -5,7 +5,7 @@ from fable_modules.fable_library.date import (to_string, parse_exact)
 from fable_modules.fable_library.guid import (parse, new_guid)
 from fable_modules.fable_library.long import parse as parse_1
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, string_type)
-from fable_modules.fable_library.string_ import (replace, pad_left)
+from fable_modules.fable_library.string_ import (concat, replace, pad_left)
 from fable_modules.fable_library.time_span import (hours, to_string as to_string_1)
 from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
@@ -106,17 +106,17 @@ def method4(__unit: None=None) -> str:
 
 
 def method0(v0_1: str, v1_1: Any) -> str:
-    v1117: str = method3()
-    v1122: str = to_string(v1_1, "M-d-yyyy hh:mm:ss tt" if (v1117 == "") else v1117)
-    v1333: Any
+    v1075: str = method3()
+    v1080: str = to_string(v1_1, "M-d-y hh:mm:ss tt" if (v1075 == "") else v1075)
+    v1261: Any
     raise Exception(("date_time.get_utc_offset / target: " + str(US3(4, US2(0)))) + "")
-    v1346: uint8 = uint8(1) if (hours(v1333) > 0) else uint8(0)
-    v1347: str = method4()
-    v1371: str = ((("" + str(v1346)) + "") + to_string_1(v1333, "c", {})) + ""
-    v1375: str = str(v0_1)
-    v1380: int = (len(v1122) + len(v1371)) or 0
-    v1399: int = (len(v1375) - 1) or 0
-    return parse(((((("" + v1122) + "") + v1371) + "") + v1375[v1380:v1399 + 1]) + "")
+    v1274: uint8 = uint8(1) if (hours(v1261) > 0) else uint8(0)
+    v1275: str = method4()
+    v1299: str = ((("" + str(v1274)) + "") + to_string_1(v1261, "c", {})) + ""
+    v1301: str = str(v0_1)
+    v1306: int = (len(v1080) + len(v1299)) or 0
+    v1325: int = (len(v1301) - 1) or 0
+    return parse(concat(v1080, v1299, *v1301[v1306:v1325 + 1]))
 
 
 def closure1(v0_1: str, v1_1: Any) -> str:
@@ -154,7 +154,7 @@ def closure5(unit_var: None, v0_1: str) -> Callable[[int64], str]:
 
 def closure7(unit_var: None, v0_1: str) -> int64:
     v2_1: str = str(v0_1)
-    return parse_1(((((((("" + v2_1[0:7 + 1]) + "") + v2_1[9:12 + 1]) + "") + v2_1[14:17 + 1]) + "") + v2_1[19:20 + 1]) + "", 511, False, 64)
+    return parse_1(concat(v2_1[0:7 + 1], v2_1[9:12 + 1], v2_1[14:17 + 1], *v2_1[19:20 + 1]), 511, False, 64)
 
 
 def closure8(unit_var: None, v0_1: Any) -> str:
@@ -168,7 +168,7 @@ def closure9(unit_var: None, v0_1: int64) -> str:
 
 
 def closure11(v0_1: str, v1_1: Any) -> str:
-    return to_string(v1_1, "M-d-yyyy hh:mm:ss tt" if (v0_1 == "") else v0_1)
+    return to_string(v1_1, "M-d-y hh:mm:ss tt" if (v0_1 == "") else v0_1)
 
 
 def closure10(unit_var: None, v0_1: str) -> Callable[[Any], str]:

@@ -392,9 +392,9 @@ let a = 1"
     | Success (block, _, _) -> formatBlock Fs block
     | Failure (msg, _, _) -> failwith msg
 |> _assertEqual "/// a
-/// 
+///
     /// b
-/// 
+///
 /// c"
 
 #!markdown
@@ -467,7 +467,7 @@ let a = 3"
     | Success (blocks, _, _) -> formatBlocks Fs blocks
     | Failure (msg, _, _) -> failwith msg
 |> _assertEqual "/// a
-/// 
+///
 /// b
 
 /// c
