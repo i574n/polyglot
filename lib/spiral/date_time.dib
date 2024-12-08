@@ -794,8 +794,8 @@ inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : t
         | Rust (Native | Wasm) => fun () =>
             open rust.rust_operators
             inl ticks = date_time |> ticks
-            inl ticks = ticks |> rust.rust.emit
-            (!\\(date_time, $'"chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(!ticks))))"') : i32)
+            // inl ticks = ticks |> rust.rust.emit
+            (!\\((date_time, ticks), $'"chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos($1))))"') : i32)
             |> convert
         | target => fun () =>
             backend_switch {
@@ -859,7 +859,7 @@ let date_time_guid_from_date_time (guid' : guid.guid) (date_time : date_time) =
 //// test
 ///! fsharp
 ////! cuda
-////! rust -d chrono
+///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x () - 6i32) (am'.End eval)
 unix_epoch ()
@@ -873,14 +873,14 @@ unix_epoch ()
 
 //// test
 ///! fsharp
-////! rust -d chrono
+///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x () - 6i32) (am'.End eval)
 min_value ()
 |> specify_date_kind Local
 |> date_time_guid_from_date_time (test_guid ())
 |> sm'.obj_to_string
-|> fun s => s |> _assert_eq' $'$"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+|> fun s => s |> _assert_eq' $'$"00010101-0000-0000-0000-0{!(s |> sm'.slice 25i32 29)}{!suffix}"'
 
 #!spiral
 
@@ -893,7 +893,7 @@ max_value ()
 |> add_days -1
 |> date_time_guid_from_date_time (test_guid ())
 |> sm'.obj_to_string
-|> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-9{!s.[25..29]}{!suffix}"'
+|> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-9{!(s |> sm'.slice 25i32 29)}{!suffix}"'
 
 #!spiral
 
@@ -904,16 +904,15 @@ inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x 
 max_value ()
 |> specify_date_kind Utc
 |> add_days -1
-// |> date_time_guid_from_date_time (test_guid ())
-// |> sm'.obj_to_string
-// |> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-0{!s.[25..29]}{!suffix}"'
-|> ignore
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-0{!(s |> sm'.slice 25i32 29)}{!suffix}"'
 
 #!spiral
 
 //// test
 ///! fsharp
-////! rust -d chrono
+///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x () - 6i32) (am'.End eval)
 unix_epoch ()
@@ -921,7 +920,7 @@ unix_epoch ()
 |> add_days 1
 |> date_time_guid_from_date_time (test_guid ())
 |> sm'.obj_to_string
-|> fun s => s |> _assert_eq $'$"19700102-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+|> fun s => s |> _assert_eq $'$"19700102-0000-0000-0000-0{!(s |> sm'.slice 25i32 29)}{!suffix}"'
 
 #!markdown
 

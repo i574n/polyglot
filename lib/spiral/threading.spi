@@ -75,6 +75,10 @@ nominal mutex t =
 inl new_mutex forall t. (x : t) : mutex t =
     !\($'"std::sync::Mutex::new(!x)"')
 
+/// ### new_mutex_mut
+inl new_mutex_mut forall t. (x : rust.ref (rust.mut' t)) : mutex t =
+    !\($'"std::sync::Mutex::new(!x)"')
+
 /// ### rw_lock
 nominal rw_lock t =
     `(
@@ -206,6 +210,12 @@ inl rw_lock_write_guard_ref forall t. (x : rw_lock_write_guard t) : rust.ref t =
 /// ### mutex_guard_ref_mut
 inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref (rust.mut' t) =
     inl x = join x
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"&mut $0"')
+
+/// ### mutex_guard_ref_mut'
+inl mutex_guard_ref_mut' forall t. (x : mutex_guard (rust.ref (rust.mut' t))) : rust.ref (rust.mut' t) =
+    inl x = x |> rust.emit
     (!\($'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"&mut $0"')
 

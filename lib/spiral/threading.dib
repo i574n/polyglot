@@ -134,6 +134,15 @@ inl new_mutex forall t. (x : t) : mutex t =
 
 #!markdown
 
+### new_mutex_mut
+
+#!spiral
+
+inl new_mutex_mut forall t. (x : rust.ref (rust.mut' t)) : mutex t =
+    !\($'"std::sync::Mutex::new(!x)"')
+
+#!markdown
+
 ### rw_lock
 
 #!spiral
@@ -388,6 +397,17 @@ inl rw_lock_write_guard_ref forall t. (x : rw_lock_write_guard t) : rust.ref t =
 
 inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref (rust.mut' t) =
     inl x = join x
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"&mut $0"')
+
+#!markdown
+
+### mutex_guard_ref_mut'
+
+#!spiral
+
+inl mutex_guard_ref_mut' forall t. (x : mutex_guard (rust.ref (rust.mut' t))) : rust.ref (rust.mut' t) =
+    inl x = x |> rust.emit
     (!\($'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"&mut $0"')
 

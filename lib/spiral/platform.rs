@@ -4,18 +4,18 @@ pub mod Platform {
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::String_::string;
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US0 {
         US0_0,
         US0_1,
         US0_2,
     }
-    impl core::fmt::Display for Platform::US0 {
+    impl core::fmt::Display for US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US1 {
         US1_0(Platform::US0),
         US1_1(Platform::US0),
@@ -23,7 +23,7 @@ pub mod Platform {
         US1_3(Platform::US0),
         US1_4(Platform::US0),
     }
-    impl core::fmt::Display for Platform::US1 {
+    impl core::fmt::Display for US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }

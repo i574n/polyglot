@@ -806,12 +806,12 @@ inl process_rust { fs_path deps trace_level runtime cleanup } =
                 |> sm'.replace
                     ("use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1" +. !\($'"\\\";\\\".into()"'))
                     "type ConcurrentStack_1<T> = T;"
-                |> sm'.replace
-                    ("use fable_library_rust::System::Collections::Generic" +. !\($'"\\\"::\\\".into()"'))
-                    "use fable_library_rust::Interfaces_::System::Collections::Generic::"
-                |> sm'.replace
-                    ("use fable_library_rust::System::IDisposable" +. !\($'"\\\";\\\".into()"'))
-                    "use fable_library_rust::Interfaces_::System::IDisposable;"
+                // |> sm'.replace
+                //     ("use fable_library_rust::System::Collections::Generic" +. !\($'"\\\"::\\\".into()"'))
+                //     "use fable_library_rust::Interfaces_::System::Collections::Generic::"
+                // |> sm'.replace
+                //     ("use fable_library_rust::System::IDisposable" +. !\($'"\\\";\\\".into()"'))
+                //     "use fable_library_rust::Interfaces_::System::IDisposable;"
                 |> sm'.replace
                     ("use fable_library_rust::System::Threading::CancellationToken" +. !\($'"\\\";\\\".into()"'))
                     "type CancellationToken = ();"

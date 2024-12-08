@@ -183,45 +183,48 @@ inl process_stdio_piped () : process_stdio =
     !\($'"std::process::Stdio::piped()"')
 
 /// ### process_command_args
-inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref (rust.mut' process_command) =
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : process_command =
     (!\($'"true; let mut !c = !c"') : bool) |> ignore
-    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
+    (!\\(args, $'"true; std::process::Command::args(&mut !c, &*$0)"') : bool) |> ignore
+    c |> rust.emit
 
 /// ### process_command_stdout
-inl process_command_stdout (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
+inl process_command_stdout (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stdout(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 /// ### process_command_stderr
-inl process_command_stderr (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
+inl process_command_stderr (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stderr(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 /// ### process_command_stdin
-inl process_command_stdin (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
+inl process_command_stdin (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stdin(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 /// ### process_command_current_dir
-inl process_command_current_dir
-    (dir : string)
-    (c : rust.ref (rust.mut' process_command))
-    : rust.ref (rust.mut' process_command)
-    =
-    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
+inl process_command_current_dir (dir : string) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\\(dir, $'"true; std::process::Command::current_dir(&mut !c, &*$0)"') : bool) |> ignore
+    !\($'$"!c"')
 
 /// ### process_command_env
-inl process_command_env
-    (key : string)
-    (value : string)
-    (c : rust.ref (rust.mut' process_command))
-    : rust.ref (rust.mut' process_command)
-    =
-    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
+inl process_command_env (key : string) (value : string) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\\((key, value), $'"true; std::process::Command::env(&mut !c, &*$0, &*$1)"') : bool) |> ignore
+    c |> rust.emit
 
 /// ### process_command_spawn
 inl process_command_spawn
-    (c : rust.ref (rust.mut' process_command))
+    (c : process_command)
     : resultm.result' process_child stream.io_error
     =
-    !\\(c, $'"std::process::Command::spawn($0)"')
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    !\($'"std::process::Command::spawn(&mut !c)"')
 
 /// ### child_wait_with_output
 inl child_wait_with_output
@@ -793,18 +796,23 @@ let execute_with_options (options : execution_options) : i32 * string =
                 fun () => { file_name arguments = arguments |> sm'.format_debug; options }
             fun () =>
                 fun () =>
+                    // inl new_command_mutex (command : rust.ref (rust.mut' process_command)) : threading.arc (threading.mutex process_command) =
+                        // ()
                     file_name
                     |> new_process_command
                     |> process_command_args arguments
                     |> process_command_stdout (process_stdio_piped ())
                     |> process_command_stderr (process_stdio_piped ())
                     |> process_command_stdin (process_stdio_piped ())
+                    // |> new_command_mutex
                     |> fun command =>
                         match options.working_directory |> optionm'.unbox with
                         | Some working_directory =>
                             command
                             |> process_command_current_dir working_directory
-                        | None => command
+                        | None =>
+                            !\($'$"!command"')
+                            // |> rust.emit
                     |> fun command =>
                         match options.environment_variables with
                         | ;[] => command

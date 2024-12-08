@@ -8,5 +8,6 @@
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
+#![allow(unused_assignments,)]
 mod module_63d44c74 { }
 pub use module_63d44c74::*;

@@ -138,8 +138,6 @@ let format_real forall t. (x : t) : string =
 
 /// ## fsharp
 
-/// ### ends_with
-
 /// ### last_index_of
 
 /// ### index_of
@@ -153,6 +151,8 @@ let format_real forall t. (x : t) : string =
 /// ### pad_right
 
 /// ### convert_to_utf32
+
+/// ### ends_with
 
 /// ### starts_with
 

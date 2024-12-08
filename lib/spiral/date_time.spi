@@ -381,8 +381,8 @@ inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : t
         | Rust (Native | Wasm) => fun () =>
             open rust.rust_operators
             inl ticks = date_time |> ticks
-            inl ticks = ticks |> rust.rust.emit
-            (!\\(date_time, $'"chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos(!ticks))))"') : i32)
+            // inl ticks = ticks |> rust.rust.emit
+            (!\\((date_time, ticks), $'"chrono::FixedOffset::local_minus_utc(&chrono::DateTime::timezone(&chrono::DateTime::fixed_offset(&chrono::DateTime::from_timestamp_nanos($1))))"') : i32)
             |> convert
         | target => fun () =>
             backend_switch {

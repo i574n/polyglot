@@ -788,10 +788,8 @@ let get_extension (path : string) : string =
 
 let directory_separator_char () : char =
     run_target function
-        | Rust (Native) => fun () =>
-            !\($'"std::path::MAIN_SEPARATOR"')
-        | _ => fun () =>
-            $'System.IO.Path.DirectorySeparatorChar'
+        | Rust (Native) => fun () => !\($'"std::path::MAIN_SEPARATOR"')
+        | _ => fun () => $'System.IO.Path.DirectorySeparatorChar'
 
 #!markdown
 

@@ -105,10 +105,6 @@ inl ellipsis (max : i32) (s : string) =
 
 /// ## fsharp
 
-/// ### ends_with
-inl ends_with (value : string) (s : string) : bool =
-    $'!s.EndsWith !value '
-
 /// ### last_index_of
 inl last_index_of (search : string) (s : string) : i32 =
     $'!s.LastIndexOf !search '
@@ -162,10 +158,17 @@ inl convert_to_utf32 (c : char) : int =
         Python = fun () => $'ord(!c)' : int
     }
 
+/// ### ends_with
+inl ends_with (value : string) (s : string) : bool =
+    backend_switch {
+        Fsharp = fun () => $'!s.EndsWith (!value, false, null)' : bool
+        Python = fun () => $'!s.endswith(!value)' : bool
+    }
+
 /// ### starts_with
 inl starts_with (value : string) (s : string) : bool =
     backend_switch {
-        Fsharp = fun () => $'!s.StartsWith !value ' : bool
+        Fsharp = fun () => $'!s.StartsWith (!value, false, null)' : bool
         Python = fun () => $'!s.startswith(!value)' : bool
     }
 
@@ -877,7 +880,7 @@ let ellipsis_end (max : i64) (s : string) =
         inl end_half = half |> math.floor |> i64
         inl start = s |> slice 0 (start_half - 1)
         inl end = s |> slice (len - end_half) (len - 1)
-        (a ;[start; "..."; end] : _ i32 _)
+        (a ;[ start; "..."; end ] : _ i32 _)
         |> seq.of_array
         |> concat ""
 

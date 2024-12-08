@@ -3,16 +3,19 @@ function FixRust {
         [Parameter(Mandatory, ValueFromPipeline)]
         $text
     )
+            # -replace "_self.", "self." `
+            # -replace "_self_.", "self." `
+            # -replace "use fable_library_rust::System::Collections::Generic::", "use fable_library_rust::Interfaces_::System::Collections::Generic::" `
+            # -replace "use fable_library_rust::System::IDisposable;", "use fable_library_rust::Interfaces_::System::IDisposable;" `
     process {
         $text `
             -replace [regex]::Escape("),);"), "));" `
             -replace [regex]::Escape("},);"), "});" `
             -replace "get_or_insert_with", "get_or_init" `
-            -replace "_self_.", "self." `
             -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
+            -replace "\s\sgetZero\(\);", " getZero::<()>();" `
+            -replace "__self__.", "self." `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
-            -replace "use fable_library_rust::System::Collections::Generic::", "use fable_library_rust::Interfaces_::System::Collections::Generic::" `
-            -replace "use fable_library_rust::System::IDisposable;", "use fable_library_rust::Interfaces_::System::IDisposable;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
             -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
             -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"

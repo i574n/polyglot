@@ -82,12 +82,14 @@ and [<Struct>] US8 =
 and [<Struct>] US9 =
     | US9_0 of f0_0 : int32
     | US9_1
-let rec method3 () : string =
+let rec method3 (v0 : string) : string =
+    v0
+and method4 () : string =
     let v0 : string = ""
     v0
 and closure1 () (v0 : string) : US5 =
     US5_0(v0)
-and method4 () : (string -> US5) =
+and method5 () : (string -> US5) =
     closure1()
 and method2 (v0 : string) : string =
     let v1 : unit = ()
@@ -95,107 +97,108 @@ and method2 (v0 : string) : string =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = "std::env::var(&*$0)"
-    let v3 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v2 
-    let v4 : string = "true; let _result_map_ = $0.map(|x| { //"
-    let v5 : bool = Fable.Core.RustInterop.emitRustExpr v3 v4 
-    let v6 : string = "x"
-    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v6 
-    let v8 : string = "fable_library_rust::String_::fromString($0)"
-    let v9 : string = Fable.Core.RustInterop.emitRustExpr v7 v8 
-    let v10 : string = "true; $0 })"
-    let v11 : bool = Fable.Core.RustInterop.emitRustExpr v9 v10 
-    let v12 : string = "_result_map_"
-    let v13 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = method3()
-    let v15 : string = "$0.unwrap_or($1)"
-    let v16 : string = Fable.Core.RustInterop.emitRustExpr struct (v13, v14) v15 
-    let _v1 = v16 
+    let v2 : string = method3(v0)
+    let v3 : string = "std::env::var(&*$0)"
+    let v4 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v2 v3 
+    let v5 : string = "true; let _result_map_ = $0.map(|x| { //"
+    let v6 : bool = Fable.Core.RustInterop.emitRustExpr v4 v5 
+    let v7 : string = "x"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v7 
+    let v9 : string = "fable_library_rust::String_::fromString($0)"
+    let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9 
+    let v11 : string = "true; $0 })"
+    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11 
+    let v13 : string = "_result_map_"
+    let v14 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v13 
+    let v15 : string = method4()
+    let v16 : string = "$0.unwrap_or($1)"
+    let v17 : string = Fable.Core.RustInterop.emitRustExpr struct (v14, v15) v16 
+    let _v1 = v17 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v17 : US3 = US3_1
-    let v18 : US4 = US4_2(v17)
-    let v19 : string = $"env.get_environment_variable / target: {v18} / var: {v0}"
-    let v20 : string = failwith<string> v19
-    let _v1 = v20 
+    let v18 : US3 = US3_1
+    let v19 : US4 = US4_2(v18)
+    let v20 : string = $"env.get_environment_variable / target: {v19} / var: {v0}"
+    let v21 : string = failwith<string> v20
+    let _v1 = v21 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v21 : US3 = US3_2
-    let v22 : US4 = US4_2(v21)
-    let v23 : string = $"env.get_environment_variable / target: {v22} / var: {v0}"
-    let v24 : string = failwith<string> v23
-    let _v1 = v24 
+    let v22 : US3 = US3_2
+    let v23 : US4 = US4_2(v22)
+    let v24 : string = $"env.get_environment_variable / target: {v23} / var: {v0}"
+    let v25 : string = failwith<string> v24
+    let _v1 = v25 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v25 : string = "process.env[$0] ?? \"\""
-    let v26 : string = Fable.Core.JsInterop.emitJsExpr v0 v25 
-    let _v1 = v26 
+    let v26 : string = "process.env[$0] ?? \"\""
+    let v27 : string = Fable.Core.JsInterop.emitJsExpr v0 v26 
+    let _v1 = v27 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v27 : string = "os"
-    let v28 : IOsEnviron = Fable.Core.PyInterop.importAll v27 
-    let v29 : string = "v28.environ"
-    let v30 : obj = Fable.Core.PyInterop.emitPyExpr () v29 
-    let v33 : string = "v30.get($0)"
-    let v34 : string = Fable.Core.PyInterop.emitPyExpr v0 v33 
-    let mutable _v34 = None
+    let v28 : string = "os"
+    let v29 : IOsEnviron = Fable.Core.PyInterop.importAll v28 
+    let v30 : string = "v29.environ"
+    let v31 : obj = Fable.Core.PyInterop.emitPyExpr () v30 
+    let v34 : string = "v31.get($0)"
+    let v35 : string = Fable.Core.PyInterop.emitPyExpr v0 v34 
+    let mutable _v35 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v37 : (string -> string option) = Option.ofObj
-    let v38 : string option = v37 v34
-    v38 
+    let v38 : (string -> string option) = Option.ofObj
+    let v39 : string option = v38 v35
+    v39 
     #else
-    Some v34 
+    Some v35 
     #endif
-    |> fun x -> _v34 <- Some x
-    let v39 : string option = match _v34 with Some x -> x | None -> failwith "optionm'.of_obj / _v34=None"
-    let v42 : (string -> US5) = method4()
-    let v43 : US5 option = v39 |> Option.map v42 
-    let v54 : US5 = US5_1
-    let v55 : US5 = v43 |> Option.defaultValue v54 
-    let v62 : string =
-        match v55 with
+    |> fun x -> _v35 <- Some x
+    let v40 : string option = match _v35 with Some x -> x | None -> failwith "optionm'.of_obj / _v35=None"
+    let v43 : (string -> US5) = method5()
+    let v44 : US5 option = v40 |> Option.map v43 
+    let v55 : US5 = US5_1
+    let v56 : US5 = v44 |> Option.defaultValue v55 
+    let v63 : string =
+        match v56 with
         | US5_1 -> (* None *)
-            let v60 : string = ""
+            let v61 : string = ""
+            v61
+        | US5_0(v60) -> (* Some *)
             v60
-        | US5_0(v59) -> (* Some *)
-            v59
-    let _v1 = v62 
+    let _v1 = v63 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v63 : US3 = US3_1
-    let v64 : US4 = US4_0(v63)
-    let v65 : string = $"env.get_environment_variable / target: {v64} / var: {v0}"
-    let v66 : string = failwith<string> v65
-    let _v1 = v66 
+    let v64 : US3 = US3_1
+    let v65 : US4 = US4_0(v64)
+    let v66 : string = $"env.get_environment_variable / target: {v65} / var: {v0}"
+    let v67 : string = failwith<string> v66
+    let _v1 = v67 
     #endif
 #else
-    let v67 : (string -> string) = System.Environment.GetEnvironmentVariable
-    let v68 : string = v67 v0
-    let mutable _v68 = None
+    let v68 : (string -> string) = System.Environment.GetEnvironmentVariable
+    let v69 : string = v68 v0
+    let mutable _v69 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v69 : (string -> string option) = Option.ofObj
-    let v70 : string option = v69 v68
-    v70 
+    let v70 : (string -> string option) = Option.ofObj
+    let v71 : string option = v70 v69
+    v71 
     #else
-    Some v68 
+    Some v69 
     #endif
-    |> fun x -> _v68 <- Some x
-    let v71 : string option = match _v68 with Some x -> x | None -> failwith "optionm'.of_obj / _v68=None"
-    let v74 : (string -> US5) = method4()
-    let v75 : US5 option = v71 |> Option.map v74 
-    let v86 : US5 = US5_1
-    let v87 : US5 = v75 |> Option.defaultValue v86 
-    let v94 : string =
-        match v87 with
+    |> fun x -> _v69 <- Some x
+    let v72 : string option = match _v69 with Some x -> x | None -> failwith "optionm'.of_obj / _v69=None"
+    let v75 : (string -> US5) = method5()
+    let v76 : US5 option = v72 |> Option.map v75 
+    let v87 : US5 = US5_1
+    let v88 : US5 = v76 |> Option.defaultValue v87 
+    let v95 : string =
+        match v88 with
         | US5_1 -> (* None *)
-            let v92 : string = ""
+            let v93 : string = ""
+            v93
+        | US5_0(v92) -> (* Some *)
             v92
-        | US5_0(v91) -> (* Some *)
-            v91
-    let _v1 = v94 
+    let _v1 = v95 
     #endif
-    let v95 : string = _v1 
-    v95
+    let v96 : string = _v1 
+    v96
 and method1 () : struct (US1 * US2) =
     let v0 : string = "TRACE_LEVEL"
     let v1 : string = method2(v0)
@@ -573,7 +576,7 @@ and closure0 () () : unit =
         let v8 : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option) option = Some struct (v2, v3, v4, v5, v6, v7) 
         TraceState.trace_state <- v8 
         ()
-and method6 (v0 : US0) : bool =
+and method7 (v0 : US0) : bool =
     let v1 : unit = ()
     let v2 : (unit -> unit) = closure0()
     let v3 : unit = (fun () -> v2 (); v1) ()
@@ -590,21 +593,21 @@ and method6 (v0 : US0) : bool =
         v40
 and closure6 () (v0 : int64) : US2 =
     US2_0(v0)
-and method8 () : (int64 -> US2) =
+and method9 () : (int64 -> US2) =
     closure6()
-and method9 () : string =
+and method10 () : string =
     let v0 : string = "hh:mm:ss"
     v0
-and method10 () : string =
+and method11 () : string =
     let v0 : string = "HH:mm:ss"
     v0
-and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option) : string =
+and method8 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option) : string =
     let v6 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v7 : (int64 -> US2) = method8()
+    let v7 : (int64 -> US2) = method9()
     let v8 : US2 option = v5 |> Option.map v7 
     let v19 : US2 = US2_1
     let v20 : US2 = v8 |> Option.defaultValue v19 
@@ -731,7 +734,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v95 : int32 = v94 v77
             let v98 : System.DateTime = System.DateTime (1, 1, 1, v83, v87, v91, v95)
             v98
-    let v118 : string = method9()
+    let v118 : string = method10()
     let v121 : bool = v118 = ""
     let v123 : string =
         if v121 then
@@ -744,7 +747,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let _v6 = v125 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v139 : (int64 -> US2) = method8()
+    let v139 : (int64 -> US2) = method9()
     let v140 : US2 option = v5 |> Option.map v139 
     let v151 : US2 = US2_1
     let v152 : US2 = v140 |> Option.defaultValue v151 
@@ -871,7 +874,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v227 : int32 = v226 v209
             let v230 : System.DateTime = System.DateTime (1, 1, 1, v215, v219, v223, v227)
             v230
-    let v250 : string = method9()
+    let v250 : string = method10()
     let v253 : bool = v250 = ""
     let v255 : string =
         if v253 then
@@ -886,7 +889,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
 #if FABLE_COMPILER_RUST && CONTRACT
     let v271 : string = $"near_sdk::env::block_timestamp()"
     let v272 : uint64 = Fable.Core.RustInterop.emitRustExpr () v271 
-    let v273 : (int64 -> US2) = method8()
+    let v273 : (int64 -> US2) = method9()
     let v274 : US2 option = v5 |> Option.map v273 
     let v285 : US2 = US2_1
     let v286 : US2 = v274 |> Option.defaultValue v285 
@@ -912,7 +915,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let _v6 = v307 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v308 : (int64 -> US2) = method8()
+    let v308 : (int64 -> US2) = method9()
     let v309 : US2 option = v5 |> Option.map v308 
     let v320 : US2 = US2_1
     let v321 : US2 = v309 |> Option.defaultValue v320 
@@ -1039,7 +1042,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v396 : int32 = v395 v378
             let v399 : System.DateTime = System.DateTime (1, 1, 1, v384, v388, v392, v396)
             v399
-    let v419 : string = method10()
+    let v419 : string = method11()
     let v422 : bool = v419 = ""
     let v424 : string =
         if v422 then
@@ -1052,7 +1055,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let _v6 = v426 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v440 : (int64 -> US2) = method8()
+    let v440 : (int64 -> US2) = method9()
     let v441 : US2 option = v5 |> Option.map v440 
     let v452 : US2 = US2_1
     let v453 : US2 = v441 |> Option.defaultValue v452 
@@ -1179,7 +1182,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v528 : int32 = v527 v510
             let v531 : System.DateTime = System.DateTime (1, 1, 1, v516, v520, v524, v528)
             v531
-    let v551 : string = method10()
+    let v551 : string = method11()
     let v554 : bool = v551 = ""
     let v556 : string =
         if v554 then
@@ -1192,7 +1195,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let _v6 = v558 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v572 : (int64 -> US2) = method8()
+    let v572 : (int64 -> US2) = method9()
     let v573 : US2 option = v5 |> Option.map v572 
     let v584 : US2 = US2_1
     let v585 : US2 = v573 |> Option.defaultValue v584 
@@ -1319,7 +1322,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v660 : int32 = v659 v642
             let v663 : System.DateTime = System.DateTime (1, 1, 1, v648, v652, v656, v660)
             v663
-    let v683 : string = method10()
+    let v683 : string = method11()
     let v686 : bool = v683 = ""
     let v688 : string =
         if v686 then
@@ -1332,7 +1335,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let _v6 = v690 
     #endif
 #else
-    let v704 : (int64 -> US2) = method8()
+    let v704 : (int64 -> US2) = method9()
     let v705 : US2 option = v5 |> Option.map v704 
     let v716 : US2 = US2_1
     let v717 : US2 = v705 |> Option.defaultValue v716 
@@ -1459,7 +1462,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v792 : int32 = v791 v774
             let v795 : System.DateTime = System.DateTime (1, 1, 1, v780, v784, v788, v792)
             v795
-    let v815 : string = method10()
+    let v815 : string = method11()
     let v818 : bool = v815 = ""
     let v820 : string =
         if v818 then
@@ -1473,7 +1476,7 @@ and method7 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     #endif
     let v836 : string = _v6 
     v836
-and method13 () : string =
+and method14 () : string =
     let v0 : string = ""
     v0
 and closure7 (v0 : Mut3, v1 : string) () : unit =
@@ -1481,8 +1484,8 @@ and closure7 (v0 : Mut3, v1 : string) () : unit =
     let v3 : string = v2 + v1 
     v0.l0 <- v3
     ()
-and method12 (v0 : char) : string =
-    let v1 : string = method13()
+and method13 (v0 : char) : string =
+    let v1 : string = method14()
     let v2 : Mut3 = {l0 = v1} : Mut3
     let v3 : string = $"{v0}"
     let v6 : unit = ()
@@ -1490,10 +1493,10 @@ and method12 (v0 : char) : string =
     let v8 : unit = (fun () -> v7 (); v6) ()
     let v11 : string = v2.l0
     v11
-and method14 () : string =
+and method15 () : string =
     let v0 : string = "\u001b[0m"
     v0
-and method11 () : string =
+and method12 () : string =
     
     
     
@@ -1503,7 +1506,7 @@ and method11 () : string =
     let v1 : (unit -> string) = v0.ToLower
     let v2 : string = v1 ()
     let v5 : char = v2.[int 0]
-    let v6 : string = method12(v5)
+    let v6 : string = method13(v5)
     let v7 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -1651,36 +1654,36 @@ and method11 () : string =
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v104 : string = "\u001b[90m"
-    let v105 : string = method14()
+    let v105 : string = method15()
     let v106 : string = v104 + v6 
     let v107 : string = v106 + v105 
     let _v7 = v107 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v108 : string = "\u001b[90m"
-    let v109 : string = method14()
+    let v109 : string = method15()
     let v110 : string = v108 + v6 
     let v111 : string = v110 + v109 
     let _v7 = v111 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v112 : string = "\u001b[90m"
-    let v113 : string = method14()
+    let v113 : string = method15()
     let v114 : string = v112 + v6 
     let v115 : string = v114 + v113 
     let _v7 = v115 
     #endif
 #else
     let v116 : string = "\u001b[90m"
-    let v117 : string = method14()
+    let v117 : string = method15()
     let v118 : string = v116 + v6 
     let v119 : string = v118 + v117 
     let _v7 = v119 
     #endif
     let v120 : string = _v7 
     v120
-and method16 (v0 : int32, v1 : string) : string =
-    let v2 : string = method13()
+and method17 (v0 : int32, v1 : string) : string =
+    let v2 : string = method14()
     let v3 : Mut3 = {l0 = v2} : Mut3
     let v4 : string = "{ "
     let v5 : string = $"{v4}"
@@ -1726,7 +1729,7 @@ and method16 (v0 : int32, v1 : string) : string =
     let v79 : unit = (fun () -> v78 (); v77) ()
     let v82 : string = v3.l0
     v82
-and method17 (v0 : string) : string =
+and method18 (v0 : string) : string =
     let v1 : char list = []
     let v2 : (char list -> (char [])) = List.toArray
     let v3 : (char []) = v2 v1
@@ -1738,12 +1741,12 @@ and method17 (v0 : string) : string =
     let v36 : (char []) = v35 v32
     let v39 : string = v6.TrimEnd v36 
     v39
-and method15 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : string) : string =
-    let v10 : string = method16(v8, v9)
+and method16 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : string) : string =
+    let v10 : string = method17(v8, v9)
     let v11 : int64 = v0.l0
     let v12 : string = "networking.test_port_open"
     let v13 : string = $"{v6} {v7} #{v11} %s{v12} / {v10}"
-    method17(v13)
+    method18(v13)
 and closure8 (v0 : Mut0) () : unit =
     let v1 : int64 = v0.l0
     let v2 : int64 = v1 + 1L
@@ -1757,7 +1760,7 @@ and closure9 () (v0 : string) : unit =
     let v2 : (unit -> unit) = closure10(v0)
     let v3 : unit = (fun () -> v2 (); v1) ()
     ()
-and method18 (v0 : string) : unit =
+and method19 (v0 : string) : unit =
     let v1 : unit = ()
     let v2 : (unit -> unit) = closure0()
     let v3 : unit = (fun () -> v2 (); v1) ()
@@ -1901,17 +1904,17 @@ and method18 (v0 : string) : unit =
     v121 v0
 and closure5 (v0 : int32, v1 : string) () : unit =
     let v2 : US0 = US0_0
-    let v3 : bool = method6(v2)
+    let v3 : bool = method7(v2)
     if v3 then
         let v4 : unit = ()
         let v5 : (unit -> unit) = closure0()
         let v6 : unit = (fun () -> v5 (); v4) ()
         let struct (v20 : Mut0, v21 : Mut1, v22 : Mut2, v23 : Mut3, v24 : Mut4, v25 : int64 option) = TraceState.trace_state.Value
-        let v38 : string = method7(v20, v21, v22, v23, v24, v25)
-        let v39 : string = method11()
-        let v40 : string = method15(v20, v21, v22, v23, v24, v25, v38, v39, v0, v1)
-        method18(v40)
-and method5 (v0 : string, v1 : int32) : Async<bool> =
+        let v38 : string = method8(v20, v21, v22, v23, v24, v25)
+        let v39 : string = method12()
+        let v40 : string = method16(v20, v21, v22, v23, v24, v25, v38, v39, v0, v1)
+        method19(v40)
+and method6 (v0 : string, v1 : int32) : Async<bool> =
     let v2 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -2755,19 +2758,19 @@ and method5 (v0 : string, v1 : int32) : Async<bool> =
     let v692 : Async<bool> = _v2 
     v692
 and closure4 (v0 : string) (v1 : int32) : Async<bool> =
-    method5(v0, v1)
+    method6(v0, v1)
 and closure3 () (v0 : string) : (int32 -> Async<bool>) =
     closure4(v0)
 and closure14 () (v0 : bool) : US7 =
     US7_0(v0)
-and method21 () : (bool -> US7) =
+and method22 () : (bool -> US7) =
     closure14()
 and closure15 () (v0 : exn) : US7 =
     US7_1(v0)
-and method22 () : (exn -> US7) =
+and method23 () : (exn -> US7) =
     closure15()
-and method24 (v0 : int32) : string =
-    let v1 : string = method13()
+and method25 (v0 : int32) : string =
+    let v1 : string = method14()
     let v2 : Mut3 = {l0 = v1} : Mut3
     let v3 : string = "{ "
     let v4 : string = $"{v3}"
@@ -2795,25 +2798,25 @@ and method24 (v0 : int32) : string =
     let v44 : unit = (fun () -> v43 (); v42) ()
     let v47 : string = v2.l0
     v47
-and method23 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32) : string =
-    let v9 : string = method24(v8)
+and method24 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32) : string =
+    let v9 : string = method25(v8)
     let v10 : int64 = v0.l0
     let v11 : string = "async.run_with_timeout_async"
     let v12 : string = $"{v6} {v7} #{v10} %s{v11} / {v9}"
-    method17(v12)
+    method18(v12)
 and closure16 (v0 : int32) () : unit =
     let v1 : US0 = US0_0
-    let v2 : bool = method6(v1)
+    let v2 : bool = method7(v1)
     if v2 then
         let v3 : unit = ()
         let v4 : (unit -> unit) = closure0()
         let v5 : unit = (fun () -> v4 (); v3) ()
         let struct (v19 : Mut0, v20 : Mut1, v21 : Mut2, v22 : Mut3, v23 : Mut4, v24 : int64 option) = TraceState.trace_state.Value
-        let v37 : string = method7(v19, v20, v21, v22, v23, v24)
-        let v38 : string = method11()
-        let v39 : string = method23(v19, v20, v21, v22, v23, v24, v37, v38, v0)
-        method18(v39)
-and method25 () : string =
+        let v37 : string = method8(v19, v20, v21, v22, v23, v24)
+        let v38 : string = method12()
+        let v39 : string = method24(v19, v20, v21, v22, v23, v24, v37, v38, v0)
+        method19(v39)
+and method26 () : string =
     
     
     
@@ -2823,7 +2826,7 @@ and method25 () : string =
     let v1 : (unit -> string) = v0.ToLower
     let v2 : string = v1 ()
     let v5 : char = v2.[int 0]
-    let v6 : string = method12(v5)
+    let v6 : string = method13(v5)
     let v7 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -2971,36 +2974,36 @@ and method25 () : string =
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v104 : string = "\u001b[91m"
-    let v105 : string = method14()
+    let v105 : string = method15()
     let v106 : string = v104 + v6 
     let v107 : string = v106 + v105 
     let _v7 = v107 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v108 : string = "\u001b[91m"
-    let v109 : string = method14()
+    let v109 : string = method15()
     let v110 : string = v108 + v6 
     let v111 : string = v110 + v109 
     let _v7 = v111 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v112 : string = "\u001b[91m"
-    let v113 : string = method14()
+    let v113 : string = method15()
     let v114 : string = v112 + v6 
     let v115 : string = v114 + v113 
     let _v7 = v115 
     #endif
 #else
     let v116 : string = "\u001b[91m"
-    let v117 : string = method14()
+    let v117 : string = method15()
     let v118 : string = v116 + v6 
     let v119 : string = v118 + v117 
     let _v7 = v119 
     #endif
     let v120 : string = _v7 
     v120
-and method27 (v0 : int32, v1 : string) : string =
-    let v2 : string = method13()
+and method28 (v0 : int32, v1 : string) : string =
+    let v2 : string = method14()
     let v3 : Mut3 = {l0 = v2} : Mut3
     let v4 : string = "{ "
     let v5 : string = $"{v4}"
@@ -3046,22 +3049,22 @@ and method27 (v0 : int32, v1 : string) : string =
     let v79 : unit = (fun () -> v78 (); v77) ()
     let v82 : string = v3.l0
     v82
-and method26 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : string) : string =
-    let v10 : string = method27(v8, v9)
+and method27 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : string) : string =
+    let v10 : string = method28(v8, v9)
     let v11 : int64 = v0.l0
     let v12 : string = "async.run_with_timeout_async**"
     let v13 : string = $"{v6} {v7} #{v11} %s{v12} / {v10}"
-    method17(v13)
+    method18(v13)
 and closure17 (v0 : int32, v1 : exn) () : unit =
     let v2 : US0 = US0_4
-    let v3 : bool = method6(v2)
+    let v3 : bool = method7(v2)
     if v3 then
         let v4 : unit = ()
         let v5 : (unit -> unit) = closure0()
         let v6 : unit = (fun () -> v5 (); v4) ()
         let struct (v20 : Mut0, v21 : Mut1, v22 : Mut2, v23 : Mut3, v24 : Mut4, v25 : int64 option) = TraceState.trace_state.Value
-        let v38 : string = method7(v20, v21, v22, v23, v24, v25)
-        let v39 : string = method25()
+        let v38 : string = method8(v20, v21, v22, v23, v24, v25)
+        let v39 : string = method26()
         let v40 : unit = ()
         
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -3095,9 +3098,9 @@ and closure17 (v0 : int32, v1 : exn) () : unit =
         let _v40 = v59 
         #endif
         let v60 : string = _v40 
-        let v65 : string = method26(v20, v21, v22, v23, v24, v25, v38, v39, v0, v60)
-        method18(v65)
-and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
+        let v65 : string = method27(v20, v21, v22, v23, v24, v25, v38, v39, v0, v60)
+        method19(v65)
+and method21 (v0 : int32, v1 : Async<bool>) : Async<US6> =
     let v2 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -3245,14 +3248,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v66 = v79 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v82 : (bool -> US7) = method21()
-                    let v83 : (exn -> US7) = method22()
+                    let v82 : (bool -> US7) = method22()
+                    let v83 : (exn -> US7) = method23()
                     let v84 : US7 = match v65 with Choice1Of2 x -> v82 x | Choice2Of2 x -> v83 x
                     let _v66 = v84 
                     #endif
 #else
-                    let v85 : (bool -> US7) = method21()
-                    let v86 : (exn -> US7) = method22()
+                    let v85 : (bool -> US7) = method22()
+                    let v86 : (exn -> US7) = method23()
                     let v87 : US7 = match v65 with Choice1Of2 x -> v85 x | Choice2Of2 x -> v86 x
                     let _v66 = v87 
                     #endif
@@ -3299,14 +3302,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v96 = v109 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v112 : (bool -> US7) = method21()
-                    let v113 : (exn -> US7) = method22()
+                    let v112 : (bool -> US7) = method22()
+                    let v113 : (exn -> US7) = method23()
                     let v114 : US7 = match v95 with Choice1Of2 x -> v112 x | Choice2Of2 x -> v113 x
                     let _v96 = v114 
                     #endif
 #else
-                    let v115 : (bool -> US7) = method21()
-                    let v116 : (exn -> US7) = method22()
+                    let v115 : (bool -> US7) = method22()
+                    let v116 : (exn -> US7) = method23()
                     let v117 : US7 = match v95 with Choice1Of2 x -> v115 x | Choice2Of2 x -> v116 x
                     let _v96 = v117 
                     #endif
@@ -3353,14 +3356,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v126 = v139 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v142 : (bool -> US7) = method21()
-                    let v143 : (exn -> US7) = method22()
+                    let v142 : (bool -> US7) = method22()
+                    let v143 : (exn -> US7) = method23()
                     let v144 : US7 = match v125 with Choice1Of2 x -> v142 x | Choice2Of2 x -> v143 x
                     let _v126 = v144 
                     #endif
 #else
-                    let v145 : (bool -> US7) = method21()
-                    let v146 : (exn -> US7) = method22()
+                    let v145 : (bool -> US7) = method22()
+                    let v146 : (exn -> US7) = method23()
                     let v147 : US7 = match v125 with Choice1Of2 x -> v145 x | Choice2Of2 x -> v146 x
                     let _v126 = v147 
                     #endif
@@ -3407,14 +3410,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v156 = v169 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v172 : (bool -> US7) = method21()
-                    let v173 : (exn -> US7) = method22()
+                    let v172 : (bool -> US7) = method22()
+                    let v173 : (exn -> US7) = method23()
                     let v174 : US7 = match v155 with Choice1Of2 x -> v172 x | Choice2Of2 x -> v173 x
                     let _v156 = v174 
                     #endif
 #else
-                    let v175 : (bool -> US7) = method21()
-                    let v176 : (exn -> US7) = method22()
+                    let v175 : (bool -> US7) = method22()
+                    let v176 : (exn -> US7) = method23()
                     let v177 : US7 = match v155 with Choice1Of2 x -> v175 x | Choice2Of2 x -> v176 x
                     let _v156 = v177 
                     #endif
@@ -3834,14 +3837,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v817 = v830 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v833 : (bool -> US7) = method21()
-                    let v834 : (exn -> US7) = method22()
+                    let v833 : (bool -> US7) = method22()
+                    let v834 : (exn -> US7) = method23()
                     let v835 : US7 = match v816 with Choice1Of2 x -> v833 x | Choice2Of2 x -> v834 x
                     let _v817 = v835 
                     #endif
 #else
-                    let v836 : (bool -> US7) = method21()
-                    let v837 : (exn -> US7) = method22()
+                    let v836 : (bool -> US7) = method22()
+                    let v837 : (exn -> US7) = method23()
                     let v838 : US7 = match v816 with Choice1Of2 x -> v836 x | Choice2Of2 x -> v837 x
                     let _v817 = v838 
                     #endif
@@ -3888,14 +3891,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v847 = v860 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v863 : (bool -> US7) = method21()
-                    let v864 : (exn -> US7) = method22()
+                    let v863 : (bool -> US7) = method22()
+                    let v864 : (exn -> US7) = method23()
                     let v865 : US7 = match v846 with Choice1Of2 x -> v863 x | Choice2Of2 x -> v864 x
                     let _v847 = v865 
                     #endif
 #else
-                    let v866 : (bool -> US7) = method21()
-                    let v867 : (exn -> US7) = method22()
+                    let v866 : (bool -> US7) = method22()
+                    let v867 : (exn -> US7) = method23()
                     let v868 : US7 = match v846 with Choice1Of2 x -> v866 x | Choice2Of2 x -> v867 x
                     let _v847 = v868 
                     #endif
@@ -3942,14 +3945,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v877 = v890 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v893 : (bool -> US7) = method21()
-                    let v894 : (exn -> US7) = method22()
+                    let v893 : (bool -> US7) = method22()
+                    let v894 : (exn -> US7) = method23()
                     let v895 : US7 = match v876 with Choice1Of2 x -> v893 x | Choice2Of2 x -> v894 x
                     let _v877 = v895 
                     #endif
 #else
-                    let v896 : (bool -> US7) = method21()
-                    let v897 : (exn -> US7) = method22()
+                    let v896 : (bool -> US7) = method22()
+                    let v897 : (exn -> US7) = method23()
                     let v898 : US7 = match v876 with Choice1Of2 x -> v896 x | Choice2Of2 x -> v897 x
                     let _v877 = v898 
                     #endif
@@ -3996,14 +3999,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v907 = v920 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v923 : (bool -> US7) = method21()
-                    let v924 : (exn -> US7) = method22()
+                    let v923 : (bool -> US7) = method22()
+                    let v924 : (exn -> US7) = method23()
                     let v925 : US7 = match v906 with Choice1Of2 x -> v923 x | Choice2Of2 x -> v924 x
                     let _v907 = v925 
                     #endif
 #else
-                    let v926 : (bool -> US7) = method21()
-                    let v927 : (exn -> US7) = method22()
+                    let v926 : (bool -> US7) = method22()
+                    let v927 : (exn -> US7) = method23()
                     let v928 : US7 = match v906 with Choice1Of2 x -> v926 x | Choice2Of2 x -> v927 x
                     let _v907 = v928 
                     #endif
@@ -4423,14 +4426,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v1568 = v1581 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v1584 : (bool -> US7) = method21()
-                    let v1585 : (exn -> US7) = method22()
+                    let v1584 : (bool -> US7) = method22()
+                    let v1585 : (exn -> US7) = method23()
                     let v1586 : US7 = match v1567 with Choice1Of2 x -> v1584 x | Choice2Of2 x -> v1585 x
                     let _v1568 = v1586 
                     #endif
 #else
-                    let v1587 : (bool -> US7) = method21()
-                    let v1588 : (exn -> US7) = method22()
+                    let v1587 : (bool -> US7) = method22()
+                    let v1588 : (exn -> US7) = method23()
                     let v1589 : US7 = match v1567 with Choice1Of2 x -> v1587 x | Choice2Of2 x -> v1588 x
                     let _v1568 = v1589 
                     #endif
@@ -4477,14 +4480,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v1598 = v1611 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v1614 : (bool -> US7) = method21()
-                    let v1615 : (exn -> US7) = method22()
+                    let v1614 : (bool -> US7) = method22()
+                    let v1615 : (exn -> US7) = method23()
                     let v1616 : US7 = match v1597 with Choice1Of2 x -> v1614 x | Choice2Of2 x -> v1615 x
                     let _v1598 = v1616 
                     #endif
 #else
-                    let v1617 : (bool -> US7) = method21()
-                    let v1618 : (exn -> US7) = method22()
+                    let v1617 : (bool -> US7) = method22()
+                    let v1618 : (exn -> US7) = method23()
                     let v1619 : US7 = match v1597 with Choice1Of2 x -> v1617 x | Choice2Of2 x -> v1618 x
                     let _v1598 = v1619 
                     #endif
@@ -4531,14 +4534,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v1628 = v1641 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v1644 : (bool -> US7) = method21()
-                    let v1645 : (exn -> US7) = method22()
+                    let v1644 : (bool -> US7) = method22()
+                    let v1645 : (exn -> US7) = method23()
                     let v1646 : US7 = match v1627 with Choice1Of2 x -> v1644 x | Choice2Of2 x -> v1645 x
                     let _v1628 = v1646 
                     #endif
 #else
-                    let v1647 : (bool -> US7) = method21()
-                    let v1648 : (exn -> US7) = method22()
+                    let v1647 : (bool -> US7) = method22()
+                    let v1648 : (exn -> US7) = method23()
                     let v1649 : US7 = match v1627 with Choice1Of2 x -> v1647 x | Choice2Of2 x -> v1648 x
                     let _v1628 = v1649 
                     #endif
@@ -4585,14 +4588,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v1658 = v1671 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v1674 : (bool -> US7) = method21()
-                    let v1675 : (exn -> US7) = method22()
+                    let v1674 : (bool -> US7) = method22()
+                    let v1675 : (exn -> US7) = method23()
                     let v1676 : US7 = match v1657 with Choice1Of2 x -> v1674 x | Choice2Of2 x -> v1675 x
                     let _v1658 = v1676 
                     #endif
 #else
-                    let v1677 : (bool -> US7) = method21()
-                    let v1678 : (exn -> US7) = method22()
+                    let v1677 : (bool -> US7) = method22()
+                    let v1678 : (exn -> US7) = method23()
                     let v1679 : US7 = match v1657 with Choice1Of2 x -> v1677 x | Choice2Of2 x -> v1678 x
                     let _v1658 = v1679 
                     #endif
@@ -5012,14 +5015,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v2319 = v2332 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v2335 : (bool -> US7) = method21()
-                    let v2336 : (exn -> US7) = method22()
+                    let v2335 : (bool -> US7) = method22()
+                    let v2336 : (exn -> US7) = method23()
                     let v2337 : US7 = match v2318 with Choice1Of2 x -> v2335 x | Choice2Of2 x -> v2336 x
                     let _v2319 = v2337 
                     #endif
 #else
-                    let v2338 : (bool -> US7) = method21()
-                    let v2339 : (exn -> US7) = method22()
+                    let v2338 : (bool -> US7) = method22()
+                    let v2339 : (exn -> US7) = method23()
                     let v2340 : US7 = match v2318 with Choice1Of2 x -> v2338 x | Choice2Of2 x -> v2339 x
                     let _v2319 = v2340 
                     #endif
@@ -5066,14 +5069,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v2349 = v2362 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v2365 : (bool -> US7) = method21()
-                    let v2366 : (exn -> US7) = method22()
+                    let v2365 : (bool -> US7) = method22()
+                    let v2366 : (exn -> US7) = method23()
                     let v2367 : US7 = match v2348 with Choice1Of2 x -> v2365 x | Choice2Of2 x -> v2366 x
                     let _v2349 = v2367 
                     #endif
 #else
-                    let v2368 : (bool -> US7) = method21()
-                    let v2369 : (exn -> US7) = method22()
+                    let v2368 : (bool -> US7) = method22()
+                    let v2369 : (exn -> US7) = method23()
                     let v2370 : US7 = match v2348 with Choice1Of2 x -> v2368 x | Choice2Of2 x -> v2369 x
                     let _v2349 = v2370 
                     #endif
@@ -5120,14 +5123,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v2379 = v2392 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v2395 : (bool -> US7) = method21()
-                    let v2396 : (exn -> US7) = method22()
+                    let v2395 : (bool -> US7) = method22()
+                    let v2396 : (exn -> US7) = method23()
                     let v2397 : US7 = match v2378 with Choice1Of2 x -> v2395 x | Choice2Of2 x -> v2396 x
                     let _v2379 = v2397 
                     #endif
 #else
-                    let v2398 : (bool -> US7) = method21()
-                    let v2399 : (exn -> US7) = method22()
+                    let v2398 : (bool -> US7) = method22()
+                    let v2399 : (exn -> US7) = method23()
                     let v2400 : US7 = match v2378 with Choice1Of2 x -> v2398 x | Choice2Of2 x -> v2399 x
                     let _v2379 = v2400 
                     #endif
@@ -5174,14 +5177,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v2409 = v2422 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v2425 : (bool -> US7) = method21()
-                    let v2426 : (exn -> US7) = method22()
+                    let v2425 : (bool -> US7) = method22()
+                    let v2426 : (exn -> US7) = method23()
                     let v2427 : US7 = match v2408 with Choice1Of2 x -> v2425 x | Choice2Of2 x -> v2426 x
                     let _v2409 = v2427 
                     #endif
 #else
-                    let v2428 : (bool -> US7) = method21()
-                    let v2429 : (exn -> US7) = method22()
+                    let v2428 : (bool -> US7) = method22()
+                    let v2429 : (exn -> US7) = method23()
                     let v2430 : US7 = match v2408 with Choice1Of2 x -> v2428 x | Choice2Of2 x -> v2429 x
                     let _v2409 = v2430 
                     #endif
@@ -5621,14 +5624,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3085 = v3098 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3101 : (bool -> US7) = method21()
-                    let v3102 : (exn -> US7) = method22()
+                    let v3101 : (bool -> US7) = method22()
+                    let v3102 : (exn -> US7) = method23()
                     let v3103 : US7 = match v3084 with Choice1Of2 x -> v3101 x | Choice2Of2 x -> v3102 x
                     let _v3085 = v3103 
                     #endif
 #else
-                    let v3104 : (bool -> US7) = method21()
-                    let v3105 : (exn -> US7) = method22()
+                    let v3104 : (bool -> US7) = method22()
+                    let v3105 : (exn -> US7) = method23()
                     let v3106 : US7 = match v3084 with Choice1Of2 x -> v3104 x | Choice2Of2 x -> v3105 x
                     let _v3085 = v3106 
                     #endif
@@ -5675,14 +5678,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3115 = v3128 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3131 : (bool -> US7) = method21()
-                    let v3132 : (exn -> US7) = method22()
+                    let v3131 : (bool -> US7) = method22()
+                    let v3132 : (exn -> US7) = method23()
                     let v3133 : US7 = match v3114 with Choice1Of2 x -> v3131 x | Choice2Of2 x -> v3132 x
                     let _v3115 = v3133 
                     #endif
 #else
-                    let v3134 : (bool -> US7) = method21()
-                    let v3135 : (exn -> US7) = method22()
+                    let v3134 : (bool -> US7) = method22()
+                    let v3135 : (exn -> US7) = method23()
                     let v3136 : US7 = match v3114 with Choice1Of2 x -> v3134 x | Choice2Of2 x -> v3135 x
                     let _v3115 = v3136 
                     #endif
@@ -5729,14 +5732,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3145 = v3158 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3161 : (bool -> US7) = method21()
-                    let v3162 : (exn -> US7) = method22()
+                    let v3161 : (bool -> US7) = method22()
+                    let v3162 : (exn -> US7) = method23()
                     let v3163 : US7 = match v3144 with Choice1Of2 x -> v3161 x | Choice2Of2 x -> v3162 x
                     let _v3145 = v3163 
                     #endif
 #else
-                    let v3164 : (bool -> US7) = method21()
-                    let v3165 : (exn -> US7) = method22()
+                    let v3164 : (bool -> US7) = method22()
+                    let v3165 : (exn -> US7) = method23()
                     let v3166 : US7 = match v3144 with Choice1Of2 x -> v3164 x | Choice2Of2 x -> v3165 x
                     let _v3145 = v3166 
                     #endif
@@ -5783,14 +5786,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3175 = v3188 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3191 : (bool -> US7) = method21()
-                    let v3192 : (exn -> US7) = method22()
+                    let v3191 : (bool -> US7) = method22()
+                    let v3192 : (exn -> US7) = method23()
                     let v3193 : US7 = match v3174 with Choice1Of2 x -> v3191 x | Choice2Of2 x -> v3192 x
                     let _v3175 = v3193 
                     #endif
 #else
-                    let v3194 : (bool -> US7) = method21()
-                    let v3195 : (exn -> US7) = method22()
+                    let v3194 : (bool -> US7) = method22()
+                    let v3195 : (exn -> US7) = method23()
                     let v3196 : US7 = match v3174 with Choice1Of2 x -> v3194 x | Choice2Of2 x -> v3195 x
                     let _v3175 = v3196 
                     #endif
@@ -6210,14 +6213,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3836 = v3849 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3852 : (bool -> US7) = method21()
-                    let v3853 : (exn -> US7) = method22()
+                    let v3852 : (bool -> US7) = method22()
+                    let v3853 : (exn -> US7) = method23()
                     let v3854 : US7 = match v3835 with Choice1Of2 x -> v3852 x | Choice2Of2 x -> v3853 x
                     let _v3836 = v3854 
                     #endif
 #else
-                    let v3855 : (bool -> US7) = method21()
-                    let v3856 : (exn -> US7) = method22()
+                    let v3855 : (bool -> US7) = method22()
+                    let v3856 : (exn -> US7) = method23()
                     let v3857 : US7 = match v3835 with Choice1Of2 x -> v3855 x | Choice2Of2 x -> v3856 x
                     let _v3836 = v3857 
                     #endif
@@ -6264,14 +6267,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3866 = v3879 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3882 : (bool -> US7) = method21()
-                    let v3883 : (exn -> US7) = method22()
+                    let v3882 : (bool -> US7) = method22()
+                    let v3883 : (exn -> US7) = method23()
                     let v3884 : US7 = match v3865 with Choice1Of2 x -> v3882 x | Choice2Of2 x -> v3883 x
                     let _v3866 = v3884 
                     #endif
 #else
-                    let v3885 : (bool -> US7) = method21()
-                    let v3886 : (exn -> US7) = method22()
+                    let v3885 : (bool -> US7) = method22()
+                    let v3886 : (exn -> US7) = method23()
                     let v3887 : US7 = match v3865 with Choice1Of2 x -> v3885 x | Choice2Of2 x -> v3886 x
                     let _v3866 = v3887 
                     #endif
@@ -6318,14 +6321,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3896 = v3909 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3912 : (bool -> US7) = method21()
-                    let v3913 : (exn -> US7) = method22()
+                    let v3912 : (bool -> US7) = method22()
+                    let v3913 : (exn -> US7) = method23()
                     let v3914 : US7 = match v3895 with Choice1Of2 x -> v3912 x | Choice2Of2 x -> v3913 x
                     let _v3896 = v3914 
                     #endif
 #else
-                    let v3915 : (bool -> US7) = method21()
-                    let v3916 : (exn -> US7) = method22()
+                    let v3915 : (bool -> US7) = method22()
+                    let v3916 : (exn -> US7) = method23()
                     let v3917 : US7 = match v3895 with Choice1Of2 x -> v3915 x | Choice2Of2 x -> v3916 x
                     let _v3896 = v3917 
                     #endif
@@ -6372,14 +6375,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v3926 = v3939 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v3942 : (bool -> US7) = method21()
-                    let v3943 : (exn -> US7) = method22()
+                    let v3942 : (bool -> US7) = method22()
+                    let v3943 : (exn -> US7) = method23()
                     let v3944 : US7 = match v3925 with Choice1Of2 x -> v3942 x | Choice2Of2 x -> v3943 x
                     let _v3926 = v3944 
                     #endif
 #else
-                    let v3945 : (bool -> US7) = method21()
-                    let v3946 : (exn -> US7) = method22()
+                    let v3945 : (bool -> US7) = method22()
+                    let v3946 : (exn -> US7) = method23()
                     let v3947 : US7 = match v3925 with Choice1Of2 x -> v3945 x | Choice2Of2 x -> v3946 x
                     let _v3926 = v3947 
                     #endif
@@ -6799,14 +6802,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v4587 = v4600 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v4603 : (bool -> US7) = method21()
-                    let v4604 : (exn -> US7) = method22()
+                    let v4603 : (bool -> US7) = method22()
+                    let v4604 : (exn -> US7) = method23()
                     let v4605 : US7 = match v4586 with Choice1Of2 x -> v4603 x | Choice2Of2 x -> v4604 x
                     let _v4587 = v4605 
                     #endif
 #else
-                    let v4606 : (bool -> US7) = method21()
-                    let v4607 : (exn -> US7) = method22()
+                    let v4606 : (bool -> US7) = method22()
+                    let v4607 : (exn -> US7) = method23()
                     let v4608 : US7 = match v4586 with Choice1Of2 x -> v4606 x | Choice2Of2 x -> v4607 x
                     let _v4587 = v4608 
                     #endif
@@ -6853,14 +6856,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v4617 = v4630 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v4633 : (bool -> US7) = method21()
-                    let v4634 : (exn -> US7) = method22()
+                    let v4633 : (bool -> US7) = method22()
+                    let v4634 : (exn -> US7) = method23()
                     let v4635 : US7 = match v4616 with Choice1Of2 x -> v4633 x | Choice2Of2 x -> v4634 x
                     let _v4617 = v4635 
                     #endif
 #else
-                    let v4636 : (bool -> US7) = method21()
-                    let v4637 : (exn -> US7) = method22()
+                    let v4636 : (bool -> US7) = method22()
+                    let v4637 : (exn -> US7) = method23()
                     let v4638 : US7 = match v4616 with Choice1Of2 x -> v4636 x | Choice2Of2 x -> v4637 x
                     let _v4617 = v4638 
                     #endif
@@ -6907,14 +6910,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v4647 = v4660 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v4663 : (bool -> US7) = method21()
-                    let v4664 : (exn -> US7) = method22()
+                    let v4663 : (bool -> US7) = method22()
+                    let v4664 : (exn -> US7) = method23()
                     let v4665 : US7 = match v4646 with Choice1Of2 x -> v4663 x | Choice2Of2 x -> v4664 x
                     let _v4647 = v4665 
                     #endif
 #else
-                    let v4666 : (bool -> US7) = method21()
-                    let v4667 : (exn -> US7) = method22()
+                    let v4666 : (bool -> US7) = method22()
+                    let v4667 : (exn -> US7) = method23()
                     let v4668 : US7 = match v4646 with Choice1Of2 x -> v4666 x | Choice2Of2 x -> v4667 x
                     let _v4647 = v4668 
                     #endif
@@ -6961,14 +6964,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v4677 = v4690 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v4693 : (bool -> US7) = method21()
-                    let v4694 : (exn -> US7) = method22()
+                    let v4693 : (bool -> US7) = method22()
+                    let v4694 : (exn -> US7) = method23()
                     let v4695 : US7 = match v4676 with Choice1Of2 x -> v4693 x | Choice2Of2 x -> v4694 x
                     let _v4677 = v4695 
                     #endif
 #else
-                    let v4696 : (bool -> US7) = method21()
-                    let v4697 : (exn -> US7) = method22()
+                    let v4696 : (bool -> US7) = method22()
+                    let v4697 : (exn -> US7) = method23()
                     let v4698 : US7 = match v4676 with Choice1Of2 x -> v4696 x | Choice2Of2 x -> v4697 x
                     let _v4677 = v4698 
                     #endif
@@ -7388,14 +7391,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v5338 = v5351 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v5354 : (bool -> US7) = method21()
-                    let v5355 : (exn -> US7) = method22()
+                    let v5354 : (bool -> US7) = method22()
+                    let v5355 : (exn -> US7) = method23()
                     let v5356 : US7 = match v5337 with Choice1Of2 x -> v5354 x | Choice2Of2 x -> v5355 x
                     let _v5338 = v5356 
                     #endif
 #else
-                    let v5357 : (bool -> US7) = method21()
-                    let v5358 : (exn -> US7) = method22()
+                    let v5357 : (bool -> US7) = method22()
+                    let v5358 : (exn -> US7) = method23()
                     let v5359 : US7 = match v5337 with Choice1Of2 x -> v5357 x | Choice2Of2 x -> v5358 x
                     let _v5338 = v5359 
                     #endif
@@ -7442,14 +7445,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v5368 = v5381 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v5384 : (bool -> US7) = method21()
-                    let v5385 : (exn -> US7) = method22()
+                    let v5384 : (bool -> US7) = method22()
+                    let v5385 : (exn -> US7) = method23()
                     let v5386 : US7 = match v5367 with Choice1Of2 x -> v5384 x | Choice2Of2 x -> v5385 x
                     let _v5368 = v5386 
                     #endif
 #else
-                    let v5387 : (bool -> US7) = method21()
-                    let v5388 : (exn -> US7) = method22()
+                    let v5387 : (bool -> US7) = method22()
+                    let v5388 : (exn -> US7) = method23()
                     let v5389 : US7 = match v5367 with Choice1Of2 x -> v5387 x | Choice2Of2 x -> v5388 x
                     let _v5368 = v5389 
                     #endif
@@ -7496,14 +7499,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v5398 = v5411 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v5414 : (bool -> US7) = method21()
-                    let v5415 : (exn -> US7) = method22()
+                    let v5414 : (bool -> US7) = method22()
+                    let v5415 : (exn -> US7) = method23()
                     let v5416 : US7 = match v5397 with Choice1Of2 x -> v5414 x | Choice2Of2 x -> v5415 x
                     let _v5398 = v5416 
                     #endif
 #else
-                    let v5417 : (bool -> US7) = method21()
-                    let v5418 : (exn -> US7) = method22()
+                    let v5417 : (bool -> US7) = method22()
+                    let v5418 : (exn -> US7) = method23()
                     let v5419 : US7 = match v5397 with Choice1Of2 x -> v5417 x | Choice2Of2 x -> v5418 x
                     let _v5398 = v5419 
                     #endif
@@ -7550,14 +7553,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v5428 = v5441 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v5444 : (bool -> US7) = method21()
-                    let v5445 : (exn -> US7) = method22()
+                    let v5444 : (bool -> US7) = method22()
+                    let v5445 : (exn -> US7) = method23()
                     let v5446 : US7 = match v5427 with Choice1Of2 x -> v5444 x | Choice2Of2 x -> v5445 x
                     let _v5428 = v5446 
                     #endif
 #else
-                    let v5447 : (bool -> US7) = method21()
-                    let v5448 : (exn -> US7) = method22()
+                    let v5447 : (bool -> US7) = method22()
+                    let v5448 : (exn -> US7) = method23()
                     let v5449 : US7 = match v5427 with Choice1Of2 x -> v5447 x | Choice2Of2 x -> v5448 x
                     let _v5428 = v5449 
                     #endif
@@ -7997,14 +8000,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6104 = v6117 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6120 : (bool -> US7) = method21()
-                    let v6121 : (exn -> US7) = method22()
+                    let v6120 : (bool -> US7) = method22()
+                    let v6121 : (exn -> US7) = method23()
                     let v6122 : US7 = match v6103 with Choice1Of2 x -> v6120 x | Choice2Of2 x -> v6121 x
                     let _v6104 = v6122 
                     #endif
 #else
-                    let v6123 : (bool -> US7) = method21()
-                    let v6124 : (exn -> US7) = method22()
+                    let v6123 : (bool -> US7) = method22()
+                    let v6124 : (exn -> US7) = method23()
                     let v6125 : US7 = match v6103 with Choice1Of2 x -> v6123 x | Choice2Of2 x -> v6124 x
                     let _v6104 = v6125 
                     #endif
@@ -8051,14 +8054,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6134 = v6147 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6150 : (bool -> US7) = method21()
-                    let v6151 : (exn -> US7) = method22()
+                    let v6150 : (bool -> US7) = method22()
+                    let v6151 : (exn -> US7) = method23()
                     let v6152 : US7 = match v6133 with Choice1Of2 x -> v6150 x | Choice2Of2 x -> v6151 x
                     let _v6134 = v6152 
                     #endif
 #else
-                    let v6153 : (bool -> US7) = method21()
-                    let v6154 : (exn -> US7) = method22()
+                    let v6153 : (bool -> US7) = method22()
+                    let v6154 : (exn -> US7) = method23()
                     let v6155 : US7 = match v6133 with Choice1Of2 x -> v6153 x | Choice2Of2 x -> v6154 x
                     let _v6134 = v6155 
                     #endif
@@ -8105,14 +8108,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6164 = v6177 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6180 : (bool -> US7) = method21()
-                    let v6181 : (exn -> US7) = method22()
+                    let v6180 : (bool -> US7) = method22()
+                    let v6181 : (exn -> US7) = method23()
                     let v6182 : US7 = match v6163 with Choice1Of2 x -> v6180 x | Choice2Of2 x -> v6181 x
                     let _v6164 = v6182 
                     #endif
 #else
-                    let v6183 : (bool -> US7) = method21()
-                    let v6184 : (exn -> US7) = method22()
+                    let v6183 : (bool -> US7) = method22()
+                    let v6184 : (exn -> US7) = method23()
                     let v6185 : US7 = match v6163 with Choice1Of2 x -> v6183 x | Choice2Of2 x -> v6184 x
                     let _v6164 = v6185 
                     #endif
@@ -8159,14 +8162,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6194 = v6207 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6210 : (bool -> US7) = method21()
-                    let v6211 : (exn -> US7) = method22()
+                    let v6210 : (bool -> US7) = method22()
+                    let v6211 : (exn -> US7) = method23()
                     let v6212 : US7 = match v6193 with Choice1Of2 x -> v6210 x | Choice2Of2 x -> v6211 x
                     let _v6194 = v6212 
                     #endif
 #else
-                    let v6213 : (bool -> US7) = method21()
-                    let v6214 : (exn -> US7) = method22()
+                    let v6213 : (bool -> US7) = method22()
+                    let v6214 : (exn -> US7) = method23()
                     let v6215 : US7 = match v6193 with Choice1Of2 x -> v6213 x | Choice2Of2 x -> v6214 x
                     let _v6194 = v6215 
                     #endif
@@ -8586,14 +8589,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6855 = v6868 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6871 : (bool -> US7) = method21()
-                    let v6872 : (exn -> US7) = method22()
+                    let v6871 : (bool -> US7) = method22()
+                    let v6872 : (exn -> US7) = method23()
                     let v6873 : US7 = match v6854 with Choice1Of2 x -> v6871 x | Choice2Of2 x -> v6872 x
                     let _v6855 = v6873 
                     #endif
 #else
-                    let v6874 : (bool -> US7) = method21()
-                    let v6875 : (exn -> US7) = method22()
+                    let v6874 : (bool -> US7) = method22()
+                    let v6875 : (exn -> US7) = method23()
                     let v6876 : US7 = match v6854 with Choice1Of2 x -> v6874 x | Choice2Of2 x -> v6875 x
                     let _v6855 = v6876 
                     #endif
@@ -8640,14 +8643,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6885 = v6898 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6901 : (bool -> US7) = method21()
-                    let v6902 : (exn -> US7) = method22()
+                    let v6901 : (bool -> US7) = method22()
+                    let v6902 : (exn -> US7) = method23()
                     let v6903 : US7 = match v6884 with Choice1Of2 x -> v6901 x | Choice2Of2 x -> v6902 x
                     let _v6885 = v6903 
                     #endif
 #else
-                    let v6904 : (bool -> US7) = method21()
-                    let v6905 : (exn -> US7) = method22()
+                    let v6904 : (bool -> US7) = method22()
+                    let v6905 : (exn -> US7) = method23()
                     let v6906 : US7 = match v6884 with Choice1Of2 x -> v6904 x | Choice2Of2 x -> v6905 x
                     let _v6885 = v6906 
                     #endif
@@ -8694,14 +8697,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6915 = v6928 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6931 : (bool -> US7) = method21()
-                    let v6932 : (exn -> US7) = method22()
+                    let v6931 : (bool -> US7) = method22()
+                    let v6932 : (exn -> US7) = method23()
                     let v6933 : US7 = match v6914 with Choice1Of2 x -> v6931 x | Choice2Of2 x -> v6932 x
                     let _v6915 = v6933 
                     #endif
 #else
-                    let v6934 : (bool -> US7) = method21()
-                    let v6935 : (exn -> US7) = method22()
+                    let v6934 : (bool -> US7) = method22()
+                    let v6935 : (exn -> US7) = method23()
                     let v6936 : US7 = match v6914 with Choice1Of2 x -> v6934 x | Choice2Of2 x -> v6935 x
                     let _v6915 = v6936 
                     #endif
@@ -8748,14 +8751,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v6945 = v6958 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v6961 : (bool -> US7) = method21()
-                    let v6962 : (exn -> US7) = method22()
+                    let v6961 : (bool -> US7) = method22()
+                    let v6962 : (exn -> US7) = method23()
                     let v6963 : US7 = match v6944 with Choice1Of2 x -> v6961 x | Choice2Of2 x -> v6962 x
                     let _v6945 = v6963 
                     #endif
 #else
-                    let v6964 : (bool -> US7) = method21()
-                    let v6965 : (exn -> US7) = method22()
+                    let v6964 : (bool -> US7) = method22()
+                    let v6965 : (exn -> US7) = method23()
                     let v6966 : US7 = match v6944 with Choice1Of2 x -> v6964 x | Choice2Of2 x -> v6965 x
                     let _v6945 = v6966 
                     #endif
@@ -9175,14 +9178,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v7606 = v7619 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v7622 : (bool -> US7) = method21()
-                    let v7623 : (exn -> US7) = method22()
+                    let v7622 : (bool -> US7) = method22()
+                    let v7623 : (exn -> US7) = method23()
                     let v7624 : US7 = match v7605 with Choice1Of2 x -> v7622 x | Choice2Of2 x -> v7623 x
                     let _v7606 = v7624 
                     #endif
 #else
-                    let v7625 : (bool -> US7) = method21()
-                    let v7626 : (exn -> US7) = method22()
+                    let v7625 : (bool -> US7) = method22()
+                    let v7626 : (exn -> US7) = method23()
                     let v7627 : US7 = match v7605 with Choice1Of2 x -> v7625 x | Choice2Of2 x -> v7626 x
                     let _v7606 = v7627 
                     #endif
@@ -9229,14 +9232,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v7636 = v7649 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v7652 : (bool -> US7) = method21()
-                    let v7653 : (exn -> US7) = method22()
+                    let v7652 : (bool -> US7) = method22()
+                    let v7653 : (exn -> US7) = method23()
                     let v7654 : US7 = match v7635 with Choice1Of2 x -> v7652 x | Choice2Of2 x -> v7653 x
                     let _v7636 = v7654 
                     #endif
 #else
-                    let v7655 : (bool -> US7) = method21()
-                    let v7656 : (exn -> US7) = method22()
+                    let v7655 : (bool -> US7) = method22()
+                    let v7656 : (exn -> US7) = method23()
                     let v7657 : US7 = match v7635 with Choice1Of2 x -> v7655 x | Choice2Of2 x -> v7656 x
                     let _v7636 = v7657 
                     #endif
@@ -9283,14 +9286,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v7666 = v7679 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v7682 : (bool -> US7) = method21()
-                    let v7683 : (exn -> US7) = method22()
+                    let v7682 : (bool -> US7) = method22()
+                    let v7683 : (exn -> US7) = method23()
                     let v7684 : US7 = match v7665 with Choice1Of2 x -> v7682 x | Choice2Of2 x -> v7683 x
                     let _v7666 = v7684 
                     #endif
 #else
-                    let v7685 : (bool -> US7) = method21()
-                    let v7686 : (exn -> US7) = method22()
+                    let v7685 : (bool -> US7) = method22()
+                    let v7686 : (exn -> US7) = method23()
                     let v7687 : US7 = match v7665 with Choice1Of2 x -> v7685 x | Choice2Of2 x -> v7686 x
                     let _v7666 = v7687 
                     #endif
@@ -9337,14 +9340,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v7696 = v7709 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v7712 : (bool -> US7) = method21()
-                    let v7713 : (exn -> US7) = method22()
+                    let v7712 : (bool -> US7) = method22()
+                    let v7713 : (exn -> US7) = method23()
                     let v7714 : US7 = match v7695 with Choice1Of2 x -> v7712 x | Choice2Of2 x -> v7713 x
                     let _v7696 = v7714 
                     #endif
 #else
-                    let v7715 : (bool -> US7) = method21()
-                    let v7716 : (exn -> US7) = method22()
+                    let v7715 : (bool -> US7) = method22()
+                    let v7716 : (exn -> US7) = method23()
                     let v7717 : US7 = match v7695 with Choice1Of2 x -> v7715 x | Choice2Of2 x -> v7716 x
                     let _v7696 = v7717 
                     #endif
@@ -9764,14 +9767,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v8357 = v8370 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v8373 : (bool -> US7) = method21()
-                    let v8374 : (exn -> US7) = method22()
+                    let v8373 : (bool -> US7) = method22()
+                    let v8374 : (exn -> US7) = method23()
                     let v8375 : US7 = match v8356 with Choice1Of2 x -> v8373 x | Choice2Of2 x -> v8374 x
                     let _v8357 = v8375 
                     #endif
 #else
-                    let v8376 : (bool -> US7) = method21()
-                    let v8377 : (exn -> US7) = method22()
+                    let v8376 : (bool -> US7) = method22()
+                    let v8377 : (exn -> US7) = method23()
                     let v8378 : US7 = match v8356 with Choice1Of2 x -> v8376 x | Choice2Of2 x -> v8377 x
                     let _v8357 = v8378 
                     #endif
@@ -9818,14 +9821,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v8387 = v8400 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v8403 : (bool -> US7) = method21()
-                    let v8404 : (exn -> US7) = method22()
+                    let v8403 : (bool -> US7) = method22()
+                    let v8404 : (exn -> US7) = method23()
                     let v8405 : US7 = match v8386 with Choice1Of2 x -> v8403 x | Choice2Of2 x -> v8404 x
                     let _v8387 = v8405 
                     #endif
 #else
-                    let v8406 : (bool -> US7) = method21()
-                    let v8407 : (exn -> US7) = method22()
+                    let v8406 : (bool -> US7) = method22()
+                    let v8407 : (exn -> US7) = method23()
                     let v8408 : US7 = match v8386 with Choice1Of2 x -> v8406 x | Choice2Of2 x -> v8407 x
                     let _v8387 = v8408 
                     #endif
@@ -9872,14 +9875,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v8417 = v8430 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v8433 : (bool -> US7) = method21()
-                    let v8434 : (exn -> US7) = method22()
+                    let v8433 : (bool -> US7) = method22()
+                    let v8434 : (exn -> US7) = method23()
                     let v8435 : US7 = match v8416 with Choice1Of2 x -> v8433 x | Choice2Of2 x -> v8434 x
                     let _v8417 = v8435 
                     #endif
 #else
-                    let v8436 : (bool -> US7) = method21()
-                    let v8437 : (exn -> US7) = method22()
+                    let v8436 : (bool -> US7) = method22()
+                    let v8437 : (exn -> US7) = method23()
                     let v8438 : US7 = match v8416 with Choice1Of2 x -> v8436 x | Choice2Of2 x -> v8437 x
                     let _v8417 = v8438 
                     #endif
@@ -9926,14 +9929,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v8447 = v8460 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v8463 : (bool -> US7) = method21()
-                    let v8464 : (exn -> US7) = method22()
+                    let v8463 : (bool -> US7) = method22()
+                    let v8464 : (exn -> US7) = method23()
                     let v8465 : US7 = match v8446 with Choice1Of2 x -> v8463 x | Choice2Of2 x -> v8464 x
                     let _v8447 = v8465 
                     #endif
 #else
-                    let v8466 : (bool -> US7) = method21()
-                    let v8467 : (exn -> US7) = method22()
+                    let v8466 : (bool -> US7) = method22()
+                    let v8467 : (exn -> US7) = method23()
                     let v8468 : US7 = match v8446 with Choice1Of2 x -> v8466 x | Choice2Of2 x -> v8467 x
                     let _v8447 = v8468 
                     #endif
@@ -10373,14 +10376,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9123 = v9136 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9139 : (bool -> US7) = method21()
-                    let v9140 : (exn -> US7) = method22()
+                    let v9139 : (bool -> US7) = method22()
+                    let v9140 : (exn -> US7) = method23()
                     let v9141 : US7 = match v9122 with Choice1Of2 x -> v9139 x | Choice2Of2 x -> v9140 x
                     let _v9123 = v9141 
                     #endif
 #else
-                    let v9142 : (bool -> US7) = method21()
-                    let v9143 : (exn -> US7) = method22()
+                    let v9142 : (bool -> US7) = method22()
+                    let v9143 : (exn -> US7) = method23()
                     let v9144 : US7 = match v9122 with Choice1Of2 x -> v9142 x | Choice2Of2 x -> v9143 x
                     let _v9123 = v9144 
                     #endif
@@ -10427,14 +10430,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9153 = v9166 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9169 : (bool -> US7) = method21()
-                    let v9170 : (exn -> US7) = method22()
+                    let v9169 : (bool -> US7) = method22()
+                    let v9170 : (exn -> US7) = method23()
                     let v9171 : US7 = match v9152 with Choice1Of2 x -> v9169 x | Choice2Of2 x -> v9170 x
                     let _v9153 = v9171 
                     #endif
 #else
-                    let v9172 : (bool -> US7) = method21()
-                    let v9173 : (exn -> US7) = method22()
+                    let v9172 : (bool -> US7) = method22()
+                    let v9173 : (exn -> US7) = method23()
                     let v9174 : US7 = match v9152 with Choice1Of2 x -> v9172 x | Choice2Of2 x -> v9173 x
                     let _v9153 = v9174 
                     #endif
@@ -10481,14 +10484,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9183 = v9196 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9199 : (bool -> US7) = method21()
-                    let v9200 : (exn -> US7) = method22()
+                    let v9199 : (bool -> US7) = method22()
+                    let v9200 : (exn -> US7) = method23()
                     let v9201 : US7 = match v9182 with Choice1Of2 x -> v9199 x | Choice2Of2 x -> v9200 x
                     let _v9183 = v9201 
                     #endif
 #else
-                    let v9202 : (bool -> US7) = method21()
-                    let v9203 : (exn -> US7) = method22()
+                    let v9202 : (bool -> US7) = method22()
+                    let v9203 : (exn -> US7) = method23()
                     let v9204 : US7 = match v9182 with Choice1Of2 x -> v9202 x | Choice2Of2 x -> v9203 x
                     let _v9183 = v9204 
                     #endif
@@ -10535,14 +10538,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9213 = v9226 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9229 : (bool -> US7) = method21()
-                    let v9230 : (exn -> US7) = method22()
+                    let v9229 : (bool -> US7) = method22()
+                    let v9230 : (exn -> US7) = method23()
                     let v9231 : US7 = match v9212 with Choice1Of2 x -> v9229 x | Choice2Of2 x -> v9230 x
                     let _v9213 = v9231 
                     #endif
 #else
-                    let v9232 : (bool -> US7) = method21()
-                    let v9233 : (exn -> US7) = method22()
+                    let v9232 : (bool -> US7) = method22()
+                    let v9233 : (exn -> US7) = method23()
                     let v9234 : US7 = match v9212 with Choice1Of2 x -> v9232 x | Choice2Of2 x -> v9233 x
                     let _v9213 = v9234 
                     #endif
@@ -10962,14 +10965,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9874 = v9887 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9890 : (bool -> US7) = method21()
-                    let v9891 : (exn -> US7) = method22()
+                    let v9890 : (bool -> US7) = method22()
+                    let v9891 : (exn -> US7) = method23()
                     let v9892 : US7 = match v9873 with Choice1Of2 x -> v9890 x | Choice2Of2 x -> v9891 x
                     let _v9874 = v9892 
                     #endif
 #else
-                    let v9893 : (bool -> US7) = method21()
-                    let v9894 : (exn -> US7) = method22()
+                    let v9893 : (bool -> US7) = method22()
+                    let v9894 : (exn -> US7) = method23()
                     let v9895 : US7 = match v9873 with Choice1Of2 x -> v9893 x | Choice2Of2 x -> v9894 x
                     let _v9874 = v9895 
                     #endif
@@ -11016,14 +11019,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9904 = v9917 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9920 : (bool -> US7) = method21()
-                    let v9921 : (exn -> US7) = method22()
+                    let v9920 : (bool -> US7) = method22()
+                    let v9921 : (exn -> US7) = method23()
                     let v9922 : US7 = match v9903 with Choice1Of2 x -> v9920 x | Choice2Of2 x -> v9921 x
                     let _v9904 = v9922 
                     #endif
 #else
-                    let v9923 : (bool -> US7) = method21()
-                    let v9924 : (exn -> US7) = method22()
+                    let v9923 : (bool -> US7) = method22()
+                    let v9924 : (exn -> US7) = method23()
                     let v9925 : US7 = match v9903 with Choice1Of2 x -> v9923 x | Choice2Of2 x -> v9924 x
                     let _v9904 = v9925 
                     #endif
@@ -11070,14 +11073,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9934 = v9947 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9950 : (bool -> US7) = method21()
-                    let v9951 : (exn -> US7) = method22()
+                    let v9950 : (bool -> US7) = method22()
+                    let v9951 : (exn -> US7) = method23()
                     let v9952 : US7 = match v9933 with Choice1Of2 x -> v9950 x | Choice2Of2 x -> v9951 x
                     let _v9934 = v9952 
                     #endif
 #else
-                    let v9953 : (bool -> US7) = method21()
-                    let v9954 : (exn -> US7) = method22()
+                    let v9953 : (bool -> US7) = method22()
+                    let v9954 : (exn -> US7) = method23()
                     let v9955 : US7 = match v9933 with Choice1Of2 x -> v9953 x | Choice2Of2 x -> v9954 x
                     let _v9934 = v9955 
                     #endif
@@ -11124,14 +11127,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v9964 = v9977 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v9980 : (bool -> US7) = method21()
-                    let v9981 : (exn -> US7) = method22()
+                    let v9980 : (bool -> US7) = method22()
+                    let v9981 : (exn -> US7) = method23()
                     let v9982 : US7 = match v9963 with Choice1Of2 x -> v9980 x | Choice2Of2 x -> v9981 x
                     let _v9964 = v9982 
                     #endif
 #else
-                    let v9983 : (bool -> US7) = method21()
-                    let v9984 : (exn -> US7) = method22()
+                    let v9983 : (bool -> US7) = method22()
+                    let v9984 : (exn -> US7) = method23()
                     let v9985 : US7 = match v9963 with Choice1Of2 x -> v9983 x | Choice2Of2 x -> v9984 x
                     let _v9964 = v9985 
                     #endif
@@ -11551,14 +11554,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v10625 = v10638 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v10641 : (bool -> US7) = method21()
-                    let v10642 : (exn -> US7) = method22()
+                    let v10641 : (bool -> US7) = method22()
+                    let v10642 : (exn -> US7) = method23()
                     let v10643 : US7 = match v10624 with Choice1Of2 x -> v10641 x | Choice2Of2 x -> v10642 x
                     let _v10625 = v10643 
                     #endif
 #else
-                    let v10644 : (bool -> US7) = method21()
-                    let v10645 : (exn -> US7) = method22()
+                    let v10644 : (bool -> US7) = method22()
+                    let v10645 : (exn -> US7) = method23()
                     let v10646 : US7 = match v10624 with Choice1Of2 x -> v10644 x | Choice2Of2 x -> v10645 x
                     let _v10625 = v10646 
                     #endif
@@ -11605,14 +11608,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v10655 = v10668 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v10671 : (bool -> US7) = method21()
-                    let v10672 : (exn -> US7) = method22()
+                    let v10671 : (bool -> US7) = method22()
+                    let v10672 : (exn -> US7) = method23()
                     let v10673 : US7 = match v10654 with Choice1Of2 x -> v10671 x | Choice2Of2 x -> v10672 x
                     let _v10655 = v10673 
                     #endif
 #else
-                    let v10674 : (bool -> US7) = method21()
-                    let v10675 : (exn -> US7) = method22()
+                    let v10674 : (bool -> US7) = method22()
+                    let v10675 : (exn -> US7) = method23()
                     let v10676 : US7 = match v10654 with Choice1Of2 x -> v10674 x | Choice2Of2 x -> v10675 x
                     let _v10655 = v10676 
                     #endif
@@ -11659,14 +11662,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v10685 = v10698 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v10701 : (bool -> US7) = method21()
-                    let v10702 : (exn -> US7) = method22()
+                    let v10701 : (bool -> US7) = method22()
+                    let v10702 : (exn -> US7) = method23()
                     let v10703 : US7 = match v10684 with Choice1Of2 x -> v10701 x | Choice2Of2 x -> v10702 x
                     let _v10685 = v10703 
                     #endif
 #else
-                    let v10704 : (bool -> US7) = method21()
-                    let v10705 : (exn -> US7) = method22()
+                    let v10704 : (bool -> US7) = method22()
+                    let v10705 : (exn -> US7) = method23()
                     let v10706 : US7 = match v10684 with Choice1Of2 x -> v10704 x | Choice2Of2 x -> v10705 x
                     let _v10685 = v10706 
                     #endif
@@ -11713,14 +11716,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v10715 = v10728 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v10731 : (bool -> US7) = method21()
-                    let v10732 : (exn -> US7) = method22()
+                    let v10731 : (bool -> US7) = method22()
+                    let v10732 : (exn -> US7) = method23()
                     let v10733 : US7 = match v10714 with Choice1Of2 x -> v10731 x | Choice2Of2 x -> v10732 x
                     let _v10715 = v10733 
                     #endif
 #else
-                    let v10734 : (bool -> US7) = method21()
-                    let v10735 : (exn -> US7) = method22()
+                    let v10734 : (bool -> US7) = method22()
+                    let v10735 : (exn -> US7) = method23()
                     let v10736 : US7 = match v10714 with Choice1Of2 x -> v10734 x | Choice2Of2 x -> v10735 x
                     let _v10715 = v10736 
                     #endif
@@ -12140,14 +12143,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v11376 = v11389 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v11392 : (bool -> US7) = method21()
-                    let v11393 : (exn -> US7) = method22()
+                    let v11392 : (bool -> US7) = method22()
+                    let v11393 : (exn -> US7) = method23()
                     let v11394 : US7 = match v11375 with Choice1Of2 x -> v11392 x | Choice2Of2 x -> v11393 x
                     let _v11376 = v11394 
                     #endif
 #else
-                    let v11395 : (bool -> US7) = method21()
-                    let v11396 : (exn -> US7) = method22()
+                    let v11395 : (bool -> US7) = method22()
+                    let v11396 : (exn -> US7) = method23()
                     let v11397 : US7 = match v11375 with Choice1Of2 x -> v11395 x | Choice2Of2 x -> v11396 x
                     let _v11376 = v11397 
                     #endif
@@ -12194,14 +12197,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v11406 = v11419 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v11422 : (bool -> US7) = method21()
-                    let v11423 : (exn -> US7) = method22()
+                    let v11422 : (bool -> US7) = method22()
+                    let v11423 : (exn -> US7) = method23()
                     let v11424 : US7 = match v11405 with Choice1Of2 x -> v11422 x | Choice2Of2 x -> v11423 x
                     let _v11406 = v11424 
                     #endif
 #else
-                    let v11425 : (bool -> US7) = method21()
-                    let v11426 : (exn -> US7) = method22()
+                    let v11425 : (bool -> US7) = method22()
+                    let v11426 : (exn -> US7) = method23()
                     let v11427 : US7 = match v11405 with Choice1Of2 x -> v11425 x | Choice2Of2 x -> v11426 x
                     let _v11406 = v11427 
                     #endif
@@ -12248,14 +12251,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v11436 = v11449 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v11452 : (bool -> US7) = method21()
-                    let v11453 : (exn -> US7) = method22()
+                    let v11452 : (bool -> US7) = method22()
+                    let v11453 : (exn -> US7) = method23()
                     let v11454 : US7 = match v11435 with Choice1Of2 x -> v11452 x | Choice2Of2 x -> v11453 x
                     let _v11436 = v11454 
                     #endif
 #else
-                    let v11455 : (bool -> US7) = method21()
-                    let v11456 : (exn -> US7) = method22()
+                    let v11455 : (bool -> US7) = method22()
+                    let v11456 : (exn -> US7) = method23()
                     let v11457 : US7 = match v11435 with Choice1Of2 x -> v11455 x | Choice2Of2 x -> v11456 x
                     let _v11436 = v11457 
                     #endif
@@ -12302,14 +12305,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v11466 = v11479 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v11482 : (bool -> US7) = method21()
-                    let v11483 : (exn -> US7) = method22()
+                    let v11482 : (bool -> US7) = method22()
+                    let v11483 : (exn -> US7) = method23()
                     let v11484 : US7 = match v11465 with Choice1Of2 x -> v11482 x | Choice2Of2 x -> v11483 x
                     let _v11466 = v11484 
                     #endif
 #else
-                    let v11485 : (bool -> US7) = method21()
-                    let v11486 : (exn -> US7) = method22()
+                    let v11485 : (bool -> US7) = method22()
+                    let v11486 : (exn -> US7) = method23()
                     let v11487 : US7 = match v11465 with Choice1Of2 x -> v11485 x | Choice2Of2 x -> v11486 x
                     let _v11466 = v11487 
                     #endif
@@ -12749,14 +12752,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12142 = v12155 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12158 : (bool -> US7) = method21()
-                    let v12159 : (exn -> US7) = method22()
+                    let v12158 : (bool -> US7) = method22()
+                    let v12159 : (exn -> US7) = method23()
                     let v12160 : US7 = match v12141 with Choice1Of2 x -> v12158 x | Choice2Of2 x -> v12159 x
                     let _v12142 = v12160 
                     #endif
 #else
-                    let v12161 : (bool -> US7) = method21()
-                    let v12162 : (exn -> US7) = method22()
+                    let v12161 : (bool -> US7) = method22()
+                    let v12162 : (exn -> US7) = method23()
                     let v12163 : US7 = match v12141 with Choice1Of2 x -> v12161 x | Choice2Of2 x -> v12162 x
                     let _v12142 = v12163 
                     #endif
@@ -12803,14 +12806,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12172 = v12185 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12188 : (bool -> US7) = method21()
-                    let v12189 : (exn -> US7) = method22()
+                    let v12188 : (bool -> US7) = method22()
+                    let v12189 : (exn -> US7) = method23()
                     let v12190 : US7 = match v12171 with Choice1Of2 x -> v12188 x | Choice2Of2 x -> v12189 x
                     let _v12172 = v12190 
                     #endif
 #else
-                    let v12191 : (bool -> US7) = method21()
-                    let v12192 : (exn -> US7) = method22()
+                    let v12191 : (bool -> US7) = method22()
+                    let v12192 : (exn -> US7) = method23()
                     let v12193 : US7 = match v12171 with Choice1Of2 x -> v12191 x | Choice2Of2 x -> v12192 x
                     let _v12172 = v12193 
                     #endif
@@ -12857,14 +12860,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12202 = v12215 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12218 : (bool -> US7) = method21()
-                    let v12219 : (exn -> US7) = method22()
+                    let v12218 : (bool -> US7) = method22()
+                    let v12219 : (exn -> US7) = method23()
                     let v12220 : US7 = match v12201 with Choice1Of2 x -> v12218 x | Choice2Of2 x -> v12219 x
                     let _v12202 = v12220 
                     #endif
 #else
-                    let v12221 : (bool -> US7) = method21()
-                    let v12222 : (exn -> US7) = method22()
+                    let v12221 : (bool -> US7) = method22()
+                    let v12222 : (exn -> US7) = method23()
                     let v12223 : US7 = match v12201 with Choice1Of2 x -> v12221 x | Choice2Of2 x -> v12222 x
                     let _v12202 = v12223 
                     #endif
@@ -12911,14 +12914,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12232 = v12245 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12248 : (bool -> US7) = method21()
-                    let v12249 : (exn -> US7) = method22()
+                    let v12248 : (bool -> US7) = method22()
+                    let v12249 : (exn -> US7) = method23()
                     let v12250 : US7 = match v12231 with Choice1Of2 x -> v12248 x | Choice2Of2 x -> v12249 x
                     let _v12232 = v12250 
                     #endif
 #else
-                    let v12251 : (bool -> US7) = method21()
-                    let v12252 : (exn -> US7) = method22()
+                    let v12251 : (bool -> US7) = method22()
+                    let v12252 : (exn -> US7) = method23()
                     let v12253 : US7 = match v12231 with Choice1Of2 x -> v12251 x | Choice2Of2 x -> v12252 x
                     let _v12232 = v12253 
                     #endif
@@ -13338,14 +13341,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12893 = v12906 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12909 : (bool -> US7) = method21()
-                    let v12910 : (exn -> US7) = method22()
+                    let v12909 : (bool -> US7) = method22()
+                    let v12910 : (exn -> US7) = method23()
                     let v12911 : US7 = match v12892 with Choice1Of2 x -> v12909 x | Choice2Of2 x -> v12910 x
                     let _v12893 = v12911 
                     #endif
 #else
-                    let v12912 : (bool -> US7) = method21()
-                    let v12913 : (exn -> US7) = method22()
+                    let v12912 : (bool -> US7) = method22()
+                    let v12913 : (exn -> US7) = method23()
                     let v12914 : US7 = match v12892 with Choice1Of2 x -> v12912 x | Choice2Of2 x -> v12913 x
                     let _v12893 = v12914 
                     #endif
@@ -13392,14 +13395,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12923 = v12936 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12939 : (bool -> US7) = method21()
-                    let v12940 : (exn -> US7) = method22()
+                    let v12939 : (bool -> US7) = method22()
+                    let v12940 : (exn -> US7) = method23()
                     let v12941 : US7 = match v12922 with Choice1Of2 x -> v12939 x | Choice2Of2 x -> v12940 x
                     let _v12923 = v12941 
                     #endif
 #else
-                    let v12942 : (bool -> US7) = method21()
-                    let v12943 : (exn -> US7) = method22()
+                    let v12942 : (bool -> US7) = method22()
+                    let v12943 : (exn -> US7) = method23()
                     let v12944 : US7 = match v12922 with Choice1Of2 x -> v12942 x | Choice2Of2 x -> v12943 x
                     let _v12923 = v12944 
                     #endif
@@ -13446,14 +13449,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12953 = v12966 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12969 : (bool -> US7) = method21()
-                    let v12970 : (exn -> US7) = method22()
+                    let v12969 : (bool -> US7) = method22()
+                    let v12970 : (exn -> US7) = method23()
                     let v12971 : US7 = match v12952 with Choice1Of2 x -> v12969 x | Choice2Of2 x -> v12970 x
                     let _v12953 = v12971 
                     #endif
 #else
-                    let v12972 : (bool -> US7) = method21()
-                    let v12973 : (exn -> US7) = method22()
+                    let v12972 : (bool -> US7) = method22()
+                    let v12973 : (exn -> US7) = method23()
                     let v12974 : US7 = match v12952 with Choice1Of2 x -> v12972 x | Choice2Of2 x -> v12973 x
                     let _v12953 = v12974 
                     #endif
@@ -13500,14 +13503,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v12983 = v12996 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v12999 : (bool -> US7) = method21()
-                    let v13000 : (exn -> US7) = method22()
+                    let v12999 : (bool -> US7) = method22()
+                    let v13000 : (exn -> US7) = method23()
                     let v13001 : US7 = match v12982 with Choice1Of2 x -> v12999 x | Choice2Of2 x -> v13000 x
                     let _v12983 = v13001 
                     #endif
 #else
-                    let v13002 : (bool -> US7) = method21()
-                    let v13003 : (exn -> US7) = method22()
+                    let v13002 : (bool -> US7) = method22()
+                    let v13003 : (exn -> US7) = method23()
                     let v13004 : US7 = match v12982 with Choice1Of2 x -> v13002 x | Choice2Of2 x -> v13003 x
                     let _v12983 = v13004 
                     #endif
@@ -13927,14 +13930,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v13644 = v13657 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v13660 : (bool -> US7) = method21()
-                    let v13661 : (exn -> US7) = method22()
+                    let v13660 : (bool -> US7) = method22()
+                    let v13661 : (exn -> US7) = method23()
                     let v13662 : US7 = match v13643 with Choice1Of2 x -> v13660 x | Choice2Of2 x -> v13661 x
                     let _v13644 = v13662 
                     #endif
 #else
-                    let v13663 : (bool -> US7) = method21()
-                    let v13664 : (exn -> US7) = method22()
+                    let v13663 : (bool -> US7) = method22()
+                    let v13664 : (exn -> US7) = method23()
                     let v13665 : US7 = match v13643 with Choice1Of2 x -> v13663 x | Choice2Of2 x -> v13664 x
                     let _v13644 = v13665 
                     #endif
@@ -13981,14 +13984,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v13674 = v13687 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v13690 : (bool -> US7) = method21()
-                    let v13691 : (exn -> US7) = method22()
+                    let v13690 : (bool -> US7) = method22()
+                    let v13691 : (exn -> US7) = method23()
                     let v13692 : US7 = match v13673 with Choice1Of2 x -> v13690 x | Choice2Of2 x -> v13691 x
                     let _v13674 = v13692 
                     #endif
 #else
-                    let v13693 : (bool -> US7) = method21()
-                    let v13694 : (exn -> US7) = method22()
+                    let v13693 : (bool -> US7) = method22()
+                    let v13694 : (exn -> US7) = method23()
                     let v13695 : US7 = match v13673 with Choice1Of2 x -> v13693 x | Choice2Of2 x -> v13694 x
                     let _v13674 = v13695 
                     #endif
@@ -14035,14 +14038,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v13704 = v13717 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v13720 : (bool -> US7) = method21()
-                    let v13721 : (exn -> US7) = method22()
+                    let v13720 : (bool -> US7) = method22()
+                    let v13721 : (exn -> US7) = method23()
                     let v13722 : US7 = match v13703 with Choice1Of2 x -> v13720 x | Choice2Of2 x -> v13721 x
                     let _v13704 = v13722 
                     #endif
 #else
-                    let v13723 : (bool -> US7) = method21()
-                    let v13724 : (exn -> US7) = method22()
+                    let v13723 : (bool -> US7) = method22()
+                    let v13724 : (exn -> US7) = method23()
                     let v13725 : US7 = match v13703 with Choice1Of2 x -> v13723 x | Choice2Of2 x -> v13724 x
                     let _v13704 = v13725 
                     #endif
@@ -14089,14 +14092,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v13734 = v13747 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v13750 : (bool -> US7) = method21()
-                    let v13751 : (exn -> US7) = method22()
+                    let v13750 : (bool -> US7) = method22()
+                    let v13751 : (exn -> US7) = method23()
                     let v13752 : US7 = match v13733 with Choice1Of2 x -> v13750 x | Choice2Of2 x -> v13751 x
                     let _v13734 = v13752 
                     #endif
 #else
-                    let v13753 : (bool -> US7) = method21()
-                    let v13754 : (exn -> US7) = method22()
+                    let v13753 : (bool -> US7) = method22()
+                    let v13754 : (exn -> US7) = method23()
                     let v13755 : US7 = match v13733 with Choice1Of2 x -> v13753 x | Choice2Of2 x -> v13754 x
                     let _v13734 = v13755 
                     #endif
@@ -14516,14 +14519,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v14395 = v14408 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v14411 : (bool -> US7) = method21()
-                    let v14412 : (exn -> US7) = method22()
+                    let v14411 : (bool -> US7) = method22()
+                    let v14412 : (exn -> US7) = method23()
                     let v14413 : US7 = match v14394 with Choice1Of2 x -> v14411 x | Choice2Of2 x -> v14412 x
                     let _v14395 = v14413 
                     #endif
 #else
-                    let v14414 : (bool -> US7) = method21()
-                    let v14415 : (exn -> US7) = method22()
+                    let v14414 : (bool -> US7) = method22()
+                    let v14415 : (exn -> US7) = method23()
                     let v14416 : US7 = match v14394 with Choice1Of2 x -> v14414 x | Choice2Of2 x -> v14415 x
                     let _v14395 = v14416 
                     #endif
@@ -14570,14 +14573,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v14425 = v14438 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v14441 : (bool -> US7) = method21()
-                    let v14442 : (exn -> US7) = method22()
+                    let v14441 : (bool -> US7) = method22()
+                    let v14442 : (exn -> US7) = method23()
                     let v14443 : US7 = match v14424 with Choice1Of2 x -> v14441 x | Choice2Of2 x -> v14442 x
                     let _v14425 = v14443 
                     #endif
 #else
-                    let v14444 : (bool -> US7) = method21()
-                    let v14445 : (exn -> US7) = method22()
+                    let v14444 : (bool -> US7) = method22()
+                    let v14445 : (exn -> US7) = method23()
                     let v14446 : US7 = match v14424 with Choice1Of2 x -> v14444 x | Choice2Of2 x -> v14445 x
                     let _v14425 = v14446 
                     #endif
@@ -14624,14 +14627,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v14455 = v14468 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v14471 : (bool -> US7) = method21()
-                    let v14472 : (exn -> US7) = method22()
+                    let v14471 : (bool -> US7) = method22()
+                    let v14472 : (exn -> US7) = method23()
                     let v14473 : US7 = match v14454 with Choice1Of2 x -> v14471 x | Choice2Of2 x -> v14472 x
                     let _v14455 = v14473 
                     #endif
 #else
-                    let v14474 : (bool -> US7) = method21()
-                    let v14475 : (exn -> US7) = method22()
+                    let v14474 : (bool -> US7) = method22()
+                    let v14475 : (exn -> US7) = method23()
                     let v14476 : US7 = match v14454 with Choice1Of2 x -> v14474 x | Choice2Of2 x -> v14475 x
                     let _v14455 = v14476 
                     #endif
@@ -14678,14 +14681,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v14485 = v14498 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v14501 : (bool -> US7) = method21()
-                    let v14502 : (exn -> US7) = method22()
+                    let v14501 : (bool -> US7) = method22()
+                    let v14502 : (exn -> US7) = method23()
                     let v14503 : US7 = match v14484 with Choice1Of2 x -> v14501 x | Choice2Of2 x -> v14502 x
                     let _v14485 = v14503 
                     #endif
 #else
-                    let v14504 : (bool -> US7) = method21()
-                    let v14505 : (exn -> US7) = method22()
+                    let v14504 : (bool -> US7) = method22()
+                    let v14505 : (exn -> US7) = method23()
                     let v14506 : US7 = match v14484 with Choice1Of2 x -> v14504 x | Choice2Of2 x -> v14505 x
                     let _v14485 = v14506 
                     #endif
@@ -15125,14 +15128,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15161 = v15174 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15177 : (bool -> US7) = method21()
-                    let v15178 : (exn -> US7) = method22()
+                    let v15177 : (bool -> US7) = method22()
+                    let v15178 : (exn -> US7) = method23()
                     let v15179 : US7 = match v15160 with Choice1Of2 x -> v15177 x | Choice2Of2 x -> v15178 x
                     let _v15161 = v15179 
                     #endif
 #else
-                    let v15180 : (bool -> US7) = method21()
-                    let v15181 : (exn -> US7) = method22()
+                    let v15180 : (bool -> US7) = method22()
+                    let v15181 : (exn -> US7) = method23()
                     let v15182 : US7 = match v15160 with Choice1Of2 x -> v15180 x | Choice2Of2 x -> v15181 x
                     let _v15161 = v15182 
                     #endif
@@ -15179,14 +15182,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15191 = v15204 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15207 : (bool -> US7) = method21()
-                    let v15208 : (exn -> US7) = method22()
+                    let v15207 : (bool -> US7) = method22()
+                    let v15208 : (exn -> US7) = method23()
                     let v15209 : US7 = match v15190 with Choice1Of2 x -> v15207 x | Choice2Of2 x -> v15208 x
                     let _v15191 = v15209 
                     #endif
 #else
-                    let v15210 : (bool -> US7) = method21()
-                    let v15211 : (exn -> US7) = method22()
+                    let v15210 : (bool -> US7) = method22()
+                    let v15211 : (exn -> US7) = method23()
                     let v15212 : US7 = match v15190 with Choice1Of2 x -> v15210 x | Choice2Of2 x -> v15211 x
                     let _v15191 = v15212 
                     #endif
@@ -15233,14 +15236,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15221 = v15234 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15237 : (bool -> US7) = method21()
-                    let v15238 : (exn -> US7) = method22()
+                    let v15237 : (bool -> US7) = method22()
+                    let v15238 : (exn -> US7) = method23()
                     let v15239 : US7 = match v15220 with Choice1Of2 x -> v15237 x | Choice2Of2 x -> v15238 x
                     let _v15221 = v15239 
                     #endif
 #else
-                    let v15240 : (bool -> US7) = method21()
-                    let v15241 : (exn -> US7) = method22()
+                    let v15240 : (bool -> US7) = method22()
+                    let v15241 : (exn -> US7) = method23()
                     let v15242 : US7 = match v15220 with Choice1Of2 x -> v15240 x | Choice2Of2 x -> v15241 x
                     let _v15221 = v15242 
                     #endif
@@ -15287,14 +15290,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15251 = v15264 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15267 : (bool -> US7) = method21()
-                    let v15268 : (exn -> US7) = method22()
+                    let v15267 : (bool -> US7) = method22()
+                    let v15268 : (exn -> US7) = method23()
                     let v15269 : US7 = match v15250 with Choice1Of2 x -> v15267 x | Choice2Of2 x -> v15268 x
                     let _v15251 = v15269 
                     #endif
 #else
-                    let v15270 : (bool -> US7) = method21()
-                    let v15271 : (exn -> US7) = method22()
+                    let v15270 : (bool -> US7) = method22()
+                    let v15271 : (exn -> US7) = method23()
                     let v15272 : US7 = match v15250 with Choice1Of2 x -> v15270 x | Choice2Of2 x -> v15271 x
                     let _v15251 = v15272 
                     #endif
@@ -15714,14 +15717,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15912 = v15925 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15928 : (bool -> US7) = method21()
-                    let v15929 : (exn -> US7) = method22()
+                    let v15928 : (bool -> US7) = method22()
+                    let v15929 : (exn -> US7) = method23()
                     let v15930 : US7 = match v15911 with Choice1Of2 x -> v15928 x | Choice2Of2 x -> v15929 x
                     let _v15912 = v15930 
                     #endif
 #else
-                    let v15931 : (bool -> US7) = method21()
-                    let v15932 : (exn -> US7) = method22()
+                    let v15931 : (bool -> US7) = method22()
+                    let v15932 : (exn -> US7) = method23()
                     let v15933 : US7 = match v15911 with Choice1Of2 x -> v15931 x | Choice2Of2 x -> v15932 x
                     let _v15912 = v15933 
                     #endif
@@ -15768,14 +15771,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15942 = v15955 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15958 : (bool -> US7) = method21()
-                    let v15959 : (exn -> US7) = method22()
+                    let v15958 : (bool -> US7) = method22()
+                    let v15959 : (exn -> US7) = method23()
                     let v15960 : US7 = match v15941 with Choice1Of2 x -> v15958 x | Choice2Of2 x -> v15959 x
                     let _v15942 = v15960 
                     #endif
 #else
-                    let v15961 : (bool -> US7) = method21()
-                    let v15962 : (exn -> US7) = method22()
+                    let v15961 : (bool -> US7) = method22()
+                    let v15962 : (exn -> US7) = method23()
                     let v15963 : US7 = match v15941 with Choice1Of2 x -> v15961 x | Choice2Of2 x -> v15962 x
                     let _v15942 = v15963 
                     #endif
@@ -15822,14 +15825,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v15972 = v15985 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v15988 : (bool -> US7) = method21()
-                    let v15989 : (exn -> US7) = method22()
+                    let v15988 : (bool -> US7) = method22()
+                    let v15989 : (exn -> US7) = method23()
                     let v15990 : US7 = match v15971 with Choice1Of2 x -> v15988 x | Choice2Of2 x -> v15989 x
                     let _v15972 = v15990 
                     #endif
 #else
-                    let v15991 : (bool -> US7) = method21()
-                    let v15992 : (exn -> US7) = method22()
+                    let v15991 : (bool -> US7) = method22()
+                    let v15992 : (exn -> US7) = method23()
                     let v15993 : US7 = match v15971 with Choice1Of2 x -> v15991 x | Choice2Of2 x -> v15992 x
                     let _v15972 = v15993 
                     #endif
@@ -15876,14 +15879,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v16002 = v16015 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v16018 : (bool -> US7) = method21()
-                    let v16019 : (exn -> US7) = method22()
+                    let v16018 : (bool -> US7) = method22()
+                    let v16019 : (exn -> US7) = method23()
                     let v16020 : US7 = match v16001 with Choice1Of2 x -> v16018 x | Choice2Of2 x -> v16019 x
                     let _v16002 = v16020 
                     #endif
 #else
-                    let v16021 : (bool -> US7) = method21()
-                    let v16022 : (exn -> US7) = method22()
+                    let v16021 : (bool -> US7) = method22()
+                    let v16022 : (exn -> US7) = method23()
                     let v16023 : US7 = match v16001 with Choice1Of2 x -> v16021 x | Choice2Of2 x -> v16022 x
                     let _v16002 = v16023 
                     #endif
@@ -16303,14 +16306,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v16663 = v16676 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v16679 : (bool -> US7) = method21()
-                    let v16680 : (exn -> US7) = method22()
+                    let v16679 : (bool -> US7) = method22()
+                    let v16680 : (exn -> US7) = method23()
                     let v16681 : US7 = match v16662 with Choice1Of2 x -> v16679 x | Choice2Of2 x -> v16680 x
                     let _v16663 = v16681 
                     #endif
 #else
-                    let v16682 : (bool -> US7) = method21()
-                    let v16683 : (exn -> US7) = method22()
+                    let v16682 : (bool -> US7) = method22()
+                    let v16683 : (exn -> US7) = method23()
                     let v16684 : US7 = match v16662 with Choice1Of2 x -> v16682 x | Choice2Of2 x -> v16683 x
                     let _v16663 = v16684 
                     #endif
@@ -16357,14 +16360,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v16693 = v16706 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v16709 : (bool -> US7) = method21()
-                    let v16710 : (exn -> US7) = method22()
+                    let v16709 : (bool -> US7) = method22()
+                    let v16710 : (exn -> US7) = method23()
                     let v16711 : US7 = match v16692 with Choice1Of2 x -> v16709 x | Choice2Of2 x -> v16710 x
                     let _v16693 = v16711 
                     #endif
 #else
-                    let v16712 : (bool -> US7) = method21()
-                    let v16713 : (exn -> US7) = method22()
+                    let v16712 : (bool -> US7) = method22()
+                    let v16713 : (exn -> US7) = method23()
                     let v16714 : US7 = match v16692 with Choice1Of2 x -> v16712 x | Choice2Of2 x -> v16713 x
                     let _v16693 = v16714 
                     #endif
@@ -16411,14 +16414,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v16723 = v16736 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v16739 : (bool -> US7) = method21()
-                    let v16740 : (exn -> US7) = method22()
+                    let v16739 : (bool -> US7) = method22()
+                    let v16740 : (exn -> US7) = method23()
                     let v16741 : US7 = match v16722 with Choice1Of2 x -> v16739 x | Choice2Of2 x -> v16740 x
                     let _v16723 = v16741 
                     #endif
 #else
-                    let v16742 : (bool -> US7) = method21()
-                    let v16743 : (exn -> US7) = method22()
+                    let v16742 : (bool -> US7) = method22()
+                    let v16743 : (exn -> US7) = method23()
                     let v16744 : US7 = match v16722 with Choice1Of2 x -> v16742 x | Choice2Of2 x -> v16743 x
                     let _v16723 = v16744 
                     #endif
@@ -16465,14 +16468,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v16753 = v16766 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v16769 : (bool -> US7) = method21()
-                    let v16770 : (exn -> US7) = method22()
+                    let v16769 : (bool -> US7) = method22()
+                    let v16770 : (exn -> US7) = method23()
                     let v16771 : US7 = match v16752 with Choice1Of2 x -> v16769 x | Choice2Of2 x -> v16770 x
                     let _v16753 = v16771 
                     #endif
 #else
-                    let v16772 : (bool -> US7) = method21()
-                    let v16773 : (exn -> US7) = method22()
+                    let v16772 : (bool -> US7) = method22()
+                    let v16773 : (exn -> US7) = method23()
                     let v16774 : US7 = match v16752 with Choice1Of2 x -> v16772 x | Choice2Of2 x -> v16773 x
                     let _v16753 = v16774 
                     #endif
@@ -16892,14 +16895,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v17414 = v17427 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v17430 : (bool -> US7) = method21()
-                    let v17431 : (exn -> US7) = method22()
+                    let v17430 : (bool -> US7) = method22()
+                    let v17431 : (exn -> US7) = method23()
                     let v17432 : US7 = match v17413 with Choice1Of2 x -> v17430 x | Choice2Of2 x -> v17431 x
                     let _v17414 = v17432 
                     #endif
 #else
-                    let v17433 : (bool -> US7) = method21()
-                    let v17434 : (exn -> US7) = method22()
+                    let v17433 : (bool -> US7) = method22()
+                    let v17434 : (exn -> US7) = method23()
                     let v17435 : US7 = match v17413 with Choice1Of2 x -> v17433 x | Choice2Of2 x -> v17434 x
                     let _v17414 = v17435 
                     #endif
@@ -16946,14 +16949,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v17444 = v17457 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v17460 : (bool -> US7) = method21()
-                    let v17461 : (exn -> US7) = method22()
+                    let v17460 : (bool -> US7) = method22()
+                    let v17461 : (exn -> US7) = method23()
                     let v17462 : US7 = match v17443 with Choice1Of2 x -> v17460 x | Choice2Of2 x -> v17461 x
                     let _v17444 = v17462 
                     #endif
 #else
-                    let v17463 : (bool -> US7) = method21()
-                    let v17464 : (exn -> US7) = method22()
+                    let v17463 : (bool -> US7) = method22()
+                    let v17464 : (exn -> US7) = method23()
                     let v17465 : US7 = match v17443 with Choice1Of2 x -> v17463 x | Choice2Of2 x -> v17464 x
                     let _v17444 = v17465 
                     #endif
@@ -17000,14 +17003,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v17474 = v17487 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v17490 : (bool -> US7) = method21()
-                    let v17491 : (exn -> US7) = method22()
+                    let v17490 : (bool -> US7) = method22()
+                    let v17491 : (exn -> US7) = method23()
                     let v17492 : US7 = match v17473 with Choice1Of2 x -> v17490 x | Choice2Of2 x -> v17491 x
                     let _v17474 = v17492 
                     #endif
 #else
-                    let v17493 : (bool -> US7) = method21()
-                    let v17494 : (exn -> US7) = method22()
+                    let v17493 : (bool -> US7) = method22()
+                    let v17494 : (exn -> US7) = method23()
                     let v17495 : US7 = match v17473 with Choice1Of2 x -> v17493 x | Choice2Of2 x -> v17494 x
                     let _v17474 = v17495 
                     #endif
@@ -17054,14 +17057,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v17504 = v17517 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v17520 : (bool -> US7) = method21()
-                    let v17521 : (exn -> US7) = method22()
+                    let v17520 : (bool -> US7) = method22()
+                    let v17521 : (exn -> US7) = method23()
                     let v17522 : US7 = match v17503 with Choice1Of2 x -> v17520 x | Choice2Of2 x -> v17521 x
                     let _v17504 = v17522 
                     #endif
 #else
-                    let v17523 : (bool -> US7) = method21()
-                    let v17524 : (exn -> US7) = method22()
+                    let v17523 : (bool -> US7) = method22()
+                    let v17524 : (exn -> US7) = method23()
                     let v17525 : US7 = match v17503 with Choice1Of2 x -> v17523 x | Choice2Of2 x -> v17524 x
                     let _v17504 = v17525 
                     #endif
@@ -17501,14 +17504,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18180 = v18193 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18196 : (bool -> US7) = method21()
-                    let v18197 : (exn -> US7) = method22()
+                    let v18196 : (bool -> US7) = method22()
+                    let v18197 : (exn -> US7) = method23()
                     let v18198 : US7 = match v18179 with Choice1Of2 x -> v18196 x | Choice2Of2 x -> v18197 x
                     let _v18180 = v18198 
                     #endif
 #else
-                    let v18199 : (bool -> US7) = method21()
-                    let v18200 : (exn -> US7) = method22()
+                    let v18199 : (bool -> US7) = method22()
+                    let v18200 : (exn -> US7) = method23()
                     let v18201 : US7 = match v18179 with Choice1Of2 x -> v18199 x | Choice2Of2 x -> v18200 x
                     let _v18180 = v18201 
                     #endif
@@ -17555,14 +17558,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18210 = v18223 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18226 : (bool -> US7) = method21()
-                    let v18227 : (exn -> US7) = method22()
+                    let v18226 : (bool -> US7) = method22()
+                    let v18227 : (exn -> US7) = method23()
                     let v18228 : US7 = match v18209 with Choice1Of2 x -> v18226 x | Choice2Of2 x -> v18227 x
                     let _v18210 = v18228 
                     #endif
 #else
-                    let v18229 : (bool -> US7) = method21()
-                    let v18230 : (exn -> US7) = method22()
+                    let v18229 : (bool -> US7) = method22()
+                    let v18230 : (exn -> US7) = method23()
                     let v18231 : US7 = match v18209 with Choice1Of2 x -> v18229 x | Choice2Of2 x -> v18230 x
                     let _v18210 = v18231 
                     #endif
@@ -17609,14 +17612,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18240 = v18253 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18256 : (bool -> US7) = method21()
-                    let v18257 : (exn -> US7) = method22()
+                    let v18256 : (bool -> US7) = method22()
+                    let v18257 : (exn -> US7) = method23()
                     let v18258 : US7 = match v18239 with Choice1Of2 x -> v18256 x | Choice2Of2 x -> v18257 x
                     let _v18240 = v18258 
                     #endif
 #else
-                    let v18259 : (bool -> US7) = method21()
-                    let v18260 : (exn -> US7) = method22()
+                    let v18259 : (bool -> US7) = method22()
+                    let v18260 : (exn -> US7) = method23()
                     let v18261 : US7 = match v18239 with Choice1Of2 x -> v18259 x | Choice2Of2 x -> v18260 x
                     let _v18240 = v18261 
                     #endif
@@ -17663,14 +17666,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18270 = v18283 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18286 : (bool -> US7) = method21()
-                    let v18287 : (exn -> US7) = method22()
+                    let v18286 : (bool -> US7) = method22()
+                    let v18287 : (exn -> US7) = method23()
                     let v18288 : US7 = match v18269 with Choice1Of2 x -> v18286 x | Choice2Of2 x -> v18287 x
                     let _v18270 = v18288 
                     #endif
 #else
-                    let v18289 : (bool -> US7) = method21()
-                    let v18290 : (exn -> US7) = method22()
+                    let v18289 : (bool -> US7) = method22()
+                    let v18290 : (exn -> US7) = method23()
                     let v18291 : US7 = match v18269 with Choice1Of2 x -> v18289 x | Choice2Of2 x -> v18290 x
                     let _v18270 = v18291 
                     #endif
@@ -18090,14 +18093,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18931 = v18944 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18947 : (bool -> US7) = method21()
-                    let v18948 : (exn -> US7) = method22()
+                    let v18947 : (bool -> US7) = method22()
+                    let v18948 : (exn -> US7) = method23()
                     let v18949 : US7 = match v18930 with Choice1Of2 x -> v18947 x | Choice2Of2 x -> v18948 x
                     let _v18931 = v18949 
                     #endif
 #else
-                    let v18950 : (bool -> US7) = method21()
-                    let v18951 : (exn -> US7) = method22()
+                    let v18950 : (bool -> US7) = method22()
+                    let v18951 : (exn -> US7) = method23()
                     let v18952 : US7 = match v18930 with Choice1Of2 x -> v18950 x | Choice2Of2 x -> v18951 x
                     let _v18931 = v18952 
                     #endif
@@ -18144,14 +18147,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18961 = v18974 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v18977 : (bool -> US7) = method21()
-                    let v18978 : (exn -> US7) = method22()
+                    let v18977 : (bool -> US7) = method22()
+                    let v18978 : (exn -> US7) = method23()
                     let v18979 : US7 = match v18960 with Choice1Of2 x -> v18977 x | Choice2Of2 x -> v18978 x
                     let _v18961 = v18979 
                     #endif
 #else
-                    let v18980 : (bool -> US7) = method21()
-                    let v18981 : (exn -> US7) = method22()
+                    let v18980 : (bool -> US7) = method22()
+                    let v18981 : (exn -> US7) = method23()
                     let v18982 : US7 = match v18960 with Choice1Of2 x -> v18980 x | Choice2Of2 x -> v18981 x
                     let _v18961 = v18982 
                     #endif
@@ -18198,14 +18201,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v18991 = v19004 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19007 : (bool -> US7) = method21()
-                    let v19008 : (exn -> US7) = method22()
+                    let v19007 : (bool -> US7) = method22()
+                    let v19008 : (exn -> US7) = method23()
                     let v19009 : US7 = match v18990 with Choice1Of2 x -> v19007 x | Choice2Of2 x -> v19008 x
                     let _v18991 = v19009 
                     #endif
 #else
-                    let v19010 : (bool -> US7) = method21()
-                    let v19011 : (exn -> US7) = method22()
+                    let v19010 : (bool -> US7) = method22()
+                    let v19011 : (exn -> US7) = method23()
                     let v19012 : US7 = match v18990 with Choice1Of2 x -> v19010 x | Choice2Of2 x -> v19011 x
                     let _v18991 = v19012 
                     #endif
@@ -18252,14 +18255,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v19021 = v19034 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19037 : (bool -> US7) = method21()
-                    let v19038 : (exn -> US7) = method22()
+                    let v19037 : (bool -> US7) = method22()
+                    let v19038 : (exn -> US7) = method23()
                     let v19039 : US7 = match v19020 with Choice1Of2 x -> v19037 x | Choice2Of2 x -> v19038 x
                     let _v19021 = v19039 
                     #endif
 #else
-                    let v19040 : (bool -> US7) = method21()
-                    let v19041 : (exn -> US7) = method22()
+                    let v19040 : (bool -> US7) = method22()
+                    let v19041 : (exn -> US7) = method23()
                     let v19042 : US7 = match v19020 with Choice1Of2 x -> v19040 x | Choice2Of2 x -> v19041 x
                     let _v19021 = v19042 
                     #endif
@@ -18679,14 +18682,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v19682 = v19695 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19698 : (bool -> US7) = method21()
-                    let v19699 : (exn -> US7) = method22()
+                    let v19698 : (bool -> US7) = method22()
+                    let v19699 : (exn -> US7) = method23()
                     let v19700 : US7 = match v19681 with Choice1Of2 x -> v19698 x | Choice2Of2 x -> v19699 x
                     let _v19682 = v19700 
                     #endif
 #else
-                    let v19701 : (bool -> US7) = method21()
-                    let v19702 : (exn -> US7) = method22()
+                    let v19701 : (bool -> US7) = method22()
+                    let v19702 : (exn -> US7) = method23()
                     let v19703 : US7 = match v19681 with Choice1Of2 x -> v19701 x | Choice2Of2 x -> v19702 x
                     let _v19682 = v19703 
                     #endif
@@ -18733,14 +18736,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v19712 = v19725 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19728 : (bool -> US7) = method21()
-                    let v19729 : (exn -> US7) = method22()
+                    let v19728 : (bool -> US7) = method22()
+                    let v19729 : (exn -> US7) = method23()
                     let v19730 : US7 = match v19711 with Choice1Of2 x -> v19728 x | Choice2Of2 x -> v19729 x
                     let _v19712 = v19730 
                     #endif
 #else
-                    let v19731 : (bool -> US7) = method21()
-                    let v19732 : (exn -> US7) = method22()
+                    let v19731 : (bool -> US7) = method22()
+                    let v19732 : (exn -> US7) = method23()
                     let v19733 : US7 = match v19711 with Choice1Of2 x -> v19731 x | Choice2Of2 x -> v19732 x
                     let _v19712 = v19733 
                     #endif
@@ -18787,14 +18790,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v19742 = v19755 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19758 : (bool -> US7) = method21()
-                    let v19759 : (exn -> US7) = method22()
+                    let v19758 : (bool -> US7) = method22()
+                    let v19759 : (exn -> US7) = method23()
                     let v19760 : US7 = match v19741 with Choice1Of2 x -> v19758 x | Choice2Of2 x -> v19759 x
                     let _v19742 = v19760 
                     #endif
 #else
-                    let v19761 : (bool -> US7) = method21()
-                    let v19762 : (exn -> US7) = method22()
+                    let v19761 : (bool -> US7) = method22()
+                    let v19762 : (exn -> US7) = method23()
                     let v19763 : US7 = match v19741 with Choice1Of2 x -> v19761 x | Choice2Of2 x -> v19762 x
                     let _v19742 = v19763 
                     #endif
@@ -18841,14 +18844,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v19772 = v19785 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v19788 : (bool -> US7) = method21()
-                    let v19789 : (exn -> US7) = method22()
+                    let v19788 : (bool -> US7) = method22()
+                    let v19789 : (exn -> US7) = method23()
                     let v19790 : US7 = match v19771 with Choice1Of2 x -> v19788 x | Choice2Of2 x -> v19789 x
                     let _v19772 = v19790 
                     #endif
 #else
-                    let v19791 : (bool -> US7) = method21()
-                    let v19792 : (exn -> US7) = method22()
+                    let v19791 : (bool -> US7) = method22()
+                    let v19792 : (exn -> US7) = method23()
                     let v19793 : US7 = match v19771 with Choice1Of2 x -> v19791 x | Choice2Of2 x -> v19792 x
                     let _v19772 = v19793 
                     #endif
@@ -19268,14 +19271,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v20433 = v20446 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v20449 : (bool -> US7) = method21()
-                    let v20450 : (exn -> US7) = method22()
+                    let v20449 : (bool -> US7) = method22()
+                    let v20450 : (exn -> US7) = method23()
                     let v20451 : US7 = match v20432 with Choice1Of2 x -> v20449 x | Choice2Of2 x -> v20450 x
                     let _v20433 = v20451 
                     #endif
 #else
-                    let v20452 : (bool -> US7) = method21()
-                    let v20453 : (exn -> US7) = method22()
+                    let v20452 : (bool -> US7) = method22()
+                    let v20453 : (exn -> US7) = method23()
                     let v20454 : US7 = match v20432 with Choice1Of2 x -> v20452 x | Choice2Of2 x -> v20453 x
                     let _v20433 = v20454 
                     #endif
@@ -19322,14 +19325,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v20463 = v20476 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v20479 : (bool -> US7) = method21()
-                    let v20480 : (exn -> US7) = method22()
+                    let v20479 : (bool -> US7) = method22()
+                    let v20480 : (exn -> US7) = method23()
                     let v20481 : US7 = match v20462 with Choice1Of2 x -> v20479 x | Choice2Of2 x -> v20480 x
                     let _v20463 = v20481 
                     #endif
 #else
-                    let v20482 : (bool -> US7) = method21()
-                    let v20483 : (exn -> US7) = method22()
+                    let v20482 : (bool -> US7) = method22()
+                    let v20483 : (exn -> US7) = method23()
                     let v20484 : US7 = match v20462 with Choice1Of2 x -> v20482 x | Choice2Of2 x -> v20483 x
                     let _v20463 = v20484 
                     #endif
@@ -19376,14 +19379,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v20493 = v20506 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v20509 : (bool -> US7) = method21()
-                    let v20510 : (exn -> US7) = method22()
+                    let v20509 : (bool -> US7) = method22()
+                    let v20510 : (exn -> US7) = method23()
                     let v20511 : US7 = match v20492 with Choice1Of2 x -> v20509 x | Choice2Of2 x -> v20510 x
                     let _v20493 = v20511 
                     #endif
 #else
-                    let v20512 : (bool -> US7) = method21()
-                    let v20513 : (exn -> US7) = method22()
+                    let v20512 : (bool -> US7) = method22()
+                    let v20513 : (exn -> US7) = method23()
                     let v20514 : US7 = match v20492 with Choice1Of2 x -> v20512 x | Choice2Of2 x -> v20513 x
                     let _v20493 = v20514 
                     #endif
@@ -19430,14 +19433,14 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
                     let _v20523 = v20536 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v20539 : (bool -> US7) = method21()
-                    let v20540 : (exn -> US7) = method22()
+                    let v20539 : (bool -> US7) = method22()
+                    let v20540 : (exn -> US7) = method23()
                     let v20541 : US7 = match v20522 with Choice1Of2 x -> v20539 x | Choice2Of2 x -> v20540 x
                     let _v20523 = v20541 
                     #endif
 #else
-                    let v20542 : (bool -> US7) = method21()
-                    let v20543 : (exn -> US7) = method22()
+                    let v20542 : (bool -> US7) = method22()
+                    let v20543 : (exn -> US7) = method23()
                     let v20544 : US7 = match v20522 with Choice1Of2 x -> v20542 x | Choice2Of2 x -> v20543 x
                     let _v20523 = v20544 
                     #endif
@@ -19736,7 +19739,7 @@ and method20 (v0 : int32, v1 : Async<bool>) : Async<US6> =
     #endif
     let v21136 : Async<US6> = _v2 
     v21136
-and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
+and method20 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v3 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -19757,8 +19760,8 @@ and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v13 : unit = ()
     let _v13 =
         async {
-            let v14 : Async<bool> = method5(v1, v2)
-            let v15 : Async<US6> = method20(v0, v14)
+            let v14 : Async<bool> = method6(v1, v2)
+            let v15 : Async<US6> = method21(v0, v14)
             let! v15 = v15 
             let v16 : US6 = v15 
             let v19 : bool =
@@ -19782,8 +19785,8 @@ and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v21 : unit = ()
     let _v21 =
         async {
-            let v22 : Async<bool> = method5(v1, v2)
-            let v23 : Async<US6> = method20(v0, v22)
+            let v22 : Async<bool> = method6(v1, v2)
+            let v23 : Async<US6> = method21(v0, v22)
             let! v23 = v23 
             let v24 : US6 = v23 
             let v27 : bool =
@@ -19807,8 +19810,8 @@ and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v29 : unit = ()
     let _v29 =
         async {
-            let v30 : Async<bool> = method5(v1, v2)
-            let v31 : Async<US6> = method20(v0, v30)
+            let v30 : Async<bool> = method6(v1, v2)
+            let v31 : Async<US6> = method21(v0, v30)
             let! v31 = v31 
             let v32 : US6 = v31 
             let v35 : bool =
@@ -19832,8 +19835,8 @@ and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v37 : unit = ()
     let _v37 =
         async {
-            let v38 : Async<bool> = method5(v1, v2)
-            let v39 : Async<US6> = method20(v0, v38)
+            let v38 : Async<bool> = method6(v1, v2)
+            let v39 : Async<US6> = method21(v0, v38)
             let! v39 = v39 
             let v40 : US6 = v39 
             let v43 : bool =
@@ -19856,17 +19859,17 @@ and method19 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
     let v45 : Async<bool> = _v3 
     v45
 and closure13 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
-    method19(v0, v1, v2)
+    method20(v0, v1, v2)
 and closure12 (v0 : int32) (v1 : string) : (int32 -> Async<bool>) =
     closure13(v0, v1)
 and closure11 () (v0 : int32) : (string -> (int32 -> Async<bool>)) =
     closure12(v0)
 and closure22 () (v0 : int32) : US9 =
     US9_0(v0)
-and method30 () : (int32 -> US9) =
+and method31 () : (int32 -> US9) =
     closure22()
-and method32 (v0 : int32, v1 : int64, v2 : int32 option, v3 : bool) : string =
-    let v4 : string = method13()
+and method33 (v0 : int32, v1 : int64, v2 : int32 option, v3 : bool) : string =
+    let v4 : string = method14()
     let v5 : Mut3 = {l0 = v4} : Mut3
     let v6 : string = "{ "
     let v7 : string = $"{v6}"
@@ -19995,25 +19998,25 @@ and method32 (v0 : int32, v1 : int64, v2 : int32 option, v3 : bool) : string =
     let v180 : unit = (fun () -> v179 (); v178) ()
     let v183 : string = v5.l0
     v183
-and method31 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : int64, v10 : int32 option, v11 : bool) : string =
-    let v12 : string = method32(v8, v9, v10, v11)
+and method32 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : int64, v10 : int32 option, v11 : bool) : string =
+    let v12 : string = method33(v8, v9, v10, v11)
     let v13 : int64 = v0.l0
     let v14 : string = "networking.wait_for_port_access"
     let v15 : string = $"{v6} {v7} #{v13} %s{v14} / {v12}"
-    method17(v15)
+    method18(v15)
 and closure23 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) () : unit =
     let v4 : US0 = US0_0
-    let v5 : bool = method6(v4)
+    let v5 : bool = method7(v4)
     if v5 then
         let v6 : unit = ()
         let v7 : (unit -> unit) = closure0()
         let v8 : unit = (fun () -> v7 (); v6) ()
         let struct (v22 : Mut0, v23 : Mut1, v24 : Mut2, v25 : Mut3, v26 : Mut4, v27 : int64 option) = TraceState.trace_state.Value
-        let v40 : string = method7(v22, v23, v24, v25, v26, v27)
-        let v41 : string = method11()
-        let v42 : string = method31(v22, v23, v24, v25, v26, v27, v40, v41, v2, v3, v0, v1)
-        method18(v42)
-and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) : Async<int64> =
+        let v40 : string = method8(v22, v23, v24, v25, v26, v27)
+        let v41 : string = method12()
+        let v42 : string = method32(v22, v23, v24, v25, v26, v27, v40, v41, v2, v3, v0, v1)
+        method19(v42)
+and method30 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) : Async<int64> =
     let v5 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -20034,16 +20037,16 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
     let v15 : unit = ()
     let _v15 =
         async {
-            let v16 : (int32 -> US9) = method30()
+            let v16 : (int32 -> US9) = method31()
             let v17 : US9 option = v0 |> Option.map v16 
             let v28 : US9 = US9_1
             let v29 : US9 = v17 |> Option.defaultValue v28 
             let v37 : Async<bool> =
                 match v29 with
                 | US9_1 -> (* None *)
-                    method5(v2, v3)
+                    method6(v2, v3)
                 | US9_0(v34) -> (* Some *)
-                    method19(v34, v2, v3)
+                    method20(v34, v2, v3)
             let! v37 = v37 
             let v38 : bool = v37 
             let v39 : bool = v38 = v1
@@ -20102,7 +20105,7 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v99 : Async<unit> = _v84 
                 do! v99 
                 let v104 : int64 = v4 + 1L
-                let v105 : Async<int64> = method29(v0, v1, v2, v3, v104)
+                let v105 : Async<int64> = method30(v0, v1, v2, v3, v104)
                 return! v105 
                 (*
                 ()
@@ -20121,16 +20124,16 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
     let v107 : unit = ()
     let _v107 =
         async {
-            let v108 : (int32 -> US9) = method30()
+            let v108 : (int32 -> US9) = method31()
             let v109 : US9 option = v0 |> Option.map v108 
             let v120 : US9 = US9_1
             let v121 : US9 = v109 |> Option.defaultValue v120 
             let v129 : Async<bool> =
                 match v121 with
                 | US9_1 -> (* None *)
-                    method5(v2, v3)
+                    method6(v2, v3)
                 | US9_0(v126) -> (* Some *)
-                    method19(v126, v2, v3)
+                    method20(v126, v2, v3)
             let! v129 = v129 
             let v130 : bool = v129 
             let v131 : bool = v130 = v1
@@ -20189,7 +20192,7 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v191 : Async<unit> = _v176 
                 do! v191 
                 let v196 : int64 = v4 + 1L
-                let v197 : Async<int64> = method29(v0, v1, v2, v3, v196)
+                let v197 : Async<int64> = method30(v0, v1, v2, v3, v196)
                 return! v197 
                 (*
                 ()
@@ -20208,16 +20211,16 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
     let v199 : unit = ()
     let _v199 =
         async {
-            let v200 : (int32 -> US9) = method30()
+            let v200 : (int32 -> US9) = method31()
             let v201 : US9 option = v0 |> Option.map v200 
             let v212 : US9 = US9_1
             let v213 : US9 = v201 |> Option.defaultValue v212 
             let v221 : Async<bool> =
                 match v213 with
                 | US9_1 -> (* None *)
-                    method5(v2, v3)
+                    method6(v2, v3)
                 | US9_0(v218) -> (* Some *)
-                    method19(v218, v2, v3)
+                    method20(v218, v2, v3)
             let! v221 = v221 
             let v222 : bool = v221 
             let v223 : bool = v222 = v1
@@ -20276,7 +20279,7 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v283 : Async<unit> = _v268 
                 do! v283 
                 let v288 : int64 = v4 + 1L
-                let v289 : Async<int64> = method29(v0, v1, v2, v3, v288)
+                let v289 : Async<int64> = method30(v0, v1, v2, v3, v288)
                 return! v289 
                 (*
                 ()
@@ -20295,16 +20298,16 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
     let v291 : unit = ()
     let _v291 =
         async {
-            let v292 : (int32 -> US9) = method30()
+            let v292 : (int32 -> US9) = method31()
             let v293 : US9 option = v0 |> Option.map v292 
             let v304 : US9 = US9_1
             let v305 : US9 = v293 |> Option.defaultValue v304 
             let v313 : Async<bool> =
                 match v305 with
                 | US9_1 -> (* None *)
-                    method5(v2, v3)
+                    method6(v2, v3)
                 | US9_0(v310) -> (* Some *)
-                    method19(v310, v2, v3)
+                    method20(v310, v2, v3)
             let! v313 = v313 
             let v314 : bool = v313 
             let v315 : bool = v314 = v1
@@ -20363,7 +20366,7 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v375 : Async<unit> = _v360 
                 do! v375 
                 let v380 : int64 = v4 + 1L
-                let v381 : Async<int64> = method29(v0, v1, v2, v3, v380)
+                let v381 : Async<int64> = method30(v0, v1, v2, v3, v380)
                 return! v381 
                 (*
                 ()
@@ -20380,18 +20383,18 @@ and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
     #endif
     let v383 : Async<int64> = _v5 
     v383
-and method28 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32) : Async<int64> =
+and method29 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32) : Async<int64> =
     let v4 : int64 = 1L
-    method29(v0, v1, v2, v3, v4)
+    method30(v0, v1, v2, v3, v4)
 and closure21 (v0 : int32 option, v1 : bool, v2 : string) (v3 : int32) : Async<int64> =
-    method28(v0, v1, v2, v3)
+    method29(v0, v1, v2, v3)
 and closure20 (v0 : int32 option, v1 : bool) (v2 : string) : (int32 -> Async<int64>) =
     closure21(v0, v1, v2)
 and closure19 (v0 : int32 option) (v1 : bool) : (string -> (int32 -> Async<int64>)) =
     closure20(v0, v1)
 and closure18 () (v0 : int32 option) : (bool -> (string -> (int32 -> Async<int64>))) =
     closure19(v0)
-and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
+and method35 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     let v3 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -20412,16 +20415,16 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     let v13 : unit = ()
     let _v13 =
         async {
-            let v14 : (int32 -> US9) = method30()
+            let v14 : (int32 -> US9) = method31()
             let v15 : US9 option = v0 |> Option.map v14 
             let v26 : US9 = US9_1
             let v27 : US9 = v15 |> Option.defaultValue v26 
             let v35 : Async<bool> =
                 match v27 with
                 | US9_1 -> (* None *)
-                    method5(v1, v2)
+                    method6(v1, v2)
                 | US9_0(v32) -> (* Some *)
-                    method19(v32, v1, v2)
+                    method20(v32, v1, v2)
             let! v35 = v35 
             let v36 : bool = v35 
             let v37 : bool = v36 = false
@@ -20432,7 +20435,7 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             else
                 *) else
                 let v38 : int32 = v2 + 1
-                let v39 : Async<int32> = method34(v0, v1, v38)
+                let v39 : Async<int32> = method35(v0, v1, v38)
                 return! v39 
                 (*
                 ()
@@ -20451,16 +20454,16 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     let v41 : unit = ()
     let _v41 =
         async {
-            let v42 : (int32 -> US9) = method30()
+            let v42 : (int32 -> US9) = method31()
             let v43 : US9 option = v0 |> Option.map v42 
             let v54 : US9 = US9_1
             let v55 : US9 = v43 |> Option.defaultValue v54 
             let v63 : Async<bool> =
                 match v55 with
                 | US9_1 -> (* None *)
-                    method5(v1, v2)
+                    method6(v1, v2)
                 | US9_0(v60) -> (* Some *)
-                    method19(v60, v1, v2)
+                    method20(v60, v1, v2)
             let! v63 = v63 
             let v64 : bool = v63 
             let v65 : bool = v64 = false
@@ -20471,7 +20474,7 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             else
                 *) else
                 let v66 : int32 = v2 + 1
-                let v67 : Async<int32> = method34(v0, v1, v66)
+                let v67 : Async<int32> = method35(v0, v1, v66)
                 return! v67 
                 (*
                 ()
@@ -20490,16 +20493,16 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     let v69 : unit = ()
     let _v69 =
         async {
-            let v70 : (int32 -> US9) = method30()
+            let v70 : (int32 -> US9) = method31()
             let v71 : US9 option = v0 |> Option.map v70 
             let v82 : US9 = US9_1
             let v83 : US9 = v71 |> Option.defaultValue v82 
             let v91 : Async<bool> =
                 match v83 with
                 | US9_1 -> (* None *)
-                    method5(v1, v2)
+                    method6(v1, v2)
                 | US9_0(v88) -> (* Some *)
-                    method19(v88, v1, v2)
+                    method20(v88, v1, v2)
             let! v91 = v91 
             let v92 : bool = v91 
             let v93 : bool = v92 = false
@@ -20510,7 +20513,7 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             else
                 *) else
                 let v94 : int32 = v2 + 1
-                let v95 : Async<int32> = method34(v0, v1, v94)
+                let v95 : Async<int32> = method35(v0, v1, v94)
                 return! v95 
                 (*
                 ()
@@ -20529,16 +20532,16 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     let v97 : unit = ()
     let _v97 =
         async {
-            let v98 : (int32 -> US9) = method30()
+            let v98 : (int32 -> US9) = method31()
             let v99 : US9 option = v0 |> Option.map v98 
             let v110 : US9 = US9_1
             let v111 : US9 = v99 |> Option.defaultValue v110 
             let v119 : Async<bool> =
                 match v111 with
                 | US9_1 -> (* None *)
-                    method5(v1, v2)
+                    method6(v1, v2)
                 | US9_0(v116) -> (* Some *)
-                    method19(v116, v1, v2)
+                    method20(v116, v1, v2)
             let! v119 = v119 
             let v120 : bool = v119 
             let v121 : bool = v120 = false
@@ -20549,7 +20552,7 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             else
                 *) else
                 let v122 : int32 = v2 + 1
-                let v123 : Async<int32> = method34(v0, v1, v122)
+                let v123 : Async<int32> = method35(v0, v1, v122)
                 return! v123 
                 (*
                 ()
@@ -20566,10 +20569,10 @@ and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     #endif
     let v125 : Async<int32> = _v3 
     v125
-and method33 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
-    method34(v0, v1, v2)
+and method34 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
+    method35(v0, v1, v2)
 and closure26 (v0 : int32 option, v1 : string) (v2 : int32) : Async<int32> =
-    method33(v0, v1, v2)
+    method34(v0, v1, v2)
 and closure25 (v0 : int32 option) (v1 : string) : (int32 -> Async<int32>) =
     closure26(v0, v1)
 and closure24 () (v0 : int32 option) : (string -> (int32 -> Async<int32>)) =
