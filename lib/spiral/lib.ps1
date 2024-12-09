@@ -35,7 +35,8 @@ function FixTypeScript {
     )
     process {
         $text `
-            -replace "\./fable_modules/fable-library-ts\.[\-\d\w\.]+/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "\./lib/typescript/fable", "." `
+            -replace "/fable_modules/fable-library-ts\.[\-\d\w\.]+/", "/deps/Fable/src/fable-library-ts/" `
             -replace "from `"\./deps/", "from `"../../polyglot/deps/" `
             -replace "from `"\.\./\.\./\.\./deps/", "from `"../../deps/"
     }

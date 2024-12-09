@@ -1,15 +1,15 @@
-import { toString, Record, Union } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Types.js";
-import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Reflection.js";
-import { int32, float64 } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Int32.js";
-import { IComparable, IEquatable } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Util.js";
-import { FSharpList, ofArray } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/List.js";
-import { Option } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Option.js";
-import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Seq.js";
-import { fill, setItem, item } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Array.js";
-import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/System.Text.js";
-import { singleton as singleton_1 } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/AsyncBuilder.js";
-import { rangeDouble } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Range.js";
-import { startChild, sleep } from "../../../../lib/typescript/fable/fable_modules/fable-library-ts.4.21.0/Async.js";
+import { toString, Record, Union } from "../../../../deps/Fable/src/fable-library-ts/Types.js";
+import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { int32, float64 } from "../../../../deps/Fable/src/fable-library-ts/Int32.js";
+import { IComparable, IEquatable } from "../../../../deps/Fable/src/fable-library-ts/Util.js";
+import { FSharpList, ofArray } from "../../../../deps/Fable/src/fable-library-ts/List.js";
+import { Option } from "../../../../deps/Fable/src/fable-library-ts/Option.js";
+import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../../../deps/Fable/src/fable-library-ts/Seq.js";
+import { fill, setItem, item } from "../../../../deps/Fable/src/fable-library-ts/Array.js";
+import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../../../deps/Fable/src/fable-library-ts/System.Text.js";
+import { Async, singleton as singleton_1 } from "../../../../deps/Fable/src/fable-library-ts/AsyncBuilder.js";
+import { rangeDouble } from "../../../../deps/Fable/src/fable-library-ts/Range.js";
+import { startChild, sleep } from "../../../../deps/Fable/src/fable-library-ts/Async.js";
 
 export interface IOsEnviron {
     environ(): any
@@ -205,7 +205,11 @@ export function method0(): string {
     return "VSCODE_PID";
 }
 
-export function method2(): string {
+export function method2(v0_1: string): string {
+    return v0_1;
+}
+
+export function method3(): string {
     return "";
 }
 
@@ -213,7 +217,7 @@ export function closure1(unitVar: void, v0_1: string): US2_$union {
     return US2_US2_0(v0_1);
 }
 
-export function method3(): ((arg0: string) => US2_$union) {
+export function method4(): ((arg0: string) => US2_$union) {
     return (v: string): US2_$union => closure1(undefined, v);
 }
 
@@ -221,19 +225,19 @@ export function method1(v0_1: string): string {
     return process.env[v0_1] ?? "";
 }
 
-export function method5(v0_1: float64, v1: float64, v2: float64): [float64, float64, float64] {
+export function method6(v0_1: float64, v1: float64, v2: float64): [float64, float64, float64] {
     return [v0_1, v1, v2] as [float64, float64, float64];
 }
 
-export function method7(v0_1: float64, v1: Mut0): boolean {
+export function method8(v0_1: float64, v1: Mut0): boolean {
     return v1.l0 < v0_1;
 }
 
-export function method8(v0_1: Iterable<float64>): Iterable<float64> {
+export function method9(v0_1: Iterable<float64>): Iterable<float64> {
     return v0_1;
 }
 
-export function method10(v0_1: float64, v1: float64, v2: float64, v3: string, v4: float64, v5: float64, v6: float64, v7: float64): US3_$union {
+export function method11(v0_1: float64, v1: float64, v2: float64, v3: string, v4: float64, v5: float64, v6: float64, v7: float64): US3_$union {
     const v8: float64 = Math.sin(v4);
     const v9: float64 = v1 * v8;
     const v10: float64 = Math.sin(v5);
@@ -264,14 +268,14 @@ export function method10(v0_1: float64, v1: float64, v2: float64, v3: string, v4
 export function closure4(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64, v5: float64, v6: float64): FSharpList<US3_$union> {
     const v7: float64 = -v3;
     const v12: float64 = -v5;
-    return ofArray([method10(v5, v6, v7, ";", v0_1, v1, v2, v4), method10(v3, v6, v5, "\\", v0_1, v1, v2, v4), method10(v7, v6, v12, "/", v0_1, v1, v2, v4), method10(v12, v6, v3, "=", v0_1, v1, v2, v4), method10(v5, v7, -v6, ">", v0_1, v1, v2, v4), method10(v5, v3, v6, "<", v0_1, v1, v2, v4)]);
+    return ofArray([method11(v5, v6, v7, ";", v0_1, v1, v2, v4), method11(v3, v6, v5, "\\", v0_1, v1, v2, v4), method11(v7, v6, v12, "/", v0_1, v1, v2, v4), method11(v12, v6, v3, "=", v0_1, v1, v2, v4), method11(v5, v7, -v6, ">", v0_1, v1, v2, v4), method11(v5, v3, v6, "<", v0_1, v1, v2, v4)]);
 }
 
 export function closure3(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64, v5: float64): ((arg0: float64) => FSharpList<US3_$union>) {
     return (v: float64): FSharpList<US3_$union> => closure4(v0_1, v1, v2, v3, v4, v5, v);
 }
 
-export function method9(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64): ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) {
+export function method10(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64): ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) {
     return (v: float64): ((arg0: float64) => FSharpList<US3_$union>) => closure3(v0_1, v1, v2, v3, v4, v);
 }
 
@@ -284,27 +288,27 @@ export function closure5(unitVar: void, v0_1: US3_$union): Option<[int32, float6
     }
 }
 
-export function method11(): ((arg0: US3_$union) => Option<[int32, float64, string]>) {
+export function method12(): ((arg0: US3_$union) => Option<[int32, float64, string]>) {
     return (v: US3_$union): Option<[int32, float64, string]> => closure5(undefined, v);
 }
 
 export function closure2(v0_1: float64, v1: float64, v2: float64, _arg: [float64, float64]): Iterable<[int32, float64, string]> {
     const v3: float64 = _arg[0];
     const v5: float64 = -v3;
-    const v16: Iterable<float64> = method8(delay<float64>((): Iterable<float64> => {
-        const v7: Mut0 = new Mut0(v5);
-        return enumerateWhile<float64>((): boolean => method7(v3, v7), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v7.l0), delay<float64>((): Iterable<float64> => {
-            const v11: float64 = v7.l0 + 0.6;
-            v7.l0 = v11;
+    const v53: Iterable<float64> = method9(delay<float64>((): Iterable<float64> => {
+        const v9: Mut0 = new Mut0(v5);
+        return enumerateWhile<float64>((): boolean => method8(v3, v9), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v9.l0), delay<float64>((): Iterable<float64> => {
+            const v13: float64 = v9.l0 + 0.6;
+            v9.l0 = v13;
             return empty<float64>();
         }))));
     }));
-    const v17: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method9(v0_1, v1, v2, v3, _arg[1]);
-    const v18: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method11();
-    return delay<[int32, float64, string]>((): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_x: float64): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_y: float64): Iterable<[int32, float64, string]> => choose<US3_$union, [int32, float64, string]>(v18, v17(cube_x)(cube_y)), v16), v16));
+    const v54: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method10(v0_1, v1, v2, v3, _arg[1]);
+    const v55: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method12();
+    return delay<[int32, float64, string]>((): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_x: float64): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_y: float64): Iterable<[int32, float64, string]> => choose<US3_$union, [int32, float64, string]>(v55, v54(cube_x)(cube_y)), v53), v53));
 }
 
-export function method6(v0_1: float64, v1: float64, v2: float64): ((arg0: [float64, float64]) => Iterable<[int32, float64, string]>) {
+export function method7(v0_1: float64, v1: float64, v2: float64): ((arg0: [float64, float64]) => Iterable<[int32, float64, string]>) {
     return (arg10$0040: [float64, float64]): Iterable<[int32, float64, string]> => closure2(v0_1, v1, v2, arg10$0040);
 }
 
@@ -331,7 +335,7 @@ export function closure6(v0_1: US4_$union[], v1: int32): ((arg0: [float64, strin
     };
 }
 
-export function method12(): string {
+export function method13(): string {
     return "";
 }
 
@@ -352,35 +356,35 @@ export function closure10(v0_1: string, unitVar: void): void {
     console.log(v0_1);
 }
 
-export function method4(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): any {
-    return singleton_1.Delay<void>((): any => {
-        const patternInput: [float64, float64, float64] = method5(v2, v3, v4);
-        const v18: float64 = patternInput[2];
-        const v17: float64 = patternInput[1];
-        const v16: float64 = patternInput[0];
-        const v31: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method6(v16, v17, v18), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
-        const v36: US4_$union[] = fill(new Array(160 * 44), 0, 160 * 44, US4_US4_1());
+export function method5(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): Async<void> {
+    return singleton_1.Delay<void>((): Async<void> => {
+        const patternInput: [float64, float64, float64] = method6(v2, v3, v4);
+        const v20: float64 = patternInput[2];
+        const v19: float64 = patternInput[1];
+        const v18: float64 = patternInput[0];
+        const v33: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method7(v18, v19, v20), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
+        const v38: US4_$union[] = fill(new Array(160 * 44), 0, 160 * 44, US4_US4_1());
         iterate<[int32, float64, string]>((_arg: [int32, float64, string]): void => {
-            closure6(v36, _arg[0])([_arg[1], _arg[2]] as [float64, string]);
-        }, v31);
-        const v44: any = StringBuilder_$ctor_Z721C83C5(method12());
-        return singleton_1.Combine<void>(singleton_1.For<int32>(rangeDouble(0, 1, 44 - 1), (_arg_1: int32): any => {
-            closure8(v36, v44, _arg_1);
+            closure6(v38, _arg[0])([_arg[1], _arg[2]] as [float64, string]);
+        }, v33);
+        const v46: any = StringBuilder_$ctor_Z721C83C5(method13());
+        return singleton_1.Combine<void>(singleton_1.For<int32>(rangeDouble(0, 1, 44 - 1), (_arg_1: int32): Async<void> => {
+            closure8(v38, v46, _arg_1);
             return singleton_1.Zero();
-        }), singleton_1.Delay<void>((): any => {
-            const v49: string = toString(v44);
-            const v52: boolean = v0_1 < 0;
-            return singleton_1.Combine<void>(v52 ? ((process.stdout.write('\u001B[1;1H'), singleton_1.Zero())) : singleton_1.Zero(), singleton_1.Delay<void>((): any => {
-                let v61: any;
-                closure10(v49, undefined);
-                v61 = undefined;
-                const v71: any = sleep(1);
-                return singleton_1.Bind<void, void>(v71, (): any => {
-                    let v90: any;
-                    const v85: boolean = (v0_1 > 0) && (v1 >= v0_1);
-                    return singleton_1.Combine<void>(v85 ? (singleton_1.Zero()) : ((v90 = method4(v0_1, v1 + 1, v16 + 0.05, v17 + 0.05, v18 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v90), singleton_1.Delay<void>((): any => {
+        }), singleton_1.Delay<void>((): Async<void> => {
+            const v51: string = toString(v46);
+            const v54: boolean = v0_1 < 0;
+            return singleton_1.Combine<void>(v54 ? ((process.stdout.write('\u001B[1;1H'), singleton_1.Zero())) : singleton_1.Zero(), singleton_1.Delay<void>((): Async<void> => {
+                let v63: any;
+                closure10(v51, undefined);
+                v63 = undefined;
+                const v73: Async<void> = sleep(1);
+                return singleton_1.Bind<void, void>(v73, (): Async<void> => {
+                    let v92: Async<void>;
+                    const v87: boolean = (v0_1 > 0) && (v1 >= v0_1);
+                    return singleton_1.Combine<void>(v87 ? (singleton_1.Zero()) : ((v92 = method5(v0_1, v1 + 1, v18 + 0.05, v19 + 0.05, v20 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v92), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
-                    })))), singleton_1.Delay<void>((): any => {
+                    })))), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
                     }));
                 });
@@ -402,7 +406,7 @@ export function closure0(unitVar: void, v0_1: string[]): void {
     if (v56) {
         process.stdout.write('\u001B[?25l');
     }
-    const v161: any = startChild<void>(method4(v56 ? -1 : 50, 1, 0, 0, 0));
+    const v161: Async<Async<void>> = startChild<void>(method5(v56 ? -1 : 50, 1, 0, 0, 0));
 }
 
 export const v0 = (v: string[]): void => {

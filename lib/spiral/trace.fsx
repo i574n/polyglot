@@ -1888,13 +1888,13 @@ and method17 (v0 : string) : string =
     let v2 : (char list -> (char [])) = List.toArray
     let v3 : (char []) = v2 v1
     let v6 : string = v0.TrimStart v3 
-    let v28 : char list = []
-    let v29 : char list = '/' :: v28 
-    let v32 : char list = ' ' :: v29 
-    let v35 : (char list -> (char [])) = List.toArray
-    let v36 : (char []) = v35 v32
-    let v39 : string = v6.TrimEnd v36 
-    v39
+    let v30 : char list = []
+    let v31 : char list = '/' :: v30 
+    let v34 : char list = ' ' :: v31 
+    let v37 : (char list -> (char [])) = List.toArray
+    let v38 : (char []) = v37 v34
+    let v41 : string = v6.TrimEnd v38 
+    v41
 and method15 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option, v6 : string, v7 : string, v8 : string, v9 : string) : string =
     let v10 : string = method16(v9)
     let v11 : int64 = v0.l0

@@ -23,7 +23,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr22() -> TypeInfo:
+def _expr17() -> TypeInfo:
     return class_type("Common.Disposable", None, Disposable)
 
 
@@ -36,13 +36,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr22
+Disposable_reflection = _expr17
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr23() -> TypeInfo:
+def _expr22() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -58,7 +58,7 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr23
+US0_reflection = _expr22
 
 def _expr24() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
@@ -337,11 +337,11 @@ def method7(v0_1: Callable[[], None]) -> Callable[[], None]:
 
 def closure3(unit_var: None, v0_1: Callable[[], None]) -> IDisposable:
     v10: Callable[[], None] = method7(v0_1)
-    class ObjectExpr48(IDisposable):
+    class ObjectExpr54(IDisposable):
         def Dispose(self, __unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
             v10(None)
 
-    return ObjectExpr48()
+    return ObjectExpr54()
 
 
 def closure6(unit_var: None, v0_1: US6) -> US7:
@@ -368,17 +368,17 @@ def method9(v0_1: US0) -> bool:
         return False
 
     else: 
-        class ObjectExpr62:
+        class ObjectExpr69:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        class ObjectExpr65:
+        class ObjectExpr70:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr65()))
+        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr69())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr70()))
 
 
 
@@ -387,10 +387,10 @@ def closure10(unit_var: None, v0_1: int64) -> US2:
 
 
 def method11(__unit: None=None) -> Callable[[int64], US2]:
-    def _arrow67(v: int64) -> US2:
+    def _arrow71(v: int64) -> US2:
         return closure10(None, v)
 
-    return _arrow67
+    return _arrow71
 
 
 def method12(__unit: None=None) -> str:

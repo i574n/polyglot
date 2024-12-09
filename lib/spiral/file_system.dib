@@ -1568,23 +1568,18 @@ inl create_temp_dir () =
 #!spiral
 
 //// test
-
-inl path, disposable = create_temp_dir ()
-disposable |> use |> ignore
-path
-|> directory_exists
-|> _assert_eq true
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d chrono
 
 inl path, disposable = create_temp_dir ()
-path
-|> directory_exists
-|> _assert_eq true
-disposable |> use |> ignore
+join
+    path
+    |> directory_exists
+    |> _assert_eq true
+    disposable |> use |> ignore
+    path
+    |> directory_exists
+    |> _assert_eq true
 path
 |> directory_exists
 |> _assert_eq false

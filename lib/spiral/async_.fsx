@@ -48,15 +48,15 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
     let v30 : unit = ()
     let _v30 =
         async {
-            let v31 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v31 = v31 
-            let v32 : System.Threading.CancellationToken = v31 
-            let v33 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v34 : (System.Threading.CancellationToken []) = [|v32; v33; v0|]
-            let v35 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v36 : System.Threading.CancellationTokenSource = v35 v34
-            let v37 : System.Threading.CancellationToken = v36.Token
-            return v37 
+            let v33 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v33 = v33 
+            let v34 : System.Threading.CancellationToken = v33 
+            let v35 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v36 : (System.Threading.CancellationToken []) = [|v34; v35; v0|]
+            let v37 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v38 : System.Threading.CancellationTokenSource = v37 v36
+            let v39 : System.Threading.CancellationToken = v38.Token
+            return v39 
             (*
             ()
         *)
@@ -64,22 +64,22 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
         (*
         ()
     *)
-    let v38 : Async<System.Threading.CancellationToken> = _v30 
-    let _v20 = v38 
+    let v89 : Async<System.Threading.CancellationToken> = _v30 
+    let _v20 = v89 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v39 : unit = ()
-    let _v39 =
+    let v90 : unit = ()
+    let _v90 =
         async {
-            let v40 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v40 = v40 
-            let v41 : System.Threading.CancellationToken = v40 
-            let v42 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v43 : (System.Threading.CancellationToken []) = [|v41; v42; v0|]
-            let v44 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v45 : System.Threading.CancellationTokenSource = v44 v43
-            let v46 : System.Threading.CancellationToken = v45.Token
-            return v46 
+            let v93 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v93 = v93 
+            let v94 : System.Threading.CancellationToken = v93 
+            let v95 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v96 : (System.Threading.CancellationToken []) = [|v94; v95; v0|]
+            let v97 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v98 : System.Threading.CancellationTokenSource = v97 v96
+            let v99 : System.Threading.CancellationToken = v98.Token
+            return v99 
             (*
             ()
         *)
@@ -87,22 +87,22 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
         (*
         ()
     *)
-    let v47 : Async<System.Threading.CancellationToken> = _v39 
-    let _v20 = v47 
+    let v149 : Async<System.Threading.CancellationToken> = _v90 
+    let _v20 = v149 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v48 : unit = ()
-    let _v48 =
+    let v150 : unit = ()
+    let _v150 =
         async {
-            let v49 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v49 = v49 
-            let v50 : System.Threading.CancellationToken = v49 
-            let v51 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v52 : (System.Threading.CancellationToken []) = [|v50; v51; v0|]
-            let v53 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v54 : System.Threading.CancellationTokenSource = v53 v52
-            let v55 : System.Threading.CancellationToken = v54.Token
-            return v55 
+            let v153 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v153 = v153 
+            let v154 : System.Threading.CancellationToken = v153 
+            let v155 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v156 : (System.Threading.CancellationToken []) = [|v154; v155; v0|]
+            let v157 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v158 : System.Threading.CancellationTokenSource = v157 v156
+            let v159 : System.Threading.CancellationToken = v158.Token
+            return v159 
             (*
             ()
         *)
@@ -110,22 +110,22 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
         (*
         ()
     *)
-    let v56 : Async<System.Threading.CancellationToken> = _v48 
-    let _v20 = v56 
+    let v209 : Async<System.Threading.CancellationToken> = _v150 
+    let _v20 = v209 
     #endif
 #else
-    let v57 : unit = ()
-    let _v57 =
+    let v210 : unit = ()
+    let _v210 =
         async {
-            let v58 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v58 = v58 
-            let v59 : System.Threading.CancellationToken = v58 
-            let v60 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v61 : (System.Threading.CancellationToken []) = [|v59; v60; v0|]
-            let v62 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v63 : System.Threading.CancellationTokenSource = v62 v61
-            let v64 : System.Threading.CancellationToken = v63.Token
-            return v64 
+            let v213 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v213 = v213 
+            let v214 : System.Threading.CancellationToken = v213 
+            let v215 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v216 : (System.Threading.CancellationToken []) = [|v214; v215; v0|]
+            let v217 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v218 : System.Threading.CancellationTokenSource = v217 v216
+            let v219 : System.Threading.CancellationToken = v218.Token
+            return v219 
             (*
             ()
         *)
@@ -133,14 +133,14 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
         (*
         ()
     *)
-    let v65 : Async<System.Threading.CancellationToken> = _v57 
-    let _v20 = v65 
+    let v269 : Async<System.Threading.CancellationToken> = _v210 
+    let _v20 = v269 
     #endif
-    let v66 : Async<System.Threading.CancellationToken> = _v20 
-    let _v1 = v66 
+    let v270 : Async<System.Threading.CancellationToken> = _v20 
+    let _v1 = v270 
     #endif
-    let v71 : Async<System.Threading.CancellationToken> = _v1 
-    v71
+    let v304 : Async<System.Threading.CancellationToken> = _v1 
+    v304
 let v0 : (System.Threading.CancellationToken -> Async<System.Threading.CancellationToken>) = closure0()
 let merge_cancellation_token_with_default_async x = v0 x
 ()

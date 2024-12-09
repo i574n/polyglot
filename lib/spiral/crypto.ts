@@ -335,10 +335,10 @@ export function method4(): string {
 }
 
 export function method0(v0_1: string): string {
-    const v132: ICryptoCreateHash = crypto;
-    const v135: any = v132.createHash("sha256");
-    const v137: any = v135.update(v0_1, 'utf8');
-    return v137.digest("hex");
+    const v134: ICryptoCreateHash = crypto;
+    const v137: any = v134.createHash("sha256");
+    const v139: any = v137.update(v0_1, 'utf8');
+    return v139.digest("hex");
 }
 
 export function closure0(unitVar: void, v0_1: string): string {

@@ -272,9 +272,15 @@ inl main (_args : array_base string) =
             |> async.run_synchronously
 
 inl main () =
-    $'let main_ = !main '
-    $'#if \!FABLE_COMPILER_RUST'
-    $'main_ [||]' : ()
-    $'#else'
-    $'let main args = main_ [||]; 0' : ()
-    $'#endif' : ()
+    backend_switch {
+        Fsharp = fun () =>
+            $'let main_ = !main '
+            $'#if \!FABLE_COMPILER_RUST'
+            $'main_ [||]' : ()
+            $'#else'
+            $'let main args = main_ [||]; 0' : ()
+            $'#endif' : ()
+        Python = fun () =>
+            main ;[]
+    }
+    : ()

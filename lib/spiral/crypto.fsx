@@ -234,123 +234,123 @@ and method0 (v0 : string) : string =
         (*
         ()
     *)
-    let v95 : string seq = _v94 
-    let v101 : string = method1()
-    let v102 : bool = v101 = "\n"
-    let v104 : string =
-        if v102 then
-            method2(v101)
+    let v97 : string seq = _v94 
+    let v103 : string = method1()
+    let v104 : bool = v103 = "\n"
+    let v106 : string =
+        if v104 then
+            method2(v103)
         else
-            v101
-    let v105 : (string -> (string seq -> string)) = String.concat
-    let v106 : (string seq -> string) = v105 v104
-    let v107 : string = v106 v95
-    let v110 : Result<string, std_io_Error> = Ok v107 
-    let v111 : unit = ()
+            v103
+    let v107 : (string -> (string seq -> string)) = String.concat
+    let v108 : (string seq -> string) = v107 v106
+    let v109 : string = v108 v97
+    let v112 : Result<string, std_io_Error> = Ok v109 
+    let v113 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v112 : string = "$0.unwrap()"
-    let v113 : string = Fable.Core.RustInterop.emitRustExpr v110 v112 
-    let _v111 = v113 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
     let v114 : string = "$0.unwrap()"
-    let v115 : string = Fable.Core.RustInterop.emitRustExpr v110 v114 
-    let _v111 = v115 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v116 : string = "$0.unwrap()"
-    let v117 : string = Fable.Core.RustInterop.emitRustExpr v110 v116 
-    let _v111 = v117 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v118 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v111 = v118 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v119 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v111 = v119 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v120 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v111 = v120 
-    #endif
-#else
-    let v121 : string = match v110 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v111 = v121 
-    #endif
-    let v122 : string = _v111 
-    let _v1 = v122 
+    let v115 : string = Fable.Core.RustInterop.emitRustExpr v112 v114 
+    let _v113 = v115 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v125 : string = null |> unbox<string>
-    let _v1 = v125 
+    let v116 : string = "$0.unwrap()"
+    let v117 : string = Fable.Core.RustInterop.emitRustExpr v112 v116 
+    let _v113 = v117 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v128 : string = null |> unbox<string>
-    let _v1 = v128 
+    let v118 : string = "$0.unwrap()"
+    let v119 : string = Fable.Core.RustInterop.emitRustExpr v112 v118 
+    let _v113 = v119 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v131 : string = "crypto"
-    let v132 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v131 
-    let v133 : string = "v132.createHash($0)"
-    let v134 : string = "sha256"
-    let v135 : obj = Fable.Core.JsInterop.emitJsExpr v134 v133 
-    let v136 : string = "$0.update($1, 'utf8')"
-    let v137 : obj = Fable.Core.JsInterop.emitJsExpr struct (v135, v0) v136 
-    let v138 : string = "$0.digest($1)"
-    let v139 : string = "hex"
-    let v140 : string = Fable.Core.JsInterop.emitJsExpr struct (v137, v139) v138 
-    let _v1 = v140 
+    let v120 : string = match v112 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v113 = v120 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v141 : string = "hashlib"
-    let v142 : IHashlibSha256 = Fable.Core.PyInterop.importAll v141 
-    let v143 : string = "v142.sha256()"
-    let v144 : obj = Fable.Core.PyInterop.emitPyExpr () v143 
-    let v147 : string = "$0.encode($1)"
-    let v148 : string = "utf-8"
-    let v149 : string = Fable.Core.PyInterop.emitPyExpr struct (v0, v148) v147 
-    let v152 : string = "v144.update($0)"
-    Fable.Core.PyInterop.emitPyExpr v149 v152 
-    let v153 : string = "v144.hexdigest()"
-    let v154 : string = Fable.Core.PyInterop.emitPyExpr () v153 
-    let _v1 = v154 
+    let v121 : string = match v112 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v113 = v121 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v157 : string = null |> unbox<string>
-    let _v1 = v157 
+    let v122 : string = match v112 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v113 = v122 
     #endif
 #else
-    let v160 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v161 : System.Security.Cryptography.SHA256 = v160 ()
-    use v161 = v161 
-    let v162 : System.Security.Cryptography.SHA256 = v161 
-    let v163 : System.Text.Encoding = System.Text.Encoding.UTF8
-    let v164 : (System.Text.Encoding -> (string -> (uint8 []))) = _.GetBytes
-    let v165 : (string -> (uint8 [])) = v164 v163
-    let v166 : (uint8 []) = v165 v0
-    let v167 : ((uint8 []) -> (uint8 [])) = v162.ComputeHash
-    let v168 : (uint8 []) = v167 v166
-    let v169 : int32 = v168.Length
-    let v170 : (string []) = Array.zeroCreate<string> (v169)
-    let v171 : Mut0 = {l0 = 0} : Mut0
-    while method3(v169, v171) do
-        let v173 : int32 = v171.l0
-        let v174 : uint8 = v168.[int v173]
-        let v175 : (string -> string) = v174.ToString
-        let v176 : string = "x2"
-        let v177 : string = v175 v176
-        v170.[int v173] <- v177
-        let v178 : int32 = v173 + 1
-        v171.l0 <- v178
+    let v123 : string = match v112 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v113 = v123 
+    #endif
+    let v124 : string = _v113 
+    let _v1 = v124 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v127 : string = null |> unbox<string>
+    let _v1 = v127 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v130 : string = null |> unbox<string>
+    let _v1 = v130 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v133 : string = "crypto"
+    let v134 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v133 
+    let v135 : string = "v134.createHash($0)"
+    let v136 : string = "sha256"
+    let v137 : obj = Fable.Core.JsInterop.emitJsExpr v136 v135 
+    let v138 : string = "$0.update($1, 'utf8')"
+    let v139 : obj = Fable.Core.JsInterop.emitJsExpr struct (v137, v0) v138 
+    let v140 : string = "$0.digest($1)"
+    let v141 : string = "hex"
+    let v142 : string = Fable.Core.JsInterop.emitJsExpr struct (v139, v141) v140 
+    let _v1 = v142 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v143 : string = "hashlib"
+    let v144 : IHashlibSha256 = Fable.Core.PyInterop.importAll v143 
+    let v145 : string = "v144.sha256()"
+    let v146 : obj = Fable.Core.PyInterop.emitPyExpr () v145 
+    let v149 : string = "$0.encode($1)"
+    let v150 : string = "utf-8"
+    let v151 : string = Fable.Core.PyInterop.emitPyExpr struct (v0, v150) v149 
+    let v154 : string = "v146.update($0)"
+    Fable.Core.PyInterop.emitPyExpr v151 v154 
+    let v155 : string = "v146.hexdigest()"
+    let v156 : string = Fable.Core.PyInterop.emitPyExpr () v155 
+    let _v1 = v156 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v159 : string = null |> unbox<string>
+    let _v1 = v159 
+    #endif
+#else
+    let v162 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v163 : System.Security.Cryptography.SHA256 = v162 ()
+    use v163 = v163 
+    let v164 : System.Security.Cryptography.SHA256 = v163 
+    let v165 : System.Text.Encoding = System.Text.Encoding.UTF8
+    let v166 : (System.Text.Encoding -> (string -> (uint8 []))) = _.GetBytes
+    let v167 : (string -> (uint8 [])) = v166 v165
+    let v168 : (uint8 []) = v167 v0
+    let v169 : ((uint8 []) -> (uint8 [])) = v164.ComputeHash
+    let v170 : (uint8 []) = v169 v168
+    let v171 : int32 = v170.Length
+    let v172 : (string []) = Array.zeroCreate<string> (v171)
+    let v173 : Mut0 = {l0 = 0} : Mut0
+    while method3(v171, v173) do
+        let v175 : int32 = v173.l0
+        let v176 : uint8 = v170.[int v175]
+        let v177 : (string -> string) = v176.ToString
+        let v178 : string = "x2"
+        let v179 : string = v177 v178
+        v172.[int v175] <- v179
+        let v180 : int32 = v175 + 1
+        v173.l0 <- v180
         ()
-    let v179 : unit = ()
-    let _v179 =
+    let v181 : unit = ()
+    let _v181 =
         seq {
-            for i = 0 to v170.Length - 1 do yield v170.[i]
+            for i = 0 to v172.Length - 1 do yield v172.[i]
             (*
             ()
         *)
@@ -358,21 +358,21 @@ and method0 (v0 : string) : string =
         (*
         ()
     *)
-    let v180 : string seq = _v179 
-    let v186 : string = method4()
-    let v187 : bool = v186 = "\n"
-    let v189 : string =
-        if v187 then
-            method2(v186)
+    let v184 : string seq = _v181 
+    let v190 : string = method4()
+    let v191 : bool = v190 = "\n"
+    let v193 : string =
+        if v191 then
+            method2(v190)
         else
-            v186
-    let v190 : (string -> (string seq -> string)) = String.concat
-    let v191 : (string seq -> string) = v190 v189
-    let v192 : string = v191 v180
-    let _v1 = v192 
+            v190
+    let v194 : (string -> (string seq -> string)) = String.concat
+    let v195 : (string seq -> string) = v194 v193
+    let v196 : string = v195 v184
+    let _v1 = v196 
     #endif
-    let v195 : string = _v1 
-    v195
+    let v199 : string = _v1 
+    v199
 and closure0 () (v0 : string) : string =
     method0(v0)
 and method9 (v0 : string) : string =
@@ -2044,13 +2044,13 @@ and method22 (v0 : string) : string =
     let v2 : (char list -> (char [])) = List.toArray
     let v3 : (char []) = v2 v1
     let v6 : string = v0.TrimStart v3 
-    let v28 : char list = []
-    let v29 : char list = '/' :: v28 
-    let v32 : char list = ' ' :: v29 
-    let v35 : (char list -> (char [])) = List.toArray
-    let v36 : (char []) = v35 v32
-    let v39 : string = v6.TrimEnd v36 
-    v39
+    let v30 : char list = []
+    let v31 : char list = '/' :: v30 
+    let v34 : char list = ' ' :: v31 
+    let v37 : (char list -> (char [])) = List.toArray
+    let v38 : (char []) = v37 v34
+    let v41 : string = v6.TrimEnd v38 
+    v41
 and method20 (v0 : Mut1, v1 : Mut2, v2 : Mut3, v3 : Mut4, v4 : Mut5, v5 : int64 option, v6 : string, v7 : string, v8 : int32, v9 : string, v10 : uint16) : string =
     let v11 : string = method21(v8, v9, v10)
     let v12 : int64 = v0.l0

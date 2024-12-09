@@ -628,17 +628,17 @@ export function closure5(v0_1: int32, v1_1: string, unitVar: void): void {
 
 export function method6(v0_1: string, v1_1: int32): Async<boolean> {
     return singleton.Delay<boolean>((): Async<boolean> => {
-        const v13: Async<any> = cancellationToken();
-        return singleton.Bind<any, boolean>(v13, (_arg: any): Async<boolean> => {
-            const v25: IDisposable = defaultOf();
-            return singleton.Using<IDisposable, boolean>(v25, (_arg_1: IDisposable): Async<boolean> => singleton.TryWith<boolean>(singleton.Delay<boolean>((): Async<boolean> => {
-                const v51: any = defaultOf();
-                const v100: Async<void> = awaitTask(defaultOf());
-                return singleton.Bind<void, boolean>(v100, (): Async<boolean> => singleton.Return<boolean>(true));
+        const v15: Async<any> = cancellationToken();
+        return singleton.Bind<any, boolean>(v15, (_arg: any): Async<boolean> => {
+            const v27: IDisposable = defaultOf();
+            return singleton.Using<IDisposable, boolean>(v27, (_arg_1: IDisposable): Async<boolean> => singleton.TryWith<boolean>(singleton.Delay<boolean>((): Async<boolean> => {
+                const v53: any = defaultOf();
+                const v102: Async<void> = awaitTask(defaultOf());
+                return singleton.Bind<void, boolean>(v102, (): Async<boolean> => singleton.Return<boolean>(true));
             }), (_arg_3: Error): Async<boolean> => {
-                let v140: any;
+                let v142: any;
                 closure5(v1_1, toText(interpolate("%A%P()", [_arg_3])), undefined);
-                v140 = undefined;
+                v142 = undefined;
                 return singleton.Return<boolean>(false);
             }));
         });
@@ -770,54 +770,54 @@ export function closure17(v0_1: int32, v1_1: Error, unitVar: void): void {
 
 export function method21(v0_1: int32, v1_1: Async<boolean>): Async<US6_$union> {
     return singleton.Delay<US6_$union>((): Async<US6_$union> => {
-        const v9081: Async<Async<boolean>> = startChild<boolean>(v1_1, v0_1);
-        return singleton.Bind<Async<boolean>, US6_$union>(v9081, (_arg: Async<boolean>): Async<US6_$union> => {
-            const v9099: Async<FSharpChoice$2_$union<boolean, Error>> = catchAsync<boolean>(_arg);
-            const _v9121: Async<US7_$union> = singleton.Delay<US7_$union>((): Async<US7_$union> => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v9099, (_arg_1: FSharpChoice$2_$union<boolean, Error>): Async<US7_$union> => {
-                const v9133: US7_$union = defaultOf();
-                return singleton.Return<US7_$union>(v9133);
+        const v52202: Async<Async<boolean>> = startChild<boolean>(v1_1, v0_1);
+        return singleton.Bind<Async<boolean>, US6_$union>(v52202, (_arg: Async<boolean>): Async<US6_$union> => {
+            const v52220: Async<FSharpChoice$2_$union<boolean, Error>> = catchAsync<boolean>(_arg);
+            const _v52242: Async<US7_$union> = singleton.Delay<US7_$union>((): Async<US7_$union> => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v52220, (_arg_1: FSharpChoice$2_$union<boolean, Error>): Async<US7_$union> => {
+                const v52256: US7_$union = defaultOf();
+                return singleton.Return<US7_$union>(v52256);
             }));
-            const _v9256: Async<US8_$union> = singleton.Delay<US8_$union>((): Async<US8_$union> => singleton.Bind<US7_$union, US8_$union>(_v9121, (_arg_2: US7_$union): Async<US8_$union> => {
-                const v9257: US7_$union = _arg_2;
-                const v9263: US8_$union = (v9257.tag === /* US7_1 */ 1) ? US8_US8_1(v9257.fields[0]) : US8_US8_0(v9257.fields[0]);
-                return singleton.Return<US8_$union>(v9263);
+            const _v52554: Async<US8_$union> = singleton.Delay<US8_$union>((): Async<US8_$union> => singleton.Bind<US7_$union, US8_$union>(_v52242, (_arg_2: US7_$union): Async<US8_$union> => {
+                const v52557: US7_$union = _arg_2;
+                const v52563: US8_$union = (v52557.tag === /* US7_1 */ 1) ? US8_US8_1(v52557.fields[0]) : US8_US8_0(v52557.fields[0]);
+                return singleton.Return<US8_$union>(v52563);
             }));
-            const _v9307: Async<US6_$union> = singleton.Delay<US6_$union>((): Async<US6_$union> => singleton.Bind<US8_$union, US6_$union>(_v9256, (_arg_3: US8_$union): Async<US6_$union> => {
-                const v9308: US8_$union = _arg_3;
-                let v9432: US6_$union;
-                if (v9308.tag === /* US8_0 */ 0) {
-                    v9432 = US6_US6_0(v9308.fields[0]);
+            const _v52656: Async<US6_$union> = singleton.Delay<US6_$union>((): Async<US6_$union> => singleton.Bind<US8_$union, US6_$union>(_v52554, (_arg_3: US8_$union): Async<US6_$union> => {
+                const v52659: US8_$union = _arg_3;
+                let v52783: US6_$union;
+                if (v52659.tag === /* US8_0 */ 0) {
+                    v52783 = US6_US6_0(v52659.fields[0]);
                 }
                 else {
-                    const v9311: Error = v9308.fields[0];
-                    const v9312: string = toText(interpolate("%A%P()", [v9311]));
-                    if (v9312.indexOf("System.TimeoutException") >= 0) {
-                        let v9321: any;
+                    const v52662: Error = v52659.fields[0];
+                    const v52663: string = toText(interpolate("%A%P()", [v52662]));
+                    if (v52663.indexOf("System.TimeoutException") >= 0) {
+                        let v52672: any;
                         closure16(v0_1, undefined);
-                        v9321 = undefined;
-                        v9432 = US6_US6_1();
+                        v52672 = undefined;
+                        v52783 = US6_US6_1();
                     }
                     else {
-                        let v9364: any;
-                        closure17(v0_1, v9311, undefined);
-                        v9364 = undefined;
-                        v9432 = US6_US6_1();
+                        let v52715: any;
+                        closure17(v0_1, v52662, undefined);
+                        v52715 = undefined;
+                        v52783 = US6_US6_1();
                     }
                 }
-                return singleton.Return<US6_$union>(v9432);
+                return singleton.Return<US6_$union>(v52783);
             }));
-            return singleton.ReturnFrom<US6_$union>(_v9307);
+            return singleton.ReturnFrom<US6_$union>(_v52656);
         });
     });
 }
 
 export function method20(v0_1: int32, v1_1: string, v2_1: int32): Async<boolean> {
     return singleton.Delay<boolean>((): Async<boolean> => {
-        const v15: Async<US6_$union> = method21(v0_1, method6(v1_1, v2_1));
-        return singleton.Bind<US6_$union, boolean>(v15, (_arg: US6_$union): Async<boolean> => {
-            const v16_1: US6_$union = _arg;
-            const v19_1: boolean = (v16_1.tag === /* US6_0 */ 0) && v16_1.fields[0];
-            return singleton.Return<boolean>(v19_1);
+        const v17_1: Async<US6_$union> = method21(v0_1, method6(v1_1, v2_1));
+        return singleton.Bind<US6_$union, boolean>(v17_1, (_arg: US6_$union): Async<boolean> => {
+            const v18_1: US6_$union = _arg;
+            const v21: boolean = (v18_1.tag === /* US6_0 */ 0) && v18_1.fields[0];
+            return singleton.Return<boolean>(v21);
         });
     });
 }
@@ -921,20 +921,20 @@ export function closure23(v0_1: Option<int32>, v1_1: boolean, v2_1: int32, v3: i
 
 export function method30(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3: int32, v4: int64): Async<int64> {
     return singleton.Delay<int64>((): Async<int64> => {
-        const v29: US9_$union = defaultArg(map<int32, US9_$union>(method31(), v0_1), US9_US9_1());
-        const v37: Async<boolean> = (v29.tag === /* US9_0 */ 0) ? method20(v29.fields[0], v2_1, v3) : method6(v2_1, v3);
-        return singleton.Bind<boolean, int64>(v37, (_arg: boolean): Async<int64> => {
-            let v44: any;
+        const v31: US9_$union = defaultArg(map<int32, US9_$union>(method31(), v0_1), US9_US9_1());
+        const v39: Async<boolean> = (v31.tag === /* US9_0 */ 0) ? method20(v31.fields[0], v2_1, v3) : method6(v2_1, v3);
+        return singleton.Bind<boolean, int64>(v39, (_arg: boolean): Async<int64> => {
+            let v46: any;
             if (_arg === v1_1) {
                 return singleton.Return<int64>(v4);
             }
             else {
-                const v41: boolean = equals(toInt64(op_Modulus(v4, 100n)), 0n);
-                return singleton.Combine<int64>(v41 ? ((v44 = ((closure23(v0_1, v1_1, v3, v4, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
-                    const v92: Async<void> = sleep(10);
-                    return singleton.Bind<void, int64>(v92, (): Async<int64> => {
-                        const v105: Async<int64> = method30(v0_1, v1_1, v2_1, v3, toInt64(op_Addition(v4, 1n)));
-                        return singleton.ReturnFrom<int64>(v105);
+                const v43: boolean = equals(toInt64(op_Modulus(v4, 100n)), 0n);
+                return singleton.Combine<int64>(v43 ? ((v46 = ((closure23(v0_1, v1_1, v3, v4, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
+                    const v94: Async<void> = sleep(10);
+                    return singleton.Bind<void, int64>(v94, (): Async<int64> => {
+                        const v107: Async<int64> = method30(v0_1, v1_1, v2_1, v3, toInt64(op_Addition(v4, 1n)));
+                        return singleton.ReturnFrom<int64>(v107);
                     });
                 }));
             }
@@ -964,15 +964,15 @@ export function closure18(unitVar: void, v0_1: Option<int32>): ((arg0: boolean) 
 
 export function method35(v0_1: Option<int32>, v1_1: string, v2_1: int32): Async<int32> {
     return singleton.Delay<int32>((): Async<int32> => {
-        const v27: US9_$union = defaultArg(map<int32, US9_$union>(method31(), v0_1), US9_US9_1());
-        const v35: Async<boolean> = (v27.tag === /* US9_0 */ 0) ? method20(v27.fields[0], v1_1, v2_1) : method6(v1_1, v2_1);
-        return singleton.Bind<boolean, int32>(v35, (_arg: boolean): Async<int32> => {
+        const v29: US9_$union = defaultArg(map<int32, US9_$union>(method31(), v0_1), US9_US9_1());
+        const v37: Async<boolean> = (v29.tag === /* US9_0 */ 0) ? method20(v29.fields[0], v1_1, v2_1) : method6(v1_1, v2_1);
+        return singleton.Bind<boolean, int32>(v37, (_arg: boolean): Async<int32> => {
             if (_arg === false) {
                 return singleton.Return<int32>(v2_1);
             }
             else {
-                const v39: Async<int32> = method35(v0_1, v1_1, v2_1 + 1);
-                return singleton.ReturnFrom<int32>(v39);
+                const v41: Async<int32> = method35(v0_1, v1_1, v2_1 + 1);
+                return singleton.ReturnFrom<int32>(v41);
             }
         });
     });

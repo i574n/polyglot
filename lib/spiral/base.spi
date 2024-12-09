@@ -111,18 +111,35 @@ inl do (body : () -> ()) : () =
 
 /// ### indent
 inl indent (body : () -> ()) : () =
-    inl body =
-        fun () =>
-            body ()
-            $'(*' : ()
-    !!!!Indent (body())
-    $'*)'
+    backend_switch {
+        Fsharp = fun () =>
+            inl body () =
+                body ()
+                $'(*' : ()
+            !!!!Indent (body())
+            $'*)' : ()
+        Python = fun () =>
+            !!!!Indent (body())
+            ()
+    }
 
 /// ### let'
 inl let' fn =
-    inl result : unit = $'()'
-    $'let _!result ='
-    fn |> indent
+    inl result : unit =
+        backend_switch {
+            Fsharp = fun () =>
+                $'()' : unit
+            Python = fun () =>
+                $'None' : unit
+        }
+    backend_switch {
+        Fsharp = fun () =>
+            $'let _!result =' : ()
+            fn |> indent
+        Python = fun () =>
+            $'def _!result():' : ()
+            fn |> indent
+    }
     $'_!result '
 
 /// ### exec_unit

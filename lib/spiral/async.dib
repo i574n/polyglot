@@ -485,7 +485,19 @@ inl new_future_move_send forall t. (x : () -> t) : future_pin_send t =
 
 #!spiral
 
-nominal async t = $'Async<`t>'
+nominal async_python t =
+    `(
+        backend_switch `(()) `({}) {
+            Python = (fun () => global "import asyncio") : () -> ()
+        }
+        $'' : $'`t '
+    )
+type async_switch t =
+    {
+        Fsharp : $'Async<`t>'
+        Python : async_python t
+    }
+nominal async t = $'backend_switch `(async_switch t)'
 
 #!markdown
 
@@ -522,6 +534,10 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
                         | _ => ()
                 |> indent
                 $'}' : ()
+            |> let'
+        | Cuda _ => fun fn =>
+            fun () =>
+                fn ()
             |> let'
         | _ => fun _ => null ()
 
@@ -699,7 +715,10 @@ inl sleep (ms : i32) : async () =
 #!spiral
 
 inl do (a : async ()) : () =
-    $'do\! !a '
+    backend_switch {
+        Fsharp = fun () => $'do\! !a ' : ()
+        Python = fun () => $'asyncio.run(!a())' : ()
+    }
 
 #!markdown
 
@@ -718,7 +737,10 @@ inl let' forall t. (a : async t) : t =
 #!spiral
 
 inl return_await forall t. (a : async t) : () =
-    $'return\! !a '
+    backend_switch {
+        Fsharp = fun () => $'return\! !a ' : ()
+        Python = fun () => $'asyncio.run(!a())' : ()
+    }
 
 #!markdown
 
@@ -727,7 +749,10 @@ inl return_await forall t. (a : async t) : () =
 #!spiral
 
 inl return_await' forall t. (a : async t) : t =
-    $'return\! !a '
+    backend_switch {
+        Fsharp = fun () => $'return\! !a ' : ()
+        Python = fun () => $'asyncio.run(!a())' : ()
+    }
 
 #!markdown
 
