@@ -516,21 +516,21 @@ def closure1(unit_var: None, v0_1: str) -> uint16:
     return (v65 % uint16(48128)) + uint16(1024)
 
 
-def _arrow98(v: str) -> str:
+def _arrow97(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow98
+v0: Callable[[str], str] = _arrow97
 
 def hash_text(x: str) -> str:
     return v0(x)
 
 
-def _arrow99(v: str) -> uint16:
+def _arrow98(v: str) -> uint16:
     return closure1(None, v)
 
 
-v1: Callable[[str], uint16] = _arrow99
+v1: Callable[[str], uint16] = _arrow98
 
 def hash_to_port(x: str) -> uint16:
     return v1(x)

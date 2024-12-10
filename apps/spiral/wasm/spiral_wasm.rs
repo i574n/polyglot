@@ -3079,64 +3079,64 @@ mod module_fb49c4a9 {
             let v212: Option<std::string::String> =
                 clap::ArgMatches::get_one(&v3.clone(), v189).cloned();
             let v214: Option<string> = map(Spiral_wasm::method23(), v212);
-            let v299: Spiral_wasm::US7 =
+            let v303: Spiral_wasm::US7 =
                 defaultValue(Spiral_wasm::US7::US7_1, map(Spiral_wasm::method8(), v214));
-            let v303: std::pin::Pin<
+            let v307: std::pin::Pin<
                 Box<dyn std::future::Future<Output = Result<u8, anyhow::Error>>>,
             > = Spiral_wasm::method24(v3);
-            let v305 = tokio::runtime::Builder::new_multi_thread()
+            let v309 = tokio::runtime::Builder::new_multi_thread()
                 .enable_all()
                 .build()
                 .unwrap();
-            let v307: Result<u8, anyhow::Error> = v305.handle().block_on(v303);
-            let v308 = Spiral_wasm::method54();
-            let v320: Result<u8, std::string::String> = v307.map_err(|x| v308(x));
-            let v323 = Spiral_wasm::method71();
-            let v324 = Spiral_wasm::method72();
-            let v325: Spiral_wasm::US10 = match &v320 {
-                Err(v320_1_0) => v324(v320_1_0.clone()),
-                Ok(v320_0_0) => v323(v320_0_0.clone()),
+            let v311: Result<u8, anyhow::Error> = v309.handle().block_on(v307);
+            let v312 = Spiral_wasm::method54();
+            let v324: Result<u8, std::string::String> = v311.map_err(|x| v312(x));
+            let v327 = Spiral_wasm::method71();
+            let v328 = Spiral_wasm::method72();
+            let v329: Spiral_wasm::US10 = match &v324 {
+                Err(v324_1_0) => v328(v324_1_0.clone()),
+                Ok(v324_0_0) => v327(v324_0_0.clone()),
             };
-            match &v325 {
-                Spiral_wasm::US10::US10_0(v325_0_0) => {
-                    if let Spiral_wasm::US7::US7_0(v299_0_0) = &v299 {
-                        let v328: string = sprintf!(
+            match &v329 {
+                Spiral_wasm::US10::US10_0(v329_0_0) => {
+                    if let Spiral_wasm::US7::US7_0(v303_0_0) = &v303 {
+                        let v332: string = sprintf!(
                             "spiral_wasm.main / retries: {} / exception: \'{}\'",
-                            v325_0_0.clone(),
-                            v299_0_0.clone()
+                            v329_0_0.clone(),
+                            v303_0_0.clone()
                         );
-                        let v331: Result<(), string> = Err(v328);
-                        v331.unwrap();
+                        let v335: Result<(), string> = Err(v332);
+                        v335.unwrap();
                         ();
                         ()
                     }
                 }
-                Spiral_wasm::US10::US10_1(v325_1_0) => {
-                    let v347: std::string::String = v325_1_0.clone();
-                    if let Spiral_wasm::US7::US7_0(v299_0_0) = &v299 {
-                        let v348: string = v299_0_0.clone();
-                        if string("") == (v348.clone()) {
+                Spiral_wasm::US10::US10_1(v329_1_0) => {
+                    let v351: std::string::String = v329_1_0.clone();
+                    if let Spiral_wasm::US7::US7_0(v303_0_0) = &v303 {
+                        let v352: string = v303_0_0.clone();
+                        if string("") == (v352.clone()) {
                             ()
                         } else {
                             if contains(
-                                fable_library_rust::String_::fromString(v347.clone()),
-                                v348.clone(),
+                                fable_library_rust::String_::fromString(v351.clone()),
+                                v352.clone(),
                             ) {
                                 ()
                             } else {
-                                let v355: string = sprintf!(
+                                let v359: string = sprintf!(
                                     "spiral_wasm.main / exception: \'{}\' / error: {}",
-                                    v348,
-                                    v347
+                                    v352,
+                                    v351
                                 );
-                                let v358: Result<(), string> = Err(v355);
-                                v358.unwrap();
+                                let v362: Result<(), string> = Err(v359);
+                                v362.unwrap();
                                 ();
                                 ()
                             }
                         }
                     } else {
-                        let v376: u8 = v320.clone().unwrap();
+                        let v380: u8 = v324.clone().unwrap();
                         ()
                     }
                 }

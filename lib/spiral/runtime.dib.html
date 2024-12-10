@@ -8652,9 +8652,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_args</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_args</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec sm'</span><span class="o">.</span><span class="n">std_string</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
     <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="err">!</span>\\<span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::process::Command::args(&amp;mut $0, &amp;*$1)"'</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; std::process::Command::args(&amp;mut !c, &amp;*$0)"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
 </pre></div>
 </div>
 </div>
@@ -8679,8 +8680,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdout</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stdout($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdout</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; std::process::Command::stdout(&amp;mut !c, std::process::Stdio::piped())"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
 </pre></div>
 </div>
 </div>
@@ -8705,8 +8708,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stderr</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stderr($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stderr</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; std::process::Command::stderr(&amp;mut !c, std::process::Stdio::piped())"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
 </pre></div>
 </div>
 </div>
@@ -8731,8 +8736,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdin</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : rust.ref (rust.mut'</span> <span class="n">process_command</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::stdin($0, std::process::Stdio::piped())"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_stdin</span> <span class="p">(</span><span class="n">stdio</span> <span class="p">:</span> <span class="n">process_stdio</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; std::process::Command::stdin(&amp;mut !c, std::process::Stdio::piped())"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
 </pre></div>
 </div>
 </div>
@@ -8757,12 +8764,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_current_dir</span>
-    <span class="p">(</span><span class="nb">dir</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
-    <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)</span>
-    <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::current_dir(!c, &amp;*$0)"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_current_dir</span> <span class="p">(</span><span class="nb">dir</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"true; std::process::Command::current_dir(&amp;mut !c, &amp;*$0)"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"!c"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8787,13 +8792,10 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_env</span>
-    <span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
-    <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)</span>
-    <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::process::Command::env(!c, &amp;*$0, &amp;*$1)"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_env</span> <span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span> <span class="p">:</span> <span class="n">process_command</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"true; std::process::Command::env(&amp;mut !c, &amp;*$0, &amp;*$1)"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
 </pre></div>
 </div>
 </div>
@@ -8819,10 +8821,11 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">process_command_spawn</span>
-    <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command))</span>
+    <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="n">process_command</span><span class="p">)</span>
     <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' process_child stream.io_error</span>
     <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::process::Command::spawn($0)"'</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !c = !c"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::process::Command::spawn(&amp;mut !c)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9504,8 +9507,9 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_value_range</span> <span class="n">inclusive</span> <span class="n">start</span> <span class="n">end</span> <span class="p">:</span> <span class="n">value_range</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="nb">len</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">convert</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_value_range</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">inclusive</span> <span class="p">(</span><span class="n">start</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">end</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">value_range</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="nb">len</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="mi">0</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">convert</span>
     <span class="n">inl</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span>
         <span class="nb">open</span> <span class="n">am</span><span class="s1">'</span>
         <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
@@ -9518,7 +9522,7 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
         <span class="n">then</span> <span class="s2">"="</span>
         <span class="k">else</span> <span class="s2">""</span>
     <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="n">when</span> <span class="n">end</span> <span class="o">=.</span> <span class="nb">len</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::builder::ValueRange::new($0..)"'</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="n">when</span> <span class="n">end</span> <span class="o">=.</span> <span class="nb">len</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::builder::ValueRange::new($0..)"'</span><span class="p">)</span>
     <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"clap::builder::ValueRange::new($0.." + !inclusive + "$1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -11176,18 +11180,23 @@ __assert_eq / actual: true / expected: true
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">file_name</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug; options }</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="o">//</span> <span class="n">inl</span> <span class="n">new_command_mutex</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">mut</span><span class="s1">' process_command)) : threading.arc (threading.mutex process_command) =</span>
+                        <span class="o">//</span> <span class="p">()</span>
                     <span class="n">file_name</span>
                     <span class="o">|&gt;</span> <span class="n">new_process_command</span>
                     <span class="o">|&gt;</span> <span class="n">process_command_args</span> <span class="n">arguments</span>
                     <span class="o">|&gt;</span> <span class="n">process_command_stdout</span> <span class="p">(</span><span class="n">process_stdio_piped</span> <span class="p">())</span>
                     <span class="o">|&gt;</span> <span class="n">process_command_stderr</span> <span class="p">(</span><span class="n">process_stdio_piped</span> <span class="p">())</span>
                     <span class="o">|&gt;</span> <span class="n">process_command_stdin</span> <span class="p">(</span><span class="n">process_stdio_piped</span> <span class="p">())</span>
+                    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">new_command_mutex</span>
                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">command</span> <span class="o">=&gt;</span>
                         <span class="k">match</span> <span class="n">options</span><span class="o">.</span><span class="n">working_directory</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
                         <span class="o">|</span> <span class="n">Some</span> <span class="n">working_directory</span> <span class="o">=&gt;</span>
                             <span class="n">command</span>
                             <span class="o">|&gt;</span> <span class="n">process_command_current_dir</span> <span class="n">working_directory</span>
-                        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">command</span>
+                        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span>
+                            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"!command"'</span><span class="p">)</span>
+                            <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">command</span> <span class="o">=&gt;</span>
                         <span class="k">match</span> <span class="n">options</span><span class="o">.</span><span class="n">environment_variables</span> <span class="k">with</span>
                         <span class="o">|</span> <span class="p">;[]</span> <span class="o">=&gt;</span> <span class="n">command</span>
@@ -11454,19 +11463,19 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 312 }
 __assert_eq / actual: 1 / expected: 1
-__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
+__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_e1f3f3e47315f330e113df19eddcfef15667e0eb5c7938fe7cc9ce82410998e5\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_b9ae3405ca650d0519001d01d22fb0975b4fe876aea5581f121b74287abf573a\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }

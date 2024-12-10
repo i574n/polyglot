@@ -1050,9 +1050,9 @@ export function closure20(v0_1: string, v1_1: string): Async<void> {
     return singleton.Delay<void>((): Async<void> => {
         const v25_1: Async<boolean> = defaultOf();
         return singleton.Bind<boolean, void>(v25_1, (_arg: boolean): Async<void> => {
-            let v583: Async<void>;
-            const v572: boolean = _arg === false;
-            return singleton.Combine<void>(v572 ? ((v583 = defaultOf(), singleton.Bind<void, void>(v583, (): Async<void> => {
+            let v1883: Async<void>;
+            const v1872: boolean = _arg === false;
+            return singleton.Combine<void>(v1872 ? ((v1883 = defaultOf(), singleton.Bind<void, void>(v1883, (): Async<void> => {
                 return singleton.Zero();
             }))) : singleton.Zero(), singleton.Delay<void>((): Async<void> => {
                 return singleton.Zero();
@@ -1358,43 +1358,43 @@ export function closure30(v0_1: int32, v1_1: Error, unitVar: void): void {
 
 export function method40(v0_1: int32, v1_1: Async<int64>): Async<US2_$union> {
     return singleton.Delay<US2_$union>((): Async<US2_$union> => {
-        const v52202: Async<Async<int64>> = startChild<int64>(v1_1, v0_1);
-        return singleton.Bind<Async<int64>, US2_$union>(v52202, (_arg: Async<int64>): Async<US2_$union> => {
-            const v52220: Async<FSharpChoice$2_$union<int64, Error>> = catchAsync<int64>(_arg);
-            const _v52242: Async<US9_$union> = singleton.Delay<US9_$union>((): Async<US9_$union> => singleton.Bind<FSharpChoice$2_$union<int64, Error>, US9_$union>(v52220, (_arg_1: FSharpChoice$2_$union<int64, Error>): Async<US9_$union> => {
-                const v52256: US9_$union = defaultOf();
-                return singleton.Return<US9_$union>(v52256);
+        const v636890: Async<Async<int64>> = startChild<int64>(v1_1, v0_1);
+        return singleton.Bind<Async<int64>, US2_$union>(v636890, (_arg: Async<int64>): Async<US2_$union> => {
+            const v636908: Async<FSharpChoice$2_$union<int64, Error>> = catchAsync<int64>(_arg);
+            const _v636930: Async<US9_$union> = singleton.Delay<US9_$union>((): Async<US9_$union> => singleton.Bind<FSharpChoice$2_$union<int64, Error>, US9_$union>(v636908, (_arg_1: FSharpChoice$2_$union<int64, Error>): Async<US9_$union> => {
+                const v636944: US9_$union = defaultOf();
+                return singleton.Return<US9_$union>(v636944);
             }));
-            const _v52554: Async<US10_$union> = singleton.Delay<US10_$union>((): Async<US10_$union> => singleton.Bind<US9_$union, US10_$union>(_v52242, (_arg_2: US9_$union): Async<US10_$union> => {
-                const v52557: US9_$union = _arg_2;
-                const v52563: US10_$union = (v52557.tag === /* US9_1 */ 1) ? US10_US10_1(v52557.fields[0]) : US10_US10_0(v52557.fields[0]);
-                return singleton.Return<US10_$union>(v52563);
+            const _v637970: Async<US10_$union> = singleton.Delay<US10_$union>((): Async<US10_$union> => singleton.Bind<US9_$union, US10_$union>(_v636930, (_arg_2: US9_$union): Async<US10_$union> => {
+                const v637973: US9_$union = _arg_2;
+                const v637979: US10_$union = (v637973.tag === /* US9_1 */ 1) ? US10_US10_1(v637973.fields[0]) : US10_US10_0(v637973.fields[0]);
+                return singleton.Return<US10_$union>(v637979);
             }));
-            const _v52656: Async<US2_$union> = singleton.Delay<US2_$union>((): Async<US2_$union> => singleton.Bind<US10_$union, US2_$union>(_v52554, (_arg_3: US10_$union): Async<US2_$union> => {
-                const v52659: US10_$union = _arg_3;
-                let v52783: US2_$union;
-                if (v52659.tag === /* US10_0 */ 0) {
-                    v52783 = US2_US2_0(v52659.fields[0]);
+            const _v638254: Async<US2_$union> = singleton.Delay<US2_$union>((): Async<US2_$union> => singleton.Bind<US10_$union, US2_$union>(_v637970, (_arg_3: US10_$union): Async<US2_$union> => {
+                const v638257: US10_$union = _arg_3;
+                let v638381: US2_$union;
+                if (v638257.tag === /* US10_0 */ 0) {
+                    v638381 = US2_US2_0(v638257.fields[0]);
                 }
                 else {
-                    const v52662: Error = v52659.fields[0];
-                    const v52663: string = toText(interpolate("%A%P()", [v52662]));
-                    if (v52663.indexOf("System.TimeoutException") >= 0) {
-                        let v52672: any;
+                    const v638260: Error = v638257.fields[0];
+                    const v638261: string = toText(interpolate("%A%P()", [v638260]));
+                    if (v638261.indexOf("System.TimeoutException") >= 0) {
+                        let v638270: any;
                         closure29(v0_1, undefined);
-                        v52672 = undefined;
-                        v52783 = US2_US2_1();
+                        v638270 = undefined;
+                        v638381 = US2_US2_1();
                     }
                     else {
-                        let v52715: any;
-                        closure30(v0_1, v52662, undefined);
-                        v52715 = undefined;
-                        v52783 = US2_US2_1();
+                        let v638313: any;
+                        closure30(v0_1, v638260, undefined);
+                        v638313 = undefined;
+                        v638381 = US2_US2_1();
                     }
                 }
-                return singleton.Return<US2_$union>(v52783);
+                return singleton.Return<US2_$union>(v638381);
             }));
-            return singleton.ReturnFrom<US2_$union>(_v52656);
+            return singleton.ReturnFrom<US2_$union>(_v638254);
         });
     });
 }
@@ -1467,14 +1467,14 @@ export function method38(v0_1: string, v1_1: int64): Async<Option<string>> {
             }));
         }), (_arg_2: Error): Async<Option<string>> => {
             if (equals(v15, 0n) !== true) {
-                let v216: any;
+                let v320: any;
                 closure31(v15, toText(interpolate("%A%P()", [_arg_2])), undefined);
-                v216 = undefined;
+                v320 = undefined;
                 return singleton.Return<Option<string>>(undefined);
             }
             else {
-                const v258: Async<Option<string>> = method38(v0_1, toInt64(op_Addition(v15, 1n)));
-                return singleton.ReturnFrom<Option<string>>(v258);
+                const v362: Async<Option<string>> = method38(v0_1, toInt64(op_Addition(v15, 1n)));
+                return singleton.ReturnFrom<Option<string>>(v362);
             }
         });
     });
@@ -1980,8 +1980,8 @@ export function method95(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSh
 
 export function method94(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
     const v13: any = void defaultOf();
-    const v39: int32 = defaultOf() | 0;
-    const v64: int32 = defaultOf() | 0;
+    const v39: int32 = 0;
+    const v64: int32 = 0;
     const v99: boolean = defaultOf();
     if (v99) {
         const v114: any = void defaultOf();
@@ -2035,8 +2035,8 @@ export function method96(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSh
 
 export function method93(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
     const v12: any = void defaultOf();
-    const v38: int32 = defaultOf() | 0;
-    const v63: int32 = defaultOf() | 0;
+    const v38: int32 = 0;
+    const v63: int32 = 0;
     const v98: boolean = defaultOf();
     if (v98) {
         const v113: any = void defaultOf();

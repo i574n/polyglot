@@ -897,6 +897,7 @@ module Eval =
             let isTrace = "trace" |> boolArg false
             let isCache = "cache" |> boolArg false
             let isReal = "real" |> boolArg false
+            let timeout_continue = "timeout_continue" |> boolArg false
 
             if isTraceToggle
             then traceToggle <- not traceToggle
@@ -927,11 +928,21 @@ module Eval =
                     fsi_eval = fsi_eval
                 |}
             |> Async.runWithTimeout timeout
-            |> Option.defaultValue (
-                Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / lines: %A{lines}"),
+            |> (fun x ->
+                match x with
+                | Some ((Ok x), a) -> Some ((Ok x), a)
+                | Some ((Error x), a) ->
+                    trace Info (fun () -> $"Eval.eval / error / exception: {x.GetType().FullName} / a: %A{a} / x: %A{x}") (fun () -> "")
+                    Some ((Error x), a)
+                | _ -> None
+            )
+            |> Option.defaultWith (fun () -> (
+                let lines = lines |> SpiralSm.concat (string '\n') |> SpiralSm.ellipsis_end 1500
+                in
+                Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / timeout_continue: {timeout_continue} / lines: {lines}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Eval.eval / Async.runWithTimeout / errors[0] / timeout: {timeout} / lines: %A{lines}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Eval.eval / Async.runWithTimeout / errors[0] / timeout: {timeout} / lines: {lines}", 0, ("", (0, 0), (0, 0))
                     )
                 |]
-            )
+            ))

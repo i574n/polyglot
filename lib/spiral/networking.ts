@@ -770,43 +770,43 @@ export function closure17(v0_1: int32, v1_1: Error, unitVar: void): void {
 
 export function method21(v0_1: int32, v1_1: Async<boolean>): Async<US6_$union> {
     return singleton.Delay<US6_$union>((): Async<US6_$union> => {
-        const v52202: Async<Async<boolean>> = startChild<boolean>(v1_1, v0_1);
-        return singleton.Bind<Async<boolean>, US6_$union>(v52202, (_arg: Async<boolean>): Async<US6_$union> => {
-            const v52220: Async<FSharpChoice$2_$union<boolean, Error>> = catchAsync<boolean>(_arg);
-            const _v52242: Async<US7_$union> = singleton.Delay<US7_$union>((): Async<US7_$union> => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v52220, (_arg_1: FSharpChoice$2_$union<boolean, Error>): Async<US7_$union> => {
-                const v52256: US7_$union = defaultOf();
-                return singleton.Return<US7_$union>(v52256);
+        const v636890: Async<Async<boolean>> = startChild<boolean>(v1_1, v0_1);
+        return singleton.Bind<Async<boolean>, US6_$union>(v636890, (_arg: Async<boolean>): Async<US6_$union> => {
+            const v636908: Async<FSharpChoice$2_$union<boolean, Error>> = catchAsync<boolean>(_arg);
+            const _v636930: Async<US7_$union> = singleton.Delay<US7_$union>((): Async<US7_$union> => singleton.Bind<FSharpChoice$2_$union<boolean, Error>, US7_$union>(v636908, (_arg_1: FSharpChoice$2_$union<boolean, Error>): Async<US7_$union> => {
+                const v636944: US7_$union = defaultOf();
+                return singleton.Return<US7_$union>(v636944);
             }));
-            const _v52554: Async<US8_$union> = singleton.Delay<US8_$union>((): Async<US8_$union> => singleton.Bind<US7_$union, US8_$union>(_v52242, (_arg_2: US7_$union): Async<US8_$union> => {
-                const v52557: US7_$union = _arg_2;
-                const v52563: US8_$union = (v52557.tag === /* US7_1 */ 1) ? US8_US8_1(v52557.fields[0]) : US8_US8_0(v52557.fields[0]);
-                return singleton.Return<US8_$union>(v52563);
+            const _v637970: Async<US8_$union> = singleton.Delay<US8_$union>((): Async<US8_$union> => singleton.Bind<US7_$union, US8_$union>(_v636930, (_arg_2: US7_$union): Async<US8_$union> => {
+                const v637973: US7_$union = _arg_2;
+                const v637979: US8_$union = (v637973.tag === /* US7_1 */ 1) ? US8_US8_1(v637973.fields[0]) : US8_US8_0(v637973.fields[0]);
+                return singleton.Return<US8_$union>(v637979);
             }));
-            const _v52656: Async<US6_$union> = singleton.Delay<US6_$union>((): Async<US6_$union> => singleton.Bind<US8_$union, US6_$union>(_v52554, (_arg_3: US8_$union): Async<US6_$union> => {
-                const v52659: US8_$union = _arg_3;
-                let v52783: US6_$union;
-                if (v52659.tag === /* US8_0 */ 0) {
-                    v52783 = US6_US6_0(v52659.fields[0]);
+            const _v638254: Async<US6_$union> = singleton.Delay<US6_$union>((): Async<US6_$union> => singleton.Bind<US8_$union, US6_$union>(_v637970, (_arg_3: US8_$union): Async<US6_$union> => {
+                const v638257: US8_$union = _arg_3;
+                let v638381: US6_$union;
+                if (v638257.tag === /* US8_0 */ 0) {
+                    v638381 = US6_US6_0(v638257.fields[0]);
                 }
                 else {
-                    const v52662: Error = v52659.fields[0];
-                    const v52663: string = toText(interpolate("%A%P()", [v52662]));
-                    if (v52663.indexOf("System.TimeoutException") >= 0) {
-                        let v52672: any;
+                    const v638260: Error = v638257.fields[0];
+                    const v638261: string = toText(interpolate("%A%P()", [v638260]));
+                    if (v638261.indexOf("System.TimeoutException") >= 0) {
+                        let v638270: any;
                         closure16(v0_1, undefined);
-                        v52672 = undefined;
-                        v52783 = US6_US6_1();
+                        v638270 = undefined;
+                        v638381 = US6_US6_1();
                     }
                     else {
-                        let v52715: any;
-                        closure17(v0_1, v52662, undefined);
-                        v52715 = undefined;
-                        v52783 = US6_US6_1();
+                        let v638313: any;
+                        closure17(v0_1, v638260, undefined);
+                        v638313 = undefined;
+                        v638381 = US6_US6_1();
                     }
                 }
-                return singleton.Return<US6_$union>(v52783);
+                return singleton.Return<US6_$union>(v638381);
             }));
-            return singleton.ReturnFrom<US6_$union>(_v52656);
+            return singleton.ReturnFrom<US6_$union>(_v638254);
         });
     });
 }

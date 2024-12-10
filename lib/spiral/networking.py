@@ -515,27 +515,27 @@ def closure5(v0_1: int, v1_1: str, unit_var: None) -> None:
 
 def method6(v0_1: str, v1_1: int) -> Async[bool]:
     def _arrow152(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[bool]:
-        v355: Async[CancellationToken] = cancellation_token()
+        v1907: Async[CancellationToken] = cancellation_token()
         def _arrow151(_arg: CancellationToken) -> Async[bool]:
             def _arrow150(_arg_1: IDisposable) -> Async[bool]:
                 def _arrow148(__unit: None=None) -> Async[bool]:
-                    v444: Async[None] = await_task(None)
+                    v1996: Async[None] = await_task(None)
                     def _arrow147(__unit: None=None) -> Async[bool]:
                         return singleton.Return(True)
 
-                    return singleton.Bind(v444, _arrow147)
+                    return singleton.Bind(v1996, _arrow147)
 
                 def _arrow149(_arg_3: Exception) -> Async[bool]:
-                    v482: None
+                    v2034: None
                     closure5(v1_1, to_text(interpolate("%A%P()", [_arg_3])), None)
-                    v482 = None
+                    v2034 = None
                     return singleton.Return(False)
 
                 return singleton.TryWith(singleton.Delay(_arrow148), _arrow149)
 
             return singleton.Using(None, _arrow150)
 
-        return singleton.Bind(v355, _arrow151)
+        return singleton.Bind(v1907, _arrow151)
 
     return singleton.Delay(_arrow152)
 
@@ -674,69 +674,69 @@ def closure17(v0_1: int, v1_1: Exception, unit_var: None) -> None:
 
 def method21(v0_1: int, v1_1: Async[bool]) -> Async[US6]:
     def _arrow163(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[US6]:
-        v73071: Async[Async[bool]] = start_child(v1_1, v0_1)
+        v896351: Async[Async[bool]] = start_child(v1_1, v0_1)
         def _arrow162(_arg: Async[bool]) -> Async[US6]:
-            v73090: Async[Any] = catch_async(_arg)
+            v896370: Async[Any] = catch_async(_arg)
             def _arrow157(__unit: None=None) -> Async[US7]:
                 def _arrow156(_arg_1: Any) -> Async[US7]:
                     return singleton.Return(None)
 
-                return singleton.Bind(v73090, _arrow156)
+                return singleton.Bind(v896370, _arrow156)
 
-            _v73170: Async[US7] = singleton.Delay(_arrow157)
+            _v896618: Async[US7] = singleton.Delay(_arrow157)
             def _arrow159(__unit: None=None) -> Async[US8]:
                 def _arrow158(_arg_2: US7) -> Async[US8]:
-                    v73443: US7 = _arg_2
-                    v73449: US8 = US8(1, v73443.fields[0]) if (v73443.tag == 1) else US8(0, v73443.fields[0])
-                    return singleton.Return(v73449)
+                    v897493: US7 = _arg_2
+                    v897499: US8 = US8(1, v897493.fields[0]) if (v897493.tag == 1) else US8(0, v897493.fields[0])
+                    return singleton.Return(v897499)
 
-                return singleton.Bind(_v73170, _arrow158)
+                return singleton.Bind(_v896618, _arrow158)
 
-            _v73440: Async[US8] = singleton.Delay(_arrow159)
+            _v897490: Async[US8] = singleton.Delay(_arrow159)
             def _arrow161(__unit: None=None) -> Async[US6]:
                 def _arrow160(_arg_3: US8) -> Async[US6]:
-                    v73781: US8 = _arg_3
-                    v73905: US6
-                    if v73781.tag == 0:
-                        v73905 = US6(0, v73781.fields[0])
+                    v898721: US8 = _arg_3
+                    v898845: US6
+                    if v898721.tag == 0:
+                        v898845 = US6(0, v898721.fields[0])
 
                     else: 
-                        v73784: Exception = v73781.fields[0]
-                        v73785: str = to_text(interpolate("%A%P()", [v73784]))
-                        if v73785.find("System.TimeoutException") >= 0:
-                            v73794: None
+                        v898724: Exception = v898721.fields[0]
+                        v898725: str = to_text(interpolate("%A%P()", [v898724]))
+                        if v898725.find("System.TimeoutException") >= 0:
+                            v898734: None
                             closure16(v0_1, None)
-                            v73794 = None
-                            v73905 = US6(1)
+                            v898734 = None
+                            v898845 = US6(1)
 
                         else: 
-                            v73837: None
-                            closure17(v0_1, v73784, None)
-                            v73837 = None
-                            v73905 = US6(1)
+                            v898777: None
+                            closure17(v0_1, v898724, None)
+                            v898777 = None
+                            v898845 = US6(1)
 
 
-                    return singleton.Return(v73905)
+                    return singleton.Return(v898845)
 
-                return singleton.Bind(_v73440, _arrow160)
+                return singleton.Bind(_v897490, _arrow160)
 
-            _v73778: Async[US6] = singleton.Delay(_arrow161)
-            return singleton.ReturnFrom(_v73778)
+            _v898718: Async[US6] = singleton.Delay(_arrow161)
+            return singleton.ReturnFrom(_v898718)
 
-        return singleton.Bind(v73071, _arrow162)
+        return singleton.Bind(v896351, _arrow162)
 
     return singleton.Delay(_arrow163)
 
 
 def method20(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
     def _arrow165(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> Async[bool]:
-        v33: Async[US6] = method21(v0_1, method6(v1_1, v2_1))
+        v69: Async[US6] = method21(v0_1, method6(v1_1, v2_1))
         def _arrow164(_arg: US6) -> Async[bool]:
-            v34: US6 = _arg
-            v37: bool = v34.fields[0] if (v34.tag == 0) else False
-            return singleton.Return(v37)
+            v70: US6 = _arg
+            v73: bool = v70.fields[0] if (v70.tag == 0) else False
+            return singleton.Return(v73)
 
-        return singleton.Bind(v33, _arrow164)
+        return singleton.Bind(v69, _arrow164)
 
     return singleton.Delay(_arrow165)
 
@@ -849,32 +849,32 @@ def closure23(v0_1: int | None, v1_1: bool, v2_1: int, v3: int64, unit_var: None
 
 def method30(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Async[int64]:
     def _arrow173(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> Async[int64]:
-        v215: US9 = default_arg(map(method31(), v0_1), US9(1))
-        v223: Async[bool] = method20(v215.fields[0], v2_1, v3) if (v215.tag == 0) else method6(v2_1, v3)
+        v755: US9 = default_arg(map(method31(), v0_1), US9(1))
+        v763: Async[bool] = method20(v755.fields[0], v2_1, v3) if (v755.tag == 0) else method6(v2_1, v3)
         def _arrow172(_arg: bool) -> Async[int64]:
             if _arg == v1_1:
                 return singleton.Return(v4)
 
             else: 
-                v227: bool = op_modulus(v4, int64(100)) == int64(0)
+                v767: bool = op_modulus(v4, int64(100)) == int64(0)
                 def _arrow169(__unit: None=None) -> Async[None]:
-                    v230: None
+                    v770: None
                     closure23(v0_1, v1_1, v3, v4, None)
-                    v230 = None
+                    v770 = None
                     return singleton.Zero()
 
                 def _arrow171(__unit: None=None) -> Async[int64]:
-                    v280: Async[None] = sleep(10)
+                    v820: Async[None] = sleep(10)
                     def _arrow170(__unit: None=None) -> Async[int64]:
-                        v291: Async[int64] = method30(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
-                        return singleton.ReturnFrom(v291)
+                        v831: Async[int64] = method30(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
+                        return singleton.ReturnFrom(v831)
 
-                    return singleton.Bind(v280, _arrow170)
+                    return singleton.Bind(v820, _arrow170)
 
-                return singleton.Combine(_arrow169() if v227 else singleton.Zero(), singleton.Delay(_arrow171))
+                return singleton.Combine(_arrow169() if v767 else singleton.Zero(), singleton.Delay(_arrow171))
 
 
-        return singleton.Bind(v223, _arrow172)
+        return singleton.Bind(v763, _arrow172)
 
     return singleton.Delay(_arrow173)
 
@@ -910,18 +910,18 @@ def closure18(unit_var: None, v0_1: int | None=None) -> Callable[[bool, str, int
 
 def method35(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
     def _arrow178(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> Async[int]:
-        v85: US9 = default_arg(map(method31(), v0_1), US9(1))
-        v93: Async[bool] = method20(v85.fields[0], v1_1, v2_1) if (v85.tag == 0) else method6(v1_1, v2_1)
+        v241: US9 = default_arg(map(method31(), v0_1), US9(1))
+        v249: Async[bool] = method20(v241.fields[0], v1_1, v2_1) if (v241.tag == 0) else method6(v1_1, v2_1)
         def _arrow177(_arg: bool) -> Async[int]:
             if _arg == False:
                 return singleton.Return(v2_1)
 
             else: 
-                v97: Async[int] = method35(v0_1, v1_1, v2_1 + 1)
-                return singleton.ReturnFrom(v97)
+                v253: Async[int] = method35(v0_1, v1_1, v2_1 + 1)
+                return singleton.ReturnFrom(v253)
 
 
-        return singleton.Bind(v93, _arrow177)
+        return singleton.Bind(v249, _arrow177)
 
     return singleton.Delay(_arrow178)
 

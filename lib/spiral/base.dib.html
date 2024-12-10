@@ -8062,12 +8062,17 @@ __assert_eq / actual: 1uy / expected: 1uy
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indent</span> <span class="p">(</span><span class="n">body</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">body</span> <span class="o">=</span>
-        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">body</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">!!!!</span><span class="n">Indent</span> <span class="p">(</span><span class="n">body</span><span class="p">())</span>
-    <span class="err">$</span><span class="s1">'*)'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">body</span> <span class="p">()</span> <span class="o">=</span>
+                <span class="n">body</span> <span class="p">()</span>
+                <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">!!!!</span><span class="n">Indent</span> <span class="p">(</span><span class="n">body</span><span class="p">())</span>
+            <span class="err">$</span><span class="s1">'*)'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">!!!!</span><span class="n">Indent</span> <span class="p">(</span><span class="n">body</span><span class="p">())</span>
+            <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8093,9 +8098,21 @@ __assert_eq / actual: 1uy / expected: 1uy
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">let</span><span class="s1">' fn =</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">unit</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'()'</span>
-    <span class="err">$</span><span class="s1">'let _!result ='</span>
-    <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">unit</span> <span class="o">=</span>
+        <span class="n">backend_switch</span> <span class="p">{</span>
+            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="err">$</span><span class="s1">'()'</span> <span class="p">:</span> <span class="n">unit</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="err">$</span><span class="s1">'None'</span> <span class="p">:</span> <span class="n">unit</span>
+        <span class="p">}</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'let _!result ='</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'def _!result():'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+    <span class="p">}</span>
     <span class="err">$</span><span class="s1">'_!result '</span>
 </pre></div>
 </div>

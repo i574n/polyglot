@@ -683,22 +683,22 @@ def method6(v0_1: str, v1_1: int64) -> Async[int64]:
             return singleton.Return(v1_1)
 
         def _arrow349(_arg: Exception) -> Async[int64]:
-            v212: bool = op_modulus(v1_1, int64(100)) == int64(0)
+            v1526: bool = op_modulus(v1_1, int64(100)) == int64(0)
             def _arrow346(__unit: None=None) -> Async[None]:
-                v240: None
+                v1554: None
                 closure4(v0_1, to_text(interpolate("%A%P()", [_arg])), None)
-                v240 = None
+                v1554 = None
                 return singleton.Zero()
 
             def _arrow348(__unit: None=None) -> Async[int64]:
-                v291: Async[None] = sleep(10)
+                v1605: Async[None] = sleep(10)
                 def _arrow347(__unit: None=None) -> Async[int64]:
-                    v302: Async[int64] = method6(v0_1, op_addition(v1_1, int64(1)))
-                    return singleton.ReturnFrom(v302)
+                    v1616: Async[int64] = method6(v0_1, op_addition(v1_1, int64(1)))
+                    return singleton.ReturnFrom(v1616)
 
-                return singleton.Bind(v291, _arrow347)
+                return singleton.Bind(v1605, _arrow347)
 
-            return singleton.Combine(_arrow346() if v212 else singleton.Zero(), singleton.Delay(_arrow348))
+            return singleton.Combine(_arrow346() if v1526 else singleton.Zero(), singleton.Delay(_arrow348))
 
         return singleton.TryWith(singleton.Delay(_arrow345), _arrow349)
 
@@ -783,22 +783,22 @@ def method24(v0_1: str, v1_1: US8, v2_1: US7, v3: int64) -> Async[int64]:
             return singleton.Using(None, _arrow351)
 
         def _arrow356(_arg_1: Exception) -> Async[int64]:
-            v346: bool = (op_modulus(v3, int64(100)) == int64(0)) if (v3 > int64(0)) else False
+            v1940: bool = (op_modulus(v3, int64(100)) == int64(0)) if (v3 > int64(0)) else False
             def _arrow353(__unit: None=None) -> Async[None]:
-                v374: None
+                v1968: None
                 closure12(v0_1, v3, to_text(interpolate("%A%P()", [_arg_1])), None)
-                v374 = None
+                v1968 = None
                 return singleton.Zero()
 
             def _arrow355(__unit: None=None) -> Async[int64]:
-                v425: Async[None] = sleep(10)
+                v2019: Async[None] = sleep(10)
                 def _arrow354(__unit: None=None) -> Async[int64]:
-                    v436: Async[int64] = method24(v0_1, v1_1, v2_1, op_addition(v3, int64(1)))
-                    return singleton.ReturnFrom(v436)
+                    v2030: Async[int64] = method24(v0_1, v1_1, v2_1, op_addition(v3, int64(1)))
+                    return singleton.ReturnFrom(v2030)
 
-                return singleton.Bind(v425, _arrow354)
+                return singleton.Bind(v2019, _arrow354)
 
-            return singleton.Combine(_arrow353() if v346 else singleton.Zero(), singleton.Delay(_arrow355))
+            return singleton.Combine(_arrow353() if v1940 else singleton.Zero(), singleton.Delay(_arrow355))
 
         return singleton.TryWith(singleton.Delay(_arrow352), _arrow356)
 
@@ -825,22 +825,22 @@ def method27(v0_1: str, v1_1: int64) -> Async[int64]:
             return singleton.Using(None, _arrow359)
 
         def _arrow364(_arg_1: Exception) -> Async[int64]:
-            v302: bool = (op_modulus(v1_1, int64(100)) == int64(0)) if (v1_1 > int64(0)) else False
+            v1812: bool = (op_modulus(v1_1, int64(100)) == int64(0)) if (v1_1 > int64(0)) else False
             def _arrow361(__unit: None=None) -> Async[None]:
-                v330: None
+                v1840: None
                 closure12(v0_1, v1_1, to_text(interpolate("%A%P()", [_arg_1])), None)
-                v330 = None
+                v1840 = None
                 return singleton.Zero()
 
             def _arrow363(__unit: None=None) -> Async[int64]:
-                v381: Async[None] = sleep(10)
+                v1891: Async[None] = sleep(10)
                 def _arrow362(__unit: None=None) -> Async[int64]:
-                    v392: Async[int64] = method27(v0_1, op_addition(v1_1, int64(1)))
-                    return singleton.ReturnFrom(v392)
+                    v1902: Async[int64] = method27(v0_1, op_addition(v1_1, int64(1)))
+                    return singleton.ReturnFrom(v1902)
 
-                return singleton.Bind(v381, _arrow362)
+                return singleton.Bind(v1891, _arrow362)
 
-            return singleton.Combine(_arrow361() if v302 else singleton.Zero(), singleton.Delay(_arrow363))
+            return singleton.Combine(_arrow361() if v1812 else singleton.Zero(), singleton.Delay(_arrow363))
 
         return singleton.TryWith(singleton.Delay(_arrow360), _arrow364)
 
@@ -892,14 +892,14 @@ def closure17(unit_var: None, v0_1: str) -> Callable[[str], Async[None]]:
 def closure20(v0_1: str, v1_1: str) -> Async[None]:
     def _arrow371(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[None]:
         def _arrow370(_arg: bool) -> Async[None]:
-            v1782: bool = _arg == False
+            v17100: bool = _arg == False
             def _arrow368(__unit: None=None) -> Async[None]:
                 return singleton.Zero()
 
             def _arrow369(__unit: None=None) -> Async[None]:
                 return singleton.Zero()
 
-            return singleton.Combine(singleton.Bind(None, _arrow368) if v1782 else singleton.Zero(), singleton.Delay(_arrow369))
+            return singleton.Combine(singleton.Bind(None, _arrow368) if v17100 else singleton.Zero(), singleton.Delay(_arrow369))
 
         return singleton.Bind(None, _arrow370)
 
@@ -977,22 +977,22 @@ def method31(v0_1: str, v1_1: int64) -> Async[int64]:
             return singleton.Return(v1_1)
 
         def _arrow377(_arg: Exception) -> Async[int64]:
-            v218: bool = op_modulus(v1_1, int64(100)) == int64(0)
+            v1544: bool = op_modulus(v1_1, int64(100)) == int64(0)
             def _arrow374(__unit: None=None) -> Async[None]:
-                v221: None
+                v1547: None
                 closure22(v0_1, _arg, None)
-                v221 = None
+                v1547 = None
                 return singleton.Zero()
 
             def _arrow376(__unit: None=None) -> Async[int64]:
-                v297: Async[None] = sleep(10)
+                v1623: Async[None] = sleep(10)
                 def _arrow375(__unit: None=None) -> Async[int64]:
-                    v308: Async[int64] = method31(v0_1, op_addition(v1_1, int64(1)))
-                    return singleton.ReturnFrom(v308)
+                    v1634: Async[int64] = method31(v0_1, op_addition(v1_1, int64(1)))
+                    return singleton.ReturnFrom(v1634)
 
-                return singleton.Bind(v297, _arrow375)
+                return singleton.Bind(v1623, _arrow375)
 
-            return singleton.Combine(_arrow374() if v218 else singleton.Zero(), singleton.Delay(_arrow376))
+            return singleton.Combine(_arrow374() if v1544 else singleton.Zero(), singleton.Delay(_arrow376))
 
         return singleton.TryWith(singleton.Delay(_arrow373), _arrow377)
 
@@ -1074,22 +1074,22 @@ def method35(v0_1: str, v1_1: str, v2_1: int64) -> Async[int64]:
             return singleton.Return(v2_1)
 
         def _arrow383(_arg: Exception) -> Async[int64]:
-            v163: bool = op_modulus(v2_1, int64(100)) == int64(0)
+            v1135: bool = op_modulus(v2_1, int64(100)) == int64(0)
             def _arrow380(__unit: None=None) -> Async[None]:
-                v166: None
+                v1138: None
                 closure25(v0_1, v1_1, _arg, None)
-                v166 = None
+                v1138 = None
                 return singleton.Zero()
 
             def _arrow382(__unit: None=None) -> Async[int64]:
-                v218: Async[None] = sleep(10)
+                v1190: Async[None] = sleep(10)
                 def _arrow381(__unit: None=None) -> Async[int64]:
-                    v229: Async[int64] = method35(v0_1, v1_1, op_addition(v2_1, int64(1)))
-                    return singleton.ReturnFrom(v229)
+                    v1201: Async[int64] = method35(v0_1, v1_1, op_addition(v2_1, int64(1)))
+                    return singleton.ReturnFrom(v1201)
 
-                return singleton.Bind(v218, _arrow381)
+                return singleton.Bind(v1190, _arrow381)
 
-            return singleton.Combine(_arrow380() if v163 else singleton.Zero(), singleton.Delay(_arrow382))
+            return singleton.Combine(_arrow380() if v1135 else singleton.Zero(), singleton.Delay(_arrow382))
 
         return singleton.TryWith(singleton.Delay(_arrow379), _arrow383)
 
@@ -1239,56 +1239,56 @@ def closure30(v0_1: int, v1_1: Exception, unit_var: None) -> None:
 
 def method40(v0_1: int, v1_1: Async[int64]) -> Async[US2]:
     def _arrow395(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[US2]:
-        v73071: Async[Async[int64]] = start_child(v1_1, v0_1)
+        v896351: Async[Async[int64]] = start_child(v1_1, v0_1)
         def _arrow394(_arg: Async[int64]) -> Async[US2]:
-            v73090: Async[Any] = catch_async(_arg)
+            v896370: Async[Any] = catch_async(_arg)
             def _arrow389(__unit: None=None) -> Async[US9]:
                 def _arrow388(_arg_1: Any) -> Async[US9]:
                     return singleton.Return(None)
 
-                return singleton.Bind(v73090, _arrow388)
+                return singleton.Bind(v896370, _arrow388)
 
-            _v73170: Async[US9] = singleton.Delay(_arrow389)
+            _v896618: Async[US9] = singleton.Delay(_arrow389)
             def _arrow391(__unit: None=None) -> Async[US10]:
                 def _arrow390(_arg_2: US9) -> Async[US10]:
-                    v73443: US9 = _arg_2
-                    v73449: US10 = US10(1, v73443.fields[0]) if (v73443.tag == 1) else US10(0, v73443.fields[0])
-                    return singleton.Return(v73449)
+                    v897493: US9 = _arg_2
+                    v897499: US10 = US10(1, v897493.fields[0]) if (v897493.tag == 1) else US10(0, v897493.fields[0])
+                    return singleton.Return(v897499)
 
-                return singleton.Bind(_v73170, _arrow390)
+                return singleton.Bind(_v896618, _arrow390)
 
-            _v73440: Async[US10] = singleton.Delay(_arrow391)
+            _v897490: Async[US10] = singleton.Delay(_arrow391)
             def _arrow393(__unit: None=None) -> Async[US2]:
                 def _arrow392(_arg_3: US10) -> Async[US2]:
-                    v73781: US10 = _arg_3
-                    v73905: US2
-                    if v73781.tag == 0:
-                        v73905 = US2(0, v73781.fields[0])
+                    v898721: US10 = _arg_3
+                    v898845: US2
+                    if v898721.tag == 0:
+                        v898845 = US2(0, v898721.fields[0])
 
                     else: 
-                        v73784: Exception = v73781.fields[0]
-                        v73785: str = to_text(interpolate("%A%P()", [v73784]))
-                        if v73785.find("System.TimeoutException") >= 0:
-                            v73794: None
+                        v898724: Exception = v898721.fields[0]
+                        v898725: str = to_text(interpolate("%A%P()", [v898724]))
+                        if v898725.find("System.TimeoutException") >= 0:
+                            v898734: None
                             closure29(v0_1, None)
-                            v73794 = None
-                            v73905 = US2(1)
+                            v898734 = None
+                            v898845 = US2(1)
 
                         else: 
-                            v73837: None
-                            closure30(v0_1, v73784, None)
-                            v73837 = None
-                            v73905 = US2(1)
+                            v898777: None
+                            closure30(v0_1, v898724, None)
+                            v898777 = None
+                            v898845 = US2(1)
 
 
-                    return singleton.Return(v73905)
+                    return singleton.Return(v898845)
 
-                return singleton.Bind(_v73440, _arrow392)
+                return singleton.Bind(_v897490, _arrow392)
 
-            _v73778: Async[US2] = singleton.Delay(_arrow393)
-            return singleton.ReturnFrom(_v73778)
+            _v898718: Async[US2] = singleton.Delay(_arrow393)
+            return singleton.ReturnFrom(_v898718)
 
-        return singleton.Bind(v73071, _arrow394)
+        return singleton.Bind(v896351, _arrow394)
 
     return singleton.Delay(_arrow395)
 
@@ -1348,15 +1348,15 @@ def closure31(v0_1: int64, v1_1: str, unit_var: None) -> None:
 
 def method38(v0_1: str, v1_1: int64) -> Async[str | None]:
     def _arrow403(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[str | None]:
-        v509: int64 = method39(v1_1)
+        v3395: int64 = method39(v1_1)
         def _arrow401(__unit: None=None) -> Async[str | None]:
-            v510: bool = v509 > int64(0)
+            v3396: bool = v3395 > int64(0)
             def _arrow397(__unit: None=None) -> Async[None]:
-                v552: Async[None] = ignore(method40(1000, None))
+                v3438: Async[None] = ignore(method40(1000, None))
                 def _arrow396(__unit: None=None) -> Async[None]:
                     return singleton.Zero()
 
-                return singleton.Bind(v552, _arrow396)
+                return singleton.Bind(v3438, _arrow396)
 
             def _arrow400(__unit: None=None) -> Async[str | None]:
                 def _arrow399(__unit: None=None) -> Async[str | None]:
@@ -1365,21 +1365,21 @@ def method38(v0_1: str, v1_1: int64) -> Async[str | None]:
 
                     return singleton.Bind(None, _arrow398)
 
-                _v630: Async[str | None] = singleton.Delay(_arrow399)
-                return singleton.ReturnFrom(_v630)
+                _v3540: Async[str | None] = singleton.Delay(_arrow399)
+                return singleton.ReturnFrom(_v3540)
 
-            return singleton.Combine(_arrow397() if v510 else singleton.Zero(), singleton.Delay(_arrow400))
+            return singleton.Combine(_arrow397() if v3396 else singleton.Zero(), singleton.Delay(_arrow400))
 
         def _arrow402(_arg_2: Exception) -> Async[str | None]:
-            if (v509 == int64(0)) != True:
-                v710: None
-                closure31(v509, to_text(interpolate("%A%P()", [_arg_2])), None)
-                v710 = None
+            if (v3395 == int64(0)) != True:
+                v3700: None
+                closure31(v3395, to_text(interpolate("%A%P()", [_arg_2])), None)
+                v3700 = None
                 return singleton.Return(None)
 
             else: 
-                v752: Async[str | None] = method38(v0_1, op_addition(v509, int64(1)))
-                return singleton.ReturnFrom(v752)
+                v3742: Async[str | None] = method38(v0_1, op_addition(v3395, int64(1)))
+                return singleton.ReturnFrom(v3742)
 
 
         return singleton.TryWith(singleton.Delay(_arrow401), _arrow402)

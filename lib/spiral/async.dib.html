@@ -8775,7 +8775,19 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Async&lt;`t&gt;'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">async_python</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">global</span> <span class="s2">"import asyncio"</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
+        <span class="p">}</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'`t '</span>
+    <span class="p">)</span>
+<span class="nb">type</span> <span class="n">async_switch</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'Async&lt;`t&gt;'</span>
+        <span class="n">Python</span> <span class="p">:</span> <span class="n">async_python</span> <span class="n">t</span>
+    <span class="p">}</span>
+<span class="n">nominal</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'backend_switch `(async_switch t)'</span>
 </pre></div>
 </div>
 </div>
@@ -8846,6 +8858,10 @@ a.anchor-link {
                         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">()</span>
                 <span class="o">|&gt;</span> <span class="n">indent</span>
                 <span class="err">$</span><span class="s1">'}'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="o">|&gt;</span> <span class="n">let</span><span class="s1">'</span>
+        <span class="o">|</span> <span class="n">Cuda</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="n">fn</span> <span class="p">()</span>
             <span class="o">|&gt;</span> <span class="n">let</span><span class="s1">'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9244,7 +9260,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">do</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="p">())</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'do\! !a '</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'do\! !a '</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'asyncio.run(!a())'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -9297,7 +9316,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">return_await</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'return\! !a '</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'return\! !a '</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'asyncio.run(!a())'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -9323,7 +9345,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">return_await</span><span class="s1">' forall t. (a : async t) : t =</span>
-    <span class="err">$</span><span class="s1">'return\! !a '</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'return\! !a '</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'asyncio.run(!a())'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
