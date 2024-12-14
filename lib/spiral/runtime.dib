@@ -1097,9 +1097,9 @@ inl process_exit_code (process : process) : i32 =
 
 #!spiral
 
-inl process_id (process : process) : i32 =
+let process_id (process : process) : i32 =
     run_target function
-        | Fsharp (Native) => fun () => $'!process.Id'
+        | Fsharp (Native) => fun () => process |> $'_.Id'
         | _ => fun () => null ()
 
 #!markdown
@@ -1108,9 +1108,9 @@ inl process_id (process : process) : i32 =
 
 #!spiral
 
-inl process_has_exited (process : process) : bool =
+let process_has_exited (process : process) : bool =
     run_target function
-        | Fsharp (Native) => fun () => $'!process.HasExited'
+        | Fsharp (Native) => fun () => process |> $'_.HasExited'
         | _ => fun () => null ()
 
 #!markdown
@@ -1119,10 +1119,9 @@ inl process_has_exited (process : process) : bool =
 
 #!spiral
 
-inl process_kill (process : process) : () =
+let process_kill (process : process) : () =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!process.Kill' ()
+        | Fsharp (Native) => fun () => process |> $'_.Kill()'
         | _ => fun () => ()
 
 #!markdown
@@ -1132,7 +1131,7 @@ inl process_kill (process : process) : () =
 #!spiral
 
 inl process_begin_error_read_line (process : process) : () =
-    $'!process.BeginErrorReadLine' ()
+    process |> $'_.BeginErrorReadLine()'
 
 #!markdown
 
@@ -1141,7 +1140,7 @@ inl process_begin_error_read_line (process : process) : () =
 #!spiral
 
 inl process_begin_output_read_line (process : process) : () =
-    $'!process.BeginOutputReadLine' ()
+    process |> $'_.BeginOutputReadLine()'
 
 #!markdown
 
@@ -1176,9 +1175,9 @@ inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : p
 
 #!spiral
 
-inl event_data (e : data_received_event_args) : string =
+let event_data (e : data_received_event_args) : string =
     run_target function
-        | Fsharp (Native) => fun () => $'!e.Data'
+        | Fsharp (Native) => fun () => e |> $'_.Data'
         | _ => fun () => null ()
 
 #!markdown
@@ -1221,7 +1220,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                 inl proc = start_info |> new_process |> use
                 inl output : _ string = threading.new_concurrent_stack ()
 
-                inl event error (e : data_received_event_args) = async.new_async fun () =>
+                let event error (e : data_received_event_args) = async.new_async fun () =>
                     inl data = e |> event_data
                     if data <> null () then
                         match options.on_line |> optionm'.unbox with
@@ -1280,7 +1279,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                                 proc |> process_exit_code |> return
                             fun ex =>
                                 // with :? System.Threading.Tasks.TaskCanceledException as ex =>
-                                inl ex' = ex |> sm'.format_exception
+                                inl ex' = ex () |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
                                 trace Warning
@@ -1313,7 +1312,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
 #!spiral
 
-inl execute_async command =
+let execute_async command =
     execution_options fun x => { x with
         command = command
     }
@@ -1416,7 +1415,7 @@ fun () =>
 
 #!spiral
 
-inl current_process_kill () =
+let current_process_kill () =
     run_target function
         | Fsharp (Native) => fun () =>
             inl fn () =
@@ -1440,7 +1439,7 @@ inl current_process_kill () =
 
 #!spiral
 
-inl gc_collect () =
+let gc_collect () =
     run_target function
         | Fsharp _ => fun () => $'System.GC.Collect' () : ()
         | Python _ => fun () =>
@@ -1461,10 +1460,10 @@ inl gc_collect () =
 #!spiral
 
 let execute_with_options (options : execution_options) : i32 * string =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' options function
+        | Fsharp (Native) => fun options =>
             options |> execute_with_options_async |> async.run_synchronously
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun options =>
             inl command = join options.command
             inl file_name, arguments = command |> split_command |> resultm.get
             inl arguments =
@@ -1659,7 +1658,7 @@ let execute_with_options (options : execution_options) : i32 * string =
             // |> async.block_on
             |> fun x => x ()
             |> from_pair
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -1667,7 +1666,7 @@ let execute_with_options (options : execution_options) : i32 * string =
 
 #!spiral
 
-inl execute command =
+let execute command =
     execution_options fun x => { x with
         command = command
     }

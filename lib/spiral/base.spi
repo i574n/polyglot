@@ -470,38 +470,49 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
     }
 
 /// ### try_unit
-inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'with ex ->'
+inl try_unit forall t. (fn : () -> ()) (ex_fn : (() -> exn) -> ()) : t =
+    backend_switch {
+        Fsharp = fun () => $'try' : ()
+        Python = fun () => $'try:' : ()
+    }
+    fn |> indent
+    backend_switch {
+        Fsharp = fun () => $'with ex ->' : ()
+        Python = fun () => $'except Exception as ex:' : ()
+    }
     fun () =>
-        ex_fn $'ex'
-        |> ignore
+        inl ex = $'ex'
+        inl ex () =
+            ex
+        ex_fn ex
     |> indent
-    $'(*'
-    $'*)'
+    backend_switch {
+        Fsharp = fun () =>
+            $'(*'
+            $'*)' : t
+        Python = fun () => $'' : t
+    }
 
 /// ### try_unit'
-inl try_unit' forall t. (ex_fn : exn -> ()) (fn : () -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'with ex ->'
-    fun () =>
-        ex_fn $'ex'
-        |> ignore
-    |> indent
-    $'(*'
-    $'*)'
+inl try_unit' forall t. (ex_fn : (() -> exn) -> ()) (fn : () -> ()) : t =
+    try_unit fn ex_fn
 
 /// ### try_finally
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'finally'
-    finally ()
-    |> ignore
-    $'(*'
-    $'*)'
+    backend_switch {
+        Fsharp = fun () => $'try' : ()
+        Python = fun () => $'try:' : ()
+    }
+    fn |> indent
+    backend_switch {
+        Fsharp = fun () => $'finally' : ()
+        Python = fun () => $'finally:' : ()
+    }
+    finally |> indent
+    backend_switch {
+        Fsharp = fun () =>
+            $'(*'
+            $'*)'
+            ()
+        Python = fun () => ()
+    }

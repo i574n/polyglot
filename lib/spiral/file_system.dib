@@ -561,7 +561,8 @@ nominal file_type =
 #!spiral
 
 inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type stream.io_error) =
-    !\\(dir_entry, $'"Box::pin(async_walkdir::DirEntry::file_type(&$0))"')
+    inl dir_entry = dir_entry |> rust.emit
+    !\($'"Box::pin(async_walkdir::DirEntry::file_type(&!dir_entry))"')
 
 #!markdown
 
@@ -1444,10 +1445,12 @@ let delete_directory_async path : _ i64 =
                             retry |> return
                         fun ex =>
                             if retry % 100i64 = 0 then
-                                inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.delete_directory_async"
-                                    fun () => { ex path = path |> get_file_name }
+                                    fun () => {
+                                        ex = ex () |> sm'.format_exception
+                                        path = path |> get_file_name
+                                    }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1821,10 +1824,13 @@ let wait_for_file_access access path =
                             retry |> return
                         fun ex =>
                             if retry > 0 && retry % 100i64 = 0 then
-                                inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.wait_for_file_access"
-                                    fun () => { path = path |> get_file_name; retry ex }
+                                    fun () => {
+                                        path = path |> get_file_name
+                                        retry
+                                        ex = ex () |> sm'.format_exception
+                                    }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1934,10 +1940,12 @@ let read_all_text_retry_async full_path : async.async (optionm'.option' string) 
                     fix_condition
                         fun () => retry <> 0
                         fun () =>
-                            inl ex = ex |> sm'.format_exception
                             trace Debug
                                 fun () => "file_system.read_all_text_retry_async"
-                                fun () => { retry ex }
+                                fun () => {
+                                    retry
+                                    ex = ex () |> sm'.format_exception
+                                }
                             (None : _ string) |> optionm'.box |> return
                         fun () =>
                             loop (retry + 1) |> async.return_await
@@ -1961,13 +1969,12 @@ let move_file_async new_path old_path : _ i64 =
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
-
                                 trace Warning
                                     fun () => "move_file_async"
                                     fun () => {
                                         old_path = old_path |> get_file_name
                                         new_path = new_path |> get_file_name
-                                        ex
+                                        ex = ex () |> sm'.format_exception
                                     }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
@@ -2063,7 +2070,10 @@ let delete_file_async path : _ i64 =
                             if retry % 100 = 0 then
                                 trace Warning
                                     fun () => "delete_file_async"
-                                    fun () => { path = path |> get_file_name; ex = ex |> sm'.format_exception }
+                                    fun () => {
+                                        path = path |> get_file_name
+                                        ex = ex () |> sm'.format_exception
+                                    }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async

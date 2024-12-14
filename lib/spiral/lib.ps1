@@ -12,8 +12,8 @@ function FixRust {
             -replace [regex]::Escape("),);"), "));" `
             -replace [regex]::Escape("},);"), "});" `
             -replace "get_or_insert_with", "get_or_init" `
-            -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
-            -replace "\s\sgetZero\(\);", " getZero::<()>();" `
+            -replace "([^=]\s)defaultOf\(\);", "`$1`defaultOf::<()>();" `
+            -replace "([^=]\s)getZero\(\);", "`$1`getZero::<()>();" `
             -replace "__self__.", "self." `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
@@ -76,8 +76,8 @@ function CopyTarget {
                 | FixRust
 
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
-                $text = $text `
-                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
+                # $text = $text `
+                    # -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
             if ($name -in @("threading")) {
                 $text = $text `

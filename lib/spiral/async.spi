@@ -275,27 +275,28 @@ nominal task t =
 
 /// ### new_async_unit
 inl new_async_unit forall t. (fn : () -> ()) : async t =
-    run_target_args' fn function
-        | Fsharp _
-        // | Rust _
-        | TypeScript _
-        | Python _ => fun fn =>
-            fun () =>
-                $'async {'
+    join
+        run_target_args' fn function
+            | Fsharp _
+            // | Rust _
+            | TypeScript _
+            | Python _ => fun fn =>
+                    fun () =>
+                        $'async {'
+                        fun () =>
+                            fn ()
+                            real
+                                typecase t with
+                                | () => $'()' : ()
+                                | _ => ()
+                        |> indent
+                        $'}' : ()
+                    |> let'
+            | Cuda _ => fun fn =>
                 fun () =>
                     fn ()
-                    real
-                        typecase t with
-                        | () => $'()' : ()
-                        | _ => ()
-                |> indent
-                $'}' : ()
-            |> let'
-        | Cuda _ => fun fn =>
-            fun () =>
-                fn ()
-            |> let'
-        | _ => fun _ => null ()
+                |> let'
+            | _ => fun _ => null ()
 
 /// ### new_async
 inl new_async forall t. (fn : () -> t) : async t =
@@ -315,17 +316,17 @@ inl new_task forall t. (fn : () -> t) : task t =
         | _ => fun _ => null ()
 
 /// ### await_task
-let await_task forall t. (a : task t) : async t =
+inl await_task forall t. (a : task t) : async t =
     run_target function
         | Fsharp _
-        | Rust _
+        // | Rust _
         | TypeScript _
         | Python _ => fun () =>
             a |> $'Async.AwaitTask'
         | _ => fun () => null ()
 
 /// ### ignore
-let ignore forall t. (a : async t) : async () =
+inl ignore forall t. (a : async t) : async () =
     run_target function
         | Fsharp _
         // | Rust _
@@ -335,7 +336,7 @@ let ignore forall t. (a : async t) : async () =
         | _ => fun () => null ()
 
 /// ### run_synchronously
-let run_synchronously forall t. (a : async t) : t =
+inl run_synchronously forall t. (a : async t) : t =
     run_target function
         | Fsharp _
         // | Rust _
@@ -344,7 +345,7 @@ let run_synchronously forall t. (a : async t) : t =
         | _ => fun () => null ()
 
 /// ### start
-let start (a : async ()) : () =
+inl start (a : async ()) : () =
     run_target function
         | Fsharp _
         | Rust _
@@ -354,7 +355,7 @@ let start (a : async ()) : () =
         | _ => fun () => null ()
 
 /// ### start_child
-let start_child forall t. (a : async t) : async (async t) =
+inl start_child forall t. (a : async t) : async (async t) =
     run_target function
         | Fsharp _
         | TypeScript _
@@ -363,7 +364,7 @@ let start_child forall t. (a : async t) : async (async t) =
         | _ => fun () => null ()
 
 /// ### start_child_timeout
-let start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t) =
+inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t) =
     run_target function
         | Fsharp _
         | TypeScript _
@@ -372,7 +373,7 @@ let start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t
         | _ => fun () => null ()
 
 /// ### start_immediate
-let start_immediate forall t. (a : async t) : () =
+inl start_immediate forall t. (a : async t) : () =
     run_target function
         | Fsharp _
         // | Rust _
@@ -382,7 +383,7 @@ let start_immediate forall t. (a : async t) : () =
         | _ => fun () => null ()
 
 /// ### start_with_continuations
-let start_with_continuations forall t. (a : async t) : () =
+inl start_with_continuations forall t. (a : async t) : () =
     run_target_args' a function
         | Fsharp _
         | Rust _
@@ -395,7 +396,7 @@ let start_with_continuations forall t. (a : async t) : () =
 nominal task_canceled_exception = $'System.Threading.Tasks.TaskCanceledException'
 
 /// ### sleep
-let sleep (ms : i32) : async () =
+inl sleep (ms : i32) : async () =
     run_target function
         | Fsharp _
         | Rust _
@@ -438,17 +439,17 @@ inl map forall t u. (fn : t -> u) (a : async t) : async u =
     |> new_async_unit
 
 /// ### catch'
-let catch' forall t e. (a : async t) : async (choice2' t e) =
+inl catch' forall t e. (a : async t) : async (choice2' t e) =
     run_target function
         | Fsharp _
-        | Rust _
+        // | Rust _
         | TypeScript _
         | Python _ => fun () =>
             a |> $'Async.Catch'
         | _ => fun () => null ()
 
 /// ### catch
-let catch forall t e. (a : async t) : async (result t e) =
+inl catch forall t e. (a : async t) : async (result t e) =
     a
     |> catch'
     |> map choice2_unbox
@@ -458,14 +459,15 @@ let catch forall t e. (a : async t) : async (result t e) =
 
 /// ### run_with_timeout_async
 let run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (option t) =
-    run_target_args (fun () => (timeout, fn)) function
+    run_target_args (fun () => timeout, fn) function
         | Fsharp _
         | Rust _
         | TypeScript _
-        | Python _ => fun (timeout, fn) =>
+        | Python _ => fun timeout, fn =>
             fun () =>
-                inl child = fn |> start_child_timeout timeout |> let'
-                child
+                fn
+                |> start_child_timeout timeout
+                |> let'
                 |> catch
                 |> map function
                     | Ok result => Some result
@@ -484,7 +486,7 @@ let run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
         | _ => fun _ => null ()
 
 /// ### run_with_timeout
-let run_with_timeout timeout fn =
+inl run_with_timeout timeout fn =
     fn
     |> run_with_timeout_async timeout
     |> run_synchronously

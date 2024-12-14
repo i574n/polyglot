@@ -1,12 +1,15 @@
 pub mod Async_ {
     use super::*;
-    type Async<T> = T;
+    use fable_library_rust::Async_::Async;
     use fable_library_rust::Native_::getZero;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Arc;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::OnceInit;
     type CancellationToken = ();
+    pub fn method0(v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
+        getZero()
+    }
     pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
         getZero()
     }
