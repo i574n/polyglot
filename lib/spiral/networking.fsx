@@ -1776,12 +1776,10 @@ and method20 (v0 : string) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v20.l0
@@ -1881,25 +1879,20 @@ and method20 (v0 : string) : unit =
         let v119 : string = "true; }); //"
         let v120 : bool = Fable.Core.RustInterop.emitRustExpr () v119 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v0
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #else
     v40 v0
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v121 : (string -> unit) = v18.l0
     v121 v0
 and closure5 (v0 : int32, v1 : exn) () : unit =
@@ -2113,27 +2106,27 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let v112 : Async<unit> = _v94 
                 do! v112 
                 return true 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v191 : exn = ex
                 let v192 : unit = ()
                 let v193 : (unit -> unit) = closure5(v1, v191)
                 let v194 : unit = (fun () -> v193 (); v192) ()
                 return false 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v327 : bool = *)
-            (*
+            indent *)
+            (* try_unit
+            let v327 : bool = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2535 : Async<bool> = _v12 
     let _v2 = v2535 
     #endif
@@ -2286,27 +2279,27 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let v2636 : Async<unit> = _v2618 
                 do! v2636 
                 return true 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v2715 : exn = ex
                 let v2716 : unit = ()
                 let v2717 : (unit -> unit) = closure5(v1, v2715)
                 let v2718 : unit = (fun () -> v2717 (); v2716) ()
                 return false 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v2851 : bool = *)
-            (*
+            indent *)
+            (* try_unit
+            let v2851 : bool = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v5059 : Async<bool> = _v2536 
     let _v2 = v5059 
     #endif
@@ -2459,27 +2452,27 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let v5160 : Async<unit> = _v5142 
                 do! v5160 
                 return true 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v5239 : exn = ex
                 let v5240 : unit = ()
                 let v5241 : (unit -> unit) = closure5(v1, v5239)
                 let v5242 : unit = (fun () -> v5241 (); v5240) ()
                 return false 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v5375 : bool = *)
-            (*
+            indent *)
+            (* try_unit
+            let v5375 : bool = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v7583 : Async<bool> = _v5060 
     let _v2 = v7583 
     #endif
@@ -2632,27 +2625,27 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let v7684 : Async<unit> = _v7666 
                 do! v7684 
                 return true 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v7763 : exn = ex
                 let v7764 : unit = ()
                 let v7765 : (unit -> unit) = closure5(v1, v7763)
                 let v7766 : unit = (fun () -> v7765 (); v7764) ()
                 return false 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v7899 : bool = *)
-            (*
+            indent *)
+            (* try_unit
+            let v7899 : bool = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v10107 : Async<bool> = _v7584 
     let _v2 = v10107 
     #endif
@@ -2733,13 +2726,13 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
             #endif
             let v37 : US7 = _v15 
             return v37 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v238 : Async<US7> = _v11 
     let _v1 = v238 
     #endif
@@ -2787,13 +2780,13 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
             #endif
             let v265 : US7 = _v243 
             return v265 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v466 : Async<US7> = _v239 
     let _v1 = v466 
     #endif
@@ -2841,13 +2834,13 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
             #endif
             let v493 : US7 = _v471 
             return v493 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v694 : Async<US7> = _v467 
     let _v1 = v694 
     #endif
@@ -2895,13 +2888,13 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
             #endif
             let v721 : US7 = _v699 
             return v721 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v922 : Async<US7> = _v695 
     let _v1 = v922 
     #endif
@@ -2937,13 +2930,13 @@ and method28 (v0 : Async<US7>) : Async<US8> =
                 | US7_1(v17) -> (* C2of2 *)
                     US8_1(v17)
             return v20 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v70 : Async<US8> = _v11 
     let _v1 = v70 
     #endif
@@ -2960,13 +2953,13 @@ and method28 (v0 : Async<US7>) : Async<US8> =
                 | US7_1(v77) -> (* C2of2 *)
                     US8_1(v77)
             return v80 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v130 : Async<US8> = _v71 
     let _v1 = v130 
     #endif
@@ -2983,13 +2976,13 @@ and method28 (v0 : Async<US7>) : Async<US8> =
                 | US7_1(v137) -> (* C2of2 *)
                     US8_1(v137)
             return v140 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v190 : Async<US8> = _v131 
     let _v1 = v190 
     #endif
@@ -3006,13 +2999,13 @@ and method28 (v0 : Async<US7>) : Async<US8> =
                 | US7_1(v197) -> (* C2of2 *)
                     US8_1(v197)
             return v200 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v250 : Async<US8> = _v191 
     let _v1 = v250 
     #endif
@@ -3391,13 +3384,13 @@ and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
                 | US8_0(v16) -> (* Ok *)
                     US6_0(v16)
             return v139 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1015 : Async<US6> = _v12 
     let _v2 = v1015 
     #endif
@@ -3426,13 +3419,13 @@ and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
                 | US8_0(v1020) -> (* Ok *)
                     US6_0(v1020)
             return v1143 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2019 : Async<US6> = _v1016 
     let _v2 = v2019 
     #endif
@@ -3461,13 +3454,13 @@ and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
                 | US8_0(v2024) -> (* Ok *)
                     US6_0(v2024)
             return v2147 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3023 : Async<US6> = _v2020 
     let _v2 = v3023 
     #endif
@@ -3496,13 +3489,13 @@ and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
                 | US8_0(v3028) -> (* Ok *)
                     US6_0(v3028)
             return v3151 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4027 : Async<US6> = _v3024 
     let _v2 = v4027 
     #endif
@@ -3605,13 +3598,13 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v59 : Async<US8> = method28(v58)
             let v60 : Async<US6> = method29(v1, v59)
             return! v60 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v383 : Async<US6> = _v12 
     let _v2 = v383 
     #endif
@@ -3695,13 +3688,13 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v431 : Async<US8> = method28(v430)
             let v432 : Async<US6> = method29(v1, v431)
             return! v432 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v755 : Async<US6> = _v384 
     let _v2 = v755 
     #endif
@@ -3785,13 +3778,13 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v803 : Async<US8> = method28(v802)
             let v804 : Async<US6> = method29(v1, v803)
             return! v804 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1127 : Async<US6> = _v756 
     let _v2 = v1127 
     #endif
@@ -3875,13 +3868,13 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v1175 : Async<US8> = method28(v1174)
             let v1176 : Async<US6> = method29(v1, v1175)
             return! v1176 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1499 : Async<US6> = _v1128 
     let _v2 = v1499 
     #endif
@@ -3954,13 +3947,13 @@ and method22 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
                 | US6_0(v19) -> (* Some *)
                     v19
             return v21 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v64 : Async<bool> = _v13 
     let _v3 = v64 
     #endif
@@ -3979,13 +3972,13 @@ and method22 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
                 | US6_0(v71) -> (* Some *)
                     v71
             return v73 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v116 : Async<bool> = _v65 
     let _v3 = v116 
     #endif
@@ -4004,13 +3997,13 @@ and method22 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
                 | US6_0(v123) -> (* Some *)
                     v123
             return v125 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v168 : Async<bool> = _v117 
     let _v3 = v168 
     #endif
@@ -4029,13 +4022,13 @@ and method22 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
                 | US6_0(v175) -> (* Some *)
                     v175
             return v177 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v220 : Async<bool> = _v169 
     let _v3 = v220 
     #endif
@@ -4237,10 +4230,10 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
             let v41 : bool = v40 = v1
             if v41 then
                 return v4 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v42 : int64 = v4 % 100L
                 let v43 : bool = v42 = 0L
                 if v43 then
@@ -4292,16 +4285,16 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v106 : int64 = v4 + 1L
                 let v107 : Async<int64> = method36(v0, v1, v2, v3, v106)
                 return! v107 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v738 : Async<int64> = _v15 
     let _v5 = v738 
     #endif
@@ -4324,10 +4317,10 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
             let v765 : bool = v764 = v1
             if v765 then
                 return v4 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v766 : int64 = v4 % 100L
                 let v767 : bool = v766 = 0L
                 if v767 then
@@ -4379,16 +4372,16 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v830 : int64 = v4 + 1L
                 let v831 : Async<int64> = method36(v0, v1, v2, v3, v830)
                 return! v831 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1462 : Async<int64> = _v739 
     let _v5 = v1462 
     #endif
@@ -4411,10 +4404,10 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
             let v1489 : bool = v1488 = v1
             if v1489 then
                 return v4 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v1490 : int64 = v4 % 100L
                 let v1491 : bool = v1490 = 0L
                 if v1491 then
@@ -4466,16 +4459,16 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v1554 : int64 = v4 + 1L
                 let v1555 : Async<int64> = method36(v0, v1, v2, v3, v1554)
                 return! v1555 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2186 : Async<int64> = _v1463 
     let _v5 = v2186 
     #endif
@@ -4498,10 +4491,10 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
             let v2213 : bool = v2212 = v1
             if v2213 then
                 return v4 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v2214 : int64 = v4 % 100L
                 let v2215 : bool = v2214 = 0L
                 if v2215 then
@@ -4553,16 +4546,16 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                 let v2278 : int64 = v4 + 1L
                 let v2279 : Async<int64> = method36(v0, v1, v2, v3, v2278)
                 return! v2279 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2910 : Async<int64> = _v2187 
     let _v5 = v2910 
     #endif
@@ -4617,23 +4610,23 @@ and method43 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v39 : bool = v38 = false
             if v39 then
                 return v2 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v40 : int32 = v2 + 1
                 let v41 : Async<int32> = method42(v0, v1, v40)
                 return! v41 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v224 : Async<int32> = _v13 
     let _v3 = v224 
     #endif
@@ -4656,23 +4649,23 @@ and method43 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v251 : bool = v250 = false
             if v251 then
                 return v2 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v252 : int32 = v2 + 1
                 let v253 : Async<int32> = method42(v0, v1, v252)
                 return! v253 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v436 : Async<int32> = _v225 
     let _v3 = v436 
     #endif
@@ -4695,23 +4688,23 @@ and method43 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v463 : bool = v462 = false
             if v463 then
                 return v2 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v464 : int32 = v2 + 1
                 let v465 : Async<int32> = method42(v0, v1, v464)
                 return! v465 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v648 : Async<int32> = _v437 
     let _v3 = v648 
     #endif
@@ -4734,23 +4727,23 @@ and method43 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v675 : bool = v674 = false
             if v675 then
                 return v2 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v676 : int32 = v2 + 1
                 let v677 : Async<int32> = method42(v0, v1, v676)
                 return! v677 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v860 : Async<int32> = _v649 
     let _v3 = v860 
     #endif

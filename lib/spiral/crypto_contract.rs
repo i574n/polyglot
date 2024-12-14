@@ -710,7 +710,6 @@ pub mod Crypto {
                 ()
             }
         }
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure2(v0_1: i32, v1_1: string, v2: u16, unitVar: ()) {

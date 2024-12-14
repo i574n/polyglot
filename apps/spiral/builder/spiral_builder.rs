@@ -1594,7 +1594,6 @@ mod module_7e2cd9e0 {
                 ()
             };
             println!("{}", v0_1.clone());
-            ();
             ((patternInput.1.clone()).l0.get().clone())(v0_1)
         }
         pub fn closure5(v0_1: Array<string>, unitVar: ()) {
@@ -2136,7 +2135,6 @@ mod module_7e2cd9e0 {
                     ()
                 };
             }
-            ();
             ()
         }
         pub fn closure21(v0_1: string, unitVar: ()) {
@@ -2403,7 +2401,6 @@ mod module_7e2cd9e0 {
             let v1_1: Arc<Async<i64>> = Spiral_builder::method58(v0_1);
             let v3: Arc<Async<()>> = getZero();
             getZero::<()>();
-            ();
             ()
         }
         pub fn method57(v0_1: string) -> Func0<()> {
@@ -2471,7 +2468,6 @@ mod module_7e2cd9e0 {
                     ()
                 }
                 std::fs::write(&*v0_1, &*v1_1).unwrap();
-                ();
                 ()
             };
         }
@@ -6929,7 +6925,6 @@ mod module_7e2cd9e0 {
             let v11: Arc<Async<()>> =
                 Spiral_builder::method126(v0_1, v1_1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
             getZero::<()>();
-            ();
             ()
         }
         pub fn closure55(unitVar: (), v0_1: CancellationToken) -> Spiral_builder::US32 {
@@ -6946,7 +6941,6 @@ mod module_7e2cd9e0 {
         }
         pub fn method134(v0_1: ()) {
             ();
-            ()
         }
         pub fn closure56(v0_1: (), unitVar: ()) {
             if (Spiral_builder::method133(v0_1)) == false {
@@ -7172,7 +7166,7 @@ mod module_7e2cd9e0 {
             v5: bool,
             v6: Option<string>,
         ) -> Arc<Async<(i32, string)>> {
-            getZero()
+            Spiral_builder::method122(v0_1, v1_1, v2, v3, v4, v5, v6)
         }
         pub fn method65(
             v0_1: string,
@@ -7988,7 +7982,6 @@ mod module_7e2cd9e0 {
                                             > = std::thread::JoinHandle::join(v1197);
                                             let v1202: Result<(), string> = v1199.unwrap();
                                             v1202.unwrap();
-                                            ();
                                             {
                                                 let v1219: bool = true;
                                                 let v1221: bool = true;
@@ -10422,7 +10415,6 @@ mod module_7e2cd9e0 {
                     let v32: bool = true;
                     #[cfg(unix)]
                     std::os::unix::fs::symlink(&*v0_1, &*v1_1).unwrap();
-                    ();
                     ()
                 }
             }
@@ -11163,7 +11155,6 @@ mod module_7e2cd9e0 {
                                                                     string("\n"))),
                                                             string("path = \"spiral_builder.rs\""));
                                     std::fs::write(&*v112, &*v167).unwrap();
-                                    ();
                                     ()
                                 }
                                 if (v30) == 0_i32 {
@@ -12183,7 +12174,6 @@ mod module_7e2cd9e0 {
                             .clone(),
                         )
                         .unwrap();
-                        ();
                         {
                             let v0_1_temp: LrcPtr<Spiral_builder::UH4> =
                                 match v0_1.get().clone().as_ref() {
@@ -14254,7 +14244,6 @@ mod module_7e2cd9e0 {
                                         let v1276: string =
                                             concat(new_array(&[v999.clone(), string(".html")]));
                                         std::fs::write(&*v1276, &*v1275).unwrap();
-                                        ();
                                         {
                                             let v1279: string = concat(new_array(&[
                                                 v999.clone(),
@@ -14281,7 +14270,6 @@ mod module_7e2cd9e0 {
                                             let v1365: string =
                                                 concat(new_array(&[v999, string(".ipynb")]));
                                             std::fs::write(&*v1365, &*v1364).unwrap();
-                                            ();
                                             (v1146,
                                                  sprintf!("repl_result: {}\n\njupyter_result: {}\n\npwsh_replace_html_result: {}",
                                                           v1076, v1088,
@@ -14568,7 +14556,6 @@ mod module_7e2cd9e0 {
                                                                string("\n"))),
                                                        string("path = \"spiral_builder.rs\""));
                                         std::fs::write(&*v1902.clone(), &*v1951).unwrap();
-                                        ();
                                         ()
                                     }
                                     {
@@ -14601,7 +14588,6 @@ mod module_7e2cd9e0 {
                                                                    string("\n"))),
                                                            string("path = \"spiral_builder.rs\""));
                                             std::fs::write(&*v1954.clone(), &*v2003).unwrap();
-                                            ();
                                             ()
                                         }
                                         {

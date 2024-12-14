@@ -800,7 +800,6 @@ pub mod Runtime {
             ()
         };
         println!("{}", v0_1.clone());
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure5(unitVar: (), unitVar_1: ()) {
@@ -941,11 +940,9 @@ pub mod Runtime {
     }
     pub fn closure4(unitVar: (), unitVar_1: ()) {
         ();
-        ()
     }
     pub fn method6() {
         ();
-        ()
     }
     pub fn closure3(unitVar: (), unitVar_1: ()) {
         Runtime::method6();
@@ -2735,7 +2732,6 @@ pub mod Runtime {
         let v11: Arc<Async<()>> =
             Runtime::method42(v0_1, v1_1, v2_1, v3, v4, v5, v6, v7, v8, v9, v10);
         getZero::<()>();
-        ();
         ()
     }
     pub fn closure22(unitVar: (), v0_1: CancellationToken) -> Runtime::US15 {
@@ -2752,7 +2748,6 @@ pub mod Runtime {
     }
     pub fn method52(v0_1: ()) {
         ();
-        ()
     }
     pub fn closure23(v0_1: (), unitVar: ()) {
         if (Runtime::method51(v0_1)) == false {
@@ -2975,7 +2970,7 @@ pub mod Runtime {
         v5: bool,
         v6: Option<string>,
     ) -> Arc<Async<(i32, string)>> {
-        getZero()
+        Runtime::method24(v0_1, v1_1, v2_1, v3, v4, v5, v6)
     }
     pub fn method22(v0_1: string) -> Arc<Async<(i32, string)>> {
         Runtime::method23(

@@ -1000,7 +1000,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1090,7 +1089,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1231,7 +1229,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1342,7 +1339,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1445,7 +1441,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1531,7 +1526,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1642,7 +1636,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1728,7 +1721,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -1879,7 +1871,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -2013,7 +2004,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -2217,7 +2207,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }
@@ -2418,7 +2407,6 @@ mod module_b7a9935b {
                 // rust.fix_closure';
                 let v30: Result<(), pyo3::PyErr> = __run_test;
                 v30.unwrap();
-                ();
                 ()
             }
         }

@@ -779,7 +779,6 @@ mod module_fb49c4a9 {
                 ()
             };
             println!("{}", v0_1.clone());
-            ();
             ((patternInput.1.clone()).l0.get().clone())(v0_1)
         }
         pub fn closure5(v0_1: Array<string>, unitVar: ()) {
@@ -1186,7 +1185,6 @@ mod module_fb49c4a9 {
                 ()
             };
             println!("{}", string(" "));
-            ();
             ((patternInput.1.clone()).l0.get().clone())(string(" "))
         }
         pub fn closure18(unitVar: (), unitVar_1: ()) {
@@ -2384,7 +2382,6 @@ mod module_fb49c4a9 {
                 ()
             };
             println!("{}", string("\n"));
-            ();
             ((patternInput.1.clone()).l0.get().clone())(string("\n"))
         }
         pub fn closure31(unitVar: (), unitVar_1: ()) {
@@ -3107,7 +3104,6 @@ mod module_fb49c4a9 {
                         );
                         let v335: Result<(), string> = Err(v332);
                         v335.unwrap();
-                        ();
                         ()
                     }
                 }
@@ -3131,7 +3127,6 @@ mod module_fb49c4a9 {
                                 );
                                 let v362: Result<(), string> = Err(v359);
                                 v362.unwrap();
-                                ();
                                 ()
                             }
                         }

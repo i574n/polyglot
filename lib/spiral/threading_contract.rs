@@ -51,7 +51,6 @@ pub mod Threading {
     }
     pub fn closure2(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
         getZero::<()>();
-        ();
         ()
     }
     pub fn method1(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {

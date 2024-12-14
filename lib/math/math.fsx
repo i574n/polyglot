@@ -1769,35 +1769,28 @@ and method0 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method21 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1969,35 +1962,28 @@ and method20 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method24 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -2183,35 +2169,28 @@ and method22 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method27 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2401,35 +2380,28 @@ and method26 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method29 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
@@ -2596,35 +2568,28 @@ and method28 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method31 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2780,35 +2745,28 @@ and method30 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method33 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -3033,35 +2991,28 @@ and method32 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method35 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -3217,35 +3168,28 @@ and method34 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method38 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -3421,35 +3365,28 @@ and method36 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method42 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
@@ -3628,35 +3565,28 @@ and method40 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method46 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
@@ -4005,35 +3935,28 @@ and method44 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and method50 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -4249,35 +4172,28 @@ and method48 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v32 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v32 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v33 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v33 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v34 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v30 v34 
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
 #else
     match v30 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v31 = () 
     #endif
-    _v31 
+    // run_target_args' is_unit
     ()
 and closure0 () () : unit =
     let v0 : string = "true; () //"

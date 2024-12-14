@@ -589,7 +589,6 @@ pub mod File_system {
                 ()
             };
         }
-        ();
         ()
     }
     pub fn method11(v0_1: File_system::US0) -> bool {
@@ -850,7 +849,6 @@ pub mod File_system {
             ()
         };
         println!("{}", v0_1.clone());
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure4(v0_1: string, v1_1: LrcPtr<Exception>, unitVar: ()) {
@@ -1254,7 +1252,6 @@ pub mod File_system {
     }
     pub fn method49(v0_1: string, v1_1: string) {
         ();
-        ()
     }
     pub fn method51(v0_1: string, v1_1: string, v2_1: string) -> string {
         let v4: LrcPtr<File_system::Mut3> = LrcPtr::new(File_system::Mut3 {
@@ -2200,7 +2197,6 @@ pub mod File_system {
         let v1_1: Arc<Async<i64>> = File_system::method6(v0_1);
         let v3: Arc<Async<()>> = getZero();
         getZero::<()>();
-        ();
         ()
     }
     pub fn method96(v0_1: string) -> Func0<()> {
@@ -3097,7 +3093,6 @@ pub mod File_system {
     }
     pub fn method126(v0_1: string) {
         ();
-        ()
     }
     pub fn closure58(unitVar: (), v0_1: string) {
         File_system::method126(v0_1);
@@ -3153,7 +3148,6 @@ pub mod File_system {
                 let v32_1: bool = true;
                 #[cfg(unix)]
                 std::os::unix::fs::symlink(&*v0_1, &*v1_1).unwrap();
-                ();
                 ()
             }
         }

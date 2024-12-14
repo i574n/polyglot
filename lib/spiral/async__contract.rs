@@ -7,8 +7,11 @@ pub mod Async_ {
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::OnceInit;
     type CancellationToken = ();
-    pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
+    pub fn method0(v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
         getZero()
+    }
+    pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
+        Async_::method0(v0_1)
     }
     pub fn v0() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
         static v0: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =

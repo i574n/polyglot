@@ -2063,12 +2063,10 @@ and method21 (v0 : string) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v20.l0
@@ -2168,25 +2166,20 @@ and method21 (v0 : string) : unit =
         let v119 : string = "true; }); //"
         let v120 : bool = Fable.Core.RustInterop.emitRustExpr () v119 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v0
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #else
     v40 v0
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v121 : (string -> unit) = v18.l0
     v121 v0
 and closure5 (v0 : (string [])) () : unit =
@@ -2568,12 +2561,10 @@ and method34 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v39 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v39 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v19.l0
@@ -2673,25 +2664,20 @@ and method34 () : unit =
         let v119 : string = "true; }); //"
         let v120 : bool = Fable.Core.RustInterop.emitRustExpr () v119 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v39
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v39
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v39
-    let _v41 = () 
     #endif
 #else
     v40 v39
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v121 : (string -> unit) = v17.l0
     v121 v39
 and closure18 () () : unit =
@@ -4350,12 +4336,10 @@ and method60 () : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v39 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v39 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v19.l0
@@ -4454,25 +4438,20 @@ and method60 () : unit =
         let v118 : string = "true; }); //"
         let v119 : bool = Fable.Core.RustInterop.emitRustExpr () v118 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v39
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v39
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v39
-    let _v41 = () 
     #endif
 #else
     v40 v39
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v120 : (string -> unit) = v17.l0
     v120 v39
 and closure31 () () : unit =
@@ -5593,35 +5572,28 @@ and closure0 () (v0 : (string [])) : int32 =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                     let v375 : string = "$0.unwrap()"
                     Fable.Core.RustInterop.emitRustExpr v371 v375 
-                    let _v374 = () 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
                     let v376 : string = "$0.unwrap()"
                     Fable.Core.RustInterop.emitRustExpr v371 v376 
-                    let _v374 = () 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
                     let v377 : string = "$0.unwrap()"
                     Fable.Core.RustInterop.emitRustExpr v371 v377 
-                    let _v374 = () 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
                     match v371 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-                    let _v374 = () 
                     #endif
 #if FABLE_COMPILER_PYTHON
                     match v371 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-                    let _v374 = () 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
                     match v371 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-                    let _v374 = () 
                     #endif
 #else
                     match v371 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-                    let _v374 = () 
                     #endif
-                    _v374 
+                    // run_target_args' is_unit
                     ()
         | _ ->
             let v378 : unit = ()
@@ -5708,35 +5680,28 @@ and closure0 () (v0 : (string [])) : int32 =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v348 : string = "$0.unwrap()"
             Fable.Core.RustInterop.emitRustExpr v344 v348 
-            let _v347 = () 
             #endif
 #if FABLE_COMPILER_RUST && WASM
             let v349 : string = "$0.unwrap()"
             Fable.Core.RustInterop.emitRustExpr v344 v349 
-            let _v347 = () 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
             let v350 : string = "$0.unwrap()"
             Fable.Core.RustInterop.emitRustExpr v344 v350 
-            let _v347 = () 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
             match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-            let _v347 = () 
             #endif
 #if FABLE_COMPILER_PYTHON
             match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-            let _v347 = () 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
             match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-            let _v347 = () 
             #endif
 #else
             match v344 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-            let _v347 = () 
             #endif
-            _v347 
+            // run_target_args' is_unit
             ()
         | _ ->
             ()

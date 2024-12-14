@@ -726,7 +726,6 @@ pub mod Common {
                 ()
             }
         }
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure9(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {

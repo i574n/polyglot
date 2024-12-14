@@ -529,7 +529,7 @@ let file_copy (new_path : string) (old_path : string) : () =
         | Fsharp (Native) => fun old_path, new_path =>
             $'System.IO.File.Copy (!old_path, !new_path, true)'
         | Rust (Native) => fun old_path, new_path =>
-            inl result : _ _ stream.io_error = !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
+            inl result : _ _ stream.io_error = !\\((old_path, new_path), $'"std::fs::copy(&*$0, &*$1)"')
             match result |> resultm.map_error' sm'.format' |> resultm.unbox with
             | Ok (result : u64) =>
                 trace Debug

@@ -8873,6 +8873,7 @@ a.anchor-link {
         <span class="n">let</span> <span class="n">isTrace</span> <span class="o">=</span> <span class="s2">"trace"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
         <span class="n">let</span> <span class="n">isCache</span> <span class="o">=</span> <span class="s2">"cache"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
         <span class="n">let</span> <span class="n">isReal</span> <span class="o">=</span> <span class="s2">"real"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
+        <span class="n">let</span> <span class="n">timeout_continue</span> <span class="o">=</span> <span class="s2">"timeout_continue"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
 
         <span class="k">if</span> <span class="n">isTraceToggle</span>
         <span class="n">then</span> <span class="n">traceToggle</span> <span class="o">&lt;-</span> <span class="ow">not</span> <span class="n">traceToggle</span>
@@ -8903,14 +8904,24 @@ a.anchor-link {
                 <span class="n">fsi_eval</span> <span class="o">=</span> <span class="n">fsi_eval</span>
             <span class="o">|</span><span class="p">}</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="n">timeout</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span>
-            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / Async.runWithTimeout / Exception / timeout: </span><span class="si">{timeout}</span><span class="s2"> / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">),</span>
+        <span class="o">|&gt;</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+            <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="p">((</span><span class="n">Ok</span> <span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="p">((</span><span class="n">Ok</span> <span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">)</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="p">((</span><span class="n">Error</span> <span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span>
+                <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / error / exception: {x.GetType().FullName} / a: %A</span><span class="si">{a}</span><span class="s2"> / x: %A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+                <span class="n">Some</span> <span class="p">((</span><span class="n">Error</span> <span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">)</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span>
+            <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="p">(</span><span class="n">string</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">1500</span>
+            <span class="ow">in</span>
+            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.eval / Async.runWithTimeout / Exception / timeout: </span><span class="si">{timeout}</span><span class="s2"> / timeout_continue: </span><span class="si">{timeout_continue}</span><span class="s2"> / lines: </span><span class="si">{lines}</span><span class="s2">"</span><span class="p">),</span>
             <span class="p">[</span><span class="o">|</span>
                 <span class="p">(</span>
-                    <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.eval / Async.runWithTimeout / errors[0] / timeout: </span><span class="si">{timeout}</span><span class="s2"> / lines: %A</span><span class="si">{lines}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                    <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Eval.eval / Async.runWithTimeout / errors[0] / timeout: </span><span class="si">{timeout}</span><span class="s2"> / lines: </span><span class="si">{lines}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
                 <span class="p">)</span>
             <span class="o">|</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="p">))</span>
 </pre></div>
 </div>
 </div>

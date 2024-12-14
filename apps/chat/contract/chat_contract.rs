@@ -756,7 +756,6 @@ mod module_31a2fc18 {
                     ()
                 }
             }
-            ();
             ((patternInput.1.clone()).l0.get().clone())(v0_1)
         }
         pub fn closure2(
@@ -1023,7 +1022,6 @@ mod module_31a2fc18 {
                 }); //;
                 ()
             }
-            ();
             ((patternInput.1.clone()).l0.get().clone())(string(""))
         }
         pub fn closure15(v0_1: Func0<()>, unitVar: ()) {
@@ -1346,7 +1344,7 @@ mod module_31a2fc18 {
                     std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
                 >,
             ), /* =
-                  getZero::<()>();
+                   getZero::<()>();
                */
         );
         #[near_sdk::near_bindgen] //;

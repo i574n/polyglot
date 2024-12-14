@@ -687,7 +687,6 @@ pub mod Trace {
             ()
         };
         println!("{}", v0_1.clone());
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure6(v0_1: Trace::US0, v1_1: Func0<string>, v2_1: Func0<string>, unitVar: ()) {

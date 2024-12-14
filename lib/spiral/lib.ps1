@@ -75,9 +75,9 @@ function CopyTarget {
             $text = $text `
                 | FixRust
 
-            if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
-                # $text = $text `
-                    # -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
+            if ($Runtime -eq "contract" -and $name -in @("async_", "file_system", "networking", "runtime")) {
+                $text = $text `
+                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
             if ($name -in @("threading")) {
                 $text = $text `

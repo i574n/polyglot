@@ -225,19 +225,19 @@ export function method1(v0_1: string): string {
     return process.env[v0_1] ?? "";
 }
 
-export function method6(v0_1: float64, v1: float64, v2: float64): [float64, float64, float64] {
+export function method7(v0_1: float64, v1: float64, v2: float64): [float64, float64, float64] {
     return [v0_1, v1, v2] as [float64, float64, float64];
 }
 
-export function method8(v0_1: float64, v1: Mut0): boolean {
+export function method9(v0_1: float64, v1: Mut0): boolean {
     return v1.l0 < v0_1;
 }
 
-export function method9(v0_1: Iterable<float64>): Iterable<float64> {
+export function method10(v0_1: Iterable<float64>): Iterable<float64> {
     return v0_1;
 }
 
-export function method11(v0_1: float64, v1: float64, v2: float64, v3: string, v4: float64, v5: float64, v6: float64, v7: float64): US3_$union {
+export function method12(v0_1: float64, v1: float64, v2: float64, v3: string, v4: float64, v5: float64, v6: float64, v7: float64): US3_$union {
     const v8: float64 = Math.sin(v4);
     const v9: float64 = v1 * v8;
     const v10: float64 = Math.sin(v5);
@@ -268,14 +268,14 @@ export function method11(v0_1: float64, v1: float64, v2: float64, v3: string, v4
 export function closure4(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64, v5: float64, v6: float64): FSharpList<US3_$union> {
     const v7: float64 = -v3;
     const v12: float64 = -v5;
-    return ofArray([method11(v5, v6, v7, ";", v0_1, v1, v2, v4), method11(v3, v6, v5, "\\", v0_1, v1, v2, v4), method11(v7, v6, v12, "/", v0_1, v1, v2, v4), method11(v12, v6, v3, "=", v0_1, v1, v2, v4), method11(v5, v7, -v6, ">", v0_1, v1, v2, v4), method11(v5, v3, v6, "<", v0_1, v1, v2, v4)]);
+    return ofArray([method12(v5, v6, v7, ";", v0_1, v1, v2, v4), method12(v3, v6, v5, "\\", v0_1, v1, v2, v4), method12(v7, v6, v12, "/", v0_1, v1, v2, v4), method12(v12, v6, v3, "=", v0_1, v1, v2, v4), method12(v5, v7, -v6, ">", v0_1, v1, v2, v4), method12(v5, v3, v6, "<", v0_1, v1, v2, v4)]);
 }
 
 export function closure3(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64, v5: float64): ((arg0: float64) => FSharpList<US3_$union>) {
     return (v: float64): FSharpList<US3_$union> => closure4(v0_1, v1, v2, v3, v4, v5, v);
 }
 
-export function method10(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64): ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) {
+export function method11(v0_1: float64, v1: float64, v2: float64, v3: float64, v4: float64): ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) {
     return (v: float64): ((arg0: float64) => FSharpList<US3_$union>) => closure3(v0_1, v1, v2, v3, v4, v);
 }
 
@@ -288,27 +288,27 @@ export function closure5(unitVar: void, v0_1: US3_$union): Option<[int32, float6
     }
 }
 
-export function method12(): ((arg0: US3_$union) => Option<[int32, float64, string]>) {
+export function method13(): ((arg0: US3_$union) => Option<[int32, float64, string]>) {
     return (v: US3_$union): Option<[int32, float64, string]> => closure5(undefined, v);
 }
 
 export function closure2(v0_1: float64, v1: float64, v2: float64, _arg: [float64, float64]): Iterable<[int32, float64, string]> {
     const v3: float64 = _arg[0];
     const v5: float64 = -v3;
-    const v53: Iterable<float64> = method9(delay<float64>((): Iterable<float64> => {
+    const v53: Iterable<float64> = method10(delay<float64>((): Iterable<float64> => {
         const v9: Mut0 = new Mut0(v5);
-        return enumerateWhile<float64>((): boolean => method8(v3, v9), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v9.l0), delay<float64>((): Iterable<float64> => {
+        return enumerateWhile<float64>((): boolean => method9(v3, v9), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v9.l0), delay<float64>((): Iterable<float64> => {
             const v13: float64 = v9.l0 + 0.6;
             v9.l0 = v13;
             return empty<float64>();
         }))));
     }));
-    const v54: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method10(v0_1, v1, v2, v3, _arg[1]);
-    const v55: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method12();
+    const v54: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method11(v0_1, v1, v2, v3, _arg[1]);
+    const v55: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method13();
     return delay<[int32, float64, string]>((): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_x: float64): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_y: float64): Iterable<[int32, float64, string]> => choose<US3_$union, [int32, float64, string]>(v55, v54(cube_x)(cube_y)), v53), v53));
 }
 
-export function method7(v0_1: float64, v1: float64, v2: float64): ((arg0: [float64, float64]) => Iterable<[int32, float64, string]>) {
+export function method8(v0_1: float64, v1: float64, v2: float64): ((arg0: [float64, float64]) => Iterable<[int32, float64, string]>) {
     return (arg10$0040: [float64, float64]): Iterable<[int32, float64, string]> => closure2(v0_1, v1, v2, arg10$0040);
 }
 
@@ -335,7 +335,7 @@ export function closure6(v0_1: US4_$union[], v1: int32): ((arg0: [float64, strin
     };
 }
 
-export function method13(): string {
+export function method14(): string {
     return "";
 }
 
@@ -356,18 +356,18 @@ export function closure10(v0_1: string, unitVar: void): void {
     console.log(v0_1);
 }
 
-export function method5(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): Async<void> {
+export function method6(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): Async<void> {
     return singleton_1.Delay<void>((): Async<void> => {
-        const patternInput: [float64, float64, float64] = method6(v2, v3, v4);
+        const patternInput: [float64, float64, float64] = method7(v2, v3, v4);
         const v20: float64 = patternInput[2];
         const v19: float64 = patternInput[1];
         const v18: float64 = patternInput[0];
-        const v33: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method7(v18, v19, v20), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
+        const v33: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method8(v18, v19, v20), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
         const v38: US4_$union[] = fill(new Array(160 * 44), 0, 160 * 44, US4_US4_1());
         iterate<[int32, float64, string]>((_arg: [int32, float64, string]): void => {
             closure6(v38, _arg[0])([_arg[1], _arg[2]] as [float64, string]);
         }, v33);
-        const v46: any = StringBuilder_$ctor_Z721C83C5(method13());
+        const v46: any = StringBuilder_$ctor_Z721C83C5(method14());
         return singleton_1.Combine<void>(singleton_1.For<int32>(rangeDouble(0, 1, 44 - 1), (_arg_1: int32): Async<void> => {
             closure8(v38, v46, _arg_1);
             return singleton_1.Zero();
@@ -391,6 +391,10 @@ export function method5(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: fl
             }));
         }));
     });
+}
+
+export function method5(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): Async<void> {
+    return method6(v0_1, v1, v2, v3, v4);
 }
 
 export function closure0(unitVar: void, v0_1: string[]): void {

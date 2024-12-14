@@ -227,13 +227,13 @@ and method0 (v0 : string) : string =
     let _v94 =
         seq {
             for i = 0 to v93.Length - 1 do yield v93.[i]
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v97 : string seq = _v94 
     let v103 : string = method1()
     let v104 : bool = v103 = "\n"
@@ -351,13 +351,13 @@ and method0 (v0 : string) : string =
     let _v181 =
         seq {
             for i = 0 to v172.Length - 1 do yield v172.[i]
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v184 : string seq = _v181 
     let v190 : string = method4()
     let v191 : bool = v190 = "\n"
@@ -2086,12 +2086,10 @@ and method23 (v0 : string) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v20.l0
@@ -2191,25 +2189,20 @@ and method23 (v0 : string) : unit =
         let v119 : string = "true; }); //"
         let v120 : bool = Fable.Core.RustInterop.emitRustExpr () v119 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v0
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #else
     v40 v0
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v121 : (string -> unit) = v18.l0
     v121 v0
 and closure2 (v0 : int32, v1 : string, v2 : uint16) () : unit =

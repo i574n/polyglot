@@ -54,9 +54,15 @@ union target =
 inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
     backend_switch {
         Fsharp = fun () =>
+            inl is_unit : bool =
+                real
+                    typecase t with
+                    | () => true
+                    | _ => false
             inl result = $'()' : unit
             inl emit_result x : () =
-                $'let _!result = !x '
+                if is_unit |> not
+                then $'let _!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
             $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
             inl target = Rust Native
@@ -80,7 +86,9 @@ inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
             inl target = Fsharp Native
             fn target args |> emit_result
             $'#endif'
-            $'_!result ' : t
+            if is_unit
+            then $'// run_target_args\' is_unit'
+            else $'_!result ' : t
         Python = fun () =>
             inl target = Cuda Native
             fn target args
@@ -115,9 +123,9 @@ inl indent (body : () -> ()) : () =
         Fsharp = fun () =>
             inl body () =
                 body ()
-                $'(*' : ()
+                $'(* indent' : ()
             !!!!Indent (body())
-            $'*)' : ()
+            $'indent *)' : ()
         Python = fun () =>
             !!!!Indent (body())
             ()
@@ -279,11 +287,11 @@ inl (||>) (arg1, arg2) fn =
 /// ### fix_condition
 inl fix_condition x a b =
     if x ()
-    then a () |> fun x => $'(*' : ()
+    then a () |> fun x => $'(* fix_condition then' : ()
     else
-        $'*) else' : ()
-        b () |> fun x => $'(*' : ()
-    |> fun x => $'*)' : ()
+        $'fix_condition then *) else' : ()
+        b () |> fun x => $'(* fix_condition else' : ()
+    |> fun x => $'fix_condition else *)' : ()
 
 /// ## type
 
@@ -488,8 +496,8 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : (() -> exn) -> ()) : t =
     |> indent
     backend_switch {
         Fsharp = fun () =>
-            $'(*'
-            $'*)' : t
+            $'(* try_unit'
+            $'try_unit *)' : t
         Python = fun () => $'' : t
     }
 
@@ -511,8 +519,8 @@ inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     finally |> indent
     backend_switch {
         Fsharp = fun () =>
-            $'(*'
-            $'*)'
+            $'(* try_finally'
+            $'try_finally *)'
             ()
         Python = fun () => ()
     }

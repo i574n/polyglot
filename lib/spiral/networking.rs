@@ -658,7 +658,6 @@ pub mod Networking {
             ()
         };
         println!("{}", v0_1.clone());
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure5(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {

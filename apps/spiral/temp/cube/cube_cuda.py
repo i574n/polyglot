@@ -79,7 +79,7 @@ def Closure1(env_v0 : f64, env_v1 : f64):
         v0 = env_v0; v1 = env_v1
         v2 = Mut0(v0)
         del v0
-        while method4(v1, v2):
+        while method5(v1, v2):
             v4 = v2.v0
             yield v4 
             del v4
@@ -105,24 +105,24 @@ def Closure3(env_v0 : f64, env_v1 : f64, env_v2 : f64, env_v3 : f64, env_v4 : f6
         v0 = env_v0; v1 = env_v1; v2 = env_v2; v3 = env_v3; v4 = env_v4; v5 = env_v5
         v7 = -v3
         v8 = ';'
-        v9 = method7(v5, v6, v7, v8, v0, v1, v2, v4)
+        v9 = method8(v5, v6, v7, v8, v0, v1, v2, v4)
         del v8
         v10 = '\\'
-        v11 = method7(v3, v6, v5, v10, v0, v1, v2, v4)
+        v11 = method8(v3, v6, v5, v10, v0, v1, v2, v4)
         del v10
         v12 = -v5
         v13 = '/'
-        v14 = method7(v7, v6, v12, v13, v0, v1, v2, v4)
+        v14 = method8(v7, v6, v12, v13, v0, v1, v2, v4)
         del v13
         v15 = '='
-        v16 = method7(v12, v6, v3, v15, v0, v1, v2, v4)
+        v16 = method8(v12, v6, v3, v15, v0, v1, v2, v4)
         del v12, v15
         v17 = -v6
         v18 = '>'
-        v19 = method7(v5, v7, v17, v18, v0, v1, v2, v4)
+        v19 = method8(v5, v7, v17, v18, v0, v1, v2, v4)
         del v7, v17, v18
         v20 = '<'
-        v21 = method7(v5, v3, v6, v20, v0, v1, v2, v4)
+        v21 = method8(v5, v3, v6, v20, v0, v1, v2, v4)
         del v0, v1, v2, v3, v4, v5, v20
         v22 = []
         v22.insert(0, v21)
@@ -197,11 +197,11 @@ def Closure0(env_v0 : f64, env_v1 : f64, env_v2 : f64):
         del v5
         v51 = list(v50())
         del v50
-        v53 = method5(v51)
+        v53 = method6(v51)
         del v51
-        v54 = method6(v0, v1, v2, v3, v4)
+        v54 = method7(v0, v1, v2, v3, v4)
         del v0, v1, v2
-        v55 = method8()
+        v55 = method9()
         v60 = Closure5(v53, v54, v55)
         del v53, v54, v55
         v61 = list(v60())
@@ -320,17 +320,17 @@ def method1(v0 : string) -> string:
             return v129
         case t:
             raise Exception(f'Pattern matching miss. Got: {t}')
-def method3(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
+def method4(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
     return v0, v1, v2
-def method4(v0 : f64, v1 : Mut0) -> bool:
+def method5(v0 : f64, v1 : Mut0) -> bool:
     v2 = v1.v0
     del v1
     v3 = v2 < v0
     del v0, v2
     return v3
-def method5(v0 : list) -> list:
+def method6(v0 : list) -> list:
     return v0
-def method7(v0 : f64, v1 : f64, v2 : f64, v3 : char, v4 : f64, v5 : f64, v6 : f64, v7 : f64) -> US1:
+def method8(v0 : f64, v1 : f64, v2 : f64, v3 : char, v4 : f64, v5 : f64, v6 : f64, v7 : f64) -> US1:
     v8 = math.sin(v4)
     v9 = v1 * v8
     v10 = math.sin(v5)
@@ -434,17 +434,17 @@ def method7(v0 : f64, v1 : f64, v2 : f64, v3 : char, v4 : f64, v5 : f64, v6 : f6
     else:
         del v3, v45, v78, v81
         return US1_1()
-def method6(v0 : f64, v1 : f64, v2 : f64, v3 : f64, v4 : f64) -> Callable[[f64], Callable[[f64], list]]:
+def method7(v0 : f64, v1 : f64, v2 : f64, v3 : f64, v4 : f64) -> Callable[[f64], Callable[[f64], list]]:
     return Closure2(v0, v1, v2, v3, v4)
-def method8() -> Callable[[US1], Tuple[i32, f64, char]]:
+def method9() -> Callable[[US1], Tuple[i32, f64, char]]:
     return Closure4()
-def method9() -> string:
+def method10() -> string:
     v0 = ""
     return v0
-def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
+def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
     v2497 = None
     def _v2497():
-        v2730, v2731, v2732 = method3(v2, v3, v4)
+        v2730, v2731, v2732 = method4(v2, v3, v4)
         v2733 = []
         v2733.insert(0, (5.0, 40.0))
         v2735 = v2733 
@@ -467,7 +467,7 @@ def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
         v2756 = Closure6(v2752)
         for (idx, ooz, ch) in v2747: v2756(idx)(ooz, ch)
         del v2747, v2756
-        v2757 = method9()
+        v2757 = method10()
         v2760 = CustomStringIO(v2757)
         del v2757
         v2763 = Closure8(v2752, v2760)
@@ -509,6 +509,8 @@ def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
     v2807 = _v2497 
     del v2497
     return v2807
+def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
+    return method3(v0, v1, v2, v3, v4)
 def main_body():
     v1 = (cp if cuda else np).array([],dtype=object)
     del v1

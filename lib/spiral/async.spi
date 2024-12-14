@@ -2,6 +2,10 @@
 open rust
 open rust_operators
 
+/// ### base_let'
+inl base_let' x =
+    let' x
+
 /// ## rust
 
 /// ### future
@@ -291,11 +295,11 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
                                 | _ => ()
                         |> indent
                         $'}' : ()
-                    |> let'
+                    |> base_let'
             | Cuda _ => fun fn =>
                 fun () =>
                     fn ()
-                |> let'
+                |> base_let'
             | _ => fun _ => null ()
 
 /// ### new_async
@@ -503,15 +507,15 @@ inl merge_cancellation_token_with_default_async
     (token : threading.cancellation_token)
     : async threading.cancellation_token
     =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            fun () =>
-                inl ct = cancellation_token () |> let'
-                inl dct = default_cancellation_token ()
-                inl cts = threading.create_linked_token_source ;[ ct; dct; token ]
-                cts |> threading.cancellation_source_token |> return
-            |> new_async_unit
-        | _ => fun () => null ()
+    fun () =>
+        run_target function
+            | Fsharp (Native) => fun () =>
+                    inl ct = cancellation_token () |> let'
+                    inl dct = default_cancellation_token ()
+                    inl cts = threading.create_linked_token_source ;[ ct; dct; token ]
+                    cts |> threading.cancellation_source_token |> return
+            | _ => fun () => (null () : threading.cancellation_token) |> return
+    |> new_async_unit
 
 /// ### with_trace_level
 inl with_trace_level forall t. level fn : _ t = new_async fun () =>

@@ -839,28 +839,21 @@ and method9 (v0 : bool, v1 : string) : unit =
             let v5 : string = "std::fs::remove_dir(&*$0).unwrap()"
             Fable.Core.RustInterop.emitRustExpr v1 v5 
             ()
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _v2 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _v2 = () 
     #endif
 #else
     System.IO.Directory.Delete (v1, v0)
-    let _v2 = () 
     #endif
-    _v2 
+    // run_target_args' is_unit
     ()
 and method11 (v0 : US0) : bool =
     let v1 : unit = ()
@@ -2282,12 +2275,10 @@ and method24 (v0 : string) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v42 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v42 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v43 : string = @"println!(""{}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v0 v43 
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v44 : string = v20.l0
@@ -2387,25 +2378,20 @@ and method24 (v0 : string) : unit =
         let v119 : string = "true; }); //"
         let v120 : bool = Fable.Core.RustInterop.emitRustExpr () v119 
         ()
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     v40 v0
-    let _v41 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     v40 v0
-    let _v41 = () 
     #endif
 #else
     v40 v0
-    let _v41 = () 
     #endif
-    _v41 
+    // run_target_args' is_unit
     let v121 : (string -> unit) = v18.l0
     v121 v0
 and closure4 (v0 : string, v1 : exn) () : unit =
@@ -2479,9 +2465,9 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v15 : bool = true
                 method9(v15, v0)
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v17 : exn = ex
                 let v18 : int64 = v1 % 100L
@@ -2535,18 +2521,18 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v108 : int64 = v1 + 1L
                 let v109 : Async<int64> = method7(v0, v108)
                 return! v109 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v203 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v203 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1543 : Async<int64> = _v12 
     let _v2 = v1543 
     #endif
@@ -2558,9 +2544,9 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v1547 : bool = true
                 method9(v1547, v0)
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v1549 : exn = ex
                 let v1550 : int64 = v1 % 100L
@@ -2614,18 +2600,18 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v1640 : int64 = v1 + 1L
                 let v1641 : Async<int64> = method7(v0, v1640)
                 return! v1641 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v1735 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v1735 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3075 : Async<int64> = _v1544 
     let _v2 = v3075 
     #endif
@@ -2637,9 +2623,9 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v3079 : bool = true
                 method9(v3079, v0)
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v3081 : exn = ex
                 let v3082 : int64 = v1 % 100L
@@ -2693,18 +2679,18 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v3172 : int64 = v1 + 1L
                 let v3173 : Async<int64> = method7(v0, v3172)
                 return! v3173 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v3267 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v3267 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4607 : Async<int64> = _v3076 
     let _v2 = v4607 
     #endif
@@ -2716,9 +2702,9 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v4611 : bool = true
                 method9(v4611, v0)
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v4613 : exn = ex
                 let v4614 : int64 = v1 % 100L
@@ -2772,18 +2758,18 @@ and method8 (v0 : string, v1 : int64) : Async<int64> =
                 let v4704 : int64 = v1 + 1L
                 let v4705 : Async<int64> = method7(v0, v4704)
                 return! v4705 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v4799 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v4799 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v6139 : Async<int64> = _v4608 
     let _v2 = v6139 
     #endif
@@ -3032,9 +3018,9 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 use v54 = v54 
                 let v59 : System.IO.FileStream = v54 
                 return v3 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v103 : exn = ex
                 let v104 : bool = v3 > 0L
@@ -3094,18 +3080,18 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 let v196 : int64 = v3 + 1L
                 let v197 : Async<int64> = method26(v0, v1, v2, v196)
                 return! v197 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v293 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v293 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2249 : Async<int64> = _v14 
     let _v4 = v2249 
     #endif
@@ -3179,9 +3165,9 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 use v2290 = v2290 
                 let v2295 : System.IO.FileStream = v2290 
                 return v3 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v2339 : exn = ex
                 let v2340 : bool = v3 > 0L
@@ -3241,18 +3227,18 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 let v2432 : int64 = v3 + 1L
                 let v2433 : Async<int64> = method26(v0, v1, v2, v2432)
                 return! v2433 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v2529 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v2529 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4485 : Async<int64> = _v2250 
     let _v4 = v4485 
     #endif
@@ -3326,9 +3312,9 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 use v4526 = v4526 
                 let v4531 : System.IO.FileStream = v4526 
                 return v3 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v4575 : exn = ex
                 let v4576 : bool = v3 > 0L
@@ -3388,18 +3374,18 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 let v4668 : int64 = v3 + 1L
                 let v4669 : Async<int64> = method26(v0, v1, v2, v4668)
                 return! v4669 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v4765 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v4765 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v6721 : Async<int64> = _v4486 
     let _v4 = v6721 
     #endif
@@ -3473,9 +3459,9 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 use v6762 = v6762 
                 let v6767 : System.IO.FileStream = v6762 
                 return v3 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v6811 : exn = ex
                 let v6812 : bool = v3 > 0L
@@ -3535,18 +3521,18 @@ and method27 (v0 : string, v1 : US8, v2 : US7, v3 : int64) : Async<int64> =
                 let v6904 : int64 = v3 + 1L
                 let v6905 : Async<int64> = method26(v0, v1, v2, v6904)
                 return! v6905 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v7001 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v7001 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v8957 : Async<int64> = _v6722 
     let _v4 = v8957 
     #endif
@@ -4133,25 +4119,25 @@ and method39 (v0 : string, v1 : string) : Async<bool> =
             let v16 : bool = v15 = false
             if v16 then
                 return false 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v17 : Async<string> = method31(v0)
                 let! v17 = v17 
                 let v18 : string = v17 
                 let v19 : bool = v1 = v18
                 return v19 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v55 : Async<bool> = _v12 
     let _v2 = v55 
     #endif
@@ -4163,25 +4149,25 @@ and method39 (v0 : string, v1 : string) : Async<bool> =
             let v60 : bool = v59 = false
             if v60 then
                 return false 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v61 : Async<string> = method31(v0)
                 let! v61 = v61 
                 let v62 : string = v61 
                 let v63 : bool = v1 = v62
                 return v63 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v99 : Async<bool> = _v56 
     let _v2 = v99 
     #endif
@@ -4193,25 +4179,25 @@ and method39 (v0 : string, v1 : string) : Async<bool> =
             let v104 : bool = v103 = false
             if v104 then
                 return false 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v105 : Async<string> = method31(v0)
                 let! v105 = v105 
                 let v106 : string = v105 
                 let v107 : bool = v1 = v106
                 return v107 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v143 : Async<bool> = _v100 
     let _v2 = v143 
     #endif
@@ -4223,25 +4209,25 @@ and method39 (v0 : string, v1 : string) : Async<bool> =
             let v148 : bool = v147 = false
             if v148 then
                 return false 
-                (*
+                (* fix_condition then
                 ()
             else
-                *) else
+                fix_condition then *) else
                 let v149 : Async<string> = method31(v0)
                 let! v149 = v149 
                 let v150 : string = v149 
                 let v151 : bool = v1 = v150
                 return v151 
-                (*
+                (* fix_condition else
                 ()
-            *)
-            (*
+            fix_condition else *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v187 : Async<bool> = _v144 
     let _v2 = v187 
     #endif
@@ -4312,13 +4298,13 @@ and method37 (v0 : string, v1 : string) : Async<unit> =
                 do! v18 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v47 : Async<unit> = _v12 
     let _v2 = v47 
     #endif
@@ -4335,13 +4321,13 @@ and method37 (v0 : string, v1 : string) : Async<unit> =
                 do! v54 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v83 : Async<unit> = _v48 
     let _v2 = v83 
     #endif
@@ -4358,13 +4344,13 @@ and method37 (v0 : string, v1 : string) : Async<unit> =
                 do! v90 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v119 : Async<unit> = _v84 
     let _v2 = v119 
     #endif
@@ -4381,13 +4367,13 @@ and method37 (v0 : string, v1 : string) : Async<unit> =
                 do! v126 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v155 : Async<unit> = _v120 
     let _v2 = v155 
     #endif
@@ -4713,33 +4699,26 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                 let v16 : string = "std::fs::remove_file(&*$0).unwrap()"
                 Fable.Core.RustInterop.emitRustExpr v0 v16 
-                let _v15 = () 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let _v15 = () 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let _v15 = () 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let _v15 = () 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let _v15 = () 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v15 = () 
                 #endif
 #else
                 let v17 : (string -> unit) = System.IO.File.Delete
                 v17 v0
-                let _v15 = () 
                 #endif
-                _v15 
+                // run_target_args' is_unit
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v21 : exn = ex
                 let v22 : int64 = v1 % 100L
@@ -4793,18 +4772,18 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
                 let v112 : int64 = v1 + 1L
                 let v113 : Async<int64> = method41(v0, v112)
                 return! v113 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v207 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v207 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1575 : Async<int64> = _v12 
     let _v2 = v1575 
     #endif
@@ -4820,33 +4799,26 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                 let v1580 : string = "std::fs::remove_file(&*$0).unwrap()"
                 Fable.Core.RustInterop.emitRustExpr v0 v1580 
-                let _v1579 = () 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let _v1579 = () 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let _v1579 = () 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let _v1579 = () 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let _v1579 = () 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v1579 = () 
                 #endif
 #else
                 let v1581 : (string -> unit) = System.IO.File.Delete
                 v1581 v0
-                let _v1579 = () 
                 #endif
-                _v1579 
+                // run_target_args' is_unit
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v1585 : exn = ex
                 let v1586 : int64 = v1 % 100L
@@ -4900,18 +4872,18 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
                 let v1676 : int64 = v1 + 1L
                 let v1677 : Async<int64> = method41(v0, v1676)
                 return! v1677 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v1771 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v1771 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3139 : Async<int64> = _v1576 
     let _v2 = v3139 
     #endif
@@ -4927,33 +4899,26 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                 let v3144 : string = "std::fs::remove_file(&*$0).unwrap()"
                 Fable.Core.RustInterop.emitRustExpr v0 v3144 
-                let _v3143 = () 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let _v3143 = () 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let _v3143 = () 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let _v3143 = () 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let _v3143 = () 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v3143 = () 
                 #endif
 #else
                 let v3145 : (string -> unit) = System.IO.File.Delete
                 v3145 v0
-                let _v3143 = () 
                 #endif
-                _v3143 
+                // run_target_args' is_unit
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v3149 : exn = ex
                 let v3150 : int64 = v1 % 100L
@@ -5007,18 +4972,18 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
                 let v3240 : int64 = v1 + 1L
                 let v3241 : Async<int64> = method41(v0, v3240)
                 return! v3241 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v3335 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v3335 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4703 : Async<int64> = _v3140 
     let _v2 = v4703 
     #endif
@@ -5034,33 +4999,26 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                 let v4708 : string = "std::fs::remove_file(&*$0).unwrap()"
                 Fable.Core.RustInterop.emitRustExpr v0 v4708 
-                let _v4707 = () 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let _v4707 = () 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let _v4707 = () 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let _v4707 = () 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let _v4707 = () 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v4707 = () 
                 #endif
 #else
                 let v4709 : (string -> unit) = System.IO.File.Delete
                 v4709 v0
-                let _v4707 = () 
                 #endif
-                _v4707 
+                // run_target_args' is_unit
                 return v1 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v4713 : exn = ex
                 let v4714 : int64 = v1 % 100L
@@ -5114,18 +5072,18 @@ and method42 (v0 : string, v1 : int64) : Async<int64> =
                 let v4804 : int64 = v1 + 1L
                 let v4805 : Async<int64> = method41(v0, v4804)
                 return! v4805 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            let v4899 : int64 = *)
-            (*
+            indent *)
+            (* try_unit
+            let v4899 : int64 = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v6267 : Async<int64> = _v4704 
     let _v2 = v6267 
     #endif
@@ -5177,28 +5135,21 @@ and method49 (v0 : string, v1 : string) : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _v2 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _v2 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _v2 = () 
     #endif
 #else
     System.IO.File.Move (v1, v0)
-    let _v2 = () 
     #endif
-    _v2 
+    // run_target_args' is_unit
     ()
 and method51 (v0 : string, v1 : string, v2 : string) : string =
     let v3 : string = method18()
@@ -5341,9 +5292,9 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
             try
                 method49(v0, v1)
                 return v2 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v16 : exn = ex
                 let v17 : int64 = v2 % 100L
@@ -5397,18 +5348,18 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
                 let v108 : int64 = v2 + 1L
                 let v109 : Async<int64> = method47(v0, v1, v108)
                 return! v109 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            *)
-            (*
+            indent *)
+            (* try_unit
+            try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1520 : Async<int64> = _v13 
     let _v3 = v1520 
     #endif
@@ -5419,9 +5370,9 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
             try
                 method49(v0, v1)
                 return v2 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v1524 : exn = ex
                 let v1525 : int64 = v2 % 100L
@@ -5475,18 +5426,18 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
                 let v1616 : int64 = v2 + 1L
                 let v1617 : Async<int64> = method47(v0, v1, v1616)
                 return! v1617 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            *)
-            (*
+            indent *)
+            (* try_unit
+            try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3028 : Async<int64> = _v1521 
     let _v3 = v3028 
     #endif
@@ -5497,9 +5448,9 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
             try
                 method49(v0, v1)
                 return v2 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v3032 : exn = ex
                 let v3033 : int64 = v2 % 100L
@@ -5553,18 +5504,18 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
                 let v3124 : int64 = v2 + 1L
                 let v3125 : Async<int64> = method47(v0, v1, v3124)
                 return! v3125 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            *)
-            (*
+            indent *)
+            (* try_unit
+            try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4536 : Async<int64> = _v3029 
     let _v3 = v4536 
     #endif
@@ -5575,9 +5526,9 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
             try
                 method49(v0, v1)
                 return v2 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v4540 : exn = ex
                 let v4541 : int64 = v2 % 100L
@@ -5631,18 +5582,18 @@ and method48 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
                 let v4632 : int64 = v2 + 1L
                 let v4633 : Async<int64> = method47(v0, v1, v4632)
                 return! v4633 
-                (*
+                (* indent
                 ()
-            *)
-            (*
-            *)
-            (*
+            indent *)
+            (* try_unit
+            try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v6044 : Async<int64> = _v4537 
     let _v3 = v6044 
     #endif
@@ -5759,13 +5710,13 @@ and method57 (v0 : Async<Choice<int64, exn>>) : Async<US9> =
             #endif
             let v37 : US9 = _v15 
             return v37 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v238 : Async<US9> = _v11 
     let _v1 = v238 
     #endif
@@ -5813,13 +5764,13 @@ and method57 (v0 : Async<Choice<int64, exn>>) : Async<US9> =
             #endif
             let v265 : US9 = _v243 
             return v265 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v466 : Async<US9> = _v239 
     let _v1 = v466 
     #endif
@@ -5867,13 +5818,13 @@ and method57 (v0 : Async<Choice<int64, exn>>) : Async<US9> =
             #endif
             let v493 : US9 = _v471 
             return v493 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v694 : Async<US9> = _v467 
     let _v1 = v694 
     #endif
@@ -5921,13 +5872,13 @@ and method57 (v0 : Async<Choice<int64, exn>>) : Async<US9> =
             #endif
             let v721 : US9 = _v699 
             return v721 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v922 : Async<US9> = _v695 
     let _v1 = v922 
     #endif
@@ -5963,13 +5914,13 @@ and method60 (v0 : Async<US9>) : Async<US10> =
                 | US9_1(v17) -> (* C2of2 *)
                     US10_1(v17)
             return v20 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v70 : Async<US10> = _v11 
     let _v1 = v70 
     #endif
@@ -5986,13 +5937,13 @@ and method60 (v0 : Async<US9>) : Async<US10> =
                 | US9_1(v77) -> (* C2of2 *)
                     US10_1(v77)
             return v80 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v130 : Async<US10> = _v71 
     let _v1 = v130 
     #endif
@@ -6009,13 +5960,13 @@ and method60 (v0 : Async<US9>) : Async<US10> =
                 | US9_1(v137) -> (* C2of2 *)
                     US10_1(v137)
             return v140 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v190 : Async<US10> = _v131 
     let _v1 = v190 
     #endif
@@ -6032,13 +5983,13 @@ and method60 (v0 : Async<US9>) : Async<US10> =
                 | US9_1(v197) -> (* C2of2 *)
                     US10_1(v197)
             return v200 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v250 : Async<US10> = _v191 
     let _v1 = v250 
     #endif
@@ -6603,13 +6554,13 @@ and method61 (v0 : int32, v1 : Async<US10>) : Async<US2> =
                 | US10_0(v16) -> (* Ok *)
                     US2_0(v16)
             return v139 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1015 : Async<US2> = _v12 
     let _v2 = v1015 
     #endif
@@ -6638,13 +6589,13 @@ and method61 (v0 : int32, v1 : Async<US10>) : Async<US2> =
                 | US10_0(v1020) -> (* Ok *)
                     US2_0(v1020)
             return v1143 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v2019 : Async<US2> = _v1016 
     let _v2 = v2019 
     #endif
@@ -6673,13 +6624,13 @@ and method61 (v0 : int32, v1 : Async<US10>) : Async<US2> =
                 | US10_0(v2024) -> (* Ok *)
                     US2_0(v2024)
             return v2147 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3023 : Async<US2> = _v2020 
     let _v2 = v3023 
     #endif
@@ -6708,13 +6659,13 @@ and method61 (v0 : int32, v1 : Async<US10>) : Async<US2> =
                 | US10_0(v3028) -> (* Ok *)
                     US2_0(v3028)
             return v3151 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4027 : Async<US2> = _v3024 
     let _v2 = v4027 
     #endif
@@ -6817,13 +6768,13 @@ and method56 (v0 : Async<int64>, v1 : int32) : Async<US2> =
             let v59 : Async<US10> = method60(v58)
             let v60 : Async<US2> = method61(v1, v59)
             return! v60 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v383 : Async<US2> = _v12 
     let _v2 = v383 
     #endif
@@ -6907,13 +6858,13 @@ and method56 (v0 : Async<int64>, v1 : int32) : Async<US2> =
             let v431 : Async<US10> = method60(v430)
             let v432 : Async<US2> = method61(v1, v431)
             return! v432 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v755 : Async<US2> = _v384 
     let _v2 = v755 
     #endif
@@ -6997,13 +6948,13 @@ and method56 (v0 : Async<int64>, v1 : int32) : Async<US2> =
             let v803 : Async<US10> = method60(v802)
             let v804 : Async<US2> = method61(v1, v803)
             return! v804 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1127 : Async<US2> = _v756 
     let _v2 = v1127 
     #endif
@@ -7087,13 +7038,13 @@ and method56 (v0 : Async<int64>, v1 : int32) : Async<US2> =
             let v1175 : Async<US10> = method60(v1174)
             let v1176 : Async<US2> = method61(v1, v1175)
             return! v1176 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1499 : Async<US2> = _v1128 
     let _v2 = v1499 
     #endif
@@ -7159,13 +7110,13 @@ and method68 (v0 : Async<string>) : Async<string option> =
             let v14 : string = v0 
             let v15 : string option = Some v14 
             return v15 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v46 : Async<string option> = _v11 
     let _v1 = v46 
     #endif
@@ -7177,13 +7128,13 @@ and method68 (v0 : Async<string>) : Async<string option> =
             let v50 : string = v0 
             let v51 : string option = Some v50 
             return v51 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v82 : Async<string option> = _v47 
     let _v1 = v82 
     #endif
@@ -7195,13 +7146,13 @@ and method68 (v0 : Async<string>) : Async<string option> =
             let v86 : string = v0 
             let v87 : string option = Some v86 
             return v87 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v118 : Async<string option> = _v83 
     let _v1 = v118 
     #endif
@@ -7213,13 +7164,13 @@ and method68 (v0 : Async<string>) : Async<string option> =
             let v122 : string = v0 
             let v123 : string option = Some v122 
             return v123 
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v154 : Async<string option> = _v119 
     let _v1 = v154 
     #endif
@@ -7392,9 +7343,9 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                 let v42 : Async<string> = method31(v0)
                 let v43 : Async<string option> = method68(v42)
                 return! v43 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v73 : exn = ex
                 let v74 : bool = v1 = 0L
@@ -7405,28 +7356,28 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                     let v78 : unit = (fun () -> v77 (); v76) ()
                     let v143 : string option = None
                     return v143 
-                    (*
+                    (* fix_condition then
                     ()
                 else
-                    *) else
+                    fix_condition then *) else
                     let v144 : int64 = v1 + 1L
                     let v145 : Async<string option> = method53(v0, v144)
                     return! v145 
-                    (*
+                    (* fix_condition else
                     ()
-                *)
-                (*
+                fix_condition else *)
+                (* indent
                 ()
-            *)
-            (*
-            let v219 : string option = *)
-            (*
+            indent *)
+            (* try_unit
+            let v219 : string option = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v1671 : Async<string option> = _v12 
     let _v2 = v1671 
     #endif
@@ -7482,9 +7433,9 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                 let v1702 : Async<string> = method31(v0)
                 let v1703 : Async<string option> = method68(v1702)
                 return! v1703 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v1733 : exn = ex
                 let v1734 : bool = v1 = 0L
@@ -7495,28 +7446,28 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                     let v1738 : unit = (fun () -> v1737 (); v1736) ()
                     let v1803 : string option = None
                     return v1803 
-                    (*
+                    (* fix_condition then
                     ()
                 else
-                    *) else
+                    fix_condition then *) else
                     let v1804 : int64 = v1 + 1L
                     let v1805 : Async<string option> = method53(v0, v1804)
                     return! v1805 
-                    (*
+                    (* fix_condition else
                     ()
-                *)
-                (*
+                fix_condition else *)
+                (* indent
                 ()
-            *)
-            (*
-            let v1879 : string option = *)
-            (*
+            indent *)
+            (* try_unit
+            let v1879 : string option = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v3331 : Async<string option> = _v1672 
     let _v2 = v3331 
     #endif
@@ -7572,9 +7523,9 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                 let v3362 : Async<string> = method31(v0)
                 let v3363 : Async<string option> = method68(v3362)
                 return! v3363 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v3393 : exn = ex
                 let v3394 : bool = v1 = 0L
@@ -7585,28 +7536,28 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                     let v3398 : unit = (fun () -> v3397 (); v3396) ()
                     let v3463 : string option = None
                     return v3463 
-                    (*
+                    (* fix_condition then
                     ()
                 else
-                    *) else
+                    fix_condition then *) else
                     let v3464 : int64 = v1 + 1L
                     let v3465 : Async<string option> = method53(v0, v3464)
                     return! v3465 
-                    (*
+                    (* fix_condition else
                     ()
-                *)
-                (*
+                fix_condition else *)
+                (* indent
                 ()
-            *)
-            (*
-            let v3539 : string option = *)
-            (*
+            indent *)
+            (* try_unit
+            let v3539 : string option = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v4991 : Async<string option> = _v3332 
     let _v2 = v4991 
     #endif
@@ -7662,9 +7613,9 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                 let v5022 : Async<string> = method31(v0)
                 let v5023 : Async<string option> = method68(v5022)
                 return! v5023 
-                (*
+                (* indent
                 ()
-            *)
+            indent *)
             with ex ->
                 let v5053 : exn = ex
                 let v5054 : bool = v1 = 0L
@@ -7675,28 +7626,28 @@ and method54 (v0 : string, v1 : int64) : Async<string option> =
                     let v5058 : unit = (fun () -> v5057 (); v5056) ()
                     let v5123 : string option = None
                     return v5123 
-                    (*
+                    (* fix_condition then
                     ()
                 else
-                    *) else
+                    fix_condition then *) else
                     let v5124 : int64 = v1 + 1L
                     let v5125 : Async<string option> = method53(v0, v5124)
                     return! v5125 
-                    (*
+                    (* fix_condition else
                     ()
-                *)
-                (*
+                fix_condition else *)
+                (* indent
                 ()
-            *)
-            (*
-            let v5199 : string option = *)
-            (*
+            indent *)
+            (* try_unit
+            let v5199 : string option = try_unit *)
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
+    indent *)
     let v6651 : Async<string option> = _v4992 
     let _v2 = v6651 
     #endif
@@ -11099,36 +11050,29 @@ and closure42 (v0 : string) () : unit =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v25 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v25 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v25 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     null |> unbox<unit>
-    let _v25 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v26 : (Async<unit> -> unit) = Async.RunSynchronously
     v26 v20
-    let _v25 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v27 : (Async<unit> -> unit) = Async.RunSynchronously
     v27 v20
-    let _v25 = () 
     #endif
 #else
     let v28 : (Async<unit> -> unit) = Async.RunSynchronously
     v28 v20
-    let _v25 = () 
     #endif
-    _v25 
+    // run_target_args' is_unit
     ()
 and method96 (v0 : string) : (unit -> unit) =
     closure42(v0)
@@ -16211,22 +16155,16 @@ and method126 (v0 : string) : unit =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _v1 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _v1 = () 
     #endif
 #else
     try
@@ -16316,52 +16254,44 @@ and method126 (v0 : string) : unit =
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         null |> unbox<unit>
-        let _v142 = () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
         null |> unbox<unit>
-        let _v142 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
         null |> unbox<unit>
-        let _v142 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
         null |> unbox<unit>
-        let _v142 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
         let v143 : (Async<unit> -> unit) = Async.RunSynchronously
         v143 v141
-        let _v142 = () 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
         let v144 : (Async<unit> -> unit) = Async.RunSynchronously
         v144 v141
-        let _v142 = () 
         #endif
 #else
         let v145 : (Async<unit> -> unit) = Async.RunSynchronously
         v145 v141
-        let _v142 = () 
         #endif
-        _v142 
-        (*
+        // run_target_args' is_unit
+        (* indent
         ()
-    *)
+    indent *)
     with ex ->
         let v290 : exn = ex
         let v291 : (unit -> exn) = closure59(v290)
         let v292 : string = $"file_system.trace_file / ex: %A{v291}"
         method126(v292)
-        (*
+        (* indent
         ()
-    *)
-    (*
-    *)
-    let _v1 = () 
+    indent *)
+    (* try_unit
+    try_unit *)
     #endif
-    _v1 
+    // run_target_args' is_unit
     ()
 and closure58 () (v0 : string) : unit =
     method126(v0)
@@ -16445,28 +16375,21 @@ and method127 (v0 : string, v1 : string) : unit =
         let v30 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v29 
         let v31 : string = "true; #[cfg(unix)] std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"
         let v32 : bool = Fable.Core.RustInterop.emitRustExpr struct (v0, v1) v31 
-        let _v28 = () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let _v28 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let _v28 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let _v28 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let _v28 = () 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-        let _v28 = () 
         #endif
 #else
         let v33 : System.IO.FileSystemInfo = System.IO.Directory.CreateSymbolicLink (v1, v0)
-        let _v28 = () 
         #endif
-        _v28 
+        // run_target_args' is_unit
         ()
 and closure61 (v0 : string) (v1 : string) : unit =
     method127(v0, v1)

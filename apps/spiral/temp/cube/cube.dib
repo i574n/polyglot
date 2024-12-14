@@ -319,7 +319,7 @@ inl get_cube_points (cube : cube) rot =
 #!fsharp
 
 let generateFrame rot =
-    let updates = 
+    let updates =
         cubes
         |> Seq.collect (fun cube -> getCubePoints cube rot)
     let buffer = Array.create (width * height) None

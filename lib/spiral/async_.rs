@@ -11,7 +11,7 @@ pub mod Async_ {
         getZero()
     }
     pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
-        getZero()
+        Async_::method0(v0_1)
     }
     pub fn v0() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
         static v0: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =
