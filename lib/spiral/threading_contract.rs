@@ -1,20 +1,20 @@
 pub mod Threading {
     use super::*;
-    use fable_library_rust::Interfaces_::System::IDisposable;
-    use fable_library_rust::Native_::defaultOf;
+    use fable_library_rust::Native_::getZero;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::unbox;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::OnceInit;
+    use fable_library_rust::System::IDisposable;
     type CancellationToken = ();
     type CancellationTokenSource = ();
     #[derive(Clone, Debug)]
     pub struct Disposable {
         f: Func0<()>,
     }
-    impl Threading::Disposable {
+    impl Disposable {
         pub fn _ctor__3A5B6456(f: Func0<()>) -> LrcPtr<Threading::Disposable> {
             let f_1;
             ();
@@ -23,7 +23,7 @@ pub mod Threading {
             LrcPtr::new(Threading::Disposable { f: f_1 })
         }
     }
-    impl core::fmt::Display for Threading::Disposable {
+    impl core::fmt::Display for Disposable {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -33,12 +33,12 @@ pub mod Threading {
             (self.f)();
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US0 {
         US0_0(CancellationToken),
         US0_1,
     }
-    impl core::fmt::Display for Threading::US0 {
+    impl core::fmt::Display for US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -50,8 +50,7 @@ pub mod Threading {
         Func1::new(move |v: CancellationToken| Threading::closure1((), v))
     }
     pub fn closure2(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
-        defaultOf::<()>();
-        ();
+        getZero::<()>();
         ()
     }
     pub fn method1(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
@@ -71,7 +70,7 @@ pub mod Threading {
         v0_1: Option<CancellationToken>,
     ) -> (CancellationToken, LrcPtr<dyn IDisposable>) {
         let patternInput: (CancellationToken, LrcPtr<dyn IDisposable>) =
-            unbox::<(CancellationToken, LrcPtr<dyn IDisposable>)>(&defaultOf());
+            unbox::<(CancellationToken, LrcPtr<dyn IDisposable>)>(&getZero());
         let _v1: (CancellationToken, LrcPtr<dyn IDisposable>) =
             (patternInput.0.clone(), patternInput.1.clone());
         (_v1.0.clone(), _v1.1.clone())

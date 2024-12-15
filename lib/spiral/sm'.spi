@@ -105,10 +105,6 @@ inl ellipsis (max : i32) (s : string) =
 
 /// ## fsharp
 
-/// ### ends_with
-inl ends_with (value : string) (s : string) : bool =
-    $'!s.EndsWith !value '
-
 /// ### last_index_of
 inl last_index_of (search : string) (s : string) : i32 =
     $'!s.LastIndexOf !search '
@@ -162,10 +158,17 @@ inl convert_to_utf32 (c : char) : int =
         Python = fun () => $'ord(!c)' : int
     }
 
+/// ### ends_with
+inl ends_with (value : string) (s : string) : bool =
+    backend_switch {
+        Fsharp = fun () => $'!s.EndsWith (!value, false, null)' : bool
+        Python = fun () => $'!s.endswith(!value)' : bool
+    }
+
 /// ### starts_with
 inl starts_with (value : string) (s : string) : bool =
     backend_switch {
-        Fsharp = fun () => $'!s.StartsWith !value ' : bool
+        Fsharp = fun () => $'!s.StartsWith (!value, false, null)' : bool
         Python = fun () => $'!s.startswith(!value)' : bool
     }
 
@@ -462,6 +465,20 @@ nominal os_str =
         $'' : $'std_ffi_OsStr'
     )
 
+/// ### c_str
+nominal c_str =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::CStr\")>]\n#endif\ntype std_ffi_CStr = class end"
+        $'' : $'std_ffi_CStr'
+    )
+
+/// ### c_string
+nominal c_string =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::CString\")>]\n#endif\ntype std_ffi_CString = class end"
+        $'' : $'std_ffi_CString'
+    )
+
 /// ### os_string
 nominal os_string =
     `(
@@ -529,6 +546,10 @@ inl os_string_as_ref (s : os_string) : rust.ref os_str =
 /// ### to_os_string
 inl to_os_string (s : rust.ref os_str) : os_string =
     !\\(s, $'"$0.to_os_string()"')
+
+/// ### new_c_string
+inl new_c_string (s : std_string) : c_string =
+    !\\(s, $'"std::ffi::CString::new($0).unwrap()"')
 
 /// ### os_to_str
 inl os_to_str (s : os_string) : optionm'.option' (rust.ref str) =
@@ -877,7 +898,7 @@ let ellipsis_end (max : i64) (s : string) =
         inl end_half = half |> math.floor |> i64
         inl start = s |> slice 0 (start_half - 1)
         inl end = s |> slice (len - end_half) (len - 1)
-        (a ;[start; "..."; end] : _ i32 _)
+        (a ;[ start; "..."; end ] : _ i32 _)
         |> seq.of_array
         |> concat ""
 

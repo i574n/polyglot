@@ -17,7 +17,7 @@ pub mod Polyglot {
             q.get_or_init(|| string("\"")).clone()
         }
         /// ## TraceLevel
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
         pub enum TraceLevel {
             Verbose,
             Debug,
@@ -25,7 +25,7 @@ pub mod Polyglot {
             Warning,
             Critical,
         }
-        impl core::fmt::Display for Polyglot::Common::TraceLevel {
+        impl core::fmt::Display for TraceLevel {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }

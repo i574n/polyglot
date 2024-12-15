@@ -383,9 +383,10 @@ inl process_stdio_piped () : process_stdio =
 
 #!spiral
 
-inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref (rust.mut' process_command) =
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : process_command =
     (!\($'"true; let mut !c = !c"') : bool) |> ignore
-    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
+    (!\\(args, $'"true; std::process::Command::args(&mut !c, &*$0)"') : bool) |> ignore
+    c |> rust.emit
 
 #!markdown
 
@@ -393,8 +394,10 @@ inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) :
 
 #!spiral
 
-inl process_command_stdout (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
+inl process_command_stdout (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stdout(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 #!markdown
 
@@ -402,8 +405,10 @@ inl process_command_stdout (stdio : process_stdio) (c : rust.ref (rust.mut' proc
 
 #!spiral
 
-inl process_command_stderr (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
+inl process_command_stderr (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stderr(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 #!markdown
 
@@ -411,8 +416,10 @@ inl process_command_stderr (stdio : process_stdio) (c : rust.ref (rust.mut' proc
 
 #!spiral
 
-inl process_command_stdin (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
+inl process_command_stdin (stdio : process_stdio) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\($'"true; std::process::Command::stdin(&mut !c, std::process::Stdio::piped())"') : bool) |> ignore
+    c |> rust.emit
 
 #!markdown
 
@@ -420,12 +427,10 @@ inl process_command_stdin (stdio : process_stdio) (c : rust.ref (rust.mut' proce
 
 #!spiral
 
-inl process_command_current_dir
-    (dir : string)
-    (c : rust.ref (rust.mut' process_command))
-    : rust.ref (rust.mut' process_command)
-    =
-    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
+inl process_command_current_dir (dir : string) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\\(dir, $'"true; std::process::Command::current_dir(&mut !c, &*$0)"') : bool) |> ignore
+    !\($'$"!c"')
 
 #!markdown
 
@@ -433,13 +438,10 @@ inl process_command_current_dir
 
 #!spiral
 
-inl process_command_env
-    (key : string)
-    (value : string)
-    (c : rust.ref (rust.mut' process_command))
-    : rust.ref (rust.mut' process_command)
-    =
-    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
+inl process_command_env (key : string) (value : string) (c : process_command) : process_command =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    (!\\((key, value), $'"true; std::process::Command::env(&mut !c, &*$0, &*$1)"') : bool) |> ignore
+    c |> rust.emit
 
 #!markdown
 
@@ -448,10 +450,11 @@ inl process_command_env
 #!spiral
 
 inl process_command_spawn
-    (c : rust.ref (rust.mut' process_command))
+    (c : process_command)
     : resultm.result' process_child stream.io_error
     =
-    !\\(c, $'"std::process::Command::spawn($0)"')
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    !\($'"std::process::Command::spawn(&mut !c)"')
 
 #!markdown
 
@@ -1086,7 +1089,9 @@ inl process_start (process : process) : bool =
 #!spiral
 
 inl process_exit_code (process : process) : i32 =
-    $'!process.ExitCode'
+    run_target function
+        | Fsharp (Native) => fun () => $'!process.ExitCode'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -1094,9 +1099,9 @@ inl process_exit_code (process : process) : i32 =
 
 #!spiral
 
-inl process_id (process : process) : i32 =
+let process_id (process : process) : i32 =
     run_target function
-        | Fsharp (Native) => fun () => $'!process.Id'
+        | Fsharp (Native) => fun () => process |> $'_.Id'
         | _ => fun () => null ()
 
 #!markdown
@@ -1105,9 +1110,9 @@ inl process_id (process : process) : i32 =
 
 #!spiral
 
-inl process_has_exited (process : process) : bool =
+let process_has_exited (process : process) : bool =
     run_target function
-        | Fsharp (Native) => fun () => $'!process.HasExited'
+        | Fsharp (Native) => fun () => process |> $'_.HasExited'
         | _ => fun () => null ()
 
 #!markdown
@@ -1116,10 +1121,9 @@ inl process_has_exited (process : process) : bool =
 
 #!spiral
 
-inl process_kill (process : process) : () =
+let process_kill (process : process) : () =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'!process.Kill' ()
+        | Fsharp (Native) => fun () => process |> $'_.Kill()'
         | _ => fun () => ()
 
 #!markdown
@@ -1129,7 +1133,7 @@ inl process_kill (process : process) : () =
 #!spiral
 
 inl process_begin_error_read_line (process : process) : () =
-    $'!process.BeginErrorReadLine' ()
+    process |> $'_.BeginErrorReadLine()'
 
 #!markdown
 
@@ -1138,7 +1142,7 @@ inl process_begin_error_read_line (process : process) : () =
 #!spiral
 
 inl process_begin_output_read_line (process : process) : () =
-    $'!process.BeginOutputReadLine' ()
+    process |> $'_.BeginOutputReadLine()'
 
 #!markdown
 
@@ -1165,7 +1169,9 @@ inl process_add_error_data_received fn (process : process) : () =
 #!spiral
 
 inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : process) : async.task () =
-    $'!process.WaitForExitAsync !ct '
+    run_target function
+        | Fsharp (Native) => fun () => $'!process.WaitForExitAsync !ct '
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -1173,9 +1179,9 @@ inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : p
 
 #!spiral
 
-inl event_data (e : data_received_event_args) : string =
+let event_data (e : data_received_event_args) : string =
     run_target function
-        | Fsharp (Native) => fun () => $'!e.Data'
+        | Fsharp (Native) => fun () => e |> $'_.Data'
         | _ => fun () => null ()
 
 #!markdown
@@ -1184,10 +1190,10 @@ inl event_data (e : data_received_event_args) : string =
 
 #!spiral
 
-let execute_with_options_async (options : execution_options) : _ (i32 * string) =
-    run_target_args (fun () => options) function
-        | Fsharp (Native) => fun options =>
-            fun () =>
+let execute_with_options_async (options : execution_options) : _ (int * string) =
+    fun () =>
+        run_target_args (fun () => options) function
+            | Fsharp (Native) => fun options =>
                 inl file_name, arguments = options.command |> split_command |> resultm.get
                 inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
 
@@ -1218,31 +1224,33 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                 inl proc = start_info |> new_process |> use
                 inl output : _ string = threading.new_concurrent_stack ()
 
-                inl event error (e : data_received_event_args) = async.new_async fun () =>
-                    inl data = e |> event_data
-                    if data <> null () then
-                        match options.on_line |> optionm'.unbox with
-                        | Some on_line =>
-                            on_line
-                                {
-                                    process_id = proc |> process_id
-                                    line = data
-                                    error = error
-                                }
-                            |> async.do
-                        | None => ()
+                let event error (e : data_received_event_args) =
+                    fun () =>
+                        inl data = e |> event_data
+                        if data <> null () then
+                            match options.on_line |> optionm'.unbox with
+                            | Some on_line =>
+                                on_line
+                                    {
+                                        process_id = proc |> process_id
+                                        line = data
+                                        error = error
+                                    }
+                                |> async.do
+                            | None => ()
 
-                        inl text =
-                            if error
-                            then $'$"\! {!data}"'
-                            else $'$"> {!data}"'
-                        if options.trace
-                        then trace Verbose (fun () => text) id
-                        else text |> console.write_line
+                            inl text =
+                                if error
+                                then $'$"\! {!data}"'
+                                else $'$"> {!data}"'
+                            if options.trace
+                            then trace Verbose (fun () => text) id
+                            else text |> console.write_line
 
-                        inl l = if error then $'"\\u001b[7;4m"' else ""
-                        inl r = if error then $'"\\u001b[0m"' else ""
-                        output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
+                            inl l = if error then $'"\\u001b[7;4m"' else ""
+                            inl r = if error then $'"\\u001b[0m"' else ""
+                            output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
+                    |> async.new_async
 
                 proc |> process_add_output_data_received (event false >> async.start_immediate)
                 proc |> process_add_error_data_received (event true >> async.start_immediate)
@@ -1277,6 +1285,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                                 proc |> process_exit_code |> return
                             fun ex =>
                                 // with :? System.Threading.Tasks.TaskCanceledException as ex =>
+                                inl ex = ex ()
                                 inl ex' = ex |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
@@ -1299,10 +1308,10 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                     fun () => { exit_code output_length = output |> sm'.length : i32 }
 
                 (exit_code, output) |> return
-            |> async.new_async_unit
-        | _ => fun _ =>
-            global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
-            null ()
+            | _ => fun _ =>
+                global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
+                (null () : int * string) |> return
+    |> async.new_async_unit
 
 #!markdown
 
@@ -1310,7 +1319,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
 #!spiral
 
-inl execute_async command =
+let execute_async command =
     execution_options fun x => { x with
         command = command
     }
@@ -1413,7 +1422,7 @@ fun () =>
 
 #!spiral
 
-inl current_process_kill () =
+let current_process_kill () =
     run_target function
         | Fsharp (Native) => fun () =>
             inl fn () =
@@ -1458,10 +1467,10 @@ inl gc_collect () =
 #!spiral
 
 let execute_with_options (options : execution_options) : i32 * string =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' options function
+        | Fsharp (Native) => fun options =>
             options |> execute_with_options_async |> async.run_synchronously
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun options =>
             inl command = join options.command
             inl file_name, arguments = command |> split_command |> resultm.get
             inl arguments =
@@ -1476,18 +1485,23 @@ let execute_with_options (options : execution_options) : i32 * string =
                 fun () => { file_name arguments = arguments |> sm'.format_debug; options }
             fun () =>
                 fun () =>
+                    // inl new_command_mutex (command : rust.ref (rust.mut' process_command)) : threading.arc (threading.mutex process_command) =
+                        // ()
                     file_name
                     |> new_process_command
                     |> process_command_args arguments
                     |> process_command_stdout (process_stdio_piped ())
                     |> process_command_stderr (process_stdio_piped ())
                     |> process_command_stdin (process_stdio_piped ())
+                    // |> new_command_mutex
                     |> fun command =>
                         match options.working_directory |> optionm'.unbox with
                         | Some working_directory =>
                             command
                             |> process_command_current_dir working_directory
-                        | None => command
+                        | None =>
+                            !\($'$"!command"')
+                            // |> rust.emit
                     |> fun command =>
                         match options.environment_variables with
                         | ;[] => command
@@ -1651,7 +1665,7 @@ let execute_with_options (options : execution_options) : i32 * string =
             // |> async.block_on
             |> fun x => x ()
             |> from_pair
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -1659,7 +1673,7 @@ let execute_with_options (options : execution_options) : i32 * string =
 
 #!spiral
 
-inl execute command =
+let execute command =
     execution_options fun x => { x with
         command = command
     }

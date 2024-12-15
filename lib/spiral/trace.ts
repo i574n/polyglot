@@ -297,7 +297,11 @@ export function US5_$reflection(): TypeInfo {
     return union_type("Trace.US5", [], US5, () => [[["f0_0", string_type]], []]);
 }
 
-export function method3(): string {
+export function method3(v0_1: string): string {
+    return v0_1;
+}
+
+export function method4(): string {
     return "";
 }
 
@@ -305,7 +309,7 @@ export function closure1(unitVar: void, v0_1: string): US5_$union {
     return US5_US5_0(v0_1);
 }
 
-export function method4(): ((arg0: string) => US5_$union) {
+export function method5(): ((arg0: string) => US5_$union) {
     return (v: string): US5_$union => closure1(undefined, v);
 }
 
@@ -340,7 +344,7 @@ export function closure0(unitVar: void, unitVar_1: void): void {
     }
 }
 
-export function method5(v0_1: US0_$union): boolean {
+export function method6(v0_1: US0_$union): boolean {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
@@ -362,20 +366,20 @@ export function closure7(unitVar: void, v0_1: int64): US2_$union {
     return US2_US2_0(v0_1);
 }
 
-export function method7(): ((arg0: int64) => US2_$union) {
+export function method8(): ((arg0: int64) => US2_$union) {
     return (v: int64): US2_$union => closure7(undefined, v);
 }
 
-export function method8(): string {
+export function method9(): string {
     return "hh:mm:ss";
 }
 
-export function method9(): string {
+export function method10(): string {
     return "HH:mm:ss";
 }
 
-export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method7(), v5), US2_US2_1());
+export function method7(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method8(), v5), US2_US2_1());
     let v418: Date;
     if (v321.tag === /* US2_0 */ 0) {
         const v325: int64 = v321.fields[0];
@@ -385,11 +389,11 @@ export function method6(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, 
     else {
         v418 = now();
     }
-    const v419: string = method9();
+    const v419: string = method10();
     return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
-export function method12(): string {
+export function method13(): string {
     return "";
 }
 
@@ -398,19 +402,19 @@ export function closure8(v0_1: Mut3, v1_1: string, unitVar: void): void {
     v0_1.l0 = v3;
 }
 
-export function method11(v0_1: string): string {
-    const v2_1: Mut3 = new Mut3(method12());
+export function method12(v0_1: string): string {
+    const v2_1: Mut3 = new Mut3(method13());
     let v8: any;
     closure8(v2_1, `${v0_1}`, undefined);
     v8 = undefined;
     return v2_1.l0;
 }
 
-export function method13(): string {
+export function method14(): string {
     return "\u001b[0m";
 }
 
-export function method10(v0_1: US0_$union): string {
+export function method11(v0_1: US0_$union): string {
     const v5: US5_$union = (v0_1.tag === /* US0_0 */ 0) ? US5_US5_0("Verbose") : US5_US5_1();
     let v46: US5_$union;
     if (v5.tag === /* US5_0 */ 0) {
@@ -446,25 +450,25 @@ export function method10(v0_1: US0_$union): string {
         throw new Error("Option does not have a value.");
     }
     const v52: string = v50.toLocaleLowerCase();
-    const v56: string = method11(v52[0]);
-    return (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v56) + method13();
+    const v56: string = method12(v52[0]);
+    return (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v56) + method14();
 }
 
-export function method15(v0_1: string): string {
-    const v2_1: Mut3 = new Mut3(method12());
+export function method16(v0_1: string): string {
+    const v2_1: Mut3 = new Mut3(method13());
     let v8: any;
-    closure8(v2_1, `${v0_1}`, undefined);
+    closure8(v2_1, v0_1, undefined);
     v8 = undefined;
     return v2_1.l0;
 }
 
-export function method16(v0_1: string): string {
+export function method17(v0_1: string): string {
     return trimEnd(trimStart(v0_1, ...[]), ...[" ", "/"]);
 }
 
-export function method14(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: string, v9: string): string {
-    const v10: string = method15(v9);
-    return method16(`${v6} ${v7} #${v0_1.l0} ${v8} / ${v10}`);
+export function method15(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: string, v9: string): string {
+    const v10: string = method16(v9);
+    return method17(`${v6} ${v7} #${v0_1.l0} ${v8} / ${v10}`);
 }
 
 export function closure9(v0_1: Mut0, unitVar: void): void {
@@ -482,7 +486,7 @@ export function closure10(unitVar: void, v0_1: string): void {
     v3 = undefined;
 }
 
-export function method17(v0_1: string): void {
+export function method18(v0_1: string): void {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
@@ -495,7 +499,7 @@ export function method17(v0_1: string): void {
 }
 
 export function closure6(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): void {
-    if (method5(v0_1)) {
+    if (method6(v0_1)) {
         let v6: any;
         closure0(undefined, undefined);
         v6 = undefined;
@@ -506,10 +510,10 @@ export function closure6(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
         const v22: Mut2 = patternInput[2];
         const v21: Mut1 = patternInput[1];
         const v20: Mut0 = patternInput[0];
-        const v38: string = method6(v20, v21, v22, v23, v24, v25);
-        const v39: string = method10(v0_1);
+        const v38: string = method7(v20, v21, v22, v23, v24, v25);
+        const v39: string = method11(v0_1);
         const v40: string = v1_1();
-        method17((v40 === "") ? "" : method14(v20, v21, v22, v23, v24, v25, v38, v39, v40, v2_1()));
+        method18((v40 === "") ? "" : method15(v20, v21, v22, v23, v24, v25, v38, v39, v40, v2_1()));
     }
 }
 

@@ -8,6 +8,7 @@
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
+#![allow(unused_assignments)]
 mod module_b448d9d1 {
     pub mod Test {
         use super::*;

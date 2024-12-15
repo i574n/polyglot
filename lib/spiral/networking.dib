@@ -223,7 +223,7 @@ inl new_tcp_listener (ip_address : ip_address) (port : i32) : tcp_listener =
 #!spiral
 
 inl listener_start (listener : tcp_listener) : () =
-    $'!listener.Start' ()
+    listener |> $'_.Start()'
 
 #!markdown
 
@@ -232,7 +232,7 @@ inl listener_start (listener : tcp_listener) : () =
 #!spiral
 
 inl listener_stop (listener : tcp_listener) : () =
-    $'!listener.Stop' ()
+    listener |> $'_.Stop()'
 
 #!markdown
 
@@ -265,10 +265,9 @@ let test_port_open host port : _ bool = async.new_async fun () =>
             client |> client_connect_async host port ct |> async.await_value_task_unit |> async.do
             return true
         fun ex =>
-            inl ex = ex |> sm'.format_exception
             trace Verbose
                 fun () => "networking.test_port_open"
-                fun () => { port ex }
+                fun () => { port ex = ex () |> sm'.format_exception }
             return false
 
 #!spiral
@@ -309,23 +308,24 @@ test_port_open_timeout 120 "127.0.0.1" 65535
 #!spiral
 
 let wait_for_port_access timeout status host port : _ i64 =
-    let rec loop retry : _ i64 = async.new_async_unit fun () =>
-        inl isPortOpen =
-            match timeout |> optionm'.unbox with
-            | None => test_port_open host port
-            | Some timeout => test_port_open_timeout timeout host port
-            |> async.let'
-
-        fix_condition
-            fun () => isPortOpen = status
-            fun () => retry |> return
-            fun () =>
-                if retry % 100 = 0 then
-                    trace Verbose
-                        fun () => "networking.wait_for_port_access"
-                        fun () => { port retry timeout status }
-                async.sleep 10 |> async.do
-                loop (retry + 1) |> async.return_await
+    let rec loop retry : _ i64 =
+        fun () =>
+            inl is_port_open =
+                match timeout |> optionm'.unbox with
+                | None => test_port_open host port
+                | Some timeout => test_port_open_timeout timeout host port
+                |> async.let'
+            fix_condition
+                fun () => is_port_open = status
+                fun () => retry |> return
+                fun () =>
+                    if retry % 100 = 0 then
+                        trace Verbose
+                            fun () => "networking.wait_for_port_access"
+                            fun () => { port retry timeout status }
+                    async.sleep 10 |> async.do
+                    loop (retry + 1) |> async.return_await
+        |> async.new_async_unit
     loop 1i64
 
 #!spiral
@@ -435,16 +435,18 @@ fun () =>
 #!spiral
 
 let get_available_port timeout host initial_port : _ i32 =
-    let rec loop port = async.new_async_unit fun () =>
-        inl is_port_open =
-            match timeout |> optionm'.unbox with
-            | None => test_port_open host port
-            | Some timeout => test_port_open_timeout timeout host port
-            |> async.let'
-        fix_condition
-            fun () => is_port_open |> not
-            fun () => port |> return
-            fun () => loop (port + 1) |> async.return_await
+    let rec loop port =
+        fun () =>
+            inl is_port_open =
+                match timeout |> optionm'.unbox with
+                | None => test_port_open host port
+                | Some timeout => test_port_open_timeout timeout host port
+                |> async.let'
+            fix_condition
+                fun () => is_port_open |> not
+                fun () => port |> return
+                fun () => loop (port + 1) |> async.return_await
+        |> async.new_async_unit
     loop initial_port
 
 #!spiral

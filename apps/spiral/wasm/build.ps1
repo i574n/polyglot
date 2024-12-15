@@ -34,8 +34,9 @@ if (!(Test-Path $path)) {
     $path = "$targetDir/target/rs/$projectName.rs"
 }
 (Get-Content $path) `
-    -replace "../../../../lib", "../../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
+    -replace "../../../../../lib", "../../../lib" `
+    -replace "`"./lib", "`"../../../lib" `
     | FixRust `
     | Set-Content "$projectName.rs"
 

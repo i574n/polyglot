@@ -144,8 +144,9 @@ nominal pyerr =
 /// ## eval
 inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
     inl py = join py
-    inl code = code |> sm'.as_str
-    !\\(code, $'"pyo3::types::PyModule::from_code_bound(!py, $0, \\"\\", \\"\\")"')
+    inl code = code |> sm'.to_std_string |> sm'.new_c_string
+    inl empty = "" |> sm'.to_std_string |> sm'.new_c_string
+    !\\(code, $'"pyo3::types::PyModule::from_code(!py, &$0, &!empty, &!empty)"')
     |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
 
 inl use_pyanymethods () =

@@ -1,4 +1,4 @@
-let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
+let rec method0 (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
     let v1 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -16,131 +16,225 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
     let _v1 = v8 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v11 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v1 = v11 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v14 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v1 = v14 
-    #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v17 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v1 = v17 
-    #endif
-#else
-    let v20 : unit = ()
-    
+    let v11 : unit = ()
+    let _v11 =
+        async {
+            let v14 : unit = ()
+            
 #if FABLE_COMPILER || WASM || CONTRACT
-    
+            
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v21 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v20 = v21 
-    #endif
+            let v15 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v15 
+            #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v24 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v20 = v24 
-    #endif
+            let v18 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v18 
+            #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v27 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    let _v20 = v27 
-    #endif
+            let v21 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v21 
+            #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v30 : unit = ()
-    let _v30 =
-        async {
-            let v31 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v31 = v31 
-            let v32 : System.Threading.CancellationToken = v31 
-            let v33 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v34 : (System.Threading.CancellationToken []) = [|v32; v33; v0|]
-            let v35 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v36 : System.Threading.CancellationTokenSource = v35 v34
-            let v37 : System.Threading.CancellationToken = v36.Token
-            return v37 
-            (*
+            let v24 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v24 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v27 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v27 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v30 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v30 
+            #endif
+#else
+            let v33 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v33 = v33 
+            let v34 : System.Threading.CancellationToken = v33 
+            let v35 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v36 : (System.Threading.CancellationToken []) = [|v34; v35; v0|]
+            let v37 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v38 : System.Threading.CancellationTokenSource = v37 v36
+            let v39 : System.Threading.CancellationToken = v38.Token
+            return v39 
+            #endif
+            // run_target_args' is_unit
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v38 : Async<System.Threading.CancellationToken> = _v30 
-    let _v20 = v38 
+    indent *)
+    let v246 : Async<System.Threading.CancellationToken> = _v11 
+    let _v1 = v246 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v39 : unit = ()
-    let _v39 =
+    let v247 : unit = ()
+    let _v247 =
         async {
-            let v40 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v40 = v40 
-            let v41 : System.Threading.CancellationToken = v40 
-            let v42 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v43 : (System.Threading.CancellationToken []) = [|v41; v42; v0|]
-            let v44 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v45 : System.Threading.CancellationTokenSource = v44 v43
-            let v46 : System.Threading.CancellationToken = v45.Token
-            return v46 
-            (*
+            let v250 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v251 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v251 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v254 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v254 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v257 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v257 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v260 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v260 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v263 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v263 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v266 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v266 
+            #endif
+#else
+            let v269 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v269 = v269 
+            let v270 : System.Threading.CancellationToken = v269 
+            let v271 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v272 : (System.Threading.CancellationToken []) = [|v270; v271; v0|]
+            let v273 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v274 : System.Threading.CancellationTokenSource = v273 v272
+            let v275 : System.Threading.CancellationToken = v274.Token
+            return v275 
+            #endif
+            // run_target_args' is_unit
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v47 : Async<System.Threading.CancellationToken> = _v39 
-    let _v20 = v47 
+    indent *)
+    let v482 : Async<System.Threading.CancellationToken> = _v247 
+    let _v1 = v482 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v48 : unit = ()
-    let _v48 =
+    let v483 : unit = ()
+    let _v483 =
         async {
-            let v49 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v49 = v49 
-            let v50 : System.Threading.CancellationToken = v49 
-            let v51 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v52 : (System.Threading.CancellationToken []) = [|v50; v51; v0|]
-            let v53 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v54 : System.Threading.CancellationTokenSource = v53 v52
-            let v55 : System.Threading.CancellationToken = v54.Token
-            return v55 
-            (*
+            let v486 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v487 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v487 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v490 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v490 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v493 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v493 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v496 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v496 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v499 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v499 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v502 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v502 
+            #endif
+#else
+            let v505 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v505 = v505 
+            let v506 : System.Threading.CancellationToken = v505 
+            let v507 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v508 : (System.Threading.CancellationToken []) = [|v506; v507; v0|]
+            let v509 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v510 : System.Threading.CancellationTokenSource = v509 v508
+            let v511 : System.Threading.CancellationToken = v510.Token
+            return v511 
+            #endif
+            // run_target_args' is_unit
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v56 : Async<System.Threading.CancellationToken> = _v48 
-    let _v20 = v56 
+    indent *)
+    let v718 : Async<System.Threading.CancellationToken> = _v483 
+    let _v1 = v718 
     #endif
 #else
-    let v57 : unit = ()
-    let _v57 =
+    let v719 : unit = ()
+    let _v719 =
         async {
-            let v58 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v58 = v58 
-            let v59 : System.Threading.CancellationToken = v58 
-            let v60 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-            let v61 : (System.Threading.CancellationToken []) = [|v59; v60; v0|]
-            let v62 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            let v63 : System.Threading.CancellationTokenSource = v62 v61
-            let v64 : System.Threading.CancellationToken = v63.Token
-            return v64 
-            (*
+            let v722 : unit = ()
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v723 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v723 
+            #endif
+#if FABLE_COMPILER_RUST && WASM
+            let v726 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v726 
+            #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v729 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v729 
+            #endif
+#if FABLE_COMPILER_TYPESCRIPT
+            let v732 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v732 
+            #endif
+#if FABLE_COMPILER_PYTHON
+            let v735 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v735 
+            #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+            let v738 : System.Threading.CancellationToken = null |> unbox<System.Threading.CancellationToken>
+            return v738 
+            #endif
+#else
+            let v741 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v741 = v741 
+            let v742 : System.Threading.CancellationToken = v741 
+            let v743 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+            let v744 : (System.Threading.CancellationToken []) = [|v742; v743; v0|]
+            let v745 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            let v746 : System.Threading.CancellationTokenSource = v745 v744
+            let v747 : System.Threading.CancellationToken = v746.Token
+            return v747 
+            #endif
+            // run_target_args' is_unit
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v65 : Async<System.Threading.CancellationToken> = _v57 
-    let _v20 = v65 
+    indent *)
+    let v954 : Async<System.Threading.CancellationToken> = _v719 
+    let _v1 = v954 
     #endif
-    let v66 : Async<System.Threading.CancellationToken> = _v20 
-    let _v1 = v66 
-    #endif
-    let v71 : Async<System.Threading.CancellationToken> = _v1 
-    v71
+    let v955 : Async<System.Threading.CancellationToken> = _v1 
+    v955
+and closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
+    method0(v0)
 let v0 : (System.Threading.CancellationToken -> Async<System.Threading.CancellationToken>) = closure0()
 let merge_cancellation_token_with_default_async x = v0 x
 ()

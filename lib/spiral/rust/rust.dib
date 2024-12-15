@@ -347,6 +347,23 @@ nominal mut' t =
 
 #!markdown
 
+### ref_mut
+
+#!spiral
+
+nominal ref_mut t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefMut<$0>\")>]\n#endif\ntype std_cell_RefMut<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_cell_RefMut<`t>'
+    )
+
+#!markdown
+
 ### send
 
 #!spiral
@@ -604,6 +621,46 @@ inl to_mut forall t. (x : t) : () =
 
 #!markdown
 
+### to_ref
+
+#!spiral
+
+inl to_ref forall t. (x : t) : ref t =
+    !\\(x, $'"&$0"')
+
+#!markdown
+
+### to_ref_mut
+
+#!spiral
+
+inl to_ref_mut forall t. (x : t) : ref (mut' t) =
+    x |> to_mut
+    !\\(x, $'"&mut $0"')
+
+#!markdown
+
+### to_ref_mut'
+
+#!spiral
+
+inl to_ref_mut' forall t. (x : ref_mut (ref (mut' t))) : ref (mut' t) =
+    x |> to_mut
+    !\\(x, $'"&mut $0"')
+
+#!markdown
+
+### ref_cell_borrow_mut'
+
+#!spiral
+
+inl ref_cell_borrow_mut' forall t. (x : rc (ref_cell (ref (mut' t)))) : ref (mut' t) =
+    inl x = x |> rc_clone
+    inl x : ref_mut (ref (mut' t)) = !\\(x, $'"std::cell::RefCell::borrow_mut(&$0)"')
+    x |> to_ref_mut'
+
+#!markdown
+
 ### ref_map
 
 #!spiral
@@ -659,31 +716,21 @@ inl box_pin forall t. (x : t) : pin (box t) =
 
 #!markdown
 
-### to_ref
-
-#!spiral
-
-inl to_ref forall t. (x : t) : ref t =
-    !\\(x, $'"&$0"')
-
-#!markdown
-
-### to_ref_mut
-
-#!spiral
-
-inl to_ref_mut forall t. (x : t) : ref (mut' t) =
-    x |> to_mut
-    !\\(x, $'"&mut $0"')
-
-#!markdown
-
 ### deref
 
 #!spiral
 
 inl deref forall t. (ref : ref t) : t =
     !\\(ref, $'"*$0"')
+
+#!markdown
+
+### deref_mut
+
+#!spiral
+
+inl deref_mut forall t. (x : ref (mut' t)) : t =
+    !\\(x, $'"*$0"')
 
 #!markdown
 

@@ -13,34 +13,27 @@ and closure2 (v0 : System.Threading.CancellationTokenSource) () : unit =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     null |> unbox<unit>
-    let _v1 = () 
     #endif
 #else
     let v2 : (unit -> unit) = v0.Cancel
     v2 ()
-    let _v1 = () 
     #endif
-    _v1 
+    // run_target_args' is_unit
     ()
 and method1 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
     closure2(v0)

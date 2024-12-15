@@ -33,12 +33,14 @@ and [<Struct>] US4 =
 let rec method0 () : string =
     let v0 : string = "VSCODE_PID"
     v0
-and method2 () : string =
+and method2 (v0 : string) : string =
+    v0
+and method3 () : string =
     let v0 : string = ""
     v0
 and closure1 () (v0 : string) : US2 =
     US2_0(v0)
-and method3 () : (string -> US2) =
+and method4 () : (string -> US2) =
     closure1()
 and method1 (v0 : string) : string =
     let v1 : unit = ()
@@ -46,116 +48,117 @@ and method1 (v0 : string) : string =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = "std::env::var(&*$0)"
-    let v3 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v2 
-    let v4 : string = "true; let _result_map_ = $0.map(|x| { //"
-    let v5 : bool = Fable.Core.RustInterop.emitRustExpr v3 v4 
-    let v6 : string = "x"
-    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v6 
-    let v8 : string = "fable_library_rust::String_::fromString($0)"
-    let v9 : string = Fable.Core.RustInterop.emitRustExpr v7 v8 
-    let v10 : string = "true; $0 })"
-    let v11 : bool = Fable.Core.RustInterop.emitRustExpr v9 v10 
-    let v12 : string = "_result_map_"
-    let v13 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v12 
-    let v14 : string = method2()
-    let v15 : string = "$0.unwrap_or($1)"
-    let v16 : string = Fable.Core.RustInterop.emitRustExpr struct (v13, v14) v15 
-    let _v1 = v16 
+    let v2 : string = method2(v0)
+    let v3 : string = "std::env::var(&*$0)"
+    let v4 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v2 v3 
+    let v5 : string = "true; let _result_map_ = $0.map(|x| { //"
+    let v6 : bool = Fable.Core.RustInterop.emitRustExpr v4 v5 
+    let v7 : string = "x"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v7 
+    let v9 : string = "fable_library_rust::String_::fromString($0)"
+    let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9 
+    let v11 : string = "true; $0 })"
+    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11 
+    let v13 : string = "_result_map_"
+    let v14 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v13 
+    let v15 : string = method3()
+    let v16 : string = "$0.unwrap_or($1)"
+    let v17 : string = Fable.Core.RustInterop.emitRustExpr struct (v14, v15) v16 
+    let _v1 = v17 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v17 : US0 = US0_1
-    let v18 : US1 = US1_2(v17)
-    let v19 : string = $"env.get_environment_variable / target: {v18} / var: {v0}"
-    let v20 : string = failwith<string> v19
-    let _v1 = v20 
+    let v18 : US0 = US0_1
+    let v19 : US1 = US1_2(v18)
+    let v20 : string = $"env.get_environment_variable / target: {v19} / var: {v0}"
+    let v21 : string = failwith<string> v20
+    let _v1 = v21 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v21 : US0 = US0_2
-    let v22 : US1 = US1_2(v21)
-    let v23 : string = $"env.get_environment_variable / target: {v22} / var: {v0}"
-    let v24 : string = failwith<string> v23
-    let _v1 = v24 
+    let v22 : US0 = US0_2
+    let v23 : US1 = US1_2(v22)
+    let v24 : string = $"env.get_environment_variable / target: {v23} / var: {v0}"
+    let v25 : string = failwith<string> v24
+    let _v1 = v25 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v25 : string = "process.env[$0] ?? \"\""
-    let v26 : string = Fable.Core.JsInterop.emitJsExpr v0 v25 
-    let _v1 = v26 
+    let v26 : string = "process.env[$0] ?? \"\""
+    let v27 : string = Fable.Core.JsInterop.emitJsExpr v0 v26 
+    let _v1 = v27 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v27 : string = "os"
-    let v28 : IOsEnviron = Fable.Core.PyInterop.importAll v27 
-    let v29 : string = "v28.environ"
-    let v30 : obj = Fable.Core.PyInterop.emitPyExpr () v29 
-    let v33 : string = "v30.get($0)"
-    let v34 : string = Fable.Core.PyInterop.emitPyExpr v0 v33 
-    let mutable _v34 = None
+    let v28 : string = "os"
+    let v29 : IOsEnviron = Fable.Core.PyInterop.importAll v28 
+    let v30 : string = "v29.environ"
+    let v31 : obj = Fable.Core.PyInterop.emitPyExpr () v30 
+    let v34 : string = "v31.get($0)"
+    let v35 : string = Fable.Core.PyInterop.emitPyExpr v0 v34 
+    let mutable _v35 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v37 : (string -> string option) = Option.ofObj
-    let v38 : string option = v37 v34
-    v38 
+    let v38 : (string -> string option) = Option.ofObj
+    let v39 : string option = v38 v35
+    v39 
     #else
-    Some v34 
+    Some v35 
     #endif
-    |> fun x -> _v34 <- Some x
-    let v39 : string option = match _v34 with Some x -> x | None -> failwith "optionm'.of_obj / _v34=None"
-    let v42 : (string -> US2) = method3()
-    let v43 : US2 option = v39 |> Option.map v42 
-    let v54 : US2 = US2_1
-    let v55 : US2 = v43 |> Option.defaultValue v54 
-    let v62 : string =
-        match v55 with
+    |> fun x -> _v35 <- Some x
+    let v40 : string option = match _v35 with Some x -> x | None -> failwith "optionm'.of_obj / _v35=None"
+    let v43 : (string -> US2) = method4()
+    let v44 : US2 option = v40 |> Option.map v43 
+    let v55 : US2 = US2_1
+    let v56 : US2 = v44 |> Option.defaultValue v55 
+    let v63 : string =
+        match v56 with
         | US2_1 -> (* None *)
-            let v60 : string = ""
+            let v61 : string = ""
+            v61
+        | US2_0(v60) -> (* Some *)
             v60
-        | US2_0(v59) -> (* Some *)
-            v59
-    let _v1 = v62 
+    let _v1 = v63 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v63 : US0 = US0_1
-    let v64 : US1 = US1_0(v63)
-    let v65 : string = $"env.get_environment_variable / target: {v64} / var: {v0}"
-    let v66 : string = failwith<string> v65
-    let _v1 = v66 
+    let v64 : US0 = US0_1
+    let v65 : US1 = US1_0(v64)
+    let v66 : string = $"env.get_environment_variable / target: {v65} / var: {v0}"
+    let v67 : string = failwith<string> v66
+    let _v1 = v67 
     #endif
 #else
-    let v67 : (string -> string) = System.Environment.GetEnvironmentVariable
-    let v68 : string = v67 v0
-    let mutable _v68 = None
+    let v68 : (string -> string) = System.Environment.GetEnvironmentVariable
+    let v69 : string = v68 v0
+    let mutable _v69 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v69 : (string -> string option) = Option.ofObj
-    let v70 : string option = v69 v68
-    v70 
+    let v70 : (string -> string option) = Option.ofObj
+    let v71 : string option = v70 v69
+    v71 
     #else
-    Some v68 
+    Some v69 
     #endif
-    |> fun x -> _v68 <- Some x
-    let v71 : string option = match _v68 with Some x -> x | None -> failwith "optionm'.of_obj / _v68=None"
-    let v74 : (string -> US2) = method3()
-    let v75 : US2 option = v71 |> Option.map v74 
-    let v86 : US2 = US2_1
-    let v87 : US2 = v75 |> Option.defaultValue v86 
-    let v94 : string =
-        match v87 with
+    |> fun x -> _v69 <- Some x
+    let v72 : string option = match _v69 with Some x -> x | None -> failwith "optionm'.of_obj / _v69=None"
+    let v75 : (string -> US2) = method4()
+    let v76 : US2 option = v72 |> Option.map v75 
+    let v87 : US2 = US2_1
+    let v88 : US2 = v76 |> Option.defaultValue v87 
+    let v95 : string =
+        match v88 with
         | US2_1 -> (* None *)
-            let v92 : string = ""
+            let v93 : string = ""
+            v93
+        | US2_0(v92) -> (* Some *)
             v92
-        | US2_0(v91) -> (* Some *)
-            v91
-    let _v1 = v94 
+    let _v1 = v95 
     #endif
-    let v95 : string = _v1 
-    v95
-and method5 (v0 : float, v1 : float, v2 : float) : struct (float * float * float) =
+    let v96 : string = _v1 
+    v96
+and method7 (v0 : float, v1 : float, v2 : float) : struct (float * float * float) =
     struct (v0, v1, v2)
-and method7 (v0 : float, v1 : Mut0) : bool =
+and method9 (v0 : float, v1 : Mut0) : bool =
     let v2 : float = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method8 (v0 : float seq) : float seq =
+and method10 (v0 : float seq) : float seq =
     v0
-and method10 (v0 : float, v1 : float, v2 : float, v3 : char, v4 : float, v5 : float, v6 : float, v7 : float) : US3 =
+and method12 (v0 : float, v1 : float, v2 : float, v3 : char, v4 : float, v5 : float, v6 : float, v7 : float) : US3 =
     let v8 : float = sin v4
     let v9 : float = v1 * v8
     let v10 : float = sin v5
@@ -225,19 +228,19 @@ and method10 (v0 : float, v1 : float, v2 : float, v3 : char, v4 : float, v5 : fl
 and closure4 (v0 : float, v1 : float, v2 : float, v3 : float, v4 : float, v5 : float) (v6 : float) : US3 list =
     let v7 : float =  -v3
     let v8 : char = ';'
-    let v9 : US3 = method10(v5, v6, v7, v8, v0, v1, v2, v4)
+    let v9 : US3 = method12(v5, v6, v7, v8, v0, v1, v2, v4)
     let v10 : char = '\\'
-    let v11 : US3 = method10(v3, v6, v5, v10, v0, v1, v2, v4)
+    let v11 : US3 = method12(v3, v6, v5, v10, v0, v1, v2, v4)
     let v12 : float =  -v5
     let v13 : char = '/'
-    let v14 : US3 = method10(v7, v6, v12, v13, v0, v1, v2, v4)
+    let v14 : US3 = method12(v7, v6, v12, v13, v0, v1, v2, v4)
     let v15 : char = '='
-    let v16 : US3 = method10(v12, v6, v3, v15, v0, v1, v2, v4)
+    let v16 : US3 = method12(v12, v6, v3, v15, v0, v1, v2, v4)
     let v17 : float =  -v6
     let v18 : char = '>'
-    let v19 : US3 = method10(v5, v7, v17, v18, v0, v1, v2, v4)
+    let v19 : US3 = method12(v5, v7, v17, v18, v0, v1, v2, v4)
     let v20 : char = '<'
-    let v21 : US3 = method10(v5, v3, v6, v20, v0, v1, v2, v4)
+    let v21 : US3 = method12(v5, v3, v6, v20, v0, v1, v2, v4)
     let v22 : US3 list = []
     let v23 : US3 list = v21 :: v22 
     let v26 : US3 list = v19 :: v23 
@@ -248,7 +251,7 @@ and closure4 (v0 : float, v1 : float, v2 : float, v3 : float, v4 : float, v5 : f
     v38
 and closure3 (v0 : float, v1 : float, v2 : float, v3 : float, v4 : float) (v5 : float) : (float -> US3 list) =
     closure4(v0, v1, v2, v3, v4, v5)
-and method9 (v0 : float, v1 : float, v2 : float, v3 : float, v4 : float) : (float -> (float -> US3 list)) =
+and method11 (v0 : float, v1 : float, v2 : float, v3 : float, v4 : float) : (float -> (float -> US3 list)) =
     closure3(v0, v1, v2, v3, v4)
 and closure5 () (v0 : US3) : struct (int32 * float * char) option =
     match v0 with
@@ -258,49 +261,49 @@ and closure5 () (v0 : US3) : struct (int32 * float * char) option =
     | US3_0(v1, v2, v3) -> (* Some *)
         let v4 : struct (int32 * float * char) option = Some struct (v1, v2, v3) 
         v4
-and method11 () : (US3 -> struct (int32 * float * char) option) =
+and method13 () : (US3 -> struct (int32 * float * char) option) =
     closure5()
 and closure2 (v0 : float, v1 : float, v2 : float) struct (v3 : float, v4 : float) : struct (int32 * float * char) seq =
     let v5 : float =  -v3
     let v6 : unit = ()
     let _v6 =
         seq {
-            let v7 : Mut0 = {l0 = v5} : Mut0
-            while method7(v3, v7) do
-                let v9 : float = v7.l0
-                yield v9 
-                let v10 : float = v7.l0
-                let v11 : float = v10 + 0.6
-                v7.l0 <- v11
+            let v9 : Mut0 = {l0 = v5} : Mut0
+            while method9(v3, v9) do
+                let v11 : float = v9.l0
+                yield v11 
+                let v12 : float = v9.l0
+                let v13 : float = v12 + 0.6
+                v9.l0 <- v13
                 ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v12 : float seq = _v6 
-    let v16 : float seq = method8(v12)
-    let v17 : (float -> (float -> US3 list)) = method9(v0, v1, v2, v3, v4)
-    let v18 : (US3 -> struct (int32 * float * char) option) = method11()
-    let v19 : unit = ()
-    let _v19 =
+    indent *)
+    let v49 : float seq = _v6 
+    let v53 : float seq = method10(v49)
+    let v54 : (float -> (float -> US3 list)) = method11(v0, v1, v2, v3, v4)
+    let v55 : (US3 -> struct (int32 * float * char) option) = method13()
+    let v56 : unit = ()
+    let _v56 =
         seq {
-            for cube_x in v16 do
-            for cube_y in v16 do
-            let x = v17 cube_x cube_y |> Seq.choose v18 
+            for cube_x in v53 do
+            for cube_y in v53 do
+            let x = v54 cube_x cube_y |> Seq.choose v55 
             yield! x
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v20 : struct (int32 * float * char) seq = _v19 
-    v20
-and method6 (v0 : float, v1 : float, v2 : float) : (struct (float * float) -> struct (int32 * float * char) seq) =
+    indent *)
+    let v59 : struct (int32 * float * char) seq = _v56 
+    v59
+and method8 (v0 : float, v1 : float, v2 : float) : (struct (float * float) -> struct (int32 * float * char) seq) =
     closure2(v0, v1, v2)
 and closure7 (v0 : (US4 []), v1 : int32) struct (v2 : float, v3 : char) : unit =
     let v4 : US4 = v0.[int v1]
@@ -319,7 +322,7 @@ and closure7 (v0 : (US4 []), v1 : int32) struct (v2 : float, v3 : char) : unit =
         ()
 and closure6 (v0 : (US4 [])) (v1 : int32) : (struct (float * char) -> unit) =
     closure7(v0, v1)
-and method12 () : string =
+and method14 () : string =
     let v0 : string = ""
     v0
 and closure9 (v0 : (US4 []), v1 : System.Text.StringBuilder, v2 : int32) (v3 : int32) : unit =
@@ -345,7 +348,7 @@ and closure8 (v0 : (US4 []), v1 : System.Text.StringBuilder) (v2 : int32) : unit
 and closure10 (v0 : string) () : unit =
     let v1 : (string -> unit) = System.Console.WriteLine
     v1 v0
-and method4 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async<unit> =
+and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async<unit> =
     let v5 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -366,548 +369,522 @@ and method4 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
     let v15 : unit = ()
     let _v15 =
         async {
-            let struct (v16 : float, v17 : float, v18 : float) = method5(v2, v3, v4)
-            let v19 : struct (float * float) list = []
-            let v20 : struct (float * float) list = struct (5.0, 40.0) :: v19 
-            let v23 : struct (float * float) list = struct (10.0, 10.0) :: v20 
-            let v26 : struct (float * float) list = struct (20.0, -40.0) :: v23 
-            let v29 : (struct (float * float) -> struct (int32 * float * char) seq) = method6(v16, v17, v18)
-            let v30 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v29 
-            let v31 : struct (int32 * float * char) seq = v30 v26
-            let v35 : US4 = US4_1
-            let v36 : (US4 []) = Array.create (160 * 44) v35 
-            let v40 : (int32 -> (struct (float * char) -> unit)) = closure6(v36)
-            let v41 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v40 idx (ooz, ch))
-            v41 v31
-            let v42 : string = method12()
-            let v43 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
-            let v44 : System.Text.StringBuilder = v43 v42
-            let v47 : (int32 -> unit) = closure8(v36, v44)
-            for row in 0 .. (44 - 1) do v47 row
-            let v48 : (System.Text.StringBuilder -> string) = _.ToString()
-            let v49 : string = v48 v44
-            let v52 : bool = v0 < 0
-            if v52 then
-                let v53 : unit = ()
+            let struct (v18 : float, v19 : float, v20 : float) = method7(v2, v3, v4)
+            let v21 : struct (float * float) list = []
+            let v22 : struct (float * float) list = struct (5.0, 40.0) :: v21 
+            let v25 : struct (float * float) list = struct (10.0, 10.0) :: v22 
+            let v28 : struct (float * float) list = struct (20.0, -40.0) :: v25 
+            let v31 : (struct (float * float) -> struct (int32 * float * char) seq) = method8(v18, v19, v20)
+            let v32 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v31 
+            let v33 : struct (int32 * float * char) seq = v32 v28
+            let v37 : US4 = US4_1
+            let v38 : (US4 []) = Array.create (160 * 44) v37 
+            let v42 : (int32 -> (struct (float * char) -> unit)) = closure6(v38)
+            let v43 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v42 idx (ooz, ch))
+            v43 v33
+            let v44 : string = method14()
+            let v45 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
+            let v46 : System.Text.StringBuilder = v45 v44
+            let v49 : (int32 -> unit) = closure8(v38, v46)
+            for row in 0 .. (44 - 1) do v49 row
+            let v50 : (System.Text.StringBuilder -> string) = _.ToString()
+            let v51 : string = v50 v46
+            let v54 : bool = v0 < 0
+            if v54 then
+                let v55 : unit = ()
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v54 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v54 
-                let _v53 = () 
-                #endif
-#if FABLE_COMPILER_RUST && WASM
-                let v55 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v55 
-                let _v53 = () 
-                #endif
-#if FABLE_COMPILER_RUST && CONTRACT
                 let v56 : string = $"print!(\"\\x1B[1;1H\")"
                 Fable.Core.RustInterop.emitRustExpr () v56 
-                let _v53 = () 
+                #endif
+#if FABLE_COMPILER_RUST && WASM
+                let v57 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v57 
+                #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+                let v58 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v58 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v57 : string = $"process.stdout.write('\\u001B[1;1H')"
-                Fable.Core.JsInterop.emitJsExpr () v57 
-                let _v53 = () 
+                let v59 : string = $"process.stdout.write('\\u001B[1;1H')"
+                Fable.Core.JsInterop.emitJsExpr () v59 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v58 : string = $"sys.stdout.write(\"\\033[1;1H\")"
-                Fable.Core.PyInterop.emitPyExpr () v58 
-                let _v53 = () 
+                let v60 : string = $"sys.stdout.write(\"\\033[1;1H\")"
+                Fable.Core.PyInterop.emitPyExpr () v60 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v53 = () 
                 #endif
 #else
                 System.Console.SetCursorPosition (0, 0)
-                let _v53 = () 
                 #endif
-                _v53 
+                // run_target_args' is_unit
                 ()
-            let v59 : unit = ()
-            let v60 : (unit -> unit) = closure10(v49)
-            let v61 : unit = (fun () -> v60 (); v59) ()
-            let v63 : unit = ()
+            let v61 : unit = ()
+            let v62 : (unit -> unit) = closure10(v51)
+            let v63 : unit = (fun () -> v62 (); v61) ()
+            let v65 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v64 : (int32 -> Async<unit>) = Async.Sleep
-            let v65 : Async<unit> = v64 1
-            let _v63 = v65 
-            #endif
-#if FABLE_COMPILER_RUST && WASM
             let v66 : (int32 -> Async<unit>) = Async.Sleep
             let v67 : Async<unit> = v66 1
-            let _v63 = v67 
+            let _v65 = v67 
             #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
             let v68 : (int32 -> Async<unit>) = Async.Sleep
             let v69 : Async<unit> = v68 1
-            let _v63 = v69 
+            let _v65 = v69 
             #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
             let v70 : (int32 -> Async<unit>) = Async.Sleep
             let v71 : Async<unit> = v70 1
-            let _v63 = v71 
+            let _v65 = v71 
             #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
             let v72 : (int32 -> Async<unit>) = Async.Sleep
             let v73 : Async<unit> = v72 1
-            let _v63 = v73 
+            let _v65 = v73 
             #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_PYTHON
             let v74 : (int32 -> Async<unit>) = Async.Sleep
             let v75 : Async<unit> = v74 1
-            let _v63 = v75 
+            let _v65 = v75 
             #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
             let v76 : (int32 -> Async<unit>) = Async.Sleep
             let v77 : Async<unit> = v76 1
-            let _v63 = v77 
+            let _v65 = v77 
             #endif
-            let v78 : Async<unit> = _v63 
-            do! v78 
-            let v83 : bool = v0 > 0
-            let v85 : bool =
-                if v83 then
-                    let v84 : bool = v1 >= v0
-                    v84
+#else
+            let v78 : (int32 -> Async<unit>) = Async.Sleep
+            let v79 : Async<unit> = v78 1
+            let _v65 = v79 
+            #endif
+            let v80 : Async<unit> = _v65 
+            do! v80 
+            let v85 : bool = v0 > 0
+            let v87 : bool =
+                if v85 then
+                    let v86 : bool = v1 >= v0
+                    v86
                 else
                     false
-            if v85 then
+            if v87 then
                 ()
             else
-                let v86 : float = v16 + 0.05
-                let v87 : float = v17 + 0.05
-                let v88 : float = v18 + 0.01
-                let v89 : int32 = v1 + 1
-                let v90 : Async<unit> = method4(v0, v89, v86, v87, v88)
-                return! v90 
+                let v88 : float = v18 + 0.05
+                let v89 : float = v19 + 0.05
+                let v90 : float = v20 + 0.01
+                let v91 : int32 = v1 + 1
+                let v92 : Async<unit> = method5(v0, v91, v88, v89, v90)
+                return! v92 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v91 : Async<unit> = _v15 
-    let _v5 = v91 
+    indent *)
+    let v618 : Async<unit> = _v15 
+    let _v5 = v618 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v92 : unit = ()
-    let _v92 =
+    let v619 : unit = ()
+    let _v619 =
         async {
-            let struct (v93 : float, v94 : float, v95 : float) = method5(v2, v3, v4)
-            let v96 : struct (float * float) list = []
-            let v97 : struct (float * float) list = struct (5.0, 40.0) :: v96 
-            let v100 : struct (float * float) list = struct (10.0, 10.0) :: v97 
-            let v103 : struct (float * float) list = struct (20.0, -40.0) :: v100 
-            let v106 : (struct (float * float) -> struct (int32 * float * char) seq) = method6(v93, v94, v95)
-            let v107 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v106 
-            let v108 : struct (int32 * float * char) seq = v107 v103
-            let v112 : US4 = US4_1
-            let v113 : (US4 []) = Array.create (160 * 44) v112 
-            let v117 : (int32 -> (struct (float * char) -> unit)) = closure6(v113)
-            let v118 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v117 idx (ooz, ch))
-            v118 v108
-            let v119 : string = method12()
-            let v120 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
-            let v121 : System.Text.StringBuilder = v120 v119
-            let v124 : (int32 -> unit) = closure8(v113, v121)
-            for row in 0 .. (44 - 1) do v124 row
-            let v125 : (System.Text.StringBuilder -> string) = _.ToString()
-            let v126 : string = v125 v121
-            let v129 : bool = v0 < 0
-            if v129 then
-                let v130 : unit = ()
+            let struct (v622 : float, v623 : float, v624 : float) = method7(v2, v3, v4)
+            let v625 : struct (float * float) list = []
+            let v626 : struct (float * float) list = struct (5.0, 40.0) :: v625 
+            let v629 : struct (float * float) list = struct (10.0, 10.0) :: v626 
+            let v632 : struct (float * float) list = struct (20.0, -40.0) :: v629 
+            let v635 : (struct (float * float) -> struct (int32 * float * char) seq) = method8(v622, v623, v624)
+            let v636 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v635 
+            let v637 : struct (int32 * float * char) seq = v636 v632
+            let v641 : US4 = US4_1
+            let v642 : (US4 []) = Array.create (160 * 44) v641 
+            let v646 : (int32 -> (struct (float * char) -> unit)) = closure6(v642)
+            let v647 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v646 idx (ooz, ch))
+            v647 v637
+            let v648 : string = method14()
+            let v649 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
+            let v650 : System.Text.StringBuilder = v649 v648
+            let v653 : (int32 -> unit) = closure8(v642, v650)
+            for row in 0 .. (44 - 1) do v653 row
+            let v654 : (System.Text.StringBuilder -> string) = _.ToString()
+            let v655 : string = v654 v650
+            let v658 : bool = v0 < 0
+            if v658 then
+                let v659 : unit = ()
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v131 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v131 
-                let _v130 = () 
+                let v660 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v660 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v132 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v132 
-                let _v130 = () 
+                let v661 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v661 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v133 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v133 
-                let _v130 = () 
+                let v662 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v662 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v134 : string = $"process.stdout.write('\\u001B[1;1H')"
-                Fable.Core.JsInterop.emitJsExpr () v134 
-                let _v130 = () 
+                let v663 : string = $"process.stdout.write('\\u001B[1;1H')"
+                Fable.Core.JsInterop.emitJsExpr () v663 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v135 : string = $"sys.stdout.write(\"\\033[1;1H\")"
-                Fable.Core.PyInterop.emitPyExpr () v135 
-                let _v130 = () 
+                let v664 : string = $"sys.stdout.write(\"\\033[1;1H\")"
+                Fable.Core.PyInterop.emitPyExpr () v664 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v130 = () 
                 #endif
 #else
                 System.Console.SetCursorPosition (0, 0)
-                let _v130 = () 
                 #endif
-                _v130 
+                // run_target_args' is_unit
                 ()
-            let v136 : unit = ()
-            let v137 : (unit -> unit) = closure10(v126)
-            let v138 : unit = (fun () -> v137 (); v136) ()
-            let v140 : unit = ()
+            let v665 : unit = ()
+            let v666 : (unit -> unit) = closure10(v655)
+            let v667 : unit = (fun () -> v666 (); v665) ()
+            let v669 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v141 : (int32 -> Async<unit>) = Async.Sleep
-            let v142 : Async<unit> = v141 1
-            let _v140 = v142 
+            let v670 : (int32 -> Async<unit>) = Async.Sleep
+            let v671 : Async<unit> = v670 1
+            let _v669 = v671 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v143 : (int32 -> Async<unit>) = Async.Sleep
-            let v144 : Async<unit> = v143 1
-            let _v140 = v144 
+            let v672 : (int32 -> Async<unit>) = Async.Sleep
+            let v673 : Async<unit> = v672 1
+            let _v669 = v673 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v145 : (int32 -> Async<unit>) = Async.Sleep
-            let v146 : Async<unit> = v145 1
-            let _v140 = v146 
+            let v674 : (int32 -> Async<unit>) = Async.Sleep
+            let v675 : Async<unit> = v674 1
+            let _v669 = v675 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v147 : (int32 -> Async<unit>) = Async.Sleep
-            let v148 : Async<unit> = v147 1
-            let _v140 = v148 
+            let v676 : (int32 -> Async<unit>) = Async.Sleep
+            let v677 : Async<unit> = v676 1
+            let _v669 = v677 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v149 : (int32 -> Async<unit>) = Async.Sleep
-            let v150 : Async<unit> = v149 1
-            let _v140 = v150 
+            let v678 : (int32 -> Async<unit>) = Async.Sleep
+            let v679 : Async<unit> = v678 1
+            let _v669 = v679 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v151 : (int32 -> Async<unit>) = Async.Sleep
-            let v152 : Async<unit> = v151 1
-            let _v140 = v152 
+            let v680 : (int32 -> Async<unit>) = Async.Sleep
+            let v681 : Async<unit> = v680 1
+            let _v669 = v681 
             #endif
 #else
-            let v153 : (int32 -> Async<unit>) = Async.Sleep
-            let v154 : Async<unit> = v153 1
-            let _v140 = v154 
+            let v682 : (int32 -> Async<unit>) = Async.Sleep
+            let v683 : Async<unit> = v682 1
+            let _v669 = v683 
             #endif
-            let v155 : Async<unit> = _v140 
-            do! v155 
-            let v160 : bool = v0 > 0
-            let v162 : bool =
-                if v160 then
-                    let v161 : bool = v1 >= v0
-                    v161
+            let v684 : Async<unit> = _v669 
+            do! v684 
+            let v689 : bool = v0 > 0
+            let v691 : bool =
+                if v689 then
+                    let v690 : bool = v1 >= v0
+                    v690
                 else
                     false
-            if v162 then
+            if v691 then
                 ()
             else
-                let v163 : float = v93 + 0.05
-                let v164 : float = v94 + 0.05
-                let v165 : float = v95 + 0.01
-                let v166 : int32 = v1 + 1
-                let v167 : Async<unit> = method4(v0, v166, v163, v164, v165)
-                return! v167 
+                let v692 : float = v622 + 0.05
+                let v693 : float = v623 + 0.05
+                let v694 : float = v624 + 0.01
+                let v695 : int32 = v1 + 1
+                let v696 : Async<unit> = method5(v0, v695, v692, v693, v694)
+                return! v696 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v168 : Async<unit> = _v92 
-    let _v5 = v168 
+    indent *)
+    let v1222 : Async<unit> = _v619 
+    let _v5 = v1222 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v169 : unit = ()
-    let _v169 =
+    let v1223 : unit = ()
+    let _v1223 =
         async {
-            let struct (v170 : float, v171 : float, v172 : float) = method5(v2, v3, v4)
-            let v173 : struct (float * float) list = []
-            let v174 : struct (float * float) list = struct (5.0, 40.0) :: v173 
-            let v177 : struct (float * float) list = struct (10.0, 10.0) :: v174 
-            let v180 : struct (float * float) list = struct (20.0, -40.0) :: v177 
-            let v183 : (struct (float * float) -> struct (int32 * float * char) seq) = method6(v170, v171, v172)
-            let v184 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v183 
-            let v185 : struct (int32 * float * char) seq = v184 v180
-            let v189 : US4 = US4_1
-            let v190 : (US4 []) = Array.create (160 * 44) v189 
-            let v194 : (int32 -> (struct (float * char) -> unit)) = closure6(v190)
-            let v195 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v194 idx (ooz, ch))
-            v195 v185
-            let v196 : string = method12()
-            let v197 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
-            let v198 : System.Text.StringBuilder = v197 v196
-            let v201 : (int32 -> unit) = closure8(v190, v198)
-            for row in 0 .. (44 - 1) do v201 row
-            let v202 : (System.Text.StringBuilder -> string) = _.ToString()
-            let v203 : string = v202 v198
-            let v206 : bool = v0 < 0
-            if v206 then
-                let v207 : unit = ()
+            let struct (v1226 : float, v1227 : float, v1228 : float) = method7(v2, v3, v4)
+            let v1229 : struct (float * float) list = []
+            let v1230 : struct (float * float) list = struct (5.0, 40.0) :: v1229 
+            let v1233 : struct (float * float) list = struct (10.0, 10.0) :: v1230 
+            let v1236 : struct (float * float) list = struct (20.0, -40.0) :: v1233 
+            let v1239 : (struct (float * float) -> struct (int32 * float * char) seq) = method8(v1226, v1227, v1228)
+            let v1240 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v1239 
+            let v1241 : struct (int32 * float * char) seq = v1240 v1236
+            let v1245 : US4 = US4_1
+            let v1246 : (US4 []) = Array.create (160 * 44) v1245 
+            let v1250 : (int32 -> (struct (float * char) -> unit)) = closure6(v1246)
+            let v1251 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v1250 idx (ooz, ch))
+            v1251 v1241
+            let v1252 : string = method14()
+            let v1253 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
+            let v1254 : System.Text.StringBuilder = v1253 v1252
+            let v1257 : (int32 -> unit) = closure8(v1246, v1254)
+            for row in 0 .. (44 - 1) do v1257 row
+            let v1258 : (System.Text.StringBuilder -> string) = _.ToString()
+            let v1259 : string = v1258 v1254
+            let v1262 : bool = v0 < 0
+            if v1262 then
+                let v1263 : unit = ()
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v208 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v208 
-                let _v207 = () 
+                let v1264 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1264 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v209 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v209 
-                let _v207 = () 
+                let v1265 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1265 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v210 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v210 
-                let _v207 = () 
+                let v1266 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1266 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v211 : string = $"process.stdout.write('\\u001B[1;1H')"
-                Fable.Core.JsInterop.emitJsExpr () v211 
-                let _v207 = () 
+                let v1267 : string = $"process.stdout.write('\\u001B[1;1H')"
+                Fable.Core.JsInterop.emitJsExpr () v1267 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v212 : string = $"sys.stdout.write(\"\\033[1;1H\")"
-                Fable.Core.PyInterop.emitPyExpr () v212 
-                let _v207 = () 
+                let v1268 : string = $"sys.stdout.write(\"\\033[1;1H\")"
+                Fable.Core.PyInterop.emitPyExpr () v1268 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v207 = () 
                 #endif
 #else
                 System.Console.SetCursorPosition (0, 0)
-                let _v207 = () 
                 #endif
-                _v207 
+                // run_target_args' is_unit
                 ()
-            let v213 : unit = ()
-            let v214 : (unit -> unit) = closure10(v203)
-            let v215 : unit = (fun () -> v214 (); v213) ()
-            let v217 : unit = ()
+            let v1269 : unit = ()
+            let v1270 : (unit -> unit) = closure10(v1259)
+            let v1271 : unit = (fun () -> v1270 (); v1269) ()
+            let v1273 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v218 : (int32 -> Async<unit>) = Async.Sleep
-            let v219 : Async<unit> = v218 1
-            let _v217 = v219 
+            let v1274 : (int32 -> Async<unit>) = Async.Sleep
+            let v1275 : Async<unit> = v1274 1
+            let _v1273 = v1275 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v220 : (int32 -> Async<unit>) = Async.Sleep
-            let v221 : Async<unit> = v220 1
-            let _v217 = v221 
+            let v1276 : (int32 -> Async<unit>) = Async.Sleep
+            let v1277 : Async<unit> = v1276 1
+            let _v1273 = v1277 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v222 : (int32 -> Async<unit>) = Async.Sleep
-            let v223 : Async<unit> = v222 1
-            let _v217 = v223 
+            let v1278 : (int32 -> Async<unit>) = Async.Sleep
+            let v1279 : Async<unit> = v1278 1
+            let _v1273 = v1279 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v224 : (int32 -> Async<unit>) = Async.Sleep
-            let v225 : Async<unit> = v224 1
-            let _v217 = v225 
+            let v1280 : (int32 -> Async<unit>) = Async.Sleep
+            let v1281 : Async<unit> = v1280 1
+            let _v1273 = v1281 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v226 : (int32 -> Async<unit>) = Async.Sleep
-            let v227 : Async<unit> = v226 1
-            let _v217 = v227 
+            let v1282 : (int32 -> Async<unit>) = Async.Sleep
+            let v1283 : Async<unit> = v1282 1
+            let _v1273 = v1283 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v228 : (int32 -> Async<unit>) = Async.Sleep
-            let v229 : Async<unit> = v228 1
-            let _v217 = v229 
+            let v1284 : (int32 -> Async<unit>) = Async.Sleep
+            let v1285 : Async<unit> = v1284 1
+            let _v1273 = v1285 
             #endif
 #else
-            let v230 : (int32 -> Async<unit>) = Async.Sleep
-            let v231 : Async<unit> = v230 1
-            let _v217 = v231 
+            let v1286 : (int32 -> Async<unit>) = Async.Sleep
+            let v1287 : Async<unit> = v1286 1
+            let _v1273 = v1287 
             #endif
-            let v232 : Async<unit> = _v217 
-            do! v232 
-            let v237 : bool = v0 > 0
-            let v239 : bool =
-                if v237 then
-                    let v238 : bool = v1 >= v0
-                    v238
+            let v1288 : Async<unit> = _v1273 
+            do! v1288 
+            let v1293 : bool = v0 > 0
+            let v1295 : bool =
+                if v1293 then
+                    let v1294 : bool = v1 >= v0
+                    v1294
                 else
                     false
-            if v239 then
+            if v1295 then
                 ()
             else
-                let v240 : float = v170 + 0.05
-                let v241 : float = v171 + 0.05
-                let v242 : float = v172 + 0.01
-                let v243 : int32 = v1 + 1
-                let v244 : Async<unit> = method4(v0, v243, v240, v241, v242)
-                return! v244 
+                let v1296 : float = v1226 + 0.05
+                let v1297 : float = v1227 + 0.05
+                let v1298 : float = v1228 + 0.01
+                let v1299 : int32 = v1 + 1
+                let v1300 : Async<unit> = method5(v0, v1299, v1296, v1297, v1298)
+                return! v1300 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v245 : Async<unit> = _v169 
-    let _v5 = v245 
+    indent *)
+    let v1826 : Async<unit> = _v1223 
+    let _v5 = v1826 
     #endif
 #else
-    let v246 : unit = ()
-    let _v246 =
+    let v1827 : unit = ()
+    let _v1827 =
         async {
-            let struct (v247 : float, v248 : float, v249 : float) = method5(v2, v3, v4)
-            let v250 : struct (float * float) list = []
-            let v251 : struct (float * float) list = struct (5.0, 40.0) :: v250 
-            let v254 : struct (float * float) list = struct (10.0, 10.0) :: v251 
-            let v257 : struct (float * float) list = struct (20.0, -40.0) :: v254 
-            let v260 : (struct (float * float) -> struct (int32 * float * char) seq) = method6(v247, v248, v249)
-            let v261 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v260 
-            let v262 : struct (int32 * float * char) seq = v261 v257
-            let v266 : US4 = US4_1
-            let v267 : (US4 []) = Array.create (160 * 44) v266 
-            let v271 : (int32 -> (struct (float * char) -> unit)) = closure6(v267)
-            let v272 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v271 idx (ooz, ch))
-            v272 v262
-            let v273 : string = method12()
-            let v274 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
-            let v275 : System.Text.StringBuilder = v274 v273
-            let v278 : (int32 -> unit) = closure8(v267, v275)
-            for row in 0 .. (44 - 1) do v278 row
-            let v279 : (System.Text.StringBuilder -> string) = _.ToString()
-            let v280 : string = v279 v275
-            let v283 : bool = v0 < 0
-            if v283 then
-                let v284 : unit = ()
+            let struct (v1830 : float, v1831 : float, v1832 : float) = method7(v2, v3, v4)
+            let v1833 : struct (float * float) list = []
+            let v1834 : struct (float * float) list = struct (5.0, 40.0) :: v1833 
+            let v1837 : struct (float * float) list = struct (10.0, 10.0) :: v1834 
+            let v1840 : struct (float * float) list = struct (20.0, -40.0) :: v1837 
+            let v1843 : (struct (float * float) -> struct (int32 * float * char) seq) = method8(v1830, v1831, v1832)
+            let v1844 : (struct (float * float) list -> struct (int32 * float * char) seq) = Seq.collect v1843 
+            let v1845 : struct (int32 * float * char) seq = v1844 v1840
+            let v1849 : US4 = US4_1
+            let v1850 : (US4 []) = Array.create (160 * 44) v1849 
+            let v1854 : (int32 -> (struct (float * char) -> unit)) = closure6(v1850)
+            let v1855 : (struct (int32 * float * char) seq -> unit) = Seq.iter (fun (struct (idx, ooz, ch)) -> v1854 idx (ooz, ch))
+            v1855 v1845
+            let v1856 : string = method14()
+            let v1857 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
+            let v1858 : System.Text.StringBuilder = v1857 v1856
+            let v1861 : (int32 -> unit) = closure8(v1850, v1858)
+            for row in 0 .. (44 - 1) do v1861 row
+            let v1862 : (System.Text.StringBuilder -> string) = _.ToString()
+            let v1863 : string = v1862 v1858
+            let v1866 : bool = v0 < 0
+            if v1866 then
+                let v1867 : unit = ()
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v285 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v285 
-                let _v284 = () 
+                let v1868 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1868 
                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                let v286 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v286 
-                let _v284 = () 
+                let v1869 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1869 
                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v287 : string = $"print!(\"\\x1B[1;1H\")"
-                Fable.Core.RustInterop.emitRustExpr () v287 
-                let _v284 = () 
+                let v1870 : string = $"print!(\"\\x1B[1;1H\")"
+                Fable.Core.RustInterop.emitRustExpr () v1870 
                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                let v288 : string = $"process.stdout.write('\\u001B[1;1H')"
-                Fable.Core.JsInterop.emitJsExpr () v288 
-                let _v284 = () 
+                let v1871 : string = $"process.stdout.write('\\u001B[1;1H')"
+                Fable.Core.JsInterop.emitJsExpr () v1871 
                 #endif
 #if FABLE_COMPILER_PYTHON
-                let v289 : string = $"sys.stdout.write(\"\\033[1;1H\")"
-                Fable.Core.PyInterop.emitPyExpr () v289 
-                let _v284 = () 
+                let v1872 : string = $"sys.stdout.write(\"\\033[1;1H\")"
+                Fable.Core.PyInterop.emitPyExpr () v1872 
                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                let _v284 = () 
                 #endif
 #else
                 System.Console.SetCursorPosition (0, 0)
-                let _v284 = () 
                 #endif
-                _v284 
+                // run_target_args' is_unit
                 ()
-            let v290 : unit = ()
-            let v291 : (unit -> unit) = closure10(v280)
-            let v292 : unit = (fun () -> v291 (); v290) ()
-            let v294 : unit = ()
+            let v1873 : unit = ()
+            let v1874 : (unit -> unit) = closure10(v1863)
+            let v1875 : unit = (fun () -> v1874 (); v1873) ()
+            let v1877 : unit = ()
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v295 : (int32 -> Async<unit>) = Async.Sleep
-            let v296 : Async<unit> = v295 1
-            let _v294 = v296 
+            let v1878 : (int32 -> Async<unit>) = Async.Sleep
+            let v1879 : Async<unit> = v1878 1
+            let _v1877 = v1879 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v297 : (int32 -> Async<unit>) = Async.Sleep
-            let v298 : Async<unit> = v297 1
-            let _v294 = v298 
+            let v1880 : (int32 -> Async<unit>) = Async.Sleep
+            let v1881 : Async<unit> = v1880 1
+            let _v1877 = v1881 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v299 : (int32 -> Async<unit>) = Async.Sleep
-            let v300 : Async<unit> = v299 1
-            let _v294 = v300 
+            let v1882 : (int32 -> Async<unit>) = Async.Sleep
+            let v1883 : Async<unit> = v1882 1
+            let _v1877 = v1883 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v301 : (int32 -> Async<unit>) = Async.Sleep
-            let v302 : Async<unit> = v301 1
-            let _v294 = v302 
+            let v1884 : (int32 -> Async<unit>) = Async.Sleep
+            let v1885 : Async<unit> = v1884 1
+            let _v1877 = v1885 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v303 : (int32 -> Async<unit>) = Async.Sleep
-            let v304 : Async<unit> = v303 1
-            let _v294 = v304 
+            let v1886 : (int32 -> Async<unit>) = Async.Sleep
+            let v1887 : Async<unit> = v1886 1
+            let _v1877 = v1887 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v305 : (int32 -> Async<unit>) = Async.Sleep
-            let v306 : Async<unit> = v305 1
-            let _v294 = v306 
+            let v1888 : (int32 -> Async<unit>) = Async.Sleep
+            let v1889 : Async<unit> = v1888 1
+            let _v1877 = v1889 
             #endif
 #else
-            let v307 : (int32 -> Async<unit>) = Async.Sleep
-            let v308 : Async<unit> = v307 1
-            let _v294 = v308 
+            let v1890 : (int32 -> Async<unit>) = Async.Sleep
+            let v1891 : Async<unit> = v1890 1
+            let _v1877 = v1891 
             #endif
-            let v309 : Async<unit> = _v294 
-            do! v309 
-            let v314 : bool = v0 > 0
-            let v316 : bool =
-                if v314 then
-                    let v315 : bool = v1 >= v0
-                    v315
+            let v1892 : Async<unit> = _v1877 
+            do! v1892 
+            let v1897 : bool = v0 > 0
+            let v1899 : bool =
+                if v1897 then
+                    let v1898 : bool = v1 >= v0
+                    v1898
                 else
                     false
-            if v316 then
+            if v1899 then
                 ()
             else
-                let v317 : float = v247 + 0.05
-                let v318 : float = v248 + 0.05
-                let v319 : float = v249 + 0.01
-                let v320 : int32 = v1 + 1
-                let v321 : Async<unit> = method4(v0, v320, v317, v318, v319)
-                return! v321 
+                let v1900 : float = v1830 + 0.05
+                let v1901 : float = v1831 + 0.05
+                let v1902 : float = v1832 + 0.01
+                let v1903 : int32 = v1 + 1
+                let v1904 : Async<unit> = method5(v0, v1903, v1900, v1901, v1902)
+                return! v1904 
                 ()
             ()
-            (*
+            (* indent
             ()
-        *)
+        indent *)
         }
-        (*
+        (* indent
         ()
-    *)
-    let v322 : Async<unit> = _v246 
-    let _v5 = v322 
+    indent *)
+    let v2430 : Async<unit> = _v1827 
+    let _v5 = v2430 
     #endif
-    let v323 : Async<unit> = _v5 
-    v323
+    let v2431 : Async<unit> = _v5 
+    v2431
+and method5 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async<unit> =
+    method6(v0, v1, v2, v3, v4)
 and closure0 () (v0 : (string [])) : unit =
     let v1 : unit = ()
     
@@ -1021,38 +998,31 @@ and closure0 () (v0 : (string [])) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v68 : string = $"print!(\"\\x1B[?25l\")"
         Fable.Core.RustInterop.emitRustExpr () v68 
-        let _v67 = () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
         let v69 : string = $"print!(\"\\x1B[?25l\")"
         Fable.Core.RustInterop.emitRustExpr () v69 
-        let _v67 = () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
         let v70 : string = $"print!(\"\\x1B[?25l\")"
         Fable.Core.RustInterop.emitRustExpr () v70 
-        let _v67 = () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
         let v71 : string = $"process.stdout.write('\\u001B[?25l')"
         Fable.Core.JsInterop.emitJsExpr () v71 
-        let _v67 = () 
         #endif
 #if FABLE_COMPILER_PYTHON
         let v72 : string = "sys"
         Fable.Core.PyInterop.importAll v72 
         let v73 : string = $"sys.stdout.write(\"\\033[?25l\")"
         Fable.Core.PyInterop.emitPyExpr () v73 
-        let _v67 = () 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-        let _v67 = () 
         #endif
 #else
         System.Console.CursorVisible <- false
-        let _v67 = () 
         #endif
-        _v67 
+        // run_target_args' is_unit
         ()
     let v74 : int32 =
         if v56 then
@@ -1063,7 +1033,7 @@ and closure0 () (v0 : (string [])) : unit =
     let v76 : float = 0.0
     let v77 : float = 0.0
     let v78 : float = 0.0
-    let v79 : Async<unit> = method4(v74, v75, v76, v77, v78)
+    let v79 : Async<unit> = method5(v74, v75, v76, v77, v78)
     let v80 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -1106,7 +1076,6 @@ and closure0 () (v0 : (string [])) : unit =
     let _v81 = v98 
     #endif
     let v99 : Async<Async<unit>> = _v81 
-    let _v80 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v104 : unit = ()
@@ -1146,7 +1115,6 @@ and closure0 () (v0 : (string [])) : unit =
     let _v104 = v121 
     #endif
     let v122 : Async<Async<unit>> = _v104 
-    let _v80 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v127 : unit = ()
@@ -1186,7 +1154,6 @@ and closure0 () (v0 : (string [])) : unit =
     let _v127 = v144 
     #endif
     let v145 : Async<Async<unit>> = _v127 
-    let _v80 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v150 : unit = ()
@@ -1226,7 +1193,6 @@ and closure0 () (v0 : (string [])) : unit =
     let _v150 = v167 
     #endif
     let v168 : Async<Async<unit>> = _v150 
-    let _v80 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v173 : unit = ()
@@ -1235,37 +1201,30 @@ and closure0 () (v0 : (string [])) : unit =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v173 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v173 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v173 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v174 : (Async<unit> -> unit) = Async.StartImmediate
     v174 v79
-    let _v173 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v175 : (Async<unit> -> unit) = Async.StartImmediate
     v175 v79
-    let _v173 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v176 : (Async<unit> -> unit) = Async.StartImmediate
     v176 v79
-    let _v173 = () 
     #endif
 #else
     let v177 : (Async<unit> -> unit) = Async.StartImmediate
     v177 v79
-    let _v173 = () 
     #endif
-    _v173 
+    // run_target_args' is_unit
     let v178 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
@@ -1273,36 +1232,28 @@ and closure0 () (v0 : (string [])) : unit =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v179 : (int32 -> unit) = System.Threading.Thread.Sleep
     v179 2000
-    let _v178 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v180 : (int32 -> unit) = System.Threading.Thread.Sleep
     v180 2000
-    let _v178 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v181 : (int32 -> unit) = System.Threading.Thread.Sleep
     v181 2000
-    let _v178 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _v178 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v182 : (int32 -> unit) = System.Threading.Thread.Sleep
     v182 2000
-    let _v178 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _v178 = () 
     #endif
 #else
     let v183 : (int32 -> unit) = System.Threading.Thread.Sleep
     v183 2000
-    let _v178 = () 
     #endif
-    _v178 
-    let _v80 = () 
+    // run_target_args' is_unit
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v184 : unit = ()
@@ -1342,7 +1293,6 @@ and closure0 () (v0 : (string [])) : unit =
     let _v184 = v201 
     #endif
     let v202 : Async<Async<unit>> = _v184 
-    let _v80 = () 
     #endif
 #else
     let v207 : unit = ()
@@ -1351,39 +1301,31 @@ and closure0 () (v0 : (string [])) : unit =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     null |> unbox<unit>
-    let _v207 = () 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     null |> unbox<unit>
-    let _v207 = () 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     null |> unbox<unit>
-    let _v207 = () 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     null |> unbox<unit>
-    let _v207 = () 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v208 : (Async<unit> -> unit) = Async.RunSynchronously
     v208 v79
-    let _v207 = () 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v209 : (Async<unit> -> unit) = Async.RunSynchronously
     v209 v79
-    let _v207 = () 
     #endif
 #else
     let v210 : (Async<unit> -> unit) = Async.RunSynchronously
     v210 v79
-    let _v207 = () 
     #endif
-    _v207 
-    let _v80 = () 
+    // run_target_args' is_unit
     #endif
-    _v80 
+    // run_target_args' is_unit
     ()
 let v0 : ((string []) -> unit) = closure0()
 let main_ = v0 

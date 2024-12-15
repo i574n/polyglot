@@ -117,7 +117,7 @@ nominal file_info =
 
 inl file_info (path : string) : file_info =
     run_target function
-        | Fsharp (Native) => fun () => path |> $'`file_info '
+        | Fsharp (Native) => fun () => path |> convert
         | _ => fun () => null ()
 
 #!markdown
@@ -134,7 +134,7 @@ nominal directory_info =
 
 inl directory_info (path : string) : directory_info =
     run_target function
-        | Fsharp (Native) => fun () => path |> $'`directory_info '
+        | Fsharp (Native) => fun () => path |> convert
         | _ => fun () => null ()
 
 #!markdown
@@ -145,7 +145,7 @@ inl directory_info (path : string) : directory_info =
 
 inl directory_info_exists (info : directory_info) : bool =
     run_target function
-        | Fsharp (Native) => fun () => $'!info.Exists'
+        | Fsharp (Native) => fun () => info |> $'_.Exists'
         | _ => fun () => null ()
 
 #!markdown
@@ -156,7 +156,7 @@ inl directory_info_exists (info : directory_info) : bool =
 
 inl directory_info_creation_time (info : directory_info) : date_time.date_time =
     run_target function
-        | Fsharp (Native) => fun () => $'!info.CreationTime'
+        | Fsharp (Native) => fun () => info |> $'_.CreationTime'
         | _ => fun () => null ()
 
 #!markdown
@@ -167,7 +167,7 @@ inl directory_info_creation_time (info : directory_info) : date_time.date_time =
 
 inl directory_info_name (info : directory_info) : string =
     run_target function
-        | Fsharp (Native) => fun () => $'!info.Name'
+        | Fsharp (Native) => fun () => info |> $'_.Name'
         | _ => fun () => null ()
 
 #!markdown
@@ -178,7 +178,7 @@ inl directory_info_name (info : directory_info) : string =
 
 inl directory_info_full_name (info : directory_info) : string =
     run_target function
-        | Fsharp (Native) => fun () => $'!info.FullName'
+        | Fsharp (Native) => fun () => info |> $'_.FullName'
         | _ => fun () => null ()
 
 #!markdown
@@ -195,9 +195,9 @@ nominal file_attributes = $'System.IO.FileAttributes'
 
 #!spiral
 
-inl directory_info_attributes (info : directory_info) : file_attributes =
+let directory_info_attributes (info : directory_info) : file_attributes =
     run_target function
-        | Fsharp (Native) => fun () => $'!info.Attributes'
+        | Fsharp (Native) => fun () => info |> $'_.Attributes'
         | _ => fun () => null ()
 
 #!markdown
@@ -206,7 +206,7 @@ inl directory_info_attributes (info : directory_info) : file_attributes =
 
 #!spiral
 
-inl file_attributes_reparse_point () : file_attributes =
+let file_attributes_reparse_point () : file_attributes =
     run_target function
         | Fsharp (Native) => fun () => $'`file_attributes.ReparsePoint'
         | _ => fun () => null ()
@@ -217,7 +217,7 @@ inl file_attributes_reparse_point () : file_attributes =
 
 #!spiral
 
-inl file_attributes_has_flag (flag : file_attributes) (file_attributes : file_attributes) : bool =
+let file_attributes_has_flag (flag : file_attributes) (file_attributes : file_attributes) : bool =
     run_target function
         | Fsharp (Native) => fun () => $'!file_attributes.HasFlag !flag '
         | _ => fun () => null ()
@@ -228,7 +228,7 @@ inl file_attributes_has_flag (flag : file_attributes) (file_attributes : file_at
 
 #!spiral
 
-inl create_directory (path : string) : directory_info =
+let create_directory (path : string) : directory_info =
     run_target function
         | Fsharp (Native) => fun () => path |> $'System.IO.Directory.CreateDirectory'
         | _ => fun () => null ()
@@ -239,7 +239,7 @@ inl create_directory (path : string) : directory_info =
 
 #!spiral
 
-inl directory_get_files (path : string) : array_base string =
+let directory_get_files (path : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => path |> $'System.IO.Directory.GetFiles'
         | _ => fun () => null ()
@@ -250,7 +250,7 @@ inl directory_get_files (path : string) : array_base string =
 
 #!spiral
 
-inl file_move (new_path : string) (old_path : string) : () =
+let file_move (new_path : string) (old_path : string) : () =
     run_target function
         | Fsharp (Native) => fun () => $'System.IO.File.Move (!old_path, !new_path)'
         | _ => fun () => ()
@@ -261,7 +261,7 @@ inl file_move (new_path : string) (old_path : string) : () =
 
 #!spiral
 
-inl read_all_text_async (path : string) : _ string =
+let read_all_text_async (path : string) : _ string =
     run_target function
         | Fsharp (Native) => fun () => path |> $'System.IO.File.ReadAllTextAsync' |> async.await_task
         | _ => fun () => null ()
@@ -272,7 +272,7 @@ inl read_all_text_async (path : string) : _ string =
 
 #!spiral
 
-inl write_all_text_async (path : string) (text : string) : _ () =
+let write_all_text_async (path : string) (text : string) : _ () =
     run_target function
         | Fsharp (Native) => fun () => $'System.IO.File.WriteAllTextAsync (!path, !text)' |> async.await_task
         | _ => fun () => null ()
@@ -561,7 +561,7 @@ nominal file_type =
 #!spiral
 
 inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type stream.io_error) =
-    inl dir_entry = join dir_entry
+    inl dir_entry = dir_entry |> rust.emit
     !\($'"Box::pin(async_walkdir::DirEntry::file_type(&!dir_entry))"')
 
 #!markdown
@@ -571,8 +571,7 @@ inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm
 #!spiral
 
 inl file_type_is_dir (file_type : file_type) : bool =
-    inl file_type = join file_type
-    !\($'"std::fs::FileType::is_dir(&!file_type)"')
+    !\\(file_type, $'"std::fs::FileType::is_dir(&$0)"')
 
 #!markdown
 
@@ -631,7 +630,7 @@ inl create_dir_all (path : string) : resultm.result' () stream.io_error =
 inl file_info_link_target (file_info : file_info) : string =
     run_target function
         | Fsharp (Native) => fun () =>
-            $'!file_info.LinkTarget'
+            file_info |> $'_.LinkTarget'
         | _ => fun () => null ()
 
 #!markdown
@@ -657,7 +656,7 @@ inl ts_path_join (b : string) (a : string) : string =
     open typescript_operators
     global "type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string"
     inl path : $'IPathJoin' = typescript.import_all "path"
-    !\\((join a, join b), $'"!path.join($0, $1)"')
+    !\\((a, b), $'"!path.join($0, $1)"')
 
 #!markdown
 
@@ -670,9 +669,9 @@ inl ts_path_join (b : string) (a : string) : string =
 #!spiral
 
 let (</>) (a : string) (b : string) : string =
-    run_target function
-        | Rust (Contract) => fun () => null ()
-        | Rust (Native) => fun () =>
+    run_target_args (fun () => a, b) function
+        | Rust (Contract) => fun _ => null ()
+        | Rust (Native) => fun a, b =>
             a
             |> sm'.to_std_string
             |> new_path_buf
@@ -680,11 +679,11 @@ let (</>) (a : string) (b : string) : string =
             |> path_buf_display
             |> sm'.format'
             |> sm'.from_std_string
-        | TypeScript (Native) => fun () =>
+        | TypeScript (Native) => fun a, b =>
             a |> ts_path_join b
-        | Fsharp (Native) => fun () =>
+        | Fsharp (Native) => fun a, b =>
             $'System.IO.Path.Combine (!a, !b)'
-        | target => fun () => failwith $'$"file_system.(</>) / target: {!target} / a: {!a} / b: {!b}"'
+        | target => fun a, b => failwith $'$"file_system.(</>) / target: {!target} / a: {!a} / b: {!b}"'
 
 #!markdown
 
@@ -711,10 +710,10 @@ let get_temp_path () : string =
 #!spiral
 
 let get_file_name (path : string) : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' path function
+        | Fsharp (Native) => fun path =>
             path |> $'System.IO.Path.GetFileName'
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path =>
             path
             |> sm'.to_std_string
             |> new_path_buf
@@ -722,8 +721,8 @@ let get_file_name (path : string) : string =
             |> optionm'.map' sm'.from_os_str_ref
             |> optionm'.unbox
             |> optionm'.default_value ""
-        | Rust (Contract) => fun () => null ()
-        | target => fun () => failwith $'$"file_system.get_file_name / target: {!target} / path: {!path}"'
+        | Rust (Contract) => fun _ => null ()
+        | target => fun path => failwith $'$"file_system.get_file_name / target: {!target} / path: {!path}"'
 
 #!markdown
 
@@ -732,15 +731,15 @@ let get_file_name (path : string) : string =
 #!spiral
 
 let get_file_name_without_extension (path : string) : string =
-    run_target function
-        | Rust (Contract) => fun () => null ()
-        | Rust (Native) => fun () =>
+    run_target_args' path function
+        | Rust (Contract) => fun _ => null ()
+        | Rust (Native) => fun path =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             inl file_stem = !\\(path_buf, $'"$0.file_stem()"')
             match file_stem |> optionm'.map' sm'.from_os_str_ref |> optionm'.unbox with
             | Some file_stem => file_stem
             | None => ""
-        | _ => fun () =>
+        | _ => fun path =>
             path |> $'System.IO.Path.GetFileNameWithoutExtension'
 
 #!markdown
@@ -750,10 +749,10 @@ let get_file_name_without_extension (path : string) : string =
 #!spiral
 
 let get_directory_name (path : string) : string =
-    run_target function
-        | Fsharp _ => fun () =>
+    run_target_args' path function
+        | Fsharp _ => fun path =>
             path |> $'System.IO.Path.GetDirectoryName'
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path =>
             path
             |> sm'.to_std_string
             |> new_path_buf
@@ -761,7 +760,7 @@ let get_directory_name (path : string) : string =
             |> optionm'.map' sm'.from_os_str_ref
             |> optionm'.unbox
             |> optionm'.default_value ""
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -770,14 +769,14 @@ let get_directory_name (path : string) : string =
 #!spiral
 
 let get_extension (path : string) : string =
-    run_target function
-        | Rust (Contract) => fun () => null ()
-        | Rust (Native) => fun () =>
+    run_target_args' path function
+        | Rust (Contract) => fun _ => null ()
+        | Rust (Native) => fun path =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.extension()"')
             |> optionm'.unwrap
             |> sm'.from_os_str_ref
-        | _ => fun () =>
+        | _ => fun path =>
             path |> $'System.IO.Path.GetExtension'
 
 #!markdown
@@ -788,10 +787,8 @@ let get_extension (path : string) : string =
 
 let directory_separator_char () : char =
     run_target function
-        | Rust (Native) => fun () =>
-            !\($'"std::path::MAIN_SEPARATOR"')
-        | _ => fun () =>
-            $'System.IO.Path.DirectorySeparatorChar'
+        | Rust (Native) => fun () => !\($'"std::path::MAIN_SEPARATOR"')
+        | _ => fun () => $'System.IO.Path.DirectorySeparatorChar'
 
 #!markdown
 
@@ -827,18 +824,18 @@ get_current_directory ()
 #!spiral
 
 let directory_exists (path : string) : bool =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' path function
+        | Fsharp (Native) => fun path =>
             path |> $'System.IO.Directory.Exists'
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path =>
             inl path = path |> sm'.to_std_string |> new_path_buf
             path_buf_exists path && path_buf_is_dir path
-        | TypeScript (Native) => fun () =>
+        | TypeScript (Native) => fun path =>
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             open typescript_operators
             inl fs : $'IFsExistsSync' = typescript.import_all "fs"
             !\\((fs, path), $'"$0.existsSync($1)"')
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -847,24 +844,24 @@ let directory_exists (path : string) : bool =
 #!spiral
 
 let directory_get_parent (path : string) : optionm'.option' string =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' path function
+        | Fsharp (Native) => fun path =>
             inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
             if parent =. null ()
             then None
             else parent |> directory_info_full_name |> Some
             |> optionm'.box
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             inl parent = path_buf |> path_buf_parent
             parent
             |> optionm'.map' (path_buf_display >> sm'.format' >> sm'.from_std_string)
-        | TypeScript _ => fun () =>
+        | TypeScript _ => fun path =>
             open typescript_operators
             global "type IPathDirname = abstract dirname: path: string -> string"
             inl fs : $'IPathDirname' = typescript.import_all "path"
             !\\(path, $'"!fs.dirname($0)"') |> Some |> optionm'.box
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -873,11 +870,11 @@ let directory_get_parent (path : string) : optionm'.option' string =
 #!spiral
 
 let create_temp_path' (guid : guid.guid) =
-    run_target_args (fun () => guid) function
+    run_target_args' guid function
         | Rust (Contract) => fun _ => null ()
         | _ => fun guid =>
             get_temp_path ()
-            </> (join "!create_temp_path_")
+            </> join "!create_temp_path_"
             </> (env.get_entry_assembly_name ())
             </> (guid |> sm'.obj_to_string)
 
@@ -911,12 +908,11 @@ create_temp_path ()
 #!spiral
 
 let file_copy (new_path : string) (old_path : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' (old_path, new_path) function
+        | Fsharp (Native) => fun old_path, new_path =>
             $'System.IO.File.Copy (!old_path, !new_path, true)'
-        | Rust (Native) => fun () =>
-            inl new_path = join new_path
-            inl result : _ _ stream.io_error = !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
+        | Rust (Native) => fun old_path, new_path =>
+            inl result : _ _ stream.io_error = !\\((old_path, new_path), $'"std::fs::copy(&*$0, &*$1)"')
             match result |> resultm.map_error' sm'.format' |> resultm.unbox with
             | Ok (result : u64) =>
                 trace Debug
@@ -926,7 +922,7 @@ let file_copy (new_path : string) (old_path : string) : () =
                 trace Warning
                     fun () => "file_system.file_copy"
                     fun () => { old_path new_path error }
-        | _ => fun () => ()
+        | _ => fun _ => ()
 
 #!markdown
 
@@ -935,18 +931,18 @@ let file_copy (new_path : string) (old_path : string) : () =
 #!spiral
 
 let file_exists (path : string) : bool =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' path function
+        | Fsharp (Native) => fun path =>
             path |> $'System.IO.File.Exists'
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path =>
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             path_buf_exists path_buf && path_buf_is_file path_buf
-        | TypeScript (Native) => fun () =>
+        | TypeScript (Native) => fun path =>
             open typescript_operators
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = typescript.import_all "fs"
             !\\((fs, path), $'"$0.existsSync($1)"')
-        | _ => fun () => null ()
+        | _ => fun _ => null ()
 
 #!markdown
 
@@ -955,16 +951,15 @@ let file_exists (path : string) : bool =
 #!spiral
 
 let directory_delete recursive (path : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
+    run_target_args' (path, recursive) function
+        | Fsharp (Native) => fun path, recursive =>
             $'System.IO.Directory.Delete (!path, !recursive)'
-        | Rust (Native) => fun () =>
-            inl path = join path
+        | Rust (Native) => fun path, recursive =>
             if path |> directory_exists then
                 if recursive
                 then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
                 else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
-        | _ => fun () => ()
+        | _ => fun _ => ()
 
 #!markdown
 
@@ -973,13 +968,12 @@ let directory_delete recursive (path : string) : () =
 #!spiral
 
 inl write_all_text (path : string) (text : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl text = join text
+    run_target_args' (path, text) function
+        | Fsharp (Native) => fun path, text =>
             $'System.IO.File.WriteAllText (!path, !text)'
-        | Rust (Native) => fun () =>
+        | Rust (Native) => fun path, text =>
             !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
-        | _ => fun () => ()
+        | _ => fun _ => ()
 
 #!markdown
 
@@ -1068,7 +1062,7 @@ inl find_parent file_type name root_dir =
         if dir </> name |> (if is_file then file_exists else directory_exists)
         then dir |> Ok
         else
-            inl result = dir |> (join directory_get_parent)
+            inl result = dir |> directory_get_parent
             match result |> optionm'.unbox with
             | Some parent => parent |> loop
             | None => ($'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""' : string) |> Error
@@ -1408,7 +1402,7 @@ inl new_file_uri (path : string) : string =
 
 #!spiral
 
-inl file_exists_content_async path content : async.async bool =
+let file_exists_content_async path content : async.async bool =
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
@@ -1427,7 +1421,7 @@ inl file_exists_content_async path content : async.async bool =
 
 #!spiral
 
-inl write_all_text_exists_async path contents =
+let write_all_text_exists_async path contents =
     fun () =>
         inl exists' = contents |> file_exists_content_async path |> async.let'
         if not exists'
@@ -1440,7 +1434,7 @@ inl write_all_text_exists_async path contents =
 
 #!spiral
 
-inl delete_directory_async path : _ i64 =
+let delete_directory_async path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
             let rec loop (retry : i64) =
@@ -1451,10 +1445,12 @@ inl delete_directory_async path : _ i64 =
                             retry |> return
                         fun ex =>
                             if retry % 100i64 = 0 then
-                                inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.delete_directory_async"
-                                    fun () => { ex path = path |> get_file_name }
+                                    fun () => {
+                                        ex = ex () |> sm'.format_exception
+                                        path = path |> get_file_name
+                                    }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1524,10 +1520,9 @@ inl init_trace_file enabled =
 #!spiral
 
 let create_dir dir =
-    run_target function
-        | Rust (Contract | Wasm) => fun () => null ()
-        | Rust (Native) => fun () =>
-            inl dir = join dir
+    run_target_args' dir function
+        | Rust (Contract | Wasm) => fun _ => null ()
+        | Rust (Native) => fun dir =>
             match dir |> create_dir_all |> resultm.map_error' sm'.format' |> resultm.unbox with
             | Ok () =>
                 trace Verbose
@@ -1541,7 +1536,7 @@ let create_dir dir =
                 dir
                 |> directory_delete true
             disposable
-        | _ => fun () =>
+        | _ => fun dir =>
             inl directory_info = dir |> create_directory
             inl exists' = directory_info |> directory_info_exists
             if not exists' then
@@ -1570,23 +1565,18 @@ inl create_temp_dir () =
 #!spiral
 
 //// test
-
-inl path, disposable = create_temp_dir ()
-disposable |> use |> ignore
-path
-|> directory_exists
-|> _assert_eq true
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d chrono
 
 inl path, disposable = create_temp_dir ()
-path
-|> directory_exists
-|> _assert_eq true
-disposable |> use |> ignore
+join
+    path
+    |> directory_exists
+    |> _assert_eq true
+    disposable |> use |> ignore
+    path
+    |> directory_exists
+    |> _assert_eq true
 path
 |> directory_exists
 |> _assert_eq false
@@ -1594,6 +1584,7 @@ path
 #!spiral
 
 //// test
+//// timeout=30000
 
 inl lock_directory path =
     fun () =>
@@ -1813,7 +1804,7 @@ let write_all_text_exists path contents =
 
 #!spiral
 
-inl wait_for_file_access access path =
+let wait_for_file_access access path =
     run_target function
         | Fsharp (Native) => fun () =>
             inl file_access, file_share =
@@ -1833,17 +1824,26 @@ inl wait_for_file_access access path =
                             retry |> return
                         fun ex =>
                             if retry > 0 && retry % 100i64 = 0 then
-                                inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.wait_for_file_access"
-                                    fun () => { path = path |> get_file_name; retry ex }
+                                    fun () => {
+                                        path = path |> get_file_name
+                                        retry
+                                        ex = ex () |> sm'.format_exception
+                                    }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
             loop 0
         | _ => fun () => null ()
 
-inl wait_for_file_access_read path =
+#!markdown
+
+### wait_for_file_access_read
+
+#!spiral
+
+let wait_for_file_access_read path =
     path
     |> wait_for_file_access (Some (
         AccessRead,
@@ -1853,6 +1853,7 @@ inl wait_for_file_access_read path =
 #!spiral
 
 //// test
+//// timeout=30000
 
 inl lock_file path =
     fun () =>
@@ -1922,36 +1923,34 @@ fun () =>
 
 #!spiral
 
-inl read_all_text_retry_async full_path : async.async (optionm'.option' string) =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            let rec loop (retry : i64) =
+let read_all_text_retry_async full_path : async.async (optionm'.option' string) =
+    let rec loop (retry : i64) =
+        fun () =>
+            try_unit
                 fun () =>
-                    inl retry = join retry
-                    try_unit
+                    if retry > 0
+                    then
+                        full_path
+                        |> wait_for_file_access_read
+                        |> async.run_with_timeout_async 1000
+                        |> async.ignore
+                        |> async.do
+                    full_path |> read_all_text_async |> async.map (Some >> optionm'.box) |> async.return_await
+                fun ex =>
+                    fix_condition
+                        fun () => retry <> 0
                         fun () =>
-                            if retry > 0
-                            then
-                                full_path
-                                |> wait_for_file_access_read
-                                |> async.run_with_timeout_async 1000
-                                |> async.ignore
-                                |> async.do
-                            full_path |> read_all_text_async |> async.map (Some >> optionm'.box) |> async.return_await
-                        fun ex =>
-                            fix_condition
-                                fun () => retry <> 0
-                                fun () =>
-                                    inl ex = ex |> sm'.format_exception
-                                    trace Debug
-                                        fun () => "file_system.read_all_text_retry_async"
-                                        fun () => { retry ex }
-                                    (None : _ string) |> optionm'.box |> return
-                                fun () =>
-                                    loop (retry + 1) |> async.return_await
-                |> async.new_async
-            loop 0
-        | _ => fun () => null ()
+                            trace Debug
+                                fun () => "file_system.read_all_text_retry_async"
+                                fun () => {
+                                    retry
+                                    ex = ex () |> sm'.format_exception
+                                }
+                            (None : _ string) |> optionm'.box |> return
+                        fun () =>
+                            loop (retry + 1) |> async.return_await
+        |> async.new_async
+    loop 0
 
 #!markdown
 
@@ -1959,7 +1958,7 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
 
 #!spiral
 
-inl move_file_async new_path old_path : _ i64 =
+let move_file_async new_path old_path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
             let rec loop (retry : i64) =
@@ -1970,13 +1969,12 @@ inl move_file_async new_path old_path : _ i64 =
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
-
                                 trace Warning
                                     fun () => "move_file_async"
                                     fun () => {
                                         old_path = old_path |> get_file_name
                                         new_path = new_path |> get_file_name
-                                        ex
+                                        ex = ex () |> sm'.format_exception
                                     }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
@@ -1987,6 +1985,7 @@ inl move_file_async new_path old_path : _ i64 =
 #!spiral
 
 //// test
+//// timeout=30000
 
 inl lock_file path =
     fun () =>
@@ -2058,7 +2057,7 @@ fun () =>
 
 #!spiral
 
-inl delete_file_async path : _ i64 =
+let delete_file_async path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
             let rec loop (retry : i64) =
@@ -2071,7 +2070,10 @@ inl delete_file_async path : _ i64 =
                             if retry % 100 = 0 then
                                 trace Warning
                                     fun () => "delete_file_async"
-                                    fun () => { path = path |> get_file_name; ex = ex |> sm'.format_exception }
+                                    fun () => {
+                                        path = path |> get_file_name
+                                        ex = ex () |> sm'.format_exception
+                                    }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -2081,6 +2083,7 @@ inl delete_file_async path : _ i64 =
 #!spiral
 
 //// test
+//// timeout=30000
 
 inl lock_file path =
     fun () =>

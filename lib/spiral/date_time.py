@@ -5,12 +5,12 @@ from fable_modules.fable_library.date import (to_string, parse_exact)
 from fable_modules.fable_library.guid import (parse, new_guid)
 from fable_modules.fable_library.long import parse as parse_1
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, string_type)
-from fable_modules.fable_library.string_ import (replace, pad_left)
+from fable_modules.fable_library.string_ import (concat, replace, pad_left)
 from fable_modules.fable_library.time_span import (hours, to_string as to_string_1)
 from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
-def _expr106() -> TypeInfo:
+def _expr107() -> TypeInfo:
     return union_type("Date_time.US0", [], US0, lambda: [[("f0_0", class_type("Date_time.chrono_DateTime`1", [class_type("Date_time.chrono_Utc")]))], []])
 
 
@@ -26,9 +26,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr106
+US0_reflection = _expr107
 
-def _expr107() -> TypeInfo:
+def _expr108() -> TypeInfo:
     return union_type("Date_time.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -44,9 +44,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr107
+US1_reflection = _expr108
 
-def _expr108() -> TypeInfo:
+def _expr109() -> TypeInfo:
     return union_type("Date_time.US2", [], US2, lambda: [[], [], []])
 
 
@@ -62,9 +62,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr108
+US2_reflection = _expr109
 
-def _expr109() -> TypeInfo:
+def _expr110() -> TypeInfo:
     return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())], [("f4_0", US2_reflection())]])
 
 
@@ -80,17 +80,17 @@ class US3(Union):
         return ["US3_0", "US3_1", "US3_2", "US3_3", "US3_4"]
 
 
-US3_reflection = _expr109
+US3_reflection = _expr110
 
 def closure2(unit_var: None, v0_1: chrono_date_time_1[chrono_utc]) -> US0:
     return US0(0, v0_1)
 
 
 def method1(__unit: None=None) -> Callable[[chrono_date_time_1[chrono_utc]], US0]:
-    def _arrow110(v: chrono_date_time_1[chrono_utc]) -> US0:
+    def _arrow111(v: chrono_date_time_1[chrono_utc]) -> US0:
         return closure2(None, v)
 
-    return _arrow110
+    return _arrow111
 
 
 def method2(__unit: None=None) -> str:
@@ -106,17 +106,17 @@ def method4(__unit: None=None) -> str:
 
 
 def method0(v0_1: str, v1_1: Any) -> str:
-    v1087: str = method3()
-    v1092: str = to_string(v1_1, "M-d-y hh:mm:ss tt" if (v1087 == "") else v1087)
-    v1277: Any
+    v1075: str = method3()
+    v1080: str = to_string(v1_1, "M-d-y hh:mm:ss tt" if (v1075 == "") else v1075)
+    v1261: Any
     raise Exception(("date_time.get_utc_offset / target: " + str(US3(4, US2(0)))) + "")
-    v1290: uint8 = uint8(1) if (hours(v1277) > 0) else uint8(0)
-    v1291: str = method4()
-    v1315: str = ((("" + str(v1290)) + "") + to_string_1(v1277, "c", {})) + ""
-    v1317: str = str(v0_1)
-    v1322: int = (len(v1092) + len(v1315)) or 0
-    v1341: int = (len(v1317) - 1) or 0
-    return parse(((((("" + v1092) + "") + v1315) + "") + v1317[v1322:v1341 + 1]) + "")
+    v1274: uint8 = uint8(1) if (hours(v1261) > 0) else uint8(0)
+    v1275: str = method4()
+    v1299: str = ((("" + str(v1274)) + "") + to_string_1(v1261, "c", {})) + ""
+    v1301: str = str(v0_1)
+    v1306: int = (len(v1080) + len(v1299)) or 0
+    v1325: int = (len(v1301) - 1) or 0
+    return parse(concat(v1080, v1299, *v1301[v1306:v1325 + 1]))
 
 
 def closure1(v0_1: str, v1_1: Any) -> str:
@@ -124,10 +124,10 @@ def closure1(v0_1: str, v1_1: Any) -> str:
 
 
 def closure0(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow111(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow112(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure1(v0_1, v)
 
-    return _arrow111
+    return _arrow112
 
 
 def closure4(unit_var: None, v0_1: str) -> str:
@@ -146,15 +146,15 @@ def closure6(v0_1: str, v1_1: int64) -> str:
 
 
 def closure5(unit_var: None, v0_1: str) -> Callable[[int64], str]:
-    def _arrow112(v: int64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow113(v: int64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure6(v0_1, v)
 
-    return _arrow112
+    return _arrow113
 
 
 def closure7(unit_var: None, v0_1: str) -> int64:
     v2_1: str = str(v0_1)
-    return parse_1(((((((("" + v2_1[0:7 + 1]) + "") + v2_1[9:12 + 1]) + "") + v2_1[14:17 + 1]) + "") + v2_1[19:20 + 1]) + "", 511, False, 64)
+    return parse_1(concat(v2_1[0:7 + 1], v2_1[9:12 + 1], v2_1[14:17 + 1], *v2_1[19:20 + 1]), 511, False, 64)
 
 
 def closure8(unit_var: None, v0_1: Any) -> str:
@@ -172,91 +172,91 @@ def closure11(v0_1: str, v1_1: Any) -> str:
 
 
 def closure10(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow113(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow114(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure11(v0_1, v)
 
-    return _arrow113
+    return _arrow114
 
 
 def closure12(unit_var: None, v0_1: Any) -> str:
     return to_string(v0_1, "yyyy-MM-ddTHH-mm-ss.fff")
 
 
-def _arrow114(v: str) -> Callable[[Any], str]:
+def _arrow115(v: str) -> Callable[[Any], str]:
     return closure0(None, v)
 
 
-v0: Callable[[str, Any], str] = _arrow114
+v0: Callable[[str, Any], str] = _arrow115
 
 def date_time_guid_from_date_time(x: str) -> Callable[[Any], str]:
     return v0(x)
 
 
-def _arrow115(v: str) -> Any:
+def _arrow116(v: str) -> Any:
     return closure3(None, v)
 
 
-v1: Callable[[str], Any] = _arrow115
+v1: Callable[[str], Any] = _arrow116
 
 def date_time_from_guid(x: str) -> Any:
     return v1(x)
 
 
-def _arrow116(v: str) -> Callable[[int64], str]:
+def _arrow117(v: str) -> Callable[[int64], str]:
     return closure5(None, v)
 
 
-v2: Callable[[str, int64], str] = _arrow116
+v2: Callable[[str, int64], str] = _arrow117
 
 def timestamp_guid_from_timestamp(x: str) -> Callable[[int64], str]:
     return v2(x)
 
 
-def _arrow117(v: str) -> int64:
+def _arrow118(v: str) -> int64:
     return closure7(None, v)
 
 
-v3: Callable[[str], int64] = _arrow117
+v3: Callable[[str], int64] = _arrow118
 
 def timestamp_from_guid(x: str) -> int64:
     return v3(x)
 
 
-def _arrow118(v: Any) -> str:
+def _arrow119(v: Any) -> str:
     return closure8(None, v)
 
 
-v4: Callable[[Any], str] = _arrow118
+v4: Callable[[Any], str] = _arrow119
 
 def new_guid_from_date_time(x: Any) -> str:
     return v4(x)
 
 
-def _arrow119(v: int64) -> str:
+def _arrow120(v: int64) -> str:
     return closure9(None, v)
 
 
-v5: Callable[[int64], str] = _arrow119
+v5: Callable[[int64], str] = _arrow120
 
 def new_guid_from_timestamp(x: int64) -> str:
     return v5(x)
 
 
-def _arrow120(v: str) -> Callable[[Any], str]:
+def _arrow121(v: str) -> Callable[[Any], str]:
     return closure10(None, v)
 
 
-v6: Callable[[str, Any], str] = _arrow120
+v6: Callable[[str, Any], str] = _arrow121
 
 def format(x: str) -> Callable[[Any], str]:
     return v6(x)
 
 
-def _arrow121(v: Any) -> str:
+def _arrow122(v: Any) -> str:
     return closure12(None, v)
 
 
-v7: Callable[[Any], str] = _arrow121
+v7: Callable[[Any], str] = _arrow122
 
 def format_iso8601(x: Any) -> str:
     return v7(x)

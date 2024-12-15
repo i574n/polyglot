@@ -79,8 +79,8 @@ pub mod Lib {
         use crate::Sm::trim as trim_1;
         use crate::Sm::trim_end as trim_end_1;
         use crate::Sm::trim_start as trim_start_1;
-        use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::System::Exception;
         pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
             concat_1(x)
@@ -143,7 +143,7 @@ pub mod Lib {
         use crate::File_system::get_workspace_root as get_workspace_root_1;
         use crate::File_system::new_file_uri as new_file_uri_1;
         use crate::File_system::normalize_path as normalize_path_1;
-        use fable_library_rust::Interfaces_::System::IDisposable;
+        use fable_library_rust::System::IDisposable;
         pub fn get_workspace_root() -> string {
             get_workspace_root_1()
         }

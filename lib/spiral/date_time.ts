@@ -5,7 +5,7 @@ import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/
 import { toString as toString_1, hours } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { int32, uint8 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
-import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { padLeft, replace, concat } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { parse as parse_2 } from "../../deps/Fable/src/fable-library-ts/Long.js";
 
@@ -174,18 +174,18 @@ export function method4(): string {
 }
 
 export function method0(v0_1: string, v1_1: Date): string {
-    const v800: string = method3();
-    const v805: string = toString(v1_1, (v800 === "") ? "M-d-y hh:mm:ss tt" : v800);
-    const v828: any = defaultOf();
-    let v990: number;
+    const v792: string = method3();
+    const v797: string = toString(v1_1, (v792 === "") ? "M-d-y hh:mm:ss tt" : v792);
+    const v820: any = defaultOf();
+    let v978: number;
     throw new Error(`date_time.get_utc_offset / target: ${US3_US3_3(US2_US2_0())}`);
-    const v1003: uint8 = (hours(v990) > 0) ? 1 : 0;
-    const v1004: string = method4();
-    const v1028 = `${v1003}${toString_1(v990, "c", {})}`;
-    const v1030: string = v0_1;
-    const v1040: int32 = (v805.length + v1028.length) | 0;
-    const v1054: int32 = (v1030.length - 1) | 0;
-    return parse(`${v805}${v1028}${v1030.slice(v1040, v1054 + 1)}`);
+    const v991: uint8 = (hours(v978) > 0) ? 1 : 0;
+    const v992: string = method4();
+    const v1016 = `${v991}${toString_1(v978, "c", {})}`;
+    const v1018: string = v0_1;
+    const v1028: int32 = (v797.length + v1016.length) | 0;
+    const v1042: int32 = (v1018.length - 1) | 0;
+    return parse(concat(v797, v1016, ...v1018.slice(v1028, v1042 + 1)));
 }
 
 export function closure1(v0_1: string, v1_1: Date): string {
@@ -216,7 +216,7 @@ export function closure5(unitVar: void, v0_1: string): ((arg0: int64) => string)
 
 export function closure7(unitVar: void, v0_1: string): int64 {
     const v2_1: string = v0_1;
-    return toInt64(parse_2(`${v2_1.slice(0, 7 + 1)}${v2_1.slice(9, 12 + 1)}${v2_1.slice(14, 17 + 1)}${v2_1.slice(19, 20 + 1)}`, 511, false, 64));
+    return toInt64(parse_2(concat(v2_1.slice(0, 7 + 1), v2_1.slice(9, 12 + 1), v2_1.slice(14, 17 + 1), ...v2_1.slice(19, 20 + 1)), 511, false, 64));
 }
 
 export function closure8(unitVar: void, v0_1: Date): string {

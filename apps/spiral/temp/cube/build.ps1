@@ -27,6 +27,7 @@ if (!$SkipPreBuild) {
 
 if (!$SkipFsx) {
     { . ../../dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" } | Invoke-Block
+    { . ../../dist/Supervisor$(_exe) --build-file "$projectName.spi" "$($projectName)_cuda.py" } | Invoke-Block
 }
 
 if (!$SkipFable) {
@@ -45,7 +46,7 @@ if (!$SkipRs -and !$SkipFable) {
         $path = "$targetDir/target/rs/$projectName.rs"
     }
     (Get-Content $path) `
-        -replace "../../../lib", "./lib" `
+        -replace "../../../../../lib", "./lib" `
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `
         | Set-Content "$projectName.rs"
@@ -62,6 +63,7 @@ if (!$SkipTs -and !$SkipFable) {
     }
     (Get-Content $path) `
         -replace "from `"./fable_modules", "from `"../../../../lib/typescript/fable/fable_modules" `
+        | FixTypeScript `
         | Set-Content "$projectName.ts"
 }
 

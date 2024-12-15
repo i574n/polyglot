@@ -3,16 +3,19 @@ function FixRust {
         [Parameter(Mandatory, ValueFromPipeline)]
         $text
     )
+            # -replace "_self.", "self." `
+            # -replace "_self_.", "self." `
+            # -replace "use fable_library_rust::System::Collections::Generic::", "use fable_library_rust::Interfaces_::System::Collections::Generic::" `
+            # -replace "use fable_library_rust::System::IDisposable;", "use fable_library_rust::Interfaces_::System::IDisposable;" `
     process {
         $text `
             -replace [regex]::Escape("),);"), "));" `
             -replace [regex]::Escape("},);"), "});" `
             -replace "get_or_insert_with", "get_or_init" `
-            -replace "_self_.", "self." `
-            -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
+            -replace "([^=]\s)defaultOf\(\);", "`$1`defaultOf::<()>();" `
+            -replace "([^=]\s)getZero\(\);", "`$1`getZero::<()>();" `
+            -replace "__self__.", "self." `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
-            -replace "use fable_library_rust::System::Collections::Generic::", "use fable_library_rust::Interfaces_::System::Collections::Generic::" `
-            -replace "use fable_library_rust::System::IDisposable;", "use fable_library_rust::Interfaces_::System::IDisposable;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
             -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
             -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
@@ -32,7 +35,9 @@ function FixTypeScript {
     )
     process {
         $text `
-            -replace "\./fable_modules/fable-library-ts\.[\d\.]+/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "\./lib/typescript/fable", "." `
+            -replace "defaultOf\(\) \| 0", "0" `
+            -replace "/fable_modules/fable-library-ts\.[\-\d\w\.]+/", "/deps/Fable/src/fable-library-ts/" `
             -replace "from `"\./deps/", "from `"../../polyglot/deps/" `
             -replace "from `"\.\./\.\./\.\./deps/", "from `"../../deps/"
     }
@@ -70,7 +75,7 @@ function CopyTarget {
             $text = $text `
                 | FixRust
 
-            if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
+            if ($Runtime -eq "contract" -and $name -in @("async_", "file_system", "networking", "runtime")) {
                 $text = $text `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
@@ -100,6 +105,7 @@ function CopyTarget {
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
                     -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>()," `
+                    -replace "getZero\(\),", "getZero::<std::sync::Arc<dyn IDisposable>>()," `
                     -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
         }

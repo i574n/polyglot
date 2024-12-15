@@ -112,9 +112,15 @@ union target =
 inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
     backend_switch {
         Fsharp = fun () =>
+            inl is_unit : bool =
+                real
+                    typecase t with
+                    | () => true
+                    | _ => false
             inl result = $'()' : unit
             inl emit_result x : () =
-                $'let _!result = !x '
+                if is_unit |> not
+                then $'let _!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
             $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
             inl target = Rust Native
@@ -138,7 +144,9 @@ inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
             inl target = Fsharp Native
             fn target args |> emit_result
             $'#endif'
-            $'_!result ' : t
+            if is_unit
+            then $'// run_target_args\' is_unit'
+            else $'_!result ' : t
         Python = fun () =>
             inl target = Cuda Native
             fn target args
@@ -219,12 +227,17 @@ inl do (body : () -> ()) : () =
 #!spiral
 
 inl indent (body : () -> ()) : () =
-    inl body =
-        fun () =>
-            body ()
-            $'(*' : ()
-    !!!!Indent (body())
-    $'*)'
+    backend_switch {
+        Fsharp = fun () =>
+            inl body () =
+                body ()
+                $'(* indent' : ()
+            !!!!Indent (body())
+            $'indent *)' : ()
+        Python = fun () =>
+            !!!!Indent (body())
+            ()
+    }
 
 #!markdown
 
@@ -233,9 +246,21 @@ inl indent (body : () -> ()) : () =
 #!spiral
 
 inl let' fn =
-    inl result : unit = $'()'
-    $'let _!result ='
-    fn |> indent
+    inl result : unit =
+        backend_switch {
+            Fsharp = fun () =>
+                $'()' : unit
+            Python = fun () =>
+                $'None' : unit
+        }
+    backend_switch {
+        Fsharp = fun () =>
+            $'let _!result =' : ()
+            fn |> indent
+        Python = fun () =>
+            $'def _!result():' : ()
+            fn |> indent
+    }
     $'_!result '
 
 #!markdown
@@ -635,11 +660,11 @@ inl (||>) (arg1, arg2) fn =
 
 inl fix_condition x a b =
     if x ()
-    then a () |> fun x => $'(*' : ()
+    then a () |> fun x => $'(* fix_condition then' : ()
     else
-        $'*) else' : ()
-        b () |> fun x => $'(*' : ()
-    |> fun x => $'*)' : ()
+        $'fix_condition then *) else' : ()
+        b () |> fun x => $'(* fix_condition else' : ()
+    |> fun x => $'fix_condition else *)' : ()
 
 #!markdown
 
@@ -1005,17 +1030,28 @@ try
 
 #!spiral
 
-inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'with ex ->'
+inl try_unit forall t. (fn : () -> ()) (ex_fn : (() -> exn) -> ()) : t =
+    backend_switch {
+        Fsharp = fun () => $'try' : ()
+        Python = fun () => $'try:' : ()
+    }
+    fn |> indent
+    backend_switch {
+        Fsharp = fun () => $'with ex ->' : ()
+        Python = fun () => $'except Exception as ex:' : ()
+    }
     fun () =>
-        ex_fn $'ex'
-        |> ignore
+        inl ex = $'ex'
+        inl ex () =
+            ex
+        ex_fn ex
     |> indent
-    $'(*'
-    $'*)'
+    backend_switch {
+        Fsharp = fun () =>
+            $'(* try_unit'
+            $'try_unit *)' : t
+        Python = fun () => $'' : t
+    }
 
 #!markdown
 
@@ -1023,17 +1059,8 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
 
 #!spiral
 
-inl try_unit' forall t. (ex_fn : exn -> ()) (fn : () -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'with ex ->'
-    fun () =>
-        ex_fn $'ex'
-        |> ignore
-    |> indent
-    $'(*'
-    $'*)'
+inl try_unit' forall t. (ex_fn : (() -> exn) -> ()) (fn : () -> ()) : t =
+    try_unit fn ex_fn
 
 #!markdown
 
@@ -1042,11 +1069,20 @@ inl try_unit' forall t. (ex_fn : exn -> ()) (fn : () -> ()) : t =
 #!spiral
 
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
-    $'try'
-    fn ()
-    |> ignore
-    $'finally'
-    finally ()
-    |> ignore
-    $'(*'
-    $'*)'
+    backend_switch {
+        Fsharp = fun () => $'try' : ()
+        Python = fun () => $'try:' : ()
+    }
+    fn |> indent
+    backend_switch {
+        Fsharp = fun () => $'finally' : ()
+        Python = fun () => $'finally:' : ()
+    }
+    finally |> indent
+    backend_switch {
+        Fsharp = fun () =>
+            $'(* try_finally'
+            $'try_finally *)'
+            ()
+        Python = fun () => ()
+    }

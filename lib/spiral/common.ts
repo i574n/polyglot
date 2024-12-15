@@ -376,7 +376,11 @@ export function US7_$reflection(): TypeInfo {
     return union_type("Common.US7", [], US7, () => [[["f0_0", US6_$reflection()]], []]);
 }
 
-export function method3(): string {
+export function method3(v0_1: string): string {
+    return v0_1;
+}
+
+export function method4(): string {
     return "";
 }
 
@@ -384,7 +388,7 @@ export function closure1(unitVar: void, v0_1: string): US5_$union {
     return US5_US5_0(v0_1);
 }
 
-export function method4(): ((arg0: string) => US5_$union) {
+export function method5(): ((arg0: string) => US5_$union) {
     return (v: string): US5_$union => closure1(undefined, v);
 }
 
@@ -419,16 +423,16 @@ export function closure0(unitVar: void, unitVar_1: void): void {
     }
 }
 
-export function method5(v0_1: (() => void)): (() => void) {
-    return v0_1;
-}
-
 export function method6(v0_1: (() => void)): (() => void) {
     return v0_1;
 }
 
+export function method7(v0_1: (() => void)): (() => void) {
+    return v0_1;
+}
+
 export function closure3(unitVar: void, v0_1: (() => void)): IDisposable {
-    const v8: (() => void) = method6(v0_1);
+    const v8: (() => void) = method7(v0_1);
     return {
         Dispose(): void {
             v8();
@@ -450,7 +454,7 @@ export function closure7(v0_1: int32, v1_1: (() => void), v2_1: int32, unitVar: 
     }
 }
 
-export function method8(v0_1: US0_$union): boolean {
+export function method9(v0_1: US0_$union): boolean {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
@@ -472,20 +476,20 @@ export function closure10(unitVar: void, v0_1: int64): US2_$union {
     return US2_US2_0(v0_1);
 }
 
-export function method10(): ((arg0: int64) => US2_$union) {
+export function method11(): ((arg0: int64) => US2_$union) {
     return (v: int64): US2_$union => closure10(undefined, v);
 }
 
-export function method11(): string {
+export function method12(): string {
     return "hh:mm:ss";
 }
 
-export function method12(): string {
+export function method13(): string {
     return "HH:mm:ss";
 }
 
-export function method9(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
-    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method10(), v5), US2_US2_1());
+export function method10(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>): string {
+    const v321: US2_$union = defaultArg(map<int64, US2_$union>(method11(), v5), US2_US2_1());
     let v418: Date;
     if (v321.tag === /* US2_0 */ 0) {
         const v325: int64 = v321.fields[0];
@@ -495,11 +499,11 @@ export function method9(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, 
     else {
         v418 = now();
     }
-    const v419: string = method12();
+    const v419: string = method13();
     return toString(v418, (v419 === "") ? "M-d-y hh:mm:ss tt" : v419);
 }
 
-export function method15(): string {
+export function method16(): string {
     return "";
 }
 
@@ -508,62 +512,62 @@ export function closure11(v0_1: Mut3, v1_1: string, unitVar: void): void {
     v0_1.l0 = v3;
 }
 
-export function method14(v0_1: string): string {
-    const v2_1: Mut3 = new Mut3(method15());
+export function method15(v0_1: string): string {
+    const v2_1: Mut3 = new Mut3(method16());
     let v8: any;
     closure11(v2_1, `${v0_1}`, undefined);
     v8 = undefined;
     return v2_1.l0;
 }
 
-export function method16(): string {
+export function method17(): string {
     return "\u001b[0m";
 }
 
-export function method13(): string {
+export function method14(): string {
     const v2_1: string = "Warning".toLocaleLowerCase();
-    return ("\u001b[93m" + method14(v2_1[0])) + method16();
+    return ("\u001b[93m" + method15(v2_1[0])) + method17();
 }
 
-export function method18(v0_1: int32, v1_1: Error): string {
-    const v3: Mut3 = new Mut3(method15());
+export function method19(v0_1: int32, v1_1: Error): string {
+    const v3: Mut3 = new Mut3(method16());
     let v10: any;
-    closure11(v3, `${"{ "}`, undefined);
+    closure11(v3, "{ ", undefined);
     v10 = undefined;
     let v19: any;
-    closure11(v3, `${"retry"}`, undefined);
+    closure11(v3, "retry", undefined);
     v19 = undefined;
     let v28: any;
-    closure11(v3, `${" = "}`, undefined);
+    closure11(v3, " = ", undefined);
     v28 = undefined;
     let v36: any;
     closure11(v3, `${v0_1}`, undefined);
     v36 = undefined;
     let v45: any;
-    closure11(v3, `${"; "}`, undefined);
+    closure11(v3, "; ", undefined);
     v45 = undefined;
     let v54: any;
-    closure11(v3, `${"ex"}`, undefined);
+    closure11(v3, "ex", undefined);
     v54 = undefined;
     let v62: any;
-    closure11(v3, `${" = "}`, undefined);
+    closure11(v3, " = ", undefined);
     v62 = undefined;
     let v100: any;
-    closure11(v3, `${toText(interpolate("%A%P()", [v1_1]))}`, undefined);
+    closure11(v3, toText(interpolate("%A%P()", [v1_1])), undefined);
     v100 = undefined;
     let v109: any;
-    closure11(v3, `${" }"}`, undefined);
+    closure11(v3, " }", undefined);
     v109 = undefined;
     return v3.l0;
 }
 
-export function method19(v0_1: string): string {
+export function method20(v0_1: string): string {
     return trimEnd(trimStart(v0_1, ...[]), ...[" ", "/"]);
 }
 
-export function method17(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: int32, v9: Error): string {
-    const v10: string = method18(v8, v9);
-    return method19(`${v6} ${v7} #${v0_1.l0} ${"common.retry_fn"} / ${v10}`);
+export function method18(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: int32, v9: Error): string {
+    const v10: string = method19(v8, v9);
+    return method20(`${v6} ${v7} #${v0_1.l0} ${"common.retry_fn"} / ${v10}`);
 }
 
 export function closure12(v0_1: Mut0, unitVar: void): void {
@@ -581,7 +585,7 @@ export function closure13(unitVar: void, v0_1: string): void {
     v3 = undefined;
 }
 
-export function method20(v0_1: string): void {
+export function method21(v0_1: string): void {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
@@ -594,7 +598,7 @@ export function method20(v0_1: string): void {
 }
 
 export function closure9(v0_1: int32, v1_1: Error, unitVar: void): void {
-    if (method8(US0_US0_3())) {
+    if (method9(US0_US0_3())) {
         let v6: any;
         closure0(undefined, undefined);
         v6 = undefined;
@@ -605,7 +609,7 @@ export function closure9(v0_1: int32, v1_1: Error, unitVar: void): void {
         const v22: Mut2 = patternInput[2];
         const v21: Mut1 = patternInput[1];
         const v20: Mut0 = patternInput[0];
-        method20(method17(v20, v21, v22, v23, v24, v25, method9(v20, v21, v22, v23, v24, v25), method13(), v0_1, v1_1));
+        method21(method18(v20, v21, v22, v23, v24, v25, method10(v20, v21, v22, v23, v24, v25), method14(), v0_1, v1_1));
     }
 }
 
@@ -616,8 +620,8 @@ export function closure8(v0_1: int32, v1_1: Error): US7_$union {
     return US7_US7_1();
 }
 
-export function method7(v0_1_mut: int32, v1_1_mut: (() => void), v2_1_mut: int32): US6_$union {
-    method7:
+export function method8(v0_1_mut: int32, v1_1_mut: (() => void), v2_1_mut: int32): US6_$union {
+    method8:
     while (true) {
         const v0_1: int32 = v0_1_mut, v1_1: (() => void) = v1_1_mut, v2_1: int32 = v2_1_mut;
         const result: FSharpRef<US7_$union> = new FSharpRef<US7_$union>(US7_US7_1());
@@ -635,14 +639,14 @@ export function method7(v0_1_mut: int32, v1_1_mut: (() => void), v2_1_mut: int32
             v0_1_mut = v0_1;
             v1_1_mut = v1_1;
             v2_1_mut = (v2_1 + 1);
-            continue method7;
+            continue method8;
         }
         break;
     }
 }
 
 export function closure5(v0_1: int32, v1_1: (() => void)): Option<void> {
-    const v3: US6_$union = method7(v0_1, v1_1, 0);
+    const v3: US6_$union = method8(v0_1, v1_1, 0);
     if (v3.tag === /* US6_0 */ 0) {
         return some(undefined);
     }
@@ -655,7 +659,7 @@ export function closure4(unitVar: void, v0_1: int32): ((arg0: (() => void)) => O
     return (v: (() => void)): Option<void> => closure5(v0_1, v);
 }
 
-export function method21(v0_1: (() => void)): (() => void) {
+export function method22(v0_1: (() => void)): (() => void) {
     return v0_1;
 }
 
@@ -664,7 +668,7 @@ export function closure16(v0_1: any, unitVar: void): void {
 }
 
 export function closure15(unitVar: void, v0_1: (() => void)): (() => void) {
-    const v1_1: (() => void) = method21(v0_1);
+    const v1_1: (() => void) = method22(v0_1);
     const v2_1: any = new Lazy<void>((): void => {
         v1_1();
     });

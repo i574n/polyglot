@@ -319,7 +319,7 @@ inl get_cube_points (cube : cube) rot =
 #!fsharp
 
 let generateFrame rot =
-    let updates = 
+    let updates =
         cubes
         |> Seq.collect (fun cube -> getCubePoints cube rot)
     let buffer = Array.create (width * height) None
@@ -537,9 +537,15 @@ inl main (_args : array_base string) =
             |> async.run_synchronously
 
 inl main () =
-    $'let main_ = !main '
-    $'#if \!FABLE_COMPILER_RUST'
-    $'main_ [||]' : ()
-    $'#else'
-    $'let main args = main_ [||]; 0' : ()
-    $'#endif' : ()
+    backend_switch {
+        Fsharp = fun () =>
+            $'let main_ = !main '
+            $'#if \!FABLE_COMPILER_RUST'
+            $'main_ [||]' : ()
+            $'#else'
+            $'let main args = main_ [||]; 0' : ()
+            $'#endif' : ()
+        Python = fun () =>
+            main ;[]
+    }
+    : ()

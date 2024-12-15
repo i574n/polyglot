@@ -35,7 +35,7 @@ let rec closure1 (v0 : string) (v1 : string) : bool =
 and closure0 () (v0 : string) : (string -> bool) =
     closure1(v0)
 and closure3 (v0 : string) (v1 : string) : bool =
-    let v2 : bool = v1.EndsWith v0 
+    let v2 : bool = v1.EndsWith (v0, false, null)
     v2
 and closure2 () (v0 : string) : (string -> bool) =
     closure3(v0)
@@ -268,7 +268,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
 and closure21 () (v0 : (string [])) : (string -> (string [])) =
     closure22(v0)
 and closure24 (v0 : string) (v1 : string) : bool =
-    let v2 : bool = v1.StartsWith v0 
+    let v2 : bool = v1.StartsWith (v0, false, null)
     v2
 and closure23 () (v0 : string) : (string -> bool) =
     closure24(v0)

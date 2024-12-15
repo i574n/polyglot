@@ -8233,7 +8233,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">generateFrame</span> <span class="n">rot</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">updates</span> <span class="o">=</span> 
+    <span class="n">let</span> <span class="n">updates</span> <span class="o">=</span>
         <span class="n">cubes</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">cube</span> <span class="o">-&gt;</span> <span class="n">getCubePoints</span> <span class="n">cube</span> <span class="n">rot</span><span class="p">)</span>
     <span class="n">let</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">Array</span><span class="o">.</span><span class="n">create</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="kc">None</span>
@@ -8859,12 +8859,18 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_synchronously</span>
 
 <span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'let main_ = !main '</span>
-    <span class="err">$</span><span class="s1">'#if \!FABLE_COMPILER_RUST'</span>
-    <span class="err">$</span><span class="s1">'main_ [||]'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s1">'#else'</span>
-    <span class="err">$</span><span class="s1">'let main args = main_ [||]; 0'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s1">'#endif'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'let main_ = !main '</span>
+            <span class="err">$</span><span class="s1">'#if \!FABLE_COMPILER_RUST'</span>
+            <span class="err">$</span><span class="s1">'main_ [||]'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'#else'</span>
+            <span class="err">$</span><span class="s1">'let main args = main_ [||]; 0'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'#endif'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">main</span> <span class="p">;[]</span>
+    <span class="p">}</span>
+    <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

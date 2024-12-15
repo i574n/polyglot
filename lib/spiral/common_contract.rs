@@ -3,15 +3,13 @@ pub mod Common {
     type DateTime = ();
     use fable_library_rust::Exception_::try_catch;
     use fable_library_rust::FSharp::Control::LazyExtensions;
-    use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
-    use fable_library_rust::Interfaces_::System::IDisposable;
     use fable_library_rust::List_::empty;
     use fable_library_rust::List_::ofArray;
     use fable_library_rust::List_::toArray;
     use fable_library_rust::Map_::find;
     use fable_library_rust::Map_::ofSeq;
     use fable_library_rust::NativeArray_::new_array;
-    use fable_library_rust::Native_::defaultOf;
+    use fable_library_rust::Native_::getZero;
     use fable_library_rust::Native_::interface_cast;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::refCell;
@@ -24,7 +22,6 @@ pub mod Common {
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::defaultValue;
-    use fable_library_rust::Option_::getValue;
     use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::append;
@@ -35,7 +32,9 @@ pub mod Common {
     use fable_library_rust::String_::toLower;
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
+    use fable_library_rust::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::System::Exception;
+    use fable_library_rust::System::IDisposable;
     use fable_library_rust::System::Lazy_1;
     pub mod TraceState {
         use super::*;
@@ -81,10 +80,10 @@ pub mod Common {
                 .clone()
         }
     }
-    pub trait IOsEnviron {
+    pub trait IOsEnviron: core::fmt::Debug + core::fmt::Display {
         fn environ(&self) -> LrcPtr<dyn Any>;
     }
-    impl<V: IOsEnviron + Clone + 'static> IOsEnviron for LrcPtr<V> {
+    impl<V: IOsEnviron + core::fmt::Debug + core::fmt::Display> IOsEnviron for LrcPtr<V> {
         #[inline]
         fn environ(&self) -> LrcPtr<dyn Any> {
             (**self).environ()
@@ -94,7 +93,7 @@ pub mod Common {
     pub struct Disposable {
         f: Func0<()>,
     }
-    impl Common::Disposable {
+    impl Disposable {
         pub fn _ctor__3A5B6456(f: Func0<()>) -> LrcPtr<Common::Disposable> {
             let f_1;
             ();
@@ -103,7 +102,7 @@ pub mod Common {
             LrcPtr::new(Common::Disposable { f: f_1 })
         }
     }
-    impl core::fmt::Display for Common::Disposable {
+    impl core::fmt::Display for Disposable {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -113,7 +112,7 @@ pub mod Common {
             (self.f)();
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US0 {
         US0_0,
         US0_1,
@@ -121,16 +120,16 @@ pub mod Common {
         US0_3,
         US0_4,
     }
-    impl core::fmt::Display for Common::US0 {
+    impl core::fmt::Display for US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut0 {
         pub l0: MutCell<i64>,
     }
-    impl core::fmt::Display for Common::Mut0 {
+    impl core::fmt::Display for Mut0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -139,70 +138,70 @@ pub mod Common {
     pub struct Mut1 {
         pub l0: MutCell<Func1<string, ()>>,
     }
-    impl core::fmt::Display for Common::Mut1 {
+    impl core::fmt::Display for Mut1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut2 {
         pub l0: MutCell<bool>,
     }
-    impl core::fmt::Display for Common::Mut2 {
+    impl core::fmt::Display for Mut2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut3 {
         pub l0: MutCell<string>,
     }
-    impl core::fmt::Display for Common::Mut3 {
+    impl core::fmt::Display for Mut3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut4 {
         pub l0: MutCell<Common::US0>,
     }
-    impl core::fmt::Display for Common::Mut4 {
+    impl core::fmt::Display for Mut4 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US1 {
         US1_0(Common::US0),
         US1_1,
     }
-    impl core::fmt::Display for Common::US1 {
+    impl core::fmt::Display for US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US2 {
         US2_0(i64),
         US2_1,
     }
-    impl core::fmt::Display for Common::US2 {
+    impl core::fmt::Display for US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US3 {
         US3_0,
         US3_1,
         US3_2,
     }
-    impl core::fmt::Display for Common::US3 {
+    impl core::fmt::Display for US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US4 {
         US4_0(Common::US3),
         US4_1(Common::US3),
@@ -210,48 +209,51 @@ pub mod Common {
         US4_3(Common::US3),
         US4_4(Common::US3),
     }
-    impl core::fmt::Display for Common::US4 {
+    impl core::fmt::Display for US4 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US5 {
         US5_0(string),
         US5_1,
     }
-    impl core::fmt::Display for Common::US5 {
+    impl core::fmt::Display for US5 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US6 {
         US6_0,
         US6_1,
     }
-    impl core::fmt::Display for Common::US6 {
+    impl core::fmt::Display for US6 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum US7 {
         US7_0(Common::US6),
         US7_1,
     }
-    impl core::fmt::Display for Common::US7 {
+    impl core::fmt::Display for US7 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn method3() -> string {
+    pub fn method3(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method4() -> string {
         string("")
     }
     pub fn closure1(unitVar: (), v0_1: string) -> Common::US5 {
         Common::US5::US5_0(v0_1)
     }
-    pub fn method4() -> Func1<string, Common::US5> {
+    pub fn method5() -> Func1<string, Common::US5> {
         Func1::new(move |v: string| Common::closure1((), v))
     }
     pub fn method2(v0_1: string) -> string {
@@ -266,66 +268,77 @@ pub mod Common {
     }
     pub fn method1() -> (Common::US1, Common::US2) {
         let v1_1: string = Common::method2(string("TRACE_LEVEL"));
-        let v6: Common::US1 = if string("Verbose") == v1_1.clone() {
+        let v6: Common::US1 = if string("Verbose") == (v1_1.clone()) {
             Common::US1::US1_0(Common::US0::US0_0)
         } else {
             Common::US1::US1_1
         };
         (
             match &v6 {
-                Common::US1::US1_0(v6_0_0) => Common::US1::US1_0(match &v6 {
-                    Common::US1::US1_0(x) => x.clone(),
-                    _ => unreachable!(),
-                }),
+                Common::US1::US1_0(v6_0_0) => Common::US1::US1_0(
+                    match &v6 {
+                        Common::US1::US1_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }
+                    .clone(),
+                ),
                 _ => {
-                    let v13: Common::US1 = if string("Debug") == v1_1.clone() {
+                    let v13: Common::US1 = if string("Debug") == (v1_1.clone()) {
                         Common::US1::US1_0(Common::US0::US0_1)
                     } else {
                         Common::US1::US1_1
                     };
                     match &v13 {
-                        Common::US1::US1_0(v13_0_0) => Common::US1::US1_0(match &v13 {
-                            Common::US1::US1_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        }),
+                        Common::US1::US1_0(v13_0_0) => Common::US1::US1_0(
+                            match &v13 {
+                                Common::US1::US1_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            }
+                            .clone(),
+                        ),
                         _ => {
-                            let v20: Common::US1 = if string("Info") == v1_1.clone() {
+                            let v20: Common::US1 = if string("Info") == (v1_1.clone()) {
                                 Common::US1::US1_0(Common::US0::US0_2)
                             } else {
                                 Common::US1::US1_1
                             };
                             match &v20 {
-                                Common::US1::US1_0(v20_0_0) => Common::US1::US1_0(match &v20 {
-                                    Common::US1::US1_0(x) => x.clone(),
-                                    _ => unreachable!(),
-                                }),
+                                Common::US1::US1_0(v20_0_0) => Common::US1::US1_0(
+                                    match &v20 {
+                                        Common::US1::US1_0(x) => x.clone(),
+                                        _ => unreachable!(),
+                                    }
+                                    .clone(),
+                                ),
                                 _ => {
-                                    let v27: Common::US1 = if string("Warning") == v1_1.clone() {
+                                    let v27: Common::US1 = if string("Warning") == (v1_1.clone()) {
                                         Common::US1::US1_0(Common::US0::US0_3)
                                     } else {
                                         Common::US1::US1_1
                                     };
                                     match &v27 {
-                                        Common::US1::US1_0(v27_0_0) => {
-                                            Common::US1::US1_0(match &v27 {
+                                        Common::US1::US1_0(v27_0_0) => Common::US1::US1_0(
+                                            match &v27 {
                                                 Common::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
-                                            })
-                                        }
+                                            }
+                                            .clone(),
+                                        ),
                                         _ => {
                                             let v34: Common::US1 =
-                                                if string("Critical") == v1_1.clone() {
+                                                if string("Critical") == (v1_1.clone()) {
                                                     Common::US1::US1_0(Common::US0::US0_4)
                                                 } else {
                                                     Common::US1::US1_1
                                                 };
                                             match &v34 {
-                                                Common::US1::US1_0(v34_0_0) => {
-                                                    Common::US1::US1_0(match &v34 {
+                                                Common::US1::US1_0(v34_0_0) => Common::US1::US1_0(
+                                                    match &v34 {
                                                         Common::US1::US1_0(x) => x.clone(),
                                                         _ => unreachable!(),
-                                                    })
-                                                }
+                                                    }
+                                                    .clone(),
+                                                ),
                                                 _ => Common::US1::US1_1,
                                             }
                                         }
@@ -336,11 +349,11 @@ pub mod Common {
                     }
                 }
             },
-            if Common::method2(string("AUTOMATION")) != string("True") {
+            if (Common::method2(string("AUTOMATION"))) != string("True") {
                 Common::US2::US2_1
             } else {
-                let v58: DateTime = unbox::<DateTime>(&defaultOf());
-                Common::US2::US2_0(unbox::<i64>(&defaultOf()))
+                let v58: DateTime = unbox::<DateTime>(&getZero());
+                Common::US2::US2_0(unbox::<i64>(&getZero()))
             },
         )
     }
@@ -362,7 +375,7 @@ pub mod Common {
         let v72: std::string::String = String::from(v65);
         let _v1: (Common::US1, Common::US2) = (
             Common::US1::US1_1,
-            if fable_library_rust::String_::fromString(v72) != string("True") {
+            if (fable_library_rust::String_::fromString(v72)) != string("True") {
                 Common::US2::US2_1
             } else {
                 Common::US2::US2_0(near_sdk::env::block_timestamp() as i64)
@@ -388,8 +401,9 @@ pub mod Common {
                     Common::US1::US1_0(v131_0_0) => match &v131 {
                         Common::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
-                    },
-                    _ => v0_1,
+                    }
+                    .clone(),
+                    _ => v0_1.clone(),
                 }),
             }),
             match &v132 {
@@ -422,14 +436,14 @@ pub mod Common {
             ()
         };
     }
-    pub fn method5(v0_1: Func0<()>) -> Func0<()> {
-        v0_1
-    }
     pub fn method6(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
+    pub fn method7(v0_1: Func0<()>) -> Func0<()> {
+        v0_1
+    }
     pub fn closure3(unitVar: (), v0_1: Func0<()>) -> LrcPtr<dyn IDisposable> {
-        let v6 = Common::method5(v0_1);
+        let v6 = Common::method6(v0_1);
         interface_cast!(
             Common::Disposable::_ctor__3A5B6456(Func0::new({
                 let v6 = v6.clone();
@@ -442,14 +456,14 @@ pub mod Common {
         Common::US7::US7_0(v0_1)
     }
     pub fn closure7(v0_1: i32, v1_1: Func0<()>, v2_1: i32, unitVar: ()) -> Common::US6 {
-        if v2_1 < v0_1 {
+        if (v2_1) < (v0_1) {
             v1_1();
             Common::US6::US6_0
         } else {
             Common::US6::US6_1
         }
     }
-    pub fn method8(v0_1: Common::US0) -> bool {
+    pub fn method9(v0_1: Common::US0) -> bool {
         let v3: () = {
             Common::closure0((), ());
             ()
@@ -461,12 +475,12 @@ pub mod Common {
             LrcPtr<Common::Mut3>,
             LrcPtr<Common::Mut4>,
             Option<i64>,
-        ) = getValue(Common::TraceState::trace_state().get().clone());
+        ) = Common::TraceState::trace_state().get().clone().unwrap();
         let v35: Common::US0 = (patternInput.4.clone()).l0.get().clone();
-        if (patternInput.2.clone()).l0.get().clone() == false {
+        if ((patternInput.2.clone()).l0.get().clone()) == false {
             false
         } else {
-            find(
+            (find(
                 v0_1,
                 ofSeq(ofList(ofArray(new_array(&[
                     LrcPtr::new((Common::US0::US0_0, 0_i32)),
@@ -475,7 +489,7 @@ pub mod Common {
                     LrcPtr::new((Common::US0::US0_3, 3_i32)),
                     LrcPtr::new((Common::US0::US0_4, 4_i32)),
                 ])))),
-            ) >= find(
+            )) >= (find(
                 v35,
                 ofSeq(ofList(ofArray(new_array(&[
                     LrcPtr::new((Common::US0::US0_0, 0_i32)),
@@ -484,22 +498,22 @@ pub mod Common {
                     LrcPtr::new((Common::US0::US0_3, 3_i32)),
                     LrcPtr::new((Common::US0::US0_4, 4_i32)),
                 ])))),
-            )
+            ))
         }
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Common::US2 {
         Common::US2::US2_0(v0_1)
     }
-    pub fn method10() -> Func1<i64, Common::US2> {
+    pub fn method11() -> Func1<i64, Common::US2> {
         Func1::new(move |v: i64| Common::closure10((), v))
     }
-    pub fn method11() -> string {
+    pub fn method12() -> string {
         string("hh:mm:ss")
     }
-    pub fn method12() -> string {
+    pub fn method13() -> string {
         string("HH:mm:ss")
     }
-    pub fn method9(
+    pub fn method10(
         v0_1: LrcPtr<Common::Mut0>,
         v1_1: LrcPtr<Common::Mut1>,
         v2_1: LrcPtr<Common::Mut2>,
@@ -508,33 +522,34 @@ pub mod Common {
         v5: Option<i64>,
     ) -> string {
         let v272: u64 = near_sdk::env::block_timestamp();
-        let v286: Common::US2 = defaultValue(Common::US2::US2_1, map(Common::method10(), v5));
-        let v298: u64 = match &v286 {
+        let v286: Common::US2 = defaultValue(Common::US2::US2_1, map(Common::method11(), v5));
+        let v298: u64 = (match &v286 {
             Common::US2::US2_0(v286_0_0) => {
-                v272 - match &v286 {
-                    Common::US2::US2_0(x) => x.clone(),
-                    _ => unreachable!(),
-                } as u64
+                (v272)
+                    - (match &v286 {
+                        Common::US2::US2_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    } as u64)
             }
             _ => v272,
-        } / 1000000000_u64;
-        let v299: u64 = v298 % 60_u64;
-        let v301: u64 = v298 / 60_u64 % 60_u64;
-        let v303: u64 = v298 / 3600_u64 % 24_u64;
+        }) / 1000000000_u64;
+        let v299: u64 = (v298) % 60_u64;
+        let v301: u64 = ((v298) / 60_u64) % 60_u64;
+        let v303: u64 = ((v298) / 3600_u64) % 24_u64;
         let v305: std::string::String = format!("{:02}:{:02}:{:02}", v303, v301, v299);
         fable_library_rust::String_::fromString(v305)
     }
-    pub fn method15() -> string {
+    pub fn method16() -> string {
         string("")
     }
     pub fn closure11(v0_1: LrcPtr<Common::Mut3>, v1_1: string, unitVar: ()) {
-        let v3: string = append(v0_1.l0.get().clone(), v1_1);
+        let v3: string = append((v0_1.l0.get().clone()), (v1_1));
         v0_1.l0.set(v3);
         ()
     }
-    pub fn method14(v0_1: char) -> string {
+    pub fn method15(v0_1: char) -> string {
         let v2_1: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
-            l0: MutCell::new(Common::method15()),
+            l0: MutCell::new(Common::method16()),
         });
         let v8: () = {
             Common::closure11(v2_1.clone(), sprintf!("{}", v0_1), ());
@@ -542,31 +557,31 @@ pub mod Common {
         };
         v2_1.l0.get().clone()
     }
-    pub fn method16() -> string {
+    pub fn method17() -> string {
         string("\u{001b}[0m")
     }
-    pub fn method13() -> string {
-        let v6: string = Common::method14(getCharAt(toLower(string("Warning")), 0_i32));
+    pub fn method14() -> string {
+        let v6: string = Common::method15(getCharAt(toLower(string("Warning")), 0_i32));
         let v73: &str = inline_colorization::color_yellow;
         let v80: &str = &*v6;
         let v99: &str = inline_colorization::color_reset;
         let v101: std::string::String = format!("{}{}{}", v73, v80, v99);
         fable_library_rust::String_::fromString(v101)
     }
-    pub fn method18(v0_1: i32, v1_1: LrcPtr<Exception>) -> string {
+    pub fn method19(v0_1: i32, v1_1: LrcPtr<Exception>) -> string {
         let v3: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
-            l0: MutCell::new(Common::method15()),
+            l0: MutCell::new(Common::method16()),
         });
         let v10: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string("{ ")), ());
+            Common::closure11(v3.clone(), string("{ "), ());
             ()
         };
         let v19: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string("retry")), ());
+            Common::closure11(v3.clone(), string("retry"), ());
             ()
         };
         let v28: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string(" = ")), ());
+            Common::closure11(v3.clone(), string(" = "), ());
             ()
         };
         let v36: () = {
@@ -574,39 +589,35 @@ pub mod Common {
             ()
         };
         let v45: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string("; ")), ());
+            Common::closure11(v3.clone(), string("; "), ());
             ()
         };
         let v54: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string("ex")), ());
+            Common::closure11(v3.clone(), string("ex"), ());
             ()
         };
         let v62: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string(" = ")), ());
+            Common::closure11(v3.clone(), string(" = "), ());
             ()
         };
         let v75: std::string::String = format!("{:#?}", v1_1);
         let v100: () = {
-            Common::closure11(
-                v3.clone(),
-                sprintf!("{}", fable_library_rust::String_::fromString(v75)),
-                (),
-            );
+            Common::closure11(v3.clone(), fable_library_rust::String_::fromString(v75), ());
             ()
         };
         let v109: () = {
-            Common::closure11(v3.clone(), sprintf!("{}", string(" }")), ());
+            Common::closure11(v3.clone(), string(" }"), ());
             ()
         };
         v3.l0.get().clone()
     }
-    pub fn method19(v0_1: string) -> string {
+    pub fn method20(v0_1: string) -> string {
         trimEndChars(
             trimStartChars(v0_1, toArray(empty::<char>())),
             toArray(ofArray(new_array(&[' ', '/']))),
         )
     }
-    pub fn method17(
+    pub fn method18(
         v0_1: LrcPtr<Common::Mut0>,
         v1_1: LrcPtr<Common::Mut1>,
         v2_1: LrcPtr<Common::Mut2>,
@@ -618,8 +629,8 @@ pub mod Common {
         v8: i32,
         v9: LrcPtr<Exception>,
     ) -> string {
-        let v10: string = Common::method18(v8, v9);
-        Common::method19(sprintf!(
+        let v10: string = Common::method19(v8, v9);
+        Common::method20(sprintf!(
             "{} {} #{} {} / {}",
             v6,
             v7,
@@ -629,7 +640,7 @@ pub mod Common {
         ))
     }
     pub fn closure12(v0_1: LrcPtr<Common::Mut0>, unitVar: ()) {
-        let v2_1: i64 = v0_1.l0.get().clone() + 1_i64;
+        let v2_1: i64 = (v0_1.l0.get().clone()) + 1_i64;
         v0_1.l0.set(v2_1);
         ()
     }
@@ -643,7 +654,7 @@ pub mod Common {
         };
         ()
     }
-    pub fn method20(v0_1: string) {
+    pub fn method21(v0_1: string) {
         let v3: () = {
             Common::closure0((), ());
             ()
@@ -655,19 +666,22 @@ pub mod Common {
             LrcPtr<Common::Mut3>,
             LrcPtr<Common::Mut4>,
             Option<i64>,
-        ) = getValue(Common::TraceState::trace_state().get().clone());
+        ) = Common::TraceState::trace_state().get().clone().unwrap();
         let v20: LrcPtr<Common::Mut3> = patternInput.3.clone();
         let v37: () = {
             Common::closure12(patternInput.0.clone(), ());
             ()
         };
-        let v53: string = if v20.l0.get().clone() == string("") {
+        let v53: string = if (v20.l0.get().clone()) == string("") {
             v0_1.clone()
         } else {
-            if v0_1.clone() == string("") {
+            if (v0_1.clone()) == string("") {
                 v20.l0.get().clone()
             } else {
-                append(append(v20.l0.get().clone(), string("\n")), v0_1.clone())
+                append(
+                    (append((v20.l0.get().clone()), string("\n"))),
+                    (v0_1.clone()),
+                )
             }
         };
         let v60: &str = &*v53.clone();
@@ -690,8 +704,8 @@ pub mod Common {
             })
             .collect::<Vec<_>>();
         let v95: Vec<std::string::String> = _vec_map;
-        if if v0_1.clone() != string("") {
-            v95.clone().len() as i32 <= 1_i32
+        if if (v0_1.clone()) != string("") {
+            (v95.clone().len() as i32) <= 1_i32
         } else {
             false
         } {
@@ -712,11 +726,10 @@ pub mod Common {
                 ()
             }
         }
-        ();
         ((patternInput.1.clone()).l0.get().clone())(v0_1)
     }
     pub fn closure9(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) {
-        if Common::method8(Common::US0::US0_3) {
+        if Common::method9(Common::US0::US0_3) {
             let v6: () = {
                 Common::closure0((), ());
                 ()
@@ -728,22 +741,22 @@ pub mod Common {
                 LrcPtr<Common::Mut3>,
                 LrcPtr<Common::Mut4>,
                 Option<i64>,
-            ) = getValue(Common::TraceState::trace_state().get().clone());
+            ) = Common::TraceState::trace_state().get().clone().unwrap();
             let v25: Option<i64> = patternInput.5.clone();
             let v24: LrcPtr<Common::Mut4> = patternInput.4.clone();
             let v23: LrcPtr<Common::Mut3> = patternInput.3.clone();
             let v22: LrcPtr<Common::Mut2> = patternInput.2.clone();
             let v21: LrcPtr<Common::Mut1> = patternInput.1.clone();
             let v20: LrcPtr<Common::Mut0> = patternInput.0.clone();
-            Common::method20(Common::method17(
+            Common::method21(Common::method18(
                 v20.clone(),
                 v21.clone(),
                 v22.clone(),
                 v23.clone(),
                 v24.clone(),
                 v25.clone(),
-                Common::method9(v20, v21, v22, v23, v24, v25),
-                Common::method13(),
+                Common::method10(v20, v21, v22, v23, v24, v25),
+                Common::method14(),
                 v0_1,
                 v1_1,
             ))
@@ -756,12 +769,12 @@ pub mod Common {
         };
         Common::US7::US7_1
     }
-    pub fn method7(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US6 {
+    pub fn method8(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US6 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1_1 = MutCell::new(v1_1.clone());
         let v2_1: MutCell<i32> = MutCell::new(v2_1);
-        '_method7: loop {
-            break '_method7 ({
+        '_method8: loop {
+            break '_method8 ({
                 let result: LrcPtr<MutCell<Common::US7>> = refCell(Common::US7::US7_1);
                 try_catch(
                     || {
@@ -785,15 +798,16 @@ pub mod Common {
                         Common::US7::US7_0(v7_0_0) => match &v7 {
                             Common::US7::US7_0(x) => x.clone(),
                             _ => unreachable!(),
-                        },
+                        }
+                        .clone(),
                         _ => {
                             let v0_1_temp: i32 = v0_1.get().clone();
                             let v1_1_temp = v1_1.get().clone();
-                            let v2_1_temp: i32 = v2_1.get().clone() + 1_i32;
+                            let v2_1_temp: i32 = (v2_1.get().clone()) + 1_i32;
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2_1.set(v2_1_temp);
-                            continue '_method7;
+                            continue '_method8;
                         }
                     }
                 }
@@ -801,7 +815,7 @@ pub mod Common {
         }
     }
     pub fn closure5(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3: Common::US6 = Common::method7(v0_1, v1_1, 0_i32);
+        let v3: Common::US6 = Common::method8(v0_1, v1_1, 0_i32);
         match &v3 {
             Common::US6::US6_0 => Some(()),
             _ => None::<()>,
@@ -813,7 +827,7 @@ pub mod Common {
             move |v: Func0<()>| Common::closure5(v0_1, v)
         })
     }
-    pub fn method21(v0_1: Func0<()>) -> Func0<()> {
+    pub fn method22(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
     pub fn closure16(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
@@ -821,7 +835,7 @@ pub mod Common {
         ()
     }
     pub fn closure15(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
-        let v1_1 = Common::method21(v0_1);
+        let v1_1 = Common::method22(v0_1);
         let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
             let v1_1 = v1_1.clone();
             move || v1_1()
