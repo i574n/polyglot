@@ -10,5 +10,4 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)fable-library-python.fsx" />
   </ItemGroup>
-  <Import Project="..\..\..\..\..\..\..\.paket\Paket.Restore.targets" />
 </Project>
