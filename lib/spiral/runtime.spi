@@ -769,7 +769,7 @@ let current_process_kill () =
         | _ => fun () => ()
 
 /// ### gc_collect
-let gc_collect () =
+inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $'System.GC.Collect' () : ()
         | Python _ => fun () =>

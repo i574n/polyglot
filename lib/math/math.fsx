@@ -14,16 +14,20 @@ type Ref<'T> = 'T
 #endif
 
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")>]
-#endif
-type pyo3_PyErr = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
 type std_string_String = class end
 #else
 type std_string_String = string
 #endif
 
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::CString")>]
+#endif
+type std_ffi_CString = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")>]
+#endif
+type pyo3_PyErr = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("pyo3::Bound<$0>")>]
 #endif
@@ -175,311 +179,424 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let _v44 = v60 
     #endif
     let v63 : Ref<Str> = _v44 
-    let v68 : string = "pyo3::types::PyModule::from_code_bound(v43, $0, \"\", \"\")"
-    let v69 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v63 v68 
-    let v70 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v71 : bool = Fable.Core.RustInterop.emitRustExpr v69 v70 
-    let v72 : string = "x"
-    let v73 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v72 
-    let v74 : unit = ()
+    let v68 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v75 : string = "format!(\"{}\", $0)"
-    let v76 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v75 
-    let _v74 = v76 
+    let v69 : string = "String::from($0)"
+    let v70 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v69 
+    let _v68 = v70 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v77 : string = "format!(\"{}\", $0)"
-    let v78 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v77 
-    let _v74 = v78 
+    let v71 : string = "String::from($0)"
+    let v72 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v71 
+    let _v68 = v72 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v79 : string = "format!(\"{}\", $0)"
-    let v80 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v79 
-    let _v74 = v80 
+    let v73 : string = "String::from($0)"
+    let v74 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v73 
+    let _v68 = v74 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v81 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v81 
+    let v75 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v75 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v84 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v84 
+    let v78 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v78 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v87 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v87 
+    let v81 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v81 
     #endif
 #else
-    let v90 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v90 
+    let v84 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v84 
     #endif
-    let v93 : std_string_String = _v74 
-    let v98 : string = "true; $0 })"
-    let v99 : bool = Fable.Core.RustInterop.emitRustExpr v93 v98 
-    let v100 : string = "_result_map_error__"
-    let v101 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v100 
-    let v102 : unit = ()
+    let v87 : std_string_String = _v68 
+    let v92 : string = "std::ffi::CString::new($0).unwrap()"
+    let v93 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v87 v92 
+    let v94 : string = ""
+    let v95 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v103 : string = "$0.unwrap()"
-    let v104 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v103 
-    let _v102 = v104 
+    let v96 : string = "&*$0"
+    let v97 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v96 
+    let _v95 = v97 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v105 : string = "$0.unwrap()"
-    let v106 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v105 
-    let _v102 = v106 
+    let v98 : string = "&*$0"
+    let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v98 
+    let _v95 = v99 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v107 : string = "$0.unwrap()"
-    let v108 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v107 
-    let _v102 = v108 
+    let v100 : string = "&*$0"
+    let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v100 
+    let _v95 = v101 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v109 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v109 
+    let v102 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v102 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v110 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v110 
+    let v105 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v105 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v111 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v111 
+    let v108 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v108 
     #endif
 #else
-    let v112 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v112 
+    let v111 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v111 
     #endif
-    let v113 : pyo3_Bound<pyo3_types_PyModule> = _v102 
-    let v116 : string = method8()
-    let v117 : unit = ()
+    let v114 : Ref<Str> = _v95 
+    let v119 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v118 : string = "&*$0"
-    let v119 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v118 
-    let _v117 = v119 
+    let v120 : string = "String::from($0)"
+    let v121 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v120 
+    let _v119 = v121 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v120 : string = "&*$0"
-    let v121 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v120 
-    let _v117 = v121 
+    let v122 : string = "String::from($0)"
+    let v123 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v122 
+    let _v119 = v123 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v122 : string = "&*$0"
-    let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v122 
-    let _v117 = v123 
+    let v124 : string = "String::from($0)"
+    let v125 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v124 
+    let _v119 = v125 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v124 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v124 
+    let v126 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v126 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v127 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v127 
+    let v129 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v129 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v130 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v130 
+    let v132 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v132 
     #endif
 #else
-    let v133 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v133 
+    let v135 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v135 
     #endif
-    let v136 : Ref<Str> = _v117 
-    let v141 : pyo3_Bound<pyo3_types_PyModule> = method9(v113)
-    let v142 : string = "v141.getattr($0)"
-    let v143 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v136 v142 
-    let v144 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v145 : bool = Fable.Core.RustInterop.emitRustExpr v143 v144 
-    let v146 : string = "x"
-    let v147 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v146 
-    let v148 : unit = ()
+    let v138 : std_string_String = _v119 
+    let v143 : string = "std::ffi::CString::new($0).unwrap()"
+    let v144 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v138 v143 
+    let v145 : string = "pyo3::types::PyModule::from_code(v43, &$0, &v144, &v144)"
+    let v146 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v93 v145 
+    let v147 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v148 : bool = Fable.Core.RustInterop.emitRustExpr v146 v147 
+    let v149 : string = "x"
+    let v150 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v149 
+    let v151 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v149 : string = "format!(\"{}\", $0)"
-    let v150 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v149 
-    let _v148 = v150 
+    let v152 : string = "format!(\"{}\", $0)"
+    let v153 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v152 
+    let _v151 = v153 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v151 : string = "format!(\"{}\", $0)"
-    let v152 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v151 
-    let _v148 = v152 
+    let v154 : string = "format!(\"{}\", $0)"
+    let v155 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v154 
+    let _v151 = v155 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v153 : string = "format!(\"{}\", $0)"
-    let v154 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v153 
-    let _v148 = v154 
+    let v156 : string = "format!(\"{}\", $0)"
+    let v157 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v156 
+    let _v151 = v157 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v155 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v155 
-    #endif
-#if FABLE_COMPILER_PYTHON
     let v158 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v158 
+    let _v151 = v158 
     #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_PYTHON
     let v161 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v161 
+    let _v151 = v161 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v164 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v164 
+    let _v151 = v164 
     #endif
-    let v167 : std_string_String = _v148 
-    let v172 : string = "true; $0 })"
-    let v173 : bool = Fable.Core.RustInterop.emitRustExpr v167 v172 
-    let v174 : string = "_result_map_error__"
-    let v175 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v174 
-    let v176 : unit = ()
+#else
+    let v167 : std_string_String = null |> unbox<std_string_String>
+    let _v151 = v167 
+    #endif
+    let v170 : std_string_String = _v151 
+    let v175 : string = "true; $0 })"
+    let v176 : bool = Fable.Core.RustInterop.emitRustExpr v170 v175 
+    let v177 : string = "_result_map_error__"
+    let v178 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v177 
+    let v179 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v177 : string = "$0.unwrap()"
-    let v178 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v177 
-    let _v176 = v178 
+    let v180 : string = "$0.unwrap()"
+    let v181 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v180 
+    let _v179 = v181 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v179 : string = "$0.unwrap()"
-    let v180 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v179 
-    let _v176 = v180 
+    let v182 : string = "$0.unwrap()"
+    let v183 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v182 
+    let _v179 = v183 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v181 : string = "$0.unwrap()"
-    let v182 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v181 
-    let _v176 = v182 
+    let v184 : string = "$0.unwrap()"
+    let v185 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v184 
+    let _v179 = v185 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v183 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v183 
+    let v186 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v186 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v184 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v184 
+    let v187 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v187 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v185 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v185 
+    let v188 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v188 
     #endif
 #else
-    let v186 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v186 
+    let v189 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v189 
     #endif
-    let v187 : pyo3_Bound<pyo3_PyAny> = _v176 
-    let v190 : (bool * (float * float)) = method10(v42)
-    let v191 : pyo3_Bound<pyo3_PyAny> = method11(v187)
-    let v192 : string = "pyo3::prelude::PyAnyMethods::call(&v191, ((*v190).0, *(*v190).1), None)"
-    let v193 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v192 
-    let v194 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v195 : bool = Fable.Core.RustInterop.emitRustExpr v193 v194 
-    let v196 : string = "x"
-    let v197 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v196 
-    let v198 : unit = ()
+    let v190 : pyo3_Bound<pyo3_types_PyModule> = _v179 
+    let v193 : string = method8()
+    let v194 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v199 : string = "format!(\"{}\", $0)"
-    let v200 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v199 
-    let _v198 = v200 
+    let v195 : string = "&*$0"
+    let v196 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v195 
+    let _v194 = v196 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v201 : string = "format!(\"{}\", $0)"
-    let v202 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v201 
-    let _v198 = v202 
+    let v197 : string = "&*$0"
+    let v198 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v197 
+    let _v194 = v198 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v203 : string = "format!(\"{}\", $0)"
-    let v204 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v203 
-    let _v198 = v204 
+    let v199 : string = "&*$0"
+    let v200 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v199 
+    let _v194 = v200 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v205 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v205 
+    let v201 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v201 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v208 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v208 
+    let v204 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v204 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v211 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v211 
+    let v207 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v207 
     #endif
 #else
-    let v214 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v214 
+    let v210 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v210 
     #endif
-    let v217 : std_string_String = _v198 
-    let v222 : string = "true; $0 })"
-    let v223 : bool = Fable.Core.RustInterop.emitRustExpr v217 v222 
-    let v224 : string = "_result_map_error__"
-    let v225 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v224 
-    let v226 : string = "$0?"
-    let v227 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v225 v226 
-    let v228 : pyo3_Bound<pyo3_PyAny> = method12(v227)
-    let v229 : string = "v228.extract()"
-    let v230 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v229 
-    let v231 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v232 : bool = Fable.Core.RustInterop.emitRustExpr v230 v231 
-    let v233 : string = "x"
-    let v234 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v233 
-    let v235 : unit = ()
+    let v213 : Ref<Str> = _v194 
+    let v218 : pyo3_Bound<pyo3_types_PyModule> = method9(v190)
+    let v219 : string = "v218.getattr($0)"
+    let v220 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v213 v219 
+    let v221 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v222 : bool = Fable.Core.RustInterop.emitRustExpr v220 v221 
+    let v223 : string = "x"
+    let v224 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v223 
+    let v225 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v236 : string = "format!(\"{}\", $0)"
-    let v237 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v236 
-    let _v235 = v237 
+    let v226 : string = "format!(\"{}\", $0)"
+    let v227 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v226 
+    let _v225 = v227 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v238 : string = "format!(\"{}\", $0)"
-    let v239 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v238 
-    let _v235 = v239 
+    let v228 : string = "format!(\"{}\", $0)"
+    let v229 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v228 
+    let _v225 = v229 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v240 : string = "format!(\"{}\", $0)"
-    let v241 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v240 
-    let _v235 = v241 
+    let v230 : string = "format!(\"{}\", $0)"
+    let v231 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v230 
+    let _v225 = v231 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v242 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v242 
+    let v232 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v232 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v245 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v245 
+    let v235 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v235 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v248 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v248 
+    let v238 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v238 
     #endif
 #else
-    let v251 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v251 
+    let v241 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v241 
     #endif
-    let v254 : std_string_String = _v235 
-    let v259 : string = "true; $0 })"
-    let v260 : bool = Fable.Core.RustInterop.emitRustExpr v254 v259 
-    let v261 : string = "_result_map_error__"
-    let v262 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v261 
-    let v263 : string = "$0?"
-    let struct (v264 : float, v265 : float) = Fable.Core.RustInterop.emitRustExpr v262 v263 
-    let v266 : string = "num_complex::Complex::new($0, $1)"
-    let v267 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v264, v265) v266 
-    let v268 : Result<num_complex_Complex<float>, std_string_String> = Ok v267 
-    v268
+    let v244 : std_string_String = _v225 
+    let v249 : string = "true; $0 })"
+    let v250 : bool = Fable.Core.RustInterop.emitRustExpr v244 v249 
+    let v251 : string = "_result_map_error__"
+    let v252 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v251 
+    let v253 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v254 : string = "$0.unwrap()"
+    let v255 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v254 
+    let _v253 = v255 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v256 : string = "$0.unwrap()"
+    let v257 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v256 
+    let _v253 = v257 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v258 : string = "$0.unwrap()"
+    let v259 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v258 
+    let _v253 = v259 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v260 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v260 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v261 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v261 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v262 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v262 
+    #endif
+#else
+    let v263 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v263 
+    #endif
+    let v264 : pyo3_Bound<pyo3_PyAny> = _v253 
+    let v267 : (bool * (float * float)) = method10(v42)
+    let v268 : pyo3_Bound<pyo3_PyAny> = method11(v264)
+    let v269 : string = "pyo3::prelude::PyAnyMethods::call(&v268, ((*v267).0, *(*v267).1), None)"
+    let v270 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v269 
+    let v271 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v272 : bool = Fable.Core.RustInterop.emitRustExpr v270 v271 
+    let v273 : string = "x"
+    let v274 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v273 
+    let v275 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v276 : string = "format!(\"{}\", $0)"
+    let v277 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v276 
+    let _v275 = v277 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v278 : string = "format!(\"{}\", $0)"
+    let v279 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v278 
+    let _v275 = v279 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v280 : string = "format!(\"{}\", $0)"
+    let v281 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v280 
+    let _v275 = v281 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v282 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v282 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v285 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v285 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v288 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v288 
+    #endif
+#else
+    let v291 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v291 
+    #endif
+    let v294 : std_string_String = _v275 
+    let v299 : string = "true; $0 })"
+    let v300 : bool = Fable.Core.RustInterop.emitRustExpr v294 v299 
+    let v301 : string = "_result_map_error__"
+    let v302 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v301 
+    let v303 : string = "$0?"
+    let v304 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v302 v303 
+    let v305 : pyo3_Bound<pyo3_PyAny> = method12(v304)
+    let v306 : string = "v305.extract()"
+    let v307 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v306 
+    let v308 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v309 : bool = Fable.Core.RustInterop.emitRustExpr v307 v308 
+    let v310 : string = "x"
+    let v311 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v310 
+    let v312 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v313 : string = "format!(\"{}\", $0)"
+    let v314 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v313 
+    let _v312 = v314 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v315 : string = "format!(\"{}\", $0)"
+    let v316 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v315 
+    let _v312 = v316 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v317 : string = "format!(\"{}\", $0)"
+    let v318 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v317 
+    let _v312 = v318 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v319 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v319 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v322 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v322 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v325 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v325 
+    #endif
+#else
+    let v328 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v328 
+    #endif
+    let v331 : std_string_String = _v312 
+    let v336 : string = "true; $0 })"
+    let v337 : bool = Fable.Core.RustInterop.emitRustExpr v331 v336 
+    let v338 : string = "_result_map_error__"
+    let v339 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v338 
+    let v340 : string = "$0?"
+    let struct (v341 : float, v342 : float) = Fable.Core.RustInterop.emitRustExpr v339 v340 
+    let v343 : string = "num_complex::Complex::new($0, $1)"
+    let v344 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v341, v342) v343 
+    let v345 : Result<num_complex_Complex<float>, std_string_String> = Ok v344 
+    v345
 and method14 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
     let v2 : bool = v1 < 10000
@@ -566,311 +683,424 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let _v44 = v60 
     #endif
     let v63 : Ref<Str> = _v44 
-    let v68 : string = "pyo3::types::PyModule::from_code_bound(v43, $0, \"\", \"\")"
-    let v69 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v63 v68 
-    let v70 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v71 : bool = Fable.Core.RustInterop.emitRustExpr v69 v70 
-    let v72 : string = "x"
-    let v73 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v72 
-    let v74 : unit = ()
+    let v68 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v75 : string = "format!(\"{}\", $0)"
-    let v76 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v75 
-    let _v74 = v76 
+    let v69 : string = "String::from($0)"
+    let v70 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v69 
+    let _v68 = v70 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v77 : string = "format!(\"{}\", $0)"
-    let v78 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v77 
-    let _v74 = v78 
+    let v71 : string = "String::from($0)"
+    let v72 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v71 
+    let _v68 = v72 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v79 : string = "format!(\"{}\", $0)"
-    let v80 : std_string_String = Fable.Core.RustInterop.emitRustExpr v73 v79 
-    let _v74 = v80 
+    let v73 : string = "String::from($0)"
+    let v74 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v73 
+    let _v68 = v74 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v81 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v81 
+    let v75 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v75 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v84 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v84 
+    let v78 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v78 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v87 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v87 
+    let v81 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v81 
     #endif
 #else
-    let v90 : std_string_String = null |> unbox<std_string_String>
-    let _v74 = v90 
+    let v84 : std_string_String = v63 |> unbox<std_string_String>
+    let _v68 = v84 
     #endif
-    let v93 : std_string_String = _v74 
-    let v98 : string = "true; $0 })"
-    let v99 : bool = Fable.Core.RustInterop.emitRustExpr v93 v98 
-    let v100 : string = "_result_map_error__"
-    let v101 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v100 
-    let v102 : unit = ()
+    let v87 : std_string_String = _v68 
+    let v92 : string = "std::ffi::CString::new($0).unwrap()"
+    let v93 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v87 v92 
+    let v94 : string = ""
+    let v95 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v103 : string = "$0.unwrap()"
-    let v104 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v103 
-    let _v102 = v104 
+    let v96 : string = "&*$0"
+    let v97 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v96 
+    let _v95 = v97 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v105 : string = "$0.unwrap()"
-    let v106 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v105 
-    let _v102 = v106 
+    let v98 : string = "&*$0"
+    let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v98 
+    let _v95 = v99 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v107 : string = "$0.unwrap()"
-    let v108 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v101 v107 
-    let _v102 = v108 
+    let v100 : string = "&*$0"
+    let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v94 v100 
+    let _v95 = v101 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v109 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v109 
+    let v102 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v102 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v110 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v110 
+    let v105 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v105 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v111 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v111 
+    let v108 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v108 
     #endif
 #else
-    let v112 : pyo3_Bound<pyo3_types_PyModule> = match v101 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v102 = v112 
+    let v111 : Ref<Str> = v94 |> unbox<Ref<Str>>
+    let _v95 = v111 
     #endif
-    let v113 : pyo3_Bound<pyo3_types_PyModule> = _v102 
-    let v116 : string = method8()
-    let v117 : unit = ()
+    let v114 : Ref<Str> = _v95 
+    let v119 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v118 : string = "&*$0"
-    let v119 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v118 
-    let _v117 = v119 
+    let v120 : string = "String::from($0)"
+    let v121 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v120 
+    let _v119 = v121 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v120 : string = "&*$0"
-    let v121 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v120 
-    let _v117 = v121 
+    let v122 : string = "String::from($0)"
+    let v123 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v122 
+    let _v119 = v123 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v122 : string = "&*$0"
-    let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v116 v122 
-    let _v117 = v123 
+    let v124 : string = "String::from($0)"
+    let v125 : std_string_String = Fable.Core.RustInterop.emitRustExpr v114 v124 
+    let _v119 = v125 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v124 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v124 
+    let v126 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v126 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v127 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v127 
+    let v129 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v129 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v130 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v130 
+    let v132 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v132 
     #endif
 #else
-    let v133 : Ref<Str> = v116 |> unbox<Ref<Str>>
-    let _v117 = v133 
+    let v135 : std_string_String = v114 |> unbox<std_string_String>
+    let _v119 = v135 
     #endif
-    let v136 : Ref<Str> = _v117 
-    let v141 : pyo3_Bound<pyo3_types_PyModule> = method9(v113)
-    let v142 : string = "v141.getattr($0)"
-    let v143 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v136 v142 
-    let v144 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v145 : bool = Fable.Core.RustInterop.emitRustExpr v143 v144 
-    let v146 : string = "x"
-    let v147 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v146 
-    let v148 : unit = ()
+    let v138 : std_string_String = _v119 
+    let v143 : string = "std::ffi::CString::new($0).unwrap()"
+    let v144 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v138 v143 
+    let v145 : string = "pyo3::types::PyModule::from_code(v43, &$0, &v144, &v144)"
+    let v146 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v93 v145 
+    let v147 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v148 : bool = Fable.Core.RustInterop.emitRustExpr v146 v147 
+    let v149 : string = "x"
+    let v150 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v149 
+    let v151 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v149 : string = "format!(\"{}\", $0)"
-    let v150 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v149 
-    let _v148 = v150 
+    let v152 : string = "format!(\"{}\", $0)"
+    let v153 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v152 
+    let _v151 = v153 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v151 : string = "format!(\"{}\", $0)"
-    let v152 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v151 
-    let _v148 = v152 
+    let v154 : string = "format!(\"{}\", $0)"
+    let v155 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v154 
+    let _v151 = v155 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v153 : string = "format!(\"{}\", $0)"
-    let v154 : std_string_String = Fable.Core.RustInterop.emitRustExpr v147 v153 
-    let _v148 = v154 
+    let v156 : string = "format!(\"{}\", $0)"
+    let v157 : std_string_String = Fable.Core.RustInterop.emitRustExpr v150 v156 
+    let _v151 = v157 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v155 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v155 
-    #endif
-#if FABLE_COMPILER_PYTHON
     let v158 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v158 
+    let _v151 = v158 
     #endif
-#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_PYTHON
     let v161 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v161 
+    let _v151 = v161 
     #endif
-#else
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v164 : std_string_String = null |> unbox<std_string_String>
-    let _v148 = v164 
+    let _v151 = v164 
     #endif
-    let v167 : std_string_String = _v148 
-    let v172 : string = "true; $0 })"
-    let v173 : bool = Fable.Core.RustInterop.emitRustExpr v167 v172 
-    let v174 : string = "_result_map_error__"
-    let v175 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v174 
-    let v176 : unit = ()
+#else
+    let v167 : std_string_String = null |> unbox<std_string_String>
+    let _v151 = v167 
+    #endif
+    let v170 : std_string_String = _v151 
+    let v175 : string = "true; $0 })"
+    let v176 : bool = Fable.Core.RustInterop.emitRustExpr v170 v175 
+    let v177 : string = "_result_map_error__"
+    let v178 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v177 
+    let v179 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v177 : string = "$0.unwrap()"
-    let v178 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v177 
-    let _v176 = v178 
+    let v180 : string = "$0.unwrap()"
+    let v181 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v180 
+    let _v179 = v181 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v179 : string = "$0.unwrap()"
-    let v180 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v179 
-    let _v176 = v180 
+    let v182 : string = "$0.unwrap()"
+    let v183 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v182 
+    let _v179 = v183 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v181 : string = "$0.unwrap()"
-    let v182 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v175 v181 
-    let _v176 = v182 
+    let v184 : string = "$0.unwrap()"
+    let v185 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v178 v184 
+    let _v179 = v185 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v183 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v183 
+    let v186 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v186 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v184 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v184 
+    let v187 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v187 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v185 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v185 
+    let v188 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v188 
     #endif
 #else
-    let v186 : pyo3_Bound<pyo3_PyAny> = match v175 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v176 = v186 
+    let v189 : pyo3_Bound<pyo3_types_PyModule> = match v178 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v179 = v189 
     #endif
-    let v187 : pyo3_Bound<pyo3_PyAny> = _v176 
-    let v190 : (bool * (float * float)) = method10(v42)
-    let v191 : pyo3_Bound<pyo3_PyAny> = method11(v187)
-    let v192 : string = "pyo3::prelude::PyAnyMethods::call(&v191, ((*v190).0, *(*v190).1), None)"
-    let v193 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v192 
-    let v194 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v195 : bool = Fable.Core.RustInterop.emitRustExpr v193 v194 
-    let v196 : string = "x"
-    let v197 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v196 
-    let v198 : unit = ()
+    let v190 : pyo3_Bound<pyo3_types_PyModule> = _v179 
+    let v193 : string = method8()
+    let v194 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v199 : string = "format!(\"{}\", $0)"
-    let v200 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v199 
-    let _v198 = v200 
+    let v195 : string = "&*$0"
+    let v196 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v195 
+    let _v194 = v196 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v201 : string = "format!(\"{}\", $0)"
-    let v202 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v201 
-    let _v198 = v202 
+    let v197 : string = "&*$0"
+    let v198 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v197 
+    let _v194 = v198 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v203 : string = "format!(\"{}\", $0)"
-    let v204 : std_string_String = Fable.Core.RustInterop.emitRustExpr v197 v203 
-    let _v198 = v204 
+    let v199 : string = "&*$0"
+    let v200 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v193 v199 
+    let _v194 = v200 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v205 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v205 
+    let v201 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v201 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v208 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v208 
+    let v204 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v204 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v211 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v211 
+    let v207 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v207 
     #endif
 #else
-    let v214 : std_string_String = null |> unbox<std_string_String>
-    let _v198 = v214 
+    let v210 : Ref<Str> = v193 |> unbox<Ref<Str>>
+    let _v194 = v210 
     #endif
-    let v217 : std_string_String = _v198 
-    let v222 : string = "true; $0 })"
-    let v223 : bool = Fable.Core.RustInterop.emitRustExpr v217 v222 
-    let v224 : string = "_result_map_error__"
-    let v225 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v224 
-    let v226 : string = "$0?"
-    let v227 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v225 v226 
-    let v228 : pyo3_Bound<pyo3_PyAny> = method12(v227)
-    let v229 : string = "v228.extract()"
-    let v230 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v229 
-    let v231 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v232 : bool = Fable.Core.RustInterop.emitRustExpr v230 v231 
-    let v233 : string = "x"
-    let v234 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v233 
-    let v235 : unit = ()
+    let v213 : Ref<Str> = _v194 
+    let v218 : pyo3_Bound<pyo3_types_PyModule> = method9(v190)
+    let v219 : string = "v218.getattr($0)"
+    let v220 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v213 v219 
+    let v221 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v222 : bool = Fable.Core.RustInterop.emitRustExpr v220 v221 
+    let v223 : string = "x"
+    let v224 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v223 
+    let v225 : unit = ()
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v236 : string = "format!(\"{}\", $0)"
-    let v237 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v236 
-    let _v235 = v237 
+    let v226 : string = "format!(\"{}\", $0)"
+    let v227 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v226 
+    let _v225 = v227 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v238 : string = "format!(\"{}\", $0)"
-    let v239 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v238 
-    let _v235 = v239 
+    let v228 : string = "format!(\"{}\", $0)"
+    let v229 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v228 
+    let _v225 = v229 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v240 : string = "format!(\"{}\", $0)"
-    let v241 : std_string_String = Fable.Core.RustInterop.emitRustExpr v234 v240 
-    let _v235 = v241 
+    let v230 : string = "format!(\"{}\", $0)"
+    let v231 : std_string_String = Fable.Core.RustInterop.emitRustExpr v224 v230 
+    let _v225 = v231 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v242 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v242 
+    let v232 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v232 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v245 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v245 
+    let v235 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v235 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v248 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v248 
+    let v238 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v238 
     #endif
 #else
-    let v251 : std_string_String = null |> unbox<std_string_String>
-    let _v235 = v251 
+    let v241 : std_string_String = null |> unbox<std_string_String>
+    let _v225 = v241 
     #endif
-    let v254 : std_string_String = _v235 
-    let v259 : string = "true; $0 })"
-    let v260 : bool = Fable.Core.RustInterop.emitRustExpr v254 v259 
-    let v261 : string = "_result_map_error__"
-    let v262 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v261 
-    let v263 : string = "$0?"
-    let struct (v264 : float, v265 : float) = Fable.Core.RustInterop.emitRustExpr v262 v263 
-    let v266 : string = "num_complex::Complex::new($0, $1)"
-    let v267 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v264, v265) v266 
-    let v268 : Result<num_complex_Complex<float>, std_string_String> = Ok v267 
-    v268
+    let v244 : std_string_String = _v225 
+    let v249 : string = "true; $0 })"
+    let v250 : bool = Fable.Core.RustInterop.emitRustExpr v244 v249 
+    let v251 : string = "_result_map_error__"
+    let v252 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v251 
+    let v253 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v254 : string = "$0.unwrap()"
+    let v255 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v254 
+    let _v253 = v255 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v256 : string = "$0.unwrap()"
+    let v257 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v256 
+    let _v253 = v257 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v258 : string = "$0.unwrap()"
+    let v259 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v252 v258 
+    let _v253 = v259 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v260 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v260 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v261 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v261 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v262 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v262 
+    #endif
+#else
+    let v263 : pyo3_Bound<pyo3_PyAny> = match v252 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _v253 = v263 
+    #endif
+    let v264 : pyo3_Bound<pyo3_PyAny> = _v253 
+    let v267 : (bool * (float * float)) = method10(v42)
+    let v268 : pyo3_Bound<pyo3_PyAny> = method11(v264)
+    let v269 : string = "pyo3::prelude::PyAnyMethods::call(&v268, ((*v267).0, *(*v267).1), None)"
+    let v270 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v269 
+    let v271 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v272 : bool = Fable.Core.RustInterop.emitRustExpr v270 v271 
+    let v273 : string = "x"
+    let v274 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v273 
+    let v275 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v276 : string = "format!(\"{}\", $0)"
+    let v277 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v276 
+    let _v275 = v277 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v278 : string = "format!(\"{}\", $0)"
+    let v279 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v278 
+    let _v275 = v279 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v280 : string = "format!(\"{}\", $0)"
+    let v281 : std_string_String = Fable.Core.RustInterop.emitRustExpr v274 v280 
+    let _v275 = v281 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v282 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v282 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v285 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v285 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v288 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v288 
+    #endif
+#else
+    let v291 : std_string_String = null |> unbox<std_string_String>
+    let _v275 = v291 
+    #endif
+    let v294 : std_string_String = _v275 
+    let v299 : string = "true; $0 })"
+    let v300 : bool = Fable.Core.RustInterop.emitRustExpr v294 v299 
+    let v301 : string = "_result_map_error__"
+    let v302 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v301 
+    let v303 : string = "$0?"
+    let v304 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v302 v303 
+    let v305 : pyo3_Bound<pyo3_PyAny> = method12(v304)
+    let v306 : string = "v305.extract()"
+    let v307 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v306 
+    let v308 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v309 : bool = Fable.Core.RustInterop.emitRustExpr v307 v308 
+    let v310 : string = "x"
+    let v311 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v310 
+    let v312 : unit = ()
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v313 : string = "format!(\"{}\", $0)"
+    let v314 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v313 
+    let _v312 = v314 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v315 : string = "format!(\"{}\", $0)"
+    let v316 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v315 
+    let _v312 = v316 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v317 : string = "format!(\"{}\", $0)"
+    let v318 : std_string_String = Fable.Core.RustInterop.emitRustExpr v311 v317 
+    let _v312 = v318 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v319 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v319 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v322 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v322 
+    #endif
+#if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    let v325 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v325 
+    #endif
+#else
+    let v328 : std_string_String = null |> unbox<std_string_String>
+    let _v312 = v328 
+    #endif
+    let v331 : std_string_String = _v312 
+    let v336 : string = "true; $0 })"
+    let v337 : bool = Fable.Core.RustInterop.emitRustExpr v331 v336 
+    let v338 : string = "_result_map_error__"
+    let v339 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v338 
+    let v340 : string = "$0?"
+    let struct (v341 : float, v342 : float) = Fable.Core.RustInterop.emitRustExpr v339 v340 
+    let v343 : string = "num_complex::Complex::new($0, $1)"
+    let v344 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v341, v342) v343 
+    let v345 : Result<num_complex_Complex<float>, std_string_String> = Ok v344 
+    v345
 and closure1 () (v0 : num_complex_Complex<float>) : US0 =
     US0_0(v0)
 and method17 () : (num_complex_Complex<float> -> US0) =

@@ -238,6 +238,10 @@ let format_real forall t. (x : t) : string =
 
 /// ### os_str
 
+/// ### c_str
+
+/// ### c_string
+
 /// ### os_string
 
 /// ### raw_string_literal
@@ -267,6 +271,8 @@ let format_real forall t. (x : t) : string =
 /// ### os_string_as_ref
 
 /// ### to_os_string
+
+/// ### new_c_string
 
 /// ### os_to_str
 

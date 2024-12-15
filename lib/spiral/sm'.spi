@@ -465,6 +465,20 @@ nominal os_str =
         $'' : $'std_ffi_OsStr'
     )
 
+/// ### c_str
+nominal c_str =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::CStr\")>]\n#endif\ntype std_ffi_CStr = class end"
+        $'' : $'std_ffi_CStr'
+    )
+
+/// ### c_string
+nominal c_string =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::CString\")>]\n#endif\ntype std_ffi_CString = class end"
+        $'' : $'std_ffi_CString'
+    )
+
 /// ### os_string
 nominal os_string =
     `(
@@ -532,6 +546,10 @@ inl os_string_as_ref (s : os_string) : rust.ref os_str =
 /// ### to_os_string
 inl to_os_string (s : rust.ref os_str) : os_string =
     !\\(s, $'"$0.to_os_string()"')
+
+/// ### new_c_string
+inl new_c_string (s : std_string) : c_string =
+    !\\(s, $'"std::ffi::CString::new($0).unwrap()"')
 
 /// ### os_to_str
 inl os_to_str (s : os_string) : optionm'.option' (rust.ref str) =

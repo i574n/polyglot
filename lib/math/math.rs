@@ -198,59 +198,64 @@ mod module_b7a9935b {
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v43: pyo3::Python = Math::method7(v0_1);
             let v46: &str = &*v36;
-            let v69: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                pyo3::types::PyModule::from_code_bound(v43, v46, "", "");
-            let v71: bool = true;
-            let _result_map_error__ = v69.map_err(|x| {
+            let v70: std::string::String = String::from(v46);
+            let v93: std::ffi::CString = std::ffi::CString::new(v70).unwrap();
+            let v97: &str = &*string("");
+            let v121: std::string::String = String::from(v97);
+            let v144: std::ffi::CString = std::ffi::CString::new(v121).unwrap();
+            let v146: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                pyo3::types::PyModule::from_code(v43, &v93, &v144, &v144);
+            let v148: bool = true;
+            let _result_map_error__ = v146.map_err(|x| {
                 //;
-                let v73: pyo3::PyErr = x;
-                let v76: std::string::String = format!("{}", v73);
-                let v99: bool = true;
-                v76
+                let v150: pyo3::PyErr = x;
+                let v153: std::string::String = format!("{}", v150);
+                let v176: bool = true;
+                v153
             });
-            let v101: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
+            let v178: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
                 _result_map_error__;
-            let v104: pyo3::Bound<pyo3::types::PyModule> = v101.unwrap();
-            let v116: string = Math::method8();
-            let v119: &str = &*v116;
-            let v141: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v104);
-            let v143: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v141.getattr(v119);
-            let v145: bool = true;
-            let _result_map_error__ = v143.map_err(|x| {
+            let v181: pyo3::Bound<pyo3::types::PyModule> = v178.unwrap();
+            let v193: string = Math::method8();
+            let v196: &str = &*v193;
+            let v218: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v181);
+            let v220: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v218.getattr(v196);
+            let v222: bool = true;
+            let _result_map_error__ = v220.map_err(|x| {
                 //;
-                let v147: pyo3::PyErr = x;
-                let v150: std::string::String = format!("{}", v147);
-                let v173: bool = true;
-                v150
+                let v224: pyo3::PyErr = x;
+                let v227: std::string::String = format!("{}", v224);
+                let v250: bool = true;
+                v227
             });
-            let v175: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v178: pyo3::Bound<pyo3::PyAny> = v175.unwrap();
-            let v190: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+            let v252: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v255: pyo3::Bound<pyo3::PyAny> = v252.unwrap();
+            let v267: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 Math::method10(v42.0.clone(), v42.1.clone());
-            let v191: pyo3::Bound<pyo3::PyAny> = Math::method11(v178);
-            let v193: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                pyo3::prelude::PyAnyMethods::call(&v191, ((*v190).0, *(*v190).1), None);
-            let v195: bool = true;
-            let _result_map_error__ = v193.map_err(|x| {
+            let v268: pyo3::Bound<pyo3::PyAny> = Math::method11(v255);
+            let v270: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                pyo3::prelude::PyAnyMethods::call(&v268, ((*v267).0, *(*v267).1), None);
+            let v272: bool = true;
+            let _result_map_error__ = v270.map_err(|x| {
                 //;
-                let v197: pyo3::PyErr = x;
-                let v200: std::string::String = format!("{}", v197);
-                let v223: bool = true;
-                v200
+                let v274: pyo3::PyErr = x;
+                let v277: std::string::String = format!("{}", v274);
+                let v300: bool = true;
+                v277
             });
-            let v225: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v228: pyo3::Bound<pyo3::PyAny> = Math::method12(v225?);
-            let v230: Result<(f64, f64), pyo3::PyErr> = v228.extract();
-            let v232: bool = true;
-            let _result_map_error__ = v230.map_err(|x| {
+            let v302: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v305: pyo3::Bound<pyo3::PyAny> = Math::method12(v302?);
+            let v307: Result<(f64, f64), pyo3::PyErr> = v305.extract();
+            let v309: bool = true;
+            let _result_map_error__ = v307.map_err(|x| {
                 //;
-                let v234: pyo3::PyErr = x;
-                let v237: std::string::String = format!("{}", v234);
-                let v260: bool = true;
-                v237
+                let v311: pyo3::PyErr = x;
+                let v314: std::string::String = format!("{}", v311);
+                let v337: bool = true;
+                v314
             });
-            let v262: Result<(f64, f64), std::string::String> = _result_map_error__;
-            let patternInput: (f64, f64) = v262?;
+            let v339: Result<(f64, f64), std::string::String> = _result_map_error__;
+            let patternInput: (f64, f64) = v339?;
             Ok::<num_complex::Complex<f64>, std::string::String>(num_complex::Complex::new(
                 patternInput.0.clone(),
                 patternInput.1.clone(),
@@ -313,59 +318,64 @@ mod module_b7a9935b {
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v43: pyo3::Python = Math::method7(v0_1);
             let v46: &str = &*v36;
-            let v69: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                pyo3::types::PyModule::from_code_bound(v43, v46, "", "");
-            let v71: bool = true;
-            let _result_map_error__ = v69.map_err(|x| {
+            let v70: std::string::String = String::from(v46);
+            let v93: std::ffi::CString = std::ffi::CString::new(v70).unwrap();
+            let v97: &str = &*string("");
+            let v121: std::string::String = String::from(v97);
+            let v144: std::ffi::CString = std::ffi::CString::new(v121).unwrap();
+            let v146: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                pyo3::types::PyModule::from_code(v43, &v93, &v144, &v144);
+            let v148: bool = true;
+            let _result_map_error__ = v146.map_err(|x| {
                 //;
-                let v73: pyo3::PyErr = x;
-                let v76: std::string::String = format!("{}", v73);
-                let v99: bool = true;
-                v76
+                let v150: pyo3::PyErr = x;
+                let v153: std::string::String = format!("{}", v150);
+                let v176: bool = true;
+                v153
             });
-            let v101: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
+            let v178: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
                 _result_map_error__;
-            let v104: pyo3::Bound<pyo3::types::PyModule> = v101.unwrap();
-            let v116: string = Math::method8();
-            let v119: &str = &*v116;
-            let v141: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v104);
-            let v143: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v141.getattr(v119);
-            let v145: bool = true;
-            let _result_map_error__ = v143.map_err(|x| {
+            let v181: pyo3::Bound<pyo3::types::PyModule> = v178.unwrap();
+            let v193: string = Math::method8();
+            let v196: &str = &*v193;
+            let v218: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v181);
+            let v220: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v218.getattr(v196);
+            let v222: bool = true;
+            let _result_map_error__ = v220.map_err(|x| {
                 //;
-                let v147: pyo3::PyErr = x;
-                let v150: std::string::String = format!("{}", v147);
-                let v173: bool = true;
-                v150
+                let v224: pyo3::PyErr = x;
+                let v227: std::string::String = format!("{}", v224);
+                let v250: bool = true;
+                v227
             });
-            let v175: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v178: pyo3::Bound<pyo3::PyAny> = v175.unwrap();
-            let v190: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+            let v252: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v255: pyo3::Bound<pyo3::PyAny> = v252.unwrap();
+            let v267: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 Math::method10(v42.0.clone(), v42.1.clone());
-            let v191: pyo3::Bound<pyo3::PyAny> = Math::method11(v178);
-            let v193: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                pyo3::prelude::PyAnyMethods::call(&v191, ((*v190).0, *(*v190).1), None);
-            let v195: bool = true;
-            let _result_map_error__ = v193.map_err(|x| {
+            let v268: pyo3::Bound<pyo3::PyAny> = Math::method11(v255);
+            let v270: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                pyo3::prelude::PyAnyMethods::call(&v268, ((*v267).0, *(*v267).1), None);
+            let v272: bool = true;
+            let _result_map_error__ = v270.map_err(|x| {
                 //;
-                let v197: pyo3::PyErr = x;
-                let v200: std::string::String = format!("{}", v197);
-                let v223: bool = true;
-                v200
+                let v274: pyo3::PyErr = x;
+                let v277: std::string::String = format!("{}", v274);
+                let v300: bool = true;
+                v277
             });
-            let v225: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v228: pyo3::Bound<pyo3::PyAny> = Math::method12(v225?);
-            let v230: Result<(f64, f64), pyo3::PyErr> = v228.extract();
-            let v232: bool = true;
-            let _result_map_error__ = v230.map_err(|x| {
+            let v302: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v305: pyo3::Bound<pyo3::PyAny> = Math::method12(v302?);
+            let v307: Result<(f64, f64), pyo3::PyErr> = v305.extract();
+            let v309: bool = true;
+            let _result_map_error__ = v307.map_err(|x| {
                 //;
-                let v234: pyo3::PyErr = x;
-                let v237: std::string::String = format!("{}", v234);
-                let v260: bool = true;
-                v237
+                let v311: pyo3::PyErr = x;
+                let v314: std::string::String = format!("{}", v311);
+                let v337: bool = true;
+                v314
             });
-            let v262: Result<(f64, f64), std::string::String> = _result_map_error__;
-            let patternInput: (f64, f64) = v262?;
+            let v339: Result<(f64, f64), std::string::String> = _result_map_error__;
+            let patternInput: (f64, f64) = v339?;
             Ok::<num_complex::Complex<f64>, std::string::String>(num_complex::Complex::new(
                 patternInput.0.clone(),
                 patternInput.1.clone(),
