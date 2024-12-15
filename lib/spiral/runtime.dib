@@ -1285,7 +1285,8 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
                                 proc |> process_exit_code |> return
                             fun ex =>
                                 // with :? System.Threading.Tasks.TaskCanceledException as ex =>
-                                inl ex' = ex () |> sm'.format_exception
+                                inl ex = ex ()
+                                inl ex' = ex |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
                                 trace Warning
