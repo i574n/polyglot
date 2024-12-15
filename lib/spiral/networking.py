@@ -870,32 +870,32 @@ def closure23(v0_1: int | None, v1_1: bool, v2_1: int, v3: int64, unit_var: None
 
 def method37(v0_1: int | None, v1_1: bool, v2_1: str, v3: int, v4: int64) -> Async[int64]:
     def _arrow174(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> Async[int64]:
-        v755: US9 = default_arg(map(method38(), v0_1), US9(1))
-        v763: Async[bool] = method21(v755.fields[0], v2_1, v3) if (v755.tag == 0) else method6(v2_1, v3)
+        v739: US9 = default_arg(map(method38(), v0_1), US9(1))
+        v747: Async[bool] = method21(v739.fields[0], v2_1, v3) if (v739.tag == 0) else method6(v2_1, v3)
         def _arrow173(_arg: bool) -> Async[int64]:
             if _arg == v1_1:
                 return singleton.Return(v4)
 
             else: 
-                v767: bool = op_modulus(v4, int64(100)) == int64(0)
+                v751: bool = op_modulus(v4, int64(100)) == int64(0)
                 def _arrow170(__unit: None=None) -> Async[None]:
-                    v770: None
+                    v754: None
                     closure23(v0_1, v1_1, v3, v4, None)
-                    v770 = None
+                    v754 = None
                     return singleton.Zero()
 
                 def _arrow172(__unit: None=None) -> Async[int64]:
-                    v820: Async[None] = sleep(10)
+                    v804: Async[None] = sleep(10)
                     def _arrow171(__unit: None=None) -> Async[int64]:
-                        v831: Async[int64] = method36(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
-                        return singleton.ReturnFrom(v831)
+                        v813: Async[int64] = method36(v0_1, v1_1, v2_1, v3, op_addition(v4, int64(1)))
+                        return singleton.ReturnFrom(v813)
 
-                    return singleton.Bind(v820, _arrow171)
+                    return singleton.Bind(v804, _arrow171)
 
-                return singleton.Combine(_arrow170() if v767 else singleton.Zero(), singleton.Delay(_arrow172))
+                return singleton.Combine(_arrow170() if v751 else singleton.Zero(), singleton.Delay(_arrow172))
 
 
-        return singleton.Bind(v763, _arrow173)
+        return singleton.Bind(v747, _arrow173)
 
     return singleton.Delay(_arrow174)
 

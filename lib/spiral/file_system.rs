@@ -892,10 +892,10 @@ pub mod File_system {
         getZero()
     }
     pub fn method7(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
-        File_system::method8(v0_1, v1_1)
+        getZero()
     }
     pub fn method6(v0_1: string) -> Arc<Async<i64>> {
-        getZero()
+        File_system::method7(v0_1, 0_i64)
     }
     pub fn closure3(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
         File_system::method6(v0_1)
@@ -1020,23 +1020,19 @@ pub mod File_system {
         };
     }
     pub fn method27(
-        v0_1: string,
-        v1_1: File_system::US8,
-        v2_1: File_system::US7,
-        v3: i64,
+        v0_1: File_system::US6,
+        v1_1: string,
+        v2_1: i64,
+        v3: File_system::US8,
+        v4: File_system::US7,
     ) -> Arc<Async<i64>> {
         getZero()
     }
-    pub fn method26(
-        v0_1: string,
-        v1_1: File_system::US8,
-        v2_1: File_system::US7,
-        v3: i64,
-    ) -> Arc<Async<i64>> {
-        File_system::method27(v0_1, v1_1, v2_1, v3)
+    pub fn method26(v0_1: File_system::US6, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
+        getZero()
     }
     pub fn method25(v0_1: File_system::US6, v1_1: string) -> Arc<Async<i64>> {
-        getZero()
+        File_system::method26(v0_1, v1_1, 0_i64)
     }
     pub fn closure11(v0_1: File_system::US6, v1_1: string) -> Arc<Async<i64>> {
         File_system::method25(v0_1, v1_1)
@@ -1242,10 +1238,10 @@ pub mod File_system {
         getZero()
     }
     pub fn method41(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
-        File_system::method42(v0_1, v1_1)
+        getZero()
     }
     pub fn method40(v0_1: string) -> Arc<Async<i64>> {
-        getZero()
+        File_system::method41(v0_1, 0_i64)
     }
     pub fn closure21(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
         File_system::method40(v0_1)
@@ -1376,10 +1372,10 @@ pub mod File_system {
         getZero()
     }
     pub fn method47(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
-        File_system::method48(v0_1, v1_1, v2_1)
+        getZero()
     }
     pub fn method46(v0_1: string, v1_1: string) -> Arc<Async<i64>> {
-        getZero()
+        File_system::method47(v0_1, v1_1, 0_i64)
     }
     pub fn closure24(v0_1: string, v1_1: string) -> Arc<Async<i64>> {
         File_system::method46(v0_1, v1_1)

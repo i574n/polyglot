@@ -64,6 +64,7 @@ class CustomStringIO(io.StringIO):
         if init != '': self.write(init)
     def __str__(self): return self.getvalue()
     def __repr__(self): return self.getvalue()
+import sys
 class US0_0(NamedTuple): # (0, Some)
     v0 : string
     tag = 0
@@ -441,75 +442,76 @@ def method9() -> Callable[[US1], Tuple[i32, f64, char]]:
 def method10() -> string:
     v0 = ""
     return v0
-def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
-    v2497 = None
-    def _v2497():
-        v2730, v2731, v2732 = method4(v2, v3, v4)
-        v2733 = []
-        v2733.insert(0, (5.0, 40.0))
-        v2735 = v2733 
-        del v2733
-        v2735.insert(0, (10.0, 10.0))
-        v2738 = v2735 
-        del v2735
-        v2738.insert(0, (20.0, -40.0))
-        v2741 = v2738 
-        del v2738
-        cubes = v2741 
-        del v2741
-        v2746 = Closure0(v2730, v2731, v2732)
-        get_cube_points = v2746 
-        del v2746
-        v2747 = [x for cube in cubes for x in get_cube_points(*cube)]
-        v2751 = US2_1()
-        v2752 = [v2751 for _ in range(160 * 44)]
-        del v2751
-        v2756 = Closure6(v2752)
-        for (idx, ooz, ch) in v2747: v2756(idx)(ooz, ch)
-        del v2747, v2756
-        v2757 = method10()
-        v2760 = CustomStringIO(v2757)
-        del v2757
-        v2763 = Closure8(v2752, v2760)
-        del v2752
-        for row in range(44): v2763(row)
-        del v2763
-        v2766 = str(v2760)
-        del v2760
-        v2768 = v0 < 0
-        del v2768
-        print(v2766)
-        del v2766
-        v2796 = None
-        asyncio.run(v2796())
-        del v2796
-        v2799 = v0 > 0
-        if v2799:
-            v2800 = v1 >= v0
-            v2801 = v2800
+def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
+    async def __new_async_unit__():
+        v2507, v2508, v2509 = method4(v2, v3, v4)
+        v2510 = []
+        v2510.insert(0, (5.0, 40.0))
+        v2512 = v2510 
+        del v2510
+        v2512.insert(0, (10.0, 10.0))
+        v2515 = v2512 
+        del v2512
+        v2515.insert(0, (20.0, -40.0))
+        v2518 = v2515 
+        del v2515
+        cubes = v2518 
+        del v2518
+        v2523 = Closure0(v2507, v2508, v2509)
+        get_cube_points = v2523 
+        del v2523
+        v2524 = [x for cube in cubes for x in get_cube_points(*cube)]
+        v2528 = US2_1()
+        v2529 = [v2528 for _ in range(160 * 44)]
+        del v2528
+        v2533 = Closure6(v2529)
+        for (idx, ooz, ch) in v2524: v2533(idx)(ooz, ch)
+        del v2524, v2533
+        v2534 = method10()
+        v2537 = CustomStringIO(v2534)
+        del v2534
+        v2540 = Closure8(v2529, v2537)
+        del v2529
+        for row in range(44): v2540(row)
+        del v2540
+        v2543 = str(v2537)
+        del v2537
+        v2545 = v0 < 0
+        if v2545:
+            sys.stdout.write("\033[1;1H")
         else:
-            v2801 = False
-        del v2799
-        if v2801:
-            del v2730, v2731, v2732, v2801
+            pass
+        del v2545
+        print(v2543)
+        del v2543
+        v2572 = asyncio.sleep(1 / 1000)
+        await v2572 
+        del v2572
+        v2574 = v0 > 0
+        if v2574:
+            v2575 = v1 >= v0
+            v2576 = v2575
         else:
-            del v2801
-            v2802 = v2730 + 0.05
-            del v2730
-            v2803 = v2731 + 0.05
-            del v2731
-            v2804 = v2732 + 0.01
-            del v2732
-            v2805 = v1 + 1
-            v2806 = method2(v0, v2805, v2802, v2803, v2804)
-            del v2802, v2803, v2804, v2805
-            asyncio.run(v2806())
-            del v2806
+            v2576 = False
+        del v2574
+        if v2576:
+            pass
+        else:
+            v2577 = v2507 + 0.05
+            v2578 = v2508 + 0.05
+            v2579 = v2509 + 0.01
+            v2580 = v1 + 1
+            v2581 = method2(v0, v2580, v2577, v2578, v2579)
+            del v2577, v2578, v2579, v2580
+            await v2581()
+            del v2581
+        del v2507, v2508, v2509, v2576
+        """ new_async_unit
     del v0, v1, v2, v3, v4
-    v2807 = _v2497 
-    del v2497
-    return v2807
-def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> None :
+    new_async_unit """
+    v2582 = __new_async_unit__
+    return v2582
+def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     return method3(v0, v1, v2, v3, v4)
 def main_body():
     v1 = (cp if cuda else np).array([],dtype=object)
@@ -543,8 +545,9 @@ def main_body():
     v78 = 0.0
     v79 = 0.0
     v80 = method2(v75, v76, v77, v78, v79)
-    del v75, v76, v77, v78, v79, v80
-    None
+    del v75, v76, v77, v78, v79
+    asyncio.run(v80())
+    del v80
     return 
 
 def main():

@@ -16,7 +16,6 @@ function FixRust {
             -replace "([^=]\s)getZero\(\);", "`$1`getZero::<()>();" `
             -replace "__self__.", "self." `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
-            -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
             -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
             -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
     }

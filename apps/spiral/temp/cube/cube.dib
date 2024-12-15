@@ -451,31 +451,36 @@ let rec mainLoop rot = async {
 
 #!spiral
 
-let rec main_loop max i rot = async.new_async_unit fun () =>
-    inl rot = join rot
-    inl frame = rot |> generate_frame
-    if max < 0 then
-        run_target function
-            | Fsharp (Native) => fun () => $'System.Console.SetCursorPosition (0, 0)'
-            | Rust _ => fun () =>
-                open rust.rust_operators
-                !\($'$"print\!(\\\"\\\\x1B[1;1H\\\")"')
-            | TypeScript _ => fun () =>
-                open typescript_operators
-                !\($'$"process.stdout.write(\'\\\\u001B[1;1H\')"')
-            | Python _ => fun () =>
-                open python_operators
-                // global "import sys"
-                !\($'$"sys.stdout.write(\\\"\\\\033[1;1H\\\")"')
-            | _ => fun () => ()
-    frame |> console.write_line
-    async.sleep 1 |> async.do
-    if max > 0 && i >= max
-    then ()
-    else
-        { a = rot.a + 0.05; b = rot.b + 0.05; c = rot.c + 0.01 }
-        |> main_loop max (i + 1)
-        |> async.return_await'
+let rec main_loop max i rot =
+    fun () =>
+        inl rot = join rot
+        inl frame = rot |> generate_frame
+        if max < 0 then
+            run_target function
+                | Fsharp (Native) => fun () => $'System.Console.SetCursorPosition (0, 0)'
+                | Rust _ => fun () =>
+                    open rust.rust_operators
+                    !\($'$"print\!(\\\"\\\\x1B[1;1H\\\")"')
+                | TypeScript _ => fun () =>
+                    open typescript_operators
+                    !\($'$"process.stdout.write(\'\\\\u001B[1;1H\')"')
+                | Python _ => fun () =>
+                    open python_operators
+                    // global "import sys"
+                    !\($'$"sys.stdout.write(\\\"\\\\033[1;1H\\\")"')
+                | Cuda _ => fun () =>
+                    global "import sys"
+                    $'sys.stdout.write("\\033[1;1H")'
+                | _ => fun () => ()
+        frame |> console.write_line
+        async.sleep 1 |> async.do
+        if max > 0 && i >= max
+        then ()
+        else
+            { a = rot.a + 0.05; b = rot.b + 0.05; c = rot.c + 0.01 }
+            |> main_loop max (i + 1)
+            |> async.return_await'
+    |> async.new_async_unit
 
 #!markdown
 
@@ -521,10 +526,6 @@ inl main (_args : array_base string) =
         run_target_args' x function
         | Fsharp (Wasm)
         | TypeScript _ => fun x =>
-            x
-            |> async.start_child
-            |> ignore
-        | Rust _ => fun x =>
             x
             |> async.start_child
             |> ignore
