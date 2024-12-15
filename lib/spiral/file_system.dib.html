@@ -7754,7 +7754,7 @@ a.anchor-link {
 
 <span class="n">inl</span> <span class="n">file_info</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">file_info</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'`file_info '</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">convert</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7788,7 +7788,7 @@ a.anchor-link {
 
 <span class="n">inl</span> <span class="n">directory_info</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'`directory_info '</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">convert</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7816,7 +7816,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_exists</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!info.Exists'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Exists'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7844,7 +7844,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_creation_time</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span><span class="o">.</span><span class="n">date_time</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!info.CreationTime'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.CreationTime'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7872,7 +7872,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_name</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!info.Name'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Name'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7900,7 +7900,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_full_name</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!info.FullName'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.FullName'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7951,9 +7951,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_attributes</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">file_attributes</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_info_attributes</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">file_attributes</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!info.Attributes'</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Attributes'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -7979,7 +7979,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_attributes_reparse_point</span> <span class="p">()</span> <span class="p">:</span> <span class="n">file_attributes</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_attributes_reparse_point</span> <span class="p">()</span> <span class="p">:</span> <span class="n">file_attributes</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'`file_attributes.ReparsePoint'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8007,7 +8007,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_attributes_has_flag</span> <span class="p">(</span><span class="n">flag</span> <span class="p">:</span> <span class="n">file_attributes</span><span class="p">)</span> <span class="p">(</span><span class="n">file_attributes</span> <span class="p">:</span> <span class="n">file_attributes</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_attributes_has_flag</span> <span class="p">(</span><span class="n">flag</span> <span class="p">:</span> <span class="n">file_attributes</span><span class="p">)</span> <span class="p">(</span><span class="n">file_attributes</span> <span class="p">:</span> <span class="n">file_attributes</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!file_attributes.HasFlag !flag '</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8035,7 +8035,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_directory</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">create_directory</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.CreateDirectory'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8063,7 +8063,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_get_files</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_get_files</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.GetFiles'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8091,7 +8091,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_move</span> <span class="p">(</span><span class="n">new_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">old_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_move</span> <span class="p">(</span><span class="n">new_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">old_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.Move (!old_path, !new_path)'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
@@ -8119,7 +8119,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">read_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">read_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.ReadAllTextAsync'</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">await_task</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8147,7 +8147,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="p">()</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.WriteAllTextAsync (!path, !text)'</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">await_task</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -8908,7 +8908,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">dir_entry_file_type</span> <span class="p">(</span><span class="n">dir_entry</span> <span class="p">:</span> <span class="n">dir_entry</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin_send</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' file_type stream.io_error) =</span>
-    <span class="n">inl</span> <span class="n">dir_entry</span> <span class="o">=</span> <span class="n">join</span> <span class="n">dir_entry</span>
+    <span class="n">inl</span> <span class="n">dir_entry</span> <span class="o">=</span> <span class="n">dir_entry</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">emit</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Box::pin(async_walkdir::DirEntry::file_type(&amp;!dir_entry))"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8935,8 +8935,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_type_is_dir</span> <span class="p">(</span><span class="n">file_type</span> <span class="p">:</span> <span class="n">file_type</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">file_type</span> <span class="o">=</span> <span class="n">join</span> <span class="n">file_type</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::fs::FileType::is_dir(&amp;!file_type)"'</span><span class="p">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">file_type</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::FileType::is_dir(&amp;$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9097,7 +9096,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_info_link_target</span> <span class="p">(</span><span class="n">file_info</span> <span class="p">:</span> <span class="n">file_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!file_info.LinkTarget'</span>
+            <span class="n">file_info</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.LinkTarget'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -9164,7 +9163,7 @@ a.anchor-link {
     <span class="nb">open</span> <span class="n">typescript_operators</span>
     <span class="k">global</span> <span class="s2">"type IPathJoin = abstract join: [&lt;System.ParamArray&gt;] paths: string[] -&gt; string"</span>
     <span class="n">inl</span> <span class="n">path</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IPathJoin'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"path"</span>
-    <span class="err">!</span>\\<span class="p">((</span><span class="n">join</span> <span class="n">a</span><span class="p">,</span> <span class="n">join</span> <span class="n">b</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"!path.join($0, $1)"'</span><span class="p">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"!path.join($0, $1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9201,9 +9200,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=&gt;</span>
             <span class="n">a</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
             <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
@@ -9211,11 +9210,11 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=&gt;</span>
             <span class="n">a</span> <span class="o">|&gt;</span> <span class="n">ts_path_join</span> <span class="n">b</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.Path.Combine (!a, !b)'</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"file_system.(&lt;/&gt;) / target: {!target} / a: </span><span class="si">{!a}</span><span class="s1"> / b: {!b}"'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"file_system.(&lt;/&gt;) / target: {!target} / a: </span><span class="si">{!a}</span><span class="s1"> / b: {!b}"'</span>
 </pre></div>
 </div>
 </div>
@@ -9276,10 +9275,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_file_name</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetFileName'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
             <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
@@ -9287,8 +9286,8 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.map'</span> <span class="n">sm</span><span class="s1">'.from_os_str_ref</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"file_system.get_file_name / target: {!target} / path: {!path}"'</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"file_system.get_file_name / target: {!target} / path: {!path}"'</span>
 </pre></div>
 </div>
 </div>
@@ -9314,15 +9313,15 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_file_name_without_extension</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="n">inl</span> <span class="n">file_stem</span> <span class="o">=</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.file_stem()"'</span><span class="p">)</span>
             <span class="k">match</span> <span class="n">file_stem</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.map'</span> <span class="n">sm</span><span class="s1">'.from_os_str_ref |&gt; optionm'</span><span class="o">.</span><span class="n">unbox</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">Some</span> <span class="n">file_stem</span> <span class="o">=&gt;</span> <span class="n">file_stem</span>
             <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="s2">""</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetFileNameWithoutExtension'</span>
 </pre></div>
 </div>
@@ -9349,10 +9348,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_directory_name</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetDirectoryName'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
             <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
@@ -9360,7 +9359,7 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.map'</span> <span class="n">sm</span><span class="s1">'.from_os_str_ref</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9386,14 +9385,14 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_extension</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.extension()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_os_str_ref</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetExtension'</span>
 </pre></div>
 </div>
@@ -9515,18 +9514,18 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.Exists'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="n">path_buf_exists</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">path_buf_is_dir</span> <span class="n">path</span>
-        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="k">global</span> <span class="s2">"type IFsExistsSync = abstract existsSync: path: string -&gt; bool"</span>
             <span class="nb">open</span> <span class="n">typescript_operators</span>
             <span class="n">inl</span> <span class="n">fs</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IFsExistsSync'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"fs"</span>
             <span class="err">!</span>\\<span class="p">((</span><span class="n">fs</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.existsSync($1)"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9552,24 +9551,24 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_get_parent</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">parent</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.GetParent'</span>
             <span class="k">if</span> <span class="n">parent</span> <span class="o">=.</span> <span class="n">null</span> <span class="p">()</span>
             <span class="n">then</span> <span class="kc">None</span>
             <span class="k">else</span> <span class="n">parent</span> <span class="o">|&gt;</span> <span class="n">directory_info_full_name</span> <span class="o">|&gt;</span> <span class="n">Some</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="n">inl</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">path_buf</span> <span class="o">|&gt;</span> <span class="n">path_buf_parent</span>
             <span class="n">parent</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.map'</span> <span class="p">(</span><span class="n">path_buf_display</span> <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span> <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string)</span>
-        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">typescript_operators</span>
             <span class="k">global</span> <span class="s2">"type IPathDirname = abstract dirname: path: string -&gt; string"</span>
             <span class="n">inl</span> <span class="n">fs</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IPathDirname'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"path"</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"!fs.dirname($0)"'</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Some</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9595,11 +9594,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">create_temp_path</span><span class="s1">' (guid : guid.guid) =</span>
-    <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">guid</span><span class="p">)</span> <span class="n">function</span>
+    <span class="n">run_target_args</span><span class="s1">' guid function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">guid</span> <span class="o">=&gt;</span>
             <span class="n">get_temp_path</span> <span class="p">()</span>
-            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"!create_temp_path_"</span><span class="p">)</span>
+            <span class="o">&lt;/&gt;</span> <span class="n">join</span> <span class="s2">"!create_temp_path_"</span>
             <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_entry_assembly_name</span> <span class="p">())</span>
             <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
 </pre></div>
@@ -9665,7 +9664,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_70725a3b20bdc07309fcb42ee1779160b156005a291ce35dab8a05845c20028f\20241209-1038-1827-3573-0000007b57af" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_3d39e0c5739e7944d9fa8c0d1ac83bc79dfb1250d54b89e2c5b725b473db236e\20241215-1201-2097-9122-000000f53fbd" / expected: '\\'
 
 </pre>
 </div>
@@ -9674,7 +9673,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241209-1038-1877-7788-7003004cd10a" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241215-1201-2170-7030-7003009d5d4d" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9700,12 +9699,11 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_copy</span> <span class="p">(</span><span class="n">new_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">old_path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' (old_path, new_path) function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">old_path</span><span class="p">,</span> <span class="n">new_path</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.File.Copy (!old_path, !new_path, true)'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">new_path</span>
-            <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">stream</span><span class="o">.</span><span class="n">io_error</span> <span class="o">=</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">old_path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::copy(&amp;*$0, &amp;*!new_path)"'</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">old_path</span><span class="p">,</span> <span class="n">new_path</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">stream</span><span class="o">.</span><span class="n">io_error</span> <span class="o">=</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">old_path</span><span class="p">,</span> <span class="n">new_path</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::fs::copy(&amp;*$0, &amp;*$1)"'</span><span class="p">)</span>
             <span class="k">match</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">' |&gt; resultm.unbox with</span>
             <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">result</span> <span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="o">=&gt;</span>
                 <span class="n">trace</span> <span class="n">Debug</span>
@@ -9715,7 +9713,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
                 <span class="n">trace</span> <span class="ne">Warning</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"file_system.file_copy"</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">old_path</span> <span class="n">new_path</span> <span class="n">error</span> <span class="p">}</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9741,18 +9739,18 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' path function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.Exists'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="n">path_buf_exists</span> <span class="n">path_buf</span> <span class="o">&amp;&amp;</span> <span class="n">path_buf_is_file</span> <span class="n">path_buf</span>
-        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">typescript_operators</span>
             <span class="k">global</span> <span class="s2">"type IFsExistsSync = abstract existsSync: path: string -&gt; bool"</span>
             <span class="n">inl</span> <span class="n">fs</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IFsExistsSync'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"fs"</span>
             <span class="err">!</span>\\<span class="p">((</span><span class="n">fs</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.existsSync($1)"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9778,16 +9776,15 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_delete</span> <span class="n">recursive</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_target_args</span><span class="s1">' (path, recursive) function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.Directory.Delete (!path, !recursive)'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">path</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=&gt;</span>
             <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">directory_exists</span> <span class="n">then</span>
                 <span class="k">if</span> <span class="n">recursive</span>
                 <span class="n">then</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_dir_all(&amp;*$0).unwrap()"'</span><span class="p">)</span>
                 <span class="k">else</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_dir(&amp;*$0).unwrap()"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9813,13 +9810,12 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_all_text</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">join</span> <span class="n">text</span>
+    <span class="n">run_target_args</span><span class="s1">' (path, text) function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span><span class="p">,</span> <span class="n">text</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.File.WriteAllText (!path, !text)'</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">path</span><span class="p">,</span> <span class="n">text</span> <span class="o">=&gt;</span>
             <span class="err">!</span>\\<span class="p">((</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::fs::write(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10010,7 +10006,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
         <span class="k">if</span> <span class="nb">dir</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="k">if</span> <span class="n">is_file</span> <span class="n">then</span> <span class="n">file_exists</span> <span class="k">else</span> <span class="n">directory_exists</span><span class="p">)</span>
         <span class="n">then</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">Ok</span>
         <span class="k">else</span>
-            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="n">join</span> <span class="n">directory_get_parent</span><span class="p">)</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">directory_get_parent</span>
             <span class="k">match</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
             <span class="o">|</span> <span class="n">Some</span> <span class="n">parent</span> <span class="o">=&gt;</span> <span class="n">parent</span> <span class="o">|&gt;</span> <span class="n">loop</span>
             <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"""No parent for {if !is_file then "file" else "dir"} </span><span class="se">\'</span><span class="s1">{!name}</span><span class="se">\'</span><span class="s1"> at </span><span class="se">\'</span><span class="s1">{!root_dir}</span><span class="se">\'</span><span class="s1"> (until </span><span class="se">\'</span><span class="s1">{!dir}</span><span class="se">\'</span><span class="s1">)"""'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Error</span>
@@ -10735,7 +10731,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_exists_content_async</span> <span class="n">path</span> <span class="n">content</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="k">async</span> <span class="nb">bool</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_exists_content_async</span> <span class="n">path</span> <span class="n">content</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="k">async</span> <span class="nb">bool</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -10771,7 +10767,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_all_text_exists_async</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">write_all_text_exists_async</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">exists</span><span class="s1">' = contents |&gt; file_exists_content_async path |&gt; async.let'</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="s1">'</span>
@@ -10801,7 +10797,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">delete_directory_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">delete_directory_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
@@ -10812,10 +10808,12 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                             <span class="n">retry</span> <span class="o">|&gt;</span> <span class="k">return</span>
                         <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span><span class="n">i64</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                                <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
                                 <span class="n">trace</span> <span class="n">Debug</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"file_system.delete_directory_async"</span>
-                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">ex</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span> <span class="p">}</span>
+                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                        <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
+                                        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span>
+                                    <span class="p">}</span>
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
@@ -10902,7 +10900,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 55L / expected: 55L
+<pre>__assert_eq / actual: 60L / expected: 60L
 </pre>
 </div>
 </div>
@@ -10966,10 +10964,9 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">create_dir</span> <span class="nb">dir</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span> <span class="o">|</span> <span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">join</span> <span class="nb">dir</span>
+    <span class="n">run_target_args</span><span class="s1">' dir function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span> <span class="o">|</span> <span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">=&gt;</span>
             <span class="k">match</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">create_dir_all</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">' |&gt; resultm.unbox with</span>
             <span class="o">|</span> <span class="n">Ok</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">trace</span> <span class="n">Verbose</span>
@@ -10983,7 +10980,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                 <span class="nb">dir</span>
                 <span class="o">|&gt;</span> <span class="n">directory_delete</span> <span class="n">true</span>
             <span class="n">disposable</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">directory_info</span> <span class="o">=</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">create_directory</span>
             <span class="n">inl</span> <span class="n">exists</span><span class="s1">' = directory_info |&gt; directory_info_exists</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="s1">' then</span>
@@ -11068,7 +11065,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4c88911e7479b63950673f4d4c0aff4e3b783a89023404a251703c761cdb6bfc\20241209-1039-0261-2738-000000c4386f }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_18fb38e8ed9832207b45a81095b00bbd5372d8a732fe76b6ce3665a852cc61cb\20241215-1202-4202-9451-000000a0e8b2 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11097,6 +11094,7 @@ __assert_eq / actual: false / expected: false
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30000</span>
 
 <span class="n">inl</span> <span class="n">lock_directory</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11168,7 +11166,7 @@ __assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
-__assert_between / actual: 125L / expected: struct (50L, 180L)
+__assert_between / actual: 124L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11503,7 +11501,7 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">wait_for_file_access</span> <span class="n">access</span> <span class="n">path</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">wait_for_file_access</span> <span class="n">access</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">file_access</span><span class="p">,</span> <span class="n">file_share</span> <span class="o">=</span>
@@ -11523,17 +11521,43 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
                             <span class="n">retry</span> <span class="o">|&gt;</span> <span class="k">return</span>
                         <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span><span class="n">i64</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                                <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
                                 <span class="n">trace</span> <span class="n">Debug</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"file_system.wait_for_file_access"</span>
-                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span><span class="p">;</span> <span class="n">retry</span> <span class="n">ex</span> <span class="p">}</span>
+                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span>
+                                        <span class="n">retry</span>
+                                        <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
+                                    <span class="p">}</span>
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
             <span class="n">loop</span> <span class="mi">0</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-
-<span class="n">inl</span> <span class="n">wait_for_file_access_read</span> <span class="n">path</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=224">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="wait_for_file_access_read">wait_for_file_access_read<a class="anchor-link" href="#wait_for_file_access_read">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=225">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">wait_for_file_access_read</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">path</span>
     <span class="o">|&gt;</span> <span class="n">wait_for_file_access</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span>
         <span class="n">AccessRead</span><span class="p">,</span>
@@ -11544,7 +11568,7 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=224">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=226">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11553,6 +11577,7 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30000</span>
 
 <span class="n">inl</span> <span class="n">lock_file</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11634,71 +11659,17 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">d</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #8 _3
+00:00:02 <span class="ansi-blue-intense-fg">d</span> #8 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _4
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 _5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 _6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #13 6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #14 7
-__assert_between / actual: 128L / expected: struct (50L, 180L)
+__assert_between / actual: 126L / expected: struct (50L, 180L)
 __assert_eq / actual: "1" / expected: "1"
 __assert_eq / actual: true / expected: true
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=225">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="read_all_text_retry_async">read_all_text_retry_async<a class="anchor-link" href="#read_all_text_retry_async">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=226">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">read_all_text_retry_async</span> <span class="n">full_path</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="k">async</span> <span class="p">(</span><span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="n">inl</span> <span class="n">retry</span> <span class="o">=</span> <span class="n">join</span> <span class="n">retry</span>
-                    <span class="n">try_unit</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                            <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>
-                            <span class="n">then</span>
-                                <span class="n">full_path</span>
-                                <span class="o">|&gt;</span> <span class="n">wait_for_file_access_read</span>
-                                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_with_timeout_async</span> <span class="mi">1000</span>
-                                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">ignore</span>
-                                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
-                            <span class="n">full_path</span> <span class="o">|&gt;</span> <span class="n">read_all_text_async</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">Some</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="s1">'.box) |&gt; async.return_await</span>
-                        <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-                            <span class="n">fix_condition</span>
-                                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">retry</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
-                                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                                    <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
-                                    <span class="n">trace</span> <span class="n">Debug</span>
-                                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"file_system.read_all_text_retry_async"</span>
-                                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">ex</span> <span class="p">}</span>
-                                    <span class="p">(</span><span class="kc">None</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box |&gt; return</span>
-                                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                                    <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
-                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
-            <span class="n">loop</span> <span class="mi">0</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -11710,7 +11681,7 @@ __assert_eq / actual: true / expected: true
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="move_file_async">move_file_async<a class="anchor-link" href="#move_file_async">¶</a></h3>
+<h3 id="read_all_text_retry_async">read_all_text_retry_async<a class="anchor-link" href="#read_all_text_retry_async">¶</a></h3>
 </div>
 </div>
 </div>
@@ -11722,7 +11693,59 @@ __assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">move_file_async</span> <span class="n">new_path</span> <span class="n">old_path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">read_all_text_retry_async</span> <span class="n">full_path</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="k">async</span> <span class="p">(</span><span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">try_unit</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                    <span class="n">then</span>
+                        <span class="n">full_path</span>
+                        <span class="o">|&gt;</span> <span class="n">wait_for_file_access_read</span>
+                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_with_timeout_async</span> <span class="mi">1000</span>
+                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">ignore</span>
+                        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
+                    <span class="n">full_path</span> <span class="o">|&gt;</span> <span class="n">read_all_text_async</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">Some</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="s1">'.box) |&gt; async.return_await</span>
+                <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
+                    <span class="n">fix_condition</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">retry</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                            <span class="n">trace</span> <span class="n">Debug</span>
+                                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"file_system.read_all_text_retry_async"</span>
+                                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                    <span class="n">retry</span>
+                                    <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
+                                <span class="p">}</span>
+                            <span class="p">(</span><span class="kc">None</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box |&gt; return</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                            <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
+        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
+    <span class="n">loop</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=229">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="move_file_async">move_file_async<a class="anchor-link" href="#move_file_async">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=230">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">move_file_async</span> <span class="n">new_path</span> <span class="n">old_path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
@@ -11733,13 +11756,12 @@ __assert_eq / actual: true / expected: true
                             <span class="k">return</span> <span class="n">retry</span>
                         <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-
                                 <span class="n">trace</span> <span class="ne">Warning</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"move_file_async"</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
                                         <span class="n">old_path</span> <span class="o">=</span> <span class="n">old_path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span>
                                         <span class="n">new_path</span> <span class="o">=</span> <span class="n">new_path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span>
-                                        <span class="n">ex</span>
+                                        <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
                                     <span class="p">}</span>
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
@@ -11751,7 +11773,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=229">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=231">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11760,6 +11782,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30000</span>
 
 <span class="n">inl</span> <span class="n">lock_file</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11842,17 +11865,9 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
-00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
-   at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0125._v3361@6286-1.Invoke(Unit unitVar)
-   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
-   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
-00:00:01 <span class="ansi-yellow-intense-fg">w</span> #8 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process.
-   at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
-   at FSI_0125._v3361@6286-1.Invoke(Unit unitVar)
-   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
-   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 }
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #9 _3
+00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process. }
+00:00:01 <span class="ansi-yellow-intense-fg">w</span> #8 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process. }
+00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 7
@@ -11867,7 +11882,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=230">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=232">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11877,7 +11892,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=231">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=233">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11885,7 +11900,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">delete_file_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">delete_file_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
@@ -11898,7 +11913,10 @@ __assert_eq / actual: true / expected: true
                             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                                 <span class="n">trace</span> <span class="ne">Warning</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"delete_file_async"</span>
-                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span><span class="p">;</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception }</span>
+                                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_file_name</span>
+                                        <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
+                                    <span class="p">}</span>
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
@@ -11909,7 +11927,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=232">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=234">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11918,6 +11936,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30000</span>
 
 <span class="n">inl</span> <span class="n">lock_file</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11993,7 +12012,7 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
-__assert_between / actual: 129L / expected: struct (50L, 180L)
+__assert_between / actual: 128L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -12001,7 +12020,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=233">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=235">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12011,7 +12030,7 @@ __assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=234">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=236">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

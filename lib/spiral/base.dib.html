@@ -7804,9 +7804,15 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_target_args</span><span class="s1">' forall t u. (args : u) (fn : target -&gt; (u -&gt; t)) : t =</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">is_unit</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+                <span class="n">real</span>
+                    <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">true</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'()'</span> <span class="p">:</span> <span class="n">unit</span>
             <span class="n">inl</span> <span class="n">emit_result</span> <span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-                <span class="err">$</span><span class="s1">'let _!result = !x '</span>
+                <span class="k">if</span> <span class="n">is_unit</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                <span class="n">then</span> <span class="err">$</span><span class="s1">'let _!result = !x '</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER || WASM || CONTRACT'</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_RUST &amp;&amp; \!WASM &amp;&amp; \!CONTRACT'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Rust</span> <span class="n">Native</span>
@@ -7830,7 +7836,9 @@ a.anchor-link {
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Fsharp</span> <span class="n">Native</span>
             <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">emit_result</span>
             <span class="err">$</span><span class="s1">'#endif'</span>
-            <span class="err">$</span><span class="s1">'_!result '</span> <span class="p">:</span> <span class="n">t</span>
+            <span class="k">if</span> <span class="n">is_unit</span>
+            <span class="n">then</span> <span class="err">$</span><span class="s1">'// run_target_args</span><span class="se">\'</span><span class="s1"> is_unit'</span>
+            <span class="k">else</span> <span class="err">$</span><span class="s1">'_!result '</span> <span class="p">:</span> <span class="n">t</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Cuda</span> <span class="n">Native</span>
             <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span>
@@ -8066,9 +8074,9 @@ __assert_eq / actual: 1uy / expected: 1uy
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">body</span> <span class="p">()</span> <span class="o">=</span>
                 <span class="n">body</span> <span class="p">()</span>
-                <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
+                <span class="err">$</span><span class="s1">'(* indent'</span> <span class="p">:</span> <span class="p">()</span>
             <span class="err">!!!!</span><span class="n">Indent</span> <span class="p">(</span><span class="n">body</span><span class="p">())</span>
-            <span class="err">$</span><span class="s1">'*)'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'indent *)'</span> <span class="p">:</span> <span class="p">()</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">!!!!</span><span class="n">Indent</span> <span class="p">(</span><span class="n">body</span><span class="p">())</span>
             <span class="p">()</span>
@@ -9364,11 +9372,11 @@ __assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fix_condition</span> <span class="n">x</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
     <span class="k">if</span> <span class="n">x</span> <span class="p">()</span>
-    <span class="n">then</span> <span class="n">a</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="n">then</span> <span class="n">a</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(* fix_condition then'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="k">else</span>
-        <span class="err">$</span><span class="s1">'*) else'</span> <span class="p">:</span> <span class="p">()</span>
-        <span class="n">b</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(*'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'*)'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="err">$</span><span class="s1">'fix_condition then *) else'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">b</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'(* fix_condition else'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'fix_condition else *)'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10314,17 +10322,28 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_unit</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="n">ex_fn</span> <span class="p">:</span> <span class="n">exn</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'try'</span>
-    <span class="n">fn</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="err">$</span><span class="s1">'with ex -&gt;'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_unit</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="n">ex_fn</span> <span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">exn</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'try'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'try:'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'with ex -&gt;'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'except Exception as ex:'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">ex_fn</span> <span class="err">$</span><span class="s1">'ex'</span>
-        <span class="o">|&gt;</span> <span class="n">ignore</span>
+        <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'ex'</span>
+        <span class="n">inl</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">=</span>
+            <span class="n">ex</span>
+        <span class="n">ex_fn</span> <span class="n">ex</span>
     <span class="o">|&gt;</span> <span class="n">indent</span>
-    <span class="err">$</span><span class="s1">'(*'</span>
-    <span class="err">$</span><span class="s1">'*)'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'(* try_unit'</span>
+            <span class="err">$</span><span class="s1">'try_unit *)'</span> <span class="p">:</span> <span class="n">t</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="n">t</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -10349,17 +10368,8 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_unit</span><span class="s1">' forall t. (ex_fn : exn -&gt; ()) (fn : () -&gt; ()) : t =</span>
-    <span class="err">$</span><span class="s1">'try'</span>
-    <span class="n">fn</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="err">$</span><span class="s1">'with ex -&gt;'</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">ex_fn</span> <span class="err">$</span><span class="s1">'ex'</span>
-        <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="o">|&gt;</span> <span class="n">indent</span>
-    <span class="err">$</span><span class="s1">'(*'</span>
-    <span class="err">$</span><span class="s1">'*)'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_unit</span><span class="s1">' forall t. (ex_fn : (() -&gt; exn) -&gt; ()) (fn : () -&gt; ()) : t =</span>
+    <span class="n">try_unit</span> <span class="n">fn</span> <span class="n">ex_fn</span>
 </pre></div>
 </div>
 </div>
@@ -10385,14 +10395,23 @@ __assert_eq / actual: "System.IndexOutOfRangeException: Index was outside the bo
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_finally</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="k">finally</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'try'</span>
-    <span class="n">fn</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="err">$</span><span class="s1">'finally'</span>
-    <span class="k">finally</span> <span class="p">()</span>
-    <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="err">$</span><span class="s1">'(*'</span>
-    <span class="err">$</span><span class="s1">'*)'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'try'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'try:'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'finally'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'finally:'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">finally</span> <span class="o">|&gt;</span> <span class="n">indent</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'(* try_finally'</span>
+            <span class="err">$</span><span class="s1">'try_finally *)'</span>
+            <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>

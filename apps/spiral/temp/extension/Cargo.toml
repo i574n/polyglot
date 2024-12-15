@@ -18,9 +18,9 @@ console_log = { version = "1.0" }
 futures = ">=0.3,<1"
 gloo-net = { version = ">=0.6,<1", features = ["http"] }
 js-sys = ">=0.3,<1"
-leptos = { version = ">=0.6,<1", features = ["csr", "nightly"] }
-leptos_meta = { version = ">=0.6,<1", features = ["csr", "nightly"] }
-leptos_router = { version = ">=0.6,<1", features = ["csr", "nightly"] }
+leptos = { version = "~0.6", features = ["csr", "nightly"] }
+leptos_meta = { version = "~0.6", features = ["csr", "nightly"] }
+leptos_router = { version = "~0.6", features = ["csr", "nightly"] }
 log = ">=0.4,<1"
 reqwest-wasm = { version = ">=0.11,<1", features = ["json"] }
 rexie = ">=0.6,<1"

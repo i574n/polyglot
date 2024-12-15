@@ -8105,7 +8105,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">listener_start</span> <span class="p">(</span><span class="n">listener</span> <span class="p">:</span> <span class="n">tcp_listener</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!listener.Start'</span> <span class="p">()</span>
+    <span class="n">listener</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Start()'</span>
 </pre></div>
 </div>
 </div>
@@ -8131,7 +8131,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">listener_stop</span> <span class="p">(</span><span class="n">listener</span> <span class="p">:</span> <span class="n">tcp_listener</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!listener.Stop'</span> <span class="p">()</span>
+    <span class="n">listener</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Stop()'</span>
 </pre></div>
 </div>
 </div>
@@ -8198,10 +8198,9 @@ a.anchor-link {
             <span class="n">client</span> <span class="o">|&gt;</span> <span class="n">client_connect_async</span> <span class="n">host</span> <span class="n">port</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">await_value_task_unit</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
             <span class="k">return</span> <span class="n">true</span>
         <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
             <span class="n">trace</span> <span class="n">Verbose</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"networking.test_port_open"</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">ex</span> <span class="p">}</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception }</span>
             <span class="k">return</span> <span class="n">false</span>
 </pre></div>
 </div>
@@ -8324,23 +8323,24 @@ __assert_eq / actual: false / expected: false
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">wait_for_port_access</span> <span class="n">timeout</span> <span class="n">status</span> <span class="n">host</span> <span class="n">port</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">inl</span> <span class="n">isPortOpen</span> <span class="o">=</span>
-            <span class="k">match</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
-            <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">test_port_open</span> <span class="n">host</span> <span class="n">port</span>
-            <span class="o">|</span> <span class="n">Some</span> <span class="n">timeout</span> <span class="o">=&gt;</span> <span class="n">test_port_open_timeout</span> <span class="n">timeout</span> <span class="n">host</span> <span class="n">port</span>
-            <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
-
-        <span class="n">fix_condition</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">isPortOpen</span> <span class="o">=</span> <span class="n">status</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">retry</span> <span class="o">|&gt;</span> <span class="k">return</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"networking.wait_for_port_access"</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">retry</span> <span class="n">timeout</span> <span class="n">status</span> <span class="p">}</span>
-                <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
-                <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">is_port_open</span> <span class="o">=</span>
+                <span class="k">match</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+                <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">test_port_open</span> <span class="n">host</span> <span class="n">port</span>
+                <span class="o">|</span> <span class="n">Some</span> <span class="n">timeout</span> <span class="o">=&gt;</span> <span class="n">test_port_open_timeout</span> <span class="n">timeout</span> <span class="n">host</span> <span class="n">port</span>
+                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
+            <span class="n">fix_condition</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">is_port_open</span> <span class="o">=</span> <span class="n">status</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">retry</span> <span class="o">|&gt;</span> <span class="k">return</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
+                        <span class="n">trace</span> <span class="n">Verbose</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"networking.wait_for_port_access"</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">port</span> <span class="n">retry</span> <span class="n">timeout</span> <span class="n">status</span> <span class="p">}</span>
+                    <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
+                    <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
+        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
     <span class="n">loop</span> <span class="mi">1</span><span class="n">i64</span>
 </pre></div>
 </div>
@@ -8430,7 +8430,7 @@ __assert_eq / actual: false / expected: false
 00:00:09 <span class="ansi-blue-intense-fg">d</span> #14 5
 00:00:09 <span class="ansi-blue-intense-fg">d</span> #15 6
 __assert_between / actual: 3L / expected: struct (2L, 5L)
-__assert_between / actual: 121L / expected: struct (80L, 200L)
+__assert_between / actual: 119L / expected: struct (80L, 200L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8505,16 +8505,16 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 1
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 _1
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 3
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #8 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #10 async.run_with_timeout_async / { timeout = 60 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #11 _2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #10 _2
+00:00:00 <span class="ansi-black-intense-fg">v</span> #11 async.run_with_timeout_async / { timeout = 60 }
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #12 _3
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #13 4
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #14 _4
@@ -8523,7 +8523,7 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #17 5
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #18 6
 __assert_between / actual: 7L / expected: struct (4L, 15L)
-__assert_between / actual: 12L / expected: struct (5L, 20L)
+__assert_between / actual: 14L / expected: struct (5L, 20L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8550,16 +8550,18 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_available_port</span> <span class="n">timeout</span> <span class="n">host</span> <span class="n">initial_port</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">port</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-        <span class="n">inl</span> <span class="n">is_port_open</span> <span class="o">=</span>
-            <span class="k">match</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
-            <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">test_port_open</span> <span class="n">host</span> <span class="n">port</span>
-            <span class="o">|</span> <span class="n">Some</span> <span class="n">timeout</span> <span class="o">=&gt;</span> <span class="n">test_port_open_timeout</span> <span class="n">timeout</span> <span class="n">host</span> <span class="n">port</span>
-            <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
-        <span class="n">fix_condition</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">is_port_open</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="k">return</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">port</span> <span class="o">=</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">is_port_open</span> <span class="o">=</span>
+                <span class="k">match</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+                <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">test_port_open</span> <span class="n">host</span> <span class="n">port</span>
+                <span class="o">|</span> <span class="n">Some</span> <span class="n">timeout</span> <span class="o">=&gt;</span> <span class="n">test_port_open_timeout</span> <span class="n">timeout</span> <span class="n">host</span> <span class="n">port</span>
+                <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
+            <span class="n">fix_condition</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">is_port_open</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="k">return</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
+        <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
     <span class="n">loop</span> <span class="n">initial_port</span>
 </pre></div>
 </div>
@@ -8647,7 +8649,7 @@ __assert_eq / actual: true / expected: true
 00:00:06 <span class="ansi-blue-intense-fg">d</span> #13 5
 00:00:06 <span class="ansi-blue-intense-fg">d</span> #14 6
 __assert_eq / actual: 5557 / expected: 5557
-__assert_between / actual: 110L / expected: struct (50L, 150L)
+__assert_between / actual: 111L / expected: struct (50L, 150L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8722,7 +8724,7 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 _1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _3
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 3
@@ -8734,7 +8736,7 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #12 5
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #13 6
 __assert_eq / actual: 5557 / expected: 5557
-__assert_between / actual: 7L / expected: struct (2L, 10L)
+__assert_between / actual: 4L / expected: struct (2L, 10L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
