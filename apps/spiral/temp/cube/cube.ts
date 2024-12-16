@@ -380,9 +380,9 @@ export function method6(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: fl
                 v63 = undefined;
                 const v73: Async<void> = sleep(1);
                 return singleton_1.Bind<void, void>(v73, (): Async<void> => {
-                    let v92: Async<void>;
-                    const v87: boolean = (v0_1 > 0) && (v1 >= v0_1);
-                    return singleton_1.Combine<void>(v87 ? (singleton_1.Zero()) : ((v92 = method5(v0_1, v1 + 1, v18 + 0.05, v19 + 0.05, v20 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v92), singleton_1.Delay<void>((): Async<void> => {
+                    let v90: Async<void>;
+                    const v85: boolean = (v0_1 > 0) && (v1 >= v0_1);
+                    return singleton_1.Combine<void>(v85 ? (singleton_1.Zero()) : ((v90 = method5(v0_1, v1 + 1, v18 + 0.05, v19 + 0.05, v20 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v90), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
                     })))), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
@@ -410,7 +410,7 @@ export function closure0(unitVar: void, v0_1: string[]): void {
     if (v56) {
         process.stdout.write('\u001B[?25l');
     }
-    const v161: Async<Async<void>> = startChild<void>(method5(v56 ? -1 : 50, 1, 0, 0, 0));
+    const v104: Async<Async<void>> = startChild<void>(method5(v56 ? -1 : 50, 1, 0, 0, 0));
 }
 
 export const v0 = (v: string[]): void => {

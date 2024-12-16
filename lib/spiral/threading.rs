@@ -8,7 +8,7 @@ pub mod Threading {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::System::IDisposable;
-    type CancellationToken = ();
+    use fable_library_rust::System::Threading::CancellationToken;
     type CancellationTokenSource = ();
     #[derive(Clone, Debug)]
     pub struct Disposable {

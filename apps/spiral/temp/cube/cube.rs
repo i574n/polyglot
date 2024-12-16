@@ -437,7 +437,7 @@ mod module_62c167ba {
                     0.0_f64,
                     0.0_f64,
                 );
-                let v82: Arc<Async<Arc<Async<()>>>> = getZero();
+                getZero::<()>();
                 ()
             }
         }

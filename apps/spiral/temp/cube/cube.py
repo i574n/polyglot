@@ -337,23 +337,23 @@ def closure10(v0_1: str, unit_var: None) -> None:
 def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
     def _arrow312(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Async[None]:
         pattern_input: tuple[float, float, float] = method7(v2, v3, v4)
-        v624: float = pattern_input[2]
-        v623: float = pattern_input[1]
-        v622: float = pattern_input[0]
-        v637: IEnumerable_1[tuple[int, float, str]] = collect(method8(v622, v623, v624), to_enumerable([(20.0, -40.0), (10.0, 10.0), (5.0, 40.0)]))
-        v642: Array[US4] = fill([0] * (160 * 44), 0, 160 * 44, US4(1))
+        v608: float = pattern_input[2]
+        v607: float = pattern_input[1]
+        v606: float = pattern_input[0]
+        v621: IEnumerable_1[tuple[int, float, str]] = collect(method8(v606, v607, v608), to_enumerable([(20.0, -40.0), (10.0, 10.0), (5.0, 40.0)]))
+        v626: Array[US4] = fill([0] * (160 * 44), 0, 160 * 44, US4(1))
         def action(_arg: tuple[int, float, str]) -> None:
-            closure6(v642, _arg[0])((_arg[1], _arg[2]))
+            closure6(v626, _arg[0])((_arg[1], _arg[2]))
 
-        iterate(action, v637)
-        v650: Any = StringBuilder__ctor_Z721C83C5(method14())
+        iterate(action, v621)
+        v634: Any = StringBuilder__ctor_Z721C83C5(method14())
         def _arrow302(_arg_1: int) -> Async[None]:
-            closure8(v642, v650, _arg_1)
+            closure8(v626, v634, _arg_1)
             return singleton_1.Zero()
 
         def _arrow311(__unit: None=None) -> Async[None]:
-            v655: str = to_string(v650)
-            v658: bool = v0_1 < 0
+            v639: str = to_string(v634)
+            v642: bool = v0_1 < 0
             def _expr304():
                 sys.stdout.write("\033[1;1H")
                 def _expr303():
@@ -362,30 +362,30 @@ def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
                 return _expr303()
 
             def _arrow310(__unit: None=None) -> Async[None]:
-                v667: None
-                closure10(v655, None)
-                v667 = None
-                v679: Async[None] = sleep(1)
+                v651: None
+                closure10(v639, None)
+                v651 = None
+                v663: Async[None] = sleep(1)
                 def _arrow309(__unit: None=None) -> Async[None]:
-                    v691: bool = (v1 >= v0_1) if (v0_1 > 0) else False
+                    v673: bool = (v1 >= v0_1) if (v0_1 > 0) else False
                     def _expr305():
                         return singleton_1.Zero()
 
                     def _arrow307(__unit: None=None) -> Async[None]:
-                        v696: Async[None] = method5(v0_1, v1 + 1, v622 + 0.05, v623 + 0.05, v624 + 0.01)
+                        v678: Async[None] = method5(v0_1, v1 + 1, v606 + 0.05, v607 + 0.05, v608 + 0.01)
                         def _arrow306(__unit: None=None) -> Async[None]:
                             return singleton_1.Zero()
 
-                        return singleton_1.Combine(singleton_1.ReturnFrom(v696), singleton_1.Delay(_arrow306))
+                        return singleton_1.Combine(singleton_1.ReturnFrom(v678), singleton_1.Delay(_arrow306))
 
                     def _arrow308(__unit: None=None) -> Async[None]:
                         return singleton_1.Zero()
 
-                    return singleton_1.Combine(_expr305() if v691 else _arrow307(), singleton_1.Delay(_arrow308))
+                    return singleton_1.Combine(_expr305() if v673 else _arrow307(), singleton_1.Delay(_arrow308))
 
-                return singleton_1.Bind(v679, _arrow309)
+                return singleton_1.Bind(v663, _arrow309)
 
-            return singleton_1.Combine(_expr304() if v658 else singleton_1.Zero(), singleton_1.Delay(_arrow310))
+            return singleton_1.Combine(_expr304() if v642 else singleton_1.Zero(), singleton_1.Delay(_arrow310))
 
         return singleton_1.Combine(singleton_1.For(range_big_int(0, 1, 44 - 1), _arrow302), singleton_1.Delay(_arrow311))
 

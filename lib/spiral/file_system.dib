@@ -1435,9 +1435,9 @@ let write_all_text_exists_async path contents =
 #!spiral
 
 let delete_directory_async path : _ i64 =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            let rec loop (retry : i64) =
+    let rec loop (retry : i64) =
+        run_target function
+            | Fsharp (Native) => fun () =>
                 fun () =>
                     try_unit
                         fun () =>
@@ -1454,8 +1454,8 @@ let delete_directory_async path : _ i64 =
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
-            loop 0
-        | _ => fun () => null ()
+            | _ => fun () => null ()
+    loop 0
 
 #!markdown
 
@@ -1805,12 +1805,12 @@ let write_all_text_exists path contents =
 #!spiral
 
 let wait_for_file_access access path =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl file_access, file_share =
-                access
-                |> optionm'.default_value (AccessReadWrite, ShareRead)
-            let rec loop (retry : i64) : _ i64 =
+    let rec loop (retry : i64) : _ i64 =
+        run_target function
+            | Fsharp (Native) => fun () =>
+                inl file_access, file_share =
+                    access
+                    |> optionm'.default_value (AccessReadWrite, ShareRead)
                 fun () =>
                     try_unit
                         fun () =>
@@ -1834,8 +1834,8 @@ let wait_for_file_access access path =
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
-            loop 0
-        | _ => fun () => null ()
+            | _ => fun () => null ()
+    loop 0
 
 #!markdown
 
@@ -1959,9 +1959,9 @@ let read_all_text_retry_async full_path : async.async (optionm'.option' string) 
 #!spiral
 
 let move_file_async new_path old_path : _ i64 =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            let rec loop (retry : i64) =
+    let rec loop (retry : i64) =
+        run_target function
+            | Fsharp (Native) => fun () =>
                 fun () =>
                     try_unit
                         fun () =>
@@ -1979,8 +1979,8 @@ let move_file_async new_path old_path : _ i64 =
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async_unit
-            loop 0
-        | _ => fun () => null ()
+            | _ => fun () => null ()
+    loop 0
 
 #!spiral
 
@@ -2058,9 +2058,9 @@ fun () =>
 #!spiral
 
 let delete_file_async path : _ i64 =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            let rec loop (retry : i64) =
+    let rec loop (retry : i64) =
+        run_target function
+            | Fsharp (Native) => fun () =>
                 fun () =>
                     try_unit
                         fun () =>
@@ -2077,8 +2077,8 @@ let delete_file_async path : _ i64 =
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
-            loop 0
-        | _ => fun () => null ()
+            | _ => fun () => null ()
+    loop 0
 
 #!spiral
 

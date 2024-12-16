@@ -499,7 +499,7 @@ nominal async_python t =
         backend_switch `(()) `({}) {
             Python = (fun () => global "import asyncio") : () -> ()
         }
-        $'' : $'`t '
+        $'' : $'any'
     )
 type async_switch t =
     {
@@ -546,9 +546,13 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
                         $'}' : ()
                     |> base_let'
             | Cuda _ => fun fn =>
+                $'async def __new_async_unit__():'
                 fun () =>
                     fn ()
-                |> base_let'
+                    $'""" new_async_unit'
+                |> indent
+                $'new_async_unit """'
+                $'__new_async_unit__'
             | _ => fun _ => null ()
 
 #!markdown
@@ -620,6 +624,8 @@ inl run_synchronously forall t. (a : async t) : t =
         // | Rust _
         | Python _ => fun () =>
             a |> $'Async.RunSynchronously'
+        | Cuda (Native) => fun () =>
+            $'asyncio.run(!a())'
         | _ => fun () => null ()
 
 #!markdown
@@ -716,6 +722,8 @@ inl sleep (ms : i32) : async () =
         | TypeScript _
         | Python _ => fun () =>
             ms |> $'Async.Sleep'
+        | Cuda _ => fun () =>
+            $'asyncio.sleep(!ms / 1000)'
         | _ => fun () => null ()
 
 #!markdown
@@ -727,7 +735,7 @@ inl sleep (ms : i32) : async () =
 inl do (a : async ()) : () =
     backend_switch {
         Fsharp = fun () => $'do\! !a ' : ()
-        Python = fun () => $'asyncio.run(!a())' : ()
+        Python = fun () => $'await !a ' : ()
     }
 
 #!markdown
@@ -761,7 +769,7 @@ inl return_await forall t. (a : async t) : () =
 inl return_await' forall t. (a : async t) : t =
     backend_switch {
         Fsharp = fun () => $'return\! !a ' : ()
-        Python = fun () => $'asyncio.run(!a())' : ()
+        Python = fun () => $'await !a()' : ()
     }
 
 #!markdown

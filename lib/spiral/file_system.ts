@@ -887,19 +887,19 @@ export function method8(v0_1: string, v1_1: int64): Async<int64> {
         return singleton.Combine<int64>(v19_1 ? ((v22_1 = ((closure4(v0_1, _arg, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
             const v96: Async<void> = sleep(10);
             return singleton.Bind<void, int64>(v96, (): Async<int64> => {
-                const v109: Async<int64> = method7(v0_1, toInt64(op_Addition(v1_1, 1n)));
-                return singleton.ReturnFrom<int64>(v109);
+                const v107: Async<int64> = method7(v0_1, toInt64(op_Addition(v1_1, 1n)));
+                return singleton.ReturnFrom<int64>(v107);
             });
         }));
     }));
 }
 
 export function method7(v0_1: string, v1_1: int64): Async<int64> {
-    return method8(v0_1, v1_1);
+    return defaultOf();
 }
 
 export function method6(v0_1: string): Async<int64> {
-    return defaultOf();
+    return method7(v0_1, 0n);
 }
 
 export function closure3(unitVar: void, v0_1: string): Async<int64> {
@@ -971,29 +971,29 @@ export function closure12(v0_1: string, v1_1: int64, v2_1: Error, unitVar: void)
     }
 }
 
-export function method27(v0_1: string, v1_1: US8_$union, v2_1: US7_$union, v3: int64): Async<int64> {
+export function method27(v0_1: US6_$union, v1_1: string, v2_1: int64, v3: US8_$union, v4: US7_$union): Async<int64> {
     return singleton.Delay<int64>((): Async<int64> => singleton.TryWith<int64>(singleton.Delay<int64>((): Async<int64> => {
-        const v27_1: any = defaultOf();
-        return singleton.Using<any, int64>(v27_1, (_arg: any): Async<int64> => singleton.Return<int64>(v3));
+        const v28_1: any = defaultOf();
+        return singleton.Using<any, int64>(v28_1, (_arg: any): Async<int64> => singleton.Return<int64>(v2_1));
     }), (_arg_1: Error): Async<int64> => {
-        let v110: any;
-        const v107: boolean = (compare_1(v3, 0n) > 0) && equals(toInt64(op_Modulus(v3, 100n)), 0n);
-        return singleton.Combine<int64>(v107 ? ((v110 = ((closure12(v0_1, v3, _arg_1, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
-            const v184: Async<void> = sleep(10);
-            return singleton.Bind<void, int64>(v184, (): Async<int64> => {
-                const v197: Async<int64> = method26(v0_1, v1_1, v2_1, toInt64(op_Addition(v3, 1n)));
-                return singleton.ReturnFrom<int64>(v197);
+        let v111: any;
+        const v108: boolean = (compare_1(v2_1, 0n) > 0) && equals(toInt64(op_Modulus(v2_1, 100n)), 0n);
+        return singleton.Combine<int64>(v108 ? ((v111 = ((closure12(v1_1, v2_1, _arg_1, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
+            const v185: Async<void> = sleep(10);
+            return singleton.Bind<void, int64>(v185, (): Async<int64> => {
+                const v196: Async<int64> = method26(v0_1, v1_1, toInt64(op_Addition(v2_1, 1n)));
+                return singleton.ReturnFrom<int64>(v196);
             });
         }));
     }));
 }
 
-export function method26(v0_1: string, v1_1: US8_$union, v2_1: US7_$union, v3: int64): Async<int64> {
-    return method27(v0_1, v1_1, v2_1, v3);
+export function method26(v0_1: US6_$union, v1_1: string, v2_1: int64): Async<int64> {
+    return defaultOf();
 }
 
 export function method25(v0_1: US6_$union, v1_1: string): Async<int64> {
-    return defaultOf();
+    return method26(v0_1, v1_1, 0n);
 }
 
 export function closure11(v0_1: US6_$union, v1_1: string): Async<int64> {
@@ -1164,19 +1164,19 @@ export function method42(v0_1: string, v1_1: int64): Async<int64> {
         return singleton.Combine<int64>(v23_1 ? ((v26_1 = ((closure22(v0_1, _arg, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
             const v100: Async<void> = sleep(10);
             return singleton.Bind<void, int64>(v100, (): Async<int64> => {
-                const v113: Async<int64> = method41(v0_1, toInt64(op_Addition(v1_1, 1n)));
-                return singleton.ReturnFrom<int64>(v113);
+                const v111: Async<int64> = method41(v0_1, toInt64(op_Addition(v1_1, 1n)));
+                return singleton.ReturnFrom<int64>(v111);
             });
         }));
     }));
 }
 
 export function method41(v0_1: string, v1_1: int64): Async<int64> {
-    return method42(v0_1, v1_1);
+    return defaultOf();
 }
 
 export function method40(v0_1: string): Async<int64> {
-    return defaultOf();
+    return method41(v0_1, 0n);
 }
 
 export function closure21(unitVar: void, v0_1: string): Async<int64> {
@@ -1261,19 +1261,19 @@ export function method48(v0_1: string, v1_1: string, v2_1: int64): Async<int64> 
         return singleton.Combine<int64>(v18_1 ? ((v21_1 = ((closure25(v0_1, v1_1, _arg, undefined), undefined)), singleton.Zero())) : singleton.Zero(), singleton.Delay<int64>((): Async<int64> => {
             const v96: Async<void> = sleep(10);
             return singleton.Bind<void, int64>(v96, (): Async<int64> => {
-                const v109: Async<int64> = method47(v0_1, v1_1, toInt64(op_Addition(v2_1, 1n)));
-                return singleton.ReturnFrom<int64>(v109);
+                const v107: Async<int64> = method47(v0_1, v1_1, toInt64(op_Addition(v2_1, 1n)));
+                return singleton.ReturnFrom<int64>(v107);
             });
         }));
     }));
 }
 
 export function method47(v0_1: string, v1_1: string, v2_1: int64): Async<int64> {
-    return method48(v0_1, v1_1, v2_1);
+    return defaultOf();
 }
 
 export function method46(v0_1: string, v1_1: string): Async<int64> {
-    return defaultOf();
+    return method47(v0_1, v1_1, 0n);
 }
 
 export function closure24(v0_1: string, v1_1: string): Async<int64> {

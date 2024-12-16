@@ -9664,7 +9664,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_4b84f3add8b6bff6e502ab68cbe69e0de2e16bf62566fc94a9c85415a0aa2443/20241215-1927-2004-0945-000000c69601" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_4b84f3add8b6bff6e502ab68cbe69e0de2e16bf62566fc94a9c85415a0aa2443/20241216-0203-0922-2616-0000002ff062" / expected: '/'
 
 </pre>
 </div>
@@ -9673,7 +9673,7 @@ __assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_4b84f3add8b6
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241215-1927-2040-4063-400000fa248e" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241216-0203-0957-5799-500000db96f2" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10798,9 +10798,9 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">delete_directory_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">run_target</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -10817,8 +10817,8 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
-            <span class="n">loop</span> <span class="mi">0</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -11065,7 +11065,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_c7d91cd4f5aaf17367d96821b590831f041257a4b7dccf9b09092ad653f35168/20241215-1928-0604-9622-000000533356 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_f0bab7f684513c23b0638a358ea9095714f6e14fd57f258f3a48d6392976f4b6/20241216-0203-5460-7902-0000006b2d11 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11500,12 +11500,12 @@ __assert / actual: "LICENSE" / expected: "/home/runner/work/polyglot/polyglot/ta
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">wait_for_file_access</span> <span class="n">access</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">file_access</span><span class="p">,</span> <span class="n">file_share</span> <span class="o">=</span>
-                <span class="n">access</span>
-                <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value (AccessReadWrite, ShareRead)</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
+        <span class="n">run_target</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">file_access</span><span class="p">,</span> <span class="n">file_share</span> <span class="o">=</span>
+                    <span class="n">access</span>
+                    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value (AccessReadWrite, ShareRead)</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11529,8 +11529,8 @@ __assert / actual: "LICENSE" / expected: "/home/runner/work/polyglot/polyglot/ta
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
-            <span class="n">loop</span> <span class="mi">0</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -11654,8 +11654,8 @@ __assert / actual: "LICENSE" / expected: "/home/runner/work/polyglot/polyglot/ta
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 3
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _1
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 4
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 _2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">d</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test.txt' because it is being used by another process. }
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #8 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _4
@@ -11744,9 +11744,9 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">move_file_async</span> <span class="n">new_path</span> <span class="n">old_path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">run_target</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11764,8 +11764,8 @@ __assert_eq / actual: true / expected: true
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
-            <span class="n">loop</span> <span class="mi">0</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -11898,9 +11898,9 @@ __assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">delete_file_async</span> <span class="n">path</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">run_target</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">try_unit</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -11917,8 +11917,8 @@ __assert_eq / actual: true / expected: true
                             <span class="k">async</span><span class="o">.</span><span class="n">sleep</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
-            <span class="n">loop</span> <span class="mi">0</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
