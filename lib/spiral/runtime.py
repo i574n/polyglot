@@ -796,17 +796,17 @@ def closure16(v0_1: str, v1_1: UH0) -> UH0:
 
 
 def closure15(unit_var: None, v0_1: str) -> Callable[[UH0], UH0]:
-    def _arrow222(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
+    def _arrow223(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
         return closure16(v0_1, v)
 
-    return _arrow222
+    return _arrow223
 
 
 def method28(__unit: None=None) -> Callable[[str, UH0], UH0]:
-    def _arrow223(v: str) -> Callable[[UH0], UH0]:
+    def _arrow224(v: str) -> Callable[[UH0], UH0]:
         return closure15(None, v)
 
-    return _arrow223
+    return _arrow224
 
 
 def method29(v0_1_mut: UH0, v1_1_mut: Any, v2_1_mut: int, v3_mut: int) -> tuple[Any, int, int]:
@@ -820,15 +820,15 @@ def method29(v0_1_mut: UH0, v1_1_mut: Any, v2_1_mut: int, v3_mut: int) -> tuple[
             v6: bool = "\n" == v4
             pattern_input: tuple[int, int] = ((v2_1 + 1, 1)) if v6 else ((v2_1, v3 + 1))
             v0_1_mut = v0_1.fields[1]
-            def _arrow224(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3) -> Any:
+            def _arrow225(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3) -> Any:
                 v12: Any = StringBuilder__Clear(v1_1)
                 return v1_1
 
-            def _arrow225(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3) -> Any:
+            def _arrow226(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3) -> Any:
                 v21: Any = StringBuilder__Append_Z721C83C5(v1_1, v4)
                 return v1_1
 
-            v1_1_mut = _arrow224() if v6 else _arrow225()
+            v1_1_mut = _arrow225() if v6 else _arrow226()
             v2_1_mut = pattern_input[0]
             v3_mut = pattern_input[1]
             continue
@@ -948,10 +948,10 @@ def method31(v0_1_mut: str, v1_1_mut: int64) -> bool:
                     v11 = US9(1)
 
 
-            def _arrow226(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
+            def _arrow227(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
                 raise Exception("Option does not have a value.")
 
-            if v0_1 == (v11.fields[0] if (v11.tag == 0) else _arrow226()):
+            if v0_1 == (v11.fields[0] if (v11.tag == 0) else _arrow227()):
                 return True
 
             else: 
@@ -1065,10 +1065,10 @@ def method34(v0_1_mut: str, v1_1_mut: int64) -> bool:
 
 
 
-            def _arrow227(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
+            def _arrow228(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
                 raise Exception("Option does not have a value.")
 
-            if v0_1 == (v15.fields[0] if (v15.tag == 0) else _arrow227()):
+            if v0_1 == (v15.fields[0] if (v15.tag == 0) else _arrow228()):
                 return True
 
             else: 
@@ -1191,10 +1191,10 @@ def method37(v0_1_mut: str, v1_1_mut: str, v2_1_mut: Any, v3_mut: int, v4_mut: i
 def method25(v0_1: str) -> US6:
     _v0: (str | None) | None = None
     _v0 = some(v0_1)
-    def _arrow228(__unit: None=None, v0_1: Any=v0_1) -> str | None:
+    def _arrow229(__unit: None=None, v0_1: Any=v0_1) -> str | None:
         raise Exception("optionm\'.of_obj / _v0=None")
 
-    v7: str = default_arg(_arrow228() if (_v0 is None) else value_12(_v0), "")
+    v7: str = default_arg(_arrow229() if (_v0 is None) else value_12(_v0), "")
     v12: Any = StringBuilder__ctor_Z721C83C5(method26())
     def v15(_arg10: tuple[str, Any, int, int], v0_1: Any=v0_1) -> US7:
         return closure14(None, _arg10)
@@ -1589,10 +1589,10 @@ def closure20(unit_var: None, v0_1: Callable[[tuple[int, str, bool]], Async[None
 
 
 def method45(__unit: None=None) -> Callable[[Callable[[tuple[int, str, bool]], Async[None]]], US14]:
-    def _arrow229(v: Callable[[tuple[int, str, bool]], Async[None]]) -> US14:
+    def _arrow230(v: Callable[[tuple[int, str, bool]], Async[None]]) -> US14:
         return closure20(None, v)
 
-    return _arrow229
+    return _arrow230
 
 
 def method46(v0_1: None) -> int:
@@ -1626,49 +1626,49 @@ def closure21(v0_1: str, unit_var: None) -> None:
 
 
 def method43(v0_1: str, v1_1: CancellationToken | None, v2_1: Array[tuple[str, str]], v3: Callable[[tuple[int, str, bool]], Async[None]] | None, v4: Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, v5: bool, v6: str | None, v7: None, v8: Any, v9: bool, v10: None) -> Async[None]:
-    def _arrow239(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5, v6: Any=v6, v7: Any=v7, v8: Any=v8, v9: Any=v9, v10: Any=v10) -> Async[None]:
+    def _arrow240(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4, v5: Any=v5, v6: Any=v6, v7: Any=v7, v8: Any=v8, v9: Any=v9, v10: Any=v10) -> Async[None]:
         v724: str = method44(v10)
         v729: bool = (v724 is None) != True
-        def _arrow237(__unit: None=None) -> Async[None]:
+        def _arrow238(__unit: None=None) -> Async[None]:
             v743: US14 = default_arg(map(method45(), v3), US14(1))
-            def _arrow231(__unit: None=None) -> Async[None]:
+            def _arrow232(__unit: None=None) -> Async[None]:
                 v749: Async[None] = v743.fields[0]((method46(v7), v724, v9))
-                def _arrow230(__unit: None=None) -> Async[None]:
+                def _arrow231(__unit: None=None) -> Async[None]:
                     return singleton.Zero()
 
-                return singleton.Bind(v749, _arrow230)
+                return singleton.Bind(v749, _arrow231)
 
-            def _expr232():
+            def _expr233():
                 return singleton.Zero()
 
-            def _arrow236(__unit: None=None) -> Async[None]:
+            def _arrow237(__unit: None=None) -> Async[None]:
                 v752: str = concat("! ", *v724) if v9 else concat("> ", *v724)
-                def _arrow233(__unit: None=None) -> Async[None]:
+                def _arrow234(__unit: None=None) -> Async[None]:
                     v755: None
                     closure21(v752, None)
                     v755 = None
                     return singleton.Zero()
 
-                def _arrow234(__unit: None=None) -> Async[None]:
+                def _arrow235(__unit: None=None) -> Async[None]:
                     v800: None
                     closure10(v752, None)
                     v800 = None
                     return singleton.Zero()
 
-                def _arrow235(__unit: None=None) -> Async[None]:
+                def _arrow236(__unit: None=None) -> Async[None]:
                     v808: str = concat("\u001b[7;4m" if v9 else "", v724, *"\u001b[0m" if v9 else "")
                     return singleton.Zero()
 
-                return singleton.Combine(_arrow233() if v5 else _arrow234(), singleton.Delay(_arrow235))
+                return singleton.Combine(_arrow234() if v5 else _arrow235(), singleton.Delay(_arrow236))
 
-            return singleton.Combine(_arrow231() if (v743.tag == 0) else _expr232(), singleton.Delay(_arrow236))
+            return singleton.Combine(_arrow232() if (v743.tag == 0) else _expr233(), singleton.Delay(_arrow237))
 
-        def _arrow238(__unit: None=None) -> Async[None]:
+        def _arrow239(__unit: None=None) -> Async[None]:
             return singleton.Zero()
 
-        return singleton.Combine(_arrow237() if v729 else singleton.Zero(), singleton.Delay(_arrow238))
+        return singleton.Combine(_arrow238() if v729 else singleton.Zero(), singleton.Delay(_arrow239))
 
-    return singleton.Delay(_arrow239)
+    return singleton.Delay(_arrow240)
 
 
 def method42(v0_1: str, v1_1: CancellationToken | None, v2_1: Array[tuple[str, str]], v3: Callable[[tuple[int, str, bool]], Async[None]] | None, v4: Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, v5: bool, v6: str | None, v7: None, v8: Any, v9: bool, v10: None) -> Async[None]:
@@ -2366,13 +2366,13 @@ def method60(v0_1_mut: UH2, v1_1_mut: str, v2_1_mut: Any, v3_mut: int, v4_mut: i
                 v304: US8
                 if v277.tag == 0:
                     v284: FSharpList[str] = method67(v277.fields[0], empty())
-                    def _arrow251(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> IEnumerable_1[str]:
-                        def _arrow250(i: int) -> str:
+                    def _arrow261(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> IEnumerable_1[str]:
+                        def _arrow260(i: int) -> str:
                             return item(i, v284)
 
-                        return map_1(_arrow250, range_big_int(0, 1, length(v284) - 1))
+                        return map_1(_arrow260, range_big_int(0, 1, length(v284) - 1))
 
-                    v304 = US8(0, join("", delay(_arrow251)), v277.fields[1], v277.fields[2], v277.fields[3], v277.fields[4])
+                    v304 = US8(0, join("", delay(_arrow261)), v277.fields[1], v277.fields[2], v277.fields[3], v277.fields[4])
 
                 else: 
                     v304 = US8(1, v277.fields[0])
@@ -2435,13 +2435,13 @@ def method60(v0_1_mut: UH2, v1_1_mut: str, v2_1_mut: Any, v3_mut: int, v4_mut: i
                 v490: US17 = method68(UH2(0), v479.fields[1], v479.fields[2], v479.fields[3], v479.fields[4]) if (v479.tag == 0) else US17(1, v479.fields[0])
                 if v490.tag == 0:
                     v497: FSharpList[str] = method67(v490.fields[0], empty())
-                    def _arrow253(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> IEnumerable_1[str]:
-                        def _arrow252(i_1: int) -> str:
+                    def _arrow266(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3: Any=v3, v4: Any=v4) -> IEnumerable_1[str]:
+                        def _arrow265(i_1: int) -> str:
                             return item(i_1, v497)
 
-                        return map_1(_arrow252, range_big_int(0, 1, length(v497) - 1))
+                        return map_1(_arrow265, range_big_int(0, 1, length(v497) - 1))
 
-                    v521 = US8(0, join("", delay(_arrow253)), v490.fields[1], v490.fields[2], v490.fields[3], v490.fields[4])
+                    v521 = US8(0, join("", delay(_arrow266)), v490.fields[1], v490.fields[2], v490.fields[3], v490.fields[4])
 
                 else: 
                     v521 = US8(1, v490.fields[0])
@@ -2484,10 +2484,10 @@ def method60(v0_1_mut: UH2, v1_1_mut: str, v2_1_mut: Any, v3_mut: int, v4_mut: i
 def method59(v0_1: str) -> US16:
     _v0: (str | None) | None = None
     _v0 = some(v0_1)
-    def _arrow254(__unit: None=None, v0_1: Any=v0_1) -> str | None:
+    def _arrow270(__unit: None=None, v0_1: Any=v0_1) -> str | None:
         raise Exception("optionm\'.of_obj / _v0=None")
 
-    v18_1: US17 = method60(UH2(0), default_arg(_arrow254() if (_v0 is None) else value_12(_v0), ""), StringBuilder__ctor_Z721C83C5(method26()), 1, 1)
+    v18_1: US17 = method60(UH2(0), default_arg(_arrow270() if (_v0 is None) else value_12(_v0), ""), StringBuilder__ctor_Z721C83C5(method26()), 1, 1)
     if v18_1.tag == 0:
         return US16(0, to_array(method67(v18_1.fields[0], empty())))
 
@@ -2508,64 +2508,64 @@ def closure28(unit_var: None, v0_1: str) -> FSharpResult_2[Array[str], str]:
 
 v0: None = None
 
-def _arrow255(__unit: None=None) -> None:
+def _arrow271(__unit: None=None) -> None:
     closure0(None, None)
 
 
-v1: Callable[[], None] = _arrow255
+v1: Callable[[], None] = _arrow271
 
-def _expr256():
+def _expr272():
     v1(None)
     return v0
 
 
-v2: None = _expr256()
+v2: None = _expr272()
 
-def _arrow257(__unit: None=None) -> None:
+def _arrow273(__unit: None=None) -> None:
     closure3(None, None)
 
 
-v16: Callable[[], None] = _arrow257
+v16: Callable[[], None] = _arrow273
 
 def current_process_kill(__unit: None=None) -> None:
     v16(None)
 
 
-def _arrow258(v: str) -> Async[tuple[int, str]]:
+def _arrow274(v: str) -> Async[tuple[int, str]]:
     return closure13(None, v)
 
 
-v17: Callable[[str], Async[tuple[int, str]]] = _arrow258
+v17: Callable[[str], Async[tuple[int, str]]] = _arrow274
 
 def execute_async(x: str) -> Async[tuple[int, str]]:
     return v17(x)
 
 
-def _arrow259(_arg10: tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
+def _arrow275(_arg10: tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
     return closure26(None, _arg10)
 
 
-v18: Callable[[tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]], Async[tuple[int, str]]] = _arrow259
+v18: Callable[[tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]], Async[tuple[int, str]]] = _arrow275
 
 def execute_with_options_async(x: tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
     return v18(x)
 
 
-def _arrow260(v: Callable[[Heap0], Heap0]) -> tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]:
+def _arrow276(v: Callable[[Heap0], Heap0]) -> tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]:
     return closure27(None, v)
 
 
-v19: Callable[[Callable[[Heap0], Heap0]], tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]] = _arrow260
+v19: Callable[[Callable[[Heap0], Heap0]], tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]] = _arrow276
 
 def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[str, CancellationToken | None, Array[tuple[str, str]], Callable[[tuple[int, str, bool]], Async[None]] | None, Callable[[std_sync_arc_1[std_sync_mutex_1[std_process_child_stdin]]], None] | None, bool, str | None]:
     return v19(x)
 
 
-def _arrow261(v: str) -> FSharpResult_2[Array[str], str]:
+def _arrow277(v: str) -> FSharpResult_2[Array[str], str]:
     return closure28(None, v)
 
 
-v20: Callable[[str], FSharpResult_2[Array[str], str]] = _arrow261
+v20: Callable[[str], FSharpResult_2[Array[str], str]] = _arrow277
 
 def split_args(x: str) -> FSharpResult_2[Array[str], str]:
     return v20(x)
