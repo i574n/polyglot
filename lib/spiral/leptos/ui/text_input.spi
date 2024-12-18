@@ -1,10 +1,11 @@
+open rust.rust_operators
 open sm'_operators
 open leptos
 open rust
 
-inl render forall t. (class : () -> string) props getter setter : _ (_ input) =
-    inl getter : () -> t = join getter
-    inl setter : sm'.std_string -> () = join setter
+inl render forall t. (class : () -> string) props (getter : () -> t) setter : _ (_ input) =
+    inl getter = getter |> rust.func0_from
+    inl setter : rust.func1 sm'.std_string () = setter |> rust.func1_from
     inl class = class |> rust.emit
     input
         ([

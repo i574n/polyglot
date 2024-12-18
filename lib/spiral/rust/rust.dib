@@ -807,6 +807,41 @@ inl func0_move forall t. (fn : func0 t) : t =
 
 #!markdown
 
+### func0_from
+
+#!spiral
+
+inl func0_from forall t'. (fn : () -> t') : func0 t' =
+    (!\($'$"true; let getter = Func0::from(move || {{ //"') : bool) |> ignore
+    inl result = fn ()
+    (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
+    (!\($'$"*/ }}); //"') : bool) |> ignore
+    !\($'$"getter"')
+
+#!markdown
+
+### func1_from
+
+#!spiral
+
+inl func1_from forall t' u. (fn : t' -> u) : func1 t' u =
+    (!\($'$"true; let setter = Func1::from(move |value| {{ //"') : bool) |> ignore
+    inl result = fn !\($'$"value"')
+    (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
+    (!\($'$"*/ }}); //"') : bool) |> ignore
+    !\($'$"setter"')
+
+#!markdown
+
+### new_func0
+
+#!spiral
+
+inl new_func0 forall t. (fn : () -> t) : func0 t =
+    !\\(fn, $'"Func0::new(|| $0())"')
+
+#!markdown
+
 ### move
 
 #!spiral

@@ -78,7 +78,7 @@ inl render props_fn : _ _ =
                                             | item, Some account when item = account =>
                                                 check.render (fun () => "h-5 w-5") []
                                                 |> leptos.element_to_view
-                                            | _ => ;[] |> leptos.views_to_view
+                                            | _ => [] |> leptos.view_list_to_view
 
                                             item
                                             |> leptos.text_view

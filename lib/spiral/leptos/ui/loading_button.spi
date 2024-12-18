@@ -17,5 +17,5 @@ inl render label loading' (on_click : () -> ()) =
 
             if loading' |> rust.func0_eval
             then loading.render (fun () => "[width:15px] [height:14px]") |> leptos.element_to_view
-            else ;[] |> leptos.views_to_view
+            else [] |> leptos.view_list_to_view
         ]
