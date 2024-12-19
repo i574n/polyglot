@@ -938,7 +938,7 @@ inl from_fragment_unbox (fragment : fragment) =
 #!spiral
 
 inl element_to_view_trait (macro : view' (html_element _)) : rust.impl into_view =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::prelude::view\! { {!macro} }"')
 
 #!markdown
@@ -948,8 +948,8 @@ inl element_to_view_trait (macro : view' (html_element _)) : rust.impl into_view
 #!spiral
 
 inl macro_to_view_trait (macro : string) : rust.impl into_view =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ClassAttribute;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ClassAttribute;\n//\"\n#endif"
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 #!markdown
@@ -959,7 +959,7 @@ inl macro_to_view_trait (macro : string) : rust.impl into_view =
 #!spiral
 
 inl macro_to_fragment (macro : string) : fragment =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 #!markdown
@@ -1627,7 +1627,7 @@ inl move_to_fragment fn =
 #!spiral
 
 inl tag_raw tag props children =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::*;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::*;\n//\"\n#endif"
     inl tag : string = tag
     inl props = props |> concat_props
     inl children =
@@ -1694,10 +1694,10 @@ inl for forall t u (signal : * -> *).
     (children' : t -> fragment)
     : view
     =
-    inl signal = join signal
     signal |> typecheck_signal
-    inl key_fn = join key_fn
-    inl children' = join children'
+    inl signal = signal |> rust.emit
+    inl key_fn = key_fn |> rust.func1_from
+    inl children' = (children' >> fragment_to_view) |> rust.func1_from
     for [
         $'"each=!signal"'
         $'"key=move |x| !key_fn(x.to_owned())"'

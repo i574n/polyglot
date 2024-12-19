@@ -6,9 +6,32 @@ open leptos
 inl render label loading' (on_click : () -> ()) =
     inl loading' = loading' |> rust.move
     inl loading'' = join loading'
-    !\\(on_click, $'"let !on_click = $0"')
+    (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+    inl class =
+        [
+            $'"flex"'
+            $'"gap-[10px]"'
+            $'"[align-items:center]"'
+            $'"inline-block"'
+            $'"rounded"'
+            $'"border"'
+            $'"border-gray-400"'
+            $'"hover:bg-gray-400"'
+            $'"px-4"'
+            $'"py-1"'
+            $'"text-sm"'
+            $'"font-medium"'
+            $'"text-gray-900"'
+            $'"bg-transparent"'
+            $'"hover:text-gray-600"'
+            $'"focus:outline-none"'
+            $'"focus:ring"'
+            $'"active:text-gray-500"'
+        ]
+        |> sm'.concat_list " "
+        |> sm'.to_std_string
     leptos.button [
-        $'"class=\\\"flex gap-[10px] [align-items:center] inline-block rounded border border-gray-400 hover:bg-gray-400 px-4 py-1 text-sm font-medium text-gray-900 bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500\\\""'
+        $'"class=!class"'
         $'"prop:disabled=move || !loading''()"'
         $'"on:click=move |_| !on_click()"'
     ] fun () =>

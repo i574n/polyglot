@@ -41,7 +41,7 @@ inl render props_fn : _ _ =
                     |> optionm.map leptos.signal_get
                     |> optionm'.default_value (;[] |> am'.to_vec)
                 match data |> am'.from_vec with
-                | (a ;[] : _ i32 _) =>
+                | (a ;[] : _ int _) =>
                     "No data"
                     |> error_label.render
                     |> leptos.element_to_fragment
@@ -59,10 +59,34 @@ inl render props_fn : _ _ =
                                 inl on_click = fun () =>
                                     inl item = item |> sm'.from_std_string
                                     props.select (i, item)
-                                !\\(on_click, $'"let !on_click = $0"')
+                                (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+                                inl class =
+                                    [
+                                        $'"flex"'
+                                        $'"flex-1"'
+                                        $'"gap-[10px]"'
+                                        $'"[align-items:center]"'
+                                        $'"[justify-content:center]"'
+                                        $'"inline-block"'
+                                        $'"rounded"'
+                                        $'"border"'
+                                        $'"border-gray-400"'
+                                        $'"hover:bg-gray-100"'
+                                        $'"px-[22px]"'
+                                        $'"py-1"'
+                                        $'"text-sm"'
+                                        $'"text-gray-900"'
+                                        $'"bg-gray-200"'
+                                        $'"hover:text-gray-600"'
+                                        $'"focus:outline-none"'
+                                        $'"focus:ring"'
+                                        $'"active:text-gray-500"'
+                                    ]
+                                    |> sm'.concat_list " "
+                                    |> sm'.to_std_string
                                 :>[
                                     leptos.button [
-                                        $'"class=\\\"flex flex-1 gap-[10px] [align-items:center] [justify-content:center] inline-block rounded border border-gray-400 hover:bg-gray-100 px-[22px] py-1 text-sm text-gray-900 bg-gray-200 hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500\\\""'
+                                        $'"class=!class"'
                                         $'"on:click=move |_| !on_click()"'
                                         $'"aria-label=!item'"'
                                     ] fun () =>

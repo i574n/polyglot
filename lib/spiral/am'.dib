@@ -827,14 +827,12 @@ instance iter_collect'' vec = fun (iter : into_iterator (t (u v))) =>
 #!spiral
 
 inl new_vec forall t. (items : list t) : vec t =
-    join
-        inl items =
-            (items, ("", 0i32))
-            ||> listm.foldBack fun (x : t) (acc, i) =>
-                inl x = join x
-                $'"!x"' +. (if i = 0 then "" else ", ") +. acc, i + 1
-            |> fst
-        !\($'"vec\![" + !items + "]"')
+    inl items =
+        (items, ("", 0i32))
+        ||> listm.foldBack fun (x : t) (acc, i) =>
+            $'"!x"' +. (if i = 0 then "" else ", ") +. acc, i + 1
+        |> fst
+    !\($'"vec\![" + !items + "]"')
 
 #!spiral
 

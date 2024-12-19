@@ -4,12 +4,23 @@ open leptos
 
 inl render (id : () -> string) get_value (on_change : event -> ()) : _ (_ label) =
     inl id' = id >> sm'.to_std_string
-    !\\(id', $'"let !id' = $0"')
+    (!\\(id', $'"true; let !id' = $0; //"') : bool) |> ignore
+    inl class =
+        [
+            $'"block"'
+            $'"relative"'
+            $'"h-8"'
+            $'"w-14"'
+            $'"cursor-pointer"'
+            $'"[-webkit-tap-highlight-color:_transparent]"'
+        ]
+        |> sm'.concat_list " "
+        |> sm'.to_std_string
     label [
         $'"for=move || !id'()"'
-        $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
+        $'"class=!class"'
     ] fun () =>
-        !\\(on_change, $'"let !on_change = $0"')
+        (!\\(on_change, $'"true; let !on_change = $0; //"') : bool) |> ignore
         inl get_value : () -> bool = join get_value
         inl id = join id >> sm'.to_std_string
         :>[
