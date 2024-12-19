@@ -54,6 +54,7 @@ pub mod Sm {
     pub struct Mut0 {
         pub l0: MutCell<i32>,
         pub l1: MutCell<string>,
+        pub l2: MutCell<string>,
     }
     impl core::fmt::Display for Mut0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -373,22 +374,28 @@ pub mod Sm {
         let v4_1: LrcPtr<Sm::Mut0> = LrcPtr::new(Sm::Mut0 {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
+            l2: MutCell::new(string("")),
         });
         while Sm::method7(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
-            let v9_1: string = append(
-                (append(
-                    (append((v4_1.l1.get().clone()), (v1_1[v6_1].clone()))),
-                    (v0_1.clone()),
-                )),
+            let v9_1: i32 = ((v6_1.wrapping_neg()) + (v2_1)) - 1_i32;
+            let matchValue: string = v4_1.l1.get().clone();
+            let matchValue_1: string = v4_1.l2.get().clone();
+            let v13_1: string = append(
+                (append((append((v1_1[v9_1].clone()), (matchValue_1))), (matchValue))),
                 string(""),
             );
-            let v10_1: i32 = (v6_1) + 1_i32;
-            v4_1.l0.set(v10_1);
-            v4_1.l1.set(v9_1);
+            let v14_1: i32 = (v6_1) + 1_i32;
+            v4_1.l0.set(v14_1);
+            v4_1.l1.set(v13_1);
+            v4_1.l2.set(v0_1.clone());
             ()
         }
-        v4_1.l1.get().clone()
+        {
+            let matchValue_2: string = v4_1.l1.get().clone();
+            let matchValue_3: string = v4_1.l2.get().clone();
+            matchValue_2
+        }
     }
     pub fn closure42(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
@@ -602,7 +609,7 @@ pub mod Sm {
         v19.get_or_init(|| Func1::new(move |v: string| Sm::closure42((), v)))
             .clone()
     }
-    pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
+    pub fn concat_array(x: string) -> Func1<Array<string>, string> {
         (Sm::v19())(x)
     }
     pub fn v20() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {

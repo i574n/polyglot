@@ -75,27 +75,29 @@ inl prim x = real
 inl format forall t. (x : t) : string =
     real format_real `t x
 
-/// ### concat_array_trailing
-inl concat_array_trailing (separator : string) (input : a int string) =
-    ("", input)
-    ||> am.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
+/// ### concat_array
+inl concat_array (separator : string) (input : a int string) =
+    (input, { acc = ""; sep = "" })
+    ||> am.foldBack fun (x : string) { acc sep } =>
+            { acc = $'!x + !sep + !acc + ""' : string; sep = separator }
+    |> fun { acc } => acc
 
-/// ### concat_list_trailing
-inl concat_list_trailing separator input =
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
+/// ### concat_list
+inl concat_list separator input =
+    (input, { acc = ""; sep = "" })
+    ||> listm.foldBack fun (x : string) { acc sep } =>
+            { acc = $'!x + !sep + !acc + ""' : string; sep = separator }
+    |> fun { acc } => acc
 
-/// ### concat_list_heap_trailing
-inl concat_list_heap_trailing separator input =
-    inl separator = join separator
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
+/// ### concat_list_interpolation
+inl concat_list_interpolation separator input =
+    (input, { acc = ""; sep = "" })
+    ||> listm.foldBack fun (x : string) { acc sep } =>
         backend_switch {
-            Fsharp = fun () => $'$"{!acc}{!x}{!separator}"' : string
-            Python = fun () => $'f"{!acc}{!x}{!separator}"' : string
+            Fsharp = fun () => { acc = $'$"{!x}{!sep}{!acc}"' : string; sep = separator }
+            Python = fun () => { acc = $'f"{!x}{!sep}{!acc}"' : string; sep = separator }
         }
+    |> fun { acc } => acc
 
 /// ### ellipsis
 inl ellipsis (max : i32) (s : string) =
@@ -945,7 +947,7 @@ inl main () =
     $'let ellipsis x = !ellipsis x' : ()
     $'let ellipsis_end x = !ellipsis_end x' : ()
     $'let format_exception x = !format_exception x' : ()
-    $'let concat_array_trailing x = !concat_array_trailing x' : ()
+    $'let concat_array x = !concat_array x' : ()
     inl concat a (b : seq.seq' string) = concat a b
     $'let concat x = !concat x' : ()
     $'let join\' x = !join' x' : ()

@@ -307,7 +307,8 @@ pub mod Crypto {
                         })
                         .collect::<Vec<_>>();
                     let v91: Vec<string> = _vec_map;
-                    let v93: Array<string> = fable_library_rust::NativeArray_::array_from(v91);
+                    let v93: Array<string> =
+                        fable_library_rust::NativeArray_::array_from(v91.clone());
                     let _v94: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
                         let v93 = v93.clone();
                         move || {

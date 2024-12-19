@@ -419,6 +419,34 @@ inl func0_move forall t. (fn : func0 t) : t =
     inl fn = join fn
     !\($'"(move || !fn())()"')
 
+/// ### func0_from
+inl func0_from forall t. (fn : () -> t) : func0 t =
+    (!\($'$"true; let getter = Func0::from(move || {{ //"') : bool) |> ignore
+    inl result = fn ()
+    (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
+    (!\($'$"*/ }}); //"') : bool) |> ignore
+    !\($'$"getter"')
+
+/// ### func1_from
+inl func1_from forall t u. (fn : t -> u) : func1 t u =
+    inl result' : unit = $'()'
+    (!\($'$"true; let _!result' = Func1::from(move |value| {{ //"') : bool) |> ignore
+    inl result = fn !\($'$"value"')
+    inl is_unit : bool =
+        real
+            typecase u with
+            | () => true
+            | _ => false
+    if is_unit
+    then (!\($'$"true; /*"') : bool) |> ignore
+    else (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
+    (!\($'$"*/ }}); //"') : bool) |> ignore
+    !\($'$"_!result'"')
+
+/// ### new_func0
+inl new_func0 forall t. (fn : () -> t) : func0 t =
+    !\\(fn, $'"Func0::new(|| $0())"')
+
 /// ### move
 inl move forall t. (fn : () -> t) : func0 t =
     !\\(fn, $'"Func0::new(move || $0())"')

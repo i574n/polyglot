@@ -1,17 +1,16 @@
 pub mod Sm {
     use super::*;
-    use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::List_::cons;
     use fable_library_rust::List_::empty;
     use fable_library_rust::List_::foldBack;
     use fable_library_rust::List_::ofArray as ofArray_1;
     use fable_library_rust::List_::toArray as toArray_1;
     use fable_library_rust::List_::List;
-    use fable_library_rust::NativeArray_::count;
+    use fable_library_rust::NativeArray_::get_Count;
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_init;
     use fable_library_rust::NativeArray_::Array;
-    use fable_library_rust::Native_::defaultOf;
+    use fable_library_rust::Native_::getZero;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::unbox;
     use fable_library_rust::Native_::Func1;
@@ -23,7 +22,7 @@ pub mod Sm {
     use fable_library_rust::Seq_::toArray;
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::contains as contains_1;
-    use fable_library_rust::String_::endsWith;
+    use fable_library_rust::String_::endsWith3;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::join;
@@ -33,7 +32,7 @@ pub mod Sm {
     use fable_library_rust::String_::replace as replace_1;
     use fable_library_rust::String_::split as split_1;
     use fable_library_rust::String_::sprintf;
-    use fable_library_rust::String_::startsWith;
+    use fable_library_rust::String_::startsWith3;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::substring2;
     use fable_library_rust::String_::toLower;
@@ -41,32 +40,34 @@ pub mod Sm {
     use fable_library_rust::String_::trim as trim_1;
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
+    use fable_library_rust::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::System::Exception;
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub enum UH0 {
         UH0_0,
         UH0_1(char, LrcPtr<Sm::UH0>),
     }
-    impl core::fmt::Display for Sm::UH0 {
+    impl core::fmt::Display for UH0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut0 {
         pub l0: MutCell<i32>,
         pub l1: MutCell<string>,
+        pub l2: MutCell<string>,
     }
-    impl core::fmt::Display for Sm::Mut0 {
+    impl core::fmt::Display for Mut0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
     pub struct Mut1 {
         pub l0: MutCell<i32>,
     }
-    impl core::fmt::Display for Sm::Mut1 {
+    impl core::fmt::Display for Mut1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -81,7 +82,7 @@ pub mod Sm {
         })
     }
     pub fn closure3(v0_1: string, v1_1: string) -> bool {
-        endsWith(v1_1, v0_1, false)
+        endsWith3(v1_1, v0_1, false)
     }
     pub fn closure2(unitVar: (), v0_1: string) -> Func1<string, bool> {
         Func1::new({
@@ -141,7 +142,7 @@ pub mod Sm {
         v0_1
     }
     pub fn method0(v0_1: string, v1_1: string, v2_1: string) -> string {
-        unbox::<string>(&defaultOf())
+        unbox::<string>(&getZero())
     }
     pub fn closure15(v0_1: string, v1_1: string, v2_1: string) -> string {
         Sm::method0(v0_1, v1_1, v2_1)
@@ -196,7 +197,7 @@ pub mod Sm {
         split_1(
             v1_1,
             join(
-                if v21_1.clone() == string("\n") {
+                if (v21_1.clone()) == string("\n") {
                     Sm::method3(v21_1.clone())
                 } else {
                     v21_1
@@ -214,7 +215,7 @@ pub mod Sm {
         })
     }
     pub fn closure24(v0_1: string, v1_1: string) -> bool {
-        startsWith(v1_1, v0_1, false)
+        startsWith3(v1_1, v0_1, false)
     }
     pub fn closure23(unitVar: (), v0_1: string) -> Func1<string, bool> {
         Func1::new({
@@ -271,7 +272,8 @@ pub mod Sm {
                     match v0_1.as_ref() {
                         Sm::UH0::UH0_1(_, x) => x.clone(),
                         _ => unreachable!(),
-                    },
+                    }
+                    .clone(),
                     v1_1.clone(),
                 ),
             ),
@@ -308,11 +310,11 @@ pub mod Sm {
         })
     }
     pub fn closure38(v0_1: i32, v1_1: string) -> string {
-        if length(v1_1.clone()) <= v0_1 {
+        if (length(v1_1.clone())) <= (v0_1) {
             v1_1.clone()
         } else {
             append(
-                getSlice(v1_1, Some(0_i32), Some(v0_1 - 1_i32)),
+                (getSlice(v1_1, Some(0_i32), Some((v0_1) - 1_i32))),
                 string("..."),
             )
         }
@@ -325,10 +327,10 @@ pub mod Sm {
     }
     pub fn method6(v0_1: i64, v1_1: string) -> string {
         let v2_1: i64 = length(v1_1.clone()) as i64;
-        if v2_1 <= v0_1 {
+        if (v2_1) <= (v0_1) {
             v1_1.clone()
         } else {
-            let v8_1: f64 = v0_1 as f64 / 2.0_f64;
+            let v8_1: f64 = (v0_1 as f64) / 2.0_f64;
             let v12_1: i64 = v8_1.ceil() as i64;
             let v18_1: i64 = v8_1.floor() as i64;
             join(
@@ -337,13 +339,13 @@ pub mod Sm {
                     getSlice(
                         v1_1.clone(),
                         Some(0_i64 as i32),
-                        Some((v12_1 - 1_i64) as i32),
+                        Some(((v12_1) - 1_i64) as i32),
                     ),
                     string("..."),
                     getSlice(
                         v1_1,
-                        Some((v2_1 - v18_1) as i32),
-                        Some((v2_1 - 1_i64) as i32),
+                        Some(((v2_1) - (v18_1)) as i32),
+                        Some(((v2_1) - 1_i64) as i32),
                     ),
                 ]))),
             )
@@ -362,29 +364,35 @@ pub mod Sm {
         sprintf!("{:?}", v0_1)
     }
     pub fn method7(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
-        v1_1.l0.get().clone() < v0_1
+        (v1_1.l0.get().clone()) < (v0_1)
     }
     pub fn closure43(v0_1: string, v1_1: Array<string>) -> string {
-        let v2_1: i32 = count(v1_1.clone());
+        let v2_1: i32 = get_Count(v1_1.clone());
         let v4_1: LrcPtr<Sm::Mut0> = LrcPtr::new(Sm::Mut0 {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
+            l2: MutCell::new(string("")),
         });
         while Sm::method7(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
-            let v9_1: string = append(
-                append(
-                    append(v4_1.l1.get().clone(), v1_1[v6_1].clone()),
-                    v0_1.clone(),
-                ),
+            let v9_1: i32 = ((v6_1.wrapping_neg()) + (v2_1)) - 1_i32;
+            let matchValue: string = v4_1.l1.get().clone();
+            let matchValue_1: string = v4_1.l2.get().clone();
+            let v13_1: string = append(
+                (append((append((v1_1[v9_1].clone()), (matchValue_1))), (matchValue))),
                 string(""),
             );
-            let v10_1: i32 = v6_1 + 1_i32;
-            v4_1.l0.set(v10_1);
-            v4_1.l1.set(v9_1);
+            let v14_1: i32 = (v6_1) + 1_i32;
+            v4_1.l0.set(v14_1);
+            v4_1.l1.set(v13_1);
+            v4_1.l2.set(v0_1.clone());
             ()
         }
-        v4_1.l1.get().clone()
+        {
+            let matchValue_2: string = v4_1.l1.get().clone();
+            let matchValue_3: string = v4_1.l2.get().clone();
+            matchValue_2
+        }
     }
     pub fn closure42(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
@@ -394,7 +402,7 @@ pub mod Sm {
     }
     pub fn closure45(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
         join(
-            if v0_1.clone() == string("\n") {
+            if (v0_1.clone()) == string("\n") {
                 Sm::method3(v0_1.clone())
             } else {
                 v0_1
@@ -421,7 +429,7 @@ pub mod Sm {
         })
     }
     pub fn method8(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
-        v1_1.l0.get().clone() < v0_1
+        (v1_1.l0.get().clone()) < (v0_1)
     }
     pub fn closure48(unitVar: (), v0_1: string) -> Array<char> {
         let v1_1: i32 = length(v0_1.clone());
@@ -434,7 +442,7 @@ pub mod Sm {
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;
             {
-                let v7_1: i32 = v5_1 + 1_i32;
+                let v7_1: i32 = (v5_1) + 1_i32;
                 v3_1.l0.set(v7_1);
                 ()
             }
@@ -598,7 +606,7 @@ pub mod Sm {
         v19.get_or_init(|| Func1::new(move |v: string| Sm::closure42((), v)))
             .clone()
     }
-    pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
+    pub fn concat_array(x: string) -> Func1<Array<string>, string> {
         (Sm::v19())(x)
     }
     pub fn v20() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {

@@ -27,7 +27,7 @@ type Str = string
 type UH0 =
     | UH0_0
     | UH0_1 of char * UH0
-and Mut0 = {mutable l0 : int32; mutable l1 : string}
+and Mut0 = {mutable l0 : int32; mutable l1 : string; mutable l2 : string}
 and Mut1 = {mutable l0 : int32}
 let rec closure1 (v0 : string) (v1 : string) : bool =
     let v2 : bool = v1.Contains v0 
@@ -421,18 +421,22 @@ and method7 (v0 : int32, v1 : Mut0) : bool =
 and closure43 (v0 : string) (v1 : (string [])) : string =
     let v2 : int32 = v1.Length
     let v3 : string = ""
-    let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
+    let v4 : Mut0 = {l0 = 0; l1 = v3; l2 = v3} : Mut0
     while method7(v2, v4) do
         let v6 : int32 = v4.l0
-        let v7 : string = v4.l1
-        let v8 : string = v1.[int v6]
-        let v9 : string = v7 + v8 + v0 + ""
-        let v10 : int32 = v6 + 1
-        v4.l0 <- v10
-        v4.l1 <- v9
+        let v7 : int32 =  -v6
+        let v8 : int32 = v7 + v2
+        let v9 : int32 = v8 - 1
+        let struct (v10 : string, v11 : string) = v4.l1, v4.l2
+        let v12 : string = v1.[int v9]
+        let v13 : string = v12 + v11 + v10 + ""
+        let v14 : int32 = v6 + 1
+        v4.l0 <- v14
+        v4.l1 <- v13
+        v4.l2 <- v0
         ()
-    let v11 : string = v4.l1
-    v11
+    let struct (v15 : string, v16 : string) = v4.l1, v4.l2
+    v15
 and closure42 () (v0 : string) : ((string []) -> string) =
     closure43(v0)
 and closure45 (v0 : string) (v1 : string seq) : string =
@@ -507,7 +511,7 @@ let ellipsis_end x = v17 x
 let v18 : (exn -> string) = closure41()
 let format_exception x = v18 x
 let v19 : (string -> ((string []) -> string)) = closure42()
-let concat_array_trailing x = v19 x
+let concat_array x = v19 x
 let v20 : (string -> (string seq -> string)) = closure44()
 let concat x = v20 x
 let v21 : (string -> ((string []) -> string)) = closure46()

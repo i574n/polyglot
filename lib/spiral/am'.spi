@@ -145,11 +145,11 @@ nominal vec t =
 
 /// ### from_vec
 inl from_vec forall dim el. (vec : vec el) : a dim el =
-    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0.clone())"')
 
 /// ### from_vec_base
 inl from_vec_base forall el. (vec : vec el) : array_base el =
-    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0.clone())"')
 
 /// ### to_vec
 inl to_vec forall t. (ab : array_base t) : vec t =
@@ -394,7 +394,6 @@ inl new_vec forall t. (items : list t) : vec t =
     inl items =
         (items, ("", 0i32))
         ||> listm.foldBack fun (x : t) (acc, i) =>
-            inl x = join x
             $'"!x"' +. (if i = 0 then "" else ", ") +. acc, i + 1
         |> fst
     !\($'"vec\![" + !items + "]"')

@@ -128,11 +128,11 @@ let format_real forall t. (x : t) : string =
 
 /// ### format
 
-/// ### concat_array_trailing
+/// ### concat_array
 
-/// ### concat_list_trailing
+/// ### concat_list
 
-/// ### concat_list_heap_trailing
+/// ### concat_list_interpolation
 
 /// ### ellipsis
 

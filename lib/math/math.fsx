@@ -51,7 +51,7 @@ use pyo3::prelude::PyAnyMethods;
 #endif
 type pyo3_PyAny = class end
 type Mut0 = {mutable l0 : int32}
-and Mut1 = {mutable l0 : int32; mutable l1 : string}
+and Mut1 = {mutable l0 : int32; mutable l1 : string; mutable l2 : string}
 and Mut2 = {mutable l0 : int32; mutable l1 : num_complex_Complex<float>}
 and [<Struct>] US0 =
     | US0_0 of f0_0 : num_complex_Complex<float>
@@ -75,19 +75,23 @@ and method6 (v0 : int32, v1 : Mut1) : bool =
 and method5 (v0 : (string [])) : string =
     let v1 : int32 = v0.Length
     let v2 : string = ""
-    let v3 : Mut1 = {l0 = 0; l1 = v2} : Mut1
+    let v3 : Mut1 = {l0 = 0; l1 = v2; l2 = v2} : Mut1
     while method6(v1, v3) do
         let v5 : int32 = v3.l0
-        let v6 : string = v3.l1
-        let v7 : string = v0.[int v5]
-        let v8 : string = "\n"
-        let v9 : string = v6 + v7 + v8 + ""
-        let v10 : int32 = v5 + 1
-        v3.l0 <- v10
-        v3.l1 <- v9
+        let v6 : int32 =  -v5
+        let v7 : int32 = v6 + v1
+        let v8 : int32 = v7 - 1
+        let struct (v9 : string, v10 : string) = v3.l1, v3.l2
+        let v11 : string = v0.[int v8]
+        let v12 : string = v11 + v10 + v9 + ""
+        let v13 : int32 = v5 + 1
+        let v14 : string = "\n"
+        v3.l0 <- v13
+        v3.l1 <- v12
+        v3.l2 <- v14
         ()
-    let v11 : string = v3.l1
-    v11
+    let struct (v15 : string, v16 : string) = v3.l1, v3.l2
+    v15
 and method7 (v0 : pyo3_Python) : pyo3_Python =
     v0
 and method8 () : string =

@@ -8551,7 +8551,7 @@ __assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="concat_array_trailing">concat_array_trailing<a class="anchor-link" href="#concat_array_trailing">¶</a></h3>
+<h3 id="concat_array">concat_array<a class="anchor-link" href="#concat_array">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8563,10 +8563,11 @@ __assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_array_trailing</span> <span class="p">(</span><span class="n">separator</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">int</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="err">$</span><span class="s1">'!acc + !x + !separator + ""'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_array</span> <span class="p">(</span><span class="n">separator</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">int</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+    <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">""</span> <span class="p">})</span>
+    <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span> <span class="n">acc</span> <span class="n">sep</span> <span class="p">}</span> <span class="o">=&gt;</span>
+            <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'!x + !sep + !acc + ""'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">separator</span> <span class="p">}</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">{</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="n">acc</span>
 </pre></div>
 </div>
 </div>
@@ -8586,6 +8587,7 @@ __assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
 <span class="p">;[</span>
     <span class="s2">"1"</span>
@@ -8593,9 +8595,9 @@ __assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3
     <span class="s2">"3"</span>
 <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_array_trailing</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_array</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">code</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3"</span>
 </pre></div>
 </div>
 </div>
@@ -8612,30 +8614,26 @@ __assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3
 .rs output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 
 
 .ts output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
-
 
 
 .py output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
+
 
 
 
@@ -8645,14 +8643,297 @@ __assert_eq / actual: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx output:
+<pre>.fsx:
+type Mut0 = {mutable l0 : int32; mutable l1 : string; mutable l2 : string}
+let rec method1 (v0 : int32, v1 : Mut0) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 &lt; v0
+    v3
+and method2 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "1"
+    let v1 : string = "2"
+    let v2 : string = "3"
+    let v3 : (string []) = [|v0; v1; v2|]
+    let v4 : int32 = v3.Length
+    let v5 : string = ""
+    let v6 : Mut0 = {l0 = 0; l1 = v5; l2 = v5} : Mut0
+    while method1(v4, v6) do
+        let v8 : int32 = v6.l0
+        let v9 : int32 =  -v8
+        let v10 : int32 = v9 + v4
+        let v11 : int32 = v10 - 1
+        let struct (v12 : string, v13 : string) = v6.l1, v6.l2
+        let v14 : string = v3.[int v11]
+        let v15 : string = v14 + v13 + v12 + ""
+        let v16 : int32 = v8 + 1
+        let v17 : string = "\n"
+        v6.l0 &lt;- v16
+        v6.l1 &lt;- v15
+        v6.l2 &lt;- v17
+        ()
+    let struct (v18 : string, v19 : string) = v6.l1, v6.l2
+    let v20 : bool = v18 = "1\n2\n3"
+    let v22 : bool =
+        if v20 then
+            true
+        else
+            method2(v20)
+    let v23 : string = "__assert_eq"
+    let v24 : string = "1\n2\n3"
+    let v25 : string = $"{v23} / actual: %A{v18} / expected: %A{v24}"
+    let v28 : unit = ()
+    let v29 : (unit -&gt; unit) = closure0(v25)
+    let v30 : unit = (fun () -&gt; v29 (); v28) ()
+    let v32 : bool = v22 = false
+    if v32 then
+        failwith&lt;unit&gt; v25
+method0()
+
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
+mod module_7e2cd9e0 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::NativeArray_::get_Count;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::String_::append;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
+        pub struct Mut0 {
+            pub l0: MutCell&lt;i32&gt;,
+            pub l1: MutCell&lt;string&gt;,
+            pub l2: MutCell&lt;string&gt;,
+        }
+        impl core::fmt::Display for Mut0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        pub fn method1(v0: i32, v1: LrcPtr&lt;Spiral_builder::Mut0&gt;) -&gt; bool {
+            (v1.l0.get().clone()) &lt; (v0)
+        }
+        pub fn method2(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn closure0(v0: string, unitVar: ()) {
+            printfn!("{0}", v0);
+        }
+        pub fn method0() {
+            let v3: Array&lt;string&gt; = new_array(&amp;[string("1"), string("2"), string("3")]);
+            let v4: i32 = get_Count(v3.clone());
+            let v6: LrcPtr&lt;Spiral_builder::Mut0&gt; = LrcPtr::new(Spiral_builder::Mut0 {
+                l0: MutCell::new(0_i32),
+                l1: MutCell::new(string("")),
+                l2: MutCell::new(string("")),
+            });
+            while Spiral_builder::method1(v4, v6.clone()) {
+                let v8: i32 = v6.l0.get().clone();
+                let v11: i32 = ((v8.wrapping_neg()) + (v4)) - 1_i32;
+                let matchValue: string = v6.l1.get().clone();
+                let matchValue_1: string = v6.l2.get().clone();
+                let v15: string = append(
+                    (append((append((v3[v11].clone()), (matchValue_1))), (matchValue))),
+                    string(""),
+                );
+                let v16: i32 = (v8) + 1_i32;
+                v6.l0.set(v16);
+                v6.l1.set(v15);
+                v6.l2.set(string("\n"));
+                ()
+            }
+            {
+                let matchValue_2: string = v6.l1.get().clone();
+                let matchValue_3: string = v6.l2.get().clone();
+                let v18: string = matchValue_2;
+                let v20: bool = (v18.clone()) == string("1\n2\n3");
+                let v22: bool = if v20 {
+                    true
+                } else {
+                    Spiral_builder::method2(v20)
+                };
+                let v25: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("__assert_eq"),
+                    v18,
+                    string("1\n2\n3")
+                );
+                let v30: () = {
+                    Spiral_builder::closure0(v25.clone(), ());
+                    ()
+                };
+                if (v22) == false {
+                    panic!("{}", v25,);
+                }
+            }
+        }
+        // on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
+
+.ts:
+import { Record } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Types.js";
+import { op_UnaryNegation_Int32, int32 } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Int32.js";
+import { IComparable, IEquatable } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Util.js";
+import { record_type, string_type, int32_type, TypeInfo } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Reflection.js";
+import { item } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Array.js";
+import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
+
+export class Mut0 extends Record implements IEquatable&lt;Mut0&gt;, IComparable&lt;Mut0&gt; {
+    l0: int32;
+    l1: string;
+    l2: string;
+    constructor(l0: int32, l1: string, l2: string) {
+        super();
+        this.l0 = (l0 | 0);
+        this.l1 = l1;
+        this.l2 = l2;
+    }
+}
+
+export function Mut0_$reflection(): TypeInfo {
+    return record_type("Spiral_builder.Mut0", [], Mut0, () =&gt; [["l0", int32_type], ["l1", string_type], ["l2", string_type]]);
+}
+
+export function method1(v0: int32, v1: Mut0): boolean {
+    return v1.l0 &lt; v0;
+}
+
+export function method2(v0: boolean): boolean {
+    return v0;
+}
+
+export function closure0(v0: string, unitVar: void): void {
+    console.log(v0);
+}
+
+export function method0(): void {
+    const v3: string[] = ["1", "2", "3"];
+    const v4: int32 = v3.length | 0;
+    const v6: Mut0 = new Mut0(0, "", "");
+    while (method1(v4, v6)) {
+        const v8: int32 = v6.l0 | 0;
+        const v11: int32 = ((op_UnaryNegation_Int32(v8) + v4) - 1) | 0;
+        const matchValue: string = v6.l1;
+        const matchValue_1: string = v6.l2;
+        const v15: string = ((item(v11, v3) + matchValue_1) + matchValue) + "";
+        const v16: int32 = (v8 + 1) | 0;
+        v6.l0 = (v16 | 0);
+        v6.l1 = v15;
+        v6.l2 = "\n";
+    }
+    const matchValue_2: string = v6.l1;
+    const matchValue_3: string = v6.l2;
+    const v18: string = matchValue_2;
+    const v20: boolean = v18 === "1\n2\n3";
+    const v22: boolean = v20 ? true : method2(v20);
+    const v25: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v18, "1\n2\n3"]));
+    let v30: any;
+    closure0(v25, undefined);
+    v30 = undefined;
+    if (v22 === false) {
+        throw new Error(v25);
+    }
+}
+
+method0();
+
+
+.py:
+from __future__ import annotations
+from dataclasses import dataclass
+from fable_modules.fable_library.int32 import op_unary_negation_int32
+from fable_modules.fable_library.reflection import (TypeInfo, int32_type, string_type, record_type)
+from fable_modules.fable_library.string_ import (to_text, interpolate)
+from fable_modules.fable_library.types import (Record, Array)
+
+def _expr0() -&gt; TypeInfo:
+    return record_type("Spiral_builder.Mut0", [], Mut0, lambda: [("l0", int32_type), ("l1", string_type), ("l2", string_type)])
+
+
+@dataclass(eq = False, repr = False, slots = True)
+class Mut0(Record):
+    l0: int
+    l1: str
+    l2: str
+
+Mut0_reflection = _expr0
+
+def method1(v0: int, v1: Mut0) -&gt; bool:
+    return v1.l0 &lt; v0
+
+
+def method2(v0: bool) -&gt; bool:
+    return v0
+
+
+def closure0(v0: str, unit_var: None) -&gt; None:
+    print(v0)
+
+
+def method0(__unit: None=None) -&gt; None:
+    v3: Array[str] = ["1", "2", "3"]
+    v4: int = len(v3) or 0
+    v6: Mut0 = Mut0(0, "", "")
+    while method1(v4, v6):
+        v8: int = v6.l0 or 0
+        v11: int = ((op_unary_negation_int32(v8) + v4) - 1) or 0
+        match_value: str = v6.l1
+        match_value_1: str = v6.l2
+        v15: str = ((v3[v11] + match_value_1) + match_value) + ""
+        v16: int = (v8 + 1) or 0
+        v6.l0 = v16 or 0
+        v6.l1 = v15
+        v6.l2 = "\n"
+    match_value_2: str = v6.l1
+    match_value_3: str = v6.l2
+    v18: str = match_value_2
+    v20: bool = v18 == "1\n2\n3"
+    v22: bool = True if v20 else method2(v20)
+    v25: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v18, "1\n2\n3"]))
+    v30: None
+    closure0(v25, None)
+    v30 = None
+    if v22 == False:
+        raise Exception(v25)
+
+
+
+method0()
+
+
+.fsx output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 </pre>
 </div>
 </div>
@@ -8665,7 +8946,7 @@ __assert_eq / actual: "1
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="concat_list_trailing">concat_list_trailing<a class="anchor-link" href="#concat_list_trailing">¶</a></h3>
+<h3 id="concat_list">concat_list<a class="anchor-link" href="#concat_list">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8677,10 +8958,11 @@ __assert_eq / actual: "1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_list_trailing</span> <span class="n">separator</span> <span class="nb">input</span> <span class="o">=</span>
-    <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="err">$</span><span class="s1">'!acc + !x + !separator + ""'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_list</span> <span class="n">separator</span> <span class="nb">input</span> <span class="o">=</span>
+    <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">""</span> <span class="p">})</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span> <span class="n">acc</span> <span class="n">sep</span> <span class="p">}</span> <span class="o">=&gt;</span>
+            <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'!x + !sep + !acc + ""'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">separator</span> <span class="p">}</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">{</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="n">acc</span>
 </pre></div>
 </div>
 </div>
@@ -8700,6 +8982,7 @@ __assert_eq / actual: "1
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
 <span class="p">[</span>
     <span class="s2">"1"</span>
@@ -8707,9 +8990,9 @@ __assert_eq / actual: "1
     <span class="s2">"3"</span>
 <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_list_trailing</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_list</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">code</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3"</span>
 </pre></div>
 </div>
 </div>
@@ -8726,40 +9009,34 @@ __assert_eq / actual: "1
 .py output (Cuda):
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
-
 
 
 .rs output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 
 
 .ts output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
-
 
 
 .py output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
+
 
 
 
@@ -8769,14 +9046,255 @@ __assert_eq / actual: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx output:
+<pre>.fsx:
+let rec method1 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "3"
+    let v1 : string = ""
+    let v2 : string = v0 + v1 + v1 + ""
+    let v3 : string = "2"
+    let v4 : string = "\n"
+    let v5 : string = v3 + v4 + v2 + ""
+    let v6 : string = "1"
+    let v7 : string = v6 + v4 + v5 + ""
+    let v8 : bool = v7 = "1\n2\n3"
+    let v10 : bool =
+        if v8 then
+            true
+        else
+            method1(v8)
+    let v11 : string = "__assert_eq"
+    let v12 : string = "1\n2\n3"
+    let v13 : string = $"{v11} / actual: %A{v7} / expected: %A{v12}"
+    let v16 : unit = ()
+    let v17 : (unit -&gt; unit) = closure0(v13)
+    let v18 : unit = (fun () -&gt; v17 (); v16) ()
+    let v20 : bool = v10 = false
+    if v20 then
+        failwith&lt;unit&gt; v13
+method0()
+
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
+mod module_7e2cd9e0 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn closure0(v0: string, unitVar: ()) {
+            printfn!("{0}", v0);
+        }
+        pub fn method0() {
+            let v7: string = string("1\n2\n3");
+            let v8: bool = (v7.clone()) == string("1\n2\n3");
+            let v10: bool = if v8 {
+                true
+            } else {
+                Spiral_builder::method1(v8)
+            };
+            let v13: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("__assert_eq"),
+                v7,
+                string("1\n2\n3")
+            );
+            let v18: () = {
+                Spiral_builder::closure0(v13.clone(), ());
+                ()
+            };
+            if (v10) == false {
+                panic!("{}", v13,);
+            }
+        }
+        // on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
+
+.ts:
+import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
+
+export function method1(v0: boolean): boolean {
+    return v0;
+}
+
+export function closure0(v0: string, unitVar: void): void {
+    console.log(v0);
+}
+
+export function method0(): void {
+    const v7 = "1\n2\n3";
+    const v8: boolean = v7 === "1\n2\n3";
+    const v10: boolean = v8 ? true : method1(v8);
+    const v13: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v7, "1\n2\n3"]));
+    let v18: any;
+    closure0(v13, undefined);
+    v18 = undefined;
+    if (v10 === false) {
+        throw new Error(v13);
+    }
+}
+
+method0();
+
+
+.py:
+from fable_modules.fable_library.string_ import (to_text, interpolate)
+
+def method1(v0: bool) -&gt; bool:
+    return v0
+
+
+def closure0(v0: str, unit_var: None) -&gt; None:
+    print(v0)
+
+
+def method0(__unit: None=None) -&gt; None:
+    v7: str = "1\n2\n3"
+    v8: bool = v7 == "1\n2\n3"
+    v10: bool = True if v8 else method1(v8)
+    v13: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v7, "1\n2\n3"]))
+    v18: None
+    closure0(v13, None)
+    v18 = None
+    if v10 == False:
+        raise Exception(v13)
+
+
+
+method0()
+
+
+.py (Cuda):
+kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def method1(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = "3"
+    v1 = ""
+    v2 = v0 + v1 + v1 + ""
+    del v0, v1
+    v3 = "2"
+    v4 = "\n"
+    v5 = v3 + v4 + v2 + ""
+    del v2, v3
+    v6 = "1"
+    v7 = v6 + v4 + v5 + ""
+    del v4, v5, v6
+    v8 = v7 == "1\n2\n3"
+    if v8:
+        v10 = True
+    else:
+        v10 = method1(v8)
+    del v8
+    v14 = "__assert_eq"
+    v15 = "1\n2\n3"
+    v16 = f"{v14} / actual: {v7} / expected: {v15}"
+    del v7, v14, v15
+    print(v16)
+    v22 = v10 == False
+    del v10
+    if v22:
+        del v22
+        raise Exception(v16)
+    else:
+        del v16, v22
+        return 
+def main_body():
+    return method0()
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+.fsx output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 </pre>
 </div>
 </div>
@@ -8789,7 +9307,7 @@ __assert_eq / actual: "1
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="concat_list_heap_trailing">concat_list_heap_trailing<a class="anchor-link" href="#concat_list_heap_trailing">¶</a></h3>
+<h3 id="concat_list_interpolation">concat_list_interpolation<a class="anchor-link" href="#concat_list_interpolation">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8801,14 +9319,14 @@ __assert_eq / actual: "1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_list_heap_trailing</span> <span class="n">separator</span> <span class="nb">input</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">separator</span> <span class="o">=</span> <span class="n">join</span> <span class="n">separator</span>
-    <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">concat_list_interpolation</span> <span class="n">separator</span> <span class="nb">input</span> <span class="o">=</span>
+    <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">""</span> <span class="p">})</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span> <span class="n">acc</span> <span class="n">sep</span> <span class="p">}</span> <span class="o">=&gt;</span>
         <span class="n">backend_switch</span> <span class="p">{</span>
-            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!acc}{!x}{!separator}"'</span> <span class="p">:</span> <span class="n">string</span>
-            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!acc}{!x}{!separator}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!x}{!sep}{!acc}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">separator</span> <span class="p">}</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'f"{!x}{!sep}{!acc}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">separator</span> <span class="p">}</span>
         <span class="p">}</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">{</span> <span class="n">acc</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="n">acc</span>
 </pre></div>
 </div>
 </div>
@@ -8828,6 +9346,7 @@ __assert_eq / actual: "1
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
 <span class="p">[</span>
     <span class="s2">"1"</span>
@@ -8835,9 +9354,9 @@ __assert_eq / actual: "1
     <span class="s2">"3"</span>
 <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_list_heap_trailing</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">concat_list_interpolation</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">code</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3"</span>
 </pre></div>
 </div>
 </div>
@@ -8854,40 +9373,34 @@ __assert_eq / actual: "1
 .py output (Cuda):
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
-
 
 
 .rs output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 
 
 .ts output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
-
 
 
 .py output:
 __assert_eq / actual: 1
 2
-3
- / expected: 1
+3 / expected: 1
 2
 3
+
 
 
 
@@ -8897,14 +9410,265 @@ __assert_eq / actual: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx output:
+<pre>.fsx:
+let rec method1 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "3"
+    let v1 : string = ""
+    let v2 : string = $"{v0}{v1}{v1}"
+    let v7 : string = "\n"
+    let v8 : string = "2"
+    let v9 : string = $"{v8}{v7}{v2}"
+    let v13 : string = "1"
+    let v14 : string = $"{v13}{v7}{v9}"
+    let v18 : bool = v14 = "1\n2\n3"
+    let v20 : bool =
+        if v18 then
+            true
+        else
+            method1(v18)
+    let v21 : string = "__assert_eq"
+    let v22 : string = "1\n2\n3"
+    let v23 : string = $"{v21} / actual: %A{v14} / expected: %A{v22}"
+    let v26 : unit = ()
+    let v27 : (unit -&gt; unit) = closure0(v23)
+    let v28 : unit = (fun () -&gt; v27 (); v26) ()
+    let v30 : bool = v20 = false
+    if v30 then
+        failwith&lt;unit&gt; v23
+method0()
+
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
+mod module_7e2cd9e0 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::concat;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn closure0(v0: string, unitVar: ()) {
+            printfn!("{0}", v0);
+        }
+        pub fn method0() {
+            let v14: string = concat(new_array(&amp;[
+                string("1"),
+                string("\n"),
+                concat(new_array(&amp;[
+                    string("2"),
+                    string("\n"),
+                    concat(new_array(&amp;[string("3"), string(""), string("")])),
+                ])),
+            ]));
+            let v18: bool = (v14.clone()) == string("1\n2\n3");
+            let v20: bool = if v18 {
+                true
+            } else {
+                Spiral_builder::method1(v18)
+            };
+            let v23: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("__assert_eq"),
+                v14,
+                string("1\n2\n3")
+            );
+            let v28: () = {
+                Spiral_builder::closure0(v23.clone(), ());
+                ()
+            };
+            if (v20) == false {
+                panic!("{}", v23,);
+            }
+        }
+        // on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_7e2cd9e0::*;
+
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
+
+.ts:
+import { interpolate, toText, concat } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
+
+export function method1(v0: boolean): boolean {
+    return v0;
+}
+
+export function closure0(v0: string, unitVar: void): void {
+    console.log(v0);
+}
+
+export function method0(): void {
+    const v14: string = concat("1", "\n", ...concat("2", "\n", ...concat("3", "", ..."")));
+    const v18: boolean = v14 === "1\n2\n3";
+    const v20: boolean = v18 ? true : method1(v18);
+    const v23: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v14, "1\n2\n3"]));
+    let v28: any;
+    closure0(v23, undefined);
+    v28 = undefined;
+    if (v20 === false) {
+        throw new Error(v23);
+    }
+}
+
+method0();
+
+
+.py:
+from fable_modules.fable_library.string_ import (concat, to_text, interpolate)
+
+def method1(v0: bool) -&gt; bool:
+    return v0
+
+
+def closure0(v0: str, unit_var: None) -&gt; None:
+    print(v0)
+
+
+def method0(__unit: None=None) -&gt; None:
+    v14: str = concat("1", "\n", *concat("2", "\n", *concat("3", "", *"")))
+    v18: bool = v14 == "1\n2\n3"
+    v20: bool = True if v18 else method1(v18)
+    v23: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v14, "1\n2\n3"]))
+    v28: None
+    closure0(v23, None)
+    v28 = None
+    if v20 == False:
+        raise Exception(v23)
+
+
+
+method0()
+
+
+.py (Cuda):
+kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def method1(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v4 = "3"
+    v5 = ""
+    v6 = f"{v4}{v5}{v5}"
+    del v4, v5
+    v9 = "\n"
+    v12 = "2"
+    v13 = f"{v12}{v9}{v6}"
+    del v6, v12
+    v18 = "1"
+    v19 = f"{v18}{v9}{v13}"
+    del v9, v13, v18
+    v22 = v19 == "1\n2\n3"
+    if v22:
+        v24 = True
+    else:
+        v24 = method1(v22)
+    del v22
+    v28 = "__assert_eq"
+    v29 = "1\n2\n3"
+    v30 = f"{v28} / actual: {v19} / expected: {v29}"
+    del v19, v28, v29
+    print(v30)
+    v36 = v24 == False
+    del v24
+    if v36:
+        del v36
+        raise Exception(v30)
+    else:
+        del v30, v36
+        return 
+def main_body():
+    return method0()
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+.fsx output:
 __assert_eq / actual: "1
 2
-3
-" / expected: "1
+3" / expected: "1
 2
-3
-"
+3"
 </pre>
 </div>
 </div>
@@ -12824,7 +13588,7 @@ __assert_eq / actual: "3" / expected: "3"
     <span class="err">$</span><span class="s1">'let ellipsis x = !ellipsis x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let ellipsis_end x = !ellipsis_end x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let format_exception x = !format_exception x'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s1">'let concat_array_trailing x = !concat_array_trailing x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let concat_array x = !concat_array x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">concat</span> <span class="n">a</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="s1">' string) = concat a b</span>
     <span class="err">$</span><span class="s1">'let concat x = !concat x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let join</span><span class="se">\'</span><span class="s1"> x = !join'</span> <span class="n">x</span><span class="s1">' : ()</span>

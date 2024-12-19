@@ -25,10 +25,12 @@ inl render props_fn children : _ (_ div) =
     inl props : props = props () |> props_fn
     inl right_element' =
         props.right_element
-        |> optionm'.default_value (;[] |> views_to_view)
-    inl children = join children
-    inl children = fun () => children |> move_to_fragment
-    inl children : () -> fragment = join children
+        |> optionm'.default_value ([] |> view_list_to_view)
+    // inl children = join children
+    inl children () =
+        children
+        |> move_to_fragment
+    // inl children : () -> fragment = join children
 
     div [
         $'"class=\\\"flex flex-col [position:relative]\\\""'

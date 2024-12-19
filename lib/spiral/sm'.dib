@@ -400,14 +400,15 @@ inl format forall t. (x : t) : string =
 
 #!markdown
 
-### concat_array_trailing
+### concat_array
 
 #!spiral
 
-inl concat_array_trailing (separator : string) (input : a int string) =
-    ("", input)
-    ||> am.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
+inl concat_array (separator : string) (input : a int string) =
+    (input, { acc = ""; sep = "" })
+    ||> am.foldBack fun (x : string) { acc sep } =>
+            { acc = $'!x + !sep + !acc + ""' : string; sep = separator }
+    |> fun { acc } => acc
 
 #!spiral
 
@@ -417,6 +418,7 @@ inl concat_array_trailing (separator : string) (input : a int string) =
 ///! rust
 ///! typescript
 ///! python
+//// print_code
 
 ;[
     "1"
@@ -424,20 +426,21 @@ inl concat_array_trailing (separator : string) (input : a int string) =
     "3"
 ]
 |> fun x =>
-    inl code = (a x : _ int _) |> concat_array_trailing "\n"
+    inl code = (a x : _ int _) |> concat_array "\n"
     code
-    |> _assert_eq "1\n2\n3\n"
+    |> _assert_eq "1\n2\n3"
 
 #!markdown
 
-### concat_list_trailing
+### concat_list
 
 #!spiral
 
-inl concat_list_trailing separator input =
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
+inl concat_list separator input =
+    (input, { acc = ""; sep = "" })
+    ||> listm.foldBack fun (x : string) { acc sep } =>
+            { acc = $'!x + !sep + !acc + ""' : string; sep = separator }
+    |> fun { acc } => acc
 
 #!spiral
 
@@ -447,6 +450,7 @@ inl concat_list_trailing separator input =
 ///! rust
 ///! typescript
 ///! python
+//// print_code
 
 [
     "1"
@@ -454,24 +458,24 @@ inl concat_list_trailing separator input =
     "3"
 ]
 |> fun x =>
-    inl code = (x : _) |> concat_list_trailing "\n"
+    inl code = (x : _) |> concat_list "\n"
     code
-    |> _assert_eq "1\n2\n3\n"
+    |> _assert_eq "1\n2\n3"
 
 #!markdown
 
-### concat_list_heap_trailing
+### concat_list_interpolation
 
 #!spiral
 
-inl concat_list_heap_trailing separator input =
-    inl separator = join separator
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
+inl concat_list_interpolation separator input =
+    (input, { acc = ""; sep = "" })
+    ||> listm.foldBack fun (x : string) { acc sep } =>
         backend_switch {
-            Fsharp = fun () => $'$"{!acc}{!x}{!separator}"' : string
-            Python = fun () => $'f"{!acc}{!x}{!separator}"' : string
+            Fsharp = fun () => { acc = $'$"{!x}{!sep}{!acc}"' : string; sep = separator }
+            Python = fun () => { acc = $'f"{!x}{!sep}{!acc}"' : string; sep = separator }
         }
+    |> fun { acc } => acc
 
 #!spiral
 
@@ -481,6 +485,7 @@ inl concat_list_heap_trailing separator input =
 ///! rust
 ///! typescript
 ///! python
+//// print_code
 
 [
     "1"
@@ -488,9 +493,9 @@ inl concat_list_heap_trailing separator input =
     "3"
 ]
 |> fun x =>
-    inl code = (x : _) |> concat_list_heap_trailing "\n"
+    inl code = (x : _) |> concat_list_interpolation "\n"
     code
-    |> _assert_eq "1\n2\n3\n"
+    |> _assert_eq "1\n2\n3"
 
 #!markdown
 
@@ -2070,7 +2075,7 @@ inl main () =
     $'let ellipsis x = !ellipsis x' : ()
     $'let ellipsis_end x = !ellipsis_end x' : ()
     $'let format_exception x = !format_exception x' : ()
-    $'let concat_array_trailing x = !concat_array_trailing x' : ()
+    $'let concat_array x = !concat_array x' : ()
     inl concat a (b : seq.seq' string) = concat a b
     $'let concat x = !concat x' : ()
     $'let join\' x = !join' x' : ()

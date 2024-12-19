@@ -92,7 +92,8 @@ function CopyTarget {
             }
             if ($name -in @("file_system") -and $Runtime -ne "contract") {
                 $text = $text `
-                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>()," `
+                    -replace "getZero\(\),", "getZero::<std::sync::Arc<dyn IDisposable>>(),"
             }
             if ($name -in @("common") -and $Runtime -in @("wasm", "contract")) {
                 $text = $text `
