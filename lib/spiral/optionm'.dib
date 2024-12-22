@@ -211,7 +211,6 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
                     result <- x
                 inl get_result () =
                     *result
-                $'let _!result = !result '
                 $'match !x with'
                 $'| Some x -> ('
                 $'(fun () ->'
@@ -234,9 +233,9 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
             inl fn = join fn
             $'!x |> Option.map !fn ' : option' u
         Python = fun () =>
-                if x =. none' ()
-                then none' ()
-                else fn $'!x ' |> fun x => $'!x ' : option' u
+            if x =. none' ()
+            then none' ()
+            else fn $'!x ' |> fun x => $'!x ' : option' u
     }
 
 #!markdown

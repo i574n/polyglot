@@ -508,46 +508,6 @@ inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
 
 #!markdown
 
-### vec_collect
-
-#!spiral
-
-inl vec_collect fn vec =
-    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        acc |> vec_extend (fn x)
-
-#!markdown
-
-### vec_collect_option
-
-#!spiral
-
-inl vec_collect_option vec =
-    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        x
-        |> resultm.unbox
-        |> fun x =>
-            match acc, x |> resultm.map optionm'.unbox with
-            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
-            | _, Error error => error |> Error
-            | _ => acc
-
-#!markdown
-
-### vec_collect_into
-
-#!spiral
-
-inl vec_collect_into forall (c : * -> * -> *) t e.
-    (x : vec (c t e))
-    : c (vec t) e
-    =
-    !\($'"!x.into_iter().collect()"')
-
-#!markdown
-
 ### vec_mapi
 
 #!spiral
@@ -583,6 +543,7 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 #!spiral
 
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    inl fn = fn |> rust.func1_from
     !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
 
 #!markdown
@@ -919,6 +880,46 @@ a' ;[ -3i32; 6 ]
 |> to_list'
 |> listm'.unbox
 |> _assert_eq [ -3; 6 ]
+
+#!markdown
+
+### vec_collect
+
+#!spiral
+
+inl vec_collect fn vec =
+    ((;[] |> to_vec), ((vec |> from_vec : _ int _) |> to_list' |> listm'.unbox))
+    ||> listm.fold fun acc x =>
+        acc |> vec_extend (fn x)
+
+#!markdown
+
+### vec_collect_option
+
+#!spiral
+
+inl vec_collect_option vec =
+    ((;[] |> to_vec |> Ok), ((vec |> from_vec : _ int _) |> am.toList))
+    ||> listm.fold fun acc x =>
+        x
+        |> resultm.unbox
+        |> fun x =>
+            match acc, x |> resultm.map optionm'.unbox with
+            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
+            | _, Error error => error |> Error
+            | _ => acc
+
+#!markdown
+
+### vec_collect_into
+
+#!spiral
+
+inl vec_collect_into forall (c : * -> * -> *) t e.
+    (x : vec (c t e))
+    : c (vec t) e
+    =
+    !\($'"!x.into_iter().collect()"')
 
 #!markdown
 

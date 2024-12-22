@@ -1,11 +1,12 @@
 open rust.rust_operators
+open rust
 open svg
 open leptos
 
 type props =
     {
-        data : optionm'.option' (leptos.memo (am'.vec (i32 * (leptos.read_signal sm'.std_string))))
-        item : optionm'.option' (memo (option string))
+        data : optionm'.option' (leptos.arc_memo (am'.vec (i32 * (leptos.read_signal sm'.std_string))))
+        item : optionm'.option' (arc_memo (option string))
         select : i32 * string -> ()
     }
 
@@ -59,7 +60,8 @@ inl render props_fn : _ _ =
                                 inl on_click = fun () =>
                                     inl item = item |> sm'.from_std_string
                                     props.select (i, item)
-                                (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+                                // (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+                                inl on_click = on_click |> rust.func0_from
                                 inl class =
                                     [
                                         $'"flex"'
@@ -84,6 +86,7 @@ inl render props_fn : _ _ =
                                     ]
                                     |> sm'.concat_list " "
                                     |> sm'.to_std_string
+                                    |> rust.emit
                                 :>[
                                     leptos.button [
                                         $'"class=!class"'

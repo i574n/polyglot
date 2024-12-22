@@ -210,23 +210,16 @@ inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t
 
 /// ### future_init
 inl future_init forall t. (move : bool) (x : () -> t) : infer' t =
+    (!\($'"true; let __future_init = Box::pin(/*"') : bool) |> ignore
     if move
-    then (!\($'"true; let __future_init = Box::pin(async move { //"') : bool) |> ignore
-    else (!\($'"true; let __future_init = Box::pin(async { //"') : bool) |> ignore
-
-    inl is_unit : bool =
-        real
-            typecase t with
-            | () => true
-            | _ => false
+    then (!\($'"*/ async move { /*"') : bool) |> ignore
+    else (!\($'"*/ async { /*"') : bool) |> ignore
+    (!\($'"*/ //"') : bool) |> ignore
 
     inl x' = x ()
-    inl x' = join x'
+    // inl x' = join x'
 
-    inl depth =
-        if is_unit
-        then 2, 1
-        else 1, 0
+    inl depth = 1, 0
 
     x' |> rust.fix_closure depth
 
@@ -315,12 +308,12 @@ inl new_task forall t. (fn : () -> t) : task t =
     run_target_args' fn function
         | Fsharp _ => fun fn =>
             inl result : optionm'.option' (task t) = optionm'.none' ()
-            $'let mutable _!result = !result '
+            $'let mutable _new_task_!result = !result '
             $'task {'
             fn () |> ignore
             $'}'
-            $'|> fun x -> _!result <- Some x'
-            $'match _!result with Some x -> x | None -> failwith "async.new_task / _!result=None"'
+            $'|> fun x -> _new_task_!result <- Some x'
+            $'match _new_task_!result with Some x -> x | None -> failwith "async.new_task / _new_task_!result=None"'
         | _ => fun _ => null ()
 
 /// ### await_task

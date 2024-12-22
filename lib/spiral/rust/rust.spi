@@ -274,7 +274,7 @@ inl emit forall t. (x : t) : t =
 
 /// ### emit'
 inl emit' forall t. (x : t) : t =
-    !\\(x, $'"let !x = $0"')
+    (!\\(x, $'$"true; let !x = $0"') : bool) |> ignore
     x
 
 /// ### clone
@@ -419,29 +419,64 @@ inl func0_move forall t. (fn : func0 t) : t =
     inl fn = join fn
     !\($'"(move || !fn())()"')
 
+/// ### func1_move
+inl func1_move forall t u. (x : t) (fn : func1 t (heap u)) : u =
+    inl fn = join fn
+    inl is_unit : bool =
+        real
+            typecase t with
+            | () => true
+            | _ => false
+    inl result =
+        if is_unit
+        then !\($'"(move || !fn())()"') : heap u
+        else !\\(x, $'"(move |x| !fn(x))($0)"') : heap u
+    !result
+
 /// ### func0_from
 inl func0_from forall t. (fn : () -> t) : func0 t =
-    (!\($'$"true; let getter = Func0::from(move || {{ //"') : bool) |> ignore
-    inl result = fn ()
-    (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
+    inl result' : unit = $'()'
+    (!\($'$"true; let _func0_from_!result' = Func0::from(move || {{ //"') : bool) |> ignore
+    inl is_unit : bool =
+        real
+            typecase t with
+            | () => true
+            | _ => false
+    inl result =
+        if is_unit |> not
+        then fn ()
+        else
+            (fn >> ignore) ()
+            // (!\($'$"true; // rust.func0_from"') : bool) |> ignore
+            $'// rust.func0_from / is_unit'
+    if is_unit
+    then (!\($'$"true; /*"') : bool) |> ignore
+    else (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
     (!\($'$"*/ }}); //"') : bool) |> ignore
-    !\($'$"getter"')
+    !\($'$"_func0_from_!result'"')
 
 /// ### func1_from
-inl func1_from forall t u. (fn : t -> u) : func1 t u =
+inl func1_from forall t u. (fn : t -> u) : func1 t (heap u) =
     inl result' : unit = $'()'
-    (!\($'$"true; let _!result' = Func1::from(move |value| {{ //"') : bool) |> ignore
-    inl result = fn !\($'$"value"')
     inl is_unit : bool =
         real
             typecase u with
             | () => true
             | _ => false
     if is_unit
+    then (!\($'$"true; let _func1_from_!result' = Func0::from(move || {{ //"') : bool) |> ignore
+    else (!\($'$"true; let _func1_from_!result' = Func1::from(move |value| {{ //"') : bool) |> ignore
+
+    inl result =
+        !\($'$"()"')
+        |> fn
+        |> heap
+
+    if is_unit
     then (!\($'$"true; /*"') : bool) |> ignore
     else (!\\(result, $'$"true; $0 /*"') : bool) |> ignore
     (!\($'$"*/ }}); //"') : bool) |> ignore
-    !\($'$"_!result'"')
+    !\($'$"_func1_from_!result'"')
 
 /// ### new_func0
 inl new_func0 forall t. (fn : () -> t) : func0 t =
@@ -479,12 +514,22 @@ inl fix_closure' forall t. (depth : u8 * u8) (x : t) : string =
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    inl x' : infer = $'!x '
-    run_target_args (fun () => x') function
-        | Rust _ => fun x' => !\\(x', $'$"true; let !x' = $0"') : bool
-        | _ => fun x' => $'true'
+    inl is_unit : bool =
+        real
+            typecase t with
+            | () => true
+            | _ => false
+    run_target_args (fun () => x) function
+        // | Rust _ => fun x' => !\\(x', $'$"true; let !x' = $0"') : bool
+        | Rust _ => fun x =>
+            if is_unit
+            then false
+            else
+                (!\\(x, $'$"true; let !x = $0"') : bool) |> ignore
+                true
+        | _ => fun x' => false
     |> ignore
-    $'$"true; !x' " + !a + "); " + !b + " // rust.fix_closure\'"'
+    $'$"true; !x " + !a + "); " + !b + " // rust.fix_closure\'"'
 
 /// ### fix_closure
 inl fix_closure depth x =

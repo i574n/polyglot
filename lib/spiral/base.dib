@@ -120,7 +120,7 @@ inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
             inl result = $'()' : unit
             inl emit_result x : () =
                 if is_unit |> not
-                then $'let _!result = !x '
+                then $'let _run_target_args\'_!result = !x '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
             $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
             inl target = Rust Native
@@ -146,7 +146,7 @@ inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
             $'#endif'
             if is_unit
             then $'// run_target_args\' is_unit'
-            else $'_!result ' : t
+            else $'_run_target_args\'_!result ' : t
         Python = fun () =>
             inl target = Cuda Native
             fn target args
@@ -255,13 +255,13 @@ inl let' fn =
         }
     backend_switch {
         Fsharp = fun () =>
-            $'let _!result =' : ()
+            $'let _let\'_!result =' : ()
             fn |> indent
         Python = fun () =>
-            $'def _!result():' : ()
+            $'def _let\'_!result():' : ()
             fn |> indent
     }
-    $'_!result '
+    $'_let\'_!result '
 
 #!markdown
 
@@ -345,7 +345,7 @@ inl capture forall t. (fn : () -> t) : t =
     backend_switch {
         Fsharp = fun () =>
             inl result = dyn true
-            $'let mutable _!result : `t option = None '
+            $'let mutable _capture_!result : `t option = None '
             $'('
             $'(fun () ->'
             $'(fun () ->'
@@ -353,8 +353,8 @@ inl capture forall t. (fn : () -> t) : t =
             $')'
             $'|> fun x -> x ()'
             $') () )'
-            $'|> fun x -> _!result <- Some x'
-            $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"' : t
+            $'|> fun x -> _capture_!result <- Some x'
+            $'match _capture_!result with Some x -> x | None -> failwith "base.capture / _capture_!result=None"' : t
         Python = fun () =>
             fn ()
     }

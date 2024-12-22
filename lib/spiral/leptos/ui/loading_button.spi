@@ -6,7 +6,8 @@ open leptos
 inl render label loading' (on_click : () -> ()) =
     inl loading' = loading' |> rust.move
     inl loading'' = join loading'
-    (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+    // (!\\(on_click, $'"true; let !on_click = $0; //"') : bool) |> ignore
+    inl on_click = on_click |> rust.func0_from
     inl class =
         [
             $'"flex"'
@@ -30,6 +31,7 @@ inl render label loading' (on_click : () -> ()) =
         ]
         |> sm'.concat_list " "
         |> sm'.to_std_string
+        |> rust.emit
     leptos.button [
         $'"class=!class"'
         $'"prop:disabled=move || !loading''()"'
