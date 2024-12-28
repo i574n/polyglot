@@ -328,6 +328,13 @@ module SpiralFileSystem =
         delete_directory_async x
 #endif
 
+    let trace_file x =
+#if !INTERACTIVE
+        File_system.trace_file x
+#else
+        trace_file x
+#endif
+
     let init_trace_file x =
 #if !INTERACTIVE
         File_system.init_trace_file x
@@ -374,6 +381,10 @@ module SpiralFileSystem =
             | File_system.US0_2 -> Common.US0_2
             | File_system.US0_3 -> Common.US0_3
             | File_system.US0_4 -> Common.US0_4
+#else
+        let struct (_, _, _, _, trace_file, _) = TraceState.trace_state |> Option.get
+        let new_trace_file = trace_file.l0
+        ()
 #endif
 
     let wait_for_file_access x =

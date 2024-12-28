@@ -233,6 +233,8 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 /// ### vec_map'
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
     inl fn = fn |> rust.func1_from
+    inl fn x =
+        fn |> rust.func1_move x
     !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
 
 /// ### vec_fold'

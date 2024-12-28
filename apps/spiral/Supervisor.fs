@@ -13,7 +13,7 @@ module Supervisor =
     open Microsoft.AspNetCore.SignalR.Client
 
     /// ### sendJson
-    let inline sendJson (port : int) (json : string) = async {
+    let sendJson (port : int) (json : string) = async {
         let host = "127.0.0.1"
         let! portOpen = SpiralNetworking.test_port_open host port
         if portOpen then
@@ -33,7 +33,7 @@ module Supervisor =
     }
 
     /// ### sendObj
-    let inline sendObj port obj =
+    let sendObj port obj =
         obj
         |> System.Text.Json.JsonSerializer.Serialize
         |> sendJson port
@@ -63,7 +63,7 @@ module Supervisor =
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
     /// ### awaitCompiler
-    let inline awaitCompiler port cancellationToken = async {
+    let awaitCompiler port cancellationToken = async {
         let host = "127.0.0.1"
         let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
@@ -157,13 +157,13 @@ module Supervisor =
     }
 
     /// ### getFilePathFromUri
-    let inline getFilePathFromUri uri =
+    let getFilePathFromUri uri =
         match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
         | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
         | _ -> failwith "invalid uri"
 
     /// ### getCompilerPort
-    let inline getCompilerPort () =
+    let getCompilerPort () =
         13805
 
     /// ### serialize_obj
@@ -184,7 +184,7 @@ module Supervisor =
         | Cuda
 
     /// ### buildFile
-    let inline buildFile backend timeout port cancellationToken path =
+    let buildFile backend timeout port cancellationToken path =
         let rec loop retry = async {
             let fullPath = path |> System.IO.Path.GetFullPath
             let fileDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -220,7 +220,7 @@ module Supervisor =
                     Some (content |> SpiralSm.replace "\r\n" "\n"), None
                 )
 
-            let inline printErrorData (data : {| uri : string; errors : RString list |}) =
+            let printErrorData (data : {| uri : string; errors : RString list |}) =
                 let fileName = data.uri |> System.IO.Path.GetFileName
                 let errors =
                     data.errors
@@ -339,7 +339,7 @@ module Supervisor =
         | Spir of string
 
     /// ### persistCode
-    let inline persistCode (input: {| backend : Backend option; input: SpiralInput; packages: string [] |}) = async {
+    let persistCode (input: {| backend : Backend option; input: SpiralInput; packages: string [] |}) = async {
         let targetDir = workspaceRoot </> "target/spiral_Eval"
 
         let packagesDir = targetDir </> "packages"
@@ -353,9 +353,9 @@ module Supervisor =
 
         let spirModule, spiModule =
             match input.input with
-            | Spi (spi, Some spir) -> true, true
-            | Spi (spi, None) -> false, true
-            | Spir spir -> true, false
+            | Spi (_spi, Some _spir) -> true, true
+            | Spi (_spi, None) -> false, true
+            | Spir _spir -> true, false
             |> fun (spir, spi) ->
                 (if spir then $"{moduleName}_real*-" else ""),
                 if spi then moduleName else ""
@@ -449,7 +449,7 @@ modules:
     }
 
     /// ## getFileTokenRange
-    let inline getFileTokenRange port cancellationToken path = async {
+    let getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> SpiralFileSystem.read_all_text_async
         let lines = code |> SpiralSm.split "\n"
@@ -475,8 +475,14 @@ modules:
                         uri = fullPathUri
                         range =
                             [|
-                                {| line = 0; character = 0 |}
-                                {| line = lines.Length - 1; character = lines.[lines.Length - 1].Length |}
+                                {|
+                                    line = 0
+                                    character = 0
+                                |}
+                                {|
+                                    line = lines.Length - 1
+                                    character = lines.[lines.Length - 1].Length
+                                |}
                             |]
                     |}
             |}
@@ -496,7 +502,7 @@ modules:
     }
 
     /// ## getCodeTokenRange
-    let inline getCodeTokenRange cancellationToken code = async {
+    let getCodeTokenRange cancellationToken code = async {
         let! mainPath, _ =
             persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
 
@@ -519,11 +525,84 @@ modules:
         | None -> return! mainPath |> getFileTokenRange None cancellationToken
     }
 
+    /// ## getFileHoverAt
+    let getFileHoverAt
+        port
+        cancellationToken
+        path
+        (position : {| line: int; character: int |})
+        = async {
+        let fullPath = path |> System.IO.Path.GetFullPath
+        let! code = fullPath |> SpiralFileSystem.read_all_text_async
+        let lines = code |> SpiralSm.split "\n"
+
+        let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
+        use _ = disposable
+
+        let port = port |> Option.defaultWith getCompilerPort
+        let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
+        use _ = disposable
+
+        let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+
+        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+        let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+
+        // do! Async.Sleep 60
+
+        let hoverAtObj =
+            {|
+                HoverAt =
+                    {|
+                        uri = fullPathUri
+                        pos = position
+                    |}
+            |}
+        let! hoverAtResult =
+            hoverAtObj
+            |> sendObj serverPort
+            |> Async.withCancellationToken ct
+
+        let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+        if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+            let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+            let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+            let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            ()
+
+        return hoverAtResult
+    }
+
+    /// ## getCodeHoverAt
+    let getCodeHoverAt cancellationToken code position = async {
+        let! mainPath, _ =
+            persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
+
+        let codeDir = mainPath |> System.IO.Path.GetDirectoryName
+        let filePath = codeDir </> "hover.json"
+        let! output = async {
+            if filePath |> System.IO.File.Exists |> not
+            then return None
+            else
+                let! text = filePath |> SpiralFileSystem.read_all_text_async
+
+                return
+                    if text.Length > 2
+                    then text |> Some
+                    else None
+        }
+        match output with
+        | Some output ->
+            return output |> Some
+        | None -> return! getFileHoverAt None cancellationToken mainPath position
+    }
+
     /// ## Arguments
     [<RequireQualifiedAccess>]
     type Arguments =
         | Build_File of string * string
         | File_Token_Range of string * string
+        | File_Hover_At of string * string * int * int
         | Execute_Command of string
         | [<Argu.ArguAttributes.Unique>] Timeout of int
         | [<Argu.ArguAttributes.Unique>] Port of int
@@ -535,6 +614,7 @@ modules:
                 match s with
                 | Build_File _ -> nameof Build_File
                 | File_Token_Range _ -> nameof File_Token_Range
+                | File_Hover_At _ -> nameof File_Hover_At
                 | Execute_Command _ -> nameof Execute_Command
                 | Timeout _ -> nameof Timeout
                 | Port _ -> nameof Port
@@ -560,6 +640,16 @@ modules:
             |> Option.defaultValue []
             |> List.choose (function
                 | Arguments.File_Token_Range (inputPath, outputPath) -> Some (inputPath, outputPath)
+                | _ -> None
+            )
+
+        let fileHoverAtActions =
+            argsMap
+            |> Map.tryFind (nameof Arguments.File_Hover_At)
+            |> Option.defaultValue []
+            |> List.choose (function
+                | Arguments.File_Hover_At (inputPath, outputPath, line, character) ->
+                    Some (inputPath, outputPath, line, character)
                 | _ -> None
             )
 
@@ -639,6 +729,26 @@ modules:
                         return 1
                 })
 
+            let fileHoverAtAsync =
+                fileHoverAtActions
+                |> List.map (fun (inputPath, outputPath, line, character) -> async {
+                    let! hoverAt =
+                        getFileHoverAt
+                            (Some serverPort)
+                            None
+                            inputPath
+                            {| line = line; character = character |}
+                    match hoverAt with
+                    | Some hoverAt ->
+                        do! hoverAt |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_exists outputPath
+                        return 0
+                    | None ->
+                        if isExitOnError
+                        then SpiralRuntime.current_process_kill ()
+
+                        return 1
+                })
+
             let executeCommandAsync =
                 executeCommandActions
                 |> List.map (fun command -> async {
@@ -660,7 +770,7 @@ modules:
                 })
 
             return!
-                [| buildFileAsync; fileTokenRangeAsync; executeCommandAsync |]
+                [| buildFileAsync; fileTokenRangeAsync; fileHoverAtAsync; executeCommandAsync |]
                 |> Seq.collect id
                 |> fun x ->
                     if isParallel

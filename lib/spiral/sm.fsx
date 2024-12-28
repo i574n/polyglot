@@ -77,35 +77,35 @@ and method0 (v0 : string, v1 : string, v2 : string) : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v7 : string = "$0.unwrap()"
     let v8 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v7 
-    let _v6 = v8 
+    let _run_target_args'_v6 = v8 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v9 : string = "$0.unwrap()"
     let v10 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v9 
-    let _v6 = v10 
+    let _run_target_args'_v6 = v10 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v11 : string = "$0.unwrap()"
     let v12 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v5 v11 
-    let _v6 = v12 
+    let _run_target_args'_v6 = v12 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v13 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v6 = v13 
+    let _run_target_args'_v6 = v13 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v14 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v6 = v14 
+    let _run_target_args'_v6 = v14 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v15 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v6 = v15 
+    let _run_target_args'_v6 = v15 
     #endif
 #else
     let v16 : regex_Regex = match v5 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _v6 = v16 
+    let _run_target_args'_v6 = v16 
     #endif
-    let v17 : regex_Regex = _v6 
+    let v17 : regex_Regex = _run_target_args'_v6 
     let v20 : string = method1(v2)
     let v21 : string = $"$0.replace_all(&*$1, &*$2)"
     let v22 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v17, v20, v1) v21 
@@ -113,33 +113,33 @@ and method0 (v0 : string, v1 : string, v2 : string) : string =
     let v24 : std_string_String = Fable.Core.RustInterop.emitRustExpr v22 v23 
     let v25 : string = "fable_library_rust::String_::fromString($0)"
     let v26 : string = Fable.Core.RustInterop.emitRustExpr v24 v25 
-    let _v3 = v26 
+    let _run_target_args'_v3 = v26 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v27 : string = null |> unbox<string>
-    let _v3 = v27 
+    let _run_target_args'_v3 = v27 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v30 : string = null |> unbox<string>
-    let _v3 = v30 
+    let _run_target_args'_v3 = v30 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v33 : string = null |> unbox<string>
-    let _v3 = v33 
+    let _run_target_args'_v3 = v33 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v36 : string = null |> unbox<string>
-    let _v3 = v36 
+    let _run_target_args'_v3 = v36 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v39 : string = null |> unbox<string>
-    let _v3 = v39 
+    let _run_target_args'_v3 = v39 
     #endif
 #else
     let v42 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
-    let _v3 = v42 
+    let _run_target_args'_v3 = v42 
     #endif
-    let v43 : string = _v3 
+    let v43 : string = _run_target_args'_v3 
     v43
 and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     method0(v0, v1, v2)
@@ -182,7 +182,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v11 : (string seq -> string) = v10 v9
     let v12 : string = v11 v3
     let v15 : (string []) = v1.Split v12 
-    let _v2 = v15 
+    let _run_target_args'_v2 = v15 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v18 : string seq = v0 |> Seq.ofArray
@@ -197,7 +197,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v26 : (string seq -> string) = v25 v24
     let v27 : string = v26 v18
     let v30 : (string []) = v1.Split v27 
-    let _v2 = v30 
+    let _run_target_args'_v2 = v30 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v33 : string seq = v0 |> Seq.ofArray
@@ -212,7 +212,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v41 : (string seq -> string) = v40 v39
     let v42 : string = v41 v33
     let v45 : (string []) = v1.Split v42 
-    let _v2 = v45 
+    let _run_target_args'_v2 = v45 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v48 : string seq = v0 |> Seq.ofArray
@@ -227,7 +227,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v56 : (string seq -> string) = v55 v54
     let v57 : string = v56 v48
     let v60 : (string []) = v1.Split v57 
-    let _v2 = v60 
+    let _run_target_args'_v2 = v60 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v63 : string seq = v0 |> Seq.ofArray
@@ -242,7 +242,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v71 : (string seq -> string) = v70 v69
     let v72 : string = v71 v63
     let v75 : (string []) = v1.Split v72 
-    let _v2 = v75 
+    let _run_target_args'_v2 = v75 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v78 : string seq = v0 |> Seq.ofArray
@@ -257,13 +257,13 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v86 : (string seq -> string) = v85 v84
     let v87 : string = v86 v78
     let v90 : (string []) = v1.Split v87 
-    let _v2 = v90 
+    let _run_target_args'_v2 = v90 
     #endif
 #else
     let v93 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
-    let _v2 = v93 
+    let _run_target_args'_v2 = v93 
     #endif
-    let v94 : (string []) = _v2 
+    let v94 : (string []) = _run_target_args'_v2 
     v94
 and closure21 () (v0 : (string [])) : (string -> (string [])) =
     closure22(v0)
@@ -386,33 +386,33 @@ and closure41 () (v0 : exn) : string =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = $"%A{v0}"
-    let _v1 = v2 
+    let _run_target_args'_v1 = v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v5 : string = $"%A{v0}"
-    let _v1 = v5 
+    let _run_target_args'_v1 = v5 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v8 : string = $"%A{v0}"
-    let _v1 = v8 
+    let _run_target_args'_v1 = v8 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v11 : string = $"%A{v0}"
-    let _v1 = v11 
+    let _run_target_args'_v1 = v11 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v14 : string = $"%A{v0}"
-    let _v1 = v14 
+    let _run_target_args'_v1 = v14 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v17 : string = $"%A{v0}"
-    let _v1 = v17 
+    let _run_target_args'_v1 = v17 
     #endif
 #else
     let v20 : string = $"{v0.GetType ()}: {v0.Message}"
-    let _v1 = v20 
+    let _run_target_args'_v1 = v20 
     #endif
-    let v21 : string = _v1 
+    let v21 : string = _run_target_args'_v1 
     v21
 and method7 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0

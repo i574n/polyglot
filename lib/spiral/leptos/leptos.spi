@@ -903,7 +903,7 @@ inl new_arc_local_resource forall t.
 
     inl fetcher = fetcher |> rust.func0_from
 
-    !\\(fetcher, $'"leptos::prelude::ArcLocalResource::new(|_| async move { $0().await })"')
+    !\\(fetcher, $'"leptos::prelude::ArcLocalResource::new(|| async move { $0().await })"')
 
 /// ### new_resource
 // inl new_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
@@ -963,7 +963,7 @@ inl local_resource_loading forall t u. (resource : local_resource t u) : signal 
 
 /// ### arc_local_resource_loading
 inl arc_local_resource_loading forall t. (resource : arc_local_resource t) : arc_signal bool =
-    !\\(resource, $'$"leptos::prelude::pending(&$0).into()"')
+    !\\(resource, $'$"leptos::prelude::Submission::pending(&$0.into()).into()"')
 
 /// ### resource_get
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
@@ -975,7 +975,7 @@ inl local_resource_get forall t u. (resource : local_resource t u) : optionm'.op
 
 /// ### arc_local_resource_get
 inl arc_local_resource_get forall t. (resource : arc_local_resource t) : optionm'.option' t =
-    !\\(resource, $'$"leptos::prelude::ArcLocalResource::get(&$0)"')
+    !\\(resource, $'$"Option::map(leptos::prelude::ArcLocalResource::get(&$0), |x| *x)"')
 
 /// ### resource_with
 inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =

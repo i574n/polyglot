@@ -122,7 +122,9 @@ module Eval =
 
     /// ## startTokenRangeWatcher
     let inline startTokenRangeWatcher () =
-        if [ "dotnet-repl" ] |> List.contains assemblyName |> not then
+        if [ "dotnet-repl" ] |> List.contains assemblyName
+        then new_disposable (fun () -> ())
+        else
             let tokensDir = targetDir </> "tokens"
 
             [ tokensDir ]
@@ -231,7 +233,6 @@ module Eval =
                 trace Critical (fun () -> $"Eval.startTokenRangeWatcher / ex: {ex |> SpiralSm.format_exception}") _locals
 
             disposable
-        else new_disposable (fun () -> ())
 
     /// ## startCommandsWatcher
     let startCommandsWatcher (uriServer : string) =
@@ -847,7 +848,7 @@ module Eval =
         if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let ch, errors = fsi_eval code cancellationToken
-            trace Verbose (fun () -> $"Eval.eval / fsi_eval 1 / ch: %A{ch} / errors: {errors}") _locals
+            trace Verbose (fun () -> $"Eval.eval / fsi_eval 1 / ch: %A{ch} / errors: %A{errors}") _locals
             match ch with
             | Choice1Of2 v -> Ok(v), errors
             | Choice2Of2 ex -> Error(ex), errors

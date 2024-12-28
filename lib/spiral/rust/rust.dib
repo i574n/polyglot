@@ -811,7 +811,7 @@ inl func0_move forall t. (fn : func0 t) : t =
 
 #!spiral
 
-inl func1_move forall t u. (x : t) (fn : func1 t (heap u)) : u =
+inl func1_move forall t u. (x : t) (fn : func1 t u) : u =
     inl fn = join fn
     inl is_unit : bool =
         real
@@ -820,9 +820,9 @@ inl func1_move forall t u. (x : t) (fn : func1 t (heap u)) : u =
             | _ => false
     inl result =
         if is_unit
-        then !\($'"(move || !fn())()"') : heap u
-        else !\\(x, $'"(move |x| !fn(x))($0)"') : heap u
-    !result
+        then !\($'"(move || !fn())()"') : u
+        else !\\(x, $'"(move |x| !fn(x))($0)"') : u
+    result
 
 #!markdown
 
@@ -857,11 +857,16 @@ inl func0_from forall t. (fn : () -> t) : func0 t =
 
 #!spiral
 
-inl func1_from forall t u. (fn : t -> u) : func1 t (heap u) =
+inl func1_from forall t u. (fn : t -> u) : func1 t u =
     inl result' : unit = $'()'
     inl is_unit : bool =
         real
             typecase u with
+            | () => true
+            | _ => false
+    inl is_unit' : bool =
+        real
+            typecase t with
             | () => true
             | _ => false
     if is_unit
@@ -869,9 +874,10 @@ inl func1_from forall t u. (fn : t -> u) : func1 t (heap u) =
     else (!\($'$"true; let _func1_from_!result' = Func1::from(move |value| {{ //"') : bool) |> ignore
 
     inl result =
-        !\($'$"()"')
+        if is_unit'
+        then !\($'$"()"')
+        else !\($'$"value"')
         |> fn
-        |> heap
 
     if is_unit
     then (!\($'$"true; /*"') : bool) |> ignore
