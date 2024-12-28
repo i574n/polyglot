@@ -430,7 +430,9 @@ inl func1_move forall t u. (x : t) (fn : func1 t u) : u =
     inl result =
         if is_unit
         then !\($'"(move || !fn())()"') : u
-        else !\\(x, $'"(move |x| !fn(x))($0)"') : u
+        else
+            (!\\(x, $'"true; // $0"') : bool) |> ignore
+            !\($'"(move |x| !fn(x))(_arg)"') : u
     result
 
 /// ### func0_from
