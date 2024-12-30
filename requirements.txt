@@ -1,3 +1,4 @@
 nbconvert
 mpmath
 cupy-cuda12x
+mistune==3.0.2
