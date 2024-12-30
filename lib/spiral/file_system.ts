@@ -691,9 +691,9 @@ export function closure2(unitVar: void, v0_1: string): void {
 
 export function method0(v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] {
     const patternInput: [US1_$union, US2_$union] = method1();
-    const _v1 = [patternInput[0], patternInput[1]] as [US1_$union, US2_$union];
-    const v132: US2_$union = _v1[1];
-    const v131: US1_$union = _v1[0];
+    const _run_target_args$0027_v1 = [patternInput[0], patternInput[1]] as [US1_$union, US2_$union];
+    const v132: US2_$union = _run_target_args$0027_v1[1];
+    const v131: US1_$union = _run_target_args$0027_v1[0];
     return [new Mut0(1n), new Mut1((v: string): void => {
         closure2(undefined, v);
     }), new Mut2(true), new Mut3(""), new Mut4((v131.tag === /* US1_0 */ 0) ? v131.fields[0] : v0_1), (v132.tag === /* US2_0 */ 0) ? v132.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>];
@@ -804,9 +804,9 @@ export function method22(v0_1: string, v1_1: string): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, v0_1, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -1115,9 +1115,9 @@ export function method45(v0_1: string, v1_1: string): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, v0_1, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -1377,9 +1377,9 @@ export function method67(v0_1: int32, v1_1: string): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, `${v0_1}`, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -1475,9 +1475,9 @@ export function method70(v0_1: int64, v1_1: string): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, `${v0_1}`, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -1657,9 +1657,9 @@ export function method88(v0_1: string, v1_1: any): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, v0_1, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -1771,9 +1771,9 @@ export function method95(v0_1: string, v1_1: string): string {
     let v28_1: any;
     closure6(v3, " = ", undefined);
     v28_1 = undefined;
-    let v36: any;
+    let v36_1: any;
     closure6(v3, v0_1, undefined);
-    v36 = undefined;
+    v36_1 = undefined;
     let v45: any;
     closure6(v3, "; ", undefined);
     v45 = undefined;
@@ -2289,24 +2289,24 @@ export function closure55(unitVar: void, unitVar_1: void): string {
     })(), "polyglot");
 }
 
-export function closure59(v0_1: Error, unitVar: void): Error {
+export function closure58(v0_1: Error, unitVar: void): Error {
     return v0_1;
 }
 
 export function method126(v0_1: string): void {
 }
 
-export function closure58(unitVar: void, v0_1: string): void {
+export function closure57(unitVar: void, v0_1: string): void {
     method126(v0_1);
 }
 
-export function closure57(unitVar: void, v0_1: boolean): void {
+export function closure59(unitVar: void, v0_1: boolean): void {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_10(TraceState_trace_state());
     const v37: ((arg0: string) => void) = v0_1 ? ((v: string): void => {
-        closure58(undefined, v);
+        closure57(undefined, v);
     }) : ((v_1: string): void => {
         closure2(undefined, v_1);
     });
@@ -2457,24 +2457,32 @@ export function get_workspace_root(): string {
     return v32();
 }
 
-export const v33 = (v: boolean): void => {
+export const v33 = (v: string): void => {
     closure57(undefined, v);
 };
 
-export function init_trace_file(x: boolean): void {
+export function trace_file(x: string): void {
     v33(x);
 }
 
-export const v34 = (v: string): ((arg0: string) => void) => closure60(undefined, v);
+export const v34 = (v: boolean): void => {
+    closure59(undefined, v);
+};
 
-export function link_directory(x: string): ((arg0: string) => void) {
-    return v34(x);
+export function init_trace_file(x: boolean): void {
+    v34(x);
 }
 
-export const v35 = (v: string): ((arg0: string) => string) => closure62(undefined, v);
+export const v35 = (v: string): ((arg0: string) => void) => closure60(undefined, v);
+
+export function link_directory(x: string): ((arg0: string) => void) {
+    return v35(x);
+}
+
+export const v36 = (v: string): ((arg0: string) => string) => closure62(undefined, v);
 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
-    return v35(x);
+    return v36(x);
 }
 
 

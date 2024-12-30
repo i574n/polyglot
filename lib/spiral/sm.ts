@@ -1,6 +1,6 @@
 import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { record_type, string_type, int32_type, union_type, char_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { op_UnaryNegation_Int32, float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { uncurry2, defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { interpolate, toText, trimStart, trimEnd, substring as substring_1, startsWith, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
@@ -41,15 +41,17 @@ export function UH0_$reflection(): TypeInfo {
 export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
     l0: int32;
     l1: string;
-    constructor(l0: int32, l1: string) {
+    l2: string;
+    constructor(l0: int32, l1: string, l2: string) {
         super();
         this.l0 = (l0 | 0);
         this.l1 = l1;
+        this.l2 = l2;
     }
 }
 
 export function Mut0_$reflection(): TypeInfo {
-    return record_type("Sm.Mut0", [], Mut0, () => [["l0", int32_type], ["l1", string_type]]);
+    return record_type("Sm.Mut0", [], Mut0, () => [["l0", int32_type], ["l1", string_type], ["l2", string_type]]);
 }
 
 export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> {
@@ -296,15 +298,21 @@ export function method7(v0_1: int32, v1_1: Mut0): boolean {
 
 export function closure43(v0_1: string, v1_1: string[]): string {
     const v2_1: int32 = v1_1.length | 0;
-    const v4_1: Mut0 = new Mut0(0, "");
+    const v4_1: Mut0 = new Mut0(0, "", "");
     while (method7(v2_1, v4_1)) {
         const v6_1: int32 = v4_1.l0 | 0;
-        const v9_1: string = ((v4_1.l1 + item(v6_1, v1_1)) + v0_1) + "";
-        const v10_1: int32 = (v6_1 + 1) | 0;
-        v4_1.l0 = (v10_1 | 0);
-        v4_1.l1 = v9_1;
+        const v9_1: int32 = ((op_UnaryNegation_Int32(v6_1) + v2_1) - 1) | 0;
+        const matchValue: string = v4_1.l1;
+        const matchValue_1: string = v4_1.l2;
+        const v13_1: string = ((item(v9_1, v1_1) + matchValue_1) + matchValue) + "";
+        const v14_1: int32 = (v6_1 + 1) | 0;
+        v4_1.l0 = (v14_1 | 0);
+        v4_1.l1 = v13_1;
+        v4_1.l2 = v0_1;
     }
-    return v4_1.l1;
+    const matchValue_2: string = v4_1.l1;
+    const matchValue_3: string = v4_1.l2;
+    return matchValue_2;
 }
 
 export function closure42(unitVar: void, v0_1: string): ((arg0: string[]) => string) {
@@ -461,7 +469,7 @@ export function format_exception(x: Error): string {
 
 export const v19 = (v: string): ((arg0: string[]) => string) => closure42(undefined, v);
 
-export function concat_array_trailing(x: string): ((arg0: string[]) => string) {
+export function concat_array(x: string): ((arg0: string[]) => string) {
     return v19(x);
 }
 

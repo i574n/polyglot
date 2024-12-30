@@ -366,7 +366,7 @@ mod module_31a2fc18 {
             let v64: string = string("option_env!(\"AUTOMATION\").unwrap_or(\"\")");
             let v65: &str = option_env!("AUTOMATION").unwrap_or("");
             let v72: std::string::String = String::from(v65);
-            let _v1: (Chat_contract::US1, Chat_contract::US2) = (
+            let _run_target_args__v1: (Chat_contract::US1, Chat_contract::US2) = (
                 Chat_contract::US1::US1_1,
                 if (fable_library_rust::String_::fromString(v72)) != string("True") {
                     Chat_contract::US2::US2_1
@@ -374,8 +374,8 @@ mod module_31a2fc18 {
                     Chat_contract::US2::US2_0(near_sdk::env::block_timestamp() as i64)
                 },
             );
-            let v132: Chat_contract::US2 = _v1.1.clone();
-            let v131: Chat_contract::US1 = _v1.0.clone();
+            let v132: Chat_contract::US2 = _run_target_args__v1.1.clone();
+            let v131: Chat_contract::US1 = _run_target_args__v1.0.clone();
             (
                 LrcPtr::new(Chat_contract::Mut0 {
                     l0: MutCell::new(1_i64),

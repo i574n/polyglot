@@ -78,8 +78,8 @@ export function method2(v0_1: any): (() => void) {
 
 export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
     const patternInput: [any, IDisposable] = defaultOf();
-    const _v1 = [patternInput[0], patternInput[1]] as [any, IDisposable];
-    return [_v1[0], _v1[1]] as [any, IDisposable];
+    const _run_target_args$0027_v1 = [patternInput[0], patternInput[1]] as [any, IDisposable];
+    return [_run_target_args$0027_v1[0], _run_target_args$0027_v1[1]] as [any, IDisposable];
 }
 
 export const v0 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);

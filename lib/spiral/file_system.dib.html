@@ -9664,7 +9664,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_3d39e0c5739e7944d9fa8c0d1ac83bc79dfb1250d54b89e2c5b725b473db236e\20241215-2028-3451-5037-000000797a62" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_5b1052606683d4df59f773443a30382a097fd108a65e7b6e6ed199c71069ed25\20241230-0136-1245-6296-000000415d38" / expected: '\\'
 
 </pre>
 </div>
@@ -9673,7 +9673,7 @@ __assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241215-2028-3515-1562-1003008f600e" / expected: '\\'
+__assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20241230-0136-1283-8322-8003007cad31" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -10858,7 +10858,9 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                 <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">trace_dir</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
                 <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_all_text_async</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_synchronously</span>
             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-                <span class="n">trace_file</span> <span class="err">$</span><span class="s1">'$"file_system.trace_file / ex: %A{!ex}"'</span>
+                <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"file_system.trace_file / ex: %A{!ex}"'</span>
+                <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+                <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">trace_file</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -10900,7 +10902,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 64L / expected: 64L
+<pre>__assert_eq / actual: 83L / expected: 83L
 </pre>
 </div>
 </div>
@@ -11065,7 +11067,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_8f3056de74902766e18a148ebb1635f01caa3fe5f8cc36b24c810d4a8b5203c9\20241215-2029-2914-9844-000000792eb7 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4b0033d71412ee2d86301af494d8f0e963730c12c31301e5157496716a8405cf\20241230-0137-3795-3954-000000bffe06 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11166,7 +11168,7 @@ __assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
-__assert_between / actual: 125L / expected: struct (50L, 180L)
+__assert_between / actual: 124L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11659,8 +11661,8 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">d</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:02 <span class="ansi-blue-intense-fg">d</span> #8 _3
-00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _4
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #8 _3
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #9 _4
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 _5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 _6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 5
@@ -11861,8 +11863,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 3
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process. }
@@ -12009,7 +12011,7 @@ __assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 delete_file_async / { path = test.txt; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
 00:00:01 <span class="ansi-yellow-intense-fg">w</span> #8 delete_file_async / { path = test.txt; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
 __assert_between / actual: 128L / expected: struct (50L, 180L)
@@ -12057,6 +12059,7 @@ __assert_eq / actual: true / expected: true
     <span class="err">$</span><span class="s1">'let normalize_path x = !normalize_path x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let new_file_uri x = !new_file_uri x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let get_workspace_root () = !get_workspace_root ()'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let trace_file x = !trace_file x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let init_trace_file x = !init_trace_file x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let link_directory x = !link_directory x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">combine</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">x</span>
