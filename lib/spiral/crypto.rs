@@ -309,7 +309,7 @@ pub mod Crypto {
                     let v91: Vec<string> = _vec_map;
                     let v93: Array<string> =
                         fable_library_rust::NativeArray_::array_from(v91.clone());
-                    let _v94: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
+                    let _let__v94: LrcPtr<dyn IEnumerable_1<string>> = delay(Func0::new({
                         let v93 = v93.clone();
                         move || {
                             map(
@@ -328,7 +328,7 @@ pub mod Crypto {
                         } else {
                             v103
                         },
-                        toArray(_v94),
+                        toArray(_let__v94),
                     );
                     Ok::<string, std::io::Error>(v109).unwrap()
                 }
@@ -472,9 +472,10 @@ pub mod Crypto {
         Option<i64>,
     ) {
         let patternInput: (Crypto::US1, Crypto::US2) = Crypto::method7();
-        let _v1: (Crypto::US1, Crypto::US2) = (patternInput.0.clone(), patternInput.1.clone());
-        let v132: Crypto::US2 = _v1.1.clone();
-        let v131: Crypto::US1 = _v1.0.clone();
+        let _run_target_args__v1: (Crypto::US1, Crypto::US2) =
+            (patternInput.0.clone(), patternInput.1.clone());
+        let v132: Crypto::US2 = _run_target_args__v1.1.clone();
+        let v131: Crypto::US1 = _run_target_args__v1.0.clone();
         (
             LrcPtr::new(Crypto::Mut1 {
                 l0: MutCell::new(1_i64),

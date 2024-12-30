@@ -6,6 +6,8 @@ open rust
 inl render forall t. (class : () -> string) props (getter : () -> t) setter : _ (_ input) =
     inl getter = getter |> rust.func0_from
     inl setter : rust.func1 sm'.std_string () = setter |> rust.func1_from
+    inl setter x =
+        setter |> rust.func1_move x
     inl class = class |> rust.emit
     input
         ([

@@ -377,9 +377,9 @@ export function closure5(unitVar: void, v0_1: string): void {
 
 export function method6(v0_1: US0_$union): [Mut1, Mut2, Mut3, Mut4, Mut5, Option<int64>] {
     const patternInput: [US1_$union, US2_$union] = method7();
-    const _v1 = [patternInput[0], patternInput[1]] as [US1_$union, US2_$union];
-    const v132: US2_$union = _v1[1];
-    const v131: US1_$union = _v1[0];
+    const _run_target_args$0027_v1 = [patternInput[0], patternInput[1]] as [US1_$union, US2_$union];
+    const v132: US2_$union = _run_target_args$0027_v1[1];
+    const v131: US1_$union = _run_target_args$0027_v1[0];
     return [new Mut1(1n), new Mut2((v: string): void => {
         closure5(undefined, v);
     }), new Mut3(true), new Mut4(""), new Mut5((v131.tag === /* US1_0 */ 0) ? v131.fields[0] : v0_1), (v132.tag === /* US2_0 */ 0) ? v132.fields[0] : undefined] as [Mut1, Mut2, Mut3, Mut4, Mut5, Option<int64>];

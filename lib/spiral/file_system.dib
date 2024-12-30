@@ -1478,7 +1478,9 @@ let rec trace_file text =
                 inl path = trace_dir </> file_name
                 text |> write_all_text_async path |> async.run_synchronously
             fun ex =>
-                trace_file $'$"file_system.trace_file / ex: %A{!ex}"'
+                inl text = $'$"file_system.trace_file / ex: %A{!ex}"'
+                text |> console.write_line
+                text |> trace_file
     | _ => fun () => ()
 
 #!spiral
@@ -2162,6 +2164,7 @@ inl main () =
     $'let normalize_path x = !normalize_path x' : ()
     $'let new_file_uri x = !new_file_uri x' : ()
     $'let get_workspace_root () = !get_workspace_root ()' : ()
+    $'let trace_file x = !trace_file x' : ()
     $'let init_trace_file x = !init_trace_file x' : ()
     $'let link_directory x = !link_directory x' : ()
     inl combine x = (</>) x

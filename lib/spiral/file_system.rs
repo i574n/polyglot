@@ -508,10 +508,10 @@ pub mod File_system {
         Option<i64>,
     ) {
         let patternInput: (File_system::US1, File_system::US2) = File_system::method1();
-        let _v1: (File_system::US1, File_system::US2) =
+        let _run_target_args__v1: (File_system::US1, File_system::US2) =
             (patternInput.0.clone(), patternInput.1.clone());
-        let v132: File_system::US2 = _v1.1.clone();
-        let v131: File_system::US1 = _v1.0.clone();
+        let v132: File_system::US2 = _run_target_args__v1.1.clone();
+        let v131: File_system::US1 = _run_target_args__v1.0.clone();
         (
             LrcPtr::new(File_system::Mut0 {
                 l0: MutCell::new(1_i64),
@@ -759,7 +759,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), v0_1, ());
             ()
         };
@@ -1149,7 +1149,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), v0_1, ());
             ()
         };
@@ -1521,7 +1521,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", v0_1), ());
             ()
         };
@@ -1637,7 +1637,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), sprintf!("{}", v0_1), ());
             ()
         };
@@ -1901,7 +1901,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), v0_1, ());
             ()
         };
@@ -2104,7 +2104,7 @@ pub mod File_system {
             File_system::closure6(v3.clone(), string(" = "), ());
             ()
         };
-        let v36: () = {
+        let v36_1: () = {
             File_system::closure6(v3.clone(), v0_1, ());
             ()
         };
@@ -3084,16 +3084,16 @@ pub mod File_system {
             string("polyglot"),
         )
     }
-    pub fn closure59(v0_1: LrcPtr<Exception>, unitVar: ()) -> LrcPtr<Exception> {
+    pub fn closure58(v0_1: LrcPtr<Exception>, unitVar: ()) -> LrcPtr<Exception> {
         v0_1
     }
     pub fn method126(v0_1: string) {
         ();
     }
-    pub fn closure58(unitVar: (), v0_1: string) {
+    pub fn closure57(unitVar: (), v0_1: string) {
         File_system::method126(v0_1);
     }
-    pub fn closure57(unitVar: (), v0_1: bool) {
+    pub fn closure59(unitVar: (), v0_1: bool) {
         let v3: () = {
             File_system::closure0((), ());
             ()
@@ -3110,7 +3110,7 @@ pub mod File_system {
             .clone()
             .unwrap();
         let v37 = if v0_1 {
-            Func1::new(move |v: string| File_system::closure58((), v))
+            Func1::new(move |v: string| File_system::closure57((), v))
         } else {
             Func1::new(move |v_1: string| File_system::closure2((), v_1))
         };
@@ -3320,29 +3320,37 @@ pub mod File_system {
     pub fn get_workspace_root() -> string {
         (File_system::v32())()
     }
-    pub fn v33() -> Func1<bool, ()> {
-        static v33: OnceInit<Func1<bool, ()>> = OnceInit::new();
-        v33.get_or_init(|| Func1::new(move |v: bool| File_system::closure57((), v)))
+    pub fn v33() -> Func1<string, ()> {
+        static v33: OnceInit<Func1<string, ()>> = OnceInit::new();
+        v33.get_or_init(|| Func1::new(move |v: string| File_system::closure57((), v)))
+            .clone()
+    }
+    pub fn trace_file(x: string) {
+        (File_system::v33())(x);
+    }
+    pub fn v34() -> Func1<bool, ()> {
+        static v34: OnceInit<Func1<bool, ()>> = OnceInit::new();
+        v34.get_or_init(|| Func1::new(move |v: bool| File_system::closure59((), v)))
             .clone()
     }
     pub fn init_trace_file(x: bool) {
-        (File_system::v33())(x);
+        (File_system::v34())(x);
     }
-    pub fn v34() -> Func1<string, Func1<string, ()>> {
-        static v34: OnceInit<Func1<string, Func1<string, ()>>> = OnceInit::new();
-        v34.get_or_init(|| Func1::new(move |v: string| File_system::closure60((), v)))
+    pub fn v35() -> Func1<string, Func1<string, ()>> {
+        static v35: OnceInit<Func1<string, Func1<string, ()>>> = OnceInit::new();
+        v35.get_or_init(|| Func1::new(move |v: string| File_system::closure60((), v)))
             .clone()
     }
     pub fn link_directory(x: string) -> Func1<string, ()> {
-        (File_system::v34())(x)
+        (File_system::v35())(x)
     }
-    pub fn v35() -> Func1<string, Func1<string, string>> {
-        static v35: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
-        v35.get_or_init(|| Func1::new(move |v: string| File_system::closure62((), v)))
+    pub fn v36() -> Func1<string, Func1<string, string>> {
+        static v36: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
+        v36.get_or_init(|| Func1::new(move |v: string| File_system::closure62((), v)))
             .clone()
     }
     pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
-        (File_system::v35())(x)
+        (File_system::v36())(x)
     }
     on_startup!(());
 }

@@ -1,10 +1,12 @@
 open rust.rust_operators
+open rust
 open sm'_operators
 open leptos
 
 inl render (id : () -> string) get_value (on_change : event -> ()) : _ (_ label) =
     inl id' = id >> sm'.to_std_string
-    (!\\(id', $'"true; let !id' = $0; //"') : bool) |> ignore
+    // (!\\(id', $'"true; let !id' = $0; //"') : bool) |> ignore
+    inl id' = id' |> rust.func0_from
     inl class =
         [
             $'"block"'
@@ -16,6 +18,7 @@ inl render (id : () -> string) get_value (on_change : event -> ()) : _ (_ label)
         ]
         |> sm'.concat_list " "
         |> sm'.to_std_string
+        |> rust.emit
     label [
         $'"for=move || !id'()"'
         $'"class=!class"'

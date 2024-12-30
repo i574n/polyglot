@@ -19,7 +19,7 @@ inl storage_set forall t. (key : string) (value : t) (storage : wasm.storage) =
     inl value = join value
     inl value : sm'.std_string = !\($'"serde_json::json!!(!value).to_string()"')
     inl value = value |> sm'.as_str_std
-    !\\(key, $'$"web_sys::Storage::set(&!storage, $0, !value).unwrap()"') : ()
+    (!\\(key, $'$"true; web_sys::Storage::set(&!storage, $0, !value).unwrap()"') : bool) |> ignore
 
 let local_storage (window : wasm.window) : resultm.result' (optionm'.option' wasm.storage) wasm.js_value =
     !\\(window, $'"$0.local_storage()"')

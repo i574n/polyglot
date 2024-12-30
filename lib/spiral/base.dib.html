@@ -7812,7 +7812,7 @@ a.anchor-link {
             <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'()'</span> <span class="p">:</span> <span class="n">unit</span>
             <span class="n">inl</span> <span class="n">emit_result</span> <span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
                 <span class="k">if</span> <span class="n">is_unit</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                <span class="n">then</span> <span class="err">$</span><span class="s1">'let _!result = !x '</span>
+                <span class="n">then</span> <span class="err">$</span><span class="s1">'let _run_target_args</span><span class="se">\'</span><span class="s1">_!result = !x '</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER || WASM || CONTRACT'</span>
             <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if FABLE_COMPILER_RUST &amp;&amp; \!WASM &amp;&amp; \!CONTRACT'</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Rust</span> <span class="n">Native</span>
@@ -7838,7 +7838,7 @@ a.anchor-link {
             <span class="err">$</span><span class="s1">'#endif'</span>
             <span class="k">if</span> <span class="n">is_unit</span>
             <span class="n">then</span> <span class="err">$</span><span class="s1">'// run_target_args</span><span class="se">\'</span><span class="s1"> is_unit'</span>
-            <span class="k">else</span> <span class="err">$</span><span class="s1">'_!result '</span> <span class="p">:</span> <span class="n">t</span>
+            <span class="k">else</span> <span class="err">$</span><span class="s1">'_run_target_args</span><span class="se">\'</span><span class="s1">_!result '</span> <span class="p">:</span> <span class="n">t</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">target</span> <span class="o">=</span> <span class="n">Cuda</span> <span class="n">Native</span>
             <span class="n">fn</span> <span class="n">target</span> <span class="n">args</span>
@@ -8115,13 +8115,13 @@ __assert_eq / actual: 1uy / expected: 1uy
         <span class="p">}</span>
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'let _!result ='</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'let _let</span><span class="se">\'</span><span class="s1">_!result ='</span> <span class="p">:</span> <span class="p">()</span>
             <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'def _!result():'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'def _let</span><span class="se">\'</span><span class="s1">_!result():'</span> <span class="p">:</span> <span class="p">()</span>
             <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">indent</span>
     <span class="p">}</span>
-    <span class="err">$</span><span class="s1">'_!result '</span>
+    <span class="err">$</span><span class="s1">'_let</span><span class="se">\'</span><span class="s1">_!result '</span>
 </pre></div>
 </div>
 </div>
@@ -8315,7 +8315,7 @@ __assert_eq / actual: 1 / expected: 1
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">true</span>
-            <span class="err">$</span><span class="s1">'let mutable _!result : `t option = None '</span>
+            <span class="err">$</span><span class="s1">'let mutable _capture_!result : `t option = None '</span>
             <span class="err">$</span><span class="s1">'('</span>
             <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
             <span class="err">$</span><span class="s1">'(fun () -&gt;'</span>
@@ -8323,8 +8323,8 @@ __assert_eq / actual: 1 / expected: 1
             <span class="err">$</span><span class="s1">')'</span>
             <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; x ()'</span>
             <span class="err">$</span><span class="s1">') () )'</span>
-            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
-            <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "base.capture / _!result=None"'</span> <span class="p">:</span> <span class="n">t</span>
+            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _capture_!result &lt;- Some x'</span>
+            <span class="err">$</span><span class="s1">'match _capture_!result with Some x -&gt; x | None -&gt; failwith "base.capture / _capture_!result=None"'</span> <span class="p">:</span> <span class="n">t</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">fn</span> <span class="p">()</span>
     <span class="p">}</span>

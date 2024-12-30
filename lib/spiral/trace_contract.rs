@@ -322,7 +322,7 @@ pub mod Trace {
         let v64: string = string("option_env!(\"AUTOMATION\").unwrap_or(\"\")");
         let v65: &str = option_env!("AUTOMATION").unwrap_or("");
         let v72: std::string::String = String::from(v65);
-        let _v1: (Trace::US1, Trace::US2) = (
+        let _run_target_args__v1: (Trace::US1, Trace::US2) = (
             Trace::US1::US1_1,
             if (fable_library_rust::String_::fromString(v72)) != string("True") {
                 Trace::US2::US2_1
@@ -330,8 +330,8 @@ pub mod Trace {
                 Trace::US2::US2_0(near_sdk::env::block_timestamp() as i64)
             },
         );
-        let v132: Trace::US2 = _v1.1.clone();
-        let v131: Trace::US1 = _v1.0.clone();
+        let v132: Trace::US2 = _run_target_args__v1.1.clone();
+        let v131: Trace::US1 = _run_target_args__v1.0.clone();
         (
             LrcPtr::new(Trace::Mut0 {
                 l0: MutCell::new(1_i64),

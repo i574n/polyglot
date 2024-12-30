@@ -21,7 +21,7 @@ inl os_platform = function
 /// ### run_platform
 inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
     inl result = dyn true
-    $'let mutable _!result : `t option = None '
+    $'let mutable _run_platform_!result : `t option = None '
     $'\n#if _FREEBSD'
     fn FreeBSD () |> emit_unit
     $'#endif\n#if _LINUX'
@@ -31,8 +31,8 @@ inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
     $'#endif\n#if _WINDOWS'
     fn Windows () |> emit_unit
     $'#endif'
-    $'|> fun x -> _!result <- Some x'
-    $'match _!result with Some x -> x | None -> failwith "runtime.run_platform / _!result=None"'
+    $'|> fun x -> _run_platform_!result <- Some x'
+    $'match _run_platform_!result with Some x -> x | None -> failwith "runtime.run_platform / _run_platform_!result=None"'
 
 /// ### is_os_platform
 inl is_os_platform (x : os_platform') : bool =

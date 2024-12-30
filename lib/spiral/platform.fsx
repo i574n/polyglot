@@ -16,45 +16,45 @@ let rec closure0 () () : bool =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v1 : string = "cfg!(windows)"
     let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
-    let _v0 = v2 
+    let _run_target_args'_v0 = v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v3 : string = "cfg!(windows)"
     let v4 : bool = Fable.Core.RustInterop.emitRustExpr () v3 
-    let _v0 = v4 
+    let _run_target_args'_v0 = v4 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v5 : string = "cfg!(windows)"
     let v6 : bool = Fable.Core.RustInterop.emitRustExpr () v5 
-    let _v0 = v6 
+    let _run_target_args'_v0 = v6 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v7 : US0 = US0_0
     let v8 : US1 = US1_3(v7)
     let v9 : string = $"platform.is_windows / target: {v8}"
     let v10 : bool = failwith<bool> v9
-    let _v0 = v10 
+    let _run_target_args'_v0 = v10 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v11 : US0 = US0_0
     let v12 : US1 = US1_4(v11)
     let v13 : string = $"platform.is_windows / target: {v12}"
     let v14 : bool = failwith<bool> v13
-    let _v0 = v14 
+    let _run_target_args'_v0 = v14 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v15 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v16 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v17 : bool = v16 v15
-    let _v0 = v17 
+    let _run_target_args'_v0 = v17 
     #endif
 #else
     let v18 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v19 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v20 : bool = v19 v18
-    let _v0 = v20 
+    let _run_target_args'_v0 = v20 
     #endif
-    let v21 : bool = _v0 
+    let v21 : bool = _run_target_args'_v0 
     v21
 and closure1 () () : string =
     let v0 : unit = ()
@@ -64,45 +64,45 @@ and closure1 () () : string =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v1 : string = "cfg!(windows)"
     let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
-    let _v0 = v2 
+    let _run_target_args'_v0 = v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v3 : string = "cfg!(windows)"
     let v4 : bool = Fable.Core.RustInterop.emitRustExpr () v3 
-    let _v0 = v4 
+    let _run_target_args'_v0 = v4 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v5 : string = "cfg!(windows)"
     let v6 : bool = Fable.Core.RustInterop.emitRustExpr () v5 
-    let _v0 = v6 
+    let _run_target_args'_v0 = v6 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v7 : US0 = US0_0
     let v8 : US1 = US1_3(v7)
     let v9 : string = $"platform.is_windows / target: {v8}"
     let v10 : bool = failwith<bool> v9
-    let _v0 = v10 
+    let _run_target_args'_v0 = v10 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v11 : US0 = US0_0
     let v12 : US1 = US1_4(v11)
     let v13 : string = $"platform.is_windows / target: {v12}"
     let v14 : bool = failwith<bool> v13
-    let _v0 = v14 
+    let _run_target_args'_v0 = v14 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v15 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v16 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v17 : bool = v16 v15
-    let _v0 = v17 
+    let _run_target_args'_v0 = v17 
     #endif
 #else
     let v18 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
     let v19 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
     let v20 : bool = v19 v18
-    let _v0 = v20 
+    let _run_target_args'_v0 = v20 
     #endif
-    let v21 : bool = _v0 
+    let v21 : bool = _run_target_args'_v0 
     if v21 then
         let v27 : string = ".exe"
         v27

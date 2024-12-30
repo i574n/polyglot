@@ -227,6 +227,13 @@ nominal action t u =
         $'' : $'leptos_prelude_Action<`t, `u>'
     )
 
+/// ### arc_action
+nominal arc_action t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcAction<$0, $1>\")>]\n#endif\ntype leptos_prelude_ArcAction<'T, 'U> = class end"
+        $'' : $'leptos_prelude_ArcAction<`t, `u>'
+    )
+
 /// ### for
 nominal for =
     `(
@@ -346,11 +353,25 @@ nominal memo t =
         $'' : $'leptos_prelude_Memo<`t>'
     )
 
+/// ### arc_memo
+nominal arc_memo t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcMemo<$0>\")>]\n#endif\ntype leptos_prelude_ArcMemo<'T> = class end"
+        $'' : $'leptos_prelude_ArcMemo<`t>'
+    )
+
 /// ### rw_signal
 nominal rw_signal t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::RwSignal<$0>\")>]\n#endif\ntype leptos_prelude_RwSignal<'T> = class end"
         $'' : $'leptos_prelude_RwSignal<`t>'
+    )
+
+/// ### arc_rw_signal
+nominal arc_rw_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcRwSignal<$0>\")>]\n#endif\ntype leptos_prelude_ArcRwSignal<'T> = class end"
+        $'' : $'leptos_prelude_ArcRwSignal<`t>'
     )
 
 /// ### signal
@@ -360,11 +381,25 @@ nominal signal t =
         $'' : $'leptos_prelude_Signal<`t>'
     )
 
+/// ### arc_signal
+nominal arc_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcSignal<$0>\")>]\n#endif\ntype leptos_prelude_ArcSignal<'T> = class end"
+        $'' : $'leptos_prelude_ArcSignal<`t>'
+    )
+
 /// ### read_signal
 nominal read_signal t =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ReadSignal<$0>\")>]\n#endif\ntype leptos_prelude_ReadSignal<'T> = class end"
         $'' : $'leptos_prelude_ReadSignal<`t>'
+    )
+
+/// ### arc_read_signal
+nominal arc_read_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcReadSignal<$0>\")>]\n#endif\ntype leptos_prelude_ArcReadSignal<'T> = class end"
+        $'' : $'leptos_prelude_ArcReadSignal<`t>'
     )
 
 /// ### write_signal
@@ -374,11 +409,39 @@ nominal write_signal t =
         $'' : $'leptos_prelude_WriteSignal<`t>'
     )
 
+/// ### arc_write_signal
+nominal arc_write_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcWriteSignal<$0>\")>]\n#endif\ntype leptos_prelude_ArcWriteSignal<'T> = class end"
+        $'' : $'leptos_prelude_ArcWriteSignal<`t>'
+    )
+
 /// ### resource
 nominal resource t u =
     `(
         global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::Resource<$0, $1>\")>]\n#endif\ntype leptos_prelude_Resource<'T, 'U> = class end"
         $'' : $'leptos_prelude_Resource<`t, `u>'
+    )
+
+/// ### arc_resource
+nominal arc_resource t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcResource<$0, $1>\")>]\n#endif\ntype leptos_prelude_ArcResource<'T, 'U> = class end"
+        $'' : $'leptos_prelude_ArcResource<`t, `u>'
+    )
+
+/// ### local_resource
+nominal local_resource t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::LocalResource<$0, $1>\")>]\n#endif\ntype leptos_prelude_LocalResource<'T, 'U> = class end"
+        $'' : $'leptos_prelude_LocalResource<`t, `u>'
+    )
+
+/// ### arc_local_resource
+nominal arc_local_resource t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::prelude::ArcLocalResource<$0>\")>]\n#endif\ntype leptos_prelude_ArcLocalResource<'T> = class end"
+        $'' : $'leptos_prelude_ArcLocalResource<`t>'
     )
 
 /// ### any_view
@@ -541,10 +604,6 @@ inl new_transparent x : transparent =
 inl closure_to_view (closure : rust.func0 view) : view =
     !\($'"leptos::prelude::IntoAny::into_any(move || !closure())"')
 
-/// ### batch
-inl batch (fn : () -> ()) : () =
-    (!\\(fn, $'"true; leptos::batch(move || $0());"') : bool) |> ignore
-
 /// ### vec_to_view
 inl vec_to_view (views : am'.vec view) : view =
     !\\(views, $'"leptos::prelude::IntoAny::into_any($0)"')
@@ -572,22 +631,22 @@ inl text_to_fragment (text : string) : fragment =
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::prelude::IntoAny::into_any(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### macro_to_view'
 inl macro_to_view' (macro : string) : view' infer =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### macro_to_view''
 inl macro_to_view'' (macro : string) : view' infer =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::prelude::view\! { " + !macro + " }"')
 
 /// ### macro_to_view'''
 inl macro_to_view''' (macro : string) : view' _ =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::IntoView::into_view(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### into_any_view
@@ -644,9 +703,13 @@ inl provide_context forall t. (x : t) =
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\\(value, $'$"leptos::prelude::signal($0)"')
 
-/// ### create_rw_signal
-inl create_rw_signal forall t. (value : t) : rw_signal t =
+/// ### new_rw_signal
+inl new_rw_signal forall t. (value : t) : rw_signal t =
     !\\(value, $'$"leptos::prelude::RwSignal::new($0)"')
+
+/// ### new_arc_rw_signal
+inl new_arc_rw_signal forall t. (value : t) : arc_rw_signal t =
+    !\\(value, $'$"leptos::prelude::ArcRwSignal::new($0)"')
 
 /// ### read_only
 inl read_only forall t. (value : rw_signal t) : read_signal t =
@@ -661,10 +724,15 @@ inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
     real
         typecase t with
         | signal => ()
+        | arc_signal => ()
         | rw_signal => ()
+        | arc_rw_signal => ()
         | read_signal => ()
+        | arc_read_signal => ()
         | write_signal => ()
+        | arc_write_signal => ()
         | memo => ()
+        | arc_memo => ()
         | _ => error_type `(()) ("invalid signal", ``(t u))
 
 /// ### memo_get'
@@ -678,23 +746,32 @@ inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
         real
             typecase t with
             | signal => $'$"leptos::prelude::Signal::get(&$0)"' : string
+            | arc_signal => $'$"leptos::prelude::ArcSignal::get(&$0)"' : string
             | rw_signal => $'$"leptos::prelude::RwSignal::get(&$0)"' : string
+            | arc_rw_signal => $'$"leptos::prelude::ArcRwSignal::get(&$0)"' : string
             | read_signal => $'$"leptos::prelude::ReadSignal::get(&$0)"' : string
+            | arc_read_signal => $'$"leptos::prelude::ArcReadSignal::get(&$0)"' : string
             | write_signal => $'$"leptos::prelude::WriteSignal::get(&$0)"' : string
+            | arc_write_signal => $'$"leptos::prelude::ArcWriteSignal::get(&$0)"' : string
             | memo => $'$"leptos::prelude::Memo::get(&$0)"' : string
+            | arc_memo => $'$"leptos::prelude::ArcMemo::get(&$0)"' : string
     !\\(signal, code) : u
 
 /// ### signal_get signal
 instance signal_get signal = signal_get'
+instance signal_get arc_signal = signal_get'
 
 /// ### signal_get rw_signal
 instance signal_get rw_signal = signal_get'
+instance signal_get arc_rw_signal = signal_get'
 
 /// ### signal_get read_signal
 instance signal_get read_signal = signal_get'
+instance signal_get arc_read_signal = signal_get'
 
 /// ### signal_get memo
-instance signal_get memo = memo_get'
+instance signal_get memo = signal_get'
+instance signal_get arc_memo = signal_get'
 
 /// ### signal_update'
 inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) : () =
@@ -703,33 +780,57 @@ inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) : () =
         real
             typecase t with
             | signal => $'$"true; leptos::prelude::Signal::update(&$0, |x: &mut /*"' : string
+            | arc_signal => $'$"true; leptos::prelude::ArcSignal::update(&$0, |x: &mut /*"' : string
             | rw_signal => $'$"true; leptos::prelude::RwSignal::update(&$0, |x: &mut /*"' : string
+            | arc_rw_signal => $'$"true; leptos::prelude::ArcRwSignal::update(&$0, |x: &mut /*"' : string
             | read_signal => $'$"true; leptos::prelude::ReadSignal::update(&$0, |x: &mut /*"' : string
+            | arc_read_signal => $'$"true; leptos::prelude::ArcReadSignal::update(&$0, |x: &mut /*"' : string
             | write_signal => $'$"true; leptos::prelude::WriteSignal::update(&$0, |x: &mut /*"' : string
+            | arc_write_signal => $'$"true; leptos::prelude::ArcWriteSignal::update(&$0, |x: &mut /*"' : string
             | memo => $'$"true; leptos::prelude::Memo::update(&$0, |x: &mut /*"' : string
+            | arc_memo => $'$"true; leptos::prelude::ArcMemo::update(&$0, |x: &mut /*"' : string
     (!\\(signal, code) : bool) |> ignore
     (null () : rust.type_emit u) |> ignore
     (!\\(fn, $'"*/ | { *x = $0(x.clone()) }); //"') : bool) |> ignore
 
 /// ### signal_update rw_signal
 instance signal_update rw_signal = signal_update'
+instance signal_update arc_rw_signal = signal_update'
 
 /// ### signal_update write_signal
 instance signal_update write_signal = signal_update'
+instance signal_update arc_write_signal = signal_update'
 
 /// ### signal_get_untracked'
 inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
-    !\\(signal, $'$"leptos::prelude::RwSignal::get_untracked(&$0)"')
+    inl signal = signal |> rust.box_pin
+    inl code =
+        real
+            typecase t with
+            | signal => $'$"leptos::prelude::Signal::get_untracked(&$0)"' : string
+            | arc_signal => $'$"leptos::prelude::ArcSignal::get_untracked(&$0)"' : string
+            | rw_signal => $'$"leptos::prelude::RwSignal::get_untracked(&$0)"' : string
+            | arc_rw_signal => $'$"leptos::prelude::ArcRwSignal::get_untracked(&$0)"' : string
+            | read_signal => $'$"leptos::prelude::ReadSignal::get_untracked(&$0)"' : string
+            | arc_read_signal => $'$"leptos::prelude::ArcReadSignal::get_untracked(&$0)"' : string
+            | write_signal => $'$"leptos::prelude::WriteSignal::get_untracked(&$0)"' : string
+            | arc_write_signal => $'$"leptos::prelude::ArcWriteSignal::get_untracked(&$0)"' : string
+            | memo => $'$"leptos::prelude::Memo::get_untracked(&$0)"' : string
+            | arc_memo => $'$"leptos::prelude::ArcMemo::get_untracked(&$0)"' : string
+    !\\(signal, code) : u
 
 /// ### signal_get_untracked rw_signal
 instance signal_get_untracked rw_signal = signal_get_untracked'
+instance signal_get_untracked arc_rw_signal = signal_get_untracked'
 
 /// ### signal_get_untracked read_signal
 instance signal_get_untracked read_signal = signal_get_untracked'
+instance signal_get_untracked arc_read_signal = signal_get_untracked'
 
 /// ### signal_get_untracked memo
 instance signal_get_untracked memo = signal_get_untracked'
+instance signal_get_untracked arc_memo = signal_get_untracked'
 
 /// ### signal_set'
 inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
@@ -737,24 +838,31 @@ inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
     inl code =
         real
             typecase t with
-            | signal => $'$"true; leptos::prelude::Signal::set(&$0, $1);"' : string
-            | rw_signal => $'$"true; leptos::prelude::RwSignal::set(&$0, $1);"' : string
-            | read_signal => $'$"true; leptos::prelude::ReadSignal::set(&$0, $1);"' : string
-            | write_signal => $'$"true; leptos::prelude::WriteSignal::set(&$0, $1);"' : string
-            | memo => $'$"true; leptos::prelude::Memo::set(&$0, $1);"' : string
+            | signal => $'$"true; leptos::prelude::Signal::set(&$0, $1); //"' : string
+            | arc_signal => $'$"true; leptos::prelude::ArcSignal::set(&$0, $1); //"' : string
+            | rw_signal => $'$"true; leptos::prelude::RwSignal::set(&$0, $1); //"' : string
+            | arc_rw_signal => $'$"true; leptos::prelude::ArcRwSignal::set(&$0, $1); //"' : string
+            | read_signal => $'$"true; leptos::prelude::ReadSignal::set(&$0, $1); //"' : string
+            | arc_read_signal => $'$"true; leptos::prelude::ArcReadSignal::set(&$0, $1); //"' : string
+            | write_signal => $'$"true; leptos::prelude::WriteSignal::set(&$0, $1); //"' : string
+            | arc_write_signal => $'$"true; leptos::prelude::ArcWriteSignal::set(&$0, $1); //"' : string
+            | memo => $'$"true; leptos::prelude::Memo::set(&$0, $1); //"' : string
+            | arc_memo => $'$"true; leptos::prelude::ArcMemo::set(&$0, $1); //"' : string
     (!\\((signal, value), code) : bool) |> ignore
 
 /// ### signal_set rw_signal
 instance signal_set rw_signal = signal_set'
+instance signal_set arc_rw_signal = signal_set'
 
 /// ### signal_set write_signal
 instance signal_set write_signal = signal_set'
+instance signal_set arc_write_signal = signal_set'
 
-/// ### create_local_resource
-inl create_local_resource forall t u.
+/// ### new_local_resource
+inl new_local_resource forall t u.
     (source : () -> t)
     (fetcher : t -> async.future_pin u)
-    : resource t u
+    : local_resource t u
     =
     // inl fetcher x = rust.move fun () =>
     //    fetcher x
@@ -769,32 +877,61 @@ inl create_local_resource forall t u.
 
     // !\\((source, fn), $'"leptos::create_local_resource(move || $0(), |x| async move { $1(x).await })"')
 
+    inl fetcher = fetcher |> rust.func1_from
+    inl fetcher x =
+        fetcher |> rust.func1_move x
 
-    join
-        !\\(source, $'"let __create_local_resource = leptos::prelude::create_local_resource(move || $0(), |x| async move { //"')
+    !\\((source, fetcher), $'"leptos::prelude::LocalResource::new(move || $0(), |x| async move { $1(x).await })"')
 
-        inl x = !\($'"x"')
-        inl x' = fetcher x
-        inl x' = join x'
-        inl x' = x' |> async.await
+/// ### new_arc_local_resource
+inl new_arc_local_resource forall t.
+    (fetcher : () -> async.future_pin t)
+    : arc_local_resource t
+    =
+    // inl fetcher x = rust.move fun () =>
+    //    fetcher x
+    // inl fetcher = join fetcher
+    // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
 
-        inl closure_fix = 2u8, 1u8
-        x' |> rust.fix_closure closure_fix
+    // ---
 
-        !\($'"__create_local_resource"')
+    // inl fn x = async.new_future fun () =>
+    //     inl x' = fetcher x
+    //     x' |> async.await
 
-/// ### create_resource
-// inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+    // !\\((source, fn), $'"leptos::create_local_resource(move || $0(), |x| async move { $1(x).await })"')
+
+    inl fetcher = fetcher |> rust.func0_from
+
+    !\\(fetcher, $'"leptos::prelude::ArcLocalResource::new(|| async move { $0().await })"')
+
+/// ### new_resource
+// inl new_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
 //     inl source = join source
-//     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+//     !\\(fetcher, $'"leptos::Resource::new(move || !source(), |x| async move { $0(x).await })"')
 
-/// ### create_action
-inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
-    !\\(action_fn |> rust.box_pin, $'"leptos::prelude::Action::new(*std::sync::Arc::new(move |value: &std::sync::Arc<`t>| $0(value.clone())))"')
+/// ### new_action
+inl new_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
+    inl action_fn = action_fn |> rust.func1_from
+    inl action_fn x =
+        action_fn |> rust.func1_move x
+    !\\(action_fn, $'"leptos::prelude::Action::new(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
+
+/// ### new_arc_action
+inl new_arc_action forall t u. (action_fn : t -> async.future_pin u) : arc_action t u =
+    // inl action_fn = action_fn |> rust.func1_from
+    inl action_fn = action_fn |> rust.func1_from
+    inl action_fn x =
+        action_fn |> rust.func1_move x
+    !\\(action_fn, $'"leptos::prelude::ArcAction::new(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
 
 /// ### action_dispatch
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
     (!\\((action, value), $'"true; leptos::prelude::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
+
+/// ### arc_action_dispatch
+inl arc_action_dispatch forall t u. (value : heap t) (action : arc_action (heap t) u) : () =
+    (!\\((action, value), $'"true; leptos::prelude::ArcAction::dispatch(&$0, $1.clone())"') : bool) |> ignore
 
 /// ### action_input
 inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
@@ -804,34 +941,50 @@ inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.
 inl action_pending forall t u. (action : action (heap t) u) : memo bool =
     !\\(action, $'"leptos::prelude::Action::pending(&$0)"')
 
+/// ### arc_action_pending
+inl arc_action_pending forall t u. (action : arc_action (heap t) u) : arc_memo bool =
+    !\\(action, $'"leptos::prelude::ArcAction::pending(&$0)"')
+
 /// ### action_value
 inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
     !\\(action, $'"leptos::prelude::Action::value(&$0)"')
+
+/// ### arc_action_value
+inl arc_action_value forall t u. (action : arc_action (heap t) u) : arc_rw_signal (optionm'.option' u) =
+    !\\(action, $'"leptos::prelude::ArcAction::value(&$0)"')
 
 /// ### use_context
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::context::use_context::<std::sync::Arc<`t>>()"')
 
-/// ### resource_loading
-inl resource_loading forall t u. (resource : resource t u) : signal bool =
-    !\\(resource, $'$"leptos::attr::loading(&$0)"')
+/// ### local_resource_loading
+inl local_resource_loading forall t u. (resource : local_resource t u) : signal bool =
+    !\\(resource, $'$"leptos::prelude::pending(&$0).into()"')
+
+/// ### arc_local_resource_loading
+inl arc_local_resource_loading forall t. (resource : arc_local_resource t) : arc_signal bool =
+    !\\(resource, $'$"leptos::prelude::Submission::pending(&$0.into()).into()"')
 
 /// ### resource_get
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
-    !\\(resource, $'$"leptos::prelude::RwSignal::get(&$0)"')
+    !\\(resource, $'$"leptos::prelude::Resource::get(&$0)"')
+
+/// ### local_resource_get
+inl local_resource_get forall t u. (resource : local_resource t u) : optionm'.option' u =
+    !\\(resource, $'$"leptos::prelude::LocalResource::get(&$0)"')
+
+/// ### arc_local_resource_get
+inl arc_local_resource_get forall t. (resource : arc_local_resource t) : optionm'.option' t =
+    !\\(resource, $'$"Option::map(leptos::prelude::ArcLocalResource::get(&$0), |x| *x)"')
 
 /// ### resource_with
 inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
     !\\((resource, fn), $'$"leptos::prelude::SignalWith::with(&$0, |x| $1(x.clone()))"')
 
-/// ### create_effect
-inl create_effect (fn : () -> ()) : () =
-    inl fn = fn |> rust.emit
-    (!\($'"true; leptos::prelude::Effect::new(move |_| { !fn(()) })"') : bool) |> ignore
-
-/// ### create_effect'
-inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
-    (!\\(fn, $'"true; leptos::prelude::Effect::new(move |x| { $0(x) })"') : bool) |> ignore
+/// ### new_effect
+inl new_effect (fn : () -> ()) : () =
+    inl fn = fn |> rust.func0_from
+    (!\($'"true; leptos::prelude::Effect::new(move |_| { !fn() })"') : bool) |> ignore
 
 /// ### interval_handle_clear
 inl interval_handle_clear (interval_handle : interval_handle) =
@@ -843,12 +996,18 @@ inl set_interval_with_handle
     (interval_millis : date_time.duration)
     : resultm.result' interval_handle wasm.js_value
     =
+    inl fn = fn |> rust.func0_from
     !\\((fn, interval_millis), $'$"leptos::set_interval_with_handle(move || $0(), $1)"')
 
-/// ### create_memo
-inl create_memo forall t. (fn : () -> t) : memo t =
-    inl fn = fn |> rust.emit
-    !\($'"leptos::prelude::Memo::new(move |_| { !fn(()) })"')
+/// ### new_memo
+inl new_memo forall t. (fn : () -> t) : memo t =
+    // inl fn = fn |> rust.func0_from
+    !\\(fn, $'"leptos::prelude::Memo::new(move |_| { $0() })"')
+
+/// ### new_arc_memo
+inl new_arc_memo forall t. (fn : () -> t) : arc_memo t =
+    // inl fn = fn |> rust.func0_from
+    !\\(fn, $'"leptos::prelude::ArcMemo::new(move |_| { $0() })"')
 
 /// ### window
 let window () : wasm.window =
@@ -918,7 +1077,11 @@ inl for forall t u (signal : * -> *).
     signal |> typecheck_signal
     inl signal = signal |> rust.emit
     inl key_fn = key_fn |> rust.func1_from
+    inl key_fn x =
+        key_fn |> rust.func1_move x
     inl children' = (children' >> fragment_to_view) |> rust.func1_from
+    inl children' x =
+        children' |> rust.func1_move x
     for [
         $'"each=!signal"'
         $'"key=move |x| !key_fn(x.to_owned())"'
@@ -979,7 +1142,7 @@ inl url_pathname (url : url) : sm'.std_string =
 inl use_url () =
     inl location = use_location ()
 
-    create_memo fun () =>
+    fun () =>
         inl url_pathname = location |> location_pathname |> signal_get |> sm'.from_std_string
         inl url_search = location |> location_search |> signal_get |> sm'.from_std_string
         inl url_search =
@@ -987,6 +1150,7 @@ inl use_url () =
             then ""
             else $'$"?{!url_search}"'
         url_pathname +. url_search
+    |> new_arc_memo
 
 /// ### route
 inl route path view children : view' nested_route =
@@ -997,7 +1161,7 @@ inl route path view children : view' nested_route =
         view () |> fragment_to_view
     inl view = join view
     tag_closed_raw "leptos_router::components::ParentRoute" [
-        $'"path=leptos_router_macro::path\!(!path)"'
+        $'"path=leptos_router::path\!(!path)"'
         $'"view= move || !view()"'
         $'"children=Box::new(move || !children())"'
     ]
@@ -1005,7 +1169,7 @@ inl route path view children : view' nested_route =
 
 /// ### macro_to_view
 inl macro_to_view (macro : string) : view =
-    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\""
+    global "#if FABLE_COMPILER\nFable.Core.RustInterop.emitRustExpr () \");\nuse leptos::prelude::ElementChild;\n//\"\n#endif"
     !\($'"leptos::prelude::IntoAny::into_any(leptos::prelude::view\! { " + !macro + " })"')
 
 /// ### router

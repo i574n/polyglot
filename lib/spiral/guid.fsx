@@ -5,33 +5,33 @@ let rec closure0 () (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : System.Guid = v0 |> System.Guid 
-    let _v1 = v2 
+    let _run_target_args'_v1 = v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v5 : System.Guid = v0 |> System.Guid 
-    let _v1 = v5 
+    let _run_target_args'_v1 = v5 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v8 : System.Guid = null |> unbox<System.Guid>
-    let _v1 = v8 
+    let _run_target_args'_v1 = v8 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v11 : System.Guid = v0 |> System.Guid 
-    let _v1 = v11 
+    let _run_target_args'_v1 = v11 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v14 : System.Guid = v0 |> System.Guid 
-    let _v1 = v14 
+    let _run_target_args'_v1 = v14 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v17 : System.Guid = v0 |> System.Guid 
-    let _v1 = v17 
+    let _run_target_args'_v1 = v17 
     #endif
 #else
     let v20 : System.Guid = v0 |> System.Guid 
-    let _v1 = v20 
+    let _run_target_args'_v1 = v20 
     #endif
-    let v23 : System.Guid = _v1 
+    let v23 : System.Guid = _run_target_args'_v1 
     v23
 and method0 (v0 : string) : System.Guid =
     let v1 : unit = ()
@@ -67,34 +67,34 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v113 : System.Guid = v111 |> System.Guid 
-    let _v112 = v113 
+    let _run_target_args'_v112 = v113 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v116 : System.Guid = v111 |> System.Guid 
-    let _v112 = v116 
+    let _run_target_args'_v112 = v116 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v119 : System.Guid = null |> unbox<System.Guid>
-    let _v112 = v119 
+    let _run_target_args'_v112 = v119 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v122 : System.Guid = v111 |> System.Guid 
-    let _v112 = v122 
+    let _run_target_args'_v112 = v122 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v125 : System.Guid = v111 |> System.Guid 
-    let _v112 = v125 
+    let _run_target_args'_v112 = v125 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v128 : System.Guid = v111 |> System.Guid 
-    let _v112 = v128 
+    let _run_target_args'_v112 = v128 
     #endif
 #else
     let v131 : System.Guid = v111 |> System.Guid 
-    let _v112 = v131 
+    let _run_target_args'_v112 = v131 
     #endif
-    let v134 : System.Guid = _v112 
-    let _v1 = v134 
+    let v134 : System.Guid = _run_target_args'_v112 
+    let _run_target_args'_v1 = v134 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v139 : string = v0.PadLeft (32, '0')
@@ -125,38 +125,38 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v250 : System.Guid = v248 |> System.Guid 
-    let _v249 = v250 
+    let _run_target_args'_v249 = v250 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v253 : System.Guid = v248 |> System.Guid 
-    let _v249 = v253 
+    let _run_target_args'_v249 = v253 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v256 : System.Guid = null |> unbox<System.Guid>
-    let _v249 = v256 
+    let _run_target_args'_v249 = v256 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v259 : System.Guid = v248 |> System.Guid 
-    let _v249 = v259 
+    let _run_target_args'_v249 = v259 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v262 : System.Guid = v248 |> System.Guid 
-    let _v249 = v262 
+    let _run_target_args'_v249 = v262 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v265 : System.Guid = v248 |> System.Guid 
-    let _v249 = v265 
+    let _run_target_args'_v249 = v265 
     #endif
 #else
     let v268 : System.Guid = v248 |> System.Guid 
-    let _v249 = v268 
+    let _run_target_args'_v249 = v268 
     #endif
-    let v271 : System.Guid = _v249 
-    let _v1 = v271 
+    let v271 : System.Guid = _run_target_args'_v249 
+    let _run_target_args'_v1 = v271 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v276 : System.Guid = null |> unbox<System.Guid>
-    let _v1 = v276 
+    let _run_target_args'_v1 = v276 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v279 : string = v0.PadLeft (32, '0')
@@ -187,34 +187,34 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v390 : System.Guid = v388 |> System.Guid 
-    let _v389 = v390 
+    let _run_target_args'_v389 = v390 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v393 : System.Guid = v388 |> System.Guid 
-    let _v389 = v393 
+    let _run_target_args'_v389 = v393 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v396 : System.Guid = null |> unbox<System.Guid>
-    let _v389 = v396 
+    let _run_target_args'_v389 = v396 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v399 : System.Guid = v388 |> System.Guid 
-    let _v389 = v399 
+    let _run_target_args'_v389 = v399 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v402 : System.Guid = v388 |> System.Guid 
-    let _v389 = v402 
+    let _run_target_args'_v389 = v402 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v405 : System.Guid = v388 |> System.Guid 
-    let _v389 = v405 
+    let _run_target_args'_v389 = v405 
     #endif
 #else
     let v408 : System.Guid = v388 |> System.Guid 
-    let _v389 = v408 
+    let _run_target_args'_v389 = v408 
     #endif
-    let v411 : System.Guid = _v389 
-    let _v1 = v411 
+    let v411 : System.Guid = _run_target_args'_v389 
+    let _run_target_args'_v1 = v411 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v416 : string = v0.PadLeft (32, '0')
@@ -245,34 +245,34 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v527 : System.Guid = v525 |> System.Guid 
-    let _v526 = v527 
+    let _run_target_args'_v526 = v527 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v530 : System.Guid = v525 |> System.Guid 
-    let _v526 = v530 
+    let _run_target_args'_v526 = v530 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v533 : System.Guid = null |> unbox<System.Guid>
-    let _v526 = v533 
+    let _run_target_args'_v526 = v533 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v536 : System.Guid = v525 |> System.Guid 
-    let _v526 = v536 
+    let _run_target_args'_v526 = v536 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v539 : System.Guid = v525 |> System.Guid 
-    let _v526 = v539 
+    let _run_target_args'_v526 = v539 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v542 : System.Guid = v525 |> System.Guid 
-    let _v526 = v542 
+    let _run_target_args'_v526 = v542 
     #endif
 #else
     let v545 : System.Guid = v525 |> System.Guid 
-    let _v526 = v545 
+    let _run_target_args'_v526 = v545 
     #endif
-    let v548 : System.Guid = _v526 
-    let _v1 = v548 
+    let v548 : System.Guid = _run_target_args'_v526 
+    let _run_target_args'_v1 = v548 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v553 : string = v0.PadLeft (32, '0')
@@ -303,34 +303,34 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v664 : System.Guid = v662 |> System.Guid 
-    let _v663 = v664 
+    let _run_target_args'_v663 = v664 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v667 : System.Guid = v662 |> System.Guid 
-    let _v663 = v667 
+    let _run_target_args'_v663 = v667 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v670 : System.Guid = null |> unbox<System.Guid>
-    let _v663 = v670 
+    let _run_target_args'_v663 = v670 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v673 : System.Guid = v662 |> System.Guid 
-    let _v663 = v673 
+    let _run_target_args'_v663 = v673 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v676 : System.Guid = v662 |> System.Guid 
-    let _v663 = v676 
+    let _run_target_args'_v663 = v676 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v679 : System.Guid = v662 |> System.Guid 
-    let _v663 = v679 
+    let _run_target_args'_v663 = v679 
     #endif
 #else
     let v682 : System.Guid = v662 |> System.Guid 
-    let _v663 = v682 
+    let _run_target_args'_v663 = v682 
     #endif
-    let v685 : System.Guid = _v663 
-    let _v1 = v685 
+    let v685 : System.Guid = _run_target_args'_v663 
+    let _run_target_args'_v1 = v685 
     #endif
 #else
     let v690 : string = v0.PadLeft (32, '0')
@@ -361,36 +361,36 @@ and method0 (v0 : string) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v801 : System.Guid = v799 |> System.Guid 
-    let _v800 = v801 
+    let _run_target_args'_v800 = v801 
     #endif
 #if FABLE_COMPILER_RUST && WASM
     let v804 : System.Guid = v799 |> System.Guid 
-    let _v800 = v804 
+    let _run_target_args'_v800 = v804 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v807 : System.Guid = null |> unbox<System.Guid>
-    let _v800 = v807 
+    let _run_target_args'_v800 = v807 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v810 : System.Guid = v799 |> System.Guid 
-    let _v800 = v810 
+    let _run_target_args'_v800 = v810 
     #endif
 #if FABLE_COMPILER_PYTHON
     let v813 : System.Guid = v799 |> System.Guid 
-    let _v800 = v813 
+    let _run_target_args'_v800 = v813 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v816 : System.Guid = v799 |> System.Guid 
-    let _v800 = v816 
+    let _run_target_args'_v800 = v816 
     #endif
 #else
     let v819 : System.Guid = v799 |> System.Guid 
-    let _v800 = v819 
+    let _run_target_args'_v800 = v819 
     #endif
-    let v822 : System.Guid = _v800 
-    let _v1 = v822 
+    let v822 : System.Guid = _run_target_args'_v800 
+    let _run_target_args'_v1 = v822 
     #endif
-    let v827 : System.Guid = _v1 
+    let v827 : System.Guid = _run_target_args'_v1 
     v827
 and closure1 () (v0 : string) : System.Guid =
     method0(v0)

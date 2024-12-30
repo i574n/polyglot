@@ -9664,7 +9664,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_4b84f3add8b6bff6e502ab68cbe69e0de2e16bf62566fc94a9c85415a0aa2443/20241219-0219-4201-1575-000000024da4" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_bdd1966504efc7d0b755678045716a65a7aa1d172d982f7c0ef6788f8a128a7a/20241230-2009-3198-6416-000000a81cce" / expected: '/'
 
 </pre>
 </div>
@@ -9673,7 +9673,7 @@ __assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_4b84f3add8b6
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241219-0219-4234-3425-300000fb583f" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241230-2009-3233-3333-300000ee8db0" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10858,7 +10858,9 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                 <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">trace_dir</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
                 <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">write_all_text_async</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_synchronously</span>
             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-                <span class="n">trace_file</span> <span class="err">$</span><span class="s1">'$"file_system.trace_file / ex: %A{!ex}"'</span>
+                <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"file_system.trace_file / ex: %A{!ex}"'</span>
+                <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+                <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">trace_file</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -11065,7 +11067,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_f0bab7f684513c23b0638a358ea9095714f6e14fd57f258f3a48d6392976f4b6/20241219-0220-2580-2434-000000da815b }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_f21d68e7be969091089d05b0f52b67c54fcb3db7e841024a902ec5707c4d68ba/20241230-2010-2070-7927-0000002215d9 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -12052,6 +12054,7 @@ __assert_eq / actual: true / expected: true
     <span class="err">$</span><span class="s1">'let normalize_path x = !normalize_path x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let new_file_uri x = !new_file_uri x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let get_workspace_root () = !get_workspace_root ()'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let trace_file x = !trace_file x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let init_trace_file x = !init_trace_file x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let link_directory x = !link_directory x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">combine</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">x</span>

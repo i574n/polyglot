@@ -330,9 +330,9 @@ def closure2(unit_var: None, v0_1: str) -> None:
 
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
     pattern_input: tuple[US1, US2] = method1()
-    _v1: tuple[US1, US2] = (pattern_input[0], pattern_input[1])
-    v132: US2 = _v1[1]
-    v131: US1 = _v1[0]
+    _run_target_args_0027_v1: tuple[US1, US2] = (pattern_input[0], pattern_input[1])
+    v132: US2 = _run_target_args_0027_v1[1]
+    v131: US1 = _run_target_args_0027_v1[0]
     def v138(v: str, v0_1: Any=v0_1) -> None:
         closure2(None, v)
 

@@ -311,9 +311,9 @@ def closure2(unit_var: None, v0_1: str) -> None:
 
 def method0(v0_1: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, Mut4, int64 | None]:
     pattern_input: tuple[US1, US2] = method1()
-    _v1: tuple[US1, US2] = (pattern_input[0], pattern_input[1])
-    v132: US2 = _v1[1]
-    v131: US1 = _v1[0]
+    _run_target_args_0027_v1: tuple[US1, US2] = (pattern_input[0], pattern_input[1])
+    v132: US2 = _run_target_args_0027_v1[1]
+    v131: US1 = _run_target_args_0027_v1[0]
     def v138(v: str, v0_1: Any=v0_1) -> None:
         closure2(None, v)
 
@@ -566,10 +566,10 @@ def closure5(v0_1: int, v1_1: Callable[[], None]) -> None | None:
 
 
 def closure4(unit_var: None, v0_1: int) -> Callable[[Callable[[], None]], None | None]:
-    def _arrow26(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
+    def _arrow33(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
         return closure5(v0_1, v)
 
-    return _arrow26
+    return _arrow33
 
 
 def method22(v0_1: Callable[[], None]) -> Callable[[], None]:
@@ -582,56 +582,56 @@ def closure16(v0_1: Any, unit_var: None) -> None:
 
 def closure15(unit_var: None, v0_1: Callable[[], None]) -> Callable[[], None]:
     v1_1: Callable[[], None] = method22(v0_1)
-    def _arrow31(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    def _arrow34(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         v1_1(None)
 
-    v2_1: Any = Lazy(_arrow31)
-    def _arrow32(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    v2_1: Any = Lazy(_arrow34)
+    def _arrow36(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure16(v2_1, None)
 
-    return _arrow32
+    return _arrow36
 
 
 v0: None = None
 
-def _arrow34(__unit: None=None) -> None:
+def _arrow38(__unit: None=None) -> None:
     closure0(None, None)
 
 
-v1: Callable[[], None] = _arrow34
+v1: Callable[[], None] = _arrow38
 
-def _expr37():
+def _expr41():
     v1(None)
     return v0
 
 
-v2: None = _expr37()
+v2: None = _expr41()
 
-def _arrow38(v: Callable[[], None]) -> IDisposable:
+def _arrow42(v: Callable[[], None]) -> IDisposable:
     return closure3(None, v)
 
 
-v16: Callable[[Callable[[], None]], IDisposable] = _arrow38
+v16: Callable[[Callable[[], None]], IDisposable] = _arrow42
 
 def new_disposable(x: Callable[[], None]) -> IDisposable:
     return v16(x)
 
 
-def _arrow39(v: int) -> Callable[[Callable[[], None]], None | None]:
+def _arrow45(v: int) -> Callable[[Callable[[], None]], None | None]:
     return closure4(None, v)
 
 
-v17: Callable[[int, Callable[[], None]], None | None] = _arrow39
+v17: Callable[[int, Callable[[], None]], None | None] = _arrow45
 
 def retry_fn(x: int) -> Callable[[Callable[[], None]], None | None]:
     return v17(x)
 
 
-def _arrow40(v: Callable[[], None]) -> Callable[[], None]:
+def _arrow47(v: Callable[[], None]) -> Callable[[], None]:
     return closure15(None, v)
 
 
-v18: Callable[[Callable[[], None], None], None] = _arrow40
+v18: Callable[[Callable[[], None], None], None] = _arrow47
 
 def memoize(x: Callable[[], None]) -> Callable[[], None]:
     return v18(x)

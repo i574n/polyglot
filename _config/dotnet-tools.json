@@ -15,7 +15,7 @@
       ]
     },
     "i574n.dotnet-interactive-i574n": {
-      "version": "0.1.0",
+      "version": "0.1.2",
       "commands": [
         "dotnet-interactive-i574n"
       ]

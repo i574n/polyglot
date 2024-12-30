@@ -210,31 +210,6 @@ inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
     (!\($'"true; !vec.extend(!el)"') : bool) |> ignore
     !\($'"!vec"')
 
-/// ### vec_collect
-inl vec_collect fn vec =
-    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        acc |> vec_extend (fn x)
-
-/// ### vec_collect_option
-inl vec_collect_option vec =
-    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        x
-        |> resultm.unbox
-        |> fun x =>
-            match acc, x |> resultm.map optionm'.unbox with
-            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
-            | _, Error error => error |> Error
-            | _ => acc
-
-/// ### vec_collect_into
-inl vec_collect_into forall (c : * -> * -> *) t e.
-    (x : vec (c t e))
-    : c (vec t) e
-    =
-    !\($'"!x.into_iter().collect()"')
-
 /// ### vec_mapi
 inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
     inl fn = join fn
@@ -257,6 +232,9 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 
 /// ### vec_map'
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    inl fn = fn |> rust.func1_from
+    inl fn x =
+        fn |> rust.func1_move x
     !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
 
 /// ### vec_fold'
@@ -426,6 +404,31 @@ inl to_list_base' forall t. (items : array_base t) : listm'.list' t =
 /// ### to_list'
 inl to_list' forall dim {int} t. (items : a dim t) : listm'.list' t =
     items |> base |> to_list_base'
+
+/// ### vec_collect
+inl vec_collect fn vec =
+    ((;[] |> to_vec), ((vec |> from_vec : _ int _) |> to_list' |> listm'.unbox))
+    ||> listm.fold fun acc x =>
+        acc |> vec_extend (fn x)
+
+/// ### vec_collect_option
+inl vec_collect_option vec =
+    ((;[] |> to_vec |> Ok), ((vec |> from_vec : _ int _) |> am.toList))
+    ||> listm.fold fun acc x =>
+        x
+        |> resultm.unbox
+        |> fun x =>
+            match acc, x |> resultm.map optionm'.unbox with
+            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
+            | _, Error error => error |> Error
+            | _ => acc
+
+/// ### vec_collect_into
+inl vec_collect_into forall (c : * -> * -> *) t e.
+    (x : vec (c t e))
+    : c (vec t) e
+    =
+    !\($'"!x.into_iter().collect()"')
 
 /// ### parallel_map
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
