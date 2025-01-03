@@ -93,6 +93,8 @@ Set-Location $ScriptDir
 
 EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
 
+{ pwsh ../deps/spiral/scripts/init.ps1 } | Invoke-Block
+
 { pwsh ../deps/spiral/apps/spiral/build.ps1 -SkipPreBuild 1 } | Invoke-Block
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
