@@ -14,67 +14,128 @@ open testing
 
 #!spiral
 
-nominal i = ()
-nominal e = ()
-nominal s = ()
-nominal n = ()
-nominal t = ()
-nominal f = ()
-nominal j = ()
-nominal p = ()
+//// test
+//// print_code
 
-union sensing =
-    | Si : s * i
-    | Se : s * e
+inl jp = [ "J"; "P" ]
+inl tf = [ "T"; "F" ]
+inl sn = [ "S"; "N" ]
+inl ie = [ "I"; "E" ]
 
-union intuition =
-    | Ni : n * i
-    | Ne : n * e
+(ie, ([] : _ string))
+||> listm.foldBack fun ie' acc =>
+    inl ssnn acc' jp' =
+        (sn, acc')
+        ||> listm.foldBack fun sn' acc' =>
+            inl c' ie' sn' tf' jp' =
+                $'$"{!ie'}{!sn'}{!tf'}{!jp'}"'
 
-union thinking =
-    | Ti : t * i
-    | Te : t * e
+            if listm.length acc' % 4i32 = 2 then
+                (tf, acc')
+                ||> listm.foldBack fun tf' acc'' =>
+                    c' ie' sn' tf' jp' :: acc''
+            else
+                (acc', tf)
+                ||> listm.fold fun acc'' tf' =>
+                    c' ie' sn' tf' jp' :: acc''
+    if acc = [] then
+        (acc, jp)
+        ||> listm.fold fun acc' jp' =>
+            ssnn acc' jp'
+    else
+        (jp, acc)
+        ||> listm.foldBack fun jp' acc' =>
+            ssnn acc' jp'
+|> listm'.box
+|> listm'.to_array'
+|> _assert_eq' ;[
+    "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+    "ISTP"; "ISFP"; "INFP"; "INTP"
+    "ESTP"; "ESFP"; "ENFP"; "ENTP"
+    "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+]
 
-union feeling =
-    | Fi : f * i
-    | Fe : f * e
+#!spiral
 
-union function_stack =
-    | FS : sensing * intuition * thinking * feeling
+//// test
+//// print_code
 
-union personality_type =
-    | ISTJ : i * s * t * j * function_stack
-    | ISFJ : i * s * f * j * function_stack
-    | INFJ : i * n * f * j * function_stack
-    | INTJ : i * n * t * j * function_stack
-    | ISTP : i * s * t * p * function_stack
-    | ISFP : i * s * f * p * function_stack
-    | INFP : i * n * f * p * function_stack
-    | INTP : i * n * t * p * function_stack
-    | ESTP : e * s * t * p * function_stack
-    | ESFP : e * s * f * p * function_stack
-    | ENFP : e * n * f * p * function_stack
-    | ENTP : e * n * t * p * function_stack
-    | ESTJ : e * s * t * j * function_stack
-    | ESFJ : e * s * f * j * function_stack
-    | ENFJ : e * n * f * j * function_stack
-    | ENTJ : e * n * t * j * function_stack
+inl map4 f l1 l2 l3 l4 =
+    inl rec loop l1 l2 l3 l4 acc =
+        match l1, l2, l3, l4 with
+        | (x1 :: xs1), (x2 :: xs2), (x3 :: xs3), (x4 :: xs4) =>
+            loop xs1 xs2 xs3 xs4 (f x1 x2 x3 x4 :: acc)
+        | _ => acc |> listm.rev
+    loop l1 l2 l3 l4 []
 
+inl replicate count x =
+    listm.init count (fun _ => x)
 
-inl main () =
-    inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
-    inl istj_personality = ISTJ (i, s, t, j, istj_stack)
-    // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
-    // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
+inl i_e =
+    replicate 8i32 "I" ++ replicate 8i32 "E"
+inl s_n =
+    [ "S"; "S"; "N"; "N" ]
+    |> replicate 4i32
+    |> listm'.collect id
+inl t_f =
+    [ "T"; "F"; "F"; "T" ]
+    |> replicate 4i32
+    |> listm'.collect id
+inl j_p =
+    [ "J"; "J"; "J"; "J" ]
+    ++ [ "P"; "P"; "P"; "P" ]
+    ++ [ "P"; "P"; "P"; "P" ]
+    ++ [ "J"; "J"; "J"; "J" ]
+inl mbti =
+    map4 (fun a b c d => $'$"{!a}{!b}{!c}{!d}"') i_e s_n t_f j_p
 
-    ;[
-        istj_personality
-    ]
-    |> fun x => $'$"%A{!x}"' : string
-    |> console.write_line
+mbti
+|> listm'.box
+|> listm'.to_array'
+|> _assert_eq' ;[
+    "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+    "ISTP"; "ISFP"; "INFP"; "INTP"
+    "ESTP"; "ESFP"; "ENFP"; "ENTP"
+    "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+]
 
-inl main () =
-    $'!main ()' : ()
+#!spiral
+
+//// test
+//// print_code
+
+fun i =>
+    inl i_e =
+        if i < 8
+        then "I"
+        else "E"
+    inl s_n = 
+        inl group = (i / 2) % 2
+        if group = 0
+        then "S"
+        else "N"
+    inl t_f =
+        match i % 4 with
+        | 0 => "T"
+        | 1 => "F"
+        | 2 => "F"
+        | _ => "T"
+    inl j_p =
+        if i < 4
+        then "J"
+        elif i < 12
+        then "P"
+        else "J"
+    $'$"{!i_e}{!s_n}{!t_f}{!j_p}"'
+|> listm.init 16i32
+|> listm'.box
+|> listm'.to_array'
+|> _assert_eq' ;[
+    "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+    "ISTP"; "ISFP"; "INFP"; "INTP"
+    "ESTP"; "ESFP"; "ENFP"; "ENTP"
+    "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+]
 
 #!fsharp
 

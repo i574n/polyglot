@@ -878,6 +878,16 @@ let create_temp_path' (guid : guid.guid) =
             </> (env.get_entry_assembly_name ())
             </> (guid |> sm'.obj_to_string)
 
+#!spiral
+
+//// test
+///! fsharp
+///! rust -d chrono
+
+guid.hash_guid ""
+|> create_temp_path'
+|> _assert_contains (directory_separator_char ())
+
 #!markdown
 
 ### create_temp_path
@@ -891,15 +901,6 @@ let create_temp_path () =
             date_time.now ()
             |> date_time.new_guid_from_date_time
             |> create_temp_path'
-
-#!spiral
-
-//// test
-///! fsharp
-///! rust -d chrono
-
-create_temp_path ()
-|> _assert_contains (directory_separator_char ())
 
 #!markdown
 

@@ -119,11 +119,13 @@ inl index_of (search : string) (s : string) : i32 =
     }
 
 /// ### replicate
-inl replicate (n : i32) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => s |> $'String.replicate' n : string
-        Python = fun () => $'!s * !n ' : string
-    }
+inl replicate (n : int) (s : string) : string =
+    inl rec body i acc =
+        if i >= n
+        then acc
+        else loop (i + 1) (acc +. s)
+    and inl loop i = join_body_unit body n i
+    loop 0 ""
 
 /// ### obj_to_string
 inl obj_to_string x : string =
@@ -133,22 +135,14 @@ inl obj_to_string x : string =
     }
 
 /// ### pad_left
-inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => $'!s.PadLeft (!total_width, !padding_char)' : string
-        Python = fun () =>
-            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
-            padding +. s
-    }
+inl pad_left (total_width : int) (padding_char : char) (s : string) : string =
+    inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+    padding +. s
 
 /// ### pad_right
-inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => $'!s.PadRight (!total_width, !padding_char)' : string
-        Python = fun () =>
-            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
-            s +. padding
-    }
+inl pad_right (total_width : int) (padding_char : char) (s : string) : string =
+    inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+    s +. padding
 
 /// ### convert_to_utf32
 inl convert_to_utf32 (c : char) : int =

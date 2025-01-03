@@ -32,10 +32,10 @@ inl new_raw_guid () : guid =
 type hash_guid = guid
 
 let hash_guid (hash : string) : hash_guid =
+    inl hash = hash |> sm'.pad_left 32i32 '0'
     run_target_args (fun () => hash) function
         | Rust (Contract) => fun _ => null ()
         | _ => fun hash =>
-            inl hash = hash |> sm'.pad_left 32i32 '0'
             inl a = hash |> sm'.range (am'.Start 0i32) (am'.End fun _ => 8)
             inl b = hash |> sm'.range (am'.Start 8i32) (am'.End fun _ => 12)
             inl c = hash |> sm'.range (am'.Start 12i32) (am'.End fun _ => 16)

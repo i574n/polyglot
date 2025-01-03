@@ -7638,7 +7638,93 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">_a</span> <span class="n">x</span> <span class="o">=</span>
+    <span class="n">x</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+
+<span class="n">inl</span> <span class="n">jp</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"P"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"T"</span><span class="p">;</span> <span class="s2">"F"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">sn</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"S"</span><span class="p">;</span> <span class="s2">"N"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">ie</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"I"</span><span class="p">;</span> <span class="s2">"E"</span> <span class="p">]</span>
+
+<span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">ie</span><span class="p">,</span> <span class="p">([]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span><span class="p">))</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">ie</span><span class="s1">' acc =&gt;</span>
+
+        <span class="n">inl</span> <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span> <span class="o">=</span>
+            <span class="p">(</span><span class="n">sn</span><span class="p">,</span> <span class="n">acc</span><span class="s1">')</span>
+            <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">sn</span><span class="s1">' acc'</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' =</span>
+                    <span class="err">$</span><span class="s1">'$"{!ie'</span><span class="p">}{</span><span class="err">!</span><span class="n">sn</span><span class="s1">'}{!tf'</span><span class="p">}{</span><span class="err">!</span><span class="n">jp</span><span class="s1">'}"'</span>
+
+                <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">acc</span><span class="s1">' = acc'</span> <span class="o">|&gt;</span> <span class="n">_a</span> <span class="p">}</span>
+
+                <span class="k">if</span> <span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">acc</span><span class="s1">' </span><span class="si">% 4i</span><span class="s1">32 = 2 then</span>
+                    <span class="p">(</span><span class="n">tf</span><span class="p">,</span> <span class="n">acc</span><span class="s1">')</span>
+                    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">tf</span><span class="s1">' acc'' =&gt;</span>
+                        <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' :: acc''</span>
+                <span class="k">else</span>
+                    <span class="p">(</span><span class="n">acc</span><span class="s1">', tf)</span>
+                    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span><span class="s1">''</span> <span class="n">tf</span><span class="s1">' =&gt;</span>
+                        <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' :: acc''</span>
+
+        <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">|&gt;</span> <span class="n">_a</span> <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">then</span>
+            <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">jp</span><span class="p">)</span>
+            <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span><span class="s1">' jp'</span> <span class="o">=&gt;</span>
+                <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span>
+        <span class="k">else</span>
+            <span class="p">(</span><span class="n">jp</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+            <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">jp</span><span class="s1">' acc'</span> <span class="o">=&gt;</span>
+                <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+
+<span class="n">result</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP"; "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ" ]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-green-intense-fg">i</span> #1 test / { acc = [||] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #2 test / { acc' = [||] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #3 test / { acc' = [|"ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #4 test / { acc' = [|"ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #5 test / { acc' = [|"ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #6 test / { acc = [|"ESTP"; "ESFP"; "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #7 test / { acc' = [|"ESTP"; "ESFP"; "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #8 test / { acc' = [|"INFP"; "INTP"; "ESTP"; "ESFP"; "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #9 test / { acc' = [|"ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP"; "ENFP"; "ENTP"; "ESTJ"; "ESFJ";
+  "ENFJ"; "ENTJ"|] }
+00:00:00 <span class="ansi-green-intense-fg">i</span> #10 test / { acc' = [|"INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP"; "ENFP"; "ENTP";
+  "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
+__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7782,7 +7868,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7852,7 +7938,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7862,7 +7948,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7880,7 +7966,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

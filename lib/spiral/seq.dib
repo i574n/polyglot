@@ -697,7 +697,7 @@ inl of_list' forall t. (items : listm'.list' t) : seq' t =
     backend_switch {
         Fsharp = fun () =>
             fun () =>
-                $'for i = 0 to !items.Length - 1 do yield !items.[i]'
+                items |> yield_from
             |> new_seq
             |> fun x => x : seq' t
         Python = fun () => $'!items ' : seq' t

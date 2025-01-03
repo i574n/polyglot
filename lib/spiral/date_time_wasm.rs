@@ -13,11 +13,12 @@ pub mod Date_time {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::map;
+    use fable_library_rust::String_::append;
     use fable_library_rust::String_::concat;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::length;
-    use fable_library_rust::String_::padLeft;
+    use fable_library_rust::String_::ofChar;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
@@ -175,15 +176,35 @@ pub mod Date_time {
             getSlice(toString(v0_1), None::<i32>, Some(24_i32)),
         ))
     }
+    pub fn closure7(v0_1: i32, v1_1: string, v2_1: i32, v3_1: string) -> string {
+        if (v2_1) >= (v0_1) {
+            v3_1.clone()
+        } else {
+            (Date_time::method5(v0_1, v1_1.clone(), (v2_1) + 1_i32))(append((v3_1), (v1_1)))
+        }
+    }
+    pub fn method5(v0_1: i32, v1_1: string, v2_1: i32) -> Func1<string, string> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            let v1_1 = v1_1.clone();
+            let v2_1 = v2_1.clone();
+            move |v: string| Date_time::closure7(v0_1, v1_1.clone(), v2_1, v)
+        })
+    }
     pub fn closure6(v0_1: Guid, v1_1: i64) -> Guid {
         let v3_1: string = toString(v0_1);
-        let v10: string = padLeft(toString(v1_1), 18_i32, '0');
+        let v7_1: string = toString(v1_1);
+        let v11: string = ofChar('0');
+        let v20: string = append(
+            ((Date_time::method5(18_i32 - (length(v7_1.clone())), v11, 0_i32))(string(""))),
+            (v7_1),
+        );
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v10.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v10.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v10.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v10, Some(16_i32), Some(17_i32)),
+            getSlice(v20.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v20.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v20.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v20, Some(16_i32), Some(17_i32)),
             getSlice(v3_1, Some(21_i32), None::<i32>)
         ))
     }
@@ -193,7 +214,7 @@ pub mod Date_time {
             move |v: i64| Date_time::closure6(v0_1.clone(), v)
         })
     }
-    pub fn closure7(unitVar: (), v0_1: Guid) -> i64 {
+    pub fn closure8(unitVar: (), v0_1: Guid) -> i64 {
         let v2_1: string = toString(v0_1);
         toInt64(concat(new_array(&[
             getSlice(v2_1.clone(), Some(0_i32), Some(7_i32)),
@@ -202,22 +223,27 @@ pub mod Date_time {
             getSlice(v2_1, Some(19_i32), Some(20_i32)),
         ])))
     }
-    pub fn closure8(unitVar: (), v0_1: DateTime) -> Guid {
+    pub fn closure9(unitVar: (), v0_1: DateTime) -> Guid {
         Date_time::method0(new_guid(), v0_1)
     }
-    pub fn closure9(unitVar: (), v0_1: i64) -> Guid {
+    pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
         let v6_1: string = toString(new_guid());
-        let v13: string = padLeft(toString(v0_1), 18_i32, '0');
+        let v10: string = toString(v0_1);
+        let v14: string = ofChar('0');
+        let v23: string = append(
+            ((Date_time::method5(18_i32 - (length(v10.clone())), v14, 0_i32))(string(""))),
+            (v10),
+        );
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v13.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v13.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v13.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v13, Some(16_i32), Some(17_i32)),
+            getSlice(v23.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v23.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v23.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v23, Some(16_i32), Some(17_i32)),
             getSlice(v6_1, Some(21_i32), None::<i32>)
         ))
     }
-    pub fn closure11(v0_1: string, v1_1: DateTime) -> string {
+    pub fn closure12(v0_1: string, v1_1: DateTime) -> string {
         let provider: string = if (v0_1.clone()) == string("") {
             string("M-d-y hh:mm:ss tt")
         } else {
@@ -225,13 +251,13 @@ pub mod Date_time {
         };
         v1_1.toString(provider)
     }
-    pub fn closure10(unitVar: (), v0_1: string) -> Func1<DateTime, string> {
+    pub fn closure11(unitVar: (), v0_1: string) -> Func1<DateTime, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: DateTime| Date_time::closure11(v0_1.clone(), v)
+            move |v: DateTime| Date_time::closure12(v0_1.clone(), v)
         })
     }
-    pub fn closure12(unitVar: (), v0_1: DateTime) -> string {
+    pub fn closure13(unitVar: (), v0_1: DateTime) -> string {
         v0_1.toString(string("yyyy-MM-ddTHH-mm-ss.fff"))
     }
     pub fn v0() -> Func1<Guid, Func1<DateTime, Guid>> {
@@ -260,7 +286,7 @@ pub mod Date_time {
     }
     pub fn v3() -> Func1<Guid, i64> {
         static v3: OnceInit<Func1<Guid, i64>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure7((), v)))
+        v3.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure8((), v)))
             .clone()
     }
     pub fn timestamp_from_guid(x: Guid) -> i64 {
@@ -268,7 +294,7 @@ pub mod Date_time {
     }
     pub fn v4() -> Func1<DateTime, Guid> {
         static v4: OnceInit<Func1<DateTime, Guid>> = OnceInit::new();
-        v4.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure8((), v)))
+        v4.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure9((), v)))
             .clone()
     }
     pub fn new_guid_from_date_time(x: DateTime) -> Guid {
@@ -276,7 +302,7 @@ pub mod Date_time {
     }
     pub fn v5() -> Func1<i64, Guid> {
         static v5: OnceInit<Func1<i64, Guid>> = OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: i64| Date_time::closure9((), v)))
+        v5.get_or_init(|| Func1::new(move |v: i64| Date_time::closure10((), v)))
             .clone()
     }
     pub fn new_guid_from_timestamp(x: i64) -> Guid {
@@ -284,7 +310,7 @@ pub mod Date_time {
     }
     pub fn v6() -> Func1<string, Func1<DateTime, string>> {
         static v6: OnceInit<Func1<string, Func1<DateTime, string>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: string| Date_time::closure10((), v)))
+        v6.get_or_init(|| Func1::new(move |v: string| Date_time::closure11((), v)))
             .clone()
     }
     pub fn format(x: string) -> Func1<DateTime, string> {
@@ -292,7 +318,7 @@ pub mod Date_time {
     }
     pub fn v7() -> Func1<DateTime, string> {
         static v7: OnceInit<Func1<DateTime, string>> = OnceInit::new();
-        v7.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure12((), v)))
+        v7.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure13((), v)))
             .clone()
     }
     pub fn format_iso8601(x: DateTime) -> string {

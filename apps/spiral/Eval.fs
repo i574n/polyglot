@@ -388,7 +388,7 @@ module Eval =
                 builderCommands
                 |> Array.map (fun builderCommand ->
                     let path =
-                        workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralPlatform.get_executable_suffix ()}"
+                        workspaceRoot </> $@"deps/spiral/workspace/target/release/spiral{SpiralPlatform.get_executable_suffix ()}"
                         |> System.IO.Path.GetFullPath
                     let commands =
                         if props.backend = Supervisor.Fsharp
@@ -422,7 +422,7 @@ module Eval =
                             )
                             |> SpiralRuntime.execute_with_options_async
                         trace Debug
-                            (fun () -> $"Eval.processSpiralOutput / spiral_builder")
+                            (fun () -> $"Eval.processSpiralOutput / spiral cli")
                             (fun () -> $"exitCode: {exitCode} / builderCommand: {builderCommand} / command: {command} / result: {result |> SpiralSm.ellipsis_end 400} / {_locals ()}")
                         return
                             if exitCode = 0
@@ -650,7 +650,7 @@ module Eval =
                         match buildCodeResult with
                         | backend, (_, (outputPath, Some code), spiralErrors) ->
                             let spiralErrors =
-                                mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
+                                allCode |> mapErrors (Warning, spiralErrors, lastTopLevelIndex)
                             let! result =
                                 processSpiralOutput
                                     {|
@@ -674,7 +674,7 @@ module Eval =
                                     errors |> Array.append errors
                         | _, (_, _, errors) when errors |> List.isEmpty |> not ->
                             return errors.[0] |> fst |> Exception |> Error,
-                            mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
+                            allCode |> mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex)
                         | _ -> return acc
                     })
                 let cancellationToken = defaultArg props.cancellationToken System.Threading.CancellationToken.None
