@@ -60,26 +60,15 @@ inl ie = [ "I"; "E" ]
 //// test
 //// print_code
 
-inl map4 f l1 l2 l3 l4 =
-    inl rec loop l1 l2 l3 l4 acc =
-        match l1, l2, l3, l4 with
-        | (x1 :: xs1), (x2 :: xs2), (x3 :: xs3), (x4 :: xs4) =>
-            loop xs1 xs2 xs3 xs4 (f x1 x2 x3 x4 :: acc)
-        | _ => acc |> listm.rev
-    loop l1 l2 l3 l4 []
-
-inl replicate count x =
-    listm.init count (fun _ => x)
-
 inl i_e =
-    replicate 8i32 "I" ++ replicate 8i32 "E"
+    listm'.replicate 8i32 "I" ++ listm'.replicate 8i32 "E"
 inl s_n =
     [ "S"; "S"; "N"; "N" ]
-    |> replicate 4i32
+    |> listm'.replicate 4i32
     |> listm'.collect id
 inl t_f =
     [ "T"; "F"; "F"; "T" ]
-    |> replicate 4i32
+    |> listm'.replicate 4i32
     |> listm'.collect id
 inl j_p =
     [ "J"; "J"; "J"; "J" ]
@@ -87,7 +76,7 @@ inl j_p =
     ++ [ "P"; "P"; "P"; "P" ]
     ++ [ "J"; "J"; "J"; "J" ]
 inl mbti =
-    map4 (fun a b c d => $'$"{!a}{!b}{!c}{!d}"') i_e s_n t_f j_p
+    listm'.map4 (fun a b c d => $'$"{!a}{!b}{!c}{!d}"') i_e s_n t_f j_p
 
 mbti
 |> listm'.box

@@ -12,6 +12,19 @@ inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
     |> listm.map fn
     |> listm.fold (++) []
 
+/// ### replicate
+inl replicate count x =
+    listm.init count fun _ => x
+
+/// ### map4
+inl map4 f l1 l2 l3 l4 =
+    inl rec loop l1 l2 l3 l4 acc =
+        match l1, l2, l3, l4 with
+        | (x1 :: xs1), (x2 :: xs2), (x3 :: xs3), (x4 :: xs4) =>
+            loop xs1 xs2 xs3 xs4 (f x1 x2 x3 x4 :: acc)
+        | _ => acc |> listm.rev
+    loop l1 l2 l3 l4 []
+
 /// ### init_series
 inl init_series start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
