@@ -13,7 +13,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/spiral/builder/build.ps1 -SkipFsx 1 } | Invoke-Block
+{ pwsh ../deps/spiral/apps/spiral/build.ps1 -SkipFsx 1 } | Invoke-Block
 
 #!pwsh
 
@@ -26,10 +26,6 @@
 #!pwsh
 
 { pwsh ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/spiral/builder/build.ps1 } | Invoke-Block
 
 #!pwsh
 
