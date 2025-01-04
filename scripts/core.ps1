@@ -152,13 +152,18 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     }
     if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
         $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
+
+        $LinkTarget = (Get-Item $Target).Target
+        if ($LinkTarget) {
+            $Target = $LinkTarget
+        }
     }
 
     $Parent = Split-Path $Path
 
     if (-Not (Test-Path $Parent)) {
         Write-Output "Creating parent directory: $Parent"
-        New-Item $Parent -ItemType Directory
+        New-Item $Parent -ItemType Directory | Out-Null
     }
 
     if (Test-Path $Path) {

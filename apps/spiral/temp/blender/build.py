@@ -1,3 +1,4 @@
+import os
 import bpy
 
 # 1) Clear default scene
@@ -40,13 +41,14 @@ bpy.context.scene.camera = camera_obj
 # Create a sun light
 bpy.ops.object.light_add(type='SUN', location=(10, 10, 10))
 light_obj = bpy.context.active_object
-light_obj.data.energy = 3
+light_obj.data.energy = 6
+light_obj.data.use_shadow = False
 
 # 5) Set rendering options (Cycles, resolution)
 bpy.context.scene.render.engine = 'CYCLES'
-bpy.context.scene.render.resolution_x = 1024
-bpy.context.scene.render.resolution_y = 1024
+bpy.context.scene.render.resolution_x = 2048
+bpy.context.scene.render.resolution_y = 2048
 
 # Render and save
-bpy.context.scene.render.filepath = f"spiral_blender.png"
+bpy.context.scene.render.filepath = os.path.join(".", f"spiral_blender.png")
 bpy.ops.render.render(write_still=True)
