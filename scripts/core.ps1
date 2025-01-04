@@ -166,6 +166,12 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
         New-Item $Parent -ItemType Directory | Out-Null
     }
 
+    $ParentTarget = (Get-Item $Parent).Target
+    if ($ParentTarget) {
+        $Leaf = Split-Path $Path -Leaf
+        $Path = Join-Path $ParentTarget $Leaf
+    }
+
     if (Test-Path $Path) {
         $attr = (Get-Item $Path).Attributes
         if ($null -ne $attr `
