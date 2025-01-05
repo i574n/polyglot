@@ -41,7 +41,7 @@ if (!$SkipFable) {
 if (!$SkipRs -and !$SkipFable) {
     { BuildFable $targetDir $projectName "rs" } | Invoke-Block
 
-    $path = "$targetDir/target/rs/polyglot/target/Builder/$projectName/$projectName.rs"
+    $path = "$targetDir/target/rs/target/Builder/$projectName/$projectName.rs"
     if (!(Test-Path $path)) {
         $path = "$targetDir/target/rs/$projectName.rs"
     }

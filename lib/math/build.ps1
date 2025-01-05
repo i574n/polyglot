@@ -27,7 +27,7 @@ $targetDir = GetTargetDir $projectName
 
 { BuildFable $targetDir $projectName "rs" } | Invoke-Block
 
-$path = "$targetDir/target/rs/polyglot/target/Builder/$projectName/$projectName.rs"
+$path = "$targetDir/target/rs/target/Builder/$projectName/$projectName.rs"
 if (!(Test-Path $path)) {
     { ls } | Invoke-Block -Location $targetDir/target
     $path = "$targetDir/target/rs/$projectName.rs"

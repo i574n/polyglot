@@ -2193,66 +2193,74 @@ pub mod File_system {
             defaultValue(File_system::US5::US5_1, map(File_system::method5(), v6));
         let v24_1: string = File_system::method110(v3);
         if (v2_1) >= 11_u8 {
-            let v26_1: string = sprintf!(
-                "file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
-                v0_1.clone(),
-                v2_1,
-                v4.clone(),
-                v5.clone()
+            let v28_1: string = append(
+                string("file_system.read_link / "),
+                sprintf!(
+                    "path: {} / n: {} / path\': {} / name: {}",
+                    v0_1.clone(),
+                    v2_1,
+                    v4.clone(),
+                    v5.clone()
+                ),
             );
-            let v33_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v26_1);
-            Err(v33_1)
+            let v35_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v28_1);
+            Err(v35_1)
         } else {
             if let File_system::US5::US5_0(v20_1_0_0) = &v20_1 {
                 if (v4.clone()) != string("") {
-                    let v72: Result<std::path::PathBuf, std::io::Error> =
+                    let v74: Result<std::path::PathBuf, std::io::Error> =
                         v1_1((v2_1) + 1_u8, v20_1_0_0.clone());
-                    let v73 = File_system::method103();
-                    let v85: Result<std::path::PathBuf, string> = v72.map_err(|x| v73(x));
-                    let v88 = File_system::method105();
-                    let v89 = File_system::method106();
-                    let v90: File_system::US13 = match &v85 {
-                        Err(v85_1_0) => v89(v85_1_0.clone()),
-                        Ok(v85_0_0) => v88(v85_0_0.clone()),
+                    let v75 = File_system::method103();
+                    let v87: Result<std::path::PathBuf, string> = v74.map_err(|x| v75(x));
+                    let v90 = File_system::method105();
+                    let v91 = File_system::method106();
+                    let v92: File_system::US13 = match &v87 {
+                        Err(v87_1_0) => v91(v87_1_0.clone()),
+                        Ok(v87_0_0) => v90(v87_0_0.clone()),
                     };
-                    match &v90 {
-                        File_system::US13::US13_0(v90_0_0) => {
-                            let v119: string = File_system::method80(
-                                toString(v90_0_0.clone().display()),
+                    match &v92 {
+                        File_system::US13::US13_0(v92_0_0) => {
+                            let v121: string = File_system::method80(
+                                toString(v92_0_0.clone().display()),
                                 v5.clone(),
                             );
-                            let v126: &str = &*v119;
-                            let v150: std::string::String = String::from(v126);
-                            let v174: std::path::PathBuf = std::path::PathBuf::from(v150);
-                            Ok(v174)
+                            let v128: &str = &*v121;
+                            let v152: std::string::String = String::from(v128);
+                            let v176: std::path::PathBuf = std::path::PathBuf::from(v152);
+                            Ok(v176)
                         }
-                        File_system::US13::US13_1(v90_1_0) => {
-                            let v207: string = sprintf!(
-                                "file_system.read_link / error\': {} / error: {} / name: {}",
-                                v90_1_0.clone(),
-                                v24_1.clone(),
-                                v5.clone()
+                        File_system::US13::US13_1(v92_1_0) => {
+                            let v211: string = append(
+                                string("file_system.read_link / "),
+                                sprintf!(
+                                    "error\': {} / error: {} / name: {}",
+                                    v92_1_0.clone(),
+                                    v24_1.clone(),
+                                    v5.clone()
+                                ),
                             );
-                            let v214: std::io::Error =
-                                std::io::Error::new(std::io::ErrorKind::Other, &*v207);
-                            Err(v214)
+                            let v218: std::io::Error =
+                                std::io::Error::new(std::io::ErrorKind::Other, &*v211);
+                            Err(v218)
                         }
                     }
                 } else {
-                    let v248: string =
-                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                                 v0_1.clone(), v24_1.clone(), v4.clone(),
-                                 v5.clone());
-                    let v255: std::io::Error =
-                        std::io::Error::new(std::io::ErrorKind::Other, &*v248);
-                    Err(v255)
+                    let v254: string =
+                        append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                               sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                        v0_1.clone(), v24_1.clone(),
+                                        v4.clone(), v5.clone()));
+                    let v261: std::io::Error =
+                        std::io::Error::new(std::io::ErrorKind::Other, &*v254);
+                    Err(v261)
                 }
             } else {
-                let v288: string =
-                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                             v0_1, v24_1.clone(), v4, v5.clone());
-                let v295: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v288);
-                Err(v295)
+                let v296: string =
+                    append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                           sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                    v0_1, v24_1.clone(), v4, v5.clone()));
+                let v303: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v296);
+                Err(v303)
             }
         }
     }
@@ -2318,66 +2326,75 @@ pub mod File_system {
             defaultValue(File_system::US5::US5_1, map(File_system::method5(), v5));
         let v23_1: string = File_system::method110(v3);
         if (v2_1) >= 11_u8 {
-            let v25_1: string = sprintf!(
-                "file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
-                v0_1.clone(),
-                v2_1,
-                v0_1.clone(),
-                v4.clone()
+            let v27_1: string = append(
+                string("file_system.read_link / "),
+                sprintf!(
+                    "path: {} / n: {} / path\': {} / name: {}",
+                    v0_1.clone(),
+                    v2_1,
+                    v0_1.clone(),
+                    v4.clone()
+                ),
             );
-            let v32_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v25_1);
-            Err(v32_1)
+            let v34_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v27_1);
+            Err(v34_1)
         } else {
             if let File_system::US5::US5_0(v19_1_0_0) = &v19_1 {
                 if (v0_1.clone()) != string("") {
-                    let v71: Result<std::path::PathBuf, std::io::Error> =
+                    let v73: Result<std::path::PathBuf, std::io::Error> =
                         v1_1((v2_1) + 1_u8, v19_1_0_0.clone());
-                    let v72 = File_system::method103();
-                    let v84: Result<std::path::PathBuf, string> = v71.map_err(|x| v72(x));
-                    let v87 = File_system::method105();
-                    let v88 = File_system::method106();
-                    let v89: File_system::US13 = match &v84 {
-                        Err(v84_1_0) => v88(v84_1_0.clone()),
-                        Ok(v84_0_0) => v87(v84_0_0.clone()),
+                    let v74 = File_system::method103();
+                    let v86: Result<std::path::PathBuf, string> = v73.map_err(|x| v74(x));
+                    let v89 = File_system::method105();
+                    let v90 = File_system::method106();
+                    let v91: File_system::US13 = match &v86 {
+                        Err(v86_1_0) => v90(v86_1_0.clone()),
+                        Ok(v86_0_0) => v89(v86_0_0.clone()),
                     };
-                    match &v89 {
-                        File_system::US13::US13_0(v89_0_0) => {
-                            let v118: string = File_system::method80(
-                                toString(v89_0_0.clone().display()),
+                    match &v91 {
+                        File_system::US13::US13_0(v91_0_0) => {
+                            let v120: string = File_system::method80(
+                                toString(v91_0_0.clone().display()),
                                 v4.clone(),
                             );
-                            let v125: &str = &*v118;
-                            let v149: std::string::String = String::from(v125);
-                            let v173: std::path::PathBuf = std::path::PathBuf::from(v149);
-                            Ok(v173)
+                            let v127: &str = &*v120;
+                            let v151: std::string::String = String::from(v127);
+                            let v175: std::path::PathBuf = std::path::PathBuf::from(v151);
+                            Ok(v175)
                         }
-                        File_system::US13::US13_1(v89_1_0) => {
-                            let v206: string = sprintf!(
-                                "file_system.read_link / error\': {} / error: {} / name: {}",
-                                v89_1_0.clone(),
-                                v23_1.clone(),
-                                v4.clone()
+                        File_system::US13::US13_1(v91_1_0) => {
+                            let v210: string = append(
+                                string("file_system.read_link / "),
+                                sprintf!(
+                                    "error\': {} / error: {} / name: {}",
+                                    v91_1_0.clone(),
+                                    v23_1.clone(),
+                                    v4.clone()
+                                ),
                             );
-                            let v213: std::io::Error =
-                                std::io::Error::new(std::io::ErrorKind::Other, &*v206);
-                            Err(v213)
+                            let v217: std::io::Error =
+                                std::io::Error::new(std::io::ErrorKind::Other, &*v210);
+                            Err(v217)
                         }
                     }
                 } else {
-                    let v247: string =
-                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                                 v0_1.clone(), v23_1.clone(), v0_1.clone(),
-                                 v4.clone());
-                    let v254: std::io::Error =
-                        std::io::Error::new(std::io::ErrorKind::Other, &*v247);
-                    Err(v254)
+                    let v253: string =
+                        append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                               sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                        v0_1.clone(), v23_1.clone(),
+                                        v0_1.clone(), v4.clone()));
+                    let v260: std::io::Error =
+                        std::io::Error::new(std::io::ErrorKind::Other, &*v253);
+                    Err(v260)
                 }
             } else {
-                let v287: string =
-                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                             v0_1.clone(), v23_1.clone(), v0_1, v4.clone());
-                let v294: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v287);
-                Err(v294)
+                let v295: string =
+                    append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                           sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                    v0_1.clone(), v23_1.clone(), v0_1,
+                                    v4.clone()));
+                let v302: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v295);
+                Err(v302)
             }
         }
     }
@@ -2431,66 +2448,74 @@ pub mod File_system {
             defaultValue(File_system::US5::US5_1, map(File_system::method5(), v6));
         let v24_1: string = File_system::method104(v3);
         if (v2_1) >= 11_u8 {
-            let v26_1: string = sprintf!(
-                "file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
-                v0_1.clone(),
-                v2_1,
-                v4.clone(),
-                v5.clone()
+            let v28_1: string = append(
+                string("file_system.read_link / "),
+                sprintf!(
+                    "path: {} / n: {} / path\': {} / name: {}",
+                    v0_1.clone(),
+                    v2_1,
+                    v4.clone(),
+                    v5.clone()
+                ),
             );
-            let v33_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v26_1);
-            Err(v33_1)
+            let v35_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v28_1);
+            Err(v35_1)
         } else {
             if let File_system::US5::US5_0(v20_1_0_0) = &v20_1 {
                 if (v4.clone()) != string("") {
-                    let v72: Result<std::path::PathBuf, std::io::Error> =
+                    let v74: Result<std::path::PathBuf, std::io::Error> =
                         v1_1((v2_1) + 1_u8, v20_1_0_0.clone());
-                    let v73 = File_system::method103();
-                    let v85: Result<std::path::PathBuf, string> = v72.map_err(|x| v73(x));
-                    let v88 = File_system::method105();
-                    let v89 = File_system::method106();
-                    let v90: File_system::US13 = match &v85 {
-                        Err(v85_1_0) => v89(v85_1_0.clone()),
-                        Ok(v85_0_0) => v88(v85_0_0.clone()),
+                    let v75 = File_system::method103();
+                    let v87: Result<std::path::PathBuf, string> = v74.map_err(|x| v75(x));
+                    let v90 = File_system::method105();
+                    let v91 = File_system::method106();
+                    let v92: File_system::US13 = match &v87 {
+                        Err(v87_1_0) => v91(v87_1_0.clone()),
+                        Ok(v87_0_0) => v90(v87_0_0.clone()),
                     };
-                    match &v90 {
-                        File_system::US13::US13_0(v90_0_0) => {
-                            let v119: string = File_system::method80(
-                                toString(v90_0_0.clone().display()),
+                    match &v92 {
+                        File_system::US13::US13_0(v92_0_0) => {
+                            let v121: string = File_system::method80(
+                                toString(v92_0_0.clone().display()),
                                 v5.clone(),
                             );
-                            let v126: &str = &*v119;
-                            let v150: std::string::String = String::from(v126);
-                            let v174: std::path::PathBuf = std::path::PathBuf::from(v150);
-                            Ok(v174)
+                            let v128: &str = &*v121;
+                            let v152: std::string::String = String::from(v128);
+                            let v176: std::path::PathBuf = std::path::PathBuf::from(v152);
+                            Ok(v176)
                         }
-                        File_system::US13::US13_1(v90_1_0) => {
-                            let v207: string = sprintf!(
-                                "file_system.read_link / error\': {} / error: {} / name: {}",
-                                v90_1_0.clone(),
-                                v24_1.clone(),
-                                v5.clone()
+                        File_system::US13::US13_1(v92_1_0) => {
+                            let v211: string = append(
+                                string("file_system.read_link / "),
+                                sprintf!(
+                                    "error\': {} / error: {} / name: {}",
+                                    v92_1_0.clone(),
+                                    v24_1.clone(),
+                                    v5.clone()
+                                ),
                             );
-                            let v214: std::io::Error =
-                                std::io::Error::new(std::io::ErrorKind::Other, &*v207);
-                            Err(v214)
+                            let v218: std::io::Error =
+                                std::io::Error::new(std::io::ErrorKind::Other, &*v211);
+                            Err(v218)
                         }
                     }
                 } else {
-                    let v248: string =
-                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                                 v0_1.clone(), v24_1.clone(), v4.clone(),
-                                 v5.clone());
-                    let v255: std::io::Error =
-                        std::io::Error::new(std::io::ErrorKind::Other, &*v248);
-                    Err(v255)
+                    let v254: string =
+                        append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                               sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                        v0_1.clone(), v24_1.clone(),
+                                        v4.clone(), v5.clone()));
+                    let v261: std::io::Error =
+                        std::io::Error::new(std::io::ErrorKind::Other, &*v254);
+                    Err(v261)
                 }
             } else {
-                let v288: string =
-                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                             v0_1, v24_1.clone(), v4, v5.clone());
-                let v295: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v288);
-                Err(v295)
+                let v296: string =
+                    append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                           sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                    v0_1, v24_1.clone(), v4, v5.clone()));
+                let v303: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v296);
+                Err(v303)
             }
         }
     }
@@ -2506,9 +2531,10 @@ pub mod File_system {
             let v86: std::path::PathBuf = getZero();
             Ok(v86)
         } else {
-            let v103: string =
-                sprintf!("file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: {} / result: {} / path\': {} / n: {}",
-                         v0_1.clone(), v32_1, v2_1.clone(), v1_1);
+            let v107: string =
+                append(string("file_system.read_link / Fsharp / The file or directory is not a reparse point. / "),
+                       sprintf!("path: {} / result: {} / path\': {} / n: {}",
+                                v0_1.clone(), v32_1, v2_1.clone(), v1_1));
             File_system::method117(
                 v0_1.clone(),
                 Func2::new({
@@ -2521,7 +2547,7 @@ pub mod File_system {
                     }
                 }),
                 v1_1,
-                std::io::Error::new(std::io::ErrorKind::Other, &*v103),
+                std::io::Error::new(std::io::ErrorKind::Other, &*v107),
                 v2_1,
             )
         }
@@ -2555,66 +2581,75 @@ pub mod File_system {
             defaultValue(File_system::US5::US5_1, map(File_system::method5(), v5));
         let v23_1: string = File_system::method104(v3);
         if (v2_1) >= 11_u8 {
-            let v25_1: string = sprintf!(
-                "file_system.read_link / path: {} / n: {} / path\': {} / name: {}",
-                v0_1.clone(),
-                v2_1,
-                v0_1.clone(),
-                v4.clone()
+            let v27_1: string = append(
+                string("file_system.read_link / "),
+                sprintf!(
+                    "path: {} / n: {} / path\': {} / name: {}",
+                    v0_1.clone(),
+                    v2_1,
+                    v0_1.clone(),
+                    v4.clone()
+                ),
             );
-            let v32_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v25_1);
-            Err(v32_1)
+            let v34_1: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v27_1);
+            Err(v34_1)
         } else {
             if let File_system::US5::US5_0(v19_1_0_0) = &v19_1 {
                 if (v0_1.clone()) != string("") {
-                    let v71: Result<std::path::PathBuf, std::io::Error> =
+                    let v73: Result<std::path::PathBuf, std::io::Error> =
                         v1_1((v2_1) + 1_u8, v19_1_0_0.clone());
-                    let v72 = File_system::method103();
-                    let v84: Result<std::path::PathBuf, string> = v71.map_err(|x| v72(x));
-                    let v87 = File_system::method105();
-                    let v88 = File_system::method106();
-                    let v89: File_system::US13 = match &v84 {
-                        Err(v84_1_0) => v88(v84_1_0.clone()),
-                        Ok(v84_0_0) => v87(v84_0_0.clone()),
+                    let v74 = File_system::method103();
+                    let v86: Result<std::path::PathBuf, string> = v73.map_err(|x| v74(x));
+                    let v89 = File_system::method105();
+                    let v90 = File_system::method106();
+                    let v91: File_system::US13 = match &v86 {
+                        Err(v86_1_0) => v90(v86_1_0.clone()),
+                        Ok(v86_0_0) => v89(v86_0_0.clone()),
                     };
-                    match &v89 {
-                        File_system::US13::US13_0(v89_0_0) => {
-                            let v118: string = File_system::method80(
-                                toString(v89_0_0.clone().display()),
+                    match &v91 {
+                        File_system::US13::US13_0(v91_0_0) => {
+                            let v120: string = File_system::method80(
+                                toString(v91_0_0.clone().display()),
                                 v4.clone(),
                             );
-                            let v125: &str = &*v118;
-                            let v149: std::string::String = String::from(v125);
-                            let v173: std::path::PathBuf = std::path::PathBuf::from(v149);
-                            Ok(v173)
+                            let v127: &str = &*v120;
+                            let v151: std::string::String = String::from(v127);
+                            let v175: std::path::PathBuf = std::path::PathBuf::from(v151);
+                            Ok(v175)
                         }
-                        File_system::US13::US13_1(v89_1_0) => {
-                            let v206: string = sprintf!(
-                                "file_system.read_link / error\': {} / error: {} / name: {}",
-                                v89_1_0.clone(),
-                                v23_1.clone(),
-                                v4.clone()
+                        File_system::US13::US13_1(v91_1_0) => {
+                            let v210: string = append(
+                                string("file_system.read_link / "),
+                                sprintf!(
+                                    "error\': {} / error: {} / name: {}",
+                                    v91_1_0.clone(),
+                                    v23_1.clone(),
+                                    v4.clone()
+                                ),
                             );
-                            let v213: std::io::Error =
-                                std::io::Error::new(std::io::ErrorKind::Other, &*v206);
-                            Err(v213)
+                            let v217: std::io::Error =
+                                std::io::Error::new(std::io::ErrorKind::Other, &*v210);
+                            Err(v217)
                         }
                     }
                 } else {
-                    let v247: string =
-                        sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                                 v0_1.clone(), v23_1.clone(), v0_1.clone(),
-                                 v4.clone());
-                    let v254: std::io::Error =
-                        std::io::Error::new(std::io::ErrorKind::Other, &*v247);
-                    Err(v254)
+                    let v253: string =
+                        append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                               sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                        v0_1.clone(), v23_1.clone(),
+                                        v0_1.clone(), v4.clone()));
+                    let v260: std::io::Error =
+                        std::io::Error::new(std::io::ErrorKind::Other, &*v253);
+                    Err(v260)
                 }
             } else {
-                let v287: string =
-                    sprintf!("file_system.read_link / run / The file or directory is not a reparse point. / path: {} / error: {} / path\': {} / name: {}",
-                             v0_1.clone(), v23_1.clone(), v0_1, v4.clone());
-                let v294: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v287);
-                Err(v294)
+                let v295: string =
+                    append(string("file_system.read_link / run / The file or directory is not a reparse point. / "),
+                           sprintf!("path: {} / error: {} / path\': {} / name: {}",
+                                    v0_1.clone(), v23_1.clone(), v0_1,
+                                    v4.clone()));
+                let v302: std::io::Error = std::io::Error::new(std::io::ErrorKind::Other, &*v295);
+                Err(v302)
             }
         }
     }
@@ -2626,9 +2661,10 @@ pub mod File_system {
             let v85: std::path::PathBuf = getZero();
             Ok(v85)
         } else {
-            let v102: string =
-                sprintf!("file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: {} / result: {} / path\': {} / n: {}",
-                         v0_1.clone(), v31_1, v0_1.clone(), v1_1);
+            let v106: string =
+                append(string("file_system.read_link / Fsharp / The file or directory is not a reparse point. / "),
+                       sprintf!("path: {} / result: {} / path\': {} / n: {}",
+                                v0_1.clone(), v31_1, v0_1.clone(), v1_1));
             File_system::method118(
                 v0_1.clone(),
                 Func2::new({
@@ -2641,7 +2677,7 @@ pub mod File_system {
                     }
                 }),
                 v1_1,
-                std::io::Error::new(std::io::ErrorKind::Other, &*v102),
+                std::io::Error::new(std::io::ErrorKind::Other, &*v106),
             )
         }
     }

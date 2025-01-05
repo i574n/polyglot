@@ -153,67 +153,22 @@ function Update-Json {
     $jsonContent | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonPath
 }
 
-function EnsureSymbolicLink([string] $Path, [string] $Target) {
-    $Location = Get-Location
-    if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
-        $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
-    }
-    if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
-        $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
-
-        $LinkTarget = (Get-Item $Target).Target
-        if ($LinkTarget) {
-            $Target = $LinkTarget
-        }
-    }
-
-    $Parent = Split-Path $Path
-
-    if (-Not (Test-Path $Parent)) {
-        Write-Output "Creating parent directory: $Parent"
-        New-Item $Parent -ItemType Directory | Out-Null
-    }
-
-    $ParentTarget = (Get-Item $Parent).Target
-    if ($ParentTarget) {
-        $Leaf = Split-Path $Path -Leaf
-        $Path = Join-Path $ParentTarget $Leaf
-    }
-
-    if (Test-Path $Path) {
-        $attr = (Get-Item $Path).Attributes
-        if ($null -ne $attr `
-                -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
-                -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
-            Write-Output "Removing file: $Path ($attr)"
-            Remove-Item $Path
-        }
-    }
-
-    if (-Not (Test-Path $Path)) {
-        Write-Output "Creating symlink: $Path -> $Target"
-        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
-        if ($null -eq $result) {
-            Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
-        }
-    }
-    else {
-        Write-Output "Symlink already exists: $Path -> $Target"
-    }
-}
-
 function ResolveLink (
     [string] $Path,
     [string] $End = ''
 ) {
-    $parent = Split-Path $Path
+    if (!$Path) {
+        return "$Path$End"
+    }
+
+    $parent = $Path | Split-Path
     # Write-Output "core.Resolve-Path / parent: $parent / Path: $Path / End: $End `n"
     if (!$parent) {
         return Join-Path $Path $End
     }
 
-    if (Test-Path $parent) {
-        $target = (Get-Item $parent).Target
+    if ($parent | Test-Path) {
+        $target = ($parent | Get-Item).Target
     }
     # Write-Output "core.Resolve-Path / target: $target `n"
 
@@ -226,6 +181,54 @@ function ResolveLink (
     }
 
     return ResolveLink $parent $End
+}
+
+function EnsureSymbolicLink([string] $Path, [string] $Target) {
+    $Location = Get-Location
+
+    if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
+        $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
+
+        $Path = ResolveLink $Path
+    }
+
+    if (!$Path) {
+        return
+    }
+
+    if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
+        $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
+
+        $Target = ResolveLink $Target
+    }
+
+    $Parent = $Path | Split-Path
+
+    if (-Not ($Parent | Test-Path)) {
+        Write-Output "Creating parent directory: $Parent"
+        New-Item $Parent -ItemType Directory | Out-Null
+    }
+
+    if ($Path | Test-Path) {
+        $attr = ($Path | Get-Item).Attributes
+        if ($null -ne $attr `
+                -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
+                -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
+            Write-Output "Removing file: $Path ($attr)"
+            $Path | Remove-Item
+        }
+    }
+
+    if (-Not ($Path | Test-Path)) {
+        Write-Output "Creating symlink: $Path -> $Target"
+        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
+        if ($null -eq $result) {
+            Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
+        }
+    }
+    else {
+        Write-Output "Symlink already exists: $Path -> $Target"
+    }
 }
 
 function Search-Command {

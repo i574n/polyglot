@@ -1943,30 +1943,30 @@ export function method108(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
     const v20_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v6), US5_US5_1());
     const v24_1: string = method110(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`));
     }
     else if (v20_1.tag === /* US5_0 */ 0) {
-        const v65: string = v20_1.fields[0];
+        const v67: string = v20_1.fields[0];
         if (v4 !== "") {
-            const v72: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v65);
-            const v73: ((arg0: any) => string) = method103();
-            const v85: FSharpResult$2_$union<any, string> = (v72.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v73(v72.fields[0])) : FSharpResult$2_Ok<any, string>(v72.fields[0]);
-            const v88: ((arg0: any) => US13_$union) = method105();
-            const v89: ((arg0: string) => US13_$union) = method106();
-            const v90: US13_$union = (v85.tag === /* Error */ 1) ? v89(v85.fields[0]) : v88(v85.fields[0]);
-            if (v90.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v90.fields[0]), v5));
+            const v74: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v67);
+            const v75: ((arg0: any) => string) = method103();
+            const v87: FSharpResult$2_$union<any, string> = (v74.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v75(v74.fields[0])) : FSharpResult$2_Ok<any, string>(v74.fields[0]);
+            const v90: ((arg0: any) => US13_$union) = method105();
+            const v91: ((arg0: string) => US13_$union) = method106();
+            const v92: US13_$union = (v87.tag === /* Error */ 1) ? v91(v87.fields[0]) : v90(v87.fields[0]);
+            if (v92.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v92.fields[0]), v5));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v90.fields[0]} / error: ${v24_1} / name: ${v5}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v92.fields[0]} / error: ${v24_1} / name: ${v5}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
     }
 }
 
@@ -1988,30 +1988,30 @@ export function method111(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
     const v19_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v5), US5_US5_1());
     const v23_1: string = method110(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`));
     }
     else if (v19_1.tag === /* US5_0 */ 0) {
-        const v64: string = v19_1.fields[0];
+        const v66: string = v19_1.fields[0];
         if (v0_1 !== "") {
-            const v71: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v64);
-            const v72: ((arg0: any) => string) = method103();
-            const v84: FSharpResult$2_$union<any, string> = (v71.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v72(v71.fields[0])) : FSharpResult$2_Ok<any, string>(v71.fields[0]);
-            const v87: ((arg0: any) => US13_$union) = method105();
-            const v88: ((arg0: string) => US13_$union) = method106();
-            const v89: US13_$union = (v84.tag === /* Error */ 1) ? v88(v84.fields[0]) : v87(v84.fields[0]);
-            if (v89.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v89.fields[0]), v4));
+            const v73: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v66);
+            const v74: ((arg0: any) => string) = method103();
+            const v86: FSharpResult$2_$union<any, string> = (v73.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v74(v73.fields[0])) : FSharpResult$2_Ok<any, string>(v73.fields[0]);
+            const v89: ((arg0: any) => US13_$union) = method105();
+            const v90: ((arg0: string) => US13_$union) = method106();
+            const v91: US13_$union = (v86.tag === /* Error */ 1) ? v90(v86.fields[0]) : v89(v86.fields[0]);
+            if (v91.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v91.fields[0]), v4));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v89.fields[0]} / error: ${v23_1} / name: ${v4}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v91.fields[0]} / error: ${v23_1} / name: ${v4}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
     }
 }
 
@@ -2037,30 +2037,30 @@ export function method117(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
     const v20_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v6), US5_US5_1());
     const v24_1: string = method104(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`));
     }
     else if (v20_1.tag === /* US5_0 */ 0) {
-        const v65: string = v20_1.fields[0];
+        const v67: string = v20_1.fields[0];
         if (v4 !== "") {
-            const v72: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v65);
-            const v73: ((arg0: any) => string) = method103();
-            const v85: FSharpResult$2_$union<any, string> = (v72.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v73(v72.fields[0])) : FSharpResult$2_Ok<any, string>(v72.fields[0]);
-            const v88: ((arg0: any) => US13_$union) = method105();
-            const v89: ((arg0: string) => US13_$union) = method106();
-            const v90: US13_$union = (v85.tag === /* Error */ 1) ? v89(v85.fields[0]) : v88(v85.fields[0]);
-            if (v90.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v90.fields[0]), v5));
+            const v74: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v67);
+            const v75: ((arg0: any) => string) = method103();
+            const v87: FSharpResult$2_$union<any, string> = (v74.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v75(v74.fields[0])) : FSharpResult$2_Ok<any, string>(v74.fields[0]);
+            const v90: ((arg0: any) => US13_$union) = method105();
+            const v91: ((arg0: string) => US13_$union) = method106();
+            const v92: US13_$union = (v87.tag === /* Error */ 1) ? v91(v87.fields[0]) : v90(v87.fields[0]);
+            if (v92.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v92.fields[0]), v5));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v90.fields[0]} / error: ${v24_1} / name: ${v5}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v92.fields[0]} / error: ${v24_1} / name: ${v5}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
     }
 }
 
@@ -2072,7 +2072,7 @@ export function method116(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
-        return method117(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, `file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: ${v0_1} / result: ${v32_1} / path': ${v2_1} / n: ${v1_1}`, v2_1);
+        return method117(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, "file_system.read_link / Fsharp / The file or directory is not a reparse point. / " + (`path: ${v0_1} / result: ${v32_1} / path': ${v2_1} / n: ${v1_1}`), v2_1);
     }
 }
 
@@ -2090,30 +2090,30 @@ export function method118(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
     const v19_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v5), US5_US5_1());
     const v23_1: string = method104(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`));
     }
     else if (v19_1.tag === /* US5_0 */ 0) {
-        const v64: string = v19_1.fields[0];
+        const v66: string = v19_1.fields[0];
         if (v0_1 !== "") {
-            const v71: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v64);
-            const v72: ((arg0: any) => string) = method103();
-            const v84: FSharpResult$2_$union<any, string> = (v71.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v72(v71.fields[0])) : FSharpResult$2_Ok<any, string>(v71.fields[0]);
-            const v87: ((arg0: any) => US13_$union) = method105();
-            const v88: ((arg0: string) => US13_$union) = method106();
-            const v89: US13_$union = (v84.tag === /* Error */ 1) ? v88(v84.fields[0]) : v87(v84.fields[0]);
-            if (v89.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v89.fields[0]), v4));
+            const v73: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v66);
+            const v74: ((arg0: any) => string) = method103();
+            const v86: FSharpResult$2_$union<any, string> = (v73.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v74(v73.fields[0])) : FSharpResult$2_Ok<any, string>(v73.fields[0]);
+            const v89: ((arg0: any) => US13_$union) = method105();
+            const v90: ((arg0: string) => US13_$union) = method106();
+            const v91: US13_$union = (v86.tag === /* Error */ 1) ? v90(v86.fields[0]) : v89(v86.fields[0]);
+            if (v91.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v91.fields[0]), v4));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v89.fields[0]} / error: ${v23_1} / name: ${v4}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v91.fields[0]} / error: ${v23_1} / name: ${v4}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
     }
 }
 
@@ -2125,7 +2125,7 @@ export function method112(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any,
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
-        return method118(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, `file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: ${v0_1} / result: ${v31_1} / path': ${v0_1} / n: ${v1_1}`);
+        return method118(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, "file_system.read_link / Fsharp / The file or directory is not a reparse point. / " + (`path: ${v0_1} / result: ${v31_1} / path': ${v0_1} / n: ${v1_1}`));
     }
 }
 
