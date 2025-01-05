@@ -91,9 +91,9 @@ git clone --recurse-submodules https://github.com/i574n/spiral.git
 { git pull } | Invoke-Block -Location spiral
 Set-Location $ScriptDir
 
-EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
+{ pwsh ../../spiral/scripts/init.ps1 } | Invoke-Block
 
-{ pwsh ../deps/spiral/scripts/init.ps1 } | Invoke-Block
+EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
 
 { pwsh ../deps/spiral/apps/spiral/build.ps1 -SkipPreBuild 1 } | Invoke-Block
 
