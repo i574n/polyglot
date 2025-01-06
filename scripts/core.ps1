@@ -187,9 +187,12 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Location = Get-Location
 
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
+        echo "core.EnsureSymbolicLink / Path: $Path / Target: $Target"
         $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
+        echo "core.EnsureSymbolicLink / FullPath: $Path"
 
         $Path = ResolveLink $Path
+        echo "core.EnsureSymbolicLink / ResolvedFullPath: $Path"
     }
 
     if (!$Path) {
@@ -205,7 +208,7 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Parent = $Path | Split-Path
 
     if (-Not ($Parent | Test-Path)) {
-        Write-Output "Creating parent directory: $Parent"
+        Write-Output "core.EnsureSymbolicLink / Creating parent directory: $Parent"
         New-Item $Parent -ItemType Directory | Out-Null
     }
 
@@ -214,20 +217,20 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
         if ($null -ne $attr `
                 -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
                 -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
-            Write-Output "Removing file: $Path ($attr)"
+            Write-Output "core.EnsureSymbolicLink / Removing file: $Path ($attr)"
             $Path | Remove-Item
         }
     }
 
     if (-Not ($Path | Test-Path)) {
-        Write-Output "Creating symlink: $Path -> $Target"
+        Write-Output "core.EnsureSymbolicLink / Creating symlink: $Path -> $Target"
         $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
         if ($null -eq $result) {
-            Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
+            Write-Error "core.EnsureSymbolicLink / Failed to create symlink: $Path -> $Target ($Error)"
         }
     }
     else {
-        Write-Output "Symlink already exists: $Path -> $Target"
+        Write-Output "core.EnsureSymbolicLink / Symlink already exists: $Path -> $Target"
     }
 }
 

@@ -79,8 +79,10 @@ Set-Location $ScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
-{ pwsh dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
-{ pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+if (!$fast) {
+    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+}
 
 Invoke-Dib init.dib
 
@@ -95,7 +97,8 @@ Set-Location $ScriptDir
 
 EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
 
-{ pwsh ../deps/spiral/apps/spiral/build.ps1 -SkipPreBuild 1 } | Invoke-Block
+$Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
+{ pwsh $Path -SkipPreBuild 1 } | Invoke-Block
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/python/fable/build.ps1 } | Invoke-Block

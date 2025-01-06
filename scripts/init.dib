@@ -21,23 +21,33 @@ rustup update
 
 #!pwsh
 
-{ cargo install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+if (!(Search-Command "cargo-outdated")) {
+    { cargo install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+}
 
 #!pwsh
 
-{ cargo install sccache } | Invoke-Block -OnError Continue
+if (!(Search-Command "sccache")) {
+    { cargo install sccache } | Invoke-Block -OnError Continue
+}
 
 #!pwsh
 
-{ cargo install wasm-pack --locked } | Invoke-Block -OnError Continue
+if (!(Search-Command "wasm-pack")) {
+    { cargo install wasm-pack --locked } | Invoke-Block -OnError Continue
+}
 
 #!pwsh
 
-{ cargo install trunk --version 0.21.5 } | Invoke-Block -OnError Continue
+if (!(Search-Command "trunk")) {
+    { cargo install trunk --version 0.21.5 } | Invoke-Block -OnError Continue
+}
 
 #!pwsh
 
-{ cargo install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
+if (!(Search-Command "leptosfmt")) {
+    { cargo install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
+}
 
 #!pwsh
 
@@ -75,4 +85,6 @@ if (!(Search-Command "nix")) {
 
 #!pwsh
 
-{ . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block
+if (!(Test-Path ../deps/hyperui/.next/package.json)) {
+    { . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block
+}
