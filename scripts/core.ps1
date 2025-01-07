@@ -173,14 +173,17 @@ function ResolveLink (
     if ($parent | Test-Path) {
         $target = ($parent | Get-Item).Target
 
-        if ($target -and (Test-Path $target)) {
-            if ($target.StartsWith(".")) {
-                Write-Host "core.ResolveLink / target: $target / parent: $parent"
-                $parent | Remove-Item -Force -Recurse
+        if ($target) {
+            if (Test-Path $target) {
+                if ($target.StartsWith(".")) {
+                    Write-Host "core.ResolveLink / target: $target / parent: $parent"
+                    $parent | Remove-Item -Force -Recurse
+                } else {
+                    Write-Host "core.ResolveLink / target: $target / End: $End"
+                    $parent = $target
+                }
             } else {
-                $resolved = Join-Path $target $End
-                Write-Host "core.ResolveLink / target: $target / End: $End / resolved: $resolved"
-                return $resolved
+                Write-Host "core.ResolveLink / target: $target / parent: $parent"
             }
         }
     }
@@ -192,7 +195,7 @@ function GetFullPath([string] $Path) {
     $Location = Get-Location
 
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
-        Write-Host "core.GetFullPath / Path: $Path / Target: $Target"
+        Write-Host "core.GetFullPath / Path: $Path"
         $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
         Write-Host "core.GetFullPath / FullPath: $Path"
 
