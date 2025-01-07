@@ -157,12 +157,13 @@ function ResolveLink (
     [string] $Path,
     [string] $End = ''
 ) {
+    Write-Host "core.ResolveLink / Path: $Path / End: $End"
     if (!$Path) {
         return "$Path$End"
     }
 
     $parent = $Path | Split-Path
-    # Write-Output "core.Resolve-Path / parent: $parent / Path: $Path / End: $End `n"
+    # Write-Host "core.ResolveLink / parent: $parent"
     if (!$parent) {
         return Join-Path $Path $End
     }
@@ -170,42 +171,45 @@ function ResolveLink (
     if ($parent | Test-Path) {
         $target = ($parent | Get-Item).Target
     }
-    # Write-Output "core.Resolve-Path / target: $target `n"
 
     $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
 
+    # Write-Host "core.ResolveLink / target: $target / End: $End"
+
     if ($target) {
         $resolved = Join-Path $target $End
-        # Write-Output "core.Resolve-Path / resolved: $resolved / End: $End  `n"
+        Write-Host "core.ResolveLink / resolved: $resolved"
         return $resolved
     }
 
     return ResolveLink $parent $End
 }
 
-function EnsureSymbolicLink([string] $Path, [string] $Target) {
+function GetFullPath([string] $Path) {
     $Location = Get-Location
 
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
-        echo "core.EnsureSymbolicLink / Path: $Path / Target: $Target"
+        Write-Host "core.GetFullPath / Path: $Path / Target: $Target"
         $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
-        echo "core.EnsureSymbolicLink / FullPath: $Path"
+        Write-Host "core.GetFullPath / FullPath: $Path"
 
         $Path = ResolveLink $Path
-        echo "core.EnsureSymbolicLink / ResolvedFullPath: $Path"
+        Write-Host "core.GetFullPath / ResolvedFullPath: $Path"
     }
+
+    return $Path
+}
+
+function EnsureSymbolicLink([string] $Path, [string] $Target) {
+    $Path = GetFullPath $Path
 
     if (!$Path) {
         return
     }
 
-    if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
-        $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
-
-        $Target = ResolveLink $Target
-    }
-
     $Parent = $Path | Split-Path
+
+    Write-Output "core.EnsureSymbolicLink / Path: $Path / Parent: $Parent"
 
     if (-Not ($Parent | Test-Path)) {
         Write-Output "core.EnsureSymbolicLink / Creating parent directory: $Parent"
@@ -221,6 +225,8 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
             $Path | Remove-Item
         }
     }
+
+    $Target = GetFullPath $Target
 
     if (-Not ($Path | Test-Path)) {
         Write-Output "core.EnsureSymbolicLink / Creating symlink: $Path -> $Target"

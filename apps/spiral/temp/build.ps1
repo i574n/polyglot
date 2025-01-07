@@ -13,7 +13,9 @@ $ErrorActionPreference = "Stop"
 { pwsh ./test/build.ps1 } | Invoke-Block
 
 
-{ sudo apt-get update } | Invoke-Block -Linux -Distro ubuntu
-{ sudo apt install -y blender } | Invoke-Block -Linux -Distro ubuntu -OnError Continue
+if ($IsLinux) {
+    { sudo apt-get update } | Invoke-Block -Linux -Distro ubuntu
+    { sudo apt install -y blender } | Invoke-Block -Linux -Distro ubuntu -OnError Continue
+}
 
 { pwsh ./blender/build.ps1 } | Invoke-Block

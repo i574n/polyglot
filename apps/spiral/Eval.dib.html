@@ -8298,7 +8298,7 @@ a.anchor-link {
             <span class="n">builderCommands</span>
             <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">builderCommand</span> <span class="o">-&gt;</span>
                 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
-                    <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"workspace/target/release/spiral_builder{SpiralPlatform.get_executable_suffix ()}"</span>
+                    <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"deps/spiral/workspace/target/release/spiral{SpiralPlatform.get_executable_suffix ()}"</span>
                     <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
                 <span class="n">let</span> <span class="n">commands</span> <span class="o">=</span>
                     <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
@@ -8332,7 +8332,7 @@ a.anchor-link {
                         <span class="p">)</span>
                         <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
                     <span class="n">trace</span> <span class="n">Debug</span>
-                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / spiral_builder"</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / spiral cli"</span><span class="p">)</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / builderCommand: </span><span class="si">{builderCommand}</span><span class="s2"> / command: </span><span class="si">{command}</span><span class="s2"> / result: {result |&gt; SpiralSm.ellipsis_end 400} / {_locals ()}"</span><span class="p">)</span>
                     <span class="k">return</span>
                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span>

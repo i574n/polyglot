@@ -8707,8 +8707,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_74821680 {
-    pub mod Spiral_builder {
+mod module_de117a1e {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::NativeArray_::get_Count;
         use fable_library_rust::NativeArray_::new_array;
@@ -8731,7 +8731,7 @@ mod module_74821680 {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        pub fn method1(v0: i32, v1: LrcPtr&lt;Spiral_builder::Mut0&gt;) -&gt; bool {
+        pub fn method1(v0: i32, v1: LrcPtr&lt;Spiral::Mut0&gt;) -&gt; bool {
             (v1.l0.get().clone()) &lt; (v0)
         }
         pub fn method2(v0: bool) -&gt; bool {
@@ -8743,12 +8743,12 @@ mod module_74821680 {
         pub fn method0() {
             let v3: Array&lt;string&gt; = new_array(&amp;[string("1"), string("2"), string("3")]);
             let v4: i32 = get_Count(v3.clone());
-            let v6: LrcPtr&lt;Spiral_builder::Mut0&gt; = LrcPtr::new(Spiral_builder::Mut0 {
+            let v6: LrcPtr&lt;Spiral::Mut0&gt; = LrcPtr::new(Spiral::Mut0 {
                 l0: MutCell::new(0_i32),
                 l1: MutCell::new(string("")),
                 l2: MutCell::new(string("")),
             });
-            while Spiral_builder::method1(v4, v6.clone()) {
+            while Spiral::method1(v4, v6.clone()) {
                 let v8: i32 = v6.l0.get().clone();
                 let v11: i32 = ((v8.wrapping_neg()) + (v4)) - 1_i32;
                 let matchValue: string = v6.l1.get().clone();
@@ -8768,11 +8768,7 @@ mod module_74821680 {
                 let matchValue_3: string = v6.l2.get().clone();
                 let v18: string = matchValue_2;
                 let v20: bool = (v18.clone()) == string("1\n2\n3");
-                let v22: bool = if v20 {
-                    true
-                } else {
-                    Spiral_builder::method2(v20)
-                };
+                let v22: bool = if v20 { true } else { Spiral::method2(v20) };
                 let v25: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
                     string("__assert_eq"),
@@ -8780,7 +8776,7 @@ mod module_74821680 {
                     string("1\n2\n3")
                 );
                 let v30: () = {
-                    Spiral_builder::closure0(v25.clone(), ());
+                    Spiral::closure0(v25.clone(), ());
                     ()
                 };
                 if (v22) == false {
@@ -8788,14 +8784,14 @@ mod module_74821680 {
                 }
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_74821680::*;
+pub use module_de117a1e::*;
 
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
-}
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral::method0()) }
 
 .ts:
 import { Record } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Types.js";
@@ -8818,7 +8814,7 @@ export class Mut0 extends Record implements IEquatable&lt;Mut0&gt;, IComparable&
 }
 
 export function Mut0_$reflection(): TypeInfo {
-    return record_type("Spiral_builder.Mut0", [], Mut0, () =&gt; [["l0", int32_type], ["l1", string_type], ["l2", string_type]]);
+    return record_type("Spiral.Mut0", [], Mut0, () =&gt; [["l0", int32_type], ["l1", string_type], ["l2", string_type]]);
 }
 
 export function method1(v0: int32, v1: Mut0): boolean {
@@ -8865,9 +8861,6 @@ export function method0(): void {
 method0();
 
 
-
-// spiral_builder.process_typescript
-
 .py:
 from __future__ import annotations
 from fable_modules.fable_library.int32 import op_unary_negation_int32
@@ -8877,7 +8870,7 @@ from fable_modules.fable_library.types import (Record, Array)
 from dataclasses import dataclass
 
 def _expr0() -&gt; TypeInfo:
-    return record_type("Spiral_builder.Mut0", [], Mut0, lambda: [("l0", int32_type), ("l1", string_type), ("l2", string_type)])
+    return record_type("Spiral.Mut0", [], Mut0, lambda: [("l0", int32_type), ("l1", string_type), ("l2", string_type)])
 
 
 @dataclass(eq = False, repr = False, slots = True)
@@ -8930,9 +8923,6 @@ def method0(__unit: None=None) -&gt; None:
 
 method0()
 
-
-
-# spiral_builder.process_python
 
 .fsx output:
 __assert_eq / actual: "1
@@ -9097,8 +9087,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_295a803c {
-    pub mod Spiral_builder {
+mod module_fa23a5e2 {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::printfn;
@@ -9113,11 +9103,7 @@ mod module_295a803c {
         pub fn method0() {
             let v7: string = string("1\n2\n3");
             let v8: bool = (v7.clone()) == string("1\n2\n3");
-            let v10: bool = if v8 {
-                true
-            } else {
-                Spiral_builder::method1(v8)
-            };
+            let v10: bool = if v8 { true } else { Spiral::method1(v8) };
             let v13: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("__assert_eq"),
@@ -9125,21 +9111,21 @@ mod module_295a803c {
                 string("1\n2\n3")
             );
             let v18: () = {
-                Spiral_builder::closure0(v13.clone(), ());
+                Spiral::closure0(v13.clone(), ());
                 ()
             };
             if (v10) == false {
                 panic!("{}", v13,);
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_295a803c::*;
+pub use module_fa23a5e2::*;
 
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
-}
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral::method0()) }
 
 .ts:
 import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
@@ -9168,9 +9154,6 @@ export function method0(): void {
 method0();
 
 
-
-// spiral_builder.process_typescript
-
 .py:
 from fable_modules.fable_library.string_ import (to_text, interpolate)
 
@@ -9197,9 +9180,6 @@ def method0(__unit: None=None) -&gt; None:
 
 method0()
 
-
-
-# spiral_builder.process_python
 
 .py (Cuda):
 kernel = r"""
@@ -9467,8 +9447,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_225b18d2 {
-    pub mod Spiral_builder {
+mod module_5bddefcc {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::Native_::on_startup;
@@ -9493,11 +9473,7 @@ mod module_225b18d2 {
                 ])),
             ]));
             let v18: bool = (v14.clone()) == string("1\n2\n3");
-            let v20: bool = if v18 {
-                true
-            } else {
-                Spiral_builder::method1(v18)
-            };
+            let v20: bool = if v18 { true } else { Spiral::method1(v18) };
             let v23: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("__assert_eq"),
@@ -9505,21 +9481,21 @@ mod module_225b18d2 {
                 string("1\n2\n3")
             );
             let v28: () = {
-                Spiral_builder::closure0(v23.clone(), ());
+                Spiral::closure0(v23.clone(), ());
                 ()
             };
             if (v20) == false {
                 panic!("{}", v23,);
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_225b18d2::*;
+pub use module_5bddefcc::*;
 
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
-}
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral::method0()) }
 
 .ts:
 import { interpolate, toText, concat } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
@@ -9548,9 +9524,6 @@ export function method0(): void {
 method0();
 
 
-
-// spiral_builder.process_typescript
-
 .py:
 from fable_modules.fable_library.string_ import (concat, to_text, interpolate)
 
@@ -9577,9 +9550,6 @@ def method0(__unit: None=None) -&gt; None:
 
 method0()
 
-
-
-# spiral_builder.process_python
 
 .py (Cuda):
 kernel = r"""

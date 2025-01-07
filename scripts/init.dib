@@ -77,7 +77,7 @@ if (!(Search-Command "nix")) {
 
 #!pwsh
 
-{ . "$ScriptDir/dep_spiral_extension.ps1" } | Invoke-Block
+{ . "$ScriptDir/dep_spiral_extension.ps1" } | Invoke-Block -OnError Continue
 
 #!pwsh
 
